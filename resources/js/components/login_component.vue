@@ -5,30 +5,16 @@
                 <v-row align="center" justify="center">
                     <v-col cols="12" sm="8" md="6">
                         <v-card class="elevation-12" >
-                            <!-- <v-toolbar color="primary" dark flat>
-                                <v-toolbar-title>Login form</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                                <v-tooltip bottom>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn :href="source" icon large target="_blank" v-on="on">
-                                            <v-icon>mdi-code-tags</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>Source</span>
-                                </v-tooltip>
-                            </v-toolbar> -->
                             <v-img src="img/login-logo.png" height="194"></v-img>
                             <v-card-text>
-                                <v-form>
-                                    <v-text-field label="Nombre" name="login" prepend-icon="mdi-account" type="text"></v-text-field>
-                                    <v-text-field label="Correo electronico" name="login" prepend-icon="mdi-account" type="text"></v-text-field>
-                                    <v-text-field id="password" label="Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
-                                    <v-text-field id="password" label="Confirmar Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
+                                <v-form ref="login_form" >
+                                    <v-text-field :rules="[rules.required]" v-model="email" outlined label="Usuario" name="login" prepend-inner-icon="mdi-account" type="text"></v-text-field>
+                                    <v-text-field :rules="[rules.required]" v-model="psw" outlined label="Contraseña" name="psw" prepend-inner-icon="mdi-lock" type="password"></v-text-field>
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="primary">Login</v-btn>
+                                <v-btn color="primary" @click="userLogin">Login</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-col>
@@ -38,10 +24,36 @@
     </v-app>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
-    props: {
-        source: String,
+    data(){
+        return {
+            email: '',
+            psw: '',
+            rules: {
+                required: value => !!value || 'Este campo es requerido.'
+            }
+        }
     },
+    computed: {
+        ...mapGetters(['services']),
+    },
+    methods:{
+        async userLogin(){
+            try {
+                var model = {
+                    email: this.email,
+                    password: this.psw
+                }
+                if(this.$refs.login_form.validate()){
+                    this.services.userServices.loginUsr(model)
+                }
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 }
 
 </script>
