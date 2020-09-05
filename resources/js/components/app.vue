@@ -25,7 +25,7 @@
                             <v-list-item-content>
                                 <v-list-item-title><v-icon small>mdi-account</v-icon>{{user.name}}</v-list-item-title>
                                 <v-list-item-subtitle><v-icon small>mdi-email</v-icon>{{user.email}}</v-list-item-subtitle>
-                                <small ><v-icon small>mdi-account-star</v-icon>{{user.user_has_rol.name_rol}}</small>
+                                <small ><v-icon small>mdi-account-star</v-icon>{{user.nameRol}}</small>
                             </v-list-item-content>
                             <v-list-item-action>
                             </v-list-item-action>

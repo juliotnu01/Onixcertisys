@@ -39894,7 +39894,7 @@ var render = function() {
                                   _c("v-icon", { attrs: { small: "" } }, [
                                     _vm._v("mdi-account-star")
                                   ]),
-                                  _vm._v(_vm._s(_vm.user.user_has_rol.name_rol))
+                                  _vm._v(_vm._s(_vm.user.nameRol))
                                 ],
                                 1
                               )
@@ -101442,6 +101442,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setUSer: function setUSer(state, data) {
       state.user = data;
+      state.user.nameRol = data.user_has_rol.name_rol;
+      console.log(state.user);
     }
   }
 });
