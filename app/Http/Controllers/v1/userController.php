@@ -12,7 +12,7 @@ class userController extends Controller
     {
     	$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission'])->get();
     	for ($i=0; $i < count($user); $i++) { 
-    		$user[$i]->rol_user = $user[$i]->userHasRol->name_rol;
+    		$user[$i]->rol_user = $user[$i]->userHasRol['name_rol'];
     	}
         return response($user);
     }
