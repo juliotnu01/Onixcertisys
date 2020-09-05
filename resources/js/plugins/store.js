@@ -21,8 +21,6 @@ export const store = new Vuex.Store({
     },
     setUSer(state, data){
       state.user = data
-      state.user.nameRol = data.user_has_rol.name_rol
-      console.log(state.user)
     }
   },
 })

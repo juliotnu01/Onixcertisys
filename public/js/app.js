@@ -2079,7 +2079,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -39823,7 +39822,9 @@ var render = function() {
                             { attrs: { size: "32px", item: "" } },
                             [
                               _vm._v(
-                                "\n                        US\n                    "
+                                "\n                        " +
+                                  _vm._s(_vm.user.name) +
+                                  "\n                    "
                               )
                             ]
                           )
@@ -39884,17 +39885,6 @@ var render = function() {
                                     _vm._v("mdi-email")
                                   ]),
                                   _vm._v(_vm._s(_vm.user.email))
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "small",
-                                [
-                                  _c("v-icon", { attrs: { small: "" } }, [
-                                    _vm._v("mdi-account-star")
-                                  ]),
-                                  _vm._v(_vm._s(_vm.user.nameRol))
                                 ],
                                 1
                               )
@@ -101442,8 +101432,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setUSer: function setUSer(state, data) {
       state.user = data;
-      state.user.nameRol = data.user_has_rol.name_rol;
-      console.log(state.user);
     }
   }
 });
