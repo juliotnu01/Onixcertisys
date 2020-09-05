@@ -20,5 +20,6 @@
         </div>
     </div>
 </div> -->  
-<app/>
+<app root="{{env('APP_URL')}}" />
+
 @endsection

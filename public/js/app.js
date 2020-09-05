@@ -2066,7 +2066,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    source: String
+    root: String,
+    "default": 'http://localhost:8000'
   },
   data: function data() {
     return {
@@ -39707,7 +39708,7 @@ var render = function() {
                 [
                   _c("v-img", {
                     attrs: {
-                      src: "http://localhost:8000/img/login-logo.png",
+                      src: _vm.root + "/img/login-logo.png",
                       width: "200"
                     }
                   })
@@ -101582,8 +101583,8 @@ var userServices = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Onixcertisys\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Onixcertisys\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\laragon\www\Onixcertisys\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\laragon\www\Onixcertisys\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

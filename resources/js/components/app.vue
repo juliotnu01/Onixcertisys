@@ -2,7 +2,7 @@
     <v-app id="inspire">
         <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="#fff">
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-                <router-link to="/"><v-img src="http://localhost:8000/img/login-logo.png" width="200"/></router-link>
+                <router-link to="/"><v-img :src="`${root}/img/login-logo.png`" width="200"/></router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon>
@@ -60,7 +60,8 @@
 <script>
 export default {
     props: {
-        source: String,
+        root: String,
+        default: 'http://localhost:8000',
     },
     data() {
         return {
