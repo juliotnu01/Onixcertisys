@@ -2,7 +2,8 @@ import {store} from '../plugins/store.js'
 export default class userServices{
     async getListUser(){
         try {
-            let {data} = await axios('api/list-user')
+            let {data} = await axios('/api/list-user')
+            console.log({data})
             store.commit('setListUser', data)
         } catch (error) {
             

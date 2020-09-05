@@ -1,13 +1,11 @@
 <template>
     <v-app>
-        <v-container>
             <v-row>
-                <v-col cols="12" md="2" v-for="i in head_menu">
+                <v-col cols="12" md="2" v-for="(i, x) in head_menu" :key="x">
                     <v-card class="mx-auto" max-width="400">
                         <v-list-item two-line>
                             <v-list-item-content>
                                 <h3>{{i.text}}</h3>
-                                <!-- <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle> -->
                             </v-list-item-content>
                         </v-list-item>
                         <v-card-text>
@@ -84,7 +82,6 @@
                     </v-row>
                 </v-col>
             </v-row>
-        </v-container>
     </v-app>
 </template>
 <script>

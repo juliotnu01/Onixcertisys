@@ -10,6 +10,10 @@ class userController extends Controller
 {
     public function index()
     {
-        return response(User::all());
+    	$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission'])->get();
+    	for ($i=0; $i < count($user); $i++) { 
+    		$user[$i]->rol_user = $user[$i]->userHasRol->name_rol;
+    	}
+        return response($user);
     }
 }
