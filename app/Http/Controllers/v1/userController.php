@@ -16,4 +16,14 @@ class userController extends Controller
     	}
         return response($user);
     }
+    public function findUser($id)
+    {
+    	try {
+    		$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission'])->find($id);
+    		return response($user);
+    	} catch (Exception $e) {
+    		throw new Exception($e, 1);
+    		
+    	}
+    }
 }

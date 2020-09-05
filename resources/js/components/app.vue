@@ -18,13 +18,14 @@
                 </template>
                 <v-card>
                     <v-list>
-                        <v-list-item>
+                        <v-list-item >
                             <v-list-item-avatar>
                                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
                             </v-list-item-avatar>
                             <v-list-item-content>
-                                <v-list-item-title>John Leider</v-list-item-title>
-                                <v-list-item-subtitle>Founder of Vuetify.js</v-list-item-subtitle>
+                                <v-list-item-title><v-icon small>mdi-account</v-icon>{{user.name}}</v-list-item-title>
+                                <v-list-item-subtitle><v-icon small>mdi-email</v-icon>{{user.email}}</v-list-item-subtitle>
+                                <small ><v-icon small>mdi-account-star</v-icon>{{user.user_has_rol.name_rol}}</small>
                             </v-list-item-content>
                             <v-list-item-action>
                             </v-list-item-action>
@@ -38,7 +39,7 @@
                             </router-link>
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" text @click="menu = false">Cerrar Sesion</v-btn>
+                        <v-btn color="primary" text @click="logout">Cerrar Sesion</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-menu>
@@ -58,10 +59,18 @@
     </v-app>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
     props: {
-        root: String,
-        default: 'http://localhost:8000',
+        root: {
+            type: String
+        },
+        authusr: {
+            type: Object
+        },
+    },
+    mounted(){
+        this.determinateUser(this.authusr)
     },
     data() {
         return {
@@ -131,6 +140,17 @@ export default {
             ],
         }
     },
+    computed:{
+        ...mapGetters(['services', 'user'])
+    },
+    methods:{
+        async logout(){
+            this.services.userServices.logoutUsr()
+        },
+        async determinateUser(usr){
+            this.services.userServices.itExistUsr(usr)  
+        }
+    }
 };
 
 </script>

@@ -3,7 +3,6 @@ export default class userServices{
     async getListUser(){
         try {
             let {data} = await axios('/api/list-user')
-            console.log({data})
             store.commit('setListUser', data)
         } catch (error) {
             
@@ -23,6 +22,22 @@ export default class userServices{
             location.href = 'home'
         } catch (error) {
             console.log(error)
+        }
+    }
+    async logoutUsr(){
+        try {
+            let data = await axios.post('/logout')
+            location.href = '/login'
+        }catch(e){
+            console.log(e)
+        }
+    }
+    async itExistUsr(usr){
+        try{
+            let {data} = await axios(`/api/find-user/${usr.id}`)
+            store.commit('setUSer', data)
+        }catch(e){
+            console.log(e)
         }
     }
 }

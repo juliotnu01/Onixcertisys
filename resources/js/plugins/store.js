@@ -8,15 +8,19 @@ export const store = new Vuex.Store({
   state: {
     services,
     listUser: [],
+    user: {},
   },
   getters:{
     services: state => state.services,
-    listUser: state => state.listUser
+    listUser: state => state.listUser,
+    user: state => state.user
   },
   mutations: {
     setListUser(state, data){
-      console.log({data})
       state.listUser = data
+    },
+    setUSer(state, data){
+      state.user = data      
     }
   },
 })

@@ -2005,6 +2005,21 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2064,10 +2079,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    root: String,
-    "default": 'http://localhost:8000'
+    root: {
+      type: String
+    },
+    authusr: {
+      type: Object
+    }
+  },
+  mounted: function mounted() {
+    this.determinateUser(this.authusr);
   },
   data: function data() {
     return {
@@ -2158,6 +2182,45 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Kardex'
       }]
     };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'user'])),
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.services.userServices.logoutUsr();
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    determinateUser: function determinateUser(usr) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.services.userServices.itExistUsr(usr);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
   }
 });
 
@@ -39803,11 +39866,38 @@ var render = function() {
                           _c(
                             "v-list-item-content",
                             [
-                              _c("v-list-item-title", [_vm._v("John Leider")]),
+                              _c(
+                                "v-list-item-title",
+                                [
+                                  _c("v-icon", { attrs: { small: "" } }, [
+                                    _vm._v("mdi-account")
+                                  ]),
+                                  _vm._v(_vm._s(_vm.user.name))
+                                ],
+                                1
+                              ),
                               _vm._v(" "),
-                              _c("v-list-item-subtitle", [
-                                _vm._v("Founder of Vuetify.js")
-                              ])
+                              _c(
+                                "v-list-item-subtitle",
+                                [
+                                  _c("v-icon", { attrs: { small: "" } }, [
+                                    _vm._v("mdi-email")
+                                  ]),
+                                  _vm._v(_vm._s(_vm.user.email))
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                [
+                                  _c("v-icon", { attrs: { small: "" } }, [
+                                    _vm._v("mdi-account-star")
+                                  ]),
+                                  _vm._v(_vm._s(_vm.user.user_has_rol.name_rol))
+                                ],
+                                1
+                              )
                             ],
                             1
                           ),
@@ -39845,11 +39935,7 @@ var render = function() {
                         "v-btn",
                         {
                           attrs: { color: "primary", text: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.menu = false
-                            }
-                          }
+                          on: { click: _vm.logout }
                         },
                         [_vm._v("Cerrar Sesion")]
                       )
@@ -101336,7 +101422,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     services: _services_js__WEBPACK_IMPORTED_MODULE_2__["default"],
-    listUser: []
+    listUser: [],
+    user: {}
   },
   getters: {
     services: function services(state) {
@@ -101344,14 +101431,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     listUser: function listUser(state) {
       return state.listUser;
+    },
+    user: function user(state) {
+      return state.user;
     }
   },
   mutations: {
     setListUser: function setListUser(state, data) {
-      console.log({
-        data: data
-      });
       state.listUser = data;
+    },
+    setUSer: function setUSer(state, data) {
+      state.user = data;
     }
   }
 });
@@ -101455,23 +101545,20 @@ var userServices = /*#__PURE__*/function () {
               case 3:
                 _yield$axios = _context.sent;
                 data = _yield$axios.data;
-                console.log({
-                  data: data
-                });
                 _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["store"].commit('setListUser', data);
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](0);
 
-              case 11:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[0, 8]]);
       }));
 
       function getListUser() {
@@ -101555,6 +101642,84 @@ var userServices = /*#__PURE__*/function () {
       }
 
       return loginUsr;
+    }()
+  }, {
+    key: "logoutUsr",
+    value: function () {
+      var _logoutUsr = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios.post('/logout');
+
+              case 3:
+                data = _context4.sent;
+                location.href = '/login';
+                _context4.next = 10;
+                break;
+
+              case 7:
+                _context4.prev = 7;
+                _context4.t0 = _context4["catch"](0);
+                console.log(_context4.t0);
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 7]]);
+      }));
+
+      function logoutUsr() {
+        return _logoutUsr.apply(this, arguments);
+      }
+
+      return logoutUsr;
+    }()
+  }, {
+    key: "itExistUsr",
+    value: function () {
+      var _itExistUsr = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(usr) {
+        var _yield$axios2, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios("/api/find-user/".concat(usr.id));
+
+              case 3:
+                _yield$axios2 = _context5.sent;
+                data = _yield$axios2.data;
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["store"].commit('setUSer', data);
+                _context5.next = 11;
+                break;
+
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
+                console.log(_context5.t0);
+
+              case 11:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 8]]);
+      }));
+
+      function itExistUsr(_x3) {
+        return _itExistUsr.apply(this, arguments);
+      }
+
+      return itExistUsr;
     }()
   }]);
 
