@@ -1,4 +1,4 @@
-import {store} from '../plugins/store.js'
+import store from '../plugins/store.js'
 export default class userServices{
     async getListUser(){
         try {
@@ -8,9 +8,17 @@ export default class userServices{
             
         }
     }
+    async RegisterUser(model){
+        try {
+            let data = await axios.post('/api/register-user', model)
+            store.commit('setUserRegisterModal', false)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     async addUser(model){
         try {
-            let data = await axios.post('register', model)
+            let data = await axios.post('/register', model)
             location.href = 'home'
         } catch (error) {
             console.log(error)
@@ -18,7 +26,7 @@ export default class userServices{
     }
     async loginUsr(model){
         try {
-            let data = await axios.post('login', model)
+            let data = await axios.post('/login', model)
             location.href = 'home'
         } catch (error) {
             console.log(error)

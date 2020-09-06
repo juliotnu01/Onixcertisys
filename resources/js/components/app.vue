@@ -32,8 +32,8 @@
                     </v-list>
                     <v-divider></v-divider>
                     <v-card-actions>
-                        <v-btn icon>
-                            <router-link :to="{ path: 'config-user' }">
+                        <v-btn icon >
+                            <router-link :to="{ name: 'config.user.component' }">
                                 <v-icon>mdi-cog</v-icon>
                             </router-link>
                         </v-btn>
@@ -47,7 +47,6 @@
             <v-container class="fill-height" fluid>
                 <v-row>
                     <v-col cols="12">
-                        
                     <keep-alive>
                         <router-view></router-view>
                     </keep-alive>
@@ -74,73 +73,10 @@ export default {
     data() {
         return {
             menu: false,
-            dialog: false,
-            drawer: null,
-            items: [
-                { icon: '', text: 'Inicio' },
-                {
-                    icon: '',
-                    text: 'Catálogos',
-                    children: [
-                        { text: 'Magnitudes' },
-                        { text: 'Acreditaciones' },
-                        { text: 'Clientes' },
-                        { text: 'Condiciones de Pago' },
-                        { text: 'Método de pago' },
-                        { text: 'Referencia de pago de pago' },
-                        { text: 'Tiempo de entrega' },
-                        { text: 'Ciudades' },
-                        { text: 'Estados' },
-                        { text: 'Empleados' },
-                        { text: 'Departamentos' },
-                        { text: 'Puestos' },
-                        { text: 'Moneda' },
-                        { text: 'Instrumentos' },
-                        { text: 'Procedimientos' },
-                        { text: 'Patrones' },
-                    ],
-                },
-                {
-                    icon: '',
-                    text: 'Ventas',
-                    children: [
-                        { text: 'Cotizaciones' },
-                        { text: 'Orden de Servicio' },
-                        { text: 'Recepción' },
-                    ],
-                },
-                {
-                    icon: '',
-                    text: 'Laboratorio',
-                    children: [
-                        { icon: 'mdi-plus', text: 'Asigna Tecnico' },
-                        { icon: 'mdi-plus', text: 'Producción' },
-                    ],
-                },
-                {
-                    icon: '',
-                    text: 'Calidad',
-                    children: [
-                        { text: 'Revisa Informes' },
-                    ],
-                },
-                {
-                    icon: '',
-                    text: 'Facturación',
-                    children: [
-                        { text: 'Nueva Factura' },
-                        { text: 'Administrar Facturas' },
-                        { text: 'Nueva Factura Libre' },
-                        { text: 'Administrar Facturas Libres' },
-                        { text: 'Complemento de pago' },
-                    ],
-                },
-                { icon: '', text: 'Kardex' },
-            ],
         }
     },
     computed:{
-        ...mapGetters(['services', 'user'])
+        ...mapGetters(['services', 'user', 'leer']),
     },
     methods:{
         async logout(){

@@ -7,7 +7,7 @@ export default new router ({
     mode:'history',
     base: '/home/',
     routes: [
-    	{path: '', name: 'home.component' , component: homeComponent},
+    	{path: '/', name: 'home.component' , component: homeComponent},
     	{path: '/config-user', name: 'config.user.component' , component: configUserComponent}
     ]
 })

@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/list-user', 'v1\userController@index');
 Route::get('/find-user/{id}', 'v1\userController@findUser');
+Route::post('/register-user', 'v1\userController@registerUSer');

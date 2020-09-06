@@ -4,7 +4,9 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use DB;
 
 class userController extends Controller
 {
@@ -25,5 +27,19 @@ class userController extends Controller
     		throw new Exception($e, 1);
     		
     	}
+    }
+    public function registerUSer(Request $request)
+    {
+        try {
+            return DB::transaction(function() use ($request){
+                User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                ]);
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
     }
 }
