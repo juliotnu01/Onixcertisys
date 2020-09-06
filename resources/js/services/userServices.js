@@ -43,6 +43,7 @@ export default class userServices{
     async itExistUsr(usr){
         try{
             let {data} = await axios(`/api/find-user/${usr.id}`)
+            store.commit('setUser',data)
         }catch(e){
             console.log(e)
         }
