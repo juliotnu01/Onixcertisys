@@ -43,7 +43,22 @@ export default class userServices{
     async itExistUsr(usr){
         try{
             let {data} = await axios(`/api/find-user/${usr.id}`)
-            store.commit('setUSer', data)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async editUser(model){
+        try {
+            let {data} = await axios.put('/api/actualizar-usuario', model)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async deleteUser(model){
+        try{
+            let {data} = await axios.delete(`/api/eliminar-usuario/${model.id}`)
         }catch(e){
             console.log(e)
         }

@@ -15,8 +15,6 @@ class CreatePermissionRolUsersTable extends Migration
     {
         Schema::create('permission_rol_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name_permission')->nullable();
-            $table->string('name_ruta_permission')->nullable();
             $table->boolean('crear')->nullable()->default(false);       //C
             $table->boolean('leer')->nullable()->default(true);        //R
             $table->boolean('actualizar')->nullable()->default(false);  //U
