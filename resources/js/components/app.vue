@@ -1,26 +1,28 @@
 <template>
-    <v-app id="inspire">
-        <v-app-bar  app color="#fff">
+    <v-app>
+        <v-app-bar app color="#fff">
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-                <router-link to="/"><v-img :src="`${root}/img/login-logo.png`" width="200"/></router-link>
+                <router-link to="/">
+                    <v-img :src="`${root}/img/login-logo.png`" width="200" />
+                </router-link>
             </v-toolbar-title>
-             <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png"/>
+            <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png" />
                 Clientes
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png"/>
+                <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png" />
                 Ventas
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/50/000000/microscope.png"/>
+                <img src="https://img.icons8.com/dusk/50/000000/microscope.png" />
                 Laboratorio
             </v-btn>
             <v-spacer></v-spacer>
-             <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/40/000000/guarantee.png"/>
+            <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/40/000000/guarantee.png" />
                 Calidad
             </v-btn>
             <v-spacer></v-spacer>
@@ -37,13 +39,17 @@
                 </template>
                 <v-card>
                     <v-list>
-                        <v-list-item >
+                        <v-list-item>
                             <v-list-item-avatar>
                                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
                             </v-list-item-avatar>
                             <v-list-item-content>
-                                <v-list-item-title><v-icon small>mdi-account</v-icon>{{user.name}}</v-list-item-title>
-                                <v-list-item-subtitle><v-icon small>mdi-email</v-icon>{{user.email}}</v-list-item-subtitle>
+                                <v-list-item-title>
+                                    <v-icon small>mdi-account</v-icon>{{user.name}}
+                                </v-list-item-title>
+                                <v-list-item-subtitle>
+                                    <v-icon small>mdi-email</v-icon>{{user.email}}
+                                </v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-action>
                             </v-list-item-action>
@@ -51,7 +57,7 @@
                     </v-list>
                     <v-divider></v-divider>
                     <v-card-actions>
-                        <v-btn icon >
+                        <v-btn icon>
                             <router-link :to="{ name: 'config' }">
                                 <v-icon>mdi-cog</v-icon>
                             </router-link>
@@ -63,12 +69,12 @@
             </v-menu>
         </v-app-bar>
         <v-main>
-            <v-container class="fill-height" fluid>
+            <v-container  fluid>
                 <v-row>
                     <v-col cols="12">
-                    <keep-alive>
-                        <router-view></router-view>
-                    </keep-alive>
+                        <keep-alive>
+                            <router-view></router-view>
+                        </keep-alive>
                     </v-col>
                 </v-row>
             </v-container>
@@ -76,7 +82,7 @@
     </v-app>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
     props: {
         root: {
@@ -86,7 +92,7 @@ export default {
             type: Object
         },
     },
-    mounted(){
+    mounted() {
         this.determinateUser(this.authusr)
     },
     data() {
@@ -94,17 +100,29 @@ export default {
             menu: false,
         }
     },
-    computed:{
+    computed: {
         ...mapGetters(['services', 'user', 'leer']),
     },
-    methods:{
-        async logout(){
+    methods: {
+        async logout() {
             this.services.userServices.logoutUsr()
         },
-        async determinateUser(usr){
-            this.services.userServices.itExistUsr(usr)  
+        async determinateUser(usr) {
+            this.services.userServices.itExistUsr(usr)
         }
     }
 };
 
 </script>
+<style lang="scss">
+    .v-application--wrap{
+    flex: 1 1 auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; 
+    max-width: 100%;
+    position: relative;
+    }
+</style>

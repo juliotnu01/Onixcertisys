@@ -44,3 +44,13 @@ Route::get('/get-acreditaciones', 'v1\AcreditacionesController@index');
 Route::post('/add-acreditaciones', 'v1\AcreditacionesController@store');
 Route::put('/edit-acreditacion', 'v1\AcreditacionesController@update');
 Route::delete('/delete-acreditacion/{id}', 'v1\AcreditacionesController@destroy');
+
+Route::get('/get-condiciones-de-pago', 'v1\CondicionesDePagoController@index');
+Route::post('/add-condicion-de-pago', 'v1\CondicionesDePagoController@store');
+Route::put('/edit-condicion-de-pago', 'v1\CondicionesDePagoController@update');
+Route::delete('/delete-condicion-de-pago/{id}', 'v1\CondicionesDePagoController@destroy');
+
+Route::get('/get-metodos-de-pago', 'v1\MetodoDePagoController@index');
+Route::post('/add-metodo-de-pago', 'v1\MetodoDePagoController@store');
+Route::put('/edit-metodo-de-pago', 'v1\MetodoDePagoController@update');
+Route::delete('/delete-metodo-de-pago/{id}', 'v1\MetodoDePagoController@destroy');

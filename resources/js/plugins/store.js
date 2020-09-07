@@ -42,6 +42,14 @@ export default new Vuex.Store({
     acreditaciones:[],
     dialog_edit_acreditacion: false,
     acreditacion: {},
+    listCondicionDePago: [],
+    dialog_add_condicion_de_pago: false,
+    edit_condicion_de_pago: {},
+    dialog_edit_condicion_de_pago: false,
+    list_metodo_de_pago: [],
+    dialog_add_metodo_de_pago: false,
+    dialog_edit_metodo_de_pago: false,
+    metodo_de_pago: {},
   },
   getters: {
     services: state => state.services,
@@ -67,7 +75,15 @@ export default new Vuex.Store({
     dialog_add_acreditacion: state => state.dialog_add_acreditacion,
     acreditaciones: state => state.acreditaciones,
     dialog_edit_acreditacion: state => state.dialog_edit_acreditacion,
-    acreditacion: state => state.acreditacion
+    acreditacion: state => state.acreditacion,
+    listCondicionDePago: state => state.listCondicionDePago,
+    dialog_add_condicion_de_pago: state => state.dialog_add_condicion_de_pago,
+    edit_condicion_de_pago: state => state.edit_condicion_de_pago,
+    dialog_edit_condicion_de_pago: state => state.dialog_edit_condicion_de_pago,
+    list_metodo_de_pago: state => state.list_metodo_de_pago,
+    dialog_add_metodo_de_pago: state => state.dialog_add_metodo_de_pago,
+    dialog_edit_metodo_de_pago: state => state.dialog_edit_metodo_de_pago,
+    metodo_de_pago: state => state.metodo_de_pago,
   },
   mutations: {
     setListUser(state, data){
@@ -152,6 +168,31 @@ export default new Vuex.Store({
     },
     setAcreditacion(state, data){
       state.acreditacion = data
+    },
+    setListCondicionDePago(state, data){
+      state.listCondicionDePago = data
+    },
+    setDialogAddCondicionDePago(state, data){
+      state.dialog_add_condicion_de_pago = data
+    },
+    setEditCondicionDePago(state, data){
+      state.edit_condicion_de_pago = data
+    },
+    setDialogEditCondicionDePago(state, data){
+      state.dialog_edit_condicion_de_pago = data
+    },
+    setListMetodoDePago(state, data){
+      state.list_metodo_de_pago = data
+    },
+    setDialogAddMetodoDePago(state, data){
+      state.dialog_add_metodo_de_pago = data
+    },
+    setDialogEditMetodoDePago(state, data){
+      console.log({data})
+      state.dialog_edit_metodo_de_pago = data
+    },
+    setMetodoDePago(state, data){
+      state.metodo_de_pago = data
     }
   },
   actions: {

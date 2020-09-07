@@ -15,6 +15,7 @@ class CreateCondicionesDePagosTable extends Migration
     {
         Schema::create('condiciones_de_pagos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre')->nullable();
             $table->timestamps();
         });
     }
