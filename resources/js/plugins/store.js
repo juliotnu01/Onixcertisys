@@ -20,6 +20,28 @@ export default new Vuex.Store({
     dialog_editar_usuario: false,
     dialog_editar_rol: false,
     edit_rol: {},
+    empresa:{
+          nombre_empresa: '',
+          actividad_comercial: '',
+          rfc: '',
+          correo_electronico: '',
+          telefono: '',
+          iva: '',
+          utilidad: '',
+          direccion: '',
+          ciudad: '',
+          estado: '',
+          codigo_postal: '',
+          pais: '',
+    },
+    magnitudes: [],
+    dialog_add_magnitudes: false,
+    dialog_edit_magnitudes: false,
+    magnitud_edit:{},
+    dialog_add_acreditacion: false,
+    acreditaciones:[],
+    dialog_edit_acreditacion: false,
+    acreditacion: {},
   },
   getters: {
     services: state => state.services,
@@ -36,7 +58,16 @@ export default new Vuex.Store({
     list_route: state => state.list_route,
     dialog_editar_usuario: state => state.dialog_editar_usuario,
     dialog_editar_rol: state => state.dialog_editar_rol,
-    edit_rol: state => state.edit_rol
+    edit_rol: state => state.edit_rol,
+    empresa: state => state.empresa,
+    magnitudes: state => state.magnitudes,
+    dialog_add_magnitudes: state => state.dialog_add_magnitudes,
+    dialog_edit_magnitudes: state => state.dialog_edit_magnitudes,
+    magnitud_edit: state => state.magnitud_edit,
+    dialog_add_acreditacion: state => state.dialog_add_acreditacion,
+    acreditaciones: state => state.acreditaciones,
+    dialog_edit_acreditacion: state => state.dialog_edit_acreditacion,
+    acreditacion: state => state.acreditacion
   },
   mutations: {
     setListUser(state, data){
@@ -77,6 +108,50 @@ export default new Vuex.Store({
     },
     setEditRol(state, data){
       state.edit_rol = data
+    },
+    setEmpresa(state, data){
+      if (data) {
+        state.empresa = data  
+      }else {
+        state.empresa = {
+          nombre_empresa: '',
+          actividad_comercial: '',
+          rfc: '',
+          correo_electronico: '',
+          telefono: '',
+          iva: '',
+          utilidad: '',
+          direccion: '',
+          ciudad: '',
+          estado: '',
+          codigo_postal: '',
+          pais: '',
+        }
+      }
+    },
+    setMagnitudes(state, data){
+      state.magnitudes = data
+    },
+    setDialogAddMagnitudes(state, data){
+      state.dialog_add_magnitudes = data
+    },
+    setDialogEditMagnitudes(state, data){
+      state.dialog_edit_magnitudes = data
+    },
+    setEditMagnitud(state, data){
+      state.magnitud_edit = data
+    },
+    setdialogAddAcreditacion(state, data){
+      state.dialog_add_acreditacion = data
+    },
+    setAcreditaciones(state, data){
+      state.acreditaciones = data
+    },
+    setDialogEditAcreditacion(state, data){
+      state.dialog_edit_acreditacion = data
+    },
+    setAcreditacion(state, data){
+      state.acreditacion = data
     }
   },
   actions: {

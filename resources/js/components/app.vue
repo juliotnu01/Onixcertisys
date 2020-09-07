@@ -1,6 +1,6 @@
 <template>
     <v-app id="inspire">
-        <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="#fff">
+        <v-app-bar  app color="#fff">
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
                 <router-link to="/"><v-img :src="`${root}/img/login-logo.png`" width="200"/></router-link>
             </v-toolbar-title>
