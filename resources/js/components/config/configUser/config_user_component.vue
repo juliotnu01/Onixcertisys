@@ -122,6 +122,7 @@ export default {
         async asignarRol(rol){
             await this.chargeRolSelected(rol)
             await this.services.userServices.getListUser();
+            await this.services.rolServices.getListRoles();
         },
        async  asignarPermisos(usr){
             await this.chargeUserSelectedRolPermission(usr)

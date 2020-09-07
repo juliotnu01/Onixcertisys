@@ -33,7 +33,7 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-btn icon >
-                            <router-link :to="{ name: 'config.user.component' }">
+                            <router-link :to="{ name: 'config' }">
                                 <v-icon>mdi-cog</v-icon>
                             </router-link>
                         </v-btn>
