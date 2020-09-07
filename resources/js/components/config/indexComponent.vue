@@ -7,6 +7,13 @@
                         <v-list dense rounded>
                             <v-list-item>
                               <router-link :to="{name:'config-user'}">
+                                <v-icon>mdi-account-group</v-icon>
+                                Usuarios
+                              </router-link>
+                            </v-list-item>
+                            <v-list-item>
+                              <router-link :to="{name:'config-user'}">
+                                <v-icon>mdi-account-group</v-icon>
                                 Usuarios
                               </router-link>
                             </v-list-item>

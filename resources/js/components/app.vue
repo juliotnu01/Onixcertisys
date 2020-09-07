@@ -4,6 +4,25 @@
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
                 <router-link to="/"><v-img :src="`${root}/img/login-logo.png`" width="200"/></router-link>
             </v-toolbar-title>
+             <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png"/>
+                Clientes
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png"/>
+                Ventas
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/50/000000/microscope.png"/>
+                Laboratorio
+            </v-btn>
+            <v-spacer></v-spacer>
+             <v-btn icon text>
+                <img src="https://img.icons8.com/dusk/40/000000/guarantee.png"/>
+                Calidad
+            </v-btn>
             <v-spacer></v-spacer>
             <v-btn icon>
                 <v-icon>mdi-bell</v-icon>
