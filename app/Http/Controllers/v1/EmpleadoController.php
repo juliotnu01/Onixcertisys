@@ -51,7 +51,7 @@ class EmpleadoController extends Controller
                 $empleado->status = $request['status']['value'];
                 $empleado->nombre_completo = $request['nombre_completo'];
                 $empleado->rfc = $request['rfc'];
-                $empleado->dirección = $request['direccion'];
+                $empleado->direccion = $request['direccion'];
                 $empleado->ciudad = $request['ciudad'];
                 $empleado->codigo_postal = $request['codigo_postal'];
                 $empleado->telefono = $request['telefono'];
