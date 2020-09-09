@@ -54,3 +54,13 @@ Route::get('/get-metodos-de-pago', 'v1\MetodoDePagoController@index');
 Route::post('/add-metodo-de-pago', 'v1\MetodoDePagoController@store');
 Route::put('/edit-metodo-de-pago', 'v1\MetodoDePagoController@update');
 Route::delete('/delete-metodo-de-pago/{id}', 'v1\MetodoDePagoController@destroy');
+
+Route::get('/get-tiempos-de-entrega', 'v1\TiempoDeEntregaController@index');
+Route::post('/add-tiempo-de-entrega', 'v1\TiempoDeEntregaController@store');
+Route::put('/edit-tiempo-de-entrega', 'v1\TiempoDeEntregaController@update');
+Route::delete('/delete-tiempo-de-entrega/{id}', 'v1\TiempoDeEntregaController@destroy');
+
+Route::get('/get-ciudades-estados-paises', 'v1\CiudadEstadoPaisController@index');
+Route::post('/add-ciudad-estado-pais', 'v1\CiudadEstadoPaisController@store');
+Route::put('/edit-ciudad-estado-pais', 'v1\CiudadEstadoPaisController@update');
+Route::delete('/delete-ciudad-estado-pais/{id}', 'v1\CiudadEstadoPaisController@destroy');

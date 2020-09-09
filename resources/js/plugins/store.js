@@ -50,6 +50,14 @@ export default new Vuex.Store({
     dialog_add_metodo_de_pago: false,
     dialog_edit_metodo_de_pago: false,
     metodo_de_pago: {},
+    tiempos_de_entrega: [],
+    dialog_tiempo_de_entrega: false,
+    dialog_edit_tiempo_de_entrega: false,
+    tiempo_de_entrega: {},
+    ciudades_estados_paises:[],
+    dialog_add_ciudad_estado_pais: false,
+    ciudad_estado_pais: {},
+    dialog_edit_ciudad_estad_pais: false,
   },
   getters: {
     services: state => state.services,
@@ -84,6 +92,14 @@ export default new Vuex.Store({
     dialog_add_metodo_de_pago: state => state.dialog_add_metodo_de_pago,
     dialog_edit_metodo_de_pago: state => state.dialog_edit_metodo_de_pago,
     metodo_de_pago: state => state.metodo_de_pago,
+    tiempos_de_entrega: state => state.tiempos_de_entrega,
+    dialog_tiempo_de_entrega: state => state.dialog_tiempo_de_entrega,
+    dialog_edit_tiempo_de_entrega: state => state.dialog_edit_tiempo_de_entrega,
+    tiempo_de_entrega: state =>  state.tiempo_de_entrega,
+    ciudades_estados_paises: state => state.ciudades_estados_paises,
+    dialog_add_ciudad_estado_pais: state => state.dialog_add_ciudad_estado_pais,
+    ciudad_estado_pais: state => state.ciudad_estado_pais,
+    dialog_edit_ciudad_estad_pais: state => state.dialog_edit_ciudad_estad_pais,
   },
   mutations: {
     setListUser(state, data){
@@ -193,6 +209,30 @@ export default new Vuex.Store({
     },
     setMetodoDePago(state, data){
       state.metodo_de_pago = data
+    },
+    setTiemposDeEntrega(state, data){
+      state.tiempos_de_entrega = data
+    },
+    setDialogTiempoDeEntrega(state, data){
+      state.dialog_tiempo_de_entrega  = data 
+    },
+    setDialogEditTiempoDeEntrega(state, data){
+      state.dialog_edit_tiempo_de_entrega  = data
+    },
+    setTiempoDeEntrega(state, data){
+      state.tiempo_de_entrega = data
+    },
+    setCiudadesEstadosPaises(state, data){
+      state.ciudades_estados_paises = data
+    },
+    setDialogAddCiudadEstadoPais(state, data){
+      state.dialog_add_ciudad_estado_pais  = data
+    },
+    setCiudadEstadoPais(state, data){
+      state.ciudad_estado_pais = data
+    },
+    setDialogEditCiudadEstadoPais(state, data){
+      state.dialog_edit_ciudad_estad_pais = data
     }
   },
   actions: {
