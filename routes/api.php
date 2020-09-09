@@ -64,3 +64,13 @@ Route::get('/get-ciudades-estados-paises', 'v1\CiudadEstadoPaisController@index'
 Route::post('/add-ciudad-estado-pais', 'v1\CiudadEstadoPaisController@store');
 Route::put('/edit-ciudad-estado-pais', 'v1\CiudadEstadoPaisController@update');
 Route::delete('/delete-ciudad-estado-pais/{id}', 'v1\CiudadEstadoPaisController@destroy');
+
+Route::get('/get-monedas', 'v1\MonedaController@index');
+Route::post('/add-moneda', 'v1\MonedaController@store');
+Route::put('/edit-moneda', 'v1\MonedaController@update');
+Route::delete('/delete-moneda/{id}', 'v1\MonedaController@destroy');
+
+Route::get('/get-empleados', 'v1\EmpleadoController@index');
+Route::post('/add-empleado', 'v1\EmpleadoController@store');
+Route::put('/edit-empleado', 'v1\EmpleadoController@update');
+Route::delete('/delete-empleado/{id}', 'v1\EmpleadoController@destroy');

@@ -4,7 +4,7 @@
             <v-card-title>tiempo de Entrega</v-card-title>
             <v-container>
                 <v-toolbar flat color="white">
-                    <v-text-field label="Buscar Acreditacion" placeholder="" v-model="search_mag" outlined small></v-text-field>
+                    <v-text-field label="Buscar Tiempo de Entrega" placeholder="" v-model="search_mag" outlined small></v-text-field>
                     <v-spacer></v-spacer>
                     <v-btn class="mx-2" fab dark color="primary" @click="$store.commit('setDialogTiempoDeEntrega', true)">
                         <v-icon dark>mdi-plus</v-icon>

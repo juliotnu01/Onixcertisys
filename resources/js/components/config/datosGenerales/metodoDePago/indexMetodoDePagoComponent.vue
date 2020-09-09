@@ -4,7 +4,7 @@
             <v-card-title>Metodo de Pago</v-card-title>
             <v-container>
                 <v-toolbar flat color="white">
-                    <v-text-field label="Buscar Acreditacion" placeholder="" v-model="search_mag" outlined small></v-text-field>
+                    <v-text-field label="Buscar Metodo de Pago" placeholder="" v-model="search_mag" outlined small></v-text-field>
                     <v-spacer></v-spacer>
                     <v-btn class="mx-2" fab dark color="primary" @click="$store.commit('setDialogAddMetodoDePago', true)">
                         <v-icon dark>mdi-plus</v-icon>

@@ -8,6 +8,8 @@ import condicionDePagoServices from './services/condicionDePagoServices.js'
 import metodoDePagoServices from './services/metodoDePagoServices.js'
 import tiempoDeEntregaServices from './services/tiempoDeEntregaServices.js'
 import ciudadEstadoPaisServices from './services/ciudadEstadoPaisServices.js'
+import monedaServices from './services/monedaServices.js'
+import empleadoServices from './services/empleadoServices.js'
 export default {
     userServices: new userServices(),
     rolServices: new rolServices(),
@@ -19,4 +21,6 @@ export default {
     metodoDePagoServices: new metodoDePagoServices(),
     tiempoDeEntregaServices: new tiempoDeEntregaServices(),
     ciudadEstadoPaisServices: new ciudadEstadoPaisServices(),
+    monedaServices: new monedaServices(),
+    empleadoServices: new empleadoServices(),
 }

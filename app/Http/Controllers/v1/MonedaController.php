@@ -88,8 +88,8 @@ class MonedaController extends Controller
     public function update(Request $request, Moneda $moneda)
     {
          try {
-            return DB::transaction(function() use ($request, $acreditaciones){
-                $acreditaciones->find($request['id'])->update([
+            return DB::transaction(function() use ($request, $moneda){
+                $moneda->find($request['id'])->update([
                     'clave' => $request['clave'],
                     'nombre_moneda' => $request['nombre_moneda'],
                     'tipo_de_cambio' => $request['tipo_de_cambio'],
