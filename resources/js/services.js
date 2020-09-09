@@ -11,6 +11,10 @@ import ciudadEstadoPaisServices from './services/ciudadEstadoPaisServices.js'
 import monedaServices from './services/monedaServices.js'
 import empleadoServices from './services/empleadoServices.js'
 import clienteServices from './services/clienteServices.js'
+import instrumentoServices from './services/instrumentoServices.js'
+import procedimientoServices from './services/procedimientoService.js'
+import patronServices from './services/patronServices.js'
+
 export default {
     userServices: new userServices(),
     rolServices: new rolServices(),
@@ -25,4 +29,7 @@ export default {
     monedaServices: new monedaServices(),
     empleadoServices: new empleadoServices(),
     clienteServices: new clienteServices(),
+    instrumentoServices: new instrumentoServices(),
+    procedimientoServices: new procedimientoServices(),
+    patronServices: new patronServices(),
 }

@@ -72,6 +72,18 @@ export default new Vuex.Store({
         dialog_add_clientes: false,
         dialog_edit_cliente: false,
         cliente: {},
+        instrumentos: [],
+        dialog_add_instrumento: false,
+        dialog_edit_instrumento: false,
+        instrumento: {},
+        procedimientos:[],
+        dialog_add_procedimiento: false,
+        procedimiento: {},
+        dialog_edit_procedimiento: false,
+        patrones: [],
+        dialog_add_patron: false,
+        dialog_edit_patron: false,
+        patron: {},
     },
     getters: {
         services: state => state.services,
@@ -126,6 +138,18 @@ export default new Vuex.Store({
         dialog_add_clientes: state => state.dialog_add_clientes,
         dialog_edit_cliente: state => state.dialog_edit_cliente,
         cliente: state => state.cliente,
+        instrumentos: state => state.instrumentos,
+        dialog_add_instrumento: state => state.dialog_add_instrumento,
+        dialog_edit_instrumento: state => state.dialog_edit_instrumento,
+        instrumento: state => state.instrumento,
+        procedimientos: state => state.procedimientos,
+        dialog_add_procedimiento: state => state.dialog_add_procedimiento,
+        procedimiento: state => state.procedimiento,
+        dialog_edit_procedimiento: state => state.dialog_edit_procedimiento,
+        patrones: state => state.patrones,
+        dialog_add_patron: state => state.dialog_add_patron,
+        dialog_edit_patron: state => state.dialog_edit_patron,
+        patron: state => state.patron,
     },
     mutations: {
         setListUser(state, data) {
@@ -233,7 +257,6 @@ export default new Vuex.Store({
             state.dialog_add_metodo_de_pago = data
         },
         setDialogEditMetodoDePago(state, data) {
-            console.log({ data })
             state.dialog_edit_metodo_de_pago = data
         },
         setMetodoDePago(state, data) {
@@ -328,6 +351,47 @@ export default new Vuex.Store({
             var vend = state.empleados.find(item => item.nombre_completo === data.vendedor)
             state.cliente.vendedor = vend
         },
+        setInstrumentos(state, data){
+            state.instrumentos = data      
+        },
+        setDialogAddInstrumento(state, data){
+            state.dialog_add_instrumento = data
+        },
+        setDialogEditInstrumento(state, data){
+            state.dialog_edit_instrumento = data
+        },
+        setInstrumento(state, data){
+            state.instrumento = data
+            var mag = state.magnitudes.find(item => item.nombre === data.area)
+            var acredt = state.acreditaciones.find(item => item.nombre === data.acreditacion)
+
+            state.instrumento.area = mag
+            state.instrumento.acreditacion = acredt
+        },
+        setProcedimientos(state, data){
+            state.procedimientos = data
+        },
+        setDialogAddProcedimiento(state, data){
+            state.dialog_add_procedimiento = data
+        },
+        setProcedimiento(state, data){
+            state.procedimiento = data
+        },
+        setDialogEditProcedimiento(state, data){
+            state.dialog_edit_procedimiento = data
+        },
+        setPatrones(state, data){
+            state.patrones = data
+        },
+        setDialogAddPatron(state, data){
+            state.dialog_add_patron = data
+        },
+        setDialogEditPatron(state, data){
+            state.dialog_edit_patron = data
+        },
+        setPatron(state, data){
+            state.patron = data
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {

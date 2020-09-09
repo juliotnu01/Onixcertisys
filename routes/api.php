@@ -79,3 +79,18 @@ Route::get('/get-clientes', 'v1\ClienteController@index');
 Route::post('/add-cliente', 'v1\ClienteController@store');
 Route::put('/edit-cliente', 'v1\ClienteController@update');
 Route::delete('/delete-cliente/{id}', 'v1\ClienteController@destroy');
+
+Route::get('/get-instrumentos', 'v1\InstrumentoController@index');
+Route::post('/add-instrumento', 'v1\InstrumentoController@store');
+Route::put('/edit-instrumento', 'v1\InstrumentoController@update');
+Route::delete('/delete-instrumento/{id}', 'v1\InstrumentoController@destroy');
+
+Route::get('/get-procedimientos', 'v1\ProcedimientoController@index');
+Route::post('/add-procedimiento', 'v1\ProcedimientoController@store');
+Route::put('/edit-procedimiento', 'v1\ProcedimientoController@update');
+Route::delete('/delete-procedimiento/{id}', 'v1\ProcedimientoController@destroy');
+
+Route::get('/get-patrones', 'v1\PatronController@index');
+Route::post('/add-patron', 'v1\PatronController@store');
+Route::put('/edit-patron', 'v1\PatronController@update');
+Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');

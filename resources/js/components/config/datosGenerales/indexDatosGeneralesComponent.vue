@@ -51,6 +51,15 @@
             <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[8].value" >
                 <cliente />
             </v-col>
+            <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[9].value" >
+                <instrumento />
+            </v-col>
+            <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[10].value" >
+                <procedimiento />
+            </v-col>
+            <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[11].value" >
+                <patron />
+            </v-col>
         </v-row>
     </v-app>
 </template>
@@ -64,6 +73,9 @@ import CiudadEstadoPaisComponent from './CiudadEstadoPais/indexCiudadEstadoPaisC
 import MonedaComponent from './Moneda/indexMonedaComponent.vue'
 import EmpleadoComponent from './empleado/indexEmpleadoComponent.vue'
 import clienteComponent from './cliente/indexClientecomponent.vue'
+import InstrumentoComponent from './instrumento/indexInstrumentoComponent.vue'
+import procedimientoComponent from './procedimiento/indexProcedimientoComponent.vue'
+import patronComponent from './patron/indexPatronComponent.vue'
 export default {
     components: {
         'magnitudes': magnitudesComponent,
@@ -75,19 +87,25 @@ export default {
         'moneda': MonedaComponent,
         'empleado': EmpleadoComponent,
         'cliente': clienteComponent,
+        'instrumento': InstrumentoComponent,
+        'procedimiento': procedimientoComponent,
+        'patron': patronComponent,
     },
     data() {
         return {
             view: [
-                { value: true , name: 'Magnitudes' },
-                { value: true , name: 'moneda' },
-                { value: true , name: 'Metodo de pago' },
-                { value: true , name: 'Condicion de pago' },
-                { value: true , name: 'Timepo de de Entrega' },
-                { value: true , name: 'Ciudad / Estado / Pais' },
-                { value: true , name: 'Moneda' },
-                { value: true , name: 'Empleados' },
-                { value: true , name: 'clientes' },
+                { value: false , name: 'Magnitudes' },
+                { value: false , name: 'moneda' },
+                { value: false , name: 'Metodo de pago' },
+                { value: false , name: 'Condicion de pago' },
+                { value: false , name: 'Timepo de de Entrega' },
+                { value: false , name: 'Ciudad / Estado / Pais' },
+                { value: false , name: 'Moneda' },
+                { value: false , name: 'Empleados' },
+                { value: false , name: 'Clientes' },
+                { value: false , name: 'Instrumentos' },
+                { value: false , name: 'procedimientos' },
+                { value: true , name: 'Patrones' },
 
             ],
         }

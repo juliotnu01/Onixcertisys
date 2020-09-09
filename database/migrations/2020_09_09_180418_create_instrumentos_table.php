@@ -18,6 +18,7 @@ class CreateInstrumentosTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('alcance')->nullable();
             $table->string('acreditacion')->nullable();
+            $table->string('area')->nullable();
             $table->bigInteger('precio_venta')->nullable();
             $table->timestamps();
         });
