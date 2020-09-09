@@ -7,7 +7,7 @@
                     <v-card-text>
                         <v-form ref="f_mag">
                             <v-row align="center" justify="space-around">
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Nombre" outlined v-model="procedimiento.nombre"></v-text-field>
                                 </v-col>
                             </v-row>

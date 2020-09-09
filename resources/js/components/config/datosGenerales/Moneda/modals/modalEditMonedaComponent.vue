@@ -7,13 +7,13 @@
                     <v-card-text>
                         <v-form ref="f_cep">
                             <v-row align="center" justify="space-around">
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Clave" outlined v-model="moneda.clave"></v-text-field>
                                 </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Nombre de la moneda" outlined v-model="moneda.nombre_moneda"></v-text-field>
                                 </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Tipo de cambio" outlined v-model="moneda.tipo_de_cambio"></v-text-field>
                                 </v-col>
                             </v-row>

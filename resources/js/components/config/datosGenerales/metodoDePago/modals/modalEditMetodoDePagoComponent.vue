@@ -7,7 +7,7 @@
                     <v-card-text>
                         <v-form ref="f_mag">
                             <v-row align="center" justify="space-around">
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Nombre" outlined v-model="metodo_de_pago.nombre"></v-text-field>
                                 </v-col>
                             </v-row>
@@ -15,7 +15,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-btn text color="blue" @click.prevent="addCondicionDePago" >
-                            Agregar 
+                            Editar 
                         </v-btn>
                         <v-btn text color="red" @click.prevent="openDialog = false"  >
                             Cerrar

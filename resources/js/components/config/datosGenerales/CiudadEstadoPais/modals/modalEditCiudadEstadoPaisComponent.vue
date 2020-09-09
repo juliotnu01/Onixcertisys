@@ -7,13 +7,13 @@
                     <v-card-text>
                         <v-form ref="f_cep">
                             <v-row align="center" justify="space-around">
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Ciudad" outlined v-model="ciudad_estado_pais.nombre_ciudad"></v-text-field>
                                 </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Estado" outlined v-model="ciudad_estado_pais.nombre_estado"></v-text-field>
                                 </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Pais" outlined v-model="ciudad_estado_pais.nombre_pais"></v-text-field>
                                 </v-col>
                             </v-row>

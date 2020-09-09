@@ -10,7 +10,7 @@
                                 <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Clave" outlined v-model="magnitud.clave"></v-text-field>
                                 </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="2" lg="12" >
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12" >
                                     <v-text-field :rules="[rules.required]" label="Nombre" outlined v-model="magnitud.nombre"></v-text-field>
                                 </v-col>
                             </v-row>
@@ -18,7 +18,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-btn text color="blue" @click.prevent="addMagnitudes" >
-                            Agregar 
+                            Editar 
                         </v-btn>
                         <v-btn text color="red" @click.prevent="openDialogEditar = false"  >
                             Cerrar
