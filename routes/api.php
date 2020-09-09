@@ -74,3 +74,8 @@ Route::get('/get-empleados', 'v1\EmpleadoController@index');
 Route::post('/add-empleado', 'v1\EmpleadoController@store');
 Route::put('/edit-empleado', 'v1\EmpleadoController@update');
 Route::delete('/delete-empleado/{id}', 'v1\EmpleadoController@destroy');
+
+Route::get('/get-clientes', 'v1\ClienteController@index');
+Route::post('/add-cliente', 'v1\ClienteController@store');
+Route::put('/edit-cliente', 'v1\ClienteController@update');
+Route::delete('/delete-cliente/{id}', 'v1\ClienteController@destroy');

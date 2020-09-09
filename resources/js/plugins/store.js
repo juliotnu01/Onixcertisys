@@ -68,6 +68,10 @@ export default new Vuex.Store({
         dialog_add_empleado: false,
         dialog_edit_empleado: false,
         empleado: {},
+        clientes: [],
+        dialog_add_clientes: false,
+        dialog_edit_cliente: false,
+        cliente: {},
     },
     getters: {
         services: state => state.services,
@@ -117,7 +121,11 @@ export default new Vuex.Store({
         empleados: state => state.empleados,
         dialog_add_empleados: state => state.dialog_add_empleado,
         dialog_edit_empleado: state => state.dialog_edit_empleado,
-        empleado: state => state.empleado
+        empleado: state => state.empleado,
+        clientes: state => state.clientes,
+        dialog_add_clientes: state => state.dialog_add_clientes,
+        dialog_edit_cliente: state => state.dialog_edit_cliente,
+        cliente: state => state.cliente,
     },
     mutations: {
         setListUser(state, data) {
@@ -305,7 +313,21 @@ export default new Vuex.Store({
                     observaciones: '',
                 }
             }
-        }
+        },
+        setClientes(state, data){
+            state.clientes = data
+        },
+        SetDialogAddCliente(state, data){
+            state.dialog_add_clientes = data 
+        },
+        setDialogEditCliente(state, data){
+            state.dialog_edit_cliente = data
+        },
+        setCliente(state, data){
+            state.cliente = data
+            var vend = state.empleados.find(item => item.nombre_completo === data.vendedor)
+            state.cliente.vendedor = vend
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {

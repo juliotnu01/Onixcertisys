@@ -48,6 +48,9 @@
             <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[7].value" >
                 <empleado />
             </v-col>
+            <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[8].value" >
+                <cliente />
+            </v-col>
         </v-row>
     </v-app>
 </template>
@@ -60,6 +63,7 @@ import TiempoDeEntregaComponent from './tiempoDeEntrega/indexTiempoDeEntregaComp
 import CiudadEstadoPaisComponent from './CiudadEstadoPais/indexCiudadEstadoPaisComponent.vue'
 import MonedaComponent from './Moneda/indexMonedaComponent.vue'
 import EmpleadoComponent from './empleado/indexEmpleadoComponent.vue'
+import clienteComponent from './cliente/indexClientecomponent.vue'
 export default {
     components: {
         'magnitudes': magnitudesComponent,
@@ -70,21 +74,22 @@ export default {
         'ciudad-estado-pais': CiudadEstadoPaisComponent,
         'moneda': MonedaComponent,
         'empleado': EmpleadoComponent,
+        'cliente': clienteComponent,
     },
     data() {
         return {
             view: [
-                { value: false , name: 'Magnitudes' },
-                { value: false , name: 'moneda' },
-                { value: false , name: 'Metodo de pago' },
-                { value: false , name: 'Condicion de pago' },
-                { value: false , name: 'Timepo de de Entrega' },
-                { value: false , name: 'Ciudad / Estado / Pais' },
-                { value: false , name: 'Moneda' },
+                { value: true , name: 'Magnitudes' },
+                { value: true , name: 'moneda' },
+                { value: true , name: 'Metodo de pago' },
+                { value: true , name: 'Condicion de pago' },
+                { value: true , name: 'Timepo de de Entrega' },
+                { value: true , name: 'Ciudad / Estado / Pais' },
+                { value: true , name: 'Moneda' },
                 { value: true , name: 'Empleados' },
+                { value: true , name: 'clientes' },
 
             ],
-            ver_todo: true,
         }
     }
 };
