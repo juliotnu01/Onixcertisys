@@ -27,7 +27,7 @@
                     </v-navigation-drawer>
                 </v-card>
             </v-col>
-            <v-col cols="1" xs="10" sm="10" md="10" lg="10" class="mx-0">
+            <v-col cols="12" xs="10" sm="10" md="10" lg="10" class="mx-0">
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>

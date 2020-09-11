@@ -11,10 +11,11 @@
                 Clientes
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon text>
+            <!-- <v-btn icon text>
                 <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png" />
                 Ventas
-            </v-btn>
+            </v-btn> -->
+            
             <v-spacer></v-spacer>
             <v-btn icon text>
                 <img src="https://img.icons8.com/dusk/50/000000/microscope.png" />
@@ -69,9 +70,9 @@
             </v-menu>
         </v-app-bar>
         <v-main>
-            <v-container  fluid>
+            <v-container fluid>
                 <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <keep-alive>
                             <router-view></router-view>
                         </keep-alive>
@@ -97,7 +98,13 @@ export default {
     },
     data() {
         return {
-            menu: false,
+            items: [
+                { title: 'Click Me1' },
+                { title: 'Click Me2' },
+                { title: 'Click Me3' },
+                { title: 'Click Me4' },
+            ],
+
         }
     },
     computed: {
@@ -115,14 +122,15 @@ export default {
 
 </script>
 <style lang="scss">
-    .v-application--wrap{
+.v-application--wrap {
     flex: 1 1 auto;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 0; 
+    min-height: 0;
     max-width: 100%;
     position: relative;
-    }
+}
+
 </style>

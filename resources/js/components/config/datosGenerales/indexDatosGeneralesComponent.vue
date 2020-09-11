@@ -3,7 +3,7 @@
         <v-row justify="end" align="center">
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                 <div>
-                    <v-menu>
+                    <v-menu :offset-y="true">
                         <template v-slot:activator="{ on: menu, attrs }">
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on: tooltip }">
@@ -94,17 +94,18 @@ export default {
     data() {
         return {
             view: [
-                { value: false , name: 'Magnitudes' },
-                { value: false , name: 'moneda' },
-                { value: false , name: 'Metodo de pago' },
-                { value: false , name: 'Condicion de pago' },
-                { value: false , name: 'Timepo de de Entrega' },
-                { value: false , name: 'Ciudad / Estado / Pais' },
-                { value: false , name: 'Moneda' },
-                { value: false , name: 'Empleados' },
-                { value: false , name: 'Clientes' },
-                { value: false , name: 'Instrumentos' },
-                { value: false , name: 'procedimientos' },
+                { value: true , name: 'Magnitudes' },
+                { value: true , name: 'Acreditaciones' },
+                { value: true , name: 'moneda' },
+                { value: true , name: 'Metodo de pago' },
+                { value: true , name: 'Condicion de pago' },
+                { value: true , name: 'Timepo de de Entrega' },
+                { value: true , name: 'Ciudad / Estado / Pais' },
+                { value: true , name: 'Moneda' },
+                { value: true , name: 'Empleados' },
+                { value: true , name: 'Clientes' },
+                { value: true , name: 'Instrumentos' },
+                { value: true , name: 'procedimientos' },
                 { value: true , name: 'Patrones' },
 
             ],
