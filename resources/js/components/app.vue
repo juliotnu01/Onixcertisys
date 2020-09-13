@@ -11,14 +11,25 @@
                 Clientes
             </v-btn>
             <v-spacer></v-spacer>
-            <!-- <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png" />
-                Ventas
-            </v-btn> -->
-            
+            <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon icon v-bind="attrs" v-on="on">
+                        <img src="https://img.icons8.com/dusk/40/000000/cash-in-hand.png" />
+                        Ventas
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-title>
+                            <router-link :to="{name: 'home.cotizaciones'}" > Cotizaciones </router-link>
+                        </v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
             <v-spacer></v-spacer>
             <v-btn icon text>
-                <img src="https://img.icons8.com/dusk/50/000000/microscope.png" />
+                <img src="https://img.icons8.com/dusk/
+                40/000000/microscope.png" />
                 Laboratorio
             </v-btn>
             <v-spacer></v-spacer>
@@ -98,6 +109,7 @@ export default {
     },
     data() {
         return {
+            menu: false,
             items: [
                 { title: 'Click Me1' },
                 { title: 'Click Me2' },

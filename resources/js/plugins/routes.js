@@ -33,6 +33,11 @@ export default new router({
                 name: 'config.datos.sistema',
                 component: datosDelSistemaComponent
             }]
-        }
+        },
+        {
+            path: '/cotizaciones',
+            name: 'home.cotizaciones',
+            component: () => import('../components/cotizaciones/indexCotizacionesComponent.vue')
+        },
     ]
 })

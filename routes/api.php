@@ -94,3 +94,13 @@ Route::get('/get-patrones', 'v1\PatronController@index');
 Route::post('/add-patron', 'v1\PatronController@store');
 Route::put('/edit-patron', 'v1\PatronController@update');
 Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
+
+Route::get('/get-cotizaciones', 'v1\CotizacionController@index');
+Route::post('/add-cotizacion', 'v1\CotizacionController@store');
+Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
+Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');
+
+Route::get('/get-partidas', 'v1\PartidaController@index');
+Route::post('/add-cotizacion', 'v1\CotizacionController@store');
+Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
+Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');

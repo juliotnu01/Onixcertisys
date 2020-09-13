@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-row>
-            <v-col cols="2" xs="2" sm="2" md="2" lg="2">
+            <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                 <v-card elevation="12" width="356">
                     <v-navigation-drawer floating permanent class="mx-0">
                         <v-list dense rounded>
@@ -27,7 +27,7 @@
                     </v-navigation-drawer>
                 </v-card>
             </v-col>
-            <v-col cols="12" xs="10" sm="10" md="10" lg="10" class="mx-0">
+            <v-col cols="12" xs="12" sm="12" md="10" lg="10" class="mx-0">
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
@@ -39,9 +39,7 @@
 export default {
     data() {
         return {
-            items: [
-                { title: 'Usuarios', icon: 'mdi-account-group', route: 'config-user' },
-            ],
+          
         }
     },
 }

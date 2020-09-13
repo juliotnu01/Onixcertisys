@@ -84,6 +84,8 @@ export default new Vuex.Store({
         dialog_add_patron: false,
         dialog_edit_patron: false,
         patron: {},
+        cotizaciones: [],
+        dialog_add_cotizacion: false,
     },
     getters: {
         services: state => state.services,
@@ -150,6 +152,8 @@ export default new Vuex.Store({
         dialog_add_patron: state => state.dialog_add_patron,
         dialog_edit_patron: state => state.dialog_edit_patron,
         patron: state => state.patron,
+        cotizaciones: state => state.cotizaciones,
+        dialog_add_cotizacion: state => state.dialog_add_cotizacion,
     },
     mutations: {
         setListUser(state, data) {
@@ -391,7 +395,13 @@ export default new Vuex.Store({
         },
         setPatron(state, data){
             state.patron = data
-        }
+        },
+        setCotizaciones(state, data){
+            state.cotizaciones = data
+        },
+        setDialogAddCotizacion(state, data){
+            state.dialog_add_cotizacion = data
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {
