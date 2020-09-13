@@ -55,6 +55,11 @@ class ClienteController extends Controller
                 $cliente->correo_electronico_factura = $request['correo_electronico_factura'];
                 $cliente->sitio_web = $request['sitio_web'];
                 $cliente->vendedor = $request['vendedor']['nombre_completo'];
+                $cliente->nombre_completo = $request['nombre_completo'];
+                $cliente->telefono_contacto = $request['telefono_contacto'];
+                $cliente->celular_contacto = $request['celular_contacto'];
+                $cliente->correo_contacto = $request['correo_contacto'];
+                $cliente->iva = $request['iva'];
                 $cliente->credito = $request['credito'];
                 $cliente->save();
             },5);
@@ -110,6 +115,11 @@ class ClienteController extends Controller
                     'sitio_web' => $request['sitio_web'],
                     'vendedor' => $request['vendedor']['nombre_completo'],
                     'credito' => $request['credito'],
+                    'nombre_completo' => $request['nombre_completo'],
+                    'telefono_contacto' => $request['telefono_contacto'],
+                    'celular_contacto' => $request['celular_contacto'],
+                    'correo_contacto' => $request['correo_contacto'],
+                    'iva' => $request['iva'],
                 ]);
             },5);
         } catch (Exception $e) {
