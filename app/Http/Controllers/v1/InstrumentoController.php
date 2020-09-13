@@ -17,7 +17,7 @@ class InstrumentoController extends Controller
     public function index()
     {
         try {
-            $instrumento = Instrumento::all();
+            $instrumento = Instrumento::with(['hasAcreditacion','hasMagnitud'])->get();
             return Response($instrumento);
         } catch (Exception $e) {
             throw new Exception($e, 1);
@@ -47,8 +47,8 @@ class InstrumentoController extends Controller
             return DB::transaction(function() use ($request, $instrumento){
                 $instrumento->nombre = $request['nombre'];
                 $instrumento->alcance = $request['alcance'];
-                $instrumento->acreditacion = $request['acreditacion']['nombre'];
-                $instrumento->area = $request['area']['nombre'];
+                $instrumento->acreditacion_id = $request['acreditacion']['id'];
+                $instrumento->magnitude_id = $request['area']['id'];
                 $instrumento->precio_venta = $request['precio_venta'];
                 $instrumento->save();
 
@@ -95,8 +95,8 @@ class InstrumentoController extends Controller
                 $instrumento->find($request['id'])->update([
                     'nombre' => $request['nombre'],
                     'alcance' => $request['alcance'],
-                    'acreditacion' => $request['acreditacion']['nombre'],
-                    'area' => $request['area']['nombre'],
+                    'acreditacion_id' => $request['acreditacion_selected']['id'],
+                    'magnitude_id' => $request['magnitud_selected']['id'],
                     'precio_venta' => $request['precio_venta'],
                 ]);
 

@@ -31,6 +31,23 @@
                                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                                     <v-text-field :rules="[rules.required]" label="Correo Electronico para la factura" outlined v-model="cliente.correo_electronico_factura"></v-text-field>
                                 </v-col>
+
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Nombre Contacto" outlined v-model="cliente.nombre_completo"></v-text-field>
+                                </v-col> 
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Teléfono Contacto" outlined v-model="cliente.telefono_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Celular Contacto" outlined v-model="cliente.celular_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Correo Electronico Contacto" outlined v-model="cliente.correo_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="IVA (%)" outlined v-model="cliente.iva"></v-text-field>
+                                </v-col>
+
                                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                                     <v-text-field :rules="[rules.required]" label="Sitio Web" outlined v-model="cliente.sitio_web"></v-text-field>
                                 </v-col>

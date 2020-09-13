@@ -48,8 +48,8 @@ export default {
                 { text: 'ID', align: 'end', sortable: false, sortable: true, value: 'id' },
                 { text: 'Instrumento', align: 'center', sortable: false, value: 'nombre' },
                 { text: 'Alcance', align: 'center', sortable: false, value: 'alcance' },
-                { text: 'Acreditación', align: 'center', sortable: false, value: 'acreditacion' },
-                { text: 'Area', align: 'center', sortable: false, value: 'area' },
+                { text: 'Acreditación', align: 'center', sortable: false, value: 'has_acreditacion.nombre' },
+                { text: 'Area', align: 'center', sortable: false, value: 'has_magnitud.nombre' },
                 { text: 'Precio Venta', align: 'center', sortable: false, value: 'precio_venta' },
                 { text: 'Agregado', align: 'center', sortable: false, value: 'created_at' },
                 { text: 'Acción', align: 'center', sortable: false, value: 'accion' }

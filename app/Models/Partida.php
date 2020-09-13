@@ -12,9 +12,4 @@ class Partida extends Model
     {
     	return $this->belongsTo(Instrumento::class, 'instrumento_id');
     }
-
-    public function hasAcreditaicon()
-    {
-    	return $this->belongsTo(Acreditaciones::class, 'acreditacion_id');
-    }
 }

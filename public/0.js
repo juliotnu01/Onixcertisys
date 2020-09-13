@@ -360,7 +360,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: 'instrumento.alcance'
       }, {
         text: 'Acreditacion',
-        value: 'instrumento.nombre'
+        value: 'instrumento.has_acreditacion.nombre'
       }, {
         text: 'Precio Unitario',
         value: 'instrumento.precio_venta'
@@ -1369,40 +1369,6 @@ var render = function() {
                             },
                             [
                               _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  outlined: "",
-                                  label: "Acreditación"
-                                },
-                                model: {
-                                  value: _vm.partida.instrumento.acreditacion,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.partida.instrumento,
-                                      "acreditacion",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "partida.instrumento.acreditacion"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
                                 attrs: { outlined: "", label: "Cantidad" },
                                 on: {
                                   change: function($event) {
@@ -1645,22 +1611,29 @@ var render = function() {
                             _c("tr", [
                               _c("td", { attrs: { colspan: headers.length } }, [
                                 _c("div", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    "SUBTOTAL : " +
-                                      _vm._s(_vm.var_computed_sub_total)
-                                  )
+                                  _c("h3", [
+                                    _vm._v(
+                                      " SUBTOTAL : " +
+                                        _vm._s(_vm.var_computed_sub_total)
+                                    )
+                                  ])
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    "IVA : " + _vm._s(_vm.var_computed_iva)
-                                  )
+                                  _c("h3", [
+                                    _vm._v(
+                                      " IVA : " + _vm._s(_vm.var_computed_iva)
+                                    )
+                                  ])
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    "TOTAL : " + _vm._s(_vm.var_computed_total)
-                                  )
+                                  _c("h3", [
+                                    _vm._v(
+                                      " TOTAL : " +
+                                        _vm._s(_vm.var_computed_total)
+                                    )
+                                  ])
                                 ])
                               ])
                             ])

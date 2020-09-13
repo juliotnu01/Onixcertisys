@@ -19,7 +19,6 @@ class CreateCotizacionsTable extends Migration
             $table->foreignId('empleado_id')->constrained('empleados')->onDelete('cascade'); 
             $table->foreignId('moneda_id')->constrained('monedas')->onDelete('cascade'); 
             $table->foreignId('tiempo_de_entrega_id')->constrained('tiempo_de_entregas')->onDelete('cascade');
-            $table->foreignId('partida_id')->constrained('partidas')->onDelete('cascade');
             $table->string('tipo_de_servicio')->nullable(); 
             $table->string('nota_para_la_cotizacion')->nullable(); 
             $table->string('estado_de_la_cotizacion')->nullable(); 

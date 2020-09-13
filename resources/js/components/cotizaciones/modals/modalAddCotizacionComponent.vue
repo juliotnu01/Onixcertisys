@@ -68,9 +68,9 @@
                             <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                                 <v-text-field disabled v-model="partida.instrumento.alcance" outlined label="Alcance" />
                             </v-col>
-                            <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                <v-text-field disabled v-model="partida.instrumento.acreditacion" outlined label="Acreditación" />
-                            </v-col>
+                            <!-- <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                                <v-text-field disabled v-model="partida.instrumento" outlined label="Acreditación" />
+                            </v-col> -->
                             <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                                 <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="ActualizarImporte(partida.cantidad, partida.instrumento.precio_venta)" />
                             </v-col>
@@ -108,9 +108,9 @@
                         <template  v-slot:body.append="{ headers }">
                             <tr>
                                 <td :colspan="headers.length" >
-                                    <div class="text-right">SUBTOTAL : {{var_computed_sub_total}}</div>
-                                    <div class="text-right">IVA : {{var_computed_iva}}</div>
-                                    <div class="text-right">TOTAL : {{var_computed_total}}</div>
+                                    <div class="text-right"><h3> SUBTOTAL : {{var_computed_sub_total}}</h3></div>
+                                    <div class="text-right"><h3> IVA : {{var_computed_iva}}</h3></div>
+                                    <div class="text-right"><h3> TOTAL : {{var_computed_total}}</h3></div>
                                 </td>
                             </tr>
                         </template>
@@ -185,7 +185,7 @@ export default {
                 { text: 'Modelo', value: 'modelo' },
                 { text: 'Serie', value: 'serie' },
                 { text: 'Alcance', value: 'instrumento.alcance' },
-                { text: 'Acreditacion', value: 'instrumento.nombre' },
+                { text: 'Acreditacion', value: 'instrumento.has_acreditacion.nombre' },
                 { text: 'Precio Unitario', value: 'instrumento.precio_venta' },
                 { text: 'Importe', value: 'importe' },
                 { text: 'Accion', value: 'accion' },

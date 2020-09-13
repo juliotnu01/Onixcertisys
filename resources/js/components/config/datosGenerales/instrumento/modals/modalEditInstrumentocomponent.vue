@@ -14,10 +14,10 @@
                                     <v-textarea outlined :rules="[rules.required]" outlined v-model="instrumento.alcance" label="Alcance" ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                    <v-select v-model="instrumento.acreditacion"  :items="acreditaciones" item-text="nombre" return-object label="Acreditación" outlined/>
+                                    <v-select v-model="instrumento.acreditacion_selected"  :items="acreditaciones" item-text="nombre" return-object label="Acreditación" outlined/>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                    <v-select v-model="instrumento.area"  :items="magnitudes" item-text="nombre" return-object  label="Area" outlined/>
+                                    <v-select v-model="instrumento.magnitud_selected"  :items="magnitudes" item-text="nombre" return-object  label="Area" outlined/>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                                     <v-text-field :rules="[rules.required]" label="Precio Venta" outlined v-model="instrumento.precio_venta"></v-text-field>

@@ -17,7 +17,13 @@ class CotizacionController extends Controller
     public function index()
     {
         try {
-            $cotizaciones = Cotizacion::with(['hasCliente', 'hasEmpleado', 'hasMoneda', 'hasTiempoDeEntrega', 'hasPartidas', 'hasPartidas.hasIntrumento', 'hasPartidas.hasAcreditaicon'])->get();
+            $cotizaciones = Cotizacion::with(['hasCliente', 
+                                            'hasEmpleado', 
+                                            'hasMoneda', 
+                                            'hasTiempoDeEntrega', 
+                                            'hasPartidas', 
+                                            'hasPartidas.hasIntrumento', 
+                                            'hasPartidas.hasIntrumento.hasAcreditacion'])->get();
             return Response($cotizaciones);
         } catch (Exception $e) {
             throw new Exception($e, 1);

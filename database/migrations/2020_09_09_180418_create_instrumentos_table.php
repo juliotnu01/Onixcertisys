@@ -17,8 +17,8 @@ class CreateInstrumentosTable extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->string('alcance')->nullable();
-            $table->string('acreditacion')->nullable();
-            $table->string('area')->nullable();
+            $table->foreignId('acreditacion_id')->constrained('acreditaciones'); 
+            $table->foreignId('magnitude_id')->constrained('magnitudes'); 
             $table->bigInteger('precio_venta')->nullable();
             $table->timestamps();
         });

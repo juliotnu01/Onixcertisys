@@ -30,6 +30,21 @@
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                                     <v-text-field :rules="[rules.required]" label="Correo Electronico para la factura" outlined v-model="model.correo_electronico_factura"></v-text-field>
+                                </v-col> 
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Nombre Contacto" outlined v-model="model.nombre_completo"></v-text-field>
+                                </v-col> 
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Teléfono Contacto" outlined v-model="model.telefono_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Celular Contacto" outlined v-model="model.celular_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="Correo Electronico Contacto" outlined v-model="model.correo_contacto"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                    <v-text-field :rules="[rules.required]" label="IVA (%)" outlined v-model="model.iva"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                                     <v-text-field :rules="[rules.required]" label="Sitio Web" outlined v-model="model.sitio_web"></v-text-field>
@@ -76,6 +91,11 @@ export default {
                 sitio_web: '',
                 vendedor: '',
                 credito: '',
+                nombre_completo: '',
+                telefono_contacto: '',
+                celular_contacto: '',
+                correo_contacto: '',
+                iva: 0
             }
         }
     },

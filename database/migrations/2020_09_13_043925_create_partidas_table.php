@@ -21,7 +21,7 @@ class CreatePartidasTable extends Migration
             $table->string('identificacion')->nullable();
             $table->float('importe', 30, 2)->nullable();
             $table->foreignId('instrumento_id')->constrained('instrumentos')->onDelete('cascade'); 
-            $table->foreignId('acreditacion_id')->constrained('acreditaciones')->onDelete('cascade'); 
+            $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

@@ -55,8 +55,9 @@ export default {
                 { text: 'Descuento (%)', align: 'center', sortable: false, value: 'descuento' },
                 { text: 'Correo Electronico para la factura', align: 'center', sortable: false, value: 'correo_electronico_factura' },
                 { text: 'Sitio Web', align: 'center', sortable: false, value: 'sitio_web' },
-                { text: 'vnededor', align: 'center', sortable: false, value: 'Vendedor' },
+                { text: 'vendedor', align: 'center', sortable: false, value: 'Vendedor' },
                 { text: 'Credito (%)', align: 'center', sortable: false, value: 'credito' },
+                { text: 'IVA (%)', align: 'center', sortable: false, value: 'iva' },
                 { text: 'Agregado', align: 'center', sortable: false, value: 'created_at' },
                 { text: 'Acción', align: 'center', sortable: false, value: 'accion' }
             ],
