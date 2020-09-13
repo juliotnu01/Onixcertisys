@@ -28,7 +28,6 @@ class CreateCotizacionsTable extends Migration
             $table->string('contacto_correo')->nullable(); 
             $table->string('condicion')->nullable(); 
             $table->string('nota_de_seguimiento')->nullable();
-
             $table->bigInteger('sub_total')->nullable();
             $table->bigInteger('iva')->nullable();
             $table->bigInteger('total')->nullable();
