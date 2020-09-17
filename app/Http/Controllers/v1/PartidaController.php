@@ -5,7 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Partida;
 use Illuminate\Http\Request;
-
+use DB;
 class PartidaController extends Controller
 {
     /**
@@ -85,8 +85,15 @@ class PartidaController extends Controller
      * @param  \App\Models\Partida  $partida
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partida $partida)
+    public function destroy($id, Partida $partida)
     {
-        //
+        try {
+
+            return DB::transaction(function () use ($id, $partida) {
+                $partida->find($id)->delete();
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
     }
 }

@@ -101,6 +101,6 @@ Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');
 
 Route::get('/get-partidas', 'v1\PartidaController@index');
-Route::post('/add-cotizacion', 'v1\CotizacionController@store');
-Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
-Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');
+// Route::post('/add-cotizacion', 'v1\CotizacionController@store');
+// Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
+Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');

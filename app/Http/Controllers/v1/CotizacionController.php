@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cotizacion;
+use App\Models\{Cotizacion, Partida};
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Arr;
 
 class CotizacionController extends Controller
 {
@@ -17,17 +18,18 @@ class CotizacionController extends Controller
     public function index()
     {
         try {
-            $cotizaciones = Cotizacion::with(['hasCliente', 
-                                            'hasEmpleado', 
-                                            'hasMoneda', 
-                                            'hasTiempoDeEntrega', 
-                                            'hasPartidas', 
-                                            'hasPartidas.hasIntrumento', 
-                                            'hasPartidas.hasIntrumento.hasAcreditacion'])->get();
+            $cotizaciones = Cotizacion::with([
+                'hasCliente',
+                'hasEmpleado',
+                'hasMoneda',
+                'hasTiempoDeEntrega',
+                'hasPartidas',
+                'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.hasAcreditacion'
+            ])->get();
             return Response($cotizaciones);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -47,11 +49,11 @@ class CotizacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , Cotizacion $cotizacion)
+    public function store(Request $request, Cotizacion $cotizacion)
     {
         try {
-            dd($request->all());
-            return DB::transaction(function() use ($request, $cotizacion){
+
+            return DB::transaction(function () use ($request, $cotizacion) {
 
                 $cotizacion->cliente_id = $request['cliente_id'];
                 $cotizacion->empleado_id = $request['empleado_id'];
@@ -65,13 +67,28 @@ class CotizacionController extends Controller
                 $cotizacion->contacto_correo = $request['contacto_correo'];
                 $cotizacion->condicion = $request['condicion'];
                 $cotizacion->nota_de_seguimiento = $request['nota_de_seguimiento'];
+                $cotizacion->sub_total = $request['sub_total'];
+                $cotizacion->iva = $request['iva'];
+                $cotizacion->total = $request['total'];
                 $cotizacion->save();
 
-
-            },5);
+                foreach ($request['partidas'] as $key => $value) {
+                    $partida = new Partida();
+                    $partida->cantidad = $value['cantidad'];
+                    $partida->servicio = $value['servicio']['name'];
+                    $partida->unidad = $value['unidad']['name'];
+                    $partida->identificacion = $value['identificacion'];
+                    $partida->importe = $value['importe'];
+                    $partida->marca = $value['marca'];
+                    $partida->modelo = $value['modelo'];
+                    $partida->serie= $value['serie'];
+                    $partida->instrumento_id = $value['instrumento']['id'];
+                    $partida->cotizacion_id = $cotizacion['id'];
+                    $partida->save();
+                }
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -107,7 +124,7 @@ class CotizacionController extends Controller
     public function update(Request $request, Cotizacion $cotizacion)
     {
         try {
-            return DB::transaction(function() use ($request, $cotizacion){
+            return DB::transaction(function () use ($request, $cotizacion) {
 
                 $cotizacion->find($request['id'])->update([
                     'cliente_id' => $request['cliente_id'],
@@ -122,12 +139,42 @@ class CotizacionController extends Controller
                     'contacto_correo' => $request['contacto_correo'],
                     'condicion' => $request['condicion'],
                     'nota_de_seguimiento' => $request['nota_de_seguimiento'],
+                    'sub_total' => $request['sub_total'],
+                    'iva' => $request['iva'],
+                    'total' => $request['total']
                 ]);
-
-            },5);
+                foreach ($request['partidas'] as $key => $value) {
+                    $partida = new Partida();
+                    if (Arr::exists($value, 'id')) {
+                        $partida->find($value['id'])->update([
+                            'cantidad' => $value['cantidad'],
+                            'servicio' => $value['servicio'],
+                            'unidad' => $value['unidad'],
+                            'identificacion' => $value['identificacion'],
+                            'importe' => $value['importe'],
+                            'marca' => $value['marca'],
+                            'modelo' => $value['modelo'],
+                            'serie' => $value['serie'],
+                            'instrumento_id' => $value['has_intrumento']['id'],
+                            'cotizacion_id' =>  $request['id'],
+                        ]);
+                    } else {
+                        $partida->cantidad = $value['cantidad'];
+                        $partida->servicio = $value['servicio'];
+                        $partida->unidad = $value['unidad'];
+                        $partida->identificacion = $value['identificacion'];
+                        $partida->importe = $value['importe'];
+                        $partida->marca = $value['marca'];
+                        $partida->modelo = $value['modelo'];
+                        $partida->serie= $value['serie'];
+                        $partida->instrumento_id = $value['has_intrumento']['id'];
+                        $partida->cotizacion_id = $request['id'];
+                        $partida->save();
+                    }
+                }
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -137,17 +184,14 @@ class CotizacionController extends Controller
      * @param  \App\Models\Cotizacion  $cotizacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cotizacion $cotizacion)
+    public function destroy($id, Cotizacion $cotizacion)
     {
         try {
-                
-            return DB::transaction(function() use ($id, $cotizacion){
+            return DB::transaction(function () use ($id, $cotizacion) {
                 $cotizacion->find($id)->delete();
-            },5);
-
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 }

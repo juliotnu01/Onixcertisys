@@ -19,9 +19,12 @@ class CreatePartidasTable extends Migration
             $table->string('servicio')->nullable();
             $table->string('unidad')->nullable();
             $table->string('identificacion')->nullable();
+            $table->string('marca')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('serie')->nullable();
             $table->float('importe', 30, 2)->nullable();
-            $table->foreignId('instrumento_id')->constrained('instrumentos')->onDelete('cascade'); 
-            $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade'); 
+            $table->foreignId('instrumento_id')->constrained('instrumentos')->onDelete('cascade');
+            $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -21,7 +21,6 @@ class AcreditacionesController extends Controller
             return Response($acreditaciones);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -44,13 +43,12 @@ class AcreditacionesController extends Controller
     public function store(Request $request, Acreditaciones $acreditaciones)
     {
         try {
-            return DB::transaction(function() use ($request, $acreditaciones){
+            return DB::transaction(function () use ($request, $acreditaciones) {
                 $acreditaciones->nombre = $request['nombre'];
                 $acreditaciones->save();
-            },5);
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -86,15 +84,13 @@ class AcreditacionesController extends Controller
     public function update(Request $request, Acreditaciones $acreditaciones)
     {
         try {
-            return DB::transaction(function() use ($request, $acreditaciones){
+            return DB::transaction(function () use ($request, $acreditaciones) {
                 $acreditaciones->find($request['id'])->update([
                     'nombre' => $request['nombre']
                 ]);
-                
-            },5);
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -107,12 +103,11 @@ class AcreditacionesController extends Controller
     public function destroy($id, Acreditaciones $acreditaciones)
     {
         try {
-            return DB::transaction(function() use ($id, $acreditaciones){
+            return DB::transaction(function () use ($id, $acreditaciones) {
                 $acreditaciones->find($id)->delete();
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 }

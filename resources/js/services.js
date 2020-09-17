@@ -15,6 +15,7 @@ import instrumentoServices from './services/instrumentoServices.js'
 import procedimientoServices from './services/procedimientoService.js'
 import patronServices from './services/patronServices.js'
 import cotizacionServices from './services/cotizacionesServices.js'
+import partidaServices from './services/partidaServices.js'
 
 export default {
     userServices: new userServices(),
@@ -34,4 +35,5 @@ export default {
     procedimientoServices: new procedimientoServices(),
     patronServices: new patronServices(),
     cotizacionServices: new cotizacionServices(),
+    partidaServices: new partidaServices(),
 }

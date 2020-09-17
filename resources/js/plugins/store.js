@@ -86,6 +86,8 @@ export default new Vuex.Store({
         patron: {},
         cotizaciones: [],
         dialog_add_cotizacion: false,
+        dialog_edit_cotizacion: false,
+        cotizacion: {},
     },
     getters: {
         services: state => state.services,
@@ -154,6 +156,8 @@ export default new Vuex.Store({
         patron: state => state.patron,
         cotizaciones: state => state.cotizaciones,
         dialog_add_cotizacion: state => state.dialog_add_cotizacion,
+        dialog_edit_cotizacion: state => state.dialog_edit_cotizacion,
+        cotizacion: state => state.cotizacion,
     },
     mutations: {
         setListUser(state, data) {
@@ -400,6 +404,13 @@ export default new Vuex.Store({
         },
         setDialogAddCotizacion(state, data){
             state.dialog_add_cotizacion = data
+        },
+        setDialogEditCotizacion(state, data){
+            state.dialog_edit_cotizacion = data
+        },
+        setCotizacion(state, data){
+            console.log({data})
+            state.cotizacion = data
         },
     },
     actions: {
