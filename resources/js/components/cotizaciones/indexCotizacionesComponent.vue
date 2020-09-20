@@ -14,7 +14,7 @@
     <v-data-table dense :headers="headers_cotizacion" :items="cotizaciones" item-key="name" class="elevation-1" :search="search_cot">
         <template v-slot:item.accion="{ item }">
             <td>
-                <v-btn icon small color="primary">
+                <v-btn icon small color="primary" @click="ViewCotizacion(item)">
                     <v-icon>mdi-eye</v-icon>
                 </v-btn>
                 <v-btn icon small color="error" @click="eliminarCotizacion(item)">
@@ -46,6 +46,7 @@
     </v-data-table>
     <modal-add />
     <modal-edit />
+    <modal-view />
 </v-app>
 </template>
 
@@ -55,10 +56,12 @@ import {
 } from "vuex";
 import modaladdCotizacion from "./modals/modalAddCotizacionComponent.vue"
 import modaleditCotizacion from './modals/modalEditCotizacionComponent'
+import modalViewCotizacion from './modals/modalViewCotizacionComponent'
 export default {
     components: {
         "modal-add": modaladdCotizacion,
         "modal-edit": modaleditCotizacion,
+        "modal-view": modalViewCotizacion,
     },
     data() {
         return {
@@ -128,6 +131,10 @@ export default {
         eliminarCotizacion(item) {
             this.services.cotizacionServices.EliminarCotizacion(item)
             this.services.cotizacionServices.getlistCotizaciones();
+        },
+        ViewCotizacion(item) {
+            this.$store.commit('setDialogViewCotizacion', true)
+            this.$store.commit('setCotizacionView', item)
         }
     }
 };

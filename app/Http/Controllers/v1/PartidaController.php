@@ -76,7 +76,25 @@ class PartidaController extends Controller
      */
     public function update(Request $request, Partida $partida)
     {
-        //
+        try {
+
+            return DB::transaction(function () use ($request,$partida) {
+                $partida->find($request['id'])->update([
+                    'cantidad' => $request['cantidad'],
+                    'servicio' => $request['servicio'],
+                    'unidad' => $request['unidad'],
+                    'identificacion' => $request['identificacion'],
+                    'importe' => $request['importe'],
+                    'marca' => $request['marca'],
+                    'modelo' => $request['modelo'],
+                    'serie' => $request['serie'],
+                    'instrumento_id' => $request['instrumento_id'],
+                    'cotizacion_id' => $request['cotizacion_id'],
+                ]);
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
     }
 
     /**

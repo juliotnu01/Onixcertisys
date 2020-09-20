@@ -1,10 +1,10 @@
-import Vuex from 'vuex'
-import Vue from 'vue'
-import services from '../services.js'
-import moment from 'moment';
-import momentTz from 'moment-timezone';
+import Vuex from "vuex";
+import Vue from "vue";
+import services from "../services.js";
+import moment from "moment";
+import momentTz from "moment-timezone";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
@@ -23,18 +23,18 @@ export default new Vuex.Store({
         dialog_editar_rol: false,
         edit_rol: {},
         empresa: {
-            nombre_empresa: '',
-            actividad_comercial: '',
-            rfc: '',
-            correo_electronico: '',
-            telefono: '',
-            iva: '',
-            utilidad: '',
-            direccion: '',
-            ciudad: '',
-            estado: '',
-            codigo_postal: '',
-            pais: '',
+            nombre_empresa: "",
+            actividad_comercial: "",
+            rfc: "",
+            correo_electronico: "",
+            telefono: "",
+            iva: "",
+            utilidad: "",
+            direccion: "",
+            ciudad: "",
+            estado: "",
+            codigo_postal: "",
+            pais: ""
         },
         magnitudes: [],
         dialog_add_magnitudes: false,
@@ -76,7 +76,7 @@ export default new Vuex.Store({
         dialog_add_instrumento: false,
         dialog_edit_instrumento: false,
         instrumento: {},
-        procedimientos:[],
+        procedimientos: [],
         dialog_add_procedimiento: false,
         procedimiento: {},
         dialog_edit_procedimiento: false,
@@ -88,6 +88,9 @@ export default new Vuex.Store({
         dialog_add_cotizacion: false,
         dialog_edit_cotizacion: false,
         cotizacion: {},
+        dialog_view_cotizacion: false,
+        cotizacion_view: {},
+        informe_id_db: null
     },
     getters: {
         services: state => state.services,
@@ -115,21 +118,26 @@ export default new Vuex.Store({
         dialog_edit_acreditacion: state => state.dialog_edit_acreditacion,
         acreditacion: state => state.acreditacion,
         listCondicionDePago: state => state.listCondicionDePago,
-        dialog_add_condicion_de_pago: state => state.dialog_add_condicion_de_pago,
+        dialog_add_condicion_de_pago: state =>
+            state.dialog_add_condicion_de_pago,
         edit_condicion_de_pago: state => state.edit_condicion_de_pago,
-        dialog_edit_condicion_de_pago: state => state.dialog_edit_condicion_de_pago,
+        dialog_edit_condicion_de_pago: state =>
+            state.dialog_edit_condicion_de_pago,
         list_metodo_de_pago: state => state.list_metodo_de_pago,
         dialog_add_metodo_de_pago: state => state.dialog_add_metodo_de_pago,
         dialog_edit_metodo_de_pago: state => state.dialog_edit_metodo_de_pago,
         metodo_de_pago: state => state.metodo_de_pago,
         tiempos_de_entrega: state => state.tiempos_de_entrega,
         dialog_tiempo_de_entrega: state => state.dialog_tiempo_de_entrega,
-        dialog_edit_tiempo_de_entrega: state => state.dialog_edit_tiempo_de_entrega,
+        dialog_edit_tiempo_de_entrega: state =>
+            state.dialog_edit_tiempo_de_entrega,
         tiempo_de_entrega: state => state.tiempo_de_entrega,
         ciudades_estados_paises: state => state.ciudades_estados_paises,
-        dialog_add_ciudad_estado_pais: state => state.dialog_add_ciudad_estado_pais,
+        dialog_add_ciudad_estado_pais: state =>
+            state.dialog_add_ciudad_estado_pais,
         ciudad_estado_pais: state => state.ciudad_estado_pais,
-        dialog_edit_ciudad_estad_pais: state => state.dialog_edit_ciudad_estad_pais,
+        dialog_edit_ciudad_estad_pais: state =>
+            state.dialog_edit_ciudad_estad_pais,
         dialog_add_moneda: state => state.dialog_add_moneda,
         monedas: state => state.monedas,
         dialog_edit_moneda: state => state.dialog_edit_moneda,
@@ -158,277 +166,303 @@ export default new Vuex.Store({
         dialog_add_cotizacion: state => state.dialog_add_cotizacion,
         dialog_edit_cotizacion: state => state.dialog_edit_cotizacion,
         cotizacion: state => state.cotizacion,
+        dialog_view_cotizacion: state => state.dialog_view_cotizacion,
+        cotizacion_view: state => state.cotizacion_view,
+        informe_id_db: state => state.informe_id_db
     },
     mutations: {
         setListUser(state, data) {
-            state.listUser = data
+            state.listUser = data;
         },
         setUser(state, data) {
-            state.user = data
+            state.user = data;
         },
         setLeer(state, data) {
-            state.leer = data
+            state.leer = data;
         },
         setUserRegisterModal(state, data) {
-            state.dialog_user_register = data
+            state.dialog_user_register = data;
         },
         setRolRegisterModal(state, data) {
-            state.dialog_rol_register = data
+            state.dialog_rol_register = data;
         },
         setAsignarRolModal(state, data) {
-            state.dialog_asignar_rol = data
+            state.dialog_asignar_rol = data;
         },
         setRoles(state, data) {
-            state.listRoles = data
+            state.listRoles = data;
         },
         setRolSelected(state, data) {
-            state.rol_selected = data
+            state.rol_selected = data;
         },
         setUserSelectedRolPermission(state, data) {
-            state.user_selected_rol_premision = data
+            state.user_selected_rol_premision = data;
         },
         setDialogUserRolPermission(state, data) {
-            state.dialog_user_rol_permission = data
+            state.dialog_user_rol_permission = data;
         },
         setDialogEditarUsuario(state, data) {
-            state.dialog_editar_usuario = data
+            state.dialog_editar_usuario = data;
         },
         setDialogEditRol(state, data) {
-            state.dialog_editar_rol = data
+            state.dialog_editar_rol = data;
         },
         setEditRol(state, data) {
-            state.edit_rol = data
+            state.edit_rol = data;
         },
         setEmpresa(state, data) {
             if (data) {
-             
-              state.empresa = data
-              
-              
+                state.empresa = data;
             } else {
                 state.empresa = {
-                    nombre_empresa: '',
-                    actividad_comercial: '',
-                    rfc: '',
-                    correo_electronico: '',
-                    telefono: '',
-                    iva: '',
-                    utilidad: '',
-                    direccion: '',
-                    ciudad: '',
-                    estado: '',
-                    codigo_postal: '',
-                    pais: '',
-                }
+                    nombre_empresa: "",
+                    actividad_comercial: "",
+                    rfc: "",
+                    correo_electronico: "",
+                    telefono: "",
+                    iva: "",
+                    utilidad: "",
+                    direccion: "",
+                    ciudad: "",
+                    estado: "",
+                    codigo_postal: "",
+                    pais: ""
+                };
             }
         },
         setMagnitudes(state, data) {
-            state.magnitudes = data
+            state.magnitudes = data;
         },
         setDialogAddMagnitudes(state, data) {
-            state.dialog_add_magnitudes = data
+            state.dialog_add_magnitudes = data;
         },
         setDialogEditMagnitudes(state, data) {
-            state.dialog_edit_magnitudes = data
+            state.dialog_edit_magnitudes = data;
         },
         setEditMagnitud(state, data) {
-            state.magnitud_edit = data
+            state.magnitud_edit = data;
         },
         setdialogAddAcreditacion(state, data) {
-            state.dialog_add_acreditacion = data
+            state.dialog_add_acreditacion = data;
         },
         setAcreditaciones(state, data) {
-            state.acreditaciones = data
+            state.acreditaciones = data;
         },
         setDialogEditAcreditacion(state, data) {
-            state.dialog_edit_acreditacion = data
+            state.dialog_edit_acreditacion = data;
         },
         setAcreditacion(state, data) {
-            state.acreditacion = data
+            state.acreditacion = data;
         },
         setListCondicionDePago(state, data) {
-            state.listCondicionDePago = data
+            state.listCondicionDePago = data;
         },
         setDialogAddCondicionDePago(state, data) {
-            state.dialog_add_condicion_de_pago = data
+            state.dialog_add_condicion_de_pago = data;
         },
         setEditCondicionDePago(state, data) {
-            state.edit_condicion_de_pago = data
+            state.edit_condicion_de_pago = data;
         },
         setDialogEditCondicionDePago(state, data) {
-            state.dialog_edit_condicion_de_pago = data
+            state.dialog_edit_condicion_de_pago = data;
         },
         setListMetodoDePago(state, data) {
-            state.list_metodo_de_pago = data
+            state.list_metodo_de_pago = data;
         },
         setDialogAddMetodoDePago(state, data) {
-            state.dialog_add_metodo_de_pago = data
+            state.dialog_add_metodo_de_pago = data;
         },
         setDialogEditMetodoDePago(state, data) {
-            state.dialog_edit_metodo_de_pago = data
+            state.dialog_edit_metodo_de_pago = data;
         },
         setMetodoDePago(state, data) {
-            state.metodo_de_pago = data
+            state.metodo_de_pago = data;
         },
         setTiemposDeEntrega(state, data) {
-            state.tiempos_de_entrega = data
+            state.tiempos_de_entrega = data;
         },
         setDialogTiempoDeEntrega(state, data) {
-            state.dialog_tiempo_de_entrega = data
+            state.dialog_tiempo_de_entrega = data;
         },
         setDialogEditTiempoDeEntrega(state, data) {
-            state.dialog_edit_tiempo_de_entrega = data
+            state.dialog_edit_tiempo_de_entrega = data;
         },
         setTiempoDeEntrega(state, data) {
-            state.tiempo_de_entrega = data
+            state.tiempo_de_entrega = data;
         },
         setCiudadesEstadosPaises(state, data) {
-            state.ciudades_estados_paises = data
+            state.ciudades_estados_paises = data;
         },
         setDialogAddCiudadEstadoPais(state, data) {
-            state.dialog_add_ciudad_estado_pais = data
+            state.dialog_add_ciudad_estado_pais = data;
         },
         setCiudadEstadoPais(state, data) {
-            state.ciudad_estado_pais = data
+            state.ciudad_estado_pais = data;
         },
         setDialogEditCiudadEstadoPais(state, data) {
-            state.dialog_edit_ciudad_estad_pais = data
+            state.dialog_edit_ciudad_estad_pais = data;
         },
         setDialogAddMoneda(state, data) {
-            state.dialog_add_moneda = data
+            state.dialog_add_moneda = data;
         },
         setMonedas(state, data) {
-            state.monedas = data
+            state.monedas = data;
         },
         setDialogEditMoneda(state, data) {
-            state.dialog_edit_moneda = data
+            state.dialog_edit_moneda = data;
         },
         setMoneda(state, data) {
-            state.moneda = data
+            state.moneda = data;
         },
         setEmpleados(state, data) {
-            state.empleados = data
+            state.empleados = data;
         },
         setDialogAddEmpleado(state, data) {
-            state.dialog_add_empleado = data
+            state.dialog_add_empleado = data;
         },
         setDialogEditEmpleado(state, data) {
-            state.dialog_edit_empleado = data
+            state.dialog_edit_empleado = data;
         },
         setEmpleado(state, data) {
             if (data) {
-                 var status = [
-                  { name: 'Activo', value: 1 },
-                  { name: 'Bloquedo', value: 0 }
-                ]
-                var status_selected = status.find(item => item.value === data.status)
+                var status = [
+                    { name: "Activo", value: 1 },
+                    { name: "Bloquedo", value: 0 }
+                ];
+                var status_selected = status.find(
+                    item => item.value === data.status
+                );
 
-                state.empleado = data
+                state.empleado = data;
 
-                state.empleado.status = status_selected
-
+                state.empleado.status = status_selected;
             } else {
-
                 state.empleado = {
-                    fecha_de_alta: momentTz.tz('America/Bogota').format().substr(0, 10),
-                    fecha_de_baja: momentTz.tz('America/Bogota').format().substr(0, 10),
-                    status: '',
-                    nombre_completo: '',
-                    rfc: '',
-                    direccion: '',
-                    ciudad: '',
-                    codigo_postal: '',
-                    telefono: '',
-                    correo_factura: '',
-                    departamento: '',
-                    observaciones: '',
-                }
+                    fecha_de_alta: momentTz
+                        .tz("America/Bogota")
+                        .format()
+                        .substr(0, 10),
+                    fecha_de_baja: momentTz
+                        .tz("America/Bogota")
+                        .format()
+                        .substr(0, 10),
+                    status: "",
+                    nombre_completo: "",
+                    rfc: "",
+                    direccion: "",
+                    ciudad: "",
+                    codigo_postal: "",
+                    telefono: "",
+                    correo_factura: "",
+                    departamento: "",
+                    observaciones: ""
+                };
             }
         },
-        setClientes(state, data){
-            state.clientes = data
+        setClientes(state, data) {
+            state.clientes = data;
         },
-        SetDialogAddCliente(state, data){
-            state.dialog_add_clientes = data 
+        SetDialogAddCliente(state, data) {
+            state.dialog_add_clientes = data;
         },
-        setDialogEditCliente(state, data){
-            state.dialog_edit_cliente = data
+        setDialogEditCliente(state, data) {
+            state.dialog_edit_cliente = data;
         },
-        setCliente(state, data){
-            state.cliente = data
-            var vend = state.empleados.find(item => item.nombre_completo === data.vendedor)
-            state.cliente.vendedor = vend
+        setCliente(state, data) {
+            state.cliente = data;
+            var vend = state.empleados.find(
+                item => item.nombre_completo === data.vendedor
+            );
+            state.cliente.vendedor = vend;
         },
-        setInstrumentos(state, data){
-            state.instrumentos = data      
+        setInstrumentos(state, data) {
+            state.instrumentos = data;
         },
-        setDialogAddInstrumento(state, data){
-            state.dialog_add_instrumento = data
+        setDialogAddInstrumento(state, data) {
+            state.dialog_add_instrumento = data;
         },
-        setDialogEditInstrumento(state, data){
-            state.dialog_edit_instrumento = data
+        setDialogEditInstrumento(state, data) {
+            state.dialog_edit_instrumento = data;
         },
-        setInstrumento(state, data){
-            state.instrumento = data
-            var mag = state.magnitudes.find(item => item.id === data.has_magnitud.id)
-            var acre = state.acreditaciones.find(item => item.id === data.has_acreditacion.id)
-            state.instrumento.acreditacion_selected = mag
-            state.instrumento.magnitud_selected = acre
+        setInstrumento(state, data) {
+            state.instrumento = data;
+            var mag = state.magnitudes.find(
+                item => item.id === data.has_magnitud.id
+            );
+            var acre = state.acreditaciones.find(
+                item => item.id === data.has_acreditacion.id
+            );
+            state.instrumento.acreditacion_selected = mag;
+            state.instrumento.magnitud_selected = acre;
         },
-        setProcedimientos(state, data){
-            state.procedimientos = data
+        setProcedimientos(state, data) {
+            state.procedimientos = data;
         },
-        setDialogAddProcedimiento(state, data){
-            state.dialog_add_procedimiento = data
+        setDialogAddProcedimiento(state, data) {
+            state.dialog_add_procedimiento = data;
         },
-        setProcedimiento(state, data){
-            state.procedimiento = data
+        setProcedimiento(state, data) {
+            state.procedimiento = data;
         },
-        setDialogEditProcedimiento(state, data){
-            state.dialog_edit_procedimiento = data
+        setDialogEditProcedimiento(state, data) {
+            state.dialog_edit_procedimiento = data;
         },
-        setPatrones(state, data){
-            state.patrones = data
+        setPatrones(state, data) {
+            state.patrones = data;
         },
-        setDialogAddPatron(state, data){
-            state.dialog_add_patron = data
+        setDialogAddPatron(state, data) {
+            state.dialog_add_patron = data;
         },
-        setDialogEditPatron(state, data){
-            state.dialog_edit_patron = data
+        setDialogEditPatron(state, data) {
+            state.dialog_edit_patron = data;
         },
-        setPatron(state, data){
-            state.patron = data
+        setPatron(state, data) {
+            state.patron = data;
         },
-        setCotizaciones(state, data){
-            state.cotizaciones = data
+        setCotizaciones(state, data) {
+            state.cotizaciones = data;
         },
-        setDialogAddCotizacion(state, data){
-            state.dialog_add_cotizacion = data
+        setDialogAddCotizacion(state, data) {
+            state.dialog_add_cotizacion = data;
         },
-        setDialogEditCotizacion(state, data){
-            state.dialog_edit_cotizacion = data
+        setDialogEditCotizacion(state, data) {
+            state.dialog_edit_cotizacion = data;
         },
-        setCotizacion(state, data){
-            console.log({data})
-            state.cotizacion = data
+        setCotizacion(state, data) {
+            state.cotizacion = data;
         },
+        setDialogViewCotizacion(state, data) {
+            state.dialog_view_cotizacion = data;
+        },
+        setCotizacionView(state, data) {
+           
+            state.cotizacion_view = data;
+            
+        },
+        setInformeID(state, data) {
+            state.informe_id_db = data;
+            var stateInfo = state.cotizacion_view.has_partidas.find(
+                item => item.id === data[0].partida_id
+            );
+            stateInfo.informe_id = data[1];
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {
-            commit('setRolSelected', data)
-            commit('setAsignarRolModal', true)
+            commit("setRolSelected", data);
+            commit("setAsignarRolModal", true);
         },
         chargeUserSelectedRolPermission({ commit }, data) {
-            commit('setUserSelectedRolPermission', data)
-            commit('setDialogUserRolPermission', true)
+            commit("setUserSelectedRolPermission", data);
+            commit("setDialogUserRolPermission", true);
         },
         chargeUserEditar({ commit }, data) {
-            commit('setDialogEditarUsuario', true)
-            commit('setUser', data)
+            commit("setDialogEditarUsuario", true);
+            commit("setUser", data);
         },
         chargeRol({ commit }, data) {
-            commit('setEditRol', data)
-            commit('setDialogEditRol', true)
+            commit("setEditRol", data);
+            commit("setDialogEditRol", true);
         }
     }
 });

@@ -25,6 +25,7 @@ class CotizacionController extends Controller
                 'hasTiempoDeEntrega',
                 'hasPartidas',
                 'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
             ])->get();
             return Response($cotizaciones);

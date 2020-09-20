@@ -104,3 +104,10 @@ Route::get('/get-partidas', 'v1\PartidaController@index');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 // Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
+
+Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // identificador de informe de las partidas
+
+Route::get('/get-recibos', 'v1\ReciboController@index');
+Route::post('/add-recibo', 'v1\ReciboController@store');
+// Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
+// Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
