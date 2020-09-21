@@ -35,7 +35,8 @@ export default new router({
                     name: "config.datos.sistema",
                     component: datosDelSistemaComponent
                 }
-            ]
+            ],
+            redirect: { name: 'config-user' }
         },
         {
             path: "/cotizaciones",
