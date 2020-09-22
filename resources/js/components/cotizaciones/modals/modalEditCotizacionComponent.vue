@@ -14,7 +14,8 @@
             <v-card-title>Editar Cotizacion</v-card-title>
             <v-card-text>
                 <v-form ref="f_mag">
-                    <v-row align="center" justify="space-around">
+                
+                    <v-row align="center" justify="space-around" v-if=" Object.entries(this.cotizacion).length > 0 ">
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-autocomplete offset-y dense v-model="cotizacion.has_cliente" :items="clientes" item-text="razon_social" outlined s label="Seleccionar Cliente" return-object></v-autocomplete>
                         </v-col>
@@ -52,6 +53,7 @@
                             <v-textarea v-model="cotizacion.nota_de_seguimiento" outlined label="Notas de seguimiento"></v-textarea>
                         </v-col>
                     </v-row>
+                        
                 </v-form>
             </v-card-text>
             <v-card-text>
