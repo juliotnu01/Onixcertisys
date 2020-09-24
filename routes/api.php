@@ -74,6 +74,7 @@ Route::get('/get-empleados', 'v1\EmpleadoController@index');
 Route::post('/add-empleado', 'v1\EmpleadoController@store');
 Route::put('/edit-empleado', 'v1\EmpleadoController@update');
 Route::delete('/delete-empleado/{id}', 'v1\EmpleadoController@destroy');
+Route::put('/asignar-tecnico-partida', 'v1\EmpleadoController@asignarTecnicoPartida');
 
 Route::get('/get-clientes', 'v1\ClienteController@index');
 Route::post('/add-cliente', 'v1\ClienteController@store');
@@ -99,6 +100,7 @@ Route::get('/get-cotizaciones', 'v1\CotizacionController@index');
 Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');
+Route::post('/print-cotizacion', 'v1\CotizacionController@printCotizacion');
 
 Route::get('/get-partidas', 'v1\PartidaController@index');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');

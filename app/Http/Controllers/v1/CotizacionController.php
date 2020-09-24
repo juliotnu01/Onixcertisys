@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\{Cotizacion, Partida};
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 use Illuminate\Support\Arr;
-
+use Illuminate\Support\Facades\Storage;
 class CotizacionController extends Controller
 {
     /**
@@ -195,4 +196,15 @@ class CotizacionController extends Controller
             throw new Exception($e, 1);
         }
     }
+
+    public function printCotizacion(Request $request)
+    {
+        $pdf = PDF::loadView('pdfs.pdfCotizacion');
+        // return $pdf->stream();
+        Storage::makeDirectory('Test_directorio');
+        Storage::disk('local')->put('Test_directorio/file.pdf', $pdf->download());
+       $p = Storage::url('file.pdf');
+        return  response()->download($p);
+    }
+
 }

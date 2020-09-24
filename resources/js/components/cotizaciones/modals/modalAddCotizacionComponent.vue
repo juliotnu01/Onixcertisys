@@ -85,7 +85,7 @@
                             <v-text-field v-model="partida.serie" outlined label="Serie" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field disabled v-model="partida.instrumento.precio_venta" outlined label="Precio Unitario" />
+                            <v-text-field v-model="partida.instrumento.precio_venta" outlined label="Precio Unitario" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field disabled v-model="var_computed_importe_instrumento" outlined label="Importe" />

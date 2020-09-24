@@ -1,13 +1,13 @@
 import store from "../plugins/store.js";
 export default class reciboServices {
-    // async getlistAcreditaciones() {
-    //     try {
-    //         let { data } = await axios("/api/get-acreditaciones");
-    //         store.commit("setAcreditaciones", data);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    async getlistRecibos() {
+        try {
+            let { data } = await axios("/api/get-recibos");
+            store.commit("setRecibos", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async agregarRecibo(model) {
         try {
             let { data } = await axios.post("/api/add-recibo", model);

@@ -90,7 +90,10 @@ export default new Vuex.Store({
         cotizacion: {},
         dialog_view_cotizacion: false,
         cotizacion_view: {},
-        informe_id_db: null
+        informe_id_db: null,
+        recibos: [],
+        dialog_asignar_tecnico: false,
+        partida_tecnico: {},
     },
     getters: {
         services: state => state.services,
@@ -168,7 +171,10 @@ export default new Vuex.Store({
         cotizacion: state => state.cotizacion,
         dialog_view_cotizacion: state => state.dialog_view_cotizacion,
         cotizacion_view: state => state.cotizacion_view,
-        informe_id_db: state => state.informe_id_db
+        informe_id_db: state => state.informe_id_db,
+        recibos: state => state.recibos,
+        dialog_asignar_tecnico: state => state.dialog_asignar_tecnico,
+        partida_tecnico: state => state.partida_tecnico,
     },
     mutations: {
         setListUser(state, data) {
@@ -430,6 +436,10 @@ export default new Vuex.Store({
         },
         setCotizacion(state, data) {
             state.cotizacion = data;
+            state.cotizacion.has_partidas.forEach(item => {
+                    item.EditCaliente = false
+                console.log(item)
+            })
         },
         setDialogViewCotizacion(state, data) {
             state.dialog_view_cotizacion = data;
@@ -445,7 +455,16 @@ export default new Vuex.Store({
                 item => item.id === data[0].partida_id
             );
             stateInfo.informe_id = data[1];
-        }
+        },
+        setRecibos(state, data){
+            state.recibos = data
+        },
+        setDialogAsignarTecnico(state, data){
+            state.dialog_asignar_tecnico = data
+        },
+        setPartidaTecnico(state, data){
+            state.partida_tecnico = data
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {

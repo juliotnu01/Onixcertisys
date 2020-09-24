@@ -1,49 +1,117 @@
 <template>
 <v-app class="fill-heigth">
     <v-row>
-        <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-            <v-text-field label="Buscar Cotizacion" outlined v-model="search_cot"></v-text-field>
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-            <v-btn fab color="primary" class="float-right" @click="$store.commit('setDialogAddCotizacion', true)">
-                <v-icon>mdi-plus</v-icon>
-            </v-btn>
+        <v-col cols="12" xs="!2" sm="12" md="12" lg="12">
+            <v-container fluid>
+                <v-data-iterator :items="recibos" :items-per-page.sync="itemsPerPage" :page="page" :search="search" :sort-by="sortBy.toLowerCase()" :sort-desc="sortDesc" hide-default-footer>
+                    <template v-slot:header>
+                        <v-toolbar dark color="blue darken-3" class="mb-1">
+                            <v-text-field v-model="search" clearable flat solo-inverted hide-details prepend-inner-icon="mdi-search" label="Search"></v-text-field>
+                        </v-toolbar>
+                    </template>
+
+                    <template v-slot:default="props">
+                        <v-row>
+                            <v-col v-for="item in props.items" :key="item.name" cols="12" sm="6" md="3" lg="3">
+                                <v-card>
+                                    <v-card-title>
+                                        <v-row>
+                                            <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                                                <div class="text-right text-caption">
+                                                    Fecha creación:
+                                                    {{ item.created_at.substr(0, 10) }}
+                                                </div>
+                                                <div>Recibo id:
+                                                    {{ item.id }}
+                                                </div>
+                                                <div>
+                                                    Cotización id:
+                                                    {{ item.cotizacion_id }}
+                                                </div>
+                                                <div>Estado: {{ item.estado }}</div>
+                                            </v-col>
+                                            <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                                                <small>
+                                                    <strong>Cliente: </strong>
+                                                    {{item.has_cotizaicon.has_cliente.razon_social}}
+                                                    <v-btn icon @click="show = !show">
+                                                        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                    </v-btn>
+                                                </small>
+                                                <v-expand-transition>
+                                                    <div v-show="show">
+                                                        <v-card-text>
+                                                            <small>
+                                                                <strong>Dirección Fiscal: </strong>
+                                                                {{item.has_cotizaicon.has_cliente.direccion_fiscal}} </small><br />
+                                                            <small>
+                                                                <strong>Teléfono: </strong>
+                                                                {{item.has_cotizaicon.has_cliente.telefono}} </small><br />
+                                                            <small>
+                                                                <strong>Correo electronico para la factura:
+                                                                </strong>
+                                                                {{item.has_cotizaicon.has_cliente.correo_electronico_factura}} </small><br />
+                                                            <small>
+                                                                <strong>Nombre encargado: </strong>
+                                                                {{item.has_cotizaicon.has_cliente.nombre_completo}} </small><br />
+                                                            <small>
+                                                                <strong>Celular encargado: </strong>
+                                                                {{item.has_cotizaicon.has_cliente.celular_contacto}} </small><br />
+                                                            <small>
+                                                                <strong>Correo encargado: </strong>
+                                                                {{item.has_cotizaicon.has_cliente.correo_contacto}}
+                                                            </small><br />
+                                                        </v-card-text>
+                                                    </div>
+                                                </v-expand-transition>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-title>
+                                    <v-divider></v-divider>
+                                    <v-simple-table dense>
+                                        <template v-slot:default>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Partida</th>
+                                                    <th class="text-center">Identificación</th>
+                                                    <th class="text-center">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item in item.has_partidas" :key="item.name">
+                                                    <td class="text-center">{{ item.id }}</td>
+                                                    <td class="text-center">{{ item.identificacion }}</td>
+                                                    <td class="text-center">
+                                                        <v-btn color="success" icon dense small @click="AsignarTecnico(item)">
+                                                            <v-icon>mdi-eye</v-icon>
+                                                        </v-btn>
+                                                        <v-btn color="info" icon dense small>
+                                                            <v-icon>mdi-printer</v-icon>
+                                                        </v-btn>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </template>
+                    <template v-slot:footer>
+                        <v-row class="mt-2" align="center" justify="center">
+                            <v-btn fab dark color="blue darken-3" class="mr-1" @click="formerPage">
+                                <v-icon>mdi-chevron-left</v-icon>
+                            </v-btn>
+                            <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
+                                <v-icon>mdi-chevron-right</v-icon>
+                            </v-btn>
+                        </v-row>
+                    </template>
+                </v-data-iterator>
+            </v-container>
         </v-col>
     </v-row>
-    <v-data-table dense :headers="headers_cotizacion" :items="cotizaciones" item-key="name" class="elevation-1" :search="search_cot">
-        <template v-slot:item.accion="{ item }">
-            <td>
-                <v-btn icon small color="primary" @click="ViewCotizacion(item)">
-                    <v-icon>mdi-eye</v-icon>
-                </v-btn>
-                <v-btn icon small color="error" @click="eliminarCotizacion(item)">
-                    <v-icon>mdi-delete</v-icon>
-                </v-btn>
-                <v-btn icon small color="warning" @click="EditarCotizacion(item)">
-                    <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-            </td>
-        </template>
-        <template v-slot:item.contacto="{ item }">
-            <td>
-                <small>
-                    Nombre:{{item.contacto}} <br />
-                    Teléfono:{{item.contacto_telefono}} <br />
-                    Correo:{{item.contacto_correo}} <br />
-                </small>
-            </td>
-        </template>
-        <template v-slot:item.has_cliente="{ item }">
-            <td>{{item.has_cliente.razon_social}}</td>
-        </template>
-        <template v-slot:item.has_empleado="{ item }">
-            <td>{{item.has_empleado.nombre_completo}}</td>
-        </template>
-        <template v-slot:item.has_moneda="{ item }">
-            <td>{{item.has_moneda.clave}}</td>
-        </template>
-    </v-data-table>
+    <modal-asignar-tecnico />
 </v-app>
 </template>
 
@@ -51,82 +119,49 @@
 import {
     mapGetters
 } from "vuex";
+import modalAsignarTecnico from './modals/modalAsignarTecnicoComponent'
 export default {
     components: {
+        'modal-asignar-tecnico': modalAsignarTecnico
     },
     data() {
         return {
-            headers_cotizacion: [{
-                    text: "Folio",
-                    value: "id",
-                },
-                {
-                    text: "Fecha",
-                    value: "created_at",
-                },
-                {
-                    text: "Cliente",
-                    value: "has_cliente",
-                },
-                {
-                    text: "Contacto",
-                    value: "contacto",
-                },
-                {
-                    text: "Vendedor",
-                    value: "has_empleado",
-                },
-                {
-                    text: "Estado",
-                    value: "estado_de_la_cotizacion",
-                },
-                {
-                    text: "Tipo de Servicio",
-                    value: "tipo_de_servicio",
-                },
-                {
-                    text: "Moneda",
-                    value: "has_moneda",
-                },
-                {
-                    text: "Sub Total",
-                    value: "sub_total",
-                },
-                {
-                    text: "IVA",
-                    value: "iva",
-                },
-                {
-                    text: "Total",
-                    value: "total",
-                },
-                {
-                    text: "Accion",
-                    value: "accion",
-                },
-            ],
-            search_cot: "",
+            itemsPerPageArray: [4, 8, 12],
+            search: "",
+            filter: {},
+            sortDesc: false,
+            page: 1,
+            itemsPerPage: 4,
+            sortBy: "name",
+            show: false,
         };
     },
     computed: {
-        ...mapGetters(["services", "cotizaciones"]),
+        ...mapGetters(["services", "recibos"]),
+        numberOfPages() {
+            return Math.ceil(this.recibos.length / this.itemsPerPage);
+        },
     },
-    mounted() {
-        this.services.cotizacionServices.getlistCotizaciones();
+    async mounted() {
+        await this.services.reciboServices.getlistRecibos();
     },
     methods: {
-        async EditarCotizacion(cot) {
-            this.$store.commit('setDialogEditCotizacion', true)
-            this.$store.commit('setCotizacion', cot)
+        nextPage() {
+            if (this.page + 1 <= this.numberOfPages) this.page += 1;
         },
-        eliminarCotizacion(item) {
-            this.services.cotizacionServices.EliminarCotizacion(item)
-            this.services.cotizacionServices.getlistCotizaciones();
+        formerPage() {
+            if (this.page - 1 >= 1) this.page -= 1;
         },
-        ViewCotizacion(item) {
-            this.$store.commit('setDialogViewCotizacion', true)
-            this.$store.commit('setCotizacionView', item)
+        updateItemsPerPage(number) {
+            this.itemsPerPage = number;
+        },
+        AsignarTecnico(item) {
+            console.log({
+                item
+            })
+            this.$store.commit('setPartidaTecnico', item)
+            this.$store.commit('setDialogAsignarTecnico', true)
         }
-    }
+    },
 };
 </script>

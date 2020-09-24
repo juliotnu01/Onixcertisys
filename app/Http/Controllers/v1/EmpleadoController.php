@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Empleado;
+use App\Models\{Empleado,Partida};
 use Illuminate\Http\Request;
 use DB;
 
@@ -140,6 +140,24 @@ class EmpleadoController extends Controller
             return DB::transaction(function() use ($id, $empleado){
                 $empleado->find($id)->delete();
             }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+
+    public function asignarTecnicoPartida(Request $request, Partida $partida)
+    {
+
+        try {
+            return DB::transaction(function() use ($request, $partida){
+
+                $partida->find($request['id'])->update([
+                    'empleado_id' =>  $request['has_empleado']['id']
+                ]);
+
+            },5);
+            
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

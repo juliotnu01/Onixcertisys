@@ -12,9 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalAddCotizacionComponent.vue */ "./resources/js/components/cotizaciones/modals/modalAddCotizacionComponent.vue");
-/* harmony import */ var _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalEditCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalEditCotizacionComponent.vue");
-/* harmony import */ var _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modalViewCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalViewCotizacionComponent.vue");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
+/* harmony import */ var _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalAddCotizacionComponent.vue */ "./resources/js/components/cotizaciones/modals/modalAddCotizacionComponent.vue");
+/* harmony import */ var _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modalEditCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalEditCotizacionComponent.vue");
+/* harmony import */ var _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modals/modalViewCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalViewCotizacionComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -79,15 +80,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "modal-add": _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    "modal-edit": _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    "modal-view": _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "modal-add": _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "modal-edit": _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "modal-view": _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -136,33 +143,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.services.cotizacionServices.getlistCotizaciones();
   },
   methods: {
-    EditarCotizacion: function EditarCotizacion(cot) {
-      var _this = this;
-
+    printPdf: function printPdf(model) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _yield$axios$post, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$store.commit('setDialogEditCotizacion', true);
-
-                _this.$store.commit('setCotizacion', cot);
+                _context.next = 2;
+                return axios.post("/api/print-cotizacion/", model);
 
               case 2:
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
+
+              case 4:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-    },
-    eliminarCotizacion: function eliminarCotizacion(item) {
-      this.services.cotizacionServices.EliminarCotizacion(item);
-      this.services.cotizacionServices.getlistCotizaciones();
-    },
-    ViewCotizacion: function ViewCotizacion(item) {
-      this.$store.commit('setDialogViewCotizacion', true);
-      this.$store.commit('setCotizacionView', item);
     }
   }
 });
@@ -762,6 +764,77 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -771,6 +844,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return !!value || "Este campo es requerido.";
         }
       },
+      edit_caliente_partida: false,
       tipo_de_servicio: [{
         name: "normal",
         value: 1
@@ -1167,6 +1241,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1176,6 +1264,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return !!value || "Este campo es requerido.";
         }
       },
+      edit_caliente_partida: false,
       value: false,
       items_tipo: [{
         name: "Normal",
@@ -1217,7 +1306,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         align: "center"
       }, {
         text: "Convertir en recibo",
-        value: "accion",
+        value: "convert_recibo",
         align: "center"
       }]
     };
@@ -1396,6 +1485,20 @@ var render = function() {
                       },
                       [_c("v-icon", [_vm._v("mdi-pencil")])],
                       1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", small: "", color: "info" },
+                        on: {
+                          click: function($event) {
+                            return _vm.printPdf(item)
+                          }
+                        }
+                      },
+                      [_c("v-icon", [_vm._v("mdi-printer")])],
+                      1
                     )
                   ],
                   1
@@ -1458,6 +1561,8 @@ var render = function() {
           }
         ])
       }),
+      _vm._v(" "),
+      _c("pdf", { attrs: { src: "/storage/file.pdf" } }),
       _vm._v(" "),
       _c("modal-add"),
       _vm._v(" "),
@@ -2288,7 +2393,6 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  disabled: "",
                                   outlined: "",
                                   label: "Precio Unitario"
                                 },
@@ -3432,34 +3536,390 @@ var render = function() {
                     },
                     scopedSlots: _vm._u([
                       {
-                        key: "item.accion",
+                        key: "item.identificacion",
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      icon: "",
-                                      small: "",
-                                      color: "error"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.eliminarPartida(item)
-                                      }
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
                                     }
-                                  },
-                                  [_c("v-icon", [_vm._v("mdi-delete")])],
-                                  1
-                                )
-                              ],
-                              1
-                            )
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.identificacion) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Identicacion",
+                                      dense: "",
+                                      small: ""
+                                    },
+                                    model: {
+                                      value: item.identificacion,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "identificacion", $$v)
+                                      },
+                                      expression: "item.identificacion"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
                           ]
+                        }
+                      },
+                      {
+                        key: "item.servicio",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.servicio) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      dense: "",
+                                      small: "",
+                                      "offset-y": "",
+                                      items: _vm.servicio_partida,
+                                      label: "Servicio",
+                                      outlined: "",
+                                      "item-text": "name",
+                                      "return-object": ""
+                                    },
+                                    model: {
+                                      value: item.servicio,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "servicio", $$v)
+                                      },
+                                      expression: "item.servicio"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.unidad",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.unidad) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      dense: "",
+                                      small: "",
+                                      "offset-y": "",
+                                      items: _vm.unidad_partida,
+                                      label: "Unidad",
+                                      outlined: "",
+                                      "item-text": "name",
+                                      "return-object": ""
+                                    },
+                                    model: {
+                                      value: item.unidad,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "unidad", $$v)
+                                      },
+                                      expression: "item.unidad"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.marca",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.marca) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Marca",
+                                      small: "",
+                                      dense: ""
+                                    },
+                                    model: {
+                                      value: item.marca,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "marca", $$v)
+                                      },
+                                      expression: "item.marca"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.modelo",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.modelo) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Modelo",
+                                      small: "",
+                                      dense: ""
+                                    },
+                                    model: {
+                                      value: item.modelo,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "modelo", $$v)
+                                      },
+                                      expression: "item.modelo"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.serie",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: !_vm.edit_caliente_partida,
+                                      expression: "!edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(item.serie) +
+                                      "\r\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.edit_caliente_partida,
+                                      expression: "edit_caliente_partida"
+                                    }
+                                  ]
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "Serie",
+                                      small: "",
+                                      dense: ""
+                                    },
+                                    model: {
+                                      value: item.serie,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "serie", $$v)
+                                      },
+                                      expression: "item.serie"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.accion",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [_c("td")]
                         }
                       },
                       {
@@ -4095,218 +4555,291 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("v-data-table", {
-                        staticClass: "elevation-1 mt-5",
-                        attrs: {
-                          dense: "",
-                          headers: _vm.headers_cotizacion,
-                          items: _vm.cotizacion_view.has_partidas,
-                          "item-key": "name"
-                        },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "item.has_intrumento",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c("td", [
-                                  _c("strong", { staticClass: "text-left" }, [
-                                    _vm._v(_vm._s(item.identificacion))
+                      _c(
+                        "v-data-table",
+                        {
+                          staticClass: "elevation-1 mt-5",
+                          attrs: {
+                            dense: "",
+                            headers: _vm.headers_cotizacion,
+                            items: _vm.cotizacion_view.has_partidas,
+                            "item-key": "name"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "items",
+                              fn: function(props) {
+                                return [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.servicio))
                                   ]),
                                   _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "float-left" }, [
-                                    _c("strong", [_vm._v("ID:")]),
-                                    _vm._v(" "),
-                                    _c("small", [
-                                      _vm._v(_vm._s(item.identificacion))
-                                    ])
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.unidad))
                                   ]),
                                   _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "float-left" }, [
-                                    _c("strong", [_vm._v("Marca:")]),
-                                    _vm._v(" "),
-                                    _c("small", [_vm._v(_vm._s(item.marca))])
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.informe))
                                   ]),
                                   _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "float-left" }, [
-                                    _c("strong", [_vm._v("Modelo:")]),
-                                    _vm._v(" "),
-                                    _c("small", [_vm._v(_vm._s(item.modelo))])
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.has_intrumento))
                                   ]),
                                   _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "float-left" }, [
-                                    _c("strong", [_vm._v("Serie:")]),
-                                    _vm._v(" "),
-                                    _c("small", [_vm._v(_vm._s(item.serie))])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "float-left" }, [
-                                    _c("strong", [_vm._v("Magnitud:")]),
-                                    _vm._v(" "),
-                                    _c("small", [
-                                      _vm._v(
-                                        _vm._s(
-                                          item.has_intrumento.has_magnitud
-                                            .nombre
-                                        )
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        props.item.has_intrumento
+                                          .has_acreditacion.nombre
                                       )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.tipo))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.vigencia))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v(_vm._s(props.item.accion))
+                                  ])
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.has_intrumento",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c("td", [
+                                    _c("strong", { staticClass: "text-left" }, [
+                                      _vm._v(_vm._s(item.identificacion))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "float-left" }, [
+                                      _c("strong", [_vm._v("ID:")]),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _vm._v(_vm._s(item.identificacion))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "float-left" }, [
+                                      _c("strong", [_vm._v("Marca:")]),
+                                      _vm._v(" "),
+                                      _c("small", [_vm._v(_vm._s(item.marca))])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "float-left" }, [
+                                      _c("strong", [_vm._v("Modelo:")]),
+                                      _vm._v(" "),
+                                      _c("small", [_vm._v(_vm._s(item.modelo))])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "float-left" }, [
+                                      _c("strong", [_vm._v("Serie:")]),
+                                      _vm._v(" "),
+                                      _c("small", [_vm._v(_vm._s(item.serie))])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "float-left" }, [
+                                      _c("strong", [_vm._v("Magnitud:")]),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _vm._v(
+                                          _vm._s(
+                                            item.has_intrumento.has_magnitud
+                                              .nombre
+                                          )
+                                        )
+                                      ])
                                     ])
                                   ])
-                                ])
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.tipo",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "td",
-                                  [
-                                    !item.tipo
-                                      ? _c("v-select", {
-                                          staticClass: "text-center mt-5",
-                                          attrs: {
-                                            items: _vm.items_tipo,
-                                            label: "",
-                                            "item-text": "name",
-                                            "return-object": "",
-                                            outlined: "",
-                                            dense: "",
-                                            "offset-y": ""
-                                          },
-                                          model: {
-                                            value: item.tipo,
-                                            callback: function($$v) {
-                                              _vm.$set(item, "tipo", $$v)
-                                            },
-                                            expression: "item.tipo"
-                                          }
-                                        })
-                                      : _c(
-                                          "span",
-                                          { staticClass: "text-center" },
-                                          [_vm._v(_vm._s(item.tipo))]
-                                        )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.informe",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "td",
-                                  [
-                                    item.informe_id
-                                      ? _c("span", [
-                                          _vm._v(_vm._s(item.informe_id))
-                                        ])
-                                      : _c(
-                                          "v-btn",
-                                          {
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.tipo",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "td",
+                                    { staticClass: "text-center" },
+                                    [
+                                      !item.tipo
+                                        ? _c("v-select", {
                                             staticClass: "text-center mt-5",
                                             attrs: {
-                                              color: "primary",
-                                              block: ""
+                                              items: _vm.items_tipo,
+                                              label: "",
+                                              "item-text": "name",
+                                              "return-object": "",
+                                              outlined: "",
+                                              dense: "",
+                                              "offset-y": ""
                                             },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.GenerarIdInforme(
-                                                  item
-                                                )
-                                              }
+                                            model: {
+                                              value: item.tipo,
+                                              callback: function($$v) {
+                                                _vm.$set(item, "tipo", $$v)
+                                              },
+                                              expression: "item.tipo"
                                             }
-                                          },
-                                          [_vm._v("Generar ID Informe")]
-                                        )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.accion",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "td",
-                                  [
-                                    _c("v-switch", {
-                                      staticClass: "text-center mt-5 w-50",
-                                      attrs: { label: "", small: "" },
-                                      model: {
-                                        value: item.convertir_recibo,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            item,
-                                            "convertir_recibo",
-                                            $$v
+                                          })
+                                        : _c(
+                                            "div",
+                                            { staticClass: "text-center" },
+                                            [_vm._v(_vm._s(item.tipo))]
                                           )
-                                        },
-                                        expression: "item.convertir_recibo"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.vigencia",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "td",
-                                  [
-                                    !item.vigencia
-                                      ? _c("v-text-field", {
-                                          staticClass: "mt-5 text-center",
-                                          attrs: {
-                                            label: "",
-                                            outlined: "",
-                                            dense: ""
-                                          },
-                                          model: {
-                                            value: item.vigencia,
-                                            callback: function($$v) {
-                                              _vm.$set(item, "vigencia", $$v)
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.informe",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "td",
+                                    [
+                                      item.informe_id
+                                        ? _c("span", [
+                                            _vm._v(_vm._s(item.informe_id))
+                                          ])
+                                        : _c(
+                                            "v-btn",
+                                            {
+                                              staticClass: "text-center mt-5",
+                                              attrs: {
+                                                color: "primary",
+                                                block: ""
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.GenerarIdInforme(
+                                                    item
+                                                  )
+                                                }
+                                              }
                                             },
-                                            expression: "item.vigencia"
-                                          }
-                                        })
-                                      : _c(
-                                          "span",
-                                          { staticClass: "text-center" },
-                                          [_vm._v(_vm._s(item.vigencia))]
-                                        )
-                                  ],
-                                  1
-                                )
-                              ]
+                                            [_vm._v("Generar ID Informe")]
+                                          )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.convert_recibo",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "td",
+                                    [
+                                      _c("v-switch", {
+                                        staticClass: "text-center mt-5 w-50",
+                                        attrs: { label: "", small: "" },
+                                        model: {
+                                          value: item.convertir_recibo,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              item,
+                                              "convertir_recibo",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "item.convertir_recibo"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.vigencia",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "td",
+                                    [
+                                      !item.vigencia
+                                        ? _c("v-text-field", {
+                                            staticClass: "mt-5 text-center",
+                                            attrs: {
+                                              label: "",
+                                              outlined: "",
+                                              dense: ""
+                                            },
+                                            model: {
+                                              value: item.vigencia,
+                                              callback: function($$v) {
+                                                _vm.$set(item, "vigencia", $$v)
+                                              },
+                                              expression: "item.vigencia"
+                                            }
+                                          })
+                                        : _c(
+                                            "span",
+                                            { staticClass: "text-center" },
+                                            [_vm._v(_vm._s(item.vigencia))]
+                                          )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
                             }
-                          }
-                        ])
-                      })
+                          ])
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "template",
+                            { slot: "no-data" },
+                            [
+                              _c(
+                                "v-alert",
+                                {
+                                  attrs: {
+                                    value: true,
+                                    color: "error",
+                                    icon: "warning"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                Sorry, nothing to display here :(\r\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
+                      )
                     ],
                     1
                   )
@@ -4603,6 +5136,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewCotizacionComponent_vue_vue_type_template_id_09284f5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ 1:
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/*!**********************!*\
+  !*** http (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 4:
+/*!***********************!*\
+  !*** https (ignored) ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 5:
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

@@ -35,5 +35,14 @@ export default class empleadoServices{
 		}
 	}
 
+	async AsignarTecnico(model){
+		try {
+			let {data} = await axios.put(`/api/asignar-tecnico-partida`, model)
+			store.commit('setDialogAsignarTecnico', false)
+		} catch (e) {
+			console.log(e)	
+		}
+	}
+
 
 }

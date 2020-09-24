@@ -72,4 +72,12 @@ export default class cotizacionServices {
             console.log(e);
         }
     }
+
+    async printCotizacion(model) {
+        try {
+            let { data } = await axios.post(`/api/print-cotizacion/`, model);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }

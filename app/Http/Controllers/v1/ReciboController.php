@@ -17,8 +17,14 @@ class ReciboController extends Controller
     public function index()
     {
         try {
-            $recibos = Recibo::with(['hasCotizaicon', 'hasPartidas'])->get();
-            return $recibos;
+            $recibos = Recibo::with(['hasCotizaicon',
+                                     'hasCotizaicon.hasCliente',
+                                     'hasPartidas', 
+                                     'hasPartidas.hasEmpleado',
+                                     'hasPartidas.hasIntrumento', 
+                                     'hasPartidas.hasIntrumento.hasMagnitud', 
+                                     'hasPartidas.hasIntrumento.hasAcreditacion'])->get();
+            return Response($recibos);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -50,15 +56,23 @@ class ReciboController extends Controller
 
                 foreach ($request['cotizacion_id']['has_partidas'] as $key => $value) {
                     $partida = new Partida();
-                    $partida->find($value['id'])
-                        ->update([
-                            'convertir_recibo' => $value['convertir_recibo'],
-                            'tipo' => $value['tipo']['name'],
-                            'vigencia' => $value['vigencia'],
-                            'recibo_id' => $recibo['id'],
-                        ]);
+                    if (is_string($value['tipo'])) {
+                        $tipo = $value['tipo'];
+                    } else {
+                        $tipo = $value['tipo']['name'];
+                    }
+                    $validate = $partida->where('convertir_recibo', true)->where('id', $value['id'])->first();
+                    if (is_null($validate)) {
+                        $partida->find($value['id'])
+                            ->update([
+                                'convertir_recibo' => $value['convertir_recibo'],
+                                'tipo' => $tipo,
+                                'vigencia' => $value['vigencia'],
+                                'recibo_id' => $recibo['id'],
+                            ]);
+                    }
                 }
-            },5);
+            }, 5);
         } catch (\Throwable $th) {
             throw $th;
         }

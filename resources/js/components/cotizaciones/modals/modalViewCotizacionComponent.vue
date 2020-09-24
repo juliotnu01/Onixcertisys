@@ -14,7 +14,6 @@
             <v-card>
                 <v-card-text>
                     <v-container>
-
                         <v-row align="center" justify="space-around" v-if=" Object.entries(this.cotizacion_view).length > 0 ">
                             <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                 <v-autocomplete disabled offset-y dense v-model="cotizacion_view.has_cliente" :items="clientes" item-text="razon_social" outlined label="Seleccionar Cliente" return-object></v-autocomplete>
@@ -55,6 +54,21 @@
                         </v-row>
                     </v-container>
                     <v-data-table dense :headers="headers_cotizacion" :items="cotizacion_view.has_partidas" item-key="name" class="elevation-1 mt-5">
+                        <template slot="items" slot-scope="props">
+                            <td class="text-center">{{ props.item.servicio }}</td>
+                            <td class="text-center">{{ props.item.unidad }}</td>
+                            <td class="text-center">{{ props.item.informe }}</td>
+                            <td class="text-center">{{ props.item.has_intrumento }}</td>
+                            <td class="text-center">{{ props.item.has_intrumento.has_acreditacion.nombre }}</td>
+                            <td class="text-center">{{ props.item.tipo }}</td>
+                            <td class="text-center">{{ props.item.vigencia }}</td>
+                            <td class="text-center">{{ props.item.accion }}</td>
+                        </template>
+                        <template slot="no-data">
+                            <v-alert :value="true" color="error" icon="warning">
+                                Sorry, nothing to display here :(
+                            </v-alert>
+                        </template>
                         <template v-slot:item.has_intrumento="{ item }">
                             <td>
                                 <strong class="text-left">{{item.identificacion}}</strong>
@@ -86,9 +100,9 @@
                             </td>
                         </template>
                         <template v-slot:item.tipo="{ item }">
-                            <td>
+                            <td class="text-center">
                                 <v-select class="text-center mt-5" :items="items_tipo" v-model="item.tipo" label item-text="name" return-object outlined dense offset-y v-if="!item.tipo"></v-select>
-                                <span v-else class="text-center">{{item.tipo}}</span>
+                                <div v-else class="text-center">{{item.tipo}}</div>
                             </td>
                         </template>
                         <template v-slot:item.informe="{ item }">
@@ -97,9 +111,9 @@
                                 <v-btn v-else color="primary" block class="text-center mt-5" @click="GenerarIdInforme(item)">Generar ID Informe</v-btn>
                             </td>
                         </template>
-                        <template v-slot:item.accion="{ item }">
+                        <template v-slot:item.convert_recibo="{ item }">
                             <td>
-                                <v-switch label v-model="item.convertir_recibo" class="text-center mt-5 w-50" small></v-switch>
+                                <v-switch label v-model="item.convertir_recibo" class="text-center mt-5 w-50" small />
                             </td>
                         </template>
                         <template v-slot:item.vigencia="{ item }">
@@ -126,6 +140,7 @@ export default {
             rules: {
                 required: (value) => !!value || "Este campo es requerido.",
             },
+            edit_caliente_partida: false,
             value: false,
             items_tipo: [{
                     name: "Normal",
@@ -177,9 +192,10 @@ export default {
                 },
                 {
                     text: "Convertir en recibo",
-                    value: "accion",
+                    value: "convert_recibo",
                     align: "center",
                 },
+
             ],
         };
     },
