@@ -1,7 +1,7 @@
 <template>
 <v-app>
     <v-dialog v-model="openPermisoRolDialog" width="700">
-        <v-card>
+        <v-card v-if="Object.entries(this.user_selected_rol_premision).length > 0">
             <v-card-title>Asignar Permisos Globales</v-card-title>
             <v-container>
                 <v-card-text>

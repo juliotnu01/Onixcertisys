@@ -23,6 +23,9 @@
                 <v-btn icon small color="warning" @click="EditarCotizacion(item)">
                     <v-icon>mdi-pencil</v-icon>
                 </v-btn>
+                <v-btn icon small color="info" @click="printCotizacion(item)">
+                    <v-icon>mdi-printer</v-icon>
+                </v-btn>
             </td>
         </template>
         <template v-slot:item.contacto="{ item }">
@@ -135,6 +138,9 @@ export default {
         ViewCotizacion(item) {
             this.$store.commit('setDialogViewCotizacion', true)
             this.$store.commit('setCotizacionView', item)
+        },
+        printCotizacion(item) {
+            this.services.cotizacionServices.printCotizacion(item);
         }
     }
 };

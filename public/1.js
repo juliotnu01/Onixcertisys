@@ -79,6 +79,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -163,6 +166,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ViewCotizacion: function ViewCotizacion(item) {
       this.$store.commit('setDialogViewCotizacion', true);
       this.$store.commit('setCotizacionView', item);
+    },
+    printCotizacion: function printCotizacion(item) {
+      this.services.cotizacionServices.printCotizacion(item);
     }
   }
 });
@@ -1477,6 +1483,20 @@ var render = function() {
                         }
                       },
                       [_c("v-icon", [_vm._v("mdi-pencil")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", small: "", color: "info" },
+                        on: {
+                          click: function($event) {
+                            return _vm.printCotizacion(item)
+                          }
+                        }
+                      },
+                      [_c("v-icon", [_vm._v("mdi-printer")])],
                       1
                     )
                   ],

@@ -11,7 +11,7 @@ export default class reciboServices {
     async agregarRecibo(model) {
         try {
             let { data } = await axios.post("/api/add-recibo", model);
-            // store.commit("setdialogAddAcreditacion", false);
+            store.commit("setDialogViewCotizacion", false);
         } catch (e) {
             console.log(e);
         }

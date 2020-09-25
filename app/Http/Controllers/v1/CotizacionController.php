@@ -200,11 +200,8 @@ class CotizacionController extends Controller
     public function printCotizacion(Request $request)
     {
         $pdf = PDF::loadView('pdfs.pdfCotizacion');
-        // return $pdf->stream();
-        Storage::makeDirectory('Test_directorio');
         Storage::disk('local')->put('Test_directorio/file.pdf', $pdf->download());
-       $p = Storage::url('file.pdf');
-        return  response()->download($p);
+        return  response()->download(public_path('file.pdf'));
     }
 
 }
