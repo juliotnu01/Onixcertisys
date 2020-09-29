@@ -212,8 +212,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setCotizacionView", item);
     },
     printCotizacion: function printCotizacion(item) {
-      this.services.cotizacionServices.printCotizacion(item);
-      this.$store.commit('setDialogViewPdfCotizacion', true);
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return his.services.cotizacionServices.printCotizacion(item);
+
+              case 2:
+                _context2.next = 4;
+                return _this2.$store.commit('setDialogViewPdfCotizacion', true);
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
