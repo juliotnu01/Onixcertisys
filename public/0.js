@@ -212,7 +212,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setCotizacionView", item);
     },
     printCotizacion: function printCotizacion(item) {
-      // this.services.cotizacionServices.printCotizacion(item);
+      this.services.cotizacionServices.printCotizacion(item);
       this.$store.commit('setDialogViewPdfCotizacion', true);
     }
   }

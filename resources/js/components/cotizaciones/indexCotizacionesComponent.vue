@@ -183,7 +183,7 @@ export default {
             this.$store.commit("setCotizacionView", item);
         },
         printCotizacion(item) {
-            // this.services.cotizacionServices.printCotizacion(item);
+            this.services.cotizacionServices.printCotizacion(item);
             this.$store.commit('setDialogViewPdfCotizacion', true)
         },
     },
