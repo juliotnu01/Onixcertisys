@@ -5438,7 +5438,7 @@ var render = function() {
             expression: "openDialog"
           }
         },
-        [_c("pdf", { attrs: { src: "/storage/lorem-ipsum.pdf", page: 1 } })],
+        [_c("pdf", { attrs: { src: "/storage/file.pdf", page: 1 } })],
         1
       )
     ],

@@ -11,7 +11,7 @@
         </v-container>
         </v-card>
         -->
-            <pdf src="/storage/lorem-ipsum.pdf" :page="1"></pdf>
+            <pdf src="/storage/file.pdf" :page="1"></pdf>
     </v-dialog>
 </v-app>
 </template>
