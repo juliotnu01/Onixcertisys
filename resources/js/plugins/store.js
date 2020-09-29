@@ -94,6 +94,8 @@ export default new Vuex.Store({
         recibos: [],
         dialog_asignar_tecnico: false,
         partida_tecnico: {},
+        error_handle_login: false,
+        dialog_view_pdf_cotizacion: false,
     },
     getters: {
         services: state => state.services,
@@ -175,6 +177,8 @@ export default new Vuex.Store({
         recibos: state => state.recibos,
         dialog_asignar_tecnico: state => state.dialog_asignar_tecnico,
         partida_tecnico: state => state.partida_tecnico,
+        error_handle_login: state => state.error_handle_login,
+        dialog_view_pdf_cotizacion: state => state.dialog_view_pdf_cotizacion,
     },
     mutations: {
         setListUser(state, data) {
@@ -436,17 +440,79 @@ export default new Vuex.Store({
         },
         setCotizacion(state, data) {
             state.cotizacion = data;
+            let tipo_de_servicio = [
+                    {
+                        name: "normal",
+                        value: 1
+                    },
+                    {
+                        name: "urgente",
+                        value: 2
+                    },
+                    {
+                        name: "programado",
+                        value: 3
+                    }
+                ],
+                estado_de_la_cotizacion = [
+                    {
+                        name: "pendiente",
+                        value: 1
+                    },
+                    {
+                        name: "En recibo",
+                        value: 2
+                    },
+                    {
+                        name: "Rechazada",
+                        value: 3
+                    }
+                ];
+                var tds = tipo_de_servicio.find(item => item.name === data.tipo_de_servicio)
+                var edlc = estado_de_la_cotizacion.find(item => item.name === data.estado_de_la_cotizacion)
+                state.cotizacion.tipo_de_servicio = tds
+                state.cotizacion.estado_de_la_cotizacion = edlc
             state.cotizacion.has_partidas.forEach(item => {
-                    item.EditCaliente = false
-                console.log(item)
-            })
+                item.EditCaliente = false;
+            });
         },
         setDialogViewCotizacion(state, data) {
             state.dialog_view_cotizacion = data;
         },
         setCotizacionView(state, data) {
-           
             state.cotizacion_view = data;
+            let tipo_de_servicio = [
+                {
+                    name: "normal",
+                    value: 1
+                },
+                {
+                    name: "urgente",
+                    value: 2
+                },
+                {
+                    name: "programado",
+                    value: 3
+                }
+            ],
+            estado_de_la_cotizacion = [
+                {
+                    name: "pendiente",
+                    value: 1
+                },
+                {
+                    name: "En recibo",
+                    value: 2
+                },
+                {
+                    name: "Rechazada",
+                    value: 3
+                }
+            ];
+            var tds = tipo_de_servicio.find(item => item.name === data.tipo_de_servicio)
+            var edlc = estado_de_la_cotizacion.find(item => item.name === data.estado_de_la_cotizacion)
+            state.cotizacion_view.tipo_de_servicio = tds
+            state.cotizacion_view.estado_de_la_cotizacion = edlc
             
         },
         setInformeID(state, data) {
@@ -456,14 +522,20 @@ export default new Vuex.Store({
             );
             stateInfo.informe_id = data[1];
         },
-        setRecibos(state, data){
-            state.recibos = data
+        setRecibos(state, data) {
+            state.recibos = data;
         },
-        setDialogAsignarTecnico(state, data){
-            state.dialog_asignar_tecnico = data
+        setDialogAsignarTecnico(state, data) {
+            state.dialog_asignar_tecnico = data;
         },
-        setPartidaTecnico(state, data){
-            state.partida_tecnico = data
+        setPartidaTecnico(state, data) {
+            state.partida_tecnico = data;
+        },
+        setErrorHandleLogin(state, data) {
+            state.error_handle_login = data;
+        },
+        setDialogViewPdfCotizacion(state, data){
+            state.dialog_view_pdf_cotizacion = data
         },
     },
     actions: {

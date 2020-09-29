@@ -28,10 +28,10 @@
                             <v-autocomplete offset-y dense v-model="model.empleado_selected" :items="empleados" item-text="nombre_completo" outlined s label="Empleado" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="model.tipo_de_servicio_selected" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" return-object></v-select>
+                            <v-select offset-y dense v-model="model.tipo_de_servicio_selected" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" return-object prepend-icon="mdi-clock"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="model.estado_cotizacion_selected" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object></v-select>
+                            <v-select offset-y dense v-model="model.estado_cotizacion_selected" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object prepend-icon="mdi-flag"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-text-field :rules="[rules.required]" v-model="model.cliente_selected.nombre_completo" dense outlined label="Contacto" />
@@ -70,10 +70,15 @@
                             <v-autocomplete offset-y v-model="partida.instrumento" :items="instrumentos" item-text="nombre" outlined s label="Seleccionar Instrumento" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field disabled v-model="partida.instrumento.alcance" outlined label="Alcance" />
+                            <v-text-field v-model="partida.instrumento.alcance" outlined label="Alcance" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="ActualizarImporte(partida.cantidad, partida.instrumento.precio_venta)" />
+                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="
+                    ActualizarImporte(
+                      partida.cantidad,
+                      partida.instrumento.precio_venta
+                    )
+                  " />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field v-model="partida.marca" outlined label="Marca" />
@@ -106,17 +111,45 @@
                             </v-btn>
                         </td>
                     </template>
+                    <template v-slot:item.importe="{ item }">
+                        <td>
+                            {{ item.importe | numberFormat(model.moneda_selected.clave) }}
+                        </td>
+                    </template>
+                    <template v-slot:item.instrumento.precio_venta="{ item }">
+                        <td>
+                            {{
+                  item.instrumento.precio_venta
+                    | numberFormat(model.moneda_selected.clave)
+                }}
+                        </td>
+                    </template>
                     <template v-slot:body.append="{ headers }">
                         <tr>
                             <td :colspan="headers.length">
                                 <div class="text-right">
-                                    <h3>SUBTOTAL : {{var_computed_sub_total}}</h3>
+                                    <h3>
+                                        SUBTOTAL :{{
+                        var_computed_sub_total
+                          | numberFormat(model.moneda_selected.clave)
+                      }}
+                                    </h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>IVA : {{var_computed_iva}}</h3>
+                                    <h3>
+                                        IVA :{{
+                        var_computed_iva
+                          | numberFormat(model.moneda_selected.clave)
+                      }}
+                                    </h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>TOTAL : {{var_computed_total}}</h3>
+                                    <h3>
+                                        TOTAL :{{
+                        var_computed_total
+                          | numberFormat(model.moneda_selected.clave)
+                      }}
+                                    </h3>
                                 </div>
                             </td>
                         </tr>
@@ -169,8 +202,14 @@ export default {
                 moneda_selected: {},
                 tde_selected: {},
                 empleado_selected: {},
-                tipo_de_servicio_selected: {},
-                estado_cotizacion_selected: {},
+                tipo_de_servicio_selected: {
+                    name: "normal",
+                    value: 1,
+                },
+                estado_cotizacion_selected: {
+                    name: "pendiente",
+                    value: 1,
+                },
                 contacto: "",
                 telefono: "",
                 correo: "",
@@ -196,54 +235,67 @@ export default {
             headers_cotizacion: [{
                     text: "Identicacion",
                     value: "identificacion",
+                    align: "center",
                 },
                 {
                     text: "Servicio",
                     value: "servicio.name",
+                    align: "center",
                 },
                 {
                     text: "Unidad",
                     value: "unidad.name",
+                    align: "center",
                 },
                 {
                     text: "Instrumento",
                     value: "instrumento.nombre",
+                    align: "center",
                 },
                 {
                     text: "Marca",
                     value: "marca",
+                    align: "center",
                 },
                 {
                     text: "Modelo",
                     value: "modelo",
+                    align: "center",
                 },
                 {
                     text: "Serie",
                     value: "serie",
+                    align: "center",
                 },
                 {
                     text: "Alcance",
                     value: "instrumento.alcance",
+                    align: "center",
                 },
                 {
                     text: "Acreditacion",
                     value: "instrumento.has_acreditacion.nombre",
+                    align: "center",
                 },
                 {
                     text: "Cantidad",
                     value: "cantidad",
+                    align: "center",
                 },
                 {
                     text: "Precio Unitario",
                     value: "instrumento.precio_venta",
+                    align: "center",
                 },
                 {
                     text: "Importe",
                     value: "importe",
+                    align: "center",
                 },
                 {
                     text: "Accion",
                     value: "accion",
+                    align: "center",
                 },
             ],
             servicio_partida: [{
@@ -350,7 +402,6 @@ export default {
         this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
         this.services.empleadoServices.getlistEmpleados();
         this.services.instrumentoServices.getlistInstrumentos();
-
     },
     methods: {
         ActualizarImporte(cantidad, pvp) {
@@ -387,6 +438,10 @@ export default {
                     condiciones: "",
                     nota_cotizacion: "",
                     nota_seguimiento: "",
+                    partidas: [],
+                    sub_total: 0,
+                    iva: 0,
+                    total: 0,
                 };
             }
         },

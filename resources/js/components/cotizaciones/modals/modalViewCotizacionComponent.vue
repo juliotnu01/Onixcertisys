@@ -27,12 +27,12 @@
                             <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                 <v-autocomplete disabled offset-y dense v-model="cotizacion_view.has_empleado" :items="empleados" item-text="nombre_completo" outlined label="Empleado" return-object></v-autocomplete>
                             </v-col>
-                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                            <!--<v-col cols="12" xs="12" sm="12" md="6" lg="6">
                                 <v-select disabled offset-y dense v-model="cotizacion_view.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" item-value="name" return-object></v-select>
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                                 <v-select disabled offset-y dense v-model="cotizacion_view.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object></v-select>
-                            </v-col>
+                            </v-col>-->
                             <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                 <v-text-field disabled :rules="[rules.required]" v-model="cotizacion_view.has_cliente.nombre_completo" dense outlined label="Contacto" />
                             </v-col>
@@ -230,12 +230,13 @@ export default {
             };
             this.services.identificadorInformeServices.agregarIdentificador(model);
         },
-        GenerarRecibo() {
+        async GenerarRecibo() {
             var model = {
                 estado: "pendiente",
                 cotizacion_id: this.cotizacion_view,
             };
-            this.services.reciboServices.agregarRecibo(model);
+            await this.services.reciboServices.agregarRecibo(model);
+            await this.services.cotizacionServices.getlistCotizaciones();
         },
     },
 };

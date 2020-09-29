@@ -12,10 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
-/* harmony import */ var _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalAddCotizacionComponent.vue */ "./resources/js/components/cotizaciones/modals/modalAddCotizacionComponent.vue");
-/* harmony import */ var _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modalEditCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalEditCotizacionComponent.vue");
-/* harmony import */ var _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modals/modalViewCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalViewCotizacionComponent.vue");
+/* harmony import */ var _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalAddCotizacionComponent.vue */ "./resources/js/components/cotizaciones/modals/modalAddCotizacionComponent.vue");
+/* harmony import */ var _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalEditCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalEditCotizacionComponent.vue");
+/* harmony import */ var _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modalViewCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalViewCotizacionComponent.vue");
+/* harmony import */ var _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modals/modalViewPdfComponent */ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -28,6 +28,34 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -91,49 +119,61 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "modal-add": _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    "modal-edit": _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
-    "modal-view": _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-add": _modals_modalAddCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "modal-edit": _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "modal-view": _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
       headers_cotizacion: [{
         text: "Folio",
-        value: "id"
+        value: "id",
+        align: 'center'
       }, {
         text: "Fecha",
-        value: "created_at"
+        value: "created_at",
+        align: 'center'
       }, {
         text: "Cliente",
-        value: "has_cliente"
+        value: "has_cliente",
+        align: 'center'
       }, {
         text: "Contacto",
-        value: "contacto"
+        value: "contacto",
+        align: 'center'
       }, {
         text: "Vendedor",
-        value: "has_empleado"
+        value: "has_empleado",
+        align: 'center'
       }, {
         text: "Estado",
-        value: "estado_de_la_cotizacion"
+        value: "estado_de_la_cotizacion",
+        align: 'center'
       }, {
         text: "Tipo de Servicio",
-        value: "tipo_de_servicio"
+        value: "tipo_de_servicio",
+        align: 'center'
       }, {
         text: "Moneda",
-        value: "has_moneda"
+        value: "has_moneda",
+        align: 'center'
       }, {
         text: "Sub Total",
-        value: "sub_total"
+        value: "sub_total",
+        align: 'center'
       }, {
         text: "IVA",
-        value: "iva"
+        value: "iva",
+        align: 'center'
       }, {
         text: "Total",
-        value: "total"
+        value: "total",
+        align: 'center'
       }, {
         text: "Accion",
-        value: "accion"
+        value: "accion",
+        align: 'center'
       }],
       search_cot: ""
     };
@@ -143,28 +183,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.services.cotizacionServices.getlistCotizaciones();
   },
   methods: {
-    printPdf: function printPdf(model) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _yield$axios$post, data;
+    EditarCotizacion: function EditarCotizacion(cot) {
+      var _this = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.post("/api/print-cotizacion/", model);
+                _this.$store.commit("setDialogEditCotizacion", true);
+
+                _this.$store.commit("setCotizacion", cot);
 
               case 2:
-                _yield$axios$post = _context.sent;
-                data = _yield$axios$post.data;
-
-              case 4:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    eliminarCotizacion: function eliminarCotizacion(item) {
+      this.services.cotizacionServices.EliminarCotizacion(item);
+      this.services.cotizacionServices.getlistCotizaciones();
+    },
+    ViewCotizacion: function ViewCotizacion(item) {
+      this.$store.commit("setDialogViewCotizacion", true);
+      this.$store.commit("setCotizacionView", item);
+    },
+    printCotizacion: function printCotizacion(item) {
+      // this.services.cotizacionServices.printCotizacion(item);
+      this.$store.commit('setDialogViewPdfCotizacion', true);
     }
   }
 });
@@ -195,6 +244,39 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -359,8 +441,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         moneda_selected: {},
         tde_selected: {},
         empleado_selected: {},
-        tipo_de_servicio_selected: {},
-        estado_cotizacion_selected: {},
+        tipo_de_servicio_selected: {
+          name: "normal",
+          value: 1
+        },
+        estado_cotizacion_selected: {
+          name: "pendiente",
+          value: 1
+        },
         contacto: "",
         telefono: "",
         correo: "",
@@ -385,43 +473,56 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       headers_cotizacion: [{
         text: "Identicacion",
-        value: "identificacion"
+        value: "identificacion",
+        align: "center"
       }, {
         text: "Servicio",
-        value: "servicio.name"
+        value: "servicio.name",
+        align: "center"
       }, {
         text: "Unidad",
-        value: "unidad.name"
+        value: "unidad.name",
+        align: "center"
       }, {
         text: "Instrumento",
-        value: "instrumento.nombre"
+        value: "instrumento.nombre",
+        align: "center"
       }, {
         text: "Marca",
-        value: "marca"
+        value: "marca",
+        align: "center"
       }, {
         text: "Modelo",
-        value: "modelo"
+        value: "modelo",
+        align: "center"
       }, {
         text: "Serie",
-        value: "serie"
+        value: "serie",
+        align: "center"
       }, {
         text: "Alcance",
-        value: "instrumento.alcance"
+        value: "instrumento.alcance",
+        align: "center"
       }, {
         text: "Acreditacion",
-        value: "instrumento.has_acreditacion.nombre"
+        value: "instrumento.has_acreditacion.nombre",
+        align: "center"
       }, {
         text: "Cantidad",
-        value: "cantidad"
+        value: "cantidad",
+        align: "center"
       }, {
         text: "Precio Unitario",
-        value: "instrumento.precio_venta"
+        value: "instrumento.precio_venta",
+        align: "center"
       }, {
         text: "Importe",
-        value: "importe"
+        value: "importe",
+        align: "center"
       }, {
         text: "Accion",
-        value: "accion"
+        value: "accion",
+        align: "center"
       }],
       servicio_partida: [{
         name: "Calibracion",
@@ -586,7 +687,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   correo: "",
                   condiciones: "",
                   nota_cotizacion: "",
-                  nota_seguimiento: ""
+                  nota_seguimiento: "",
+                  partidas: [],
+                  sub_total: 0,
+                  iva: 0,
+                  total: 0
                 };
 
               case 6:
@@ -632,6 +737,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1349,21 +1459,171 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     GenerarRecibo: function GenerarRecibo() {
-      var model = {
-        estado: "pendiente",
-        cotizacion_id: this.cotizacion_view
-      };
-      this.services.reciboServices.agregarRecibo(model);
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var model;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                model = {
+                  estado: "pendiente",
+                  cotizacion_id: _this2.cotizacion_view
+                };
+                _context2.next = 3;
+                return _this2.services.reciboServices.agregarRecibo(model);
+
+              case 3:
+                _context2.next = 5;
+                return _this2.services.cotizacionServices.getlistCotizaciones();
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&":
-/*!******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9& ***!
-  \******************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {};
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_view_pdf_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos"])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_view_pdf_cotizacion;
+      },
+      set: function set(val) {
+        this.$store.commit("setDialogViewPdfCotizacion", val);
+      }
+    }
+  }),
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1438,6 +1698,153 @@ var render = function() {
         },
         scopedSlots: _vm._u([
           {
+            key: "item.created_at",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c("td", [
+                  _vm._v(
+                    "\r\n                " +
+                      _vm._s(item.created_at.substr(0, 10)) +
+                      "\r\n            "
+                  )
+                ])
+              ]
+            }
+          },
+          {
+            key: "item.estado_de_la_cotizacion",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "td",
+                  [
+                    item.estado_de_la_cotizacion == "pendiente"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              type: "info",
+                              icon: "mdi-clock",
+                              dense: ""
+                            }
+                          },
+                          [
+                            _vm._v(
+                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.estado_de_la_cotizacion == "En recibo"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              color: "purple",
+                              icon: "mdi-receipt",
+                              dense: "",
+                              dark: ""
+                            }
+                          },
+                          [
+                            _vm._v(
+                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.estado_de_la_cotizacion == "Rechazada"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              type: "error",
+                              icon: "mdi-close-octagon",
+                              dense: ""
+                            }
+                          },
+                          [
+                            _vm._v(
+                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "item.tipo_de_servicio",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "td",
+                  [
+                    item.tipo_de_servicio == "normal"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              type: "success",
+                              icon: "mdi-flag",
+                              dense: "",
+                              outlined: ""
+                            }
+                          },
+                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.tipo_de_servicio == "urgente"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              type: "error",
+                              icon: "mdi-flag",
+                              dense: "",
+                              outlined: ""
+                            }
+                          },
+                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.tipo_de_servicio == "programado"
+                      ? _c(
+                          "v-alert",
+                          {
+                            staticClass: "mt-5",
+                            attrs: {
+                              type: "warning",
+                              icon: "mdi-flag",
+                              dense: "",
+                              outlined: ""
+                            }
+                          },
+                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
             key: "item.accion",
             fn: function(ref) {
               var item = ref.item
@@ -1493,7 +1900,7 @@ var render = function() {
                         attrs: { icon: "", small: "", color: "info" },
                         on: {
                           click: function($event) {
-                            return _vm.printPdf(item)
+                            return _vm.printCotizacion(item)
                           }
                         }
                       },
@@ -1511,8 +1918,8 @@ var render = function() {
             fn: function(ref) {
               var item = ref.item
               return [
-                _c("td", [
-                  _c("small", [
+                _c("td", { staticClass: "text-left" }, [
+                  _c("small", { staticClass: "text-left" }, [
                     _vm._v(
                       "\r\n                    Nombre:" +
                         _vm._s(item.contacto) +
@@ -1558,17 +1965,65 @@ var render = function() {
               var item = ref.item
               return [_c("td", [_vm._v(_vm._s(item.has_moneda.clave))])]
             }
+          },
+          {
+            key: "item.sub_total",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("numberFormat")(
+                        item.sub_total,
+                        item.has_moneda.clave
+                      )
+                    )
+                  )
+                ])
+              ]
+            }
+          },
+          {
+            key: "item.iva",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("numberFormat")(item.iva, item.has_moneda.clave)
+                    )
+                  )
+                ])
+              ]
+            }
+          },
+          {
+            key: "item.total",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("numberFormat")(item.total, item.has_moneda.clave)
+                    )
+                  )
+                ])
+              ]
+            }
           }
         ])
       }),
-      _vm._v(" "),
-      _c("pdf", { attrs: { src: "/storage/file.pdf" } }),
       _vm._v(" "),
       _c("modal-add"),
       _vm._v(" "),
       _c("modal-edit"),
       _vm._v(" "),
-      _c("modal-view")
+      _c("modal-view"),
+      _vm._v(" "),
+      _c("modal-pdf")
     ],
     1
   )
@@ -1832,7 +2287,8 @@ var render = function() {
                                   label: "Tipo de Servicio",
                                   outlined: "",
                                   "item-text": "name",
-                                  "return-object": ""
+                                  "return-object": "",
+                                  "prepend-icon": "mdi-clock"
                                 },
                                 model: {
                                   value: _vm.model.tipo_de_servicio_selected,
@@ -1870,7 +2326,8 @@ var render = function() {
                                   label: "Estado de la cotizacion",
                                   outlined: "",
                                   "item-text": "name",
-                                  "return-object": ""
+                                  "return-object": "",
+                                  "prepend-icon": "mdi-flag"
                                 },
                                 model: {
                                   value: _vm.model.estado_cotizacion_selected,
@@ -2246,11 +2703,7 @@ var render = function() {
                             },
                             [
                               _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  outlined: "",
-                                  label: "Alcance"
-                                },
+                                attrs: { outlined: "", label: "Alcance" },
                                 model: {
                                   value: _vm.partida.instrumento.alcance,
                                   callback: function($$v) {
@@ -2526,6 +2979,46 @@ var render = function() {
                         }
                       },
                       {
+                        key: "item.importe",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", [
+                              _vm._v(
+                                "\r\n                            " +
+                                  _vm._s(
+                                    _vm._f("numberFormat")(
+                                      item.importe,
+                                      _vm.model.moneda_selected.clave
+                                    )
+                                  ) +
+                                  "\r\n                        "
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.instrumento.precio_venta",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", [
+                              _vm._v(
+                                "\r\n                            " +
+                                  _vm._s(
+                                    _vm._f("numberFormat")(
+                                      item.instrumento.precio_venta,
+                                      _vm.model.moneda_selected.clave
+                                    )
+                                  ) +
+                                  "\r\n                        "
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
                         key: "body.append",
                         fn: function(ref) {
                           var headers = ref.headers
@@ -2535,8 +3028,14 @@ var render = function() {
                                 _c("div", { staticClass: "text-right" }, [
                                   _c("h3", [
                                     _vm._v(
-                                      "SUBTOTAL : " +
-                                        _vm._s(_vm.var_computed_sub_total)
+                                      "\r\n                                        SUBTOTAL :" +
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_sub_total,
+                                            _vm.model.moneda_selected.clave
+                                          )
+                                        ) +
+                                        "\r\n                                    "
                                     )
                                   ])
                                 ]),
@@ -2544,7 +3043,14 @@ var render = function() {
                                 _c("div", { staticClass: "text-right" }, [
                                   _c("h3", [
                                     _vm._v(
-                                      "IVA : " + _vm._s(_vm.var_computed_iva)
+                                      "\r\n                                        IVA :" +
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_iva,
+                                            _vm.model.moneda_selected.clave
+                                          )
+                                        ) +
+                                        "\r\n                                    "
                                     )
                                   ])
                                 ]),
@@ -2552,8 +3058,14 @@ var render = function() {
                                 _c("div", { staticClass: "text-right" }, [
                                   _c("h3", [
                                     _vm._v(
-                                      "TOTAL : " +
-                                        _vm._s(_vm.var_computed_total)
+                                      "\r\n                                        TOTAL :" +
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_total,
+                                            _vm.model.moneda_selected.clave
+                                          )
+                                        ) +
+                                        "\r\n                                    "
                                     )
                                   ])
                                 ])
@@ -2851,7 +3363,8 @@ var render = function() {
                                       label: "Tipo de Servicio",
                                       outlined: "",
                                       "item-text": "name",
-                                      "return-object": ""
+                                      "return-object": "",
+                                      "prepend-icon": "mdi-clock"
                                     },
                                     model: {
                                       value: _vm.cotizacion.tipo_de_servicio,
@@ -2889,7 +3402,8 @@ var render = function() {
                                       label: "Estado de la cotizacion",
                                       outlined: "",
                                       "item-text": "name",
-                                      "return-object": ""
+                                      "return-object": "",
+                                      "prepend-icon": "mdi-flag"
                                     },
                                     model: {
                                       value:
@@ -3286,11 +3800,7 @@ var render = function() {
                             },
                             [
                               _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  outlined: "",
-                                  label: "Alcance"
-                                },
+                                attrs: { outlined: "", label: "Alcance" },
                                 model: {
                                   value: _vm.partida.instrumento.alcance,
                                   callback: function($$v) {
@@ -3433,7 +3943,6 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  disabled: "",
                                   outlined: "",
                                   label: "Precio Unitario"
                                 },
@@ -3916,10 +4425,118 @@ var render = function() {
                         }
                       },
                       {
+                        key: "item.has_intrumento.precio_venta",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\r\n                            " +
+                                  _vm._s(
+                                    _vm._f("numberFormat")(
+                                      item.has_intrumento.precio_venta
+                                    )
+                                  ) +
+                                  "\r\n                        "
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.importe",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("td", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\r\n                            " +
+                                  _vm._s(_vm._f("numberFormat")(item.importe)) +
+                                  "\r\n                        "
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
                         key: "item.accion",
                         fn: function(ref) {
                           var item = ref.item
-                          return [_c("td")]
+                          return [
+                            _c(
+                              "td",
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      icon: "",
+                                      small: "",
+                                      color: "error"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.eliminarPartida(item)
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-delete")])],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: !_vm.edit_caliente_partida,
+                                        expression: "!edit_caliente_partida"
+                                      }
+                                    ],
+                                    attrs: { color: "warning", icon: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.edit_caliente_partida = true
+                                      }
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-pencil")])],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.edit_caliente_partida,
+                                        expression: "edit_caliente_partida"
+                                      }
+                                    ],
+                                    attrs: { color: "warning", icon: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.edit_caliente_partida = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      { attrs: { color: "success" } },
+                                      [_vm._v("mdi-check")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
                         }
                       },
                       {
@@ -3933,7 +4550,11 @@ var render = function() {
                                   _c("h3", [
                                     _vm._v(
                                       "SUBTOTAL : " +
-                                        _vm._s(_vm.var_computed_sub_total)
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_sub_total
+                                          )
+                                        )
                                     )
                                   ])
                                 ]),
@@ -3941,7 +4562,12 @@ var render = function() {
                                 _c("div", { staticClass: "text-right" }, [
                                   _c("h3", [
                                     _vm._v(
-                                      "IVA : " + _vm._s(_vm.var_computed_iva)
+                                      "IVA : " +
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_iva
+                                          )
+                                        )
                                     )
                                   ])
                                 ]),
@@ -3950,7 +4576,11 @@ var render = function() {
                                   _c("h3", [
                                     _vm._v(
                                       "TOTAL : " +
-                                        _vm._s(_vm.var_computed_total)
+                                        _vm._s(
+                                          _vm._f("numberFormat")(
+                                            _vm.var_computed_total
+                                          )
+                                        )
                                     )
                                   ])
                                 ])
@@ -4229,91 +4859,6 @@ var render = function() {
                                           },
                                           expression:
                                             "cotizacion_view.has_empleado"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "6",
-                                        lg: "6"
-                                      }
-                                    },
-                                    [
-                                      _c("v-select", {
-                                        attrs: {
-                                          disabled: "",
-                                          "offset-y": "",
-                                          dense: "",
-                                          items: _vm.tipo_de_servicio,
-                                          label: "Tipo de Servicio",
-                                          outlined: "",
-                                          "item-text": "name",
-                                          "item-value": "name",
-                                          "return-object": ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.cotizacion_view
-                                              .tipo_de_servicio,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.cotizacion_view,
-                                              "tipo_de_servicio",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "cotizacion_view.tipo_de_servicio"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "6",
-                                        lg: "6"
-                                      }
-                                    },
-                                    [
-                                      _c("v-select", {
-                                        attrs: {
-                                          disabled: "",
-                                          "offset-y": "",
-                                          dense: "",
-                                          items: _vm.estado_de_la_cotizacion,
-                                          label: "Estado de la cotizacion",
-                                          outlined: "",
-                                          "item-text": "name",
-                                          "return-object": ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.cotizacion_view
-                                              .estado_de_la_cotizacion,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.cotizacion_view,
-                                              "estado_de_la_cotizacion",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "cotizacion_view.estado_de_la_cotizacion"
                                         }
                                       })
                                     ],
@@ -4863,6 +5408,50 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          model: {
+            value: _vm.openDialog,
+            callback: function($$v) {
+              _vm.openDialog = $$v
+            },
+            expression: "openDialog"
+          }
+        },
+        [_c("pdf", { attrs: { src: "/storage/lorem-ipsum.pdf", page: 1 } })],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/cotizaciones/indexCotizacionesComponent.vue ***!
@@ -4872,9 +5461,11 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexCotizacionesComponent.vue?vue&type=template&id=57f955a9& */ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&");
+/* harmony import */ var _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true& */ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true&");
 /* harmony import */ var _indexCotizacionesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexCotizacionesComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& */ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -4882,13 +5473,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _indexCotizacionesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "57f955a9",
   null
   
 )
@@ -4914,19 +5505,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9& ***!
-  \************************************************************************************************************/
+/***/ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&":
+/*!***************************************************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=style&index=0&id=57f955a9&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_style_index_0_id_57f955a9_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true& ***!
+  \************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCotizacionesComponent.vue?vue&type=template&id=57f955a9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/indexCotizacionesComponent.vue?vue&type=template&id=57f955a9&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -5134,6 +5741,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewCotizacionComponent_vue_vue_type_template_id_09284f5e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewCotizacionComponent_vue_vue_type_template_id_09284f5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d& */ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d&");
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue?vue&type=template&id=6b67dd2d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_6b67dd2d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -29,6 +29,7 @@ export default class userServices{
             let data = await axios.post('/login', model)
             location.href = 'home'
         } catch (error) {
+            store.commit('setErrorHandleLogin', true)
             console.log(error)
         }
     }

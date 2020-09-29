@@ -70,5 +70,5 @@
         </div>
     </div>
 </div> -->
-<login-component/>
+<login-component />
 @endsection

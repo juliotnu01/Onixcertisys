@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Recibo, Partida};
+use App\Models\{Recibo, Partida, Cotizacion};
 use Illuminate\Http\Request;
 use DB;
 
@@ -53,7 +53,9 @@ class ReciboController extends Controller
                 $recibo->estado = $request['estado'];
                 $recibo->cotizacion_id = $request['cotizacion_id']['id'];
                 $recibo->save();
-
+                $cotizacion = Cotizacion::find($request['cotizacion_id']['id'])->update([
+                    'estado_de_la_cotizacion' => 'En recibo'
+                ]) ;
                 foreach ($request['cotizacion_id']['has_partidas'] as $key => $value) {
                     $partida = new Partida();
                     if (is_string($value['tipo'])) {

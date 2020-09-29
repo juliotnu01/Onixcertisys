@@ -29,10 +29,10 @@
                             <v-autocomplete offset-y dense v-model="cotizacion.has_empleado" :items="empleados" item-text="nombre_completo" outlined s label="Empleado" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="cotizacion.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" return-object></v-select>
+                            <v-select offset-y dense v-model="cotizacion.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" return-object prepend-icon="mdi-clock"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="cotizacion.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object></v-select>
+                            <v-select offset-y dense v-model="cotizacion.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object prepend-icon="mdi-flag"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.nombre_completo" dense outlined label="Contacto" />
@@ -72,7 +72,7 @@
                             <v-autocomplete offset-y v-model="partida.instrumento" :items="instrumentos" item-text="nombre" outlined s label="Seleccionar Instrumento" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field disabled v-model="partida.instrumento.alcance" outlined label="Alcance" />
+                            <v-text-field v-model="partida.instrumento.alcance" outlined label="Alcance" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="ActualizarImporte(partida.cantidad, partida.instrumento.precio_venta)" />
@@ -87,7 +87,7 @@
                             <v-text-field v-model="partida.serie" outlined label="Serie" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field disabled v-model="partida.instrumento.precio_venta" outlined label="Precio Unitario" />
+                            <v-text-field v-model="partida.instrumento.precio_venta" outlined label="Precio Unitario" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field disabled v-model="var_computed_importe_instrumento" outlined label="Importe" />
@@ -161,6 +161,16 @@
                             </div>
                         </td>
                     </template>
+                    <template v-slot:item.has_intrumento.precio_venta="{item}">
+                        <td class="text-center">
+                            {{item.has_intrumento.precio_venta | numberFormat  }}
+                        </td>
+                    </template>
+                    <template v-slot:item.importe="{item}">
+                        <td class="text-center">
+                            {{item.importe | numberFormat  }}
+                        </td>
+                    </template>
                     <template v-slot:item.accion="{item}">
                         <td>
                             <v-btn icon small color="error" @click="eliminarPartida(item)">
@@ -178,13 +188,13 @@
                         <tr>
                             <td :colspan="headers.length">
                                 <div class="text-right">
-                                    <h3>SUBTOTAL : {{var_computed_sub_total}}</h3>
+                                    <h3>SUBTOTAL : {{var_computed_sub_total | numberFormat  }}</h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>IVA : {{var_computed_iva}}</h3>
+                                    <h3>IVA : {{var_computed_iva | numberFormat }}</h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>TOTAL : {{var_computed_total}}</h3>
+                                    <h3>TOTAL : {{var_computed_total | numberFormat  }}</h3>
                                 </div>
                             </td>
                         </tr>
