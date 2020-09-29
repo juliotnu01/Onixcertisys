@@ -220,7 +220,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return his.services.cotizacionServices.printCotizacion(item);
+                return _this2.services.cotizacionServices.printCotizacion(item);
 
               case 2:
                 _context2.next = 4;

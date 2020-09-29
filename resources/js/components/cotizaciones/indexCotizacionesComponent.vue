@@ -183,7 +183,7 @@ export default {
             this.$store.commit("setCotizacionView", item);
         },
         async printCotizacion(item) {
-            await his.services.cotizacionServices.printCotizacion(item);
+            await this.services.cotizacionServices.printCotizacion(item);
             await this.$store.commit('setDialogViewPdfCotizacion', true)
         },
     },
