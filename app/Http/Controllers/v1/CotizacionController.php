@@ -201,7 +201,7 @@ class CotizacionController extends Controller
     {
         $pdf = PDF::loadView('pdfs.pdfCotizacion');
         Storage::disk('public')->put('file.pdf', $pdf->download());
-        return  response()->download(storage_path('file.pdf'));
+        return  ;
     }
 
 }
