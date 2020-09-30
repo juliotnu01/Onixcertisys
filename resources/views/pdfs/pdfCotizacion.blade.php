@@ -15,7 +15,6 @@
             border: none;
             font-size: 9px;
         }
-
         td,
         th {
             border: 1px solid #dddddd;

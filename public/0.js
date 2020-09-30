@@ -960,6 +960,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -969,6 +1029,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return !!value || "Este campo es requerido.";
         }
       },
+      snack: false,
       edit_caliente_partida: false,
       tipo_de_servicio: [{
         name: "normal",
@@ -1218,6 +1279,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return item.id === item.id || item.identificacion === item.identificacion;
       });
       this.cotizacion.has_partidas.splice(index, 1);
+    },
+    open: function open() {
+      this.snack = true;
     }
   }
 });
@@ -4063,192 +4127,69 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
+                            _c(
+                              "v-edit-dialog",
+                              {
+                                attrs: { "return-value": item.identificacion },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    return _vm.$set(
+                                      item,
+                                      "identificacion",
+                                      $event
+                                    )
+                                  },
+                                  "update:return-value": function($event) {
+                                    return _vm.$set(
+                                      item,
+                                      "identificacion",
+                                      $event
+                                    )
+                                  },
+                                  open: _vm.open
                                 },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.identificacion) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "Identicacion",
-                                      dense: "",
-                                      small: ""
-                                    },
-                                    model: {
-                                      value: item.identificacion,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "identificacion", $$v)
+                                      key: "input",
+                                      fn: function() {
+                                        return [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "identificacion",
+                                              dense: "",
+                                              small: "",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value: item.identificacion,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  item,
+                                                  "identificacion",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "item.identificacion"
+                                            }
+                                          })
+                                        ]
                                       },
-                                      expression: "item.identificacion"
+                                      proxy: true
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.servicio",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.servicio) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-select", {
-                                    attrs: {
-                                      dense: "",
-                                      small: "",
-                                      "offset-y": "",
-                                      items: _vm.servicio_partida,
-                                      label: "Servicio",
-                                      outlined: "",
-                                      "item-text": "name",
-                                      "return-object": ""
-                                    },
-                                    model: {
-                                      value: item.servicio,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "servicio", $$v)
-                                      },
-                                      expression: "item.servicio"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.unidad",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.unidad) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-select", {
-                                    attrs: {
-                                      dense: "",
-                                      small: "",
-                                      "offset-y": "",
-                                      items: _vm.unidad_partida,
-                                      label: "Unidad",
-                                      outlined: "",
-                                      "item-text": "name",
-                                      "return-object": ""
-                                    },
-                                    model: {
-                                      value: item.unidad,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "unidad", $$v)
-                                      },
-                                      expression: "item.unidad"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                            " +
+                                    _vm._s(item.identificacion) +
+                                    "\r\n                            "
+                                )
+                              ]
+                            )
                           ]
                         }
                       },
@@ -4257,60 +4198,57 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
+                            _c(
+                              "v-edit-dialog",
+                              {
+                                attrs: { "return-value": item.marca },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    return _vm.$set(item, "marca", $event)
+                                  },
+                                  "update:return-value": function($event) {
+                                    return _vm.$set(item, "marca", $event)
+                                  },
+                                  open: _vm.open
                                 },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.marca) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "Marca",
-                                      small: "",
-                                      dense: ""
-                                    },
-                                    model: {
-                                      value: item.marca,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "marca", $$v)
+                                      key: "input",
+                                      fn: function() {
+                                        return [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "marca",
+                                              dense: "",
+                                              small: "",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value: item.marca,
+                                              callback: function($$v) {
+                                                _vm.$set(item, "marca", $$v)
+                                              },
+                                              expression: "item.marca"
+                                            }
+                                          })
+                                        ]
                                       },
-                                      expression: "item.marca"
+                                      proxy: true
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                            " +
+                                    _vm._s(item.marca) +
+                                    "\r\n                            "
+                                )
+                              ]
+                            )
                           ]
                         }
                       },
@@ -4319,60 +4257,57 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
+                            _c(
+                              "v-edit-dialog",
+                              {
+                                attrs: { "return-value": item.modelo },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    return _vm.$set(item, "modelo", $event)
+                                  },
+                                  "update:return-value": function($event) {
+                                    return _vm.$set(item, "modelo", $event)
+                                  },
+                                  open: _vm.open
                                 },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.modelo) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "Modelo",
-                                      small: "",
-                                      dense: ""
-                                    },
-                                    model: {
-                                      value: item.modelo,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "modelo", $$v)
+                                      key: "input",
+                                      fn: function() {
+                                        return [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "modelo",
+                                              dense: "",
+                                              small: "",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value: item.modelo,
+                                              callback: function($$v) {
+                                                _vm.$set(item, "modelo", $$v)
+                                              },
+                                              expression: "item.modelo"
+                                            }
+                                          })
+                                        ]
                                       },
-                                      expression: "item.modelo"
+                                      proxy: true
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                            " +
+                                    _vm._s(item.modelo) +
+                                    "\r\n                            "
+                                )
+                              ]
+                            )
                           ]
                         }
                       },
@@ -4381,60 +4316,57 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.edit_caliente_partida,
-                                      expression: "!edit_caliente_partida"
-                                    }
-                                  ]
+                            _c(
+                              "v-edit-dialog",
+                              {
+                                attrs: { "return-value": item.serie },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    return _vm.$set(item, "serie", $event)
+                                  },
+                                  "update:return-value": function($event) {
+                                    return _vm.$set(item, "serie", $event)
+                                  },
+                                  open: _vm.open
                                 },
-                                [
-                                  _vm._v(
-                                    "\r\n                                " +
-                                      _vm._s(item.serie) +
-                                      "\r\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.edit_caliente_partida,
-                                      expression: "edit_caliente_partida"
-                                    }
-                                  ]
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "Serie",
-                                      small: "",
-                                      dense: ""
-                                    },
-                                    model: {
-                                      value: item.serie,
-                                      callback: function($$v) {
-                                        _vm.$set(item, "serie", $$v)
+                                      key: "input",
+                                      fn: function() {
+                                        return [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "serie",
+                                              dense: "",
+                                              small: "",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value: item.serie,
+                                              callback: function($$v) {
+                                                _vm.$set(item, "serie", $$v)
+                                              },
+                                              expression: "item.serie"
+                                            }
+                                          })
+                                        ]
                                       },
-                                      expression: "item.serie"
+                                      proxy: true
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                            " +
+                                    _vm._s(item.serie) +
+                                    "\r\n                            "
+                                )
+                              ]
+                            )
                           ]
                         }
                       },
@@ -4496,56 +4428,6 @@ var render = function() {
                                   },
                                   [_c("v-icon", [_vm._v("mdi-delete")])],
                                   1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value: !_vm.edit_caliente_partida,
-                                        expression: "!edit_caliente_partida"
-                                      }
-                                    ],
-                                    attrs: { color: "warning", icon: "" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.edit_caliente_partida = true
-                                      }
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v("mdi-pencil")])],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value: _vm.edit_caliente_partida,
-                                        expression: "edit_caliente_partida"
-                                      }
-                                    ],
-                                    attrs: { color: "warning", icon: "" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.edit_caliente_partida = false
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-icon",
-                                      { attrs: { color: "success" } },
-                                      [_vm._v("mdi-check")]
-                                    )
-                                  ],
-                                  1
                                 )
                               ],
                               1
@@ -4563,12 +4445,13 @@ var render = function() {
                                 _c("div", { staticClass: "text-right" }, [
                                   _c("h3", [
                                     _vm._v(
-                                      "SUBTOTAL : " +
+                                      "\r\n                                        SUBTOTAL : " +
                                         _vm._s(
                                           _vm._f("numberFormat")(
                                             _vm.var_computed_sub_total
                                           )
-                                        )
+                                        ) +
+                                        "\r\n                                    "
                                     )
                                   ])
                                 ]),

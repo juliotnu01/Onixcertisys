@@ -14,8 +14,7 @@
             <v-card-title>Editar Cotizacion</v-card-title>
             <v-card-text>
                 <v-form ref="f_mag">
-
-                    <v-row align="center" justify="space-around" v-if=" Object.entries(this.cotizacion).length > 0 ">
+                    <v-row align="center" justify="space-around" v-if="Object.entries(this.cotizacion).length > 0">
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-autocomplete offset-y dense v-model="cotizacion.has_cliente" :items="clientes" item-text="razon_social" outlined s label="Seleccionar Cliente" return-object></v-autocomplete>
                         </v-col>
@@ -53,7 +52,6 @@
                             <v-textarea v-model="cotizacion.nota_de_seguimiento" outlined label="Notas de seguimiento"></v-textarea>
                         </v-col>
                     </v-row>
-
                 </v-form>
             </v-card-text>
             <v-card-text>
@@ -75,7 +73,12 @@
                             <v-text-field v-model="partida.instrumento.alcance" outlined label="Alcance" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="ActualizarImporte(partida.cantidad, partida.instrumento.precio_venta)" />
+                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="
+                    ActualizarImporte(
+                      partida.cantidad,
+                      partida.instrumento.precio_venta
+                    )
+                  " />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field v-model="partida.marca" outlined label="Marca" />
@@ -101,86 +104,141 @@
                     </v-row>
                 </v-card>
                 <v-data-table dense :headers="headers_cotizacion" :items="cotizacion.has_partidas" item-key="name" class="elevation-1 mt-5">
-                    <template v-slot:item.identificacion="{item}">
-                        <td class="text-center">
+                    <!-- <template v-slot:item.identificacion="{ item }">
+                        <td class="text-center w-200">
                             <div v-show="!edit_caliente_partida">
-                                {{item.identificacion}}
+                                {{ item.identificacion }}
                             </div>
                             <div v-show="edit_caliente_partida">
-                                <v-text-field v-model="item.identificacion" outlined label="Identicacion" dense small />
+                                <v-text-field v-model="item.identificacion" outlined label="Identicacion" dense small full-width />
                             </div>
                         </td>
+                    </template>-->
+
+                    <template v-slot:item.identificacion="{item}">
+                        <v-edit-dialog :return-value.sync="item.identificacion" @open="open">
+                            {{ item.identificacion }}
+                            <template v-slot:input>
+                                <v-text-field v-model="item.identificacion" label="identificacion" dense small outlined></v-text-field>
+                            </template>
+                        </v-edit-dialog>
                     </template>
+
+                    <!--
                     <template v-slot:item.servicio="{item}">
+                        <v-edit-dialog :return-value.sync="item.servicio" @open="open">
+                            {{ item.servicio }}
+                            <template v-slot:input>
+                                <v-select dense small offset-y v-model="item.servicio" :items="servicio_partida" label="Servicio" outlined item-text="name" return-object />
+                            </template>
+                        </v-edit-dialog>
+                    </template>
+
+                    <template v-slot:item.servicio="{ item }">
                         <td class="text-center">
                             <div v-show="!edit_caliente_partida">
-                                {{item.servicio}}
+                                {{ item.servicio }}
                             </div>
                             <div v-show="edit_caliente_partida">
                                 <v-select dense small offset-y v-model="item.servicio" :items="servicio_partida" label="Servicio" outlined item-text="name" return-object></v-select>
                             </div>
                         </td>
                     </template>
+
                     <template v-slot:item.unidad="{item}">
+                        <v-edit-dialog :return-value.sync="item.unidad.name" @open="open">
+                            {{ item.unidad.name }}
+                            <template v-slot:input>
+                                <v-select dense small offset-y v-model="item.unidad." :items="unidad_partida" label="Unidad" outlined item-text="name" return-object />
+                            </template>
+                        </v-edit-dialog>
+                    </template>
+                    -->
+
+                    <!--<template v-slot:item.unidad="{ item }">
                         <td class="text-center">
                             <div v-show="!edit_caliente_partida">
-                                {{item.unidad}}
+                                {{ item.unidad }}
                             </div>
                             <div v-show="edit_caliente_partida">
                                 <v-select dense small offset-y v-model="item.unidad" :items="unidad_partida" label="Unidad" outlined item-text="name" return-object></v-select>
                             </div>
                         </td>
-                    </template>
+                    </template>-->
+
                     <template v-slot:item.marca="{item}">
+                        <v-edit-dialog :return-value.sync="item.marca" @open="open">
+                            {{ item.marca }}
+                            <template v-slot:input>
+                                <v-text-field v-model="item.marca" label="marca" dense small outlined></v-text-field>
+                            </template>
+                        </v-edit-dialog>
+                    </template>
+
+                    <!--<template v-slot:item.marca="{ item }">
                         <td class="text-center">
                             <div v-show="!edit_caliente_partida">
-                                {{item.marca}}
+                                {{ item.marca }}
                             </div>
                             <div v-show="edit_caliente_partida">
                                 <v-text-field v-model="item.marca" outlined label="Marca" small dense />
                             </div>
                         </td>
-                    </template>
+                    </template>-->
+
                     <template v-slot:item.modelo="{item}">
+                        <v-edit-dialog :return-value.sync="item.modelo" @open="open">
+                            {{ item.modelo }}
+                            <template v-slot:input>
+                                <v-text-field v-model="item.modelo" label="modelo" dense small outlined></v-text-field>
+                            </template>
+                        </v-edit-dialog>
+                    </template>
+
+                    <!--<template v-slot:item.modelo="{ item }">
                         <td class="text-center">
                             <div v-show="!edit_caliente_partida">
-                                {{item.modelo}}
+                                {{ item.modelo }}
                             </div>
                             <div v-show="edit_caliente_partida">
                                 <v-text-field v-model="item.modelo" outlined label="Modelo" small dense />
                             </div>
                         </td>
-                    </template>
+                    </template>-->
+
                     <template v-slot:item.serie="{item}">
+                        <v-edit-dialog :return-value.sync="item.serie" @open="open">
+                            {{ item.serie }}
+                            <template v-slot:input>
+                                <v-text-field v-model="item.serie" label="serie" dense small outlined></v-text-field>
+                            </template>
+                        </v-edit-dialog>
+                    </template>
+
+                    <!--<template v-slot:item.serie="{ item }">
                         <td class="text-center">
                             <div v-show="!edit_caliente_partida">
-                                {{item.serie}}
+                                {{ item.serie }}
                             </div>
                             <div v-show="edit_caliente_partida">
                                 <v-text-field v-model="item.serie" outlined label="Serie" small dense />
                             </div>
                         </td>
-                    </template>
-                    <template v-slot:item.has_intrumento.precio_venta="{item}">
+                    </template>-->
+                    <template v-slot:item.has_intrumento.precio_venta="{ item }">
                         <td class="text-center">
-                            {{item.has_intrumento.precio_venta | numberFormat  }}
+                            {{ item.has_intrumento.precio_venta | numberFormat }}
                         </td>
                     </template>
-                    <template v-slot:item.importe="{item}">
+                    <template v-slot:item.importe="{ item }">
                         <td class="text-center">
-                            {{item.importe | numberFormat  }}
+                            {{ item.importe | numberFormat }}
                         </td>
                     </template>
-                    <template v-slot:item.accion="{item}">
+                    <template v-slot:item.accion="{ item }">
                         <td>
                             <v-btn icon small color="error" @click="eliminarPartida(item)">
                                 <v-icon>mdi-delete</v-icon>
-                            </v-btn>
-                            <v-btn color="warning" icon @click="edit_caliente_partida = true" v-show="!edit_caliente_partida">
-                                <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
-                            <v-btn color="warning" icon @click="edit_caliente_partida = false" v-show="edit_caliente_partida">
-                                <v-icon color="success">mdi-check</v-icon>
                             </v-btn>
                         </td>
                     </template>
@@ -188,13 +246,15 @@
                         <tr>
                             <td :colspan="headers.length">
                                 <div class="text-right">
-                                    <h3>SUBTOTAL : {{var_computed_sub_total | numberFormat  }}</h3>
+                                    <h3>
+                                        SUBTOTAL : {{ var_computed_sub_total | numberFormat }}
+                                    </h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>IVA : {{var_computed_iva | numberFormat }}</h3>
+                                    <h3>IVA : {{ var_computed_iva | numberFormat }}</h3>
                                 </div>
                                 <div class="text-right">
-                                    <h3>TOTAL : {{var_computed_total | numberFormat  }}</h3>
+                                    <h3>TOTAL : {{ var_computed_total | numberFormat }}</h3>
                                 </div>
                             </td>
                         </tr>
@@ -216,6 +276,7 @@ export default {
             rules: {
                 required: (value) => !!value || "Este campo es requerido.",
             },
+            snack: false,
             edit_caliente_partida: false,
             tipo_de_servicio: [{
                     name: "normal",
@@ -463,6 +524,9 @@ export default {
             );
             this.cotizacion.has_partidas.splice(index, 1);
         },
+        open() {
+            this.snack = true
+        }
     },
 };
 </script>
