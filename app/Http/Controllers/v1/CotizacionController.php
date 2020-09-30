@@ -214,7 +214,7 @@ class CotizacionController extends Controller
                     Cotizacion::find($request['id'])->update([
                         'ruta_print_document' => $url
                     ]);
-            return Response(Cotizacion::with('hasMoneda','hasCliente', 'hasPartidas', 'hasPartidas.hasIntrumento', 'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
+            return Response(Cotizacion::with('hasMoneda','hasTiempoDeEntrega', 'hasCliente', 'hasPartidas', 'hasPartidas.hasIntrumento', 'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
         } catch (\Throwable $th) {
             throw $th;
         }

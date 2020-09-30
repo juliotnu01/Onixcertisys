@@ -5,15 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style>
-        body {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
             border: none;
             font-size: 12px;
         }
@@ -56,19 +50,19 @@
         </tr>
         <tr>
             <td colspan="5">
-                <strong> Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong><br />
-                <div> Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                <div> <strong> Contacto:</strong> Lorem ipsum dolor sit amet</div>
-                <div> <strong> Teléfono:</strong> Lorem ipsum dolor sit amet</div>
-                <div> <strong> Correo:</strong> Lorem ipsum dolor sit amet </div>
+                <strong> {{$data['has_cliente']['razon_social']}}</strong><br />
+                <div> {{$data['has_cliente']['direccion_fiscal']}}</div>
+                <div> <strong> Contacto:</strong> {{$data['has_cliente']['nombre_completo']}}</div>
+                <div> <strong> Teléfono:</strong> {{$data['has_cliente']['celular_contacto']}}</div>
+                <div> <strong> Correo:</strong>{{$data['has_cliente']['correo_contacto']}} </div>
             </td>
             <td colspan="6">
-                <div> <strong> Cotizacion:</strong> 9999</div>
-                <div> <strong> Fecha:</strong> 20-20-2020</div>
-                <div> <strong> Tiempo de Entrega:</strong>99 Dias</div>
-                <div> <strong> Moneda:</strong>MXN</div>
-                <div> <strong> Servicio:</strong>Normal</div>
-                <div> <strong> Condicion:</strong>99 Dias</div>
+                <div> <strong> Cotizacion:</strong> {{$data['id']}}</div>
+                <div> <strong> Fecha:</strong> {{substr($data['created_at'], 0, 10)}}</div>
+                <div> <strong> Tiempo de Entrega:</strong>{{$data['has_tiempo_de_entrega']['nombre']}}</div>
+                <div> <strong> Moneda:</strong> {{$data['has_moneda']['clave']}}</div>
+                <div> <strong> Servicio:</strong>{{$data['tipo_de_servicio']}}</div>
+                <div> <strong> Condicion:</strong>{{$data['condicion']}}</div>
             </td>
         </tr>
         <tr style=" background: rgba(0, 49, 119, 1); color: white; ">
@@ -106,6 +100,16 @@
                 <h3><strong>Total:</strong> {{$data['has_moneda']['clave']}} {{number_format($data['total'], 2, ',', '.')}}</h3>
             </td>
         </tr>
+        <tr>
+            <td  style="text-align: center; margin-top: 20px" colspan="6">
+                _______________________________ <br/>
+                Ejecutivo(a) de ventas
+            </td>
+            <td  style="text-align: center; margin-top: 20px" colspan="5" >
+                _______________________________ <br/>
+                Autorización Cliente
+            </td>
+        </tr>  
     </table>
 </body>
 
