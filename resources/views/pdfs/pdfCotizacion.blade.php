@@ -25,11 +25,7 @@
             background: rgba(0,49,119,1);
             max-height: 300px;
         }
-          #cabecera_logo img{
-            float: right;
-            width: 300px;
-            margin-top: 10px;
-        }
+         
     </style>
 </head>
 
