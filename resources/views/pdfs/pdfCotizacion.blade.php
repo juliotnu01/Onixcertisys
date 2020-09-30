@@ -5,11 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style>
+        body{
+            width: 100%;
+            padding-left: 0px;
+        }
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             border: none;
-            font-size: 12px;
+            font-size: 10px;
         }
 
         td,
