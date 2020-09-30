@@ -223,10 +223,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this2.services.cotizacionServices.printCotizacion(item);
 
               case 2:
-                _context2.next = 4;
-                return _this2.$store.commit('setDialogViewPdfCotizacion', true);
-
-              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -1552,7 +1548,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1562,7 +1557,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_view_pdf_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_view_pdf_cotizacion", 'cotizacion_print'])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_view_pdf_cotizacion;
@@ -5457,7 +5452,49 @@ var render = function() {
             expression: "openDialog"
           }
         },
-        [_c("pdf", { attrs: { src: "/storage/file.pdf", page: 1 } })],
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { dark: "", color: "primary" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", dark: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.openDialog = false
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { text: "", icon: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.myPdfComponent.print()
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-printer")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("pdf", {
+            ref: "myPdfComponent",
+            attrs: { src: _vm.cotizacion_print.ruta_print_document }
+          })
+        ],
         1
       )
     ],

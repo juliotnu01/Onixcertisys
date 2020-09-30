@@ -11,7 +11,7 @@ return array(
     | in dompdf_config.inc.php. You can also override the entire config file.
     |
     */
-    'show_warnings' => false,   // Throw an Exception on warnings from dompdf
+    'show_warnings' => true,   // Throw an Exception on warnings from dompdf
     'orientation' => 'portrait',
     'defines' => array(
         /**
@@ -71,7 +71,7 @@ return array(
          * direct class use like:
          * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
          */
-        "chroot" => realpath(base_path()),
+        "chroot" => realpath(base_path('')),
 
         /**
          * Whether to enable font subsetting or not.

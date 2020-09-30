@@ -4,11 +4,14 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\{Cotizacion, Partida};
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use DB;
 use PDF;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+
 class CotizacionController extends Controller
 {
     /**
@@ -83,7 +86,7 @@ class CotizacionController extends Controller
                     $partida->importe = $value['importe'];
                     $partida->marca = $value['marca'];
                     $partida->modelo = $value['modelo'];
-                    $partida->serie= $value['serie'];
+                    $partida->serie = $value['serie'];
                     $partida->instrumento_id = $value['instrumento']['id'];
                     $partida->cotizacion_id = $cotizacion['id'];
                     $partida->save();
@@ -168,7 +171,7 @@ class CotizacionController extends Controller
                         $partida->importe = $value['importe'];
                         $partida->marca = $value['marca'];
                         $partida->modelo = $value['modelo'];
-                        $partida->serie= $value['serie'];
+                        $partida->serie = $value['serie'];
                         $partida->instrumento_id = $value['has_intrumento']['id'];
                         $partida->cotizacion_id = $request['id'];
                         $partida->save();
@@ -199,9 +202,20 @@ class CotizacionController extends Controller
 
     public function printCotizacion(Request $request)
     {
-        $pdf = PDF::loadView('pdfs.pdfCotizacion');
-        Storage::disk('public')->put('file.pdf', $pdf->download());
-        return  ;
+        try {
+            $exists = Storage::disk('store_pdfs')->exists("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
+            if($exists) {
+                Storage::disk('store_pdfs')->delete("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
+            }
+            $pdf = PDF::loadView('pdfs.pdfCotizacion', compact('request'));
+            Storage::disk('store_pdfs')->put("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
+            $url = Storage::disk('store_pdfs')->url("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
+                    Cotizacion::find($request['id'])->update([
+                        'ruta_print_document' => $url
+                    ]);
+            return Response(Cotizacion::find($request['id']));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
-
 }

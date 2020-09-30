@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{q?}', function(){
     return view('home');
 })->where('q', '.*');
+Route::get('/test-cotizacion', function(){
+    return view('pdfs.pdfCotizacion');
+});

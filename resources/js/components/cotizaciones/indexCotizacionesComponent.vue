@@ -77,8 +77,8 @@
     </v-data-table>
     <modal-add />
     <modal-edit />
-    <modal-view /> 
-    <modal-pdf /> 
+    <modal-view />
+    <modal-pdf />
 </v-app>
 </template>
 
@@ -184,7 +184,6 @@ export default {
         },
         async printCotizacion(item) {
             await this.services.cotizacionServices.printCotizacion(item);
-            await this.$store.commit('setDialogViewPdfCotizacion', true)
         },
     },
 };

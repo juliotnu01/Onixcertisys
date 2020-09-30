@@ -76,6 +76,8 @@ export default class cotizacionServices {
     async printCotizacion(model) {
         try {
             let { data } = await axios.post(`/api/print-cotizacion`, model);
+            store.commit('setCotizacionPrint', data)
+            store.commit('setDialogViewPdfCotizacion', true)
         } catch (e) {
             console.log(e);
         }

@@ -96,6 +96,7 @@ export default new Vuex.Store({
         partida_tecnico: {},
         error_handle_login: false,
         dialog_view_pdf_cotizacion: false,
+        cotizacion_print: false,
     },
     getters: {
         services: state => state.services,
@@ -179,6 +180,7 @@ export default new Vuex.Store({
         partida_tecnico: state => state.partida_tecnico,
         error_handle_login: state => state.error_handle_login,
         dialog_view_pdf_cotizacion: state => state.dialog_view_pdf_cotizacion,
+        cotizacion_print: state => state.cotizacion_print,
     },
     mutations: {
         setListUser(state, data) {
@@ -536,6 +538,9 @@ export default new Vuex.Store({
         },
         setDialogViewPdfCotizacion(state, data){
             state.dialog_view_pdf_cotizacion = data
+        },
+        setCotizacionPrint(state, data){
+            state.cotizacion_print = data
         },
     },
     actions: {
