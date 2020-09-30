@@ -25,10 +25,6 @@
             background: rgba(0,49,119,1);
             max-height: 300px;
         }
-        #img_logo{
-            float: right;
-        }
-         
     </style>
 </head>
 
@@ -39,7 +35,7 @@
     <table>
         <tr>
             <th colspan="3" id="cabecera_logo">
-                <img src="{{ asset('img/accredian-bco.png')}}" alt="logo de la empresa" id="img_logo" />
+                <img src="{{ asset('img/accredian-bco.png')}}" alt="logo de la empresa"  />
             </th>
         </tr>
         <tr>
