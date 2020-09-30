@@ -21,6 +21,14 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        #cabecera_logo{
+            background: linear-gradient(90deg, rgba(0,49,119,1) 0%, rgba(0,149,217,1) 100%);
+        }
+          #cabecera_logo img{
+            float: right;
+            width: 300px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -30,13 +38,13 @@
 
     <table>
         <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
+            <th colspan="3" id="cabecera_logo">
+                <img src="{{ asset('img/accredian-bco.png')}}" alt="BTS">
+            </th>
         </tr>
         <tr>
             <td>
-                <img src="{{ asset('img/accredian-bco.png')}}" alt="BTS">
+                
             </td>
             <td>Maria Anders</td>
             <td>Germany</td>
