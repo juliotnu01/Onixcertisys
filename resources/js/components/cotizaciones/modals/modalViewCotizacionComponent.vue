@@ -118,8 +118,7 @@
                         </template>
                         <template v-slot:item.vigencia="{ item }">
                             <td>
-                                <v-text-field v-model="item.vigencia" label outlined dense class="mt-5 text-center" v-if="!item.vigencia"></v-text-field>
-                                <span v-else class="text-center">{{item.vigencia}}</span>
+                                <v-text-field v-model="item.vigencia" label outlined dense class="mt-5 text-center" />
                             </td>
                         </template>
                     </v-data-table>

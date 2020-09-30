@@ -1443,7 +1443,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5226,27 +5225,21 @@ var render = function() {
                                   _c(
                                     "td",
                                     [
-                                      !item.vigencia
-                                        ? _c("v-text-field", {
-                                            staticClass: "mt-5 text-center",
-                                            attrs: {
-                                              label: "",
-                                              outlined: "",
-                                              dense: ""
-                                            },
-                                            model: {
-                                              value: item.vigencia,
-                                              callback: function($$v) {
-                                                _vm.$set(item, "vigencia", $$v)
-                                              },
-                                              expression: "item.vigencia"
-                                            }
-                                          })
-                                        : _c(
-                                            "span",
-                                            { staticClass: "text-center" },
-                                            [_vm._v(_vm._s(item.vigencia))]
-                                          )
+                                      _c("v-text-field", {
+                                        staticClass: "mt-5 text-center",
+                                        attrs: {
+                                          label: "",
+                                          outlined: "",
+                                          dense: ""
+                                        },
+                                        model: {
+                                          value: item.vigencia,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "vigencia", $$v)
+                                          },
+                                          expression: "item.vigencia"
+                                        }
+                                      })
                                     ],
                                     1
                                   )

@@ -63,8 +63,8 @@ class ReciboController extends Controller
                     } else {
                         $tipo = $value['tipo']['name'];
                     }
-                    $validate = $partida->where('convertir_recibo', true)->where('id', $value['id'])->first();
-                    if (is_null($validate)) {
+
+                    if ($value['convertir_recibo']) {
                         $partida->find($value['id'])
                             ->update([
                                 'convertir_recibo' => $value['convertir_recibo'],
