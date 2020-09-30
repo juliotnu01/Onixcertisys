@@ -203,17 +203,18 @@ class CotizacionController extends Controller
     public function printCotizacion(Request $request)
     {
         try {
+            $data = collect($request->all());
             $exists = Storage::disk('store_pdfs')->exists("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             if($exists) {
                 Storage::disk('store_pdfs')->delete("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             }
-            $pdf = PDF::loadView('pdfs.pdfCotizacion', compact('request'));
+            $pdf = PDF::loadView('pdfs.pdfCotizacion', compact('data'));
             Storage::disk('store_pdfs')->put("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
             $url = Storage::disk('store_pdfs')->url("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
                     Cotizacion::find($request['id'])->update([
                         'ruta_print_document' => $url
                     ]);
-            return Response(Cotizacion::find($request['id']));
+            return Response(Cotizacion::with('hasMoneda','hasCliente', 'hasPartidas', 'hasPartidas.hasIntrumento', 'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
         } catch (\Throwable $th) {
             throw $th;
         }
