@@ -13,7 +13,7 @@
             font-family: arial, sans-serif;
             border-collapse: collapse;
             border: none;
-            font-size: 10px;
+            font-size: 9px;
         }
 
         td,
