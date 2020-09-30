@@ -22,7 +22,8 @@
             background-color: #dddddd;
         }
         #cabecera_logo{
-            background: linear-gradient(90deg, rgba(0,49,119,1) 0%, rgba(0,149,217,1) 100%);
+            background: rgba(0,49,119,1);
+            max-height: 300px;
         }
           #cabecera_logo img{
             float: right;
