@@ -146,9 +146,15 @@ export default {
     methods: {
         async importarPartidas() {
             try {
-                // var formData = new FormData();
-                // formData.append("excel",this.files );
-                // let {data} = await axios.post('/api/importar-partidas', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                var formData = new FormData();
+                formData.append("excel", this.files);
+                let {
+                    data
+                } = await axios.post('/api/importar-partidas', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
                 this.services.cotizacionServices.getMasivPartidas();
             } catch (e) {
                 console.log(e);

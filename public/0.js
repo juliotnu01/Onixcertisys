@@ -910,25 +910,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var formData, _yield$axios$post, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                try {
-                  // var formData = new FormData();
-                  // formData.append("excel",this.files );
-                  // let {data} = await axios.post('/api/importar-partidas', formData, {headers: {'Content-Type': 'multipart/form-data'}})
-                  _this2.services.cotizacionServices.getMasivPartidas();
-                } catch (e) {
-                  console.log(e);
-                }
+                _context2.prev = 0;
+                formData = new FormData();
+                formData.append("excel", _this2.files);
+                _context2.next = 5;
+                return axios.post('/api/importar-partidas', formData, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+                });
 
-              case 1:
+              case 5:
+                _yield$axios$post = _context2.sent;
+                data = _yield$axios$post.data;
+
+                _this2.services.cotizacionServices.getMasivPartidas();
+
+                _context2.next = 13;
+                break;
+
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 10]]);
       }))();
     }
   }
