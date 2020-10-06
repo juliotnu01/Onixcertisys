@@ -97,6 +97,8 @@ export default new Vuex.Store({
         error_handle_login: false,
         dialog_view_pdf_cotizacion: false,
         cotizacion_print: false,
+        dialog_cargar_partidas_masivamente: false,
+        masivPartidas: [],
     },
     getters: {
         services: state => state.services,
@@ -181,6 +183,8 @@ export default new Vuex.Store({
         error_handle_login: state => state.error_handle_login,
         dialog_view_pdf_cotizacion: state => state.dialog_view_pdf_cotizacion,
         cotizacion_print: state => state.cotizacion_print,
+        dialog_cargar_partidas_masivamente: state => state.dialog_cargar_partidas_masivamente,
+        masivPartidas: state => state.masivPartidas,
     },
     mutations: {
         setListUser(state, data) {
@@ -542,6 +546,19 @@ export default new Vuex.Store({
         setCotizacionPrint(state, data){
             state.cotizacion_print = data
         },
+        setDialogCargarPartidaMasivamente(state, data){
+            state.dialog_cargar_partidas_masivamente = data
+        },
+        setMasivPartidas(state, data){
+            state.masivPartidas = data
+            for (const a of state.masivPartidas) {
+                a.acreditacion = {}
+                a.magnitud = {}
+                a.cantidad = 0
+                a.servicio = {}
+                a.unidad = {}
+            }
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {

@@ -101,6 +101,9 @@ Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 Route::delete('/delete-cotizacion/{id}', 'v1\CotizacionController@destroy');
 Route::post('/print-cotizacion', 'v1\CotizacionController@printCotizacion'); // imprimir pdf
+Route::post('/importar-partidas', 'v1\CotizacionController@importExcelPartida'); // importar partidas
+Route::get('/get-masiv-partidas', 'v1\CotizacionController@getMasivPartidas'); // importar partidas
+
 
 Route::get('/get-partidas', 'v1\PartidaController@index');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');

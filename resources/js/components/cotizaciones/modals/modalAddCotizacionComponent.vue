@@ -1,11 +1,14 @@
 <template>
 <v-app>
-    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256">
+    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256" >
         <v-toolbar dark color="primary">
             <v-btn icon dark @click="openDialog = false">
                 <v-icon>mdi-close</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
+            <v-btn text dark @click.prevent="$store.commit('setDialogCargarPartidaMasivamente', true)" tile>
+                <v-icon>mdi-file-upload</v-icon> Cargar Partidas masivamente
+            </v-btn>
             <v-btn text dark @click.prevent="addCotizacion" tile>
                 <v-icon>mdi-content-save</v-icon> Guardar
             </v-btn>
@@ -158,6 +161,7 @@
             </v-card-text>
         </v-card>
     </v-dialog>
+    <modal-cargar-partidas-masivamente />
 </v-app>
 </template>
 
@@ -165,7 +169,11 @@
 import {
     mapGetters
 } from "vuex";
+import modalCargarPartidaMasivamente from './modalCargarPartidaMasivamenteComponent'
 export default {
+    components: {
+        'modal-cargar-partidas-masivamente': modalCargarPartidaMasivamente
+    },
     data() {
         return {
             rules: {

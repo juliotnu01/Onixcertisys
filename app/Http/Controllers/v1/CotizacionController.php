@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Cotizacion, Partida};
+use App\Models\{Cotizacion, Partida, MasivPartidas};
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use DB;
@@ -11,6 +11,10 @@ use PDF;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportMasivPartidas;
+
+
 
 class CotizacionController extends Controller
 {
@@ -219,4 +223,15 @@ class CotizacionController extends Controller
             throw $th;
         }
     }
+
+    public function importExcelPartida(Request $request)
+    {
+         Excel::import(new ImportMasivPartidas, $request->file('excel'));
+         return ;
+    }
+    public function getMasivPartidas()
+    {
+         return MasivPartidas::with(['hasInstrumento'])->get();
+    }
+    
 }

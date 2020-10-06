@@ -82,4 +82,12 @@ export default class cotizacionServices {
             console.log(e);
         }
     }
+    async getMasivPartidas() {
+        try {
+            let { data } = await axios(`/api/get-masiv-partidas`);
+           await store.commit('setMasivPartidas', data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }
