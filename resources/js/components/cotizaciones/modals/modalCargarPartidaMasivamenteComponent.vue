@@ -14,7 +14,7 @@
                         </v-chip>
                     </template>
                 </v-file-input>
-                <v-btn text dark @click.prevent="importarPartidas" tile>
+                <v-btn text dark @click.prevent="importarPartidas" tile :loading="loading_importar" >
                     <v-icon>mdi-file-upload</v-icon> importar
                 </v-btn>
             </v-toolbar>
@@ -47,10 +47,10 @@
                                     {{ item.has_instrumento.alcance }}
                                 </td>
                                 <td class="text-center">
-                                    <v-autocomplete v-model="item.acreditacion" :items="acreditaciones" outlined dense item-text="nombre" return-object></v-autocomplete>
+                                    <v-autocomplete v-model="item.acreditacion" :items="acreditaciones" outlined dense item-text="nombre" return-object @change="updateInstrumento(item)" />
                                 </td>
                                 <td class="text-center">
-                                    <v-autocomplete v-model="item.magnitud" :items="magnitudes" outlined dense item-text="nombre" return-object></v-autocomplete>
+                                    <v-autocomplete v-model="item.magnitud" :items="magnitudes" outlined dense item-text="nombre" return-object @change="updateInstrumento(item)" />
                                 </td>
                                 <td class="text-center">{{ item.marca }}</td>
                                 <td class="text-center">{{ item.modelo }}</td>
@@ -59,7 +59,7 @@
                                     <v-text-field small dense label="" outlined v-model="item.cantidad"></v-text-field>
                                 </td>
                                 <td class="text-center">
-                                    <v-text-field small dense label="" outlined v-model="item.has_instrumento.precio_venta" />
+                                    <v-text-field small dense label="" outlined v-model="item.has_instrumento.precio_venta" @change="updateInstrumento(item)" />
                                 </td>
                                 <td class="text-center">
                                     <v-select small dense :items="servicio_partida" v-model="item.servicio" label="Servicio" item-text="name" return-object outlined />
@@ -73,7 +73,7 @@
                 </v-simple-table>
             </v-card-text>
             <v-card-actions>
-                <v-btn text color="deep-purple accent-4" @click="CargarPärtidas"> Cargar partidas </v-btn>
+                <v-btn text color="deep-purple accent-4" @click="CargarPärtidas()"> Cargar partidas </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -118,6 +118,7 @@ export default {
                     Value: 3,
                 },
             ],
+            loading_importar:false,
         };
     },
     computed: {
@@ -145,6 +146,8 @@ export default {
     },
     methods: {
         async importarPartidas() {
+            this.$store.commit("setMasivPartidas", []);
+            this.loading_importar  = true
             try {
                 var formData = new FormData();
                 formData.append("excel", this.files);
@@ -155,16 +158,34 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                this.services.cotizacionServices.getMasivPartidas();
+                await this.services.cotizacionServices.getMasivPartidas();
+                this.loading_importar = false
             } catch (e) {
                 console.log(e);
             }
         },
-
-        CargarPärtidas() {
-            this.$emit('cargarPartidas')
+        async CargarPärtidas() {
+            this.$emit('cargarPartidas', this.masivPartidas)
             this.$store.commit("setDialogCargarPartidaMasivamente", false);
+            
+        },
+        async updateInstrumento(item) {
+            try {
+                var model = {
+                    acreditacion: item.acreditacion.id,
+                    magnitud: item.magnitud.id,
+                    id_instrumento: item.instrumento_id,
+                    precio_venta: item.has_instrumento.precio_venta
+                }
+                let {
+                    data
+                } = await axios.put('/api/edit-instrumento-cargado-masivamente', model)
+                
+            } catch (e) {
+                console.log(e);
+            }
         }
+
     },
 };
 </script>

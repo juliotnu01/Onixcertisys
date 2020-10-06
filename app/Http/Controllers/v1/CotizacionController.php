@@ -95,6 +95,8 @@ class CotizacionController extends Controller
                     $partida->cotizacion_id = $cotizacion['id'];
                     $partida->save();
                 }
+                
+                MasivPartidas::truncate();
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
@@ -231,7 +233,7 @@ class CotizacionController extends Controller
     }
     public function getMasivPartidas()
     {
-         return MasivPartidas::with(['hasInstrumento'])->get();
+         return MasivPartidas::with(['hasInstrumento', 'hasInstrumento.hasAcreditacion'])->get();
     }
     
 }

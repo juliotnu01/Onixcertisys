@@ -106,6 +106,22 @@ class InstrumentoController extends Controller
             
         }
     }
+    public function updateInstrumentoCargadoMasivamente(Request $request, Instrumento $instrumento)
+    {
+        try {
+            return DB::transaction(function() use ($request, $instrumento){
+                $instrumento->find($request['id_instrumento'])->update([
+                    'acreditacion_id' => $request['acreditacion'],
+                    'magnitude_id' => $request['magnitud'],
+                    'precio_venta' => $request['precio_venta'],
+                ]);
+
+            },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

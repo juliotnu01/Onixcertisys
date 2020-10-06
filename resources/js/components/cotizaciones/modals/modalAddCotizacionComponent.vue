@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256">
+    <v-dialog v-model="openDialog" persistent max-width="2556" min-width="2556">
         <v-toolbar dark color="primary">
             <v-btn icon dark @click="openDialog = false">
                 <v-icon>mdi-close</v-icon>
@@ -13,7 +13,7 @@
                 <v-icon>mdi-content-save</v-icon> Guardar
             </v-btn>
         </v-toolbar>
-        <v-card>
+        <v-card >
             <v-card-title>Agregar Cotizacion</v-card-title>
             <v-card-text>
                 <v-form ref="f_mag">
@@ -161,7 +161,7 @@
             </v-card-text>
         </v-card>
     </v-dialog>
-    <modal-cargar-partidas-masivamente v-on:cargar-partidas="cargarPartidasImportadas" />
+    <modal-cargar-partidas-masivamente v-on:cargarPartidas="cargarPartidasImportadas" />
 </v-app>
 </template>
 
@@ -452,6 +452,7 @@ export default {
                     iva: 0,
                     total: 0,
                 };
+                this.$store.commit("setMasivPartidas", []);
             }
         },
         eliminarPartida(item) {
@@ -460,12 +461,32 @@ export default {
             );
             this.model.partidas.splice(index, 1);
         },
-        cargarPartidasImportadas() {
-            console.log('recibiendo...')
-            for (var i = 0; i < this.masivPartidas.lenght; i++) {
-                this.masivPartidas[i].importe = this.masivPartidas[i].cantidad * this.masivPartidas[i].has_instrumento.precio_venta
-                this.model.partidas.push(this.masivPartidas[i]);
+        cargarPartidasImportadas(masivPartidas) {
+            var partida = {
+                identificacion: "",
+                instrumento: {},
+                cantidad: 0,
+                marca: "",
+                modelo: "",
+                serie: "",
+                importe: 0,
+                servicio: {},
+                unidad: {},
             }
+            this.masivPartidas.forEach(item => {
+                partida = {
+                    identificacion: item.identificacion,
+                    instrumento: item.has_instrumento,
+                    cantidad: item.cantidad,
+                    marca: item.marca,
+                    modelo: item.modelo,
+                    serie: item.serie,
+                    importe: item.cantidad * item.has_instrumento.precio_venta,
+                    servicio: item.servicio,
+                    unidad: item.unidad,
+                }
+                this.model.partidas.push(partida);
+            })
 
         }
     },

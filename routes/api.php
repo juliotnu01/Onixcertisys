@@ -85,6 +85,7 @@ Route::get('/get-instrumentos', 'v1\InstrumentoController@index');
 Route::post('/add-instrumento', 'v1\InstrumentoController@store');
 Route::put('/edit-instrumento', 'v1\InstrumentoController@update');
 Route::delete('/delete-instrumento/{id}', 'v1\InstrumentoController@destroy');
+Route::put('/edit-instrumento-cargado-masivamente', 'v1\InstrumentoController@updateInstrumentoCargadoMasivamente');
 
 Route::get('/get-procedimientos', 'v1\ProcedimientoController@index');
 Route::post('/add-procedimiento', 'v1\ProcedimientoController@store');

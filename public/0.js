@@ -687,7 +687,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (!_this3.$refs.f_mag.validate()) {
-                  _context2.next = 6;
+                  _context2.next = 7;
                   break;
                 }
 
@@ -718,7 +718,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   total: 0
                 };
 
-              case 6:
+                _this3.$store.commit("setMasivPartidas", []);
+
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -732,13 +734,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.model.partidas.splice(index, 1);
     },
-    cargarPartidasImportadas: function cargarPartidasImportadas() {
-      console.log('recibiendo...');
+    cargarPartidasImportadas: function cargarPartidasImportadas(masivPartidas) {
+      var _this4 = this;
 
-      for (var i = 0; i < this.masivPartidas.lenght; i++) {
-        this.masivPartidas[i].importe = this.masivPartidas[i].cantidad * this.masivPartidas[i].has_instrumento.precio_venta;
-        this.model.partidas.push(this.masivPartidas[i]);
-      }
+      var partida = {
+        identificacion: "",
+        instrumento: {},
+        cantidad: 0,
+        marca: "",
+        modelo: "",
+        serie: "",
+        importe: 0,
+        servicio: {},
+        unidad: {}
+      };
+      this.masivPartidas.forEach(function (item) {
+        partida = {
+          identificacion: item.identificacion,
+          instrumento: item.has_instrumento,
+          cantidad: item.cantidad,
+          marca: item.marca,
+          modelo: item.modelo,
+          serie: item.serie,
+          importe: item.cantidad * item.has_instrumento.precio_venta,
+          servicio: item.servicio,
+          unidad: item.unidad
+        };
+
+        _this4.model.partidas.push(partida);
+      });
     }
   }
 });
@@ -878,7 +902,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         name: "Juego",
         Value: 3
-      }]
+      }],
+      loading_importar: false
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_cargar_partidas_masivamente", "masivPartidas", "instrumentos", "acreditaciones", "magnitudes"])), {}, {
@@ -924,41 +949,99 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
+                _this2.$store.commit("setMasivPartidas", []);
+
+                _this2.loading_importar = true;
+                _context2.prev = 2;
                 formData = new FormData();
                 formData.append("excel", _this2.files);
-                _context2.next = 5;
+                _context2.next = 7;
                 return axios.post('/api/importar-partidas', formData, {
                   headers: {
                     'Content-Type': 'multipart/form-data'
                   }
                 });
 
-              case 5:
+              case 7:
                 _yield$axios$post = _context2.sent;
                 data = _yield$axios$post.data;
+                _context2.next = 11;
+                return _this2.services.cotizacionServices.getMasivPartidas();
 
-                _this2.services.cotizacionServices.getMasivPartidas();
-
-                _context2.next = 13;
+              case 11:
+                _this2.loading_importar = false;
+                _context2.next = 17;
                 break;
 
-              case 10:
-                _context2.prev = 10;
-                _context2.t0 = _context2["catch"](0);
+              case 14:
+                _context2.prev = 14;
+                _context2.t0 = _context2["catch"](2);
                 console.log(_context2.t0);
 
-              case 13:
+              case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 10]]);
+        }, _callee2, null, [[2, 14]]);
       }))();
     },
     CargarPärtidas: function CargarPRtidas() {
-      this.$emit('cargarPartidas');
-      this.$store.commit("setDialogCargarPartidaMasivamente", false);
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.$emit('cargarPartidas', _this3.masivPartidas);
+
+                _this3.$store.commit("setDialogCargarPartidaMasivamente", false);
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    updateInstrumento: function updateInstrumento(item) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var model, _yield$axios$put, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                model = {
+                  acreditacion: item.acreditacion.id,
+                  magnitud: item.magnitud.id,
+                  id_instrumento: item.instrumento_id,
+                  precio_venta: item.has_instrumento.precio_venta
+                };
+                _context4.next = 4;
+                return axios.put('/api/edit-instrumento-cargado-masivamente', model);
+
+              case 4:
+                _yield$axios$put = _context4.sent;
+                data = _yield$axios$put.data;
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                console.log(_context4.t0);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }))();
     }
   }
 });
@@ -2370,7 +2453,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          attrs: { persistent: "", "max-width": "2556", "min-width": "2556" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -3422,7 +3505,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("modal-cargar-partidas-masivamente", {
-        on: { "cargar-partidas": _vm.cargarPartidasImportadas }
+        on: { cargarPartidas: _vm.cargarPartidasImportadas }
       })
     ],
     1
@@ -3552,7 +3635,12 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { text: "", dark: "", tile: "" },
+                      attrs: {
+                        text: "",
+                        dark: "",
+                        tile: "",
+                        loading: _vm.loading_importar
+                      },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -3668,6 +3756,11 @@ var render = function() {
                                           "item-text": "nombre",
                                           "return-object": ""
                                         },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.updateInstrumento(item)
+                                          }
+                                        },
                                         model: {
                                           value: item.acreditacion,
                                           callback: function($$v) {
@@ -3691,6 +3784,11 @@ var render = function() {
                                           dense: "",
                                           "item-text": "nombre",
                                           "return-object": ""
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.updateInstrumento(item)
+                                          }
                                         },
                                         model: {
                                           value: item.magnitud,
@@ -3749,6 +3847,11 @@ var render = function() {
                                           dense: "",
                                           label: "",
                                           outlined: ""
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.updateInstrumento(item)
+                                          }
                                         },
                                         model: {
                                           value:
@@ -3842,7 +3945,7 @@ var render = function() {
                       attrs: { text: "", color: "deep-purple accent-4" },
                       on: {
                         click: function($event) {
-                          _vm.CargarPärtidas
+                          _vm.CargarPärtidas()
                         }
                       }
                     },
