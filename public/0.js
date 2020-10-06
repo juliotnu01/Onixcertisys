@@ -573,7 +573,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", 'masivPartidas'])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_add_cotizacion;
@@ -731,6 +731,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return item.identificacion === item.identificacion;
       });
       this.model.partidas.splice(index, 1);
+    },
+    cargarPartidasImportadas: function cargarPartidasImportadas() {
+      console.log('recibiendo...');
+
+      for (var i = 0; i < this.masivPartidas.lenght; i++) {
+        this.masivPartidas[i].importe = this.masivPartidas[i].cantidad * this.masivPartidas[i].has_instrumento.precio_venta;
+        this.model.partidas.push(this.masivPartidas[i]);
+      }
     }
   }
 });
@@ -947,6 +955,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee2, null, [[0, 10]]);
       }))();
+    },
+    CargarPärtidas: function CargarPRtidas() {
+      this.$emit('cargarPartidas');
+      this.$store.commit("setDialogCargarPartidaMasivamente", false);
     }
   }
 });
@@ -3409,7 +3421,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-cargar-partidas-masivamente")
+      _c("modal-cargar-partidas-masivamente", {
+        on: { "cargar-partidas": _vm.cargarPartidasImportadas }
+      })
     ],
     1
   )
@@ -3710,7 +3724,7 @@ var render = function() {
                                         attrs: {
                                           small: "",
                                           dense: "",
-                                          label: "label",
+                                          label: "",
                                           outlined: ""
                                         },
                                         model: {
@@ -3733,7 +3747,7 @@ var render = function() {
                                         attrs: {
                                           small: "",
                                           dense: "",
-                                          label: "label",
+                                          label: "",
                                           outlined: ""
                                         },
                                         model: {
@@ -3824,8 +3838,15 @@ var render = function() {
                 [
                   _c(
                     "v-btn",
-                    { attrs: { text: "", color: "deep-purple accent-4" } },
-                    [_vm._v(" Learn More ")]
+                    {
+                      attrs: { text: "", color: "deep-purple accent-4" },
+                      on: {
+                        click: function($event) {
+                          _vm.CargarPärtidas
+                        }
+                      }
+                    },
+                    [_vm._v(" Cargar partidas ")]
                   )
                 ],
                 1

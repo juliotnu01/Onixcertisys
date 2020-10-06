@@ -557,6 +557,7 @@ export default new Vuex.Store({
                 a.cantidad = 0
                 a.servicio = {}
                 a.unidad = {}
+                a.importe = 0
             }
         }
     },

@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256" >
+    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256">
         <v-toolbar dark color="primary">
             <v-btn icon dark @click="openDialog = false">
                 <v-icon>mdi-close</v-icon>
@@ -161,7 +161,7 @@
             </v-card-text>
         </v-card>
     </v-dialog>
-    <modal-cargar-partidas-masivamente />
+    <modal-cargar-partidas-masivamente v-on:cargar-partidas="cargarPartidasImportadas" />
 </v-app>
 </template>
 
@@ -347,6 +347,7 @@ export default {
             "empleados",
             "tiempos_de_entrega",
             "instrumentos",
+            'masivPartidas'
         ]),
         openDialog: {
             get() {
@@ -459,6 +460,14 @@ export default {
             );
             this.model.partidas.splice(index, 1);
         },
+        cargarPartidasImportadas() {
+            console.log('recibiendo...')
+            for (var i = 0; i < this.masivPartidas.lenght; i++) {
+                this.masivPartidas[i].importe = this.masivPartidas[i].cantidad * this.masivPartidas[i].has_instrumento.precio_venta
+                this.model.partidas.push(this.masivPartidas[i]);
+            }
+
+        }
     },
 };
 </script>

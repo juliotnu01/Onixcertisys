@@ -56,10 +56,10 @@
                                 <td class="text-center">{{ item.modelo }}</td>
                                 <td class="text-center">{{ item.serie }}</td>
                                 <td class="text-center">
-                                    <v-text-field small dense label="label" outlined v-model="item.cantidad"></v-text-field>
+                                    <v-text-field small dense label="" outlined v-model="item.cantidad"></v-text-field>
                                 </td>
                                 <td class="text-center">
-                                    <v-text-field small dense label="label" outlined v-model="item.has_instrumento.precio_venta" />
+                                    <v-text-field small dense label="" outlined v-model="item.has_instrumento.precio_venta" />
                                 </td>
                                 <td class="text-center">
                                     <v-select small dense :items="servicio_partida" v-model="item.servicio" label="Servicio" item-text="name" return-object outlined />
@@ -73,7 +73,7 @@
                 </v-simple-table>
             </v-card-text>
             <v-card-actions>
-                <v-btn text color="deep-purple accent-4"> Learn More </v-btn>
+                <v-btn text color="deep-purple accent-4" @click="CargarPärtidas"> Cargar partidas </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -160,6 +160,11 @@ export default {
                 console.log(e);
             }
         },
+
+        CargarPärtidas() {
+            this.$emit('cargarPartidas')
+            this.$store.commit("setDialogCargarPartidaMasivamente", false);
+        }
     },
 };
 </script>
