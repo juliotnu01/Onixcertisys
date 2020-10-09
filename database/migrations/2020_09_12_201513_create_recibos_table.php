@@ -16,6 +16,7 @@ class CreateRecibosTable extends Migration
         Schema::create('recibos', function (Blueprint $table) {
             $table->id();
             $table->string('estado')->nullable();
+            $table->string('ruta_pdf')->nullable();
             $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade');
             $table->timestamps();
         });

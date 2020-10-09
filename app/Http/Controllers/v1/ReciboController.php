@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\{Recibo, Partida, Cotizacion};
 use Illuminate\Http\Request;
 use DB;
+use PDF;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ReciboController extends Controller
 {
@@ -19,6 +22,7 @@ class ReciboController extends Controller
         try {
             $recibos = Recibo::with(['hasCotizaicon',
                                      'hasCotizaicon.hasCliente',
+                                     'hasCotizaicon.hasMoneda',
                                      'hasPartidas', 
                                      'hasPartidas.hasEmpleado',
                                      'hasPartidas.hasIntrumento', 
@@ -64,7 +68,11 @@ class ReciboController extends Controller
                         $tipo = $value['tipo']['name'];
                     }
 
-                    if ($value['convertir_recibo']) {
+                    $valid = $partida->where('id' ,$value['id'])
+                                     ->where('recibo_id' , null)
+                                     ->where('convertir_recibo',null)
+                                     ->exists();
+                    if ($valid && $value['convertir_recibo']) {
                         $partida->find($value['id'])
                             ->update([
                                 'convertir_recibo' => $value['convertir_recibo'],
@@ -123,5 +131,15 @@ class ReciboController extends Controller
     public function destroy(Recibo $recibo)
     {
         //
+    }
+    public function printRecibos(Request $request){
+        $data = collect($request->all());
+        $pdf = PDF::loadView('pdfs.pdfRecibos', compact('data'));
+        Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
+        $url = Storage::disk('store_pdfs')->url("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
+        Recibo::find($request['id'])->update([
+            'ruta_pdf' => $url
+        ]);
+        return Response(Recibo::find($request['id']));
     }
 }

@@ -102,7 +102,7 @@
                         <template v-slot:item.tipo="{ item }">
                             <td class="text-center">
                                 <v-select class="text-center mt-5" :items="items_tipo" v-model="item.tipo" label item-text="name" return-object outlined dense offset-y v-if="!item.tipo"></v-select>
-                                <div v-else class="text-center">{{item.tipo}}</div>
+                                <div v-else class="text-center">{{item.tipo.name}}</div>
                             </td>
                         </template>
                         <template v-slot:item.informe="{ item }">

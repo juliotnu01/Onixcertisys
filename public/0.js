@@ -3992,7 +3992,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "1256", "min-width": "1256", persistent: "" },
+          attrs: { "max-width": "2556", "min-width": "2556", persistent: "" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -5942,7 +5942,7 @@ var render = function() {
                                         : _c(
                                             "div",
                                             { staticClass: "text-center" },
-                                            [_vm._v(_vm._s(item.tipo))]
+                                            [_vm._v(_vm._s(item.tipo.name))]
                                           )
                                     ],
                                     1

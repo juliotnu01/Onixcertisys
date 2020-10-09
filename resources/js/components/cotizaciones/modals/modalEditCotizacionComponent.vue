@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-dialog v-model="openDialog" max-width="1256" min-width="1256" persistent>
+    <v-dialog v-model="openDialog" max-width="2556" min-width="2556" persistent>
         <v-toolbar dark color="primary">
             <v-btn icon dark @click="openDialog = false">
                 <v-icon>mdi-close</v-icon>

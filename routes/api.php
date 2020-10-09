@@ -115,5 +115,6 @@ Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // i
 
 Route::get('/get-recibos', 'v1\ReciboController@index');
 Route::post('/add-recibo', 'v1\ReciboController@store');
+Route::post('/imprimir-recibo', 'v1\ReciboController@printRecibos');
 // Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 // Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');

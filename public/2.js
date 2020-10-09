@@ -142,25 +142,152 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-asignar-tecnico': _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
+      userPrintSelected: {},
       itemsPerPageArray: [4, 8, 12],
       search: "",
       filter: {},
-      sortDesc: false,
       page: 1,
-      itemsPerPage: 4,
-      sortBy: "name",
+      itemsPerPage: 6,
       show: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "empleados"])), {}, {
     numberOfPages: function numberOfPages() {
       return Math.ceil(this.recibos.length / this.itemsPerPage);
     }
@@ -177,6 +304,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.services.reciboServices.getlistRecibos();
 
             case 2:
+              _context.next = 4;
+              return _this.services.empleadoServices.getlistEmpleados();
+
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -195,11 +326,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.itemsPerPage = number;
     },
     AsignarTecnico: function AsignarTecnico(item) {
-      console.log({
-        item: item
-      });
-      this.$store.commit('setPartidaTecnico', item);
-      this.$store.commit('setDialogAsignarTecnico', true);
+      this.$store.commit("setPartidaTecnico", item);
+      this.$store.commit("setDialogAsignarTecnico", true);
     }
   }
 });
@@ -361,8 +489,6 @@ var render = function() {
                       "items-per-page": _vm.itemsPerPage,
                       page: _vm.page,
                       search: _vm.search,
-                      "sort-by": _vm.sortBy.toLowerCase(),
-                      "sort-desc": _vm.sortDesc,
                       "hide-default-footer": ""
                     },
                     on: {
@@ -392,7 +518,7 @@ var render = function() {
                                     "solo-inverted": "",
                                     "hide-details": "",
                                     "prepend-inner-icon": "mdi-search",
-                                    label: "Search"
+                                    label: "Buscar recibo"
                                   },
                                   model: {
                                     value: _vm.search,
@@ -401,7 +527,27 @@ var render = function() {
                                     },
                                     expression: "search"
                                   }
-                                })
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "mx-2",
+                                    attrs: { fab: "", dark: "", icon: "" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.services.reciboServices.getlistRecibos()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v(" mdi-reload ")
+                                    ])
+                                  ],
+                                  1
+                                )
                               ],
                               1
                             )
@@ -419,12 +565,12 @@ var render = function() {
                                 return _c(
                                   "v-col",
                                   {
-                                    key: item.name,
+                                    key: item.id,
                                     attrs: {
                                       cols: "12",
                                       sm: "6",
-                                      md: "3",
-                                      lg: "3"
+                                      md: "4",
+                                      lg: "4"
                                     }
                                   },
                                   [
@@ -457,33 +603,33 @@ var render = function() {
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "\r\n                                                    Fecha creación:\r\n                                                    " +
+                                                          "\n                          Fecha creación:\n                          " +
                                                             _vm._s(
                                                               item.created_at.substr(
                                                                 0,
                                                                 10
                                                               )
                                                             ) +
-                                                            "\r\n                                                "
+                                                            "\n                        "
                                                         )
                                                       ]
                                                     ),
                                                     _vm._v(" "),
                                                     _c("div", [
                                                       _vm._v(
-                                                        "Recibo id:\r\n                                                    " +
+                                                        "\n                          Recibo id:\n                          " +
                                                           _vm._s(item.id) +
-                                                          "\r\n                                                "
+                                                          "\n                        "
                                                       )
                                                     ]),
                                                     _vm._v(" "),
                                                     _c("div", [
                                                       _vm._v(
-                                                        "\r\n                                                    Cotización id:\r\n                                                    " +
+                                                        "\n                          Cotización id:\n                          " +
                                                           _vm._s(
                                                             item.cotizacion_id
                                                           ) +
-                                                          "\r\n                                                "
+                                                          "\n                        "
                                                       )
                                                     ]),
                                                     _vm._v(" "),
@@ -508,47 +654,40 @@ var render = function() {
                                                     }
                                                   },
                                                   [
+                                                    _c("strong", [
+                                                      _vm._v("Cliente: ")
+                                                    ]),
+                                                    _vm._v(
+                                                      "\n                        " +
+                                                        _vm._s(
+                                                          item.has_cotizaicon
+                                                            .has_cliente
+                                                            .razon_social
+                                                        ) +
+                                                        "\n                        "
+                                                    ),
                                                     _c(
-                                                      "small",
+                                                      "v-btn",
+                                                      {
+                                                        attrs: { icon: "" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.show = !_vm.show
+                                                          }
+                                                        }
+                                                      },
                                                       [
-                                                        _c("strong", [
-                                                          _vm._v("Cliente: ")
-                                                        ]),
-                                                        _vm._v(
-                                                          "\r\n                                                    " +
+                                                        _c("v-icon", [
+                                                          _vm._v(
                                                             _vm._s(
-                                                              item
-                                                                .has_cotizaicon
-                                                                .has_cliente
-                                                                .razon_social
-                                                            ) +
-                                                            "\r\n                                                    "
-                                                        ),
-                                                        _c(
-                                                          "v-btn",
-                                                          {
-                                                            attrs: { icon: "" },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                _vm.show = !_vm.show
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("v-icon", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm.show
-                                                                    ? "mdi-chevron-up"
-                                                                    : "mdi-chevron-down"
-                                                                )
-                                                              )
-                                                            ])
-                                                          ],
-                                                          1
-                                                        )
+                                                              _vm.show
+                                                                ? "mdi-chevron-up"
+                                                                : "mdi-chevron-down"
+                                                            )
+                                                          )
+                                                        ])
                                                       ],
                                                       1
                                                     ),
@@ -575,7 +714,7 @@ var render = function() {
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
@@ -594,7 +733,7 @@ var render = function() {
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
@@ -609,11 +748,11 @@ var render = function() {
                                                             _c("small", [
                                                               _c("strong", [
                                                                 _vm._v(
-                                                                  "Correo electronico para la factura:\r\n                                                                "
+                                                                  "Correo electronico para la factura:\n                                "
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
@@ -632,7 +771,7 @@ var render = function() {
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
@@ -651,7 +790,7 @@ var render = function() {
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
@@ -670,14 +809,14 @@ var render = function() {
                                                                 )
                                                               ]),
                                                               _vm._v(
-                                                                "\r\n                                                                " +
+                                                                "\n                                " +
                                                                   _vm._s(
                                                                     item
                                                                       .has_cotizaicon
                                                                       .has_cliente
                                                                       .correo_contacto
                                                                   ) +
-                                                                  "\r\n                                                            "
+                                                                  " "
                                                               )
                                                             ]),
                                                             _c("br")
@@ -686,6 +825,138 @@ var render = function() {
                                                         1
                                                       )
                                                     ])
+                                                  ],
+                                                  1
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  {
+                                                    attrs: {
+                                                      cols: "12",
+                                                      xs: "12",
+                                                      sm: "12",
+                                                      md: "12",
+                                                      lg: "12"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-row",
+                                                      [
+                                                        _c(
+                                                          "v-col",
+                                                          {
+                                                            attrs: {
+                                                              cols: "12",
+                                                              xs: "12",
+                                                              sm: "12",
+                                                              md: "6",
+                                                              lg: "6"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-autocomplete",
+                                                              {
+                                                                attrs: {
+                                                                  items:
+                                                                    _vm.empleados,
+                                                                  outlined: "",
+                                                                  dense: "",
+                                                                  "item-text":
+                                                                    "nombre_completo",
+                                                                  "return-object":
+                                                                    "",
+                                                                  label:
+                                                                    "Seleccionar empleado"
+                                                                },
+                                                                model: {
+                                                                  value:
+                                                                    _vm.userPrintSelected,
+                                                                  callback: function(
+                                                                    $$v
+                                                                  ) {
+                                                                    _vm.userPrintSelected = $$v
+                                                                  },
+                                                                  expression:
+                                                                    "userPrintSelected"
+                                                                }
+                                                              }
+                                                            )
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "v-col",
+                                                          {
+                                                            attrs: {
+                                                              cols: "12",
+                                                              xs: "12",
+                                                              sm: "12",
+                                                              md: "2",
+                                                              lg: "2"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-btn",
+                                                              {
+                                                                attrs: {
+                                                                  flat: "",
+                                                                  depressed: "",
+                                                                  color:
+                                                                    "primary"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c("v-icon", [
+                                                                  _vm._v(
+                                                                    "mdi-printer"
+                                                                  )
+                                                                ])
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "v-col",
+                                                          {
+                                                            attrs: {
+                                                              cols: "12",
+                                                              xs: "12",
+                                                              sm: "12",
+                                                              md: "4",
+                                                              lg: "4"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-btn",
+                                                              {
+                                                                attrs: {
+                                                                  flat: "",
+                                                                  depressed: "",
+                                                                  color:
+                                                                    "primary"
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Imprimir recibo"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
                                                   ],
                                                   1
                                                 )
@@ -736,6 +1007,24 @@ var render = function() {
                                                             staticClass:
                                                               "text-center"
                                                           },
+                                                          [_vm._v("Servicio")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
+                                                          [_vm._v("Asignar")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
                                                           [_vm._v("Acción")]
                                                         )
                                                       ])
@@ -773,10 +1062,106 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    _vm._s(
-                                                                      item.identificacion
-                                                                    )
+                                                                    "\n                            " +
+                                                                      _vm._s(
+                                                                        item.identificacion
+                                                                      ) +
+                                                                      "\n                          "
                                                                   )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-center"
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        color:
+                                                                          "primary",
+                                                                        dark:
+                                                                          "",
+                                                                        dense:
+                                                                          "",
+                                                                        small:
+                                                                          ""
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                              " +
+                                                                          _vm._s(
+                                                                            item.servicio
+                                                                          ) +
+                                                                          "\n                            "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-center"
+                                                                },
+                                                                [
+                                                                  item.has_empleado
+                                                                    ? _c(
+                                                                        "div",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "\n                              " +
+                                                                              _vm._s(
+                                                                                item
+                                                                                  .has_empleado
+                                                                                  .nombre_completo
+                                                                              ) +
+                                                                              "\n                            "
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    : _c(
+                                                                        "div",
+                                                                        [
+                                                                          _c(
+                                                                            "v-alert",
+                                                                            {
+                                                                              staticClass:
+                                                                                "mt-5",
+                                                                              staticStyle: {
+                                                                                "font-size":
+                                                                                  "12px"
+                                                                              },
+                                                                              attrs: {
+                                                                                color:
+                                                                                  "error",
+                                                                                dark:
+                                                                                  "",
+                                                                                dense:
+                                                                                  "",
+                                                                                small:
+                                                                                  ""
+                                                                              }
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                "\n                                Sin Asignar\n                              "
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
                                                                 ]
                                                               ),
                                                               _vm._v(" "),
