@@ -66,7 +66,7 @@
                 <div> <strong> Recibo:</strong> {{$data['id']}}</div>
                 <div> <strong> Fecha:</strong> {{substr($data['created_at'], 0, 10)}}</div>
                 <div> <strong> Condicion:</strong>{{$data['has_cotizaicon']['condicion']}}</div>
-                <div> <strong> Condicion:</strong>{{$data['estado']}}</div>
+                <div> <strong> Estado:</strong>{{$data['estado']}}</div>
             </td>
         </tr>
         <tr style=" background: rgba(0, 49, 119, 1); color: white; ">
