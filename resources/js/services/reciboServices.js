@@ -25,6 +25,15 @@ export default class reciboServices {
             console.log(e);
         }
     }
+    async imprimirReciboUser(model, user) {
+        try {
+            let { data } = await axios.post(`/api/imprimir-recibo-asignado/${user.id}`, model);
+            store.commit('setReciboPrint', data)
+            store.commit('setdialogPDfRecibos', true)
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     // async actualizarAcreditaciones(model) {
     //     try {

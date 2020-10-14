@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalAsignarTecnicoComponent */ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue");
+/* harmony import */ var _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalViewPdfComponent */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -270,11 +271,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -284,7 +313,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       filter: {},
       page: 1,
       itemsPerPage: 6,
-      show: false
+      show: false,
+      sortBy: ''
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "empleados"])), {}, {
@@ -328,6 +358,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     AsignarTecnico: function AsignarTecnico(item) {
       this.$store.commit("setPartidaTecnico", item);
       this.$store.commit("setDialogAsignarTecnico", true);
+    },
+    imprimirRecibo: function imprimirRecibo(item) {
+      console.log({
+        item: item
+      });
+      this.services.reciboServices.imprimirRecibo(item);
+    },
+    imprimirReciboUser: function imprimirReciboUser(item, user) {
+      this.services.reciboServices.imprimirReciboUser(item, user);
     }
   }
 });
@@ -453,6 +492,85 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {};
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_pdf_recibos", 'recibo_print'])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_pdf_recibos;
+      },
+      set: function set(val) {
+        this.$store.commit("setdialogPDfRecibos", val);
+      }
+    }
+  }),
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913& ***!
@@ -514,7 +632,7 @@ var render = function() {
                                 _c("v-text-field", {
                                   attrs: {
                                     clearable: "",
-                                    flat: "",
+                                    text: "",
                                     "solo-inverted": "",
                                     "hide-details": "",
                                     "prepend-inner-icon": "mdi-search",
@@ -561,6 +679,12 @@ var render = function() {
                           return [
                             _c(
                               "v-row",
+                              {
+                                attrs: {
+                                  justify: "space-around",
+                                  align: "center"
+                                }
+                              },
                               _vm._l(props.items, function(item) {
                                 return _c(
                                   "v-col",
@@ -569,8 +693,8 @@ var render = function() {
                                     attrs: {
                                       cols: "12",
                                       sm: "6",
-                                      md: "4",
-                                      lg: "4"
+                                      md: "5",
+                                      lg: "5"
                                     }
                                   },
                                   [
@@ -873,14 +997,18 @@ var render = function() {
                                                                 },
                                                                 model: {
                                                                   value:
-                                                                    _vm.userPrintSelected,
+                                                                    item.userSelected,
                                                                   callback: function(
                                                                     $$v
                                                                   ) {
-                                                                    _vm.userPrintSelected = $$v
+                                                                    _vm.$set(
+                                                                      item,
+                                                                      "userSelected",
+                                                                      $$v
+                                                                    )
                                                                   },
                                                                   expression:
-                                                                    "userPrintSelected"
+                                                                    "item.userSelected"
                                                                 }
                                                               }
                                                             )
@@ -904,10 +1032,20 @@ var render = function() {
                                                               "v-btn",
                                                               {
                                                                 attrs: {
-                                                                  flat: "",
+                                                                  text: "",
                                                                   depressed: "",
                                                                   color:
                                                                     "primary"
+                                                                },
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    return _vm.imprimirReciboUser(
+                                                                      item,
+                                                                      item.userSelected
+                                                                    )
+                                                                  }
                                                                 }
                                                               },
                                                               [
@@ -939,10 +1077,19 @@ var render = function() {
                                                               "v-btn",
                                                               {
                                                                 attrs: {
-                                                                  flat: "",
+                                                                  text: "",
                                                                   depressed: "",
                                                                   color:
                                                                     "primary"
+                                                                },
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    return _vm.imprimirRecibo(
+                                                                      item
+                                                                    )
+                                                                  }
                                                                 }
                                                               },
                                                               [
@@ -1008,6 +1155,15 @@ var render = function() {
                                                               "text-center"
                                                           },
                                                           [_vm._v("Servicio")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "th",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
+                                                          [_vm._v("Tipo")]
                                                         ),
                                                         _vm._v(" "),
                                                         _c(
@@ -1115,6 +1271,45 @@ var render = function() {
                                                                     "text-center"
                                                                 },
                                                                 [
+                                                                  _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        color:
+                                                                          "primary",
+                                                                        dark:
+                                                                          "",
+                                                                        dense:
+                                                                          "",
+                                                                        small:
+                                                                          "",
+                                                                        outlined:
+                                                                          ""
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                              " +
+                                                                          _vm._s(
+                                                                            item.tipo
+                                                                          ) +
+                                                                          "\n                            "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "text-center"
+                                                                },
+                                                                [
                                                                   item.has_empleado
                                                                     ? _c(
                                                                         "div",
@@ -1201,33 +1396,6 @@ var render = function() {
                                                                         [
                                                                           _vm._v(
                                                                             "mdi-eye"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "v-btn",
-                                                                    {
-                                                                      attrs: {
-                                                                        color:
-                                                                          "info",
-                                                                        icon:
-                                                                          "",
-                                                                        dense:
-                                                                          "",
-                                                                        small:
-                                                                          ""
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "v-icon",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "mdi-printer"
                                                                           )
                                                                         ]
                                                                       )
@@ -1323,7 +1491,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-asignar-tecnico")
+      _c("modal-asignar-tecnico"),
+      _vm._v(" "),
+      _c("modal-pdf")
     ],
     1
   )
@@ -1980,6 +2150,92 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          model: {
+            value: _vm.openDialog,
+            callback: function($$v) {
+              _vm.openDialog = $$v
+            },
+            expression: "openDialog"
+          }
+        },
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { dark: "", color: "primary" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", dark: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.openDialog = false
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { text: "", icon: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.myPdfComponent.print()
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-printer")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("pdf", {
+            ref: "myPdfComponent",
+            attrs: { src: _vm.recibo_print.ruta_pdf }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/recibo/indexReciboComponent.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/recibo/indexReciboComponent.vue ***!
@@ -2115,6 +2371,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=template&id=24657562& */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&");
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/recibo/modals/modalViewPdfComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=template&id=24657562& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ 1:
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/*!**********************!*\
+  !*** http (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 4:
+/*!***********************!*\
+  !*** https (ignored) ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 5:
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

@@ -34,14 +34,14 @@
             </template>
 
             <template v-slot:default="props">
-              <v-row>
+              <v-row justify="space-around" align="center">
                 <v-col
                   v-for="item in props.items"
                   :key="item.id"
                   cols="12"
                   sm="6"
-                  md="4"
-                  lg="4"
+                  md="5"
+                  lg="5"
                 >
                   <v-card>
                     <v-card-title>
@@ -123,7 +123,7 @@
                           <v-row>
                             <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                               <v-autocomplete
-                                v-model="userPrintSelected"
+                                v-model="item.userSelected"
                                 :items="empleados"
                                 outlined
                                 dense
@@ -133,10 +133,25 @@
                               ></v-autocomplete>
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                              <v-btn text depressed color="primary"> <v-icon>mdi-printer</v-icon> </v-btn>
+                              <v-btn
+                                text
+                                depressed
+                                color="primary"
+                                @click="
+                                  imprimirReciboUser(item, item.userSelected)
+                                "
+                              >
+                                <v-icon>mdi-printer</v-icon>
+                              </v-btn>
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="4" lg="4">
-                              <v-btn text depressed color="primary" @click="imprimirRecibo(item)"  >Imprimir recibo</v-btn>
+                              <v-btn
+                                text
+                                depressed
+                                color="primary"
+                                @click="imprimirRecibo(item)"
+                                >Imprimir recibo</v-btn
+                              >
                             </v-col>
                           </v-row>
                         </v-col>
@@ -150,6 +165,7 @@
                             <th class="text-center">Partida</th>
                             <th class="text-center">Identificación</th>
                             <th class="text-center">Servicio</th>
+                            <th class="text-center">Tipo</th>
                             <th class="text-center">Asignar</th>
                             <th class="text-center">Acción</th>
                           </tr>
@@ -172,6 +188,18 @@
                                 class="mt-5"
                               >
                                 {{ item.servicio }}
+                              </v-alert>
+                            </td>
+                            <td class="text-center">
+                              <v-alert
+                                color="primary"
+                                dark
+                                dense
+                                small
+                                outlined
+                                class="mt-5"
+                              >
+                                {{ item.tipo }}
                               </v-alert>
                             </td>
                             <td class="text-center">
@@ -200,9 +228,6 @@
                                 @click="AsignarTecnico(item)"
                               >
                                 <v-icon>mdi-eye</v-icon>
-                              </v-btn>
-                              <v-btn color="info" icon dense small>
-                                <v-icon>mdi-printer</v-icon>
                               </v-btn>
                             </td>
                           </tr>
@@ -240,18 +265,18 @@
       </v-col>
     </v-row>
     <modal-asignar-tecnico />
-    <modal-pdf/>
+    <modal-pdf />
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import modalAsignarTecnico from "./modals/modalAsignarTecnicoComponent"
-import modalViewPdfComponent from './modals/modalViewPdfComponent'
+import modalAsignarTecnico from "./modals/modalAsignarTecnicoComponent";
+import modalViewPdfComponent from "./modals/modalViewPdfComponent";
 export default {
   components: {
     "modal-asignar-tecnico": modalAsignarTecnico,
-    'modal-pdf': modalViewPdfComponent
+    "modal-pdf": modalViewPdfComponent,
   },
   data() {
     return {
@@ -262,6 +287,7 @@ export default {
       page: 1,
       itemsPerPage: 6,
       show: false,
+      sortBy: '',
     };
   },
   computed: {
@@ -288,10 +314,13 @@ export default {
       this.$store.commit("setPartidaTecnico", item);
       this.$store.commit("setDialogAsignarTecnico", true);
     },
-    imprimirRecibo(item){
-        console.log({item})
-        this.services.reciboServices.imprimirRecibo(item)
-    }
+    imprimirRecibo(item) {
+      console.log({ item });
+      this.services.reciboServices.imprimirRecibo(item);
+    },
+    imprimirReciboUser(item, user) {
+      this.services.reciboServices.imprimirReciboUser(item, user);
+    },
   },
 };
 </script>

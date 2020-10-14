@@ -3,6 +3,7 @@ import Vue from "vue";
 import services from "../services.js";
 import moment from "moment";
 import momentTz from "moment-timezone";
+import { findLastKey } from "lodash";
 
 Vue.use(Vuex);
 
@@ -534,6 +535,9 @@ export default new Vuex.Store({
         },
         setRecibos(state, data) {
             state.recibos = data;
+            for (const a of state.recibos) {
+                a.userSelected = {}
+            }
         },
         setDialogAsignarTecnico(state, data) {
             state.dialog_asignar_tecnico = data;
