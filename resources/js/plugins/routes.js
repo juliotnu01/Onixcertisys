@@ -36,7 +36,7 @@ export default new router({
                     component: datosDelSistemaComponent
                 }
             ],
-            redirect: { name: 'config-user' }
+            redirect: { name: "config-user" }
         },
         {
             path: "/cotizaciones",
@@ -50,8 +50,14 @@ export default new router({
             path: "/Recibos",
             name: "home.recibos",
             component: () =>
+                import("../components/recibo/indexReciboComponent.vue")
+        },
+        {
+            path: "/laboratorio",
+            name: "home.laboratorio",
+            component: () =>
                 import(
-                    "../components/recibo/indexReciboComponent.vue"
+                    "../components/laboratorio/indexComponentLaboratorio.vue"
                 )
         }
     ]

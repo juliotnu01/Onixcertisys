@@ -21,7 +21,7 @@
             <v-list>
                 <v-list-item>
                     <v-list-item-title>
-                        <router-link :to="{name: 'home.cotizaciones'}">
+                        <router-link :to="{ name: 'home.cotizaciones' }">
                             <v-icon>mdi-clipboard-text-outline</v-icon>
                             Cotizaciones
                         </router-link>
@@ -29,7 +29,7 @@
                 </v-list-item>
                 <v-list-item>
                     <v-list-item-title>
-                        <router-link :to="{name: 'home.recibos'}">
+                        <router-link :to="{ name: 'home.recibos' }">
                             <v-icon>mdi-receipt</v-icon>
                             Recibos
                         </router-link>
@@ -38,11 +38,26 @@
             </v-list>
         </v-menu>
         <v-spacer></v-spacer>
-        <v-btn icon text>
-            <img src="https://img.icons8.com/dusk/
+
+        <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                    <img src="https://img.icons8.com/dusk/
                 40/000000/microscope.png" />
-            Laboratorio
-        </v-btn>
+                    Laboratorio
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item>
+                    <v-list-item-title>
+                        <router-link :to="{ name: 'home.laboratorio' }">
+                            <v-icon>mdi-crosshairs-gps </v-icon>
+                            Calibracion
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
         <v-spacer></v-spacer>
         <v-btn icon text>
             <img src="https://img.icons8.com/dusk/40/000000/guarantee.png" />
@@ -55,7 +70,7 @@
         <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon large v-bind="attrs" v-on="on">
-                    <v-avatar size="32px" item>{{user.name}}</v-avatar>
+                    <v-avatar size="32px" item>{{ user.name }}</v-avatar>
                 </v-btn>
             </template>
             <v-card>
@@ -67,11 +82,11 @@
                         <v-list-item-content>
                             <v-list-item-title>
                                 <v-icon small>mdi-account</v-icon>
-                                {{user.name}}
+                                {{ user.name }}
                             </v-list-item-title>
                             <v-list-item-subtitle>
                                 <v-icon small>mdi-email</v-icon>
-                                {{user.email}}
+                                {{ user.email }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-action></v-list-item-action>
@@ -123,19 +138,6 @@ export default {
     data() {
         return {
             menu: false,
-            items: [{
-                    title: "Click Me1"
-                },
-                {
-                    title: "Click Me2"
-                },
-                {
-                    title: "Click Me3"
-                },
-                {
-                    title: "Click Me4"
-                },
-            ],
         };
     },
     computed: {

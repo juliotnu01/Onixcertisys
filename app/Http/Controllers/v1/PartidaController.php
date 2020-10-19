@@ -16,7 +16,12 @@ class PartidaController extends Controller
     public function index()
     {
         try {
-            $partida = Partida::with(['hasIntrumento', 'hasAcreditaicon'])->get();
+            $partida = Partida::with(['hasIntrumento',
+                                      'hasIntrumento.hasMagnitud', 
+                                      'hasRecibo', 
+                                      'hasRecibo.hasCotizaicon', 
+                                      'hasRecibo.hasCotizaicon.hasCliente',
+                                      'hasTecnico'])->where('convertir_recibo', true)->get();
             return Response($partida);
         } catch (Exception $e) {
             throw new Exception($e, 1);

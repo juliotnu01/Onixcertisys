@@ -102,6 +102,10 @@ export default new Vuex.Store({
         masivPartidas: [],
         dialog_pdf_recibos: false, 
         recibo_print: {},
+        partidas: [],
+        dialog_calibracion: false,
+        partida: {},
+        
     },
     getters: {
         services: state => state.services,
@@ -190,6 +194,9 @@ export default new Vuex.Store({
         masivPartidas: state => state.masivPartidas,
         dialog_pdf_recibos: state => state.dialog_pdf_recibos,
         recibo_print: state => state.recibo_print,
+        partidas: state => state.partidas,
+        dialog_calibracion: state => state.dialog_calibracion,
+        partida: state => state.partida, 
     },
     mutations: {
         setListUser(state, data) {
@@ -574,6 +581,15 @@ export default new Vuex.Store({
         setReciboPrint(state, data){
             state.recibo_print = data
         },
+        setPartidas(state, data){
+            state.partidas = data
+        },
+        setDialogCalibracion(state, data){
+            state.dialog_calibracion = data
+        },
+        setPartida(state, data){
+            state.partida = data
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {

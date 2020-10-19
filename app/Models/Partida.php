@@ -16,4 +16,11 @@ class Partida extends Model
     {
     	return $this->belongsTo(Empleado::class, 'empleado_id');
     }
+    public function hasRecibo(){
+        return $this->belongsTo(Recibo::class,'recibo_id');
+    }
+    public function hasTecnico(){
+        return $this->belongsTo(Empleado::class,'empleado_id');
+    }
+    
 }
