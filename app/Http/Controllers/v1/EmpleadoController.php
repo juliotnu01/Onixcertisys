@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\{Empleado,Partida};
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -148,16 +151,25 @@ class EmpleadoController extends Controller
 
     public function asignarTecnicoPartida(Request $request, Partida $partida)
     {
-
         try {
             return DB::transaction(function() use ($request, $partida){
-
-                $partida->find($request['id'])->update([
-                    'empleado_id' =>  $request['has_empleado']['id']
-                ]);
+                if($request['tipo_documento'] == 1){
+                    $data = json_decode($request['model']);
+                    $nameFIle = $request->file('documento')->getClientOriginalName();
+                    Storage::disk('documentos_excel')->putFileAs("/documentos/excels/",$request->file('documento'), $nameFIle);
+                    $url = asset(Storage::url($nameFIle));
+                    $partida->find($data->id)->update([
+                        'empleado_id' =>  $data->has_empleado->id,
+                        'ruta_doc_calibracion' => $url
+                    ]);
+                }else {
+                    $partida->find($request['model']['id'])->update([
+                        'empleado_id' =>  $request['model']['has_empleado']['id'],
+                        'ruta_doc_calibracion' => $request['documento']
+                    ]);
+                }
 
             },5);
-            
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

@@ -454,7 +454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "pendiente",
         value: 1
       }, {
-        name: "En recibo",
+        name: "Orden de servicio",
         value: 2
       }, {
         name: "Rechazada",
@@ -1365,7 +1365,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "pendiente",
         value: 1
       }, {
-        name: "En recibo",
+        name: "Orden de servicio",
         value: 2
       }, {
         name: "Rechazada",
@@ -2136,7 +2136,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    item.estado_de_la_cotizacion == "En recibo"
+                    item.estado_de_la_cotizacion == "Orden de servicio"
                       ? _c(
                           "v-alert",
                           {

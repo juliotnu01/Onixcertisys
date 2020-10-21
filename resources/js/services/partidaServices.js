@@ -2,8 +2,16 @@ import store from "../plugins/store.js";
 export default class partidaServices {
     async getlistpartidas() {
         try {
-            let { data } = await axios("/api/get-partidas");
-            store.commit("setPartidas", data);
+            let { data } = await axios("/api/get-partidas")
+            store.commit("setPartidas", data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    async getlistpartidasParaCalibrar() {
+        try {
+            let { data } = await axios("/api/get-partidas-para-calibrar")
+            store.commit("setPartidasParaCalibrar", data)
         } catch (e) {
             console.log(e);
         }

@@ -31,7 +31,7 @@
                     <v-list-item-title>
                         <router-link :to="{ name: 'home.recibos' }">
                             <v-icon>mdi-receipt</v-icon>
-                            Recibos
+                            Orden de servicio
                         </router-link>
                     </v-list-item-title>
                 </v-list-item>

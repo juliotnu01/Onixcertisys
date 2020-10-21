@@ -27,7 +27,9 @@ class CreatePartidasTable extends Migration
             $table->string('informe_id')->nullable();
             $table->string('tipo')->nullable();
             $table->string('vigencia')->nullable();
+            $table->string('ruta_doc_calibracion')->nullable();
             $table->foreignId('recibo_id')->nullable()->constrained('recibos')->default(null);
+            $table->foreignId('calibracion_id')->nullable()->constrained('calibracions');
             $table->foreignId('instrumento_id')->constrained('instrumentos')->onDelete('cascade');
             $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade');
             $table->foreignId('empleado_id')->nullable()->constrained('empleados')->default(null);

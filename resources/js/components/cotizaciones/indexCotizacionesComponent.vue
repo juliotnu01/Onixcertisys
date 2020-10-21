@@ -20,7 +20,7 @@
         <template v-slot:item.estado_de_la_cotizacion="{ item }">
             <td>
                 <v-alert class="mt-5" type="info" icon="mdi-clock" dense v-if="item.estado_de_la_cotizacion == 'pendiente'"> {{item.estado_de_la_cotizacion}} </v-alert>
-                <v-alert class="mt-5" color="purple" icon="mdi-receipt" dense v-if="item.estado_de_la_cotizacion == 'En recibo'" dark> {{item.estado_de_la_cotizacion}} </v-alert>
+                <v-alert class="mt-5" color="purple" icon="mdi-receipt" dense v-if="item.estado_de_la_cotizacion == 'Orden de servicio'" dark> {{item.estado_de_la_cotizacion}} </v-alert>
                 <v-alert class="mt-5" type="error" icon="mdi-close-octagon" dense v-if="item.estado_de_la_cotizacion == 'Rechazada'"> {{item.estado_de_la_cotizacion}} </v-alert>
             </td>
         </template>

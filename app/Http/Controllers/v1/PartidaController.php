@@ -18,10 +18,27 @@ class PartidaController extends Controller
         try {
             $partida = Partida::with(['hasIntrumento',
                                       'hasIntrumento.hasMagnitud', 
+                                      'hasCalibracion',
                                       'hasRecibo', 
                                       'hasRecibo.hasCotizaicon', 
                                       'hasRecibo.hasCotizaicon.hasCliente',
                                       'hasTecnico'])->where('convertir_recibo', true)->get();
+            return Response($partida);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+    public function indexParaCalibrar()
+    {
+        try {
+            $partida = Partida::with(['hasIntrumento',
+                                      'hasIntrumento.hasMagnitud', 
+                                      'hasCalibracion',
+                                      'hasRecibo', 
+                                      'hasRecibo.hasCotizaicon', 
+                                      'hasRecibo.hasCotizaicon.hasCliente',
+                                      'hasTecnico'])->whereNotNull('empleado_id')->get();
             return Response($partida);
         } catch (Exception $e) {
             throw new Exception($e, 1);

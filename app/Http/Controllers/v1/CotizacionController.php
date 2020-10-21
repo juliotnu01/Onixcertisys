@@ -31,6 +31,7 @@ class CotizacionController extends Controller
                 'hasMoneda',
                 'hasTiempoDeEntrega',
                 'hasPartidas',
+                'hasPartidas.hasCalibracion',
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'

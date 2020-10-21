@@ -43,6 +43,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51,6 +64,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: "Recibo",
         align: "center",
@@ -82,6 +96,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: true,
         value: "has_tecnico.nombre_completo"
       }, {
+        text: "Estado de la calibracion",
+        align: "center",
+        sortable: true,
+        value: "has_calibracion"
+      }, {
         text: "Accion",
         align: "center",
         sortable: false,
@@ -89,7 +108,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'partidas'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'partidas', 'partidas_para_calibrar'])),
   mounted: function mounted() {
     var _this = this;
 
@@ -99,14 +118,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.services.partidaServices.getlistpartidas();
+              return _this.services.partidaServices.getlistpartidasParaCalibrar();
 
             case 2:
-              console.log({
-                partidas: _this.partidas
-              });
-
-            case 3:
             case "end":
               return _context.stop();
           }
@@ -116,9 +130,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     Calibrar: function Calibrar(item) {
-      console.log({
-        item: item
-      });
       this.$store.commit('setDialogCalibracion', true);
       this.$store.commit('setPartida', item);
     }
@@ -140,6 +151,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -206,15 +229,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      value1: '',
-      value2: ''
+      patronSelected: '',
+      procedimientoSelected: '',
+      menu1: false,
+      date: new Date().toISOString().substr(0, 10),
+      dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
+      item_tipo_de_calibracion: [{
+        name: 'En laboratrio',
+        value: 1
+      }, {
+        name: 'En campo',
+        value: 2
+      }],
+      TipocalibracionSelected: {},
+      descripcion_anomalia: '',
+      observacion_de_tecnico: '',
+      fechaIniciaCalibracion: '',
+      terminaCalibracion: ''
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", 'patrones', 'procedimientos'])), {}, {
+    computedDateFormatted: function computedDateFormatted() {
+      return this.formatDate(this.date);
+    },
     openDialog: {
       get: function get() {
         return this.dialog_calibracion;
@@ -224,6 +314,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   }),
+  watch: {
+    date: function date(val) {
+      this.dateFormatted = this.formatDate(this.date);
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -247,7 +342,110 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _callee);
     }))();
   },
-  methods: {}
+  methods: {
+    IniciarCalibracion: function IniciarCalibracion() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var model;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                model = {
+                  tipo_de_calibracion: _this2.TipocalibracionSelected,
+                  patron_de_calibracion: _this2.patronSelected,
+                  procedimiento_de_calibracion: _this2.procedimientoSelected,
+                  fecha_anomalia: _this2.date,
+                  descripcion_anomalia: _this2.descripcion_anomalia,
+                  observacion_tecnico: _this2.observacion_de_tecnico,
+                  id_partida: _this2.partida.id
+                };
+                _context2.next = 4;
+                return _this2.services.calibracionServices.agregarCalibracion(model);
+
+              case 4:
+                _context2.next = 6;
+                return _this2.services.partidaServices.getlistpartidasParaCalibrar();
+
+              case 6:
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }))();
+    },
+    terminarCalibracion: function terminarCalibracion(calibracion) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var model;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                model = {
+                  id_calibracion: calibracion.id
+                };
+                _context3.next = 4;
+                return _this3.services.calibracionServices.terminarCalibracion(model);
+
+              case 4:
+                _context3.next = 6;
+                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
+
+              case 6:
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                console.log(_context3.t0);
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }))();
+    },
+    formatDate: function formatDate(date) {
+      if (!date) return null;
+
+      var _date$split = date.split('-'),
+          _date$split2 = _slicedToArray(_date$split, 3),
+          year = _date$split2[0],
+          month = _date$split2[1],
+          day = _date$split2[2];
+
+      return "".concat(day, "/").concat(month, "/").concat(year);
+    },
+    parseDate: function parseDate(date) {
+      if (!date) return null;
+
+      var _date$split3 = date.split('/'),
+          _date$split4 = _slicedToArray(_date$split3, 3),
+          month = _date$split4[0],
+          day = _date$split4[1],
+          year = _date$split4[2];
+
+      return "".concat(year, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
+    }
+  }
 });
 
 /***/ }),
@@ -270,44 +468,134 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c("v-data-table", {
-        staticClass: "elevation-1",
-        attrs: {
-          headers: _vm.headers,
-          items: _vm.partidas,
-          "items-per-page": 5
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "item.accion",
-            fn: function(ref) {
-              var item = ref.item
-              return [
-                _c(
-                  "td",
-                  { staticClass: "text-center" },
-                  [
+      _c(
+        "v-card",
+        [
+          _c("v-text-field", {
+            attrs: { label: "Buscar Instrumento", outlined: "" },
+            model: {
+              value: _vm.search,
+              callback: function($$v) {
+                _vm.search = $$v
+              },
+              expression: "search"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-data-table", {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.partidas_para_calibrar,
+              "items-per-page": 5,
+              search: _vm.search
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "item.accion",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
                     _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", color: "primary" },
-                        on: {
-                          click: function($event) {
-                            return _vm.Calibrar(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-crosshairs-gps")])],
+                      "td",
+                      { staticClass: "text-rigth" },
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "primary" },
+                            on: {
+                              click: function($event) {
+                                return _vm.Calibrar(item)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v("mdi-crosshairs-gps")])],
+                          1
+                        )
+                      ],
                       1
                     )
-                  ],
-                  1
-                )
-              ]
-            }
-          }
-        ])
-      }),
+                  ]
+                }
+              },
+              {
+                key: "item.has_calibracion",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { staticClass: "text-rigth" },
+                      [
+                        !item.has_calibracion
+                          ? _c(
+                              "v-alert",
+                              {
+                                attrs: {
+                                  dense: "",
+                                  outlined: "",
+                                  type: "error"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                        por calibrar\r\n                    "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        item.has_calibracion.estado === "calibrando"
+                          ? _c(
+                              "v-alert",
+                              {
+                                attrs: {
+                                  dense: "",
+                                  outlined: "",
+                                  type: "warning"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                        " +
+                                    _vm._s(item.has_calibracion.estado) +
+                                    "\r\n                    "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        item.has_calibracion.estado === "calibrado"
+                          ? _c(
+                              "v-alert",
+                              {
+                                attrs: {
+                                  dense: "",
+                                  outlined: "",
+                                  type: "success"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                        " +
+                                    _vm._s(item.has_calibracion.estado) +
+                                    "\r\n                    "
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("modal-calibracion")
     ],
@@ -355,6 +643,27 @@ var render = function() {
           _c(
             "v-card",
             [
+              _c(
+                "v-toolbar",
+                { attrs: { dark: "", color: "primary" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { icon: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.openDialog = false
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("mdi-close")])],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "v-container",
                 [
@@ -489,28 +798,45 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Inicia la Calibracion",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.created_at.substr(
-                                            0,
-                                            10
-                                          ),
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida.created_at,
-                                              "substr(0, 10)",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "partida.created_at.substr(0, 10)"
-                                        }
-                                      })
+                                      _vm.partida.has_calibracion
+                                        ? _c("v-text-field", {
+                                            attrs: {
+                                              outlined: "",
+                                              label: "Inicia la Calibracion",
+                                              disabled: ""
+                                            },
+                                            model: {
+                                              value: _vm.partida.has_calibracion.fecha_inicio_calibracion.substr(
+                                                0,
+                                                10
+                                              ),
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.partida.has_calibracion
+                                                    .fecha_inicio_calibracion,
+                                                  "substr(0,10)",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "partida.has_calibracion.fecha_inicio_calibracion.substr(0,10)"
+                                            }
+                                          })
+                                        : _c("v-text-field", {
+                                            attrs: {
+                                              outlined: "",
+                                              label: "Inicia la Calibracion",
+                                              disabled: ""
+                                            },
+                                            model: {
+                                              value: _vm.fechaIniciaCalibracion,
+                                              callback: function($$v) {
+                                                _vm.fechaIniciaCalibracion = $$v
+                                              },
+                                              expression:
+                                                "fechaIniciaCalibracion"
+                                            }
+                                          })
                                     ],
                                     1
                                   ),
@@ -527,28 +853,42 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Termina la Calibracion",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.created_at.substr(
-                                            0,
-                                            10
-                                          ),
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida.created_at,
-                                              "substr(0, 10)",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "partida.created_at.substr(0, 10)"
-                                        }
-                                      })
+                                      _vm.partida.has_calibracion
+                                        ? _c("v-text-field", {
+                                            attrs: {
+                                              outlined: "",
+                                              label: "Termina la Calibracion",
+                                              disabled: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.partida.has_calibracion
+                                                  .fecha_terminacion_calibracion,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.partida.has_calibracion,
+                                                  "fecha_terminacion_calibracion",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "partida.has_calibracion.fecha_terminacion_calibracion"
+                                            }
+                                          })
+                                        : _c("v-text-field", {
+                                            attrs: {
+                                              outlined: "",
+                                              label: "Termina la Calibracion",
+                                              disabled: ""
+                                            },
+                                            model: {
+                                              value: _vm.terminaCalibracion,
+                                              callback: function($$v) {
+                                                _vm.terminaCalibracion = $$v
+                                              },
+                                              expression: "terminaCalibracion"
+                                            }
+                                          })
                                     ],
                                     1
                                   ),
@@ -633,21 +973,444 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-autocomplete", {
+                                      _vm.partida.has_calibracion
+                                        ? _c("v-autocomplete", {
+                                            attrs: {
+                                              items:
+                                                _vm.item_tipo_de_calibracion,
+                                              "item-text": "name",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Tipo de calibracion",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.partida.has_calibracion
+                                                  .tipo_de_calibracion,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.partida.has_calibracion,
+                                                  "tipo_de_calibracion",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "partida.has_calibracion.tipo_de_calibracion"
+                                            }
+                                          })
+                                        : _c("v-autocomplete", {
+                                            attrs: {
+                                              items:
+                                                _vm.item_tipo_de_calibracion,
+                                              "item-text": "name",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Tipo de calibracion",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.TipocalibracionSelected,
+                                              callback: function($$v) {
+                                                _vm.TipocalibracionSelected = $$v
+                                              },
+                                              expression:
+                                                "TipocalibracionSelected"
+                                            }
+                                          })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _vm.partida.has_calibracion
+                                        ? _c("v-autocomplete", {
+                                            attrs: {
+                                              items: _vm.patrones,
+                                              "item-text": "nombre",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Patron a utilizar",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.partida.has_calibracion
+                                                  .patron_de_calibracion,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.partida.has_calibracion,
+                                                  "patron_de_calibracion",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "partida.has_calibracion.patron_de_calibracion"
+                                            }
+                                          })
+                                        : _c("v-autocomplete", {
+                                            attrs: {
+                                              items: _vm.patrones,
+                                              "item-text": "nombre",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Patron a utilizar",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value: _vm.patronSelected,
+                                              callback: function($$v) {
+                                                _vm.patronSelected = $$v
+                                              },
+                                              expression: "patronSelected"
+                                            }
+                                          })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _vm.partida.has_calibracion
+                                        ? _c("v-autocomplete", {
+                                            attrs: {
+                                              items: _vm.procedimientos,
+                                              "item-text": "nombre",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Procedimiento a utilizar",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.partida.has_calibracion
+                                                  .procedimiento_de_calibracion,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.partida.has_calibracion,
+                                                  "procedimiento_de_calibracion",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "partida.has_calibracion.procedimiento_de_calibracion"
+                                            }
+                                          })
+                                        : _c("v-autocomplete", {
+                                            attrs: {
+                                              items: _vm.procedimientos,
+                                              "item-text": "nombre",
+                                              "return-object": "",
+                                              outlined: "",
+                                              label: "Procedimiento a utilizar",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value: _vm.procedimientoSelected,
+                                              callback: function($$v) {
+                                                _vm.procedimientoSelected = $$v
+                                              },
+                                              expression:
+                                                "procedimientoSelected"
+                                            }
+                                          })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _vm.partida.has_calibracion
+                                        ? _c(
+                                            "v-menu",
+                                            {
+                                              ref: "menu1",
+                                              attrs: {
+                                                "close-on-content-click": false,
+                                                transition: "scale-transition",
+                                                "offset-y": "",
+                                                "max-width": "290px",
+                                                "min-width": "290px"
+                                              },
+                                              scopedSlots: _vm._u(
+                                                [
+                                                  {
+                                                    key: "activator",
+                                                    fn: function(ref) {
+                                                      var on = ref.on
+                                                      var attrs = ref.attrs
+                                                      return [
+                                                        _c(
+                                                          "v-text-field",
+                                                          _vm._g(
+                                                            _vm._b(
+                                                              {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Fecha de anomalia",
+                                                                  outlined: "",
+                                                                  "prepend-icon":
+                                                                    "mdi-calendar"
+                                                                },
+                                                                on: {
+                                                                  blur: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.date = _vm.parseDate(
+                                                                      _vm.dateFormatted
+                                                                    )
+                                                                  }
+                                                                },
+                                                                model: {
+                                                                  value:
+                                                                    _vm.dateFormatted,
+                                                                  callback: function(
+                                                                    $$v
+                                                                  ) {
+                                                                    _vm.dateFormatted = $$v
+                                                                  },
+                                                                  expression:
+                                                                    "dateFormatted"
+                                                                }
+                                                              },
+                                                              "v-text-field",
+                                                              attrs,
+                                                              false
+                                                            ),
+                                                            on
+                                                          )
+                                                        )
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                null,
+                                                false,
+                                                1048079218
+                                              ),
+                                              model: {
+                                                value: _vm.menu1,
+                                                callback: function($$v) {
+                                                  _vm.menu1 = $$v
+                                                },
+                                                expression: "menu1"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(" "),
+                                              _c("v-date-picker", {
+                                                attrs: { "no-title": "" },
+                                                on: {
+                                                  input: function($event) {
+                                                    _vm.menu1 = false
+                                                  }
+                                                },
+                                                model: {
+                                                  value: _vm.partida.has_calibracion.fecha_anomalia.substr(
+                                                    0,
+                                                    10
+                                                  ),
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.partida
+                                                        .has_calibracion
+                                                        .fecha_anomalia,
+                                                      "substr(0, 10)",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "partida.has_calibracion.fecha_anomalia.substr(0, 10)"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _c(
+                                            "v-menu",
+                                            {
+                                              ref: "menu1",
+                                              attrs: {
+                                                "close-on-content-click": false,
+                                                transition: "scale-transition",
+                                                "offset-y": "",
+                                                "max-width": "290px",
+                                                "min-width": "290px"
+                                              },
+                                              scopedSlots: _vm._u(
+                                                [
+                                                  {
+                                                    key: "activator",
+                                                    fn: function(ref) {
+                                                      var on = ref.on
+                                                      var attrs = ref.attrs
+                                                      return [
+                                                        _c(
+                                                          "v-text-field",
+                                                          _vm._g(
+                                                            _vm._b(
+                                                              {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Fecha de anomalia",
+                                                                  outlined: "",
+                                                                  "prepend-icon":
+                                                                    "mdi-calendar"
+                                                                },
+                                                                on: {
+                                                                  blur: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.date = _vm.parseDate(
+                                                                      _vm.dateFormatted
+                                                                    )
+                                                                  }
+                                                                },
+                                                                model: {
+                                                                  value:
+                                                                    _vm.dateFormatted,
+                                                                  callback: function(
+                                                                    $$v
+                                                                  ) {
+                                                                    _vm.dateFormatted = $$v
+                                                                  },
+                                                                  expression:
+                                                                    "dateFormatted"
+                                                                }
+                                                              },
+                                                              "v-text-field",
+                                                              attrs,
+                                                              false
+                                                            ),
+                                                            on
+                                                          )
+                                                        )
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                null,
+                                                false,
+                                                1048079218
+                                              ),
+                                              model: {
+                                                value: _vm.menu1,
+                                                callback: function($$v) {
+                                                  _vm.menu1 = $$v
+                                                },
+                                                expression: "menu1"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(" "),
+                                              _c("v-date-picker", {
+                                                attrs: { "no-title": "" },
+                                                on: {
+                                                  input: function($event) {
+                                                    _vm.menu1 = false
+                                                  }
+                                                },
+                                                model: {
+                                                  value: _vm.date,
+                                                  callback: function($$v) {
+                                                    _vm.date = $$v
+                                                  },
+                                                  expression: "date"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "5",
+                                lg: "5"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _c("v-text-field", {
                                         attrs: {
-                                          items: _vm.patrones,
-                                          "item-text": "nombre",
-                                          "return-object": "",
                                           outlined: "",
-                                          label: "Patron a utilizar",
-                                          clearable: ""
+                                          label: "Cliente",
+                                          disabled: ""
                                         },
                                         model: {
-                                          value: _vm.value1,
+                                          value:
+                                            _vm.partida.has_recibo
+                                              .has_cotizaicon.has_cliente
+                                              .razon_social,
                                           callback: function($$v) {
-                                            _vm.value1 = $$v
+                                            _vm.$set(
+                                              _vm.partida.has_recibo
+                                                .has_cotizaicon.has_cliente,
+                                              "razon_social",
+                                              $$v
+                                            )
                                           },
-                                          expression: "value1"
+                                          expression:
+                                            "partida.has_recibo.has_cotizaicon.has_cliente.razon_social"
                                         }
                                       })
                                     ],
@@ -666,23 +1429,125 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-autocomplete", {
+                                      _c("v-text-field", {
                                         attrs: {
-                                          items: _vm.procedimientos,
-                                          "item-text": "nombre",
-                                          "return-object": "",
                                           outlined: "",
-                                          label: "Procedimiento a utilizar",
-                                          clearable: ""
+                                          label: "Tipo de servicio",
+                                          disabled: ""
                                         },
                                         model: {
-                                          value: _vm.value2,
+                                          value: _vm.partida.tipo,
                                           callback: function($$v) {
-                                            _vm.value2 = $$v
+                                            _vm.$set(_vm.partida, "tipo", $$v)
                                           },
-                                          expression: "value2"
+                                          expression: "partida.tipo"
                                         }
                                       })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "mt-1",
+                                          attrs: {
+                                            color: "primary",
+                                            link: "",
+                                            href:
+                                              _vm.partida.ruta_doc_calibracion,
+                                            target: "_blank",
+                                            block: "",
+                                            large: ""
+                                          }
+                                        },
+                                        [_vm._v("Documento de calibracion")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "6",
+                                        lg: "6"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { color: "info", block: "" },
+                                          on: { click: _vm.IniciarCalibracion }
+                                        },
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-clock-start")
+                                          ]),
+                                          _vm._v(
+                                            "\r\n                                    Iniciar calibracion\r\n                                "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "6",
+                                        lg: "6"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "warning",
+                                            block: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.terminarCalibracion(
+                                                _vm.partida.has_calibracion
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-content-save")
+                                          ]),
+                                          _vm._v(
+                                            "\r\n                                    finalizar calibracion\r\n                                "
+                                          )
+                                        ],
+                                        1
+                                      )
                                     ],
                                     1
                                   )
@@ -700,43 +1565,106 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "6",
+                                lg: "6"
                               }
                             },
                             [
-                              _vm._v(
-                                "\r\n                        " +
-                                  _vm._s(
-                                    _vm.partida.has_recibo.has_cotizaicon
-                                      .has_cliente
-                                  ) +
-                                  "\r\n                    "
-                              )
-                            ]
+                              _vm.partida.has_calibracion
+                                ? _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      name: "input-7-4",
+                                      label: "Decripcion de la anomalia"
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.partida.has_calibracion
+                                          .descripcion_anomalia,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.partida.has_calibracion,
+                                          "descripcion_anomalia",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "partida.has_calibracion.descripcion_anomalia"
+                                    }
+                                  })
+                                : _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      name: "input-7-4",
+                                      label: "Decripcion de la anomalia"
+                                    },
+                                    model: {
+                                      value: _vm.descripcion_anomalia,
+                                      callback: function($$v) {
+                                        _vm.descripcion_anomalia = $$v
+                                      },
+                                      expression: "descripcion_anomalia"
+                                    }
+                                  })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "6",
+                                lg: "6"
+                              }
+                            },
+                            [
+                              _vm.partida.has_calibracion
+                                ? _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      name: "input-7-4",
+                                      label: "Observacion del tecnico"
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.partida.has_calibracion
+                                          .observacion_tecnico,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.partida.has_calibracion,
+                                          "observacion_tecnico",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "partida.has_calibracion.observacion_tecnico"
+                                    }
+                                  })
+                                : _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      name: "input-7-4",
+                                      label: "Observacion del tecnico"
+                                    },
+                                    model: {
+                                      value: _vm.observacion_de_tecnico,
+                                      callback: function($$v) {
+                                        _vm.observacion_de_tecnico = $$v
+                                      },
+                                      expression: "observacion_de_tecnico"
+                                    }
+                                  })
+                            ],
+                            1
                           )
                         ],
                         1
                       )
                     : _vm._e()
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      on: {
-                        click: function($event) {
-                          _vm.openDialog = false
-                        }
-                      }
-                    },
-                    [_vm._v(" Cerrar ")]
-                  )
                 ],
                 1
               )

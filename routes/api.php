@@ -74,7 +74,7 @@ Route::get('/get-empleados', 'v1\EmpleadoController@index');
 Route::post('/add-empleado', 'v1\EmpleadoController@store');
 Route::put('/edit-empleado', 'v1\EmpleadoController@update');
 Route::delete('/delete-empleado/{id}', 'v1\EmpleadoController@destroy');
-Route::put('/asignar-tecnico-partida', 'v1\EmpleadoController@asignarTecnicoPartida');
+Route::post('/asignar-tecnico-partida', 'v1\EmpleadoController@asignarTecnicoPartida');
 
 Route::get('/get-clientes', 'v1\ClienteController@index');
 Route::post('/add-cliente', 'v1\ClienteController@store');
@@ -107,6 +107,7 @@ Route::get('/get-masiv-partidas', 'v1\CotizacionController@getMasivPartidas'); /
 
 
 Route::get('/get-partidas', 'v1\PartidaController@index');
+Route::get('/get-partidas-para-calibrar', 'v1\PartidaController@indexParaCalibrar');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 // Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
@@ -119,3 +120,9 @@ Route::post('/imprimir-recibo', 'v1\ReciboController@printRecibos');
 Route::post('/imprimir-recibo-asignado/{user_tecnico}', 'v1\ReciboController@printRecibosAsignado');
 // Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
 // Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
+
+// Route::get('/get-patrones', 'v1\PatronController@index');
+Route::post('/add-calibracion', 'v1\CalibracionController@store');
+Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
+// Route::put('/edit-patron', 'v1\PatronController@update');
+// Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');

@@ -13,7 +13,7 @@
                 <v-icon>mdi-content-save</v-icon> Guardar
             </v-btn>
         </v-toolbar>
-        <v-card >
+        <v-card>
             <v-card-title>Agregar Cotizacion</v-card-title>
             <v-card-text>
                 <v-form ref="f_mag">
@@ -197,7 +197,7 @@ export default {
                     value: 1,
                 },
                 {
-                    name: "En recibo",
+                    name: "Orden de servicio",
                     value: 2,
                 },
                 {

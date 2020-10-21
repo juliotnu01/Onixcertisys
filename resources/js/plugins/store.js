@@ -105,6 +105,8 @@ export default new Vuex.Store({
         partidas: [],
         dialog_calibracion: false,
         partida: {},
+        partidas_para_calibrar: [],
+
         
     },
     getters: {
@@ -197,6 +199,7 @@ export default new Vuex.Store({
         partidas: state => state.partidas,
         dialog_calibracion: state => state.dialog_calibracion,
         partida: state => state.partida, 
+        partidas_para_calibrar: state => state.partidas_para_calibrar,
     },
     mutations: {
         setListUser(state, data) {
@@ -589,6 +592,9 @@ export default new Vuex.Store({
         },
         setPartida(state, data){
             state.partida = data
+        },
+        setPartidasParaCalibrar(state, data){
+            state.partidas_para_calibrar = data
         }
     },
     actions: {

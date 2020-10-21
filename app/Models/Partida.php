@@ -12,6 +12,10 @@ class Partida extends Model
     {
     	return $this->belongsTo(Instrumento::class, 'instrumento_id');
     }
+    public function hasCalibracion()
+    {
+    	return $this->belongsTo(Calibracion::class, 'calibracion_id');
+    }
     public function hasEmpleado()
     {
     	return $this->belongsTo(Empleado::class, 'empleado_id');

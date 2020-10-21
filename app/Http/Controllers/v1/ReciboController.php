@@ -25,6 +25,7 @@ class ReciboController extends Controller
                 'hasCotizaicon.hasCliente',
                 'hasCotizaicon.hasMoneda',
                 'hasPartidas',
+                'hasPartidas.hasCalibracion',
                 'hasPartidas.hasEmpleado',
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',

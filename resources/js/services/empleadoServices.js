@@ -35,10 +35,21 @@ export default class empleadoServices{
 		}
 	}
 
-	async AsignarTecnico(model){
+	async AsignarTecnico(model, file){
 		try {
-			let {data} = await axios.put(`/api/asignar-tecnico-partida`, model)
-			store.commit('setDialogAsignarTecnico', false)
+			if(file.value == 1){
+
+				var form = new FormData();
+				form.append('model', JSON.stringify(model))
+				form.append('documento', file.file)
+				form.append('tipo_documento', file.value)
+				let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
+				store.commit('setDialogAsignarTecnico', false)
+
+			}else{
+				let {data} = await axios.post(`/api/asignar-tecnico-partida`,{model, documento:file.file})
+				store.commit('setDialogAsignarTecnico', false)
+			}
 		} catch (e) {
 			console.log(e)	
 		}

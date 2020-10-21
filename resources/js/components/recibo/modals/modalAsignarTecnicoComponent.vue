@@ -51,6 +51,14 @@
                         <v-text-field disabled outlined label="vigencia" v-model="partida_tecnico.vigencia"></v-text-field>
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                        <a :href="partida_tecnico.ruta_doc_calibracion" v-if="partida_tecnico.ruta_doc_calibracion" target="_blank"> Link del documento de calibracion </a>
+                        <v-select v-else v-model="TipoDocumentoSelected" :items="item_Tipo_documento_para_subir" item-text="name" return-object outlined label=" Seleccionar metodo para cargar documento" />
+                    </v-col>
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-if="Object.entries(this.TipoDocumentoSelected).length > 0">
+                        <v-file-input label="Cargar documento (.xls / .xlsx)" outlined dense v-if="TipoDocumentoSelected.value == 1" v-model="TipoDocumentoSelected.file" />
+                        <v-text-field label="Copiar enlace del documento" placeholder=" " outlined v-else v-model="TipoDocumentoSelected.file" />
+                    </v-col>
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-autocomplete v-model="partida_tecnico.has_empleado" item-text="nombre_completo" return return-object :items="empleados" outlined label="Seleccionar Tecnico"></v-autocomplete>
                     </v-col>
                 </v-row>
@@ -59,9 +67,7 @@
                 <v-btn text color="primary" @click="asignarTecnico">
                     Asignar Tecnico
                 </v-btn>
-                <v-btn text color="error" @click="openDialog = false">
-                    Cerrar
-                </v-btn>
+                <v-btn text color="error" @click="openDialog = false"> Cerrar </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -71,41 +77,50 @@
 <script>
 import {
     mapGetters
-} from 'vuex'
+} from "vuex";
 export default {
     data() {
         return {
             rules: {
-                required: value => !!value || 'Este campo es requerido.',
+                required: (value) => !!value || "Este campo es requerido.",
             },
-
-        }
+            TipoDocumentoSelected: {},
+            item_Tipo_documento_para_subir: [{
+                    name: "Cargar Documento",
+                    value: 1,
+                    file: ''
+                },
+                {
+                    name: "Colocar enlace directo al documento",
+                    value: 2,
+                    file: ''
+                },
+            ],
+        };
     },
     computed: {
         ...mapGetters([
-            'services',
-            'dialog_asignar_tecnico',
-            'partida_tecnico',
-            'empleados'
-
+            "services",
+            "dialog_asignar_tecnico",
+            "partida_tecnico",
+            "empleados",
         ]),
         openDialog: {
             get() {
-                return this.dialog_asignar_tecnico
+                return this.dialog_asignar_tecnico;
             },
             set(val) {
-                this.$store.commit('setDialogAsignarTecnico', val)
-            }
-        }
-
+                this.$store.commit("setDialogAsignarTecnico", val);
+            },
+        },
     },
     mounted() {
-        this.services.empleadoServices.getlistEmpleados()
+        this.services.empleadoServices.getlistEmpleados();
     },
     methods: {
         asignarTecnico() {
-            this.services.empleadoServices.AsignarTecnico(this.partida_tecnico)
-        }
-    }
+            this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
+        },
+    },
 };
 </script>

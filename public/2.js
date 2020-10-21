@@ -297,6 +297,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -308,18 +326,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       userPrintSelected: {},
-      itemsPerPageArray: [4, 8, 12],
-      search: "",
-      filter: {},
-      page: 1,
-      itemsPerPage: 6,
-      show: false,
-      sortBy: ''
+      active: [],
+      avatar: null,
+      open: [],
+      users: [],
+      search: null,
+      userSelected: {}
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "empleados"])), {}, {
-    numberOfPages: function numberOfPages() {
-      return Math.ceil(this.recibos.length / this.itemsPerPage);
+    items: function items() {
+      return [{
+        name: "Ordenes de servicios",
+        children: this.users
+      }];
+    },
+    selected: function selected() {
+      if (!this.active.length) return undefined;
+      var id = this.active[0];
+      return this.recibos.find(function (recibo) {
+        return recibo.id === id;
+      });
     }
   }),
   mounted: function mounted() {
@@ -346,27 +373,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    nextPage: function nextPage() {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1;
-    },
-    formerPage: function formerPage() {
-      if (this.page - 1 >= 1) this.page -= 1;
-    },
-    updateItemsPerPage: function updateItemsPerPage(number) {
-      this.itemsPerPage = number;
-    },
     AsignarTecnico: function AsignarTecnico(item) {
       this.$store.commit("setPartidaTecnico", item);
       this.$store.commit("setDialogAsignarTecnico", true);
     },
     imprimirRecibo: function imprimirRecibo(item) {
-      console.log({
-        item: item
-      });
       this.services.reciboServices.imprimirRecibo(item);
     },
     imprimirReciboUser: function imprimirReciboUser(item, user) {
       this.services.reciboServices.imprimirReciboUser(item, user);
+    },
+    fetchUsers: function fetchUsers(item) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
+                  item.children.push({
+                    name: "Orden de servicio: ".concat(recibo.id, " - Cliente: ").concat(recibo.has_cotizaicon.has_cliente.razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10)),
+                    id: recibo.id
+                  });
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    reload: function reload() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.services.reciboServices.getlistRecibos();
+
+              case 2:
+                _this3.fetchUsers(_this3.items[0]);
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   }
 });
@@ -459,24 +519,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       rules: {
         required: function required(value) {
-          return !!value || 'Este campo es requerido.';
+          return !!value || "Este campo es requerido.";
         }
-      }
+      },
+      TipoDocumentoSelected: {},
+      item_Tipo_documento_para_subir: [{
+        name: "Cargar Documento",
+        value: 1,
+        file: ''
+      }, {
+        name: "Colocar enlace directo al documento",
+        value: 2,
+        file: ''
+      }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'dialog_asignar_tecnico', 'partida_tecnico', 'empleados'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_asignar_tecnico;
       },
       set: function set(val) {
-        this.$store.commit('setDialogAsignarTecnico', val);
+        this.$store.commit("setDialogAsignarTecnico", val);
       }
     }
   }),
@@ -485,7 +561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     asignarTecnico: function asignarTecnico() {
-      this.services.empleadoServices.AsignarTecnico(this.partida_tecnico);
+      this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
     }
   }
 });
@@ -588,899 +664,670 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
-    { staticClass: "fill-heigth" },
     [
       _c(
-        "v-row",
+        "v-card",
         [
           _c(
-            "v-col",
-            { attrs: { cols: "12", xs: "!2", sm: "12", md: "12", lg: "12" } },
+            "v-card-title",
+            { staticClass: "indigo white--text headline" },
             [
-              _c(
-                "v-container",
-                { attrs: { fluid: "" } },
-                [
-                  _c("v-data-iterator", {
-                    attrs: {
-                      items: _vm.recibos,
-                      "items-per-page": _vm.itemsPerPage,
-                      page: _vm.page,
-                      search: _vm.search,
-                      "hide-default-footer": ""
-                    },
-                    on: {
-                      "update:itemsPerPage": function($event) {
-                        _vm.itemsPerPage = $event
-                      },
-                      "update:items-per-page": function($event) {
-                        _vm.itemsPerPage = $event
-                      }
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "header",
-                        fn: function() {
-                          return [
-                            _c(
-                              "v-toolbar",
-                              {
-                                staticClass: "mb-1",
-                                attrs: { dark: "", color: "blue darken-3" }
-                              },
-                              [
-                                _c("v-text-field", {
-                                  attrs: {
-                                    clearable: "",
-                                    text: "",
-                                    "solo-inverted": "",
-                                    "hide-details": "",
-                                    "prepend-inner-icon": "mdi-search",
-                                    label: "Buscar recibo"
-                                  },
-                                  model: {
-                                    value: _vm.search,
-                                    callback: function($$v) {
-                                      _vm.search = $$v
-                                    },
-                                    expression: "search"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "mx-2",
-                                    attrs: { fab: "", dark: "", icon: "" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.services.reciboServices.getlistRecibos()
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", { attrs: { dark: "" } }, [
-                                      _vm._v(" mdi-reload ")
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]
+              _c("v-text-field", {
+                attrs: {
+                  label: "Search Company Directory",
+                  dark: "",
+                  flat: "",
+                  "solo-inverted": "",
+                  "hide-details": "",
+                  clearable: "",
+                  "clear-icon": "mdi-close-circle-outline"
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { staticClass: "pa-4", attrs: { justify: "space-between" } },
+            [
+              Object.entries(this.recibos).length > 0
+                ? _c(
+                    "v-col",
+                    { attrs: { cols: "6" } },
+                    [
+                      _c("v-treeview", {
+                        attrs: {
+                          active: _vm.active,
+                          search: _vm.search,
+                          items: _vm.items,
+                          "load-children": _vm.fetchUsers,
+                          open: _vm.open,
+                          activatable: "",
+                          color: "warning",
+                          "open-on-click": "",
+                          transition: ""
                         },
-                        proxy: true
-                      },
-                      {
-                        key: "default",
-                        fn: function(props) {
-                          return [
-                            _c(
-                              "v-row",
-                              {
-                                attrs: {
-                                  justify: "space-around",
-                                  align: "center"
-                                }
-                              },
-                              _vm._l(props.items, function(item) {
-                                return _c(
-                                  "v-col",
-                                  {
-                                    key: item.id,
-                                    attrs: {
-                                      cols: "12",
-                                      sm: "6",
-                                      md: "5",
-                                      lg: "5"
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-card",
-                                      [
-                                        _c(
-                                          "v-card-title",
-                                          [
-                                            _c(
-                                              "v-row",
-                                              [
-                                                _c(
-                                                  "v-col",
-                                                  {
-                                                    attrs: {
-                                                      cols: "12",
-                                                      xs: "12",
-                                                      sm: "12",
-                                                      md: "12",
-                                                      lg: "12"
-                                                    }
-                                                  },
-                                                  [
+                        on: {
+                          "update:active": function($event) {
+                            _vm.active = $event
+                          },
+                          "update:open": function($event) {
+                            _vm.open = $event
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-divider", { attrs: { vertical: "" } }),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { staticClass: "d-flex text-center" },
+                [
+                  _c(
+                    "v-scroll-y-transition",
+                    { attrs: { mode: "out-in" } },
+                    [
+                      !_vm.selected
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "title grey--text text--lighten-1 font-weight-light",
+                              staticStyle: { "align-self": "center" }
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                        Seleccionar Recibo\r\n                    "
+                              )
+                            ]
+                          )
+                        : _c(
+                            "v-card",
+                            { key: _vm.selected.id, staticClass: "pt-6" },
+                            [
+                              _c("v-card-text", [
+                                _c("h6", { staticClass: "headline mb-2" }, [
+                                  _c("strong", [_vm._v("Cliente: ")]),
+                                  _vm._v(
+                                    "\r\n                                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .razon_social
+                                      ) +
+                                      " "
+                                  ),
+                                  _c("br")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                {
+                                  staticClass: "text-left",
+                                  attrs: { tag: "v-card-text" }
+                                },
+                                [
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _c("v-simple-table", {
+                                        attrs: { dense: "" },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "default",
+                                            fn: function() {
+                                              return [
+                                                _c("thead", [
+                                                  _c("tr", [
                                                     _c(
-                                                      "div",
+                                                      "th",
                                                       {
                                                         staticClass:
-                                                          "text-right text-caption"
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Partida")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Identificación")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Servicio")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Tipo")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "\n                          Fecha creación:\n                          " +
-                                                            _vm._s(
-                                                              item.created_at.substr(
-                                                                0,
-                                                                10
-                                                              )
-                                                            ) +
-                                                            "\n                        "
+                                                          "Estado de la Calibracion"
                                                         )
                                                       ]
                                                     ),
                                                     _vm._v(" "),
-                                                    _c("div", [
-                                                      _vm._v(
-                                                        "\n                          Recibo id:\n                          " +
-                                                          _vm._s(item.id) +
-                                                          "\n                        "
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("div", [
-                                                      _vm._v(
-                                                        "\n                          Cotización id:\n                          " +
-                                                          _vm._s(
-                                                            item.cotizacion_id
-                                                          ) +
-                                                          "\n                        "
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("div", [
-                                                      _vm._v(
-                                                        "Estado: " +
-                                                          _vm._s(item.estado)
-                                                      )
-                                                    ])
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-col",
-                                                  {
-                                                    attrs: {
-                                                      cols: "12",
-                                                      xs: "12",
-                                                      sm: "12",
-                                                      md: "12",
-                                                      lg: "12"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("strong", [
-                                                      _vm._v("Cliente: ")
-                                                    ]),
-                                                    _vm._v(
-                                                      "\n                        " +
-                                                        _vm._s(
-                                                          item.has_cotizaicon
-                                                            .has_cliente
-                                                            .razon_social
-                                                        ) +
-                                                        "\n                        "
-                                                    ),
                                                     _c(
-                                                      "v-btn",
+                                                      "th",
                                                       {
-                                                        attrs: { icon: "" },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.show = !_vm.show
-                                                          }
-                                                        }
+                                                        staticClass:
+                                                          "text-center"
                                                       },
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              _vm.show
-                                                                ? "mdi-chevron-up"
-                                                                : "mdi-chevron-down"
-                                                            )
-                                                          )
-                                                        ])
-                                                      ],
-                                                      1
+                                                      [_vm._v("Asignar")]
                                                     ),
                                                     _vm._v(" "),
-                                                    _c("v-expand-transition", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          directives: [
-                                                            {
-                                                              name: "show",
-                                                              rawName: "v-show",
-                                                              value: _vm.show,
-                                                              expression: "show"
-                                                            }
-                                                          ]
-                                                        },
-                                                        [
-                                                          _c("v-card-text", [
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Dirección Fiscal: "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .direccion_fiscal
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br"),
-                                                            _vm._v(" "),
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Teléfono: "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .telefono
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br"),
-                                                            _vm._v(" "),
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Correo electronico para la factura:\n                                "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .correo_electronico_factura
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br"),
-                                                            _vm._v(" "),
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Nombre encargado: "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .nombre_completo
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br"),
-                                                            _vm._v(" "),
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Celular encargado: "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .celular_contacto
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br"),
-                                                            _vm._v(" "),
-                                                            _c("small", [
-                                                              _c("strong", [
-                                                                _vm._v(
-                                                                  "Correo encargado: "
-                                                                )
-                                                              ]),
-                                                              _vm._v(
-                                                                "\n                                " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .has_cotizaicon
-                                                                      .has_cliente
-                                                                      .correo_contacto
-                                                                  ) +
-                                                                  " "
-                                                              )
-                                                            ]),
-                                                            _c("br")
-                                                          ])
-                                                        ],
-                                                        1
-                                                      )
-                                                    ])
-                                                  ],
-                                                  1
-                                                ),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Acción")]
+                                                    )
+                                                  ])
+                                                ]),
                                                 _vm._v(" "),
                                                 _c(
-                                                  "v-col",
-                                                  {
-                                                    attrs: {
-                                                      cols: "12",
-                                                      xs: "12",
-                                                      sm: "12",
-                                                      md: "12",
-                                                      lg: "12"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "v-row",
-                                                      [
-                                                        _c(
-                                                          "v-col",
-                                                          {
-                                                            attrs: {
-                                                              cols: "12",
-                                                              xs: "12",
-                                                              sm: "12",
-                                                              md: "6",
-                                                              lg: "6"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "v-autocomplete",
-                                                              {
-                                                                attrs: {
-                                                                  items:
-                                                                    _vm.empleados,
-                                                                  outlined: "",
-                                                                  dense: "",
-                                                                  "item-text":
-                                                                    "nombre_completo",
-                                                                  "return-object":
-                                                                    "",
-                                                                  label:
-                                                                    "Seleccionar empleado"
-                                                                },
-                                                                model: {
-                                                                  value:
-                                                                    item.userSelected,
-                                                                  callback: function(
-                                                                    $$v
-                                                                  ) {
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "userSelected",
-                                                                      $$v
-                                                                    )
-                                                                  },
-                                                                  expression:
-                                                                    "item.userSelected"
-                                                                }
-                                                              }
-                                                            )
-                                                          ],
-                                                          1
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "v-col",
-                                                          {
-                                                            attrs: {
-                                                              cols: "12",
-                                                              xs: "12",
-                                                              sm: "12",
-                                                              md: "2",
-                                                              lg: "2"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "v-btn",
-                                                              {
-                                                                attrs: {
-                                                                  text: "",
-                                                                  depressed: "",
-                                                                  color:
-                                                                    "primary"
-                                                                },
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    return _vm.imprimirReciboUser(
-                                                                      item,
-                                                                      item.userSelected
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _c("v-icon", [
-                                                                  _vm._v(
-                                                                    "mdi-printer"
-                                                                  )
-                                                                ])
-                                                              ],
-                                                              1
-                                                            )
-                                                          ],
-                                                          1
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "v-col",
-                                                          {
-                                                            attrs: {
-                                                              cols: "12",
-                                                              xs: "12",
-                                                              sm: "12",
-                                                              md: "4",
-                                                              lg: "4"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "v-btn",
-                                                              {
-                                                                attrs: {
-                                                                  text: "",
-                                                                  depressed: "",
-                                                                  color:
-                                                                    "primary"
-                                                                },
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    return _vm.imprimirRecibo(
-                                                                      item
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "Imprimir recibo"
-                                                                )
-                                                              ]
-                                                            )
-                                                          ],
-                                                          1
-                                                        )
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-divider"),
-                                        _vm._v(" "),
-                                        _c("v-simple-table", {
-                                          attrs: { dense: "" },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "default",
-                                                fn: function() {
-                                                  return [
-                                                    _c("thead", [
-                                                      _c("tr", [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [_vm._v("Partida")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Identificación"
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [_vm._v("Servicio")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [_vm._v("Tipo")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [_vm._v("Asignar")]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass:
-                                                              "text-center"
-                                                          },
-                                                          [_vm._v("Acción")]
-                                                        )
-                                                      ])
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "tbody",
-                                                      _vm._l(
-                                                        item.has_partidas,
-                                                        function(item) {
-                                                          return _c(
-                                                            "tr",
-                                                            { key: item.name },
+                                                  "tbody",
+                                                  _vm._l(
+                                                    _vm.selected.has_partidas,
+                                                    function(item) {
+                                                      return _c(
+                                                        "tr",
+                                                        { key: item.name },
+                                                        [
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(item.id)
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\r\n                                                    " +
+                                                                  _vm._s(
+                                                                    item.identificacion
+                                                                  ) +
+                                                                  "\r\n                                                "
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
                                                             [
                                                               _c(
-                                                                "td",
+                                                                "v-alert",
                                                                 {
                                                                   staticClass:
-                                                                    "text-center"
+                                                                    "mt-5",
+                                                                  attrs: {
+                                                                    color:
+                                                                      "primary",
+                                                                    dark: "",
+                                                                    dense: "",
+                                                                    small: ""
+                                                                  }
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    _vm._s(
-                                                                      item.id
-                                                                    )
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-center"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "\n                            " +
+                                                                    "\r\n                                                        " +
                                                                       _vm._s(
-                                                                        item.identificacion
+                                                                        item.servicio
                                                                       ) +
-                                                                      "\n                          "
+                                                                      "\r\n                                                    "
                                                                   )
                                                                 ]
-                                                              ),
-                                                              _vm._v(" "),
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
                                                               _c(
-                                                                "td",
+                                                                "v-alert",
                                                                 {
                                                                   staticClass:
-                                                                    "text-center"
+                                                                    "mt-5",
+                                                                  attrs: {
+                                                                    color:
+                                                                      "primary",
+                                                                    dark: "",
+                                                                    dense: "",
+                                                                    small: "",
+                                                                    outlined: ""
+                                                                  }
                                                                 },
                                                                 [
-                                                                  _c(
-                                                                    "v-alert",
-                                                                    {
-                                                                      staticClass:
-                                                                        "mt-5",
-                                                                      attrs: {
-                                                                        color:
-                                                                          "primary",
-                                                                        dark:
-                                                                          "",
-                                                                        dense:
-                                                                          "",
-                                                                        small:
-                                                                          ""
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "\n                              " +
-                                                                          _vm._s(
-                                                                            item.servicio
-                                                                          ) +
-                                                                          "\n                            "
-                                                                      )
-                                                                    ]
+                                                                  _vm._v(
+                                                                    "\r\n                                                        " +
+                                                                      _vm._s(
+                                                                        item.tipo
+                                                                      ) +
+                                                                      "\r\n                                                    "
                                                                   )
-                                                                ],
-                                                                1
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-center"
-                                                                },
-                                                                [
-                                                                  _c(
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              !item.has_calibracion
+                                                                ? _c(
                                                                     "v-alert",
                                                                     {
                                                                       staticClass:
                                                                         "mt-5",
                                                                       attrs: {
-                                                                        color:
-                                                                          "primary",
-                                                                        dark:
-                                                                          "",
                                                                         dense:
-                                                                          "",
-                                                                        small:
                                                                           "",
                                                                         outlined:
-                                                                          ""
+                                                                          "",
+                                                                        type:
+                                                                          "error"
                                                                       }
                                                                     },
                                                                     [
                                                                       _vm._v(
-                                                                        "\n                              " +
-                                                                          _vm._s(
-                                                                            item.tipo
-                                                                          ) +
-                                                                          "\n                            "
+                                                                        "\r\n                                                        por calibrar\r\n                                                    "
                                                                       )
                                                                     ]
                                                                   )
-                                                                ],
-                                                                1
-                                                              ),
+                                                                : _vm._e(),
                                                               _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-center"
-                                                                },
-                                                                [
-                                                                  item.has_empleado
-                                                                    ? _c(
-                                                                        "div",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                              " +
-                                                                              _vm._s(
-                                                                                item
-                                                                                  .has_empleado
-                                                                                  .nombre_completo
-                                                                              ) +
-                                                                              "\n                            "
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    : _c(
-                                                                        "div",
-                                                                        [
-                                                                          _c(
-                                                                            "v-alert",
-                                                                            {
-                                                                              staticClass:
-                                                                                "mt-5",
-                                                                              staticStyle: {
-                                                                                "font-size":
-                                                                                  "12px"
-                                                                              },
-                                                                              attrs: {
-                                                                                color:
-                                                                                  "error",
-                                                                                dark:
-                                                                                  "",
-                                                                                dense:
-                                                                                  "",
-                                                                                small:
-                                                                                  ""
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _vm._v(
-                                                                                "\n                                Sin Asignar\n                              "
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        ],
-                                                                        1
-                                                                      )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "td",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-center"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "v-btn",
+                                                              item
+                                                                .has_calibracion
+                                                                .estado ===
+                                                              "calibrando"
+                                                                ? _c(
+                                                                    "v-alert",
                                                                     {
+                                                                      staticClass:
+                                                                        "mt-5",
                                                                       attrs: {
-                                                                        color:
-                                                                          "success",
-                                                                        icon:
-                                                                          "",
                                                                         dense:
                                                                           "",
-                                                                        small:
-                                                                          ""
-                                                                      },
-                                                                      on: {
-                                                                        click: function(
-                                                                          $event
-                                                                        ) {
-                                                                          return _vm.AsignarTecnico(
-                                                                            item
-                                                                          )
-                                                                        }
+                                                                        outlined:
+                                                                          "",
+                                                                        type:
+                                                                          "warning"
                                                                       }
                                                                     },
                                                                     [
+                                                                      _vm._v(
+                                                                        "\r\n                                                        " +
+                                                                          _vm._s(
+                                                                            item
+                                                                              .has_calibracion
+                                                                              .estado
+                                                                          ) +
+                                                                          "\r\n                                                    "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              item
+                                                                .has_calibracion
+                                                                .estado ===
+                                                              "calibrado"
+                                                                ? _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        dense:
+                                                                          "",
+                                                                        outlined:
+                                                                          "",
+                                                                        type:
+                                                                          "success"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\r\n                                                        " +
+                                                                          _vm._s(
+                                                                            item
+                                                                              .has_calibracion
+                                                                              .estado
+                                                                          ) +
+                                                                          "\r\n                                                    "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm._e()
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              item.has_empleado
+                                                                ? _c("div", [
+                                                                    _vm._v(
+                                                                      "\r\n                                                        " +
+                                                                        _vm._s(
+                                                                          item
+                                                                            .has_empleado
+                                                                            .nombre_completo
+                                                                        ) +
+                                                                        "\r\n                                                    "
+                                                                    )
+                                                                  ])
+                                                                : _c(
+                                                                    "div",
+                                                                    [
                                                                       _c(
-                                                                        "v-icon",
+                                                                        "v-alert",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mt-5",
+                                                                          staticStyle: {
+                                                                            "font-size":
+                                                                              "12px"
+                                                                          },
+                                                                          attrs: {
+                                                                            color:
+                                                                              "error",
+                                                                            dark:
+                                                                              "",
+                                                                            dense:
+                                                                              "",
+                                                                            small:
+                                                                              ""
+                                                                          }
+                                                                        },
                                                                         [
                                                                           _vm._v(
-                                                                            "mdi-eye"
+                                                                            "\r\n                                                            Sin Asignar\r\n                                                        "
                                                                           )
                                                                         ]
                                                                       )
                                                                     ],
                                                                     1
                                                                   )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-btn",
+                                                                {
+                                                                  attrs: {
+                                                                    color:
+                                                                      "success",
+                                                                    icon: "",
+                                                                    dense: "",
+                                                                    small: ""
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.AsignarTecnico(
+                                                                        item
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-eye"
+                                                                    )
+                                                                  ])
                                                                 ],
                                                                 1
                                                               )
-                                                            ]
+                                                            ],
+                                                            1
                                                           )
-                                                        }
-                                                      ),
-                                                      0
-                                                    )
-                                                  ]
-                                                },
-                                                proxy: true
+                                                        ]
+                                                      )
+                                                    }
+                                                  ),
+                                                  0
+                                                )
+                                              ]
+                                            },
+                                            proxy: true
+                                          }
+                                        ])
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "6",
+                                                lg: "6"
                                               }
+                                            },
+                                            [
+                                              _c("v-autocomplete", {
+                                                attrs: {
+                                                  items: _vm.empleados,
+                                                  outlined: "",
+                                                  dense: "",
+                                                  "item-text":
+                                                    "nombre_completo",
+                                                  "return-object": "",
+                                                  label: "Seleccionar empleado"
+                                                },
+                                                model: {
+                                                  value: _vm.userSelected,
+                                                  callback: function($$v) {
+                                                    _vm.userSelected = $$v
+                                                  },
+                                                  expression: "userSelected"
+                                                }
+                                              })
                                             ],
-                                            null,
-                                            true
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "2",
+                                                lg: "2"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.imprimirReciboUser(
+                                                        _vm.selected,
+                                                        _vm.userSelected
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v("mdi-printer")
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "4",
+                                                lg: "4"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    block: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.imprimirRecibo(
+                                                        _vm.selected
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("Imprimir recibo")]
+                                              )
+                                            ],
+                                            1
                                           )
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              }),
-                              1
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "footer",
-                        fn: function() {
-                          return [
-                            _c(
-                              "v-row",
-                              {
-                                staticClass: "mt-2",
-                                attrs: { align: "center", justify: "center" }
-                              },
-                              [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "mr-1",
-                                    attrs: {
-                                      fab: "",
-                                      dark: "",
-                                      color: "blue darken-3"
-                                    },
-                                    on: { click: _vm.formerPage }
-                                  },
-                                  [_c("v-icon", [_vm._v("mdi-chevron-left")])],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "ml-1",
-                                    attrs: {
-                                      fab: "",
-                                      dark: "",
-                                      color: "blue darken-3"
-                                    },
-                                    on: { click: _vm.nextPage }
-                                  },
-                                  [_c("v-icon", [_vm._v("mdi-chevron-right")])],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        },
-                        proxy: true
-                      }
-                    ])
-                  })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -2066,6 +1913,114 @@ var render = function() {
                               }
                             },
                             [
+                              _vm.partida_tecnico.ruta_doc_calibracion
+                                ? _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          _vm.partida_tecnico
+                                            .ruta_doc_calibracion,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        " Link del documento de calibracion "
+                                      )
+                                    ]
+                                  )
+                                : _c("v-select", {
+                                    attrs: {
+                                      items: _vm.item_Tipo_documento_para_subir,
+                                      "item-text": "name",
+                                      "return-object": "",
+                                      outlined: "",
+                                      label:
+                                        " Seleccionar metodo para cargar documento"
+                                    },
+                                    model: {
+                                      value: _vm.TipoDocumentoSelected,
+                                      callback: function($$v) {
+                                        _vm.TipoDocumentoSelected = $$v
+                                      },
+                                      expression: "TipoDocumentoSelected"
+                                    }
+                                  })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          Object.entries(this.TipoDocumentoSelected).length > 0
+                            ? _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12",
+                                    lg: "12"
+                                  }
+                                },
+                                [
+                                  _vm.TipoDocumentoSelected.value == 1
+                                    ? _c("v-file-input", {
+                                        attrs: {
+                                          label:
+                                            "Cargar documento (.xls / .xlsx)",
+                                          outlined: "",
+                                          dense: ""
+                                        },
+                                        model: {
+                                          value: _vm.TipoDocumentoSelected.file,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.TipoDocumentoSelected,
+                                              "file",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "TipoDocumentoSelected.file"
+                                        }
+                                      })
+                                    : _c("v-text-field", {
+                                        attrs: {
+                                          label: "Copiar enlace del documento",
+                                          placeholder: " ",
+                                          outlined: ""
+                                        },
+                                        model: {
+                                          value: _vm.TipoDocumentoSelected.file,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.TipoDocumentoSelected,
+                                              "file",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "TipoDocumentoSelected.file"
+                                        }
+                                      })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "12"
+                              }
+                            },
+                            [
                               _c("v-autocomplete", {
                                 attrs: {
                                   "item-text": "nombre_completo",
@@ -2124,11 +2079,7 @@ var render = function() {
                         }
                       }
                     },
-                    [
-                      _vm._v(
-                        "\r\n                    Cerrar\r\n                "
-                      )
-                    ]
+                    [_vm._v(" Cerrar ")]
                   )
                 ],
                 1

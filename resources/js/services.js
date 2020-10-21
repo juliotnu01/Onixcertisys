@@ -18,6 +18,7 @@ import cotizacionServices from './services/cotizacionesServices.js'
 import partidaServices from './services/partidaServices.js'
 import identificadorInformeServices from './services/IdenficadorInformeServices.js'
 import reciboServices from './services/reciboServices.js'
+import calibracionServices from './services/calibracionServices.js'
 
 export default {
     userServices: new userServices(),
@@ -40,4 +41,5 @@ export default {
     partidaServices: new partidaServices(),
     identificadorInformeServices: new identificadorInformeServices(),
     reciboServices: new reciboServices(),
+    calibracionServices: new calibracionServices(),
 }

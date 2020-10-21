@@ -296,7 +296,7 @@ export default {
                     value: 1,
                 },
                 {
-                    name: "En recibo",
+                    name: "Orden de servicio",
                     value: 2,
                 },
                 {
