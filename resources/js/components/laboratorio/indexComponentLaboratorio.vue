@@ -13,12 +13,12 @@
             <template v-slot:item.has_calibracion="{item}">
                 <td class="text-rigth">
                     <v-alert dense outlined type="error" v-if="!item.has_calibracion">
-                        por calibrar
+                        por iniciar
                     </v-alert>
-                    <v-alert dense outlined type="warning" v-if="item.has_calibracion.estado === 'calibrando'">
+                    <v-alert dense outlined type="warning" v-else-if="item.has_calibracion.estado === 'en proceso'">
                         {{item.has_calibracion.estado }}
                     </v-alert>
-                    <v-alert dense outlined type="success" v-if="item.has_calibracion.estado === 'calibrado'">
+                    <v-alert dense outlined type="success" v-else>
                         {{item.has_calibracion.estado }}
                     </v-alert>
                 </td>

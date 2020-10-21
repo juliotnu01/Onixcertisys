@@ -186,7 +186,7 @@
             <v-col class="d-flex text-center">
                 <v-scroll-y-transition mode="out-in">
                     <div v-if="!selected" class="title grey--text text--lighten-1 font-weight-light" style="align-self: center">
-                        Seleccionar Recibo
+                        Seleccionar Orden de servicio
                     </div>
                     <v-card v-else :key="selected.id" class="pt-6">
                         <v-card-text>
@@ -228,13 +228,13 @@
                                                     </v-alert>
                                                 </td>
                                                 <td class="text-center">
-                                                    <v-alert dense outlined type="error" v-if="!item.has_calibracion" class="mt-5">
-                                                        por calibrar
+                                                    <v-alert dense outlined type="error" v-if="item.has_calibracion == null" class="mt-5">
+                                                        por inicar
                                                     </v-alert>
-                                                    <v-alert dense outlined type="warning" v-if="item.has_calibracion.estado === 'calibrando'" class="mt-5">
+                                                    <v-alert dense outlined type="warning" v-else-if="item.has_calibracion.estado === 'en proceso'" class="mt-5">
                                                         {{item.has_calibracion.estado }}
                                                     </v-alert>
-                                                    <v-alert dense outlined type="success" v-if="item.has_calibracion.estado === 'calibrado'" class="mt-5">
+                                                    <v-alert dense outlined type="success" v-else class="mt-5">
                                                         {{item.has_calibracion.estado }}
                                                     </v-alert>
                                                 </td>

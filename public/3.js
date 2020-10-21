@@ -540,13 +540,11 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                        por calibrar\r\n                    "
+                                  "\r\n                        por iniciar\r\n                    "
                                 )
                               ]
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        item.has_calibracion.estado === "calibrando"
+                          : item.has_calibracion.estado === "en proceso"
                           ? _c(
                               "v-alert",
                               {
@@ -564,10 +562,7 @@ var render = function() {
                                 )
                               ]
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        item.has_calibracion.estado === "calibrado"
-                          ? _c(
+                          : _c(
                               "v-alert",
                               {
                                 attrs: {
@@ -584,7 +579,6 @@ var render = function() {
                                 )
                               ]
                             )
-                          : _vm._e()
                       ],
                       1
                     )

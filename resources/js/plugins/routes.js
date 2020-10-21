@@ -47,7 +47,7 @@ export default new router({
                 )
         },
         {
-            path: "/Recibos",
+            path: "/ordenes-de-servicios",
             name: "home.recibos",
             component: () =>
                 import("../components/recibo/indexReciboComponent.vue")
