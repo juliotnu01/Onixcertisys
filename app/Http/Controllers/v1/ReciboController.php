@@ -62,7 +62,7 @@ class ReciboController extends Controller
                 $recibo->cotizacion_id = $request['cotizacion_id']['id'];
                 $recibo->save();
                 $cotizacion = Cotizacion::find($request['cotizacion_id']['id'])->update([
-                    'estado_de_la_cotizacion' => 'En recibo'
+                    'estado_de_la_cotizacion' => 'Orden de servicio'
                 ]);
                 foreach ($request['cotizacion_id']['has_partidas'] as $key => $value) {
                     $partida = new Partida();
