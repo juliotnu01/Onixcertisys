@@ -59,6 +59,14 @@ export default new router({
                 import(
                     "../components/laboratorio/indexComponentLaboratorio.vue"
                 )
+        },
+        {
+            path: "/factura",
+            name: "home.factura",
+            component: () =>
+                import(
+                    "../components/factura/indexComponentfactura.vue"
+                )
         }
     ]
 });

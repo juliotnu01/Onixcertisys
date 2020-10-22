@@ -35,6 +35,14 @@
                         </router-link>
                     </v-list-item-title>
                 </v-list-item>
+                <v-list-item>
+                    <v-list-item-title>
+                        <router-link :to="{ name: 'home.factura' }">
+                            <v-icon>mdi-cash-register</v-icon>
+                            Factura
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
             </v-list>
         </v-menu>
         <v-spacer></v-spacer>
