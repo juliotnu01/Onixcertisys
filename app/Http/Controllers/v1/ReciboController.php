@@ -9,7 +9,7 @@ use DB;
 use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Resources\RecibosCollection;
 class ReciboController extends Controller
 {
     /**
@@ -38,6 +38,31 @@ class ReciboController extends Controller
         }
     }
 
+    public function getRecibosCliente($cliente_id)
+    {
+        try {
+            $recibos = Recibo::with([
+                'hasCotizaicon',
+                'hasCotizaicon.hasCliente',
+                'hasCotizaicon.hasMoneda',
+                'hasCotizaicon.hasEmpleado',
+                'hasPartidas',
+                'hasPartidas.hasCalibracion',
+                'hasPartidas.hasEmpleado',
+                'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.hasMagnitud',
+                'hasPartidas.hasIntrumento.hasAcreditacion'
+            ])->get();
+
+            for ($i=0; $i < count($recibos) ; $i++) { 
+                $recibos[$i]['cliente'] = $recibos[$i]['hasCotizaicon']['hasCliente']; 
+            }
+            $cliRecibos = $recibos->where('cliente.id', $cliente_id);
+            return response()->json(new RecibosCollection($cliRecibos));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

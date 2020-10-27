@@ -161,43 +161,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       model: {
-        recibo: {
-          forma_de_pago: '',
-          metodo_de_pago: '',
-          nota_de_factura: ''
-        },
+        recibo: [],
         factura_nueva: {
           cliente: {},
           moneda: {},
@@ -270,50 +239,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         name: "Venta",
         value: 4
-      }]
+      }],
+      ClienteSelected: {},
+      partidas_acumuladas: [],
+      cotizacion_partida: {
+        forma_de_pago: '',
+        metodo_de_pago: '',
+        nota_de_factura: ''
+      }
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'recibos', 'clientes', 'monedas', 'empleados', 'instrumentos'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'recibos', 'clientes', 'monedas', 'empleados', 'instrumentos', 'clientes', 'recibos_cliente'])), {}, {
     var_computed_subtotal: {
       get: function get() {
         var result = 0;
 
-        if (Object.entries(this.recibos).length > 3) {
-          for (var i = 0; this.model.recibo.has_partidas.length > i; i++) {
-            result += this.model.recibo.has_partidas[i].cantidad * this.model.recibo.has_partidas[i].has_intrumento.precio_venta;
+        if (Object.entries(this.partidas_acumuladas).length > 0) {
+          for (var i = 0; this.partidas_acumuladas.length > i; i++) {
+            result += this.partidas_acumuladas[i].cantidad * this.partidas_acumuladas[i].has_intrumento.precio_venta;
           }
-
-          return result;
         }
+
+        return result;
       },
       set: function set(val) {
-        this.model.recibo.has_partidas = val;
+        this.partidas_acumuladas = val;
       }
     },
     var_computed_iva: {
       get: function get() {
         var result = 0;
 
-        if (Object.entries(this.recibos).length > 3) {
-          result = this.var_computed_subtotal * this.model.recibo.has_cotizaicon.has_cliente.iva / 100;
+        if (Object.entries(this.cotizacion_partida).length > 3) {
+          result = this.var_computed_subtotal * this.cotizacion_partida.has_cliente.iva / 100;
           return result;
         }
       },
       set: function set(val) {
-        this.model.recibo = val;
+        this.partidas_acumuladas = val;
       }
     },
     var_computed_total: {
       get: function get() {
         var result = 0;
 
-        if (Object.entries(this.recibos).length > 3) {
+        if (Object.entries(this.partidas_acumuladas.length > 0)) {
           result = this.var_computed_subtotal + this.var_computed_iva;
           return result;
         }
       },
       set: function set(val) {
-        this.model.recibo = val;
+        this.partidas_acumuladas = val;
       }
     }
   }),
@@ -345,6 +321,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.services.instrumentoServices.getlistInstrumentos();
 
             case 10:
+              _context.next = 12;
+              return _this.services.clienteServices.getlistclientes();
+
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -370,10 +350,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     marca: _this2.instrumentoSelected.marca,
                     modelo: _this2.instrumentoSelected.modelo,
                     serie: _this2.instrumentoSelected.serie,
-                    id: _this2.model.recibo.has_partidas[_this2.model.recibo.has_partidas.length - 1].id + 1
+                    id: _this2.partidas_acumuladas[_this2.partidas_acumuladas.length - 1].id + 1
                   };
 
-                  _this2.model.recibo.has_partidas.push(model);
+                  _this2.partidas_acumuladas.push(model);
 
                   _this2.instrumentoSelected = {
                     cantidad: 1,
@@ -396,11 +376,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     EliminarPartida: function EliminarPartida(item) {
-      // var index = this.model.recibo.has_partidas.find(item => item.id == item.id)
-      console.log({
-        // index,
-        item: item
+      var index = this.partidas_acumuladas.indexOf(item);
+      this.partidas_acumuladas.splice(index, 1);
+    },
+    ClienteSeleccionado: function ClienteSeleccionado(cli) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _this3.model.recibo = [];
+                _this3.partidas_acumuladas = [];
+                _this3.cotizacion_partida = {};
+                _context3.next = 6;
+                return _this3.services.reciboServices.getlistRecibosClientes(cli);
+
+              case 6:
+                _context3.next = 10;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }))();
+    },
+    remove: function remove(item) {
+      var index = this.model.recibo.indexOf(item);
+      if (index >= 0) this.model.recibo.splice(index, 1);
+
+      for (var j = 0; j < item.has_partidas.length; j++) {
+        var indexP = this.partidas_acumuladas.indexOf(item.has_partidas[j]);
+        this.partidas_acumuladas.splice(indexP, 1);
+      }
+    },
+    CargarPartidas: function CargarPartidas(p) {
+      var _this4 = this;
+
+      this.model.recibo.forEach(function (item) {
+        _this4.cotizacion_partida = item.has_cotizaicon;
       });
+
+      for (var i = 0; i < this.model.recibo.length; i++) {
+        for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
+          if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
+            this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j]);
+          }
+        }
+      }
     }
   }
 });
@@ -488,81 +520,228 @@ var render = function() {
                                 [
                                   _c("v-autocomplete", {
                                     attrs: {
-                                      items: _vm.recibos,
-                                      "item-text": "id",
+                                      items: _vm.clientes,
+                                      "item-text": "razon_social",
                                       "return-object": "",
-                                      label: "Recibos",
+                                      label: "Clientes",
                                       outlined: "",
                                       clearable: ""
                                     },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.ClienteSeleccionado(
+                                          _vm.ClienteSelected
+                                        )
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.ClienteSelected,
+                                      callback: function($$v) {
+                                        _vm.ClienteSelected = $$v
+                                      },
+                                      expression: "ClienteSelected"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12",
+                                    lg: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.recibos_cliente,
+                                      outlined: "",
+                                      chips: "",
+                                      label: "Recibos",
+                                      "item-text": "id",
+                                      "item-value": "id",
+                                      multiple: "",
+                                      "return-object": ""
+                                    },
+                                    on: { change: _vm.CargarPartidas },
                                     scopedSlots: _vm._u(
                                       [
                                         {
-                                          key: "item",
-                                          fn: function(ref) {
-                                            var item = ref.item
+                                          key: "selection",
+                                          fn: function(data) {
                                             return [
-                                              _vm._v(
-                                                "\r\n                                    Recibo: " +
-                                                  _vm._s(item.id) +
-                                                  " - " +
-                                                  _vm._s(
-                                                    item.has_cotizaicon
-                                                      .has_cliente.razon_social
-                                                  ) +
-                                                  "\r\n                                    "
-                                              ),
                                               _c(
-                                                "v-alert",
-                                                {
-                                                  staticClass: "ml-4",
-                                                  staticStyle: {
-                                                    position: "relative",
-                                                    top: "8px",
-                                                    height: "23px",
-                                                    "padding-top": "0px"
+                                                "v-chip",
+                                                _vm._b(
+                                                  {
+                                                    attrs: {
+                                                      "input-value":
+                                                        data.selected,
+                                                      close: ""
+                                                    },
+                                                    on: {
+                                                      click: data.select,
+                                                      "click:close": function(
+                                                        $event
+                                                      ) {
+                                                        return _vm.remove(
+                                                          data.item
+                                                        )
+                                                      }
+                                                    }
                                                   },
-                                                  attrs: {
-                                                    color: "primary",
-                                                    dark: "",
-                                                    value: true,
-                                                    dense: "",
-                                                    small: ""
-                                                  }
-                                                },
+                                                  "v-chip",
+                                                  data.attrs,
+                                                  false
+                                                ),
                                                 [
                                                   _vm._v(
-                                                    "\r\n                                        " +
-                                                      _vm._s(item.estado) +
-                                                      "\r\n                                    "
+                                                    "\r\n                                        Recibo: " +
+                                                      _vm._s(data.item.id) +
+                                                      " - " +
+                                                      _vm._s(
+                                                        data.item.has_cotizaicon
+                                                          .has_cliente
+                                                          .razon_social
+                                                      ) +
+                                                      "\r\n                                        "
+                                                  ),
+                                                  _c(
+                                                    "v-alert",
+                                                    {
+                                                      staticClass: "ml-4",
+                                                      staticStyle: {
+                                                        position: "relative",
+                                                        top: "8px",
+                                                        height: "23px",
+                                                        "padding-top": "0px"
+                                                      },
+                                                      attrs: {
+                                                        color: "primary",
+                                                        dark: "",
+                                                        value: true,
+                                                        dense: "",
+                                                        small: ""
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\r\n                                            " +
+                                                          _vm._s(
+                                                            data.item.estado
+                                                          ) +
+                                                          "\r\n                                        "
+                                                      )
+                                                    ]
                                                   )
-                                                ]
+                                                ],
+                                                1
                                               )
                                             ]
                                           }
                                         },
                                         {
-                                          key: "selection",
-                                          fn: function(ref) {
-                                            var item = ref.item
+                                          key: "item",
+                                          fn: function(data) {
                                             return [
-                                              _vm._v(
-                                                "\r\n                                    Recibo: " +
-                                                  _vm._s(item.id) +
-                                                  " - " +
-                                                  _vm._s(
-                                                    item.has_cotizaicon
-                                                      .has_cliente.razon_social
-                                                  ) +
-                                                  "\r\n                                "
-                                              )
+                                              typeof data.item !== "object"
+                                                ? [
+                                                    _vm._v(
+                                                      "\r\n                                        Recibo: " +
+                                                        _vm._s(data.item.id) +
+                                                        " - " +
+                                                        _vm._s(
+                                                          data.item
+                                                            .has_cotizaicon
+                                                            .has_cliente
+                                                            .razon_social
+                                                        ) +
+                                                        "\r\n                                        "
+                                                    ),
+                                                    _c(
+                                                      "v-alert",
+                                                      {
+                                                        staticClass: "ml-4",
+                                                        staticStyle: {
+                                                          position: "relative",
+                                                          top: "8px",
+                                                          height: "23px",
+                                                          "padding-top": "0px"
+                                                        },
+                                                        attrs: {
+                                                          color: "primary",
+                                                          dark: "",
+                                                          value: true,
+                                                          dense: "",
+                                                          small: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\r\n                                            " +
+                                                            _vm._s(
+                                                              data.item.estado
+                                                            ) +
+                                                            "\r\n                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                : [
+                                                    _vm._v(
+                                                      "\r\n                                        Recibo: " +
+                                                        _vm._s(data.item.id) +
+                                                        " - " +
+                                                        _vm._s(
+                                                          data.item
+                                                            .has_cotizaicon
+                                                            .has_cliente
+                                                            .razon_social
+                                                        ) +
+                                                        "\r\n                                        "
+                                                    ),
+                                                    _c(
+                                                      "v-alert",
+                                                      {
+                                                        staticClass: "ml-4",
+                                                        staticStyle: {
+                                                          position: "relative",
+                                                          top: "8px",
+                                                          height: "23px",
+                                                          "padding-top": "0px"
+                                                        },
+                                                        attrs: {
+                                                          color: "primary",
+                                                          dark: "",
+                                                          value: true,
+                                                          dense: "",
+                                                          small: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\r\n                                            " +
+                                                            _vm._s(
+                                                              data.item.estado
+                                                            ) +
+                                                            "\r\n                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
                                             ]
                                           }
                                         }
                                       ],
                                       null,
                                       false,
-                                      3149040154
+                                      991706659
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -576,7 +755,7 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _vm.model.recibo.has_cotizaicon
+                              Object.entries(_vm.cotizacion_partida).length > 3
                                 ? _c(
                                     "v-col",
                                     {
@@ -584,8 +763,8 @@ var render = function() {
                                         cols: "12",
                                         xs: "12",
                                         sm: "12",
-                                        md: "6",
-                                        lg: "6"
+                                        md: "12",
+                                        lg: "12"
                                       }
                                     },
                                     [
@@ -597,18 +776,18 @@ var render = function() {
                                         },
                                         model: {
                                           value:
-                                            _vm.model.recibo.has_cotizaicon
-                                              .has_cliente.razon_social,
+                                            _vm.cotizacion_partida.has_cliente
+                                              .razon_social,
                                           callback: function($$v) {
                                             _vm.$set(
-                                              _vm.model.recibo.has_cotizaicon
+                                              _vm.cotizacion_partida
                                                 .has_cliente,
                                               "razon_social",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "model.recibo.has_cotizaicon.has_cliente.razon_social"
+                                            "cotizacion_partida.has_cliente.razon_social"
                                         }
                                       })
                                     ],
@@ -616,7 +795,7 @@ var render = function() {
                                   )
                                 : _vm._e(),
                               _vm._v(" "),
-                              _vm.model.recibo.has_cotizaicon
+                              Object.entries(_vm.cotizacion_partida).length > 3
                                 ? _c(
                                     "v-col",
                                     {
@@ -631,62 +810,23 @@ var render = function() {
                                     [
                                       _c("v-text-field", {
                                         attrs: {
-                                          label: "Cotizacion",
-                                          outlined: "",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.model.recibo.has_cotizaicon.id,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.model.recibo.has_cotizaicon,
-                                              "id",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "model.recibo.has_cotizaicon.id"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.model.recibo.has_cotizaicon
-                                ? _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "2",
-                                        lg: "2"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
                                           label: "Moneda",
                                           outlined: "",
                                           disabled: ""
                                         },
                                         model: {
                                           value:
-                                            _vm.model.recibo.has_cotizaicon
-                                              .has_moneda.clave,
+                                            _vm.cotizacion_partida.has_moneda
+                                              .clave,
                                           callback: function($$v) {
                                             _vm.$set(
-                                              _vm.model.recibo.has_cotizaicon
-                                                .has_moneda,
+                                              _vm.cotizacion_partida.has_moneda,
                                               "clave",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "model.recibo.has_cotizaicon.has_moneda.clave"
+                                            "cotizacion_partida.has_moneda.clave"
                                         }
                                       })
                                     ],
@@ -700,8 +840,8 @@ var render = function() {
                                   attrs: {
                                     cols: "12",
                                     xs: "12",
-                                    sm: "6",
-                                    md: "6"
+                                    sm: "4",
+                                    md: "4"
                                   }
                                 },
                                 [
@@ -711,15 +851,17 @@ var render = function() {
                                       outlined: ""
                                     },
                                     model: {
-                                      value: _vm.model.recibo.forma_de_pago,
+                                      value:
+                                        _vm.cotizacion_partida.forma_de_pago,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.model.recibo,
+                                          _vm.cotizacion_partida,
                                           "forma_de_pago",
                                           $$v
                                         )
                                       },
-                                      expression: "model.recibo.forma_de_pago"
+                                      expression:
+                                        "cotizacion_partida.forma_de_pago"
                                     }
                                   })
                                 ],
@@ -732,8 +874,8 @@ var render = function() {
                                   attrs: {
                                     cols: "12",
                                     xs: "12",
-                                    sm: "6",
-                                    md: "6"
+                                    sm: "4",
+                                    md: "4"
                                   }
                                 },
                                 [
@@ -743,235 +885,17 @@ var render = function() {
                                       outlined: ""
                                     },
                                     model: {
-                                      value: _vm.model.recibo.metodo_de_pago,
+                                      value:
+                                        _vm.cotizacion_partida.metodo_de_pago,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.model.recibo,
+                                          _vm.cotizacion_partida,
                                           "metodo_de_pago",
                                           $$v
                                         )
                                       },
-                                      expression: "model.recibo.metodo_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "NOTA",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.recibo.nota_de_factura,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.recibo,
-                                          "nota_de_factura",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.recibo.nota_de_factura"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.tipoFacturaSelected.value == 2
-                    ? _c(
-                        "v-col",
-                        { attrs: { cols: "12", xs: "12", sm: "12", md: "12" } },
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "6",
-                                    md: "6"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.monedas,
-                                      "item-text": "nombre_moneda",
-                                      "return-object": "",
-                                      label: "Moneda",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.moneda,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "moneda",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.moneda"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "6",
-                                    md: "6"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.empleados,
-                                      "item-text": "nombre_completo",
-                                      "return-object": "",
-                                      label: "Vendedor",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.vendedor,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "vendedor",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.vendedor"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Forma de pago",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.recibo.forma_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.recibo,
-                                          "forma_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.recibo.forma_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Metodo de pago",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.recibo.metodo_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.recibo,
-                                          "metodo_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.recibo.metodo_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.clientes,
-                                      "item-text": "razon_social",
-                                      "return-object": "",
-                                      label: "Cliente",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.cliente,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "cliente",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.cliente"
+                                      expression:
+                                        "cotizacion_partida.metodo_de_pago"
                                     }
                                   })
                                 ],
@@ -997,16 +921,16 @@ var render = function() {
                                     },
                                     model: {
                                       value:
-                                        _vm.model.factura_nueva.nota_de_factura,
+                                        _vm.cotizacion_partida.nota_de_factura,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.model.factura_nueva,
+                                          _vm.cotizacion_partida,
                                           "nota_de_factura",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "model.factura_nueva.nota_de_factura"
+                                        "cotizacion_partida.nota_de_factura"
                                     }
                                   })
                                 ],
@@ -1034,371 +958,16 @@ var render = function() {
                 staticClass: "elevation-1",
                 attrs: {
                   headers: _vm.headers_partidas_factura,
-                  items: _vm.model.recibo.has_partidas,
+                  items: _vm.partidas_acumuladas,
                   "items-per-page": 5
                 },
                 scopedSlots: _vm._u([
-                  {
-                    key: "header",
-                    fn: function(ref) {
-                      var headers = ref.props.headers
-                      return [
-                        _c("thead", [
-                          _c("tr", [
-                            _c(
-                              "th",
-                              { attrs: { colspan: headers.length } },
-                              [
-                                _c(
-                                  "v-row",
-                                  [
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          staticClass: "m-0 p-0",
-                                          attrs: {
-                                            label: "cantidad",
-                                            small: "",
-                                            dense: "",
-                                            outlined: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected.cantidad,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "cantidad",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.cantidad"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-select", {
-                                          attrs: {
-                                            items: _vm.tipo_de_servicio,
-                                            "item-text": "name",
-                                            "return-object": "",
-                                            label: "concepto",
-                                            outlined: "",
-                                            small: "",
-                                            dense: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected.concepto,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "concepto",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.concepto"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-autocomplete", {
-                                          attrs: {
-                                            items: _vm.instrumentos,
-                                            "item-text": "nombre",
-                                            "return-object": "",
-                                            label: "instrumento",
-                                            "item-value": "id",
-                                            outlined: "",
-                                            small: "",
-                                            dense: ""
-                                          },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "item",
-                                                fn: function(ref) {
-                                                  var item = ref.item
-                                                  return [
-                                                    _vm._v(
-                                                      "\r\n                                                " +
-                                                        _vm._s(item.id) +
-                                                        " - " +
-                                                        _vm._s(item.nombre) +
-                                                        " - " +
-                                                        _vm._s(item.alcance) +
-                                                        "\r\n                                            "
-                                                    )
-                                                  ]
-                                                }
-                                              }
-                                            ],
-                                            null,
-                                            true
-                                          ),
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected
-                                                .instrumento,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "instrumento",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.instrumento"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          staticClass: "m-0 p-0",
-                                          attrs: {
-                                            label: "precio unitario",
-                                            small: "",
-                                            dense: "",
-                                            outlined: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected
-                                                .instrumento.precio_venta,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected
-                                                  .instrumento,
-                                                "precio_venta",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.instrumento.precio_venta"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          staticClass: "m-0 p-0",
-                                          attrs: {
-                                            label: "Marca",
-                                            small: "",
-                                            dense: "",
-                                            outlined: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected.marca,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "marca",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.marca"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          staticClass: "m-0 p-0",
-                                          attrs: {
-                                            label: "Modelo",
-                                            small: "",
-                                            dense: "",
-                                            outlined: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected.modelo,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "modelo",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.modelo"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          staticClass: "m-0 p-0",
-                                          attrs: {
-                                            label: "Serie",
-                                            small: "",
-                                            dense: "",
-                                            outlined: ""
-                                          },
-                                          model: {
-                                            value:
-                                              _vm.instrumentoSelected.serie,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.instrumentoSelected,
-                                                "serie",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "instrumentoSelected.serie"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "3",
-                                          lg: "3"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              color: "primary",
-                                              small: "",
-                                              dense: "",
-                                              block: ""
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.addPartida(_vm.item)
-                                              }
-                                            }
-                                          },
-                                          [_c("v-icon", [_vm._v("mdi-plus")])],
-                                          1
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ])
-                      ]
-                    }
-                  },
                   {
                     key: "item.has_intrumento",
                     fn: function(ref) {
                       var item = ref.item
                       return [
-                        _c("td", { staticClass: "text-center" }, [
+                        _c("td", { staticClass: "text-left" }, [
                           _vm._v(
                             "\r\n                        " +
                               _vm._s(item.has_intrumento.nombre)
@@ -1433,7 +1002,7 @@ var render = function() {
                     fn: function(ref) {
                       var item = ref.item
                       return [
-                        _c("td", { staticClass: "text-center" }, [
+                        _c("td", { staticClass: "text-left" }, [
                           _vm._v(
                             "\r\n                        Servicio de " +
                               _vm._s(item.servicio) +
@@ -1448,14 +1017,12 @@ var render = function() {
                     fn: function(ref) {
                       var item = ref.item
                       return [
-                        _c("td", { attrs: { clas: "text-center" } }, [
+                        _c("td", { attrs: { clas: "text-left" } }, [
                           _vm._v(
                             "\r\n                        " +
                               _vm._s(
                                 _vm._f("numberFormat")(
-                                  item.has_intrumento.precio_venta,
-                                  _vm.model.recibo.has_cotizaicon.has_moneda
-                                    .clave
+                                  item.has_intrumento.precio_venta
                                 )
                               ) +
                               "\r\n                    "
@@ -1469,14 +1036,16 @@ var render = function() {
                     fn: function(ref) {
                       var item = ref.item
                       return [
-                        _c("td", { attrs: { clas: "text-center" } }, [
+                        _c("td", { attrs: { clas: "text-left" } }, [
                           _vm._v(
                             "\r\n                        " +
                               _vm._s(
                                 _vm._f("numberFormat")(
                                   item.importe,
-                                  _vm.model.recibo.has_cotizaicon.has_moneda
-                                    .clave
+                                  Object.entries(_vm.cotizacion_partida)
+                                    .length > 3
+                                    ? _vm.cotizacion_partida.has_moneda.clave
+                                    : ""
                                 )
                               ) +
                               "\r\n                    "
@@ -1492,7 +1061,7 @@ var render = function() {
                       return [
                         _c(
                           "td",
-                          { attrs: { clas: "text-center" } },
+                          { attrs: { clas: "text-left" } },
                           [
                             _c(
                               "v-btn",
@@ -1520,124 +1089,107 @@ var render = function() {
                         _c(
                           "v-container",
                           [
-                            Object.entries(_vm.model.recibo).length > 3
-                              ? _c(
-                                  "v-row",
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
                                   [
-                                    _c(
-                                      "v-col",
-                                      {
-                                        staticClass: "m-0 p-0",
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "12",
-                                          lg: "12"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h3",
-                                          { staticClass: "float-right" },
-                                          [
-                                            _vm._v(
-                                              "SUBTOTAL: " +
-                                                _vm._s(
-                                                  _vm._f("numberFormat")(
-                                                    _vm.var_computed_subtotal,
-                                                    _vm.model.recibo
-                                                      .has_cotizaicon.has_moneda
-                                                      .clave
-                                                  )
-                                                )
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "SUBTOTAL: " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_subtotal,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
                                             )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        staticClass: "m-0 p-0",
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "12",
-                                          lg: "12"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h3",
-                                          { staticClass: "float-right" },
-                                          [
-                                            _vm._v("IVA"),
-                                            _c("small", [
-                                              _vm._v(
-                                                "(" +
-                                                  _vm._s(
-                                                    _vm.model.recibo
-                                                      .has_cotizaicon
-                                                      .has_cliente.iva
-                                                  ) +
-                                                  "%)"
-                                              )
-                                            ]),
-                                            _vm._v(
-                                              " : " +
-                                                _vm._s(
-                                                  _vm._f("numberFormat")(
-                                                    _vm.var_computed_iva,
-                                                    _vm.model.recibo
-                                                      .has_cotizaicon.has_moneda
-                                                      .clave
-                                                  )
-                                                )
+                                          )
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "IVA : " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_iva,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
                                             )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-col",
-                                      {
-                                        staticClass: "m-0 p-0",
-                                        attrs: {
-                                          cols: "12",
-                                          xs: "12",
-                                          sm: "12",
-                                          md: "12",
-                                          lg: "12"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h3",
-                                          { staticClass: "float-right" },
-                                          [
-                                            _vm._v(
-                                              "TOTAL: " +
-                                                _vm._s(
-                                                  _vm._f("numberFormat")(
-                                                    _vm.var_computed_total,
-                                                    _vm.model.recibo
-                                                      .has_cotizaicon.has_moneda
-                                                      .clave
-                                                  )
-                                                )
+                                          )
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "TOTAL: " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_total,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
                                             )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
+                                          )
+                                      )
+                                    ])
+                                  ]
                                 )
-                              : _vm._e()
+                              ],
+                              1
+                            )
                           ],
                           1
                         )

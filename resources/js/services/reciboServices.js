@@ -8,6 +8,14 @@ export default class reciboServices {
             console.log(e);
         }
     }
+    async getlistRecibosClientes(cli) {
+        try {
+            let { data } = await axios(`/api/get-recibos/${cli.id}/cliente`);
+                store.commit("setRecibosCliente", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async agregarRecibo(model) {
         try {
             let { data } = await axios.post("/api/add-recibo", model);

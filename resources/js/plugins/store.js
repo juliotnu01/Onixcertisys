@@ -106,6 +106,7 @@ export default new Vuex.Store({
         dialog_calibracion: false,
         partida: {},
         partidas_para_calibrar: [],
+        recibos_cliente: [],
 
         
     },
@@ -200,6 +201,7 @@ export default new Vuex.Store({
         dialog_calibracion: state => state.dialog_calibracion,
         partida: state => state.partida, 
         partidas_para_calibrar: state => state.partidas_para_calibrar,
+        recibos_cliente: state => state.recibos_cliente,
     },
     mutations: {
         setListUser(state, data) {
@@ -595,7 +597,11 @@ export default new Vuex.Store({
         },
         setPartidasParaCalibrar(state, data){
             state.partidas_para_calibrar = data
-        }
+        },
+        setRecibosCliente(state, data){
+            state.recibos_cliente = data
+        },
+    
     },
     actions: {
         chargeRolSelected({ commit }, data) {

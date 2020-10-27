@@ -115,6 +115,7 @@ Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
 Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // identificador de informe de las partidas
 
 Route::get('/get-recibos', 'v1\ReciboController@index');
+Route::get('/get-recibos/{cliente_id}/cliente', 'v1\ReciboController@getRecibosCliente');
 Route::post('/add-recibo', 'v1\ReciboController@store');
 Route::post('/imprimir-recibo', 'v1\ReciboController@printRecibos');
 Route::post('/imprimir-recibo-asignado/{user_tecnico}', 'v1\ReciboController@printRecibosAsignado');
