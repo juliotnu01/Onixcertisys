@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Calibracion, Partida};
+use App\Models\{Calibracion, Partida, Recibo};
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DB;
@@ -67,7 +67,8 @@ class CalibracionController extends Controller
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
                     'fecha_terminacion_calibracion' => Carbon::now()
-                ]);
+                    ]);
+                    
             }, 5);
         } catch (\Throwable $th) {
             throw $th;

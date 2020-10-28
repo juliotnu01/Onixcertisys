@@ -8,7 +8,7 @@
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn text dark @click="GenerarRecibo">
-                    <v-icon>mdi-receipt</v-icon>Generar Recibo
+                    <v-icon>mdi-receipt</v-icon>Generar Orden de Servicio
                 </v-btn>
             </v-toolbar>
             <v-card>
@@ -185,7 +185,7 @@ export default {
                     align: "center",
                 },
                 {
-                    text: "Vigencia",
+                    text: "Vigencia(dias)",
                     value: "vigencia",
                     align: "center",
                 },

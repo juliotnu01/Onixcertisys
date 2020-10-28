@@ -12,7 +12,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalTotalizarComponent.vue */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue");
 
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -161,8 +168,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'modal-add-factura': _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       model: {
@@ -189,7 +217,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         serie: ''
       },
       tipo_de_factura: [{
-        name: 'Generar factura desde  los recibos',
+        name: 'Generar factura de las orde de servicio ',
         value: 1
       }, {
         name: 'Generar factura en blanco',
@@ -197,10 +225,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       tipoFacturaSelected: {},
       headers_partidas_factura: [{
-        text: 'Cantidad',
+        text: 'Orden de Servicio',
         sorable: false,
         align: 'center',
-        value: 'cantidad'
+        value: 'reciboID'
+      }, {
+        text: 'Cotizacion',
+        sorable: false,
+        align: 'center',
+        value: 'cotizacionID'
+      }, {
+        text: 'ID',
+        sorable: false,
+        align: 'center',
+        value: 'informe_id'
       }, {
         text: 'Concepto',
         sorable: false,
@@ -211,6 +249,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sorable: false,
         align: 'center',
         value: 'has_intrumento'
+      }, {
+        text: 'Estado de la calibracion',
+        sorable: false,
+        align: 'center',
+        value: 'has_calibracion'
       }, {
         text: 'Precio unitario',
         sorable: false,
@@ -430,9 +473,245 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
           if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
             this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j]);
+
+            var _iterator = _createForOfIteratorHelper(this.partidas_acumuladas),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var a = _step.value;
+
+                if (a.id === this.model.recibo[i].has_partidas[j].id) {
+                  a.cotizacionID = this.model.recibo[i].has_cotizaicon.id;
+                  a.reciboID = this.model.recibo[i].id;
+                }
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
           }
         }
       }
+    },
+    TotalizarFactura: function TotalizarFactura() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var dataFactura;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                dataFactura = {
+                  partidas: _this5.partidas_acumuladas,
+                  cliente: _this5.cotizacion_partida,
+                  subtotal: _this5.var_computed_subtotal,
+                  iva: _this5.var_computed_iva,
+                  total: _this5.var_computed_total
+                };
+                console.log({
+                  dataFactura: dataFactura
+                });
+
+                _this5.$store.commit('setDialogFactura', dataFactura);
+
+                _this5.$store.commit("setDialogAddFactura", true);
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      fecha: moment__WEBPACK_IMPORTED_MODULE_2___default()().format('l')
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'dialog_add_factura', 'factura'])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_add_factura;
+      },
+      set: function set(val) {
+        this.$store.commit("setDialogAddFactura", val);
+      }
+    }
+  }),
+  methods: {
+    RegistrarFactura: function RegistrarFactura() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                try {
+                  _this.services.facturaServices.agregarFactura(_this.factura);
+
+                  _this.$store.commit("setDialogAddFactura", false);
+                } catch (e) {
+                  console.log(e);
+                }
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -563,7 +842,7 @@ var render = function() {
                                       items: _vm.recibos_cliente,
                                       outlined: "",
                                       chips: "",
-                                      label: "Recibos",
+                                      label: "Ordenes de Sercicios",
                                       "item-text": "id",
                                       "item-value": "id",
                                       multiple: "",
@@ -602,7 +881,7 @@ var render = function() {
                                                 ),
                                                 [
                                                   _vm._v(
-                                                    "\r\n                                        Recibo: " +
+                                                    "\r\n                                        Orden de servicio: " +
                                                       _vm._s(data.item.id) +
                                                       " - " +
                                                       _vm._s(
@@ -653,7 +932,7 @@ var render = function() {
                                               typeof data.item !== "object"
                                                 ? [
                                                     _vm._v(
-                                                      "\r\n                                        Recibo: " +
+                                                      "\r\n                                        Orden de servicio: " +
                                                         _vm._s(data.item.id) +
                                                         " - " +
                                                         _vm._s(
@@ -695,7 +974,7 @@ var render = function() {
                                                   ]
                                                 : [
                                                     _vm._v(
-                                                      "\r\n                                        Recibo: " +
+                                                      "\r\n                                        Orden de servicio: " +
                                                         _vm._s(data.item.id) +
                                                         " - " +
                                                         _vm._s(
@@ -741,7 +1020,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      991706659
+                                      140549374
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -935,6 +1214,29 @@ var render = function() {
                                   })
                                 ],
                                 1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "success" },
+                                      on: { click: _vm.TotalizarFactura }
+                                    },
+                                    [_vm._v("Totalizar")]
+                                  )
+                                ],
+                                1
                               )
                             ],
                             1
@@ -1022,7 +1324,11 @@ var render = function() {
                             "\r\n                        " +
                               _vm._s(
                                 _vm._f("numberFormat")(
-                                  item.has_intrumento.precio_venta
+                                  item.has_intrumento.precio_venta,
+                                  Object.entries(_vm.cotizacion_partida)
+                                    .length > 3
+                                    ? _vm.cotizacion_partida.has_moneda.clave
+                                    : ""
                                 )
                               ) +
                               "\r\n                    "
@@ -1076,6 +1382,75 @@ var render = function() {
                               [_c("v-icon", [_vm._v("mdi-delete")])],
                               1
                             )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.has_calibracion",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          { attrs: { clas: "text-left" } },
+                          [
+                            !item.has_calibracion
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "error"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                            por iniciar\r\n                        "
+                                    )
+                                  ]
+                                )
+                              : item.has_calibracion.estado === "en proceso"
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "warning"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                            " +
+                                        _vm._s(item.has_calibracion.estado) +
+                                        "\r\n                        "
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "success"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                            " +
+                                        _vm._s(item.has_calibracion.estado) +
+                                        "\r\n                        "
+                                    )
+                                  ]
+                                )
                           ],
                           1
                         )
@@ -1204,6 +1579,675 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c("modal-add-factura")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "text-center" },
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "1256" },
+          model: {
+            value: _vm.openDialog,
+            callback: function($$v) {
+              _vm.openDialog = $$v
+            },
+            expression: "openDialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dark: "", color: "primary" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { icon: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.openDialog = false
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("mdi-close")])],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  Object.entries(_vm.factura).length > 0
+                    ? _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "12"
+                              }
+                            },
+                            [
+                              _c("div", [
+                                _c("h4", [
+                                  _vm._v(
+                                    "Cliente:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .razon_social
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(
+                                    "Dirección:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .direccion_fiscal
+                                      ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .ciudad_estad_pais
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(
+                                    "Teléfono:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente.telefono
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(
+                                    "Correo:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .correo_electronico_factura
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", { staticClass: "text-right" }, [
+                                  _vm._v(
+                                    "Vendedor:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_empleado
+                                          .nombre_completo
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", { staticClass: "text-right" }, [
+                                  _vm._v("Fecha:" + _vm._s(_vm.fecha))
+                                ]),
+                                _c("br")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "12"
+                              }
+                            },
+                            [
+                              _c("v-simple-table", {
+                                attrs: { dense: "" },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "default",
+                                      fn: function() {
+                                        return [
+                                          _c("thead", [
+                                            _c("tr", [
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Orden de servicio\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Cotizacion\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            ID\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Concepto\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Instrumento\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Estado de la calibracion\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Precio Unitario\r\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-left" },
+                                                [
+                                                  _vm._v(
+                                                    "\r\n                                            Importe\r\n                                        "
+                                                  )
+                                                ]
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tbody",
+                                            [
+                                              _vm._l(
+                                                _vm.factura.partidas,
+                                                function(item) {
+                                                  return _c(
+                                                    "tr",
+                                                    { key: item.name },
+                                                    [
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              item.reciboID
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              item.cotizacionID
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              item.informe_id
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                            Servicio de " +
+                                                              _vm._s(
+                                                                item.servicio
+                                                              ) +
+                                                              "\r\n                                        "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                            " +
+                                                              _vm._s(
+                                                                item
+                                                                  .has_intrumento
+                                                                  .nombre
+                                                              )
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            "\r\n                                            ID:" +
+                                                              _vm._s(
+                                                                item.informe_id
+                                                              )
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            "\r\n                                            Marca:" +
+                                                              _vm._s(item.marca)
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            "\r\n                                            Modelo:" +
+                                                              _vm._s(
+                                                                item.modelo
+                                                              )
+                                                          ),
+                                                          _c("br"),
+                                                          _vm._v(
+                                                            "\r\n                                            Serie:" +
+                                                              _vm._s(item.serie)
+                                                          ),
+                                                          _c("br")
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          attrs: {
+                                                            clas: "text-left"
+                                                          }
+                                                        },
+                                                        [
+                                                          !item.has_calibracion
+                                                            ? _c(
+                                                                "v-alert",
+                                                                {
+                                                                  staticClass:
+                                                                    "m-0 p-0",
+                                                                  attrs: {
+                                                                    dense: "",
+                                                                    outlined:
+                                                                      "",
+                                                                    type:
+                                                                      "error"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\r\n                                                por iniciar\r\n                                            "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : item
+                                                                .has_calibracion
+                                                                .estado ===
+                                                              "en proceso"
+                                                            ? _c(
+                                                                "v-alert",
+                                                                {
+                                                                  staticClass:
+                                                                    "m-0 p-0",
+                                                                  attrs: {
+                                                                    dense: "",
+                                                                    outlined:
+                                                                      "",
+                                                                    type:
+                                                                      "warning"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\r\n                                                " +
+                                                                      _vm._s(
+                                                                        item
+                                                                          .has_calibracion
+                                                                          .estado
+                                                                      ) +
+                                                                      "\r\n                                            "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _c(
+                                                                "v-alert",
+                                                                {
+                                                                  staticClass:
+                                                                    "m-0 p-0",
+                                                                  attrs: {
+                                                                    dense: "",
+                                                                    outlined:
+                                                                      "",
+                                                                    type:
+                                                                      "success"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\r\n                                                " +
+                                                                      _vm._s(
+                                                                        item
+                                                                          .has_calibracion
+                                                                          .estado
+                                                                      ) +
+                                                                      "\r\n                                            "
+                                                                  )
+                                                                ]
+                                                              )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          attrs: {
+                                                            clas: "text-left"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                            " +
+                                                              _vm._s(
+                                                                _vm._f(
+                                                                  "numberFormat"
+                                                                )(
+                                                                  item
+                                                                    .has_intrumento
+                                                                    .precio_venta,
+                                                                  Object.entries(
+                                                                    _vm.factura
+                                                                  ).length > 0
+                                                                    ? _vm
+                                                                        .factura
+                                                                        .cliente
+                                                                        .has_moneda
+                                                                        .clave
+                                                                    : ""
+                                                                )
+                                                              ) +
+                                                              "\r\n                                        "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          attrs: {
+                                                            clas: "text-left"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                            " +
+                                                              _vm._s(
+                                                                _vm._f(
+                                                                  "numberFormat"
+                                                                )(
+                                                                  item.importe,
+                                                                  Object.entries(
+                                                                    _vm.factura
+                                                                  ).length > 0
+                                                                    ? _vm
+                                                                        .factura
+                                                                        .cliente
+                                                                        .has_moneda
+                                                                        .clave
+                                                                    : ""
+                                                                )
+                                                              ) +
+                                                              "\r\n                                        "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              _vm._v(" "),
+                                              _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "8" } },
+                                                  [
+                                                    _c(
+                                                      "h3",
+                                                      {
+                                                        staticClass:
+                                                          " text-right"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "SUBTOTAL: " +
+                                                            _vm._s(
+                                                              _vm._f(
+                                                                "numberFormat"
+                                                              )(
+                                                                _vm.factura
+                                                                  .subtotal,
+                                                                Object.entries(
+                                                                  _vm.factura
+                                                                ).length > 0
+                                                                  ? _vm.factura
+                                                                      .cliente
+                                                                      .has_moneda
+                                                                      .clave
+                                                                  : ""
+                                                              )
+                                                            )
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "h3",
+                                                      {
+                                                        staticClass:
+                                                          "text-right"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "IVA : " +
+                                                            _vm._s(
+                                                              _vm._f(
+                                                                "numberFormat"
+                                                              )(
+                                                                _vm.factura.iva,
+                                                                Object.entries(
+                                                                  _vm.factura
+                                                                ).length > 0
+                                                                  ? _vm.factura
+                                                                      .cliente
+                                                                      .has_moneda
+                                                                      .clave
+                                                                  : ""
+                                                              )
+                                                            )
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "h3",
+                                                      {
+                                                        staticClass:
+                                                          "text-right"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "TOTAL: " +
+                                                            _vm._s(
+                                                              _vm._f(
+                                                                "numberFormat"
+                                                              )(
+                                                                _vm.factura
+                                                                  .total,
+                                                                Object.entries(
+                                                                  _vm.factura
+                                                                ).length > 0
+                                                                  ? _vm.factura
+                                                                      .cliente
+                                                                      .has_moneda
+                                                                      .clave
+                                                                  : ""
+                                                              )
+                                                            )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ],
+                                            2
+                                          )
+                                        ]
+                                      },
+                                      proxy: true
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  200477744
+                                )
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", text: "" },
+                      on: { click: _vm.RegistrarFactura }
+                    },
+                    [
+                      _vm._v(
+                        "\r\n                    Registrar Factura\r\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
     1
@@ -1280,6 +2324,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentfactura_vue_vue_type_template_id_2cf2378a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentfactura_vue_vue_type_template_id_2cf2378a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/factura/modals/modalTotalizarComponent.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/factura/modals/modalTotalizarComponent.vue ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalTotalizarComponent.vue?vue&type=template&id=97e9acc6& */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6&");
+/* harmony import */ var _modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalTotalizarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/factura/modals/modalTotalizarComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalTotalizarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalTotalizarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalTotalizarComponent.vue?vue&type=template&id=97e9acc6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/factura/modals/modalTotalizarComponent.vue?vue&type=template&id=97e9acc6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalTotalizarComponent_vue_vue_type_template_id_97e9acc6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

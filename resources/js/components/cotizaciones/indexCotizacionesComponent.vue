@@ -56,10 +56,10 @@
                 </small>
             </td>
         </template>
-        <template v-slot:item.has_cliente="{ item }">
+        <template v-slot:item.has_cliente.razon_social="{ item }">
             <td>{{ item.has_cliente.razon_social }}</td>
         </template>
-        <template v-slot:item.has_empleado="{ item }">
+        <template v-slot:item.has_empleado.nombre_completo="{ item }">
             <td>{{ item.has_empleado.nombre_completo }}</td>
         </template>
         <template v-slot:item.has_moneda="{ item }">
@@ -111,7 +111,7 @@ export default {
                 },
                 {
                     text: "Cliente",
-                    value: "has_cliente",
+                    value: "has_cliente.razon_social",
                     align: 'center',
                 },
                 {
@@ -121,7 +121,7 @@ export default {
                 },
                 {
                     text: "Vendedor",
-                    value: "has_empleado",
+                    value: "has_empleado.nombre_completo",
                     align: 'center',
                 },
                 {

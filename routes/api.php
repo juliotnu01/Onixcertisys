@@ -127,3 +127,9 @@ Route::post('/add-calibracion', 'v1\CalibracionController@store');
 Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
 // Route::put('/edit-patron', 'v1\PatronController@update');
 // Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
+
+// Route::get('/get-patrones', 'v1\PatronController@index');
+Route::post('/add-factura', 'v1\FacturaController@store');
+// Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
+// Route::put('/edit-patron', 'v1\PatronController@update');
+// Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');

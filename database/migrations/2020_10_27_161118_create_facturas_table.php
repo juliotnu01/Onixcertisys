@@ -15,6 +15,14 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes');
+            $table->foreignId('moneda_id')->nullable()->constrained('monedas');
+            $table->string('nota')->nullable();
+            $table->bigInteger('resta')->nullable();
+            $table->bigInteger('subtotal')->nullable();
+            $table->bigInteger('iva')->nullable();
+            $table->bigInteger('total')->nullable();
+            $table->boolean('cancelada')->nullable();
             $table->timestamps();
         });
     }

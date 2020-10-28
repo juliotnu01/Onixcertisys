@@ -80,7 +80,7 @@
                                 </v-btn>
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                <v-btn color="warning" block @click="terminarCalibracion(partida.has_calibracion)">
+                                <v-btn color="warning" block @click="terminarCalibracion(partida)">
                                     <v-icon>mdi-content-save</v-icon>
                                     finalizar calibracion
                                 </v-btn>
@@ -182,7 +182,9 @@ export default {
         async terminarCalibracion(calibracion) {
             try {
                 var model = {
-                    id_calibracion: calibracion.id
+                    id_calibracion: calibracion.has_calibracion.id,
+                    partida: calibracion
+
                 }
                 await this.services.calibracionServices.terminarCalibracion(model)
                 await this.services.partidaServices.getlistpartidasParaCalibrar()

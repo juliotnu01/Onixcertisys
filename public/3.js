@@ -397,7 +397,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context3.prev = 0;
                 model = {
-                  id_calibracion: calibracion.id
+                  id_calibracion: calibracion.has_calibracion.id,
+                  partida: calibracion
                 };
                 _context3.next = 4;
                 return _this3.services.calibracionServices.terminarCalibracion(model);
@@ -1527,7 +1528,7 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               return _vm.terminarCalibracion(
-                                                _vm.partida.has_calibracion
+                                                _vm.partida
                                               )
                                             }
                                           }

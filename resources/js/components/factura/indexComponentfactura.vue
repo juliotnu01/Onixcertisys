@@ -15,10 +15,10 @@
                             <v-autocomplete :items="clientes" v-model="ClienteSelected" item-text="razon_social" @change="ClienteSeleccionado(ClienteSelected)" return-object label="Clientes" outlined clearable />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-                            <v-autocomplete v-model="model.recibo" :items="recibos_cliente" outlined chips label="Recibos" item-text="id" item-value="id" multiple return-object @change="CargarPartidas">
+                            <v-autocomplete v-model="model.recibo" :items="recibos_cliente" outlined chips label="Ordenes de Sercicios" item-text="id" item-value="id" multiple return-object @change="CargarPartidas">
                                 <template v-slot:selection="data">
                                     <v-chip v-bind="data.attrs" :input-value="data.selected" close @click="data.select" @click:close="remove(data.item)">
-                                        Recibo: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
+                                        Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
                                         <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
@@ -26,13 +26,13 @@
                                 </template>
                                 <template v-slot:item="data">
                                     <template v-if="typeof data.item !== 'object'">
-                                        Recibo: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
+                                        Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
                                         <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
                                     </template>
                                     <template v-else>
-                                        Recibo: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
+                                        Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
                                         <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
@@ -54,6 +54,9 @@
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="12">
                             <v-textarea outlined label="NOTA" v-model="cotizacion_partida.nota_de_factura" outlined />
+                        </v-col>
+                        <v-col cols="12" xs="12" sm="12" md="12">
+                            <v-btn color="success" @click="TotalizarFactura">Totalizar</v-btn>
                         </v-col>
                     </v-row>
                 </v-col>
@@ -99,7 +102,7 @@
                 </template>
                 <template v-slot:item.has_intrumento.precio_venta="{item}">
                     <td clas="text-left">
-                        {{item.has_intrumento.precio_venta | numberFormat()}}
+                        {{item.has_intrumento.precio_venta | numberFormat(Object.entries(cotizacion_partida).length > 3 ? cotizacion_partida.has_moneda.clave: '' )}}
                     </td>
                 </template>
                 <template v-slot:item.importe="{item}">
@@ -112,6 +115,19 @@
                         <v-btn color="error" icon fab @click="EliminarPartida(item)">
                             <v-icon>mdi-delete</v-icon>
                         </v-btn>
+                    </td>
+                </template>
+                <template v-slot:item.has_calibracion="{item}">
+                    <td clas="text-left">
+                        <v-alert dense outlined type="error" v-if="!item.has_calibracion" class="m-0 p-0">
+                            por iniciar
+                        </v-alert>
+                        <v-alert dense outlined type="warning" v-else-if="item.has_calibracion.estado === 'en proceso'" class="m-0 p-0">
+                            {{item.has_calibracion.estado }}
+                        </v-alert>
+                        <v-alert dense outlined type="success" v-else class="m-0 p-0">
+                            {{item.has_calibracion.estado }}
+                        </v-alert>
                     </td>
                 </template>
                 <template v-slot:footer>
@@ -132,6 +148,7 @@
             </v-data-table>
         </v-col>
     </v-row>
+    <modal-add-factura />
 </v-app>
 </template>
 
@@ -139,7 +156,11 @@
 import {
     mapGetters
 } from 'vuex'
+import modalADDFactura from './modals/modalTotalizarComponent.vue'
 export default {
+    components: {
+        'modal-add-factura': modalADDFactura,
+    },
     data() {
         return {
             model: {
@@ -166,7 +187,7 @@ export default {
                 serie: ''
             },
             tipo_de_factura: [{
-                    name: 'Generar factura desde  los recibos',
+                    name: 'Generar factura de las orde de servicio ',
                     value: 1
                 },
                 {
@@ -176,10 +197,22 @@ export default {
             ],
             tipoFacturaSelected: {},
             headers_partidas_factura: [{
-                    text: 'Cantidad',
+                    text: 'Orden de Servicio',
                     sorable: false,
                     align: 'center',
-                    value: 'cantidad'
+                    value: 'reciboID'
+                },
+                {
+                    text: 'Cotizacion',
+                    sorable: false,
+                    align: 'center',
+                    value: 'cotizacionID'
+                },
+                {
+                    text: 'ID',
+                    sorable: false,
+                    align: 'center',
+                    value: 'informe_id'
                 },
                 {
                     text: 'Concepto',
@@ -192,6 +225,12 @@ export default {
                     sorable: false,
                     align: 'center',
                     value: 'has_intrumento'
+                },
+                {
+                    text: 'Estado de la calibracion',
+                    sorable: false,
+                    align: 'center',
+                    value: 'has_calibracion'
                 },
                 {
                     text: 'Precio unitario',
@@ -349,10 +388,32 @@ export default {
                 for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
                     if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
                         this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j])
+                        for (var a of this.partidas_acumuladas) {
+                            if (a.id === this.model.recibo[i].has_partidas[j].id) {
+                                a.cotizacionID = this.model.recibo[i].has_cotizaicon.id
+                                a.reciboID = this.model.recibo[i].id
+                            }
+                        }
                     }
                 }
             }
-        }
+        },
+        async TotalizarFactura() {
+            var dataFactura = {
+                partidas: this.partidas_acumuladas,
+                cliente: this.cotizacion_partida,
+                subtotal: this.var_computed_subtotal,
+                iva: this.var_computed_iva,
+                total: this.var_computed_total
+            }
+            console.log({
+                dataFactura
+            })
+            this.$store.commit('setDialogFactura', dataFactura)
+            this.$store.commit("setDialogAddFactura", true);
+
+        },
+
     }
 }
 </script>

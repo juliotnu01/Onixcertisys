@@ -136,7 +136,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         align: 'center'
       }, {
         text: "Cliente",
-        value: "has_cliente",
+        value: "has_cliente.razon_social",
         align: 'center'
       }, {
         text: "Contacto",
@@ -144,7 +144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         align: 'center'
       }, {
         text: "Vendedor",
-        value: "has_empleado",
+        value: "has_empleado.nombre_completo",
         align: 'center'
       }, {
         text: "Estado",
@@ -1809,7 +1809,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "tipo",
         align: "center"
       }, {
-        text: "Vigencia",
+        text: "Vigencia(dias)",
         value: "vigencia",
         align: "center"
       }, {
@@ -2341,14 +2341,14 @@ var render = function() {
             }
           },
           {
-            key: "item.has_cliente",
+            key: "item.has_cliente.razon_social",
             fn: function(ref) {
               var item = ref.item
               return [_c("td", [_vm._v(_vm._s(item.has_cliente.razon_social))])]
             }
           },
           {
-            key: "item.has_empleado",
+            key: "item.has_empleado.nombre_completo",
             fn: function(ref) {
               var item = ref.item
               return [
@@ -5368,7 +5368,7 @@ var render = function() {
                     },
                     [
                       _c("v-icon", [_vm._v("mdi-receipt")]),
-                      _vm._v("Generar Recibo\r\n                ")
+                      _vm._v("Generar Orden de Servicio\r\n                ")
                     ],
                     1
                   )

@@ -107,6 +107,8 @@ export default new Vuex.Store({
         partida: {},
         partidas_para_calibrar: [],
         recibos_cliente: [],
+        dialog_add_factura: false,
+        factura: {},
 
         
     },
@@ -202,6 +204,8 @@ export default new Vuex.Store({
         partida: state => state.partida, 
         partidas_para_calibrar: state => state.partidas_para_calibrar,
         recibos_cliente: state => state.recibos_cliente,
+        dialog_add_factura: state  => state.dialog_add_factura,
+        factura: state => state.factura,
     },
     mutations: {
         setListUser(state, data) {
@@ -601,6 +605,12 @@ export default new Vuex.Store({
         setRecibosCliente(state, data){
             state.recibos_cliente = data
         },
+        setDialogAddFactura(state, data){
+            state.dialog_add_factura = data
+        },
+        setDialogFactura(state, data){
+            state.factura = data
+        }
     
     },
     actions: {
