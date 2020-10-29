@@ -66,42 +66,19 @@
                 <v-card class="p-1 elevation-2">
                     <v-row>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.identificacion" outlined label="Identicacion" />
+                            <v-select offset-y v-model="partida.servicio" :items="servicio_partida" label="Servicio" outlined item-text="name" return-object />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-select offset-y v-model="partida.servicio" :items="servicio_partida" label="Servicio" outlined item-text="name" return-object></v-select>
+                            <v-select offset-y v-model="partida.unidad" :items="unidad_partida" label="Unidad" outlined item-text="name" return-object />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-select offset-y v-model="partida.unidad" :items="unidad_partida" label="Unidad" outlined item-text="name" return-object></v-select>
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-autocomplete offset-y v-model="partida.instrumento" :items="instrumentos" item-text="nombre" outlined s label="Seleccionar Instrumento" return-object></v-autocomplete>
+                            <v-autocomplete offset-y v-model="partida.instrumento" :items="instrumentos" item-text="nombre" outlined s label="Seleccionar Instrumento" return-object />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-text-field v-model="partida.instrumento.alcance" outlined label="Alcance" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" @change="
-                    ActualizarImporte(
-                      partida.cantidad,
-                      partida.instrumento.precio_venta
-                    )
-                  " />
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.marca" outlined label="Marca" />
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.modelo" outlined label="Modelo" />
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.serie" outlined label="Serie" />
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field v-model="partida.instrumento.precio_venta" outlined label="Precio Unitario" />
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-text-field disabled v-model="var_computed_importe_instrumento" outlined label="Importe" />
+                            <v-text-field v-model="partida.cantidad" outlined label="Cantidad" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-btn color="primary" block @click="AgregarPartida" small dense>
@@ -111,58 +88,120 @@
                         </v-col>
                     </v-row>
                 </v-card>
-                <v-data-table dense :headers="headers_cotizacion" :items="model.partidas" item-key="name" class="elevation-1 mt-5">
-                    <template v-slot:item.accion="{ item }">
-                        <td>
-                            <v-btn icon small color="error" @click="eliminarPartida(item)">
-                                <v-icon>mdi-delete</v-icon>
-                            </v-btn>
-                        </td>
-                    </template>
-                    <template v-slot:item.importe="{ item }">
-                        <td>
-                            {{ item.importe | numberFormat(model.moneda_selected.clave) }}
-                        </td>
-                    </template>
-                    <template v-slot:item.instrumento.precio_venta="{ item }">
-                        <td>
-                            {{
-                  item.instrumento.precio_venta
-                    | numberFormat(model.moneda_selected.clave)
-                }}
-                        </td>
-                    </template>
-                    <template v-slot:body.append="{ headers }">
-                        <tr>
-                            <td :colspan="headers.length">
-                                <div class="text-right">
-                                    <h3>
-                                        SUBTOTAL :{{
+                <v-simple-table>
+                    <template v-slot:default>
+                        <thead>
+                            <tr>
+                                <th class="text-left">
+                                    Identicacion
+                                </th>
+                                <th class="text-left">
+                                    Servicio
+                                </th>
+                                <th class="text-left">
+                                    Unidad
+                                </th>
+                                <th class="text-left">
+                                    Instrumento
+                                </th>
+                                <th class="text-left">
+                                    Marca
+                                </th>
+                                <th class="text-left">
+                                    Modelo
+                                </th>
+                                <th class="text-left">
+                                    Serie
+                                </th>
+                                <th class="text-left">
+                                    Alcance
+                                </th>
+                                <th class="text-left">
+                                    Acreditacion
+                                </th>
+                                <th class="text-left">
+                                    Precio Unitario
+                                </th>
+                                <th class="text-left">
+                                    Importe
+                                </th>
+                                <th class="text-left">
+                                    Accion
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, p) in model.partidas" :key="p">
+                                <td>
+                                    <v-text-field label="Identifcacion" v-model="item.identificacion" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    {{item.servicio.name}}
+                                </td>
+                                <td>
+                                    {{item.unidad.name}}
+                                </td>
+                                <td>
+                                    {{item.instrumento.nombre}}
+                                </td>
+                                <td>
+                                    <v-text-field label="Marca" v-model="item.marca" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    <v-text-field label="Modelo" v-model="item.modelo" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    <v-text-field label="Serie" v-model="item.serie" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    {{item.instrumento.alcance}}
+                                </td>
+                                <td>
+                                    {{item.instrumento.has_acreditacion.nombre}}
+                                </td>
+                                <td>
+                                    <v-text-field label="Precio venta" v-model="item.instrumento.precio_venta" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0" />
+                                </td>
+                                <td>
+                                    <v-btn icon small color="error" @click="eliminarPartida(item)">
+                                        <v-icon>mdi-delete</v-icon>
+                                    </v-btn>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td :colspan="12">
+                                    <div class="text-right">
+                                        <h3>
+                                            SUBTOTAL :{{
                         var_computed_sub_total
                           | numberFormat(model.moneda_selected.clave)
                       }}
-                                    </h3>
-                                </div>
-                                <div class="text-right">
-                                    <h3>
-                                        IVA :{{
+                                        </h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3>
+                                            IVA :{{
                         var_computed_iva
                           | numberFormat(model.moneda_selected.clave)
                       }}
-                                    </h3>
-                                </div>
-                                <div class="text-right">
-                                    <h3>
-                                        TOTAL :{{
+                                        </h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3>
+                                            TOTAL :{{
                         var_computed_total
                           | numberFormat(model.moneda_selected.clave)
                       }}
-                                    </h3>
-                                </div>
-                            </td>
-                        </tr>
+                                        </h3>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </template>
-                </v-data-table>
+                </v-simple-table>
             </v-card-text>
         </v-card>
     </v-dialog>
@@ -246,72 +285,6 @@ export default {
                 servicio: {},
                 unidad: {},
             },
-            headers_cotizacion: [{
-                    text: "Identicacion",
-                    value: "identificacion",
-                    align: "center",
-                },
-                {
-                    text: "Servicio",
-                    value: "servicio.name",
-                    align: "center",
-                },
-                {
-                    text: "Unidad",
-                    value: "unidad.name",
-                    align: "center",
-                },
-                {
-                    text: "Instrumento",
-                    value: "instrumento.nombre",
-                    align: "center",
-                },
-                {
-                    text: "Marca",
-                    value: "marca",
-                    align: "center",
-                },
-                {
-                    text: "Modelo",
-                    value: "modelo",
-                    align: "center",
-                },
-                {
-                    text: "Serie",
-                    value: "serie",
-                    align: "center",
-                },
-                {
-                    text: "Alcance",
-                    value: "instrumento.alcance",
-                    align: "center",
-                },
-                {
-                    text: "Acreditacion",
-                    value: "instrumento.has_acreditacion.nombre",
-                    align: "center",
-                },
-                {
-                    text: "Cantidad",
-                    value: "cantidad",
-                    align: "center",
-                },
-                {
-                    text: "Precio Unitario",
-                    value: "instrumento.precio_venta",
-                    align: "center",
-                },
-                {
-                    text: "Importe",
-                    value: "importe",
-                    align: "center",
-                },
-                {
-                    text: "Accion",
-                    value: "accion",
-                    align: "center",
-                },
-            ],
             servicio_partida: [{
                     name: "Calibracion",
                     value: 1,
@@ -423,7 +396,21 @@ export default {
             this.var_computed_importe_instrumento = cantidad * pvp;
         },
         AgregarPartida() {
-            this.model.partidas.push(this.partida);
+            for (var i = 0; i < this.partida.cantidad; i++) {
+                var model = {
+                    identificacion: this.partida.identificacion,
+                    instrumento: this.partida.instrumento,
+                    cantidad: 1,
+                    marca: this.partida.marca,
+                    modelo: this.partida.modelo,
+                    serie: this.partida.serie,
+                    importe: 0,
+                    servicio: this.partida.servicio,
+                    unidad: this.partida.unidad,
+
+                }
+                this.model.partidas.push(model);
+            }
             this.partida = {
                 identificacion: "",
                 instrumento: {},
