@@ -112,6 +112,56 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -126,54 +176,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      menu: false,
       headers_cotizacion: [{
         text: "Folio",
         value: "id",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Fecha",
         value: "created_at",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Cliente",
         value: "has_cliente.razon_social",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Contacto",
         value: "contacto",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Vendedor",
         value: "has_empleado.nombre_completo",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Estado",
         value: "estado_de_la_cotizacion",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Tipo de Servicio",
         value: "tipo_de_servicio",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Moneda",
         value: "has_moneda",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Sub Total",
         value: "sub_total",
-        align: 'center'
+        align: 'start'
       }, {
         text: "IVA",
         value: "iva",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Total",
         value: "total",
-        align: 'center'
+        align: 'start'
       }, {
         text: "Accion",
         value: "accion",
-        align: 'center'
+        align: 'start'
       }],
       search_cot: ""
     };
@@ -427,11 +478,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-cargar-partidas-masivamente': _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -462,6 +518,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       model: {
         cliente_selected: {},
+        sucursal_cliente: {},
         moneda_selected: {},
         tde_selected: {},
         empleado_selected: {},
@@ -573,7 +630,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", 'masivPartidas'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "masivPartidas"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_add_cotizacion;
@@ -2066,6 +2123,21 @@ var render = function() {
               _c(
                 "v-btn",
                 {
+                  staticClass: "float-right ml-5",
+                  attrs: { fab: "", color: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.services.cotizacionServices.getlistCotizaciones()
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-reload")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
                   staticClass: "float-right",
                   attrs: { fab: "", color: "primary" },
                   on: {
@@ -2250,58 +2322,350 @@ var render = function() {
                   "td",
                   [
                     _c(
-                      "v-btn",
+                      "v-menu",
                       {
-                        attrs: { icon: "", small: "", color: "primary" },
-                        on: {
-                          click: function($event) {
-                            return _vm.ViewCotizacion(item)
-                          }
-                        }
+                        staticClass: "text-center",
+                        attrs: { bottom: "", left: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                var attrs = ref.attrs
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          attrs: { color: "primary", icon: "" }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c("v-icon", [
+                                        _vm._v("mdi-dots-vertical")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
                       },
-                      [_c("v-icon", [_vm._v("mdi-eye")])],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", small: "", color: "error" },
-                        on: {
-                          click: function($event) {
-                            return _vm.eliminarCotizacion(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-delete")])],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", small: "", color: "warning" },
-                        on: {
-                          click: function($event) {
-                            return _vm.EditarCotizacion(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-pencil")])],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", small: "", color: "info" },
-                        on: {
-                          click: function($event) {
-                            return _vm.printCotizacion(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-printer")])],
+                      [
+                        _vm._v(" "),
+                        _c(
+                          "v-list",
+                          [
+                            _c(
+                              "v-list-item",
+                              [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { left: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    icon: "",
+                                                    small: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.ViewCotizacion(
+                                                        item
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-icon",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            color: "primary",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        "v-icon",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _vm._v(
+                                                        "\r\n                                            mdi-eye\r\n                                        "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Orden de servicio")])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-item",
+                              [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { left: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    icon: "",
+                                                    small: "",
+                                                    color: "error"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.eliminarCotizacion(
+                                                        item
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-icon",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            color: "error",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        "v-icon",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _vm._v(
+                                                        "\r\n                                            mdi-delete\r\n                                        "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Eliminar cotizacion")])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-item",
+                              [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { left: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    icon: "",
+                                                    small: "",
+                                                    color: "warning"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.EditarCotizacion(
+                                                        item
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-icon",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            color: "warning",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        "v-icon",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _vm._v(
+                                                        "\r\n                                            mdi-pencil\r\n                                        "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Editar cotizacion")])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-list-item",
+                              [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { left: "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    icon: "",
+                                                    small: "",
+                                                    color: "info"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.printCotizacion(
+                                                        item
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-icon",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            color: "info",
+                                                            dark: ""
+                                                          }
+                                                        },
+                                                        "v-icon",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _vm._v(
+                                                        "\r\n                                            mdi-printer\r\n                                        "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Imprimir cotizacion")])
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
                       1
                     )
                   ],
@@ -2316,26 +2680,22 @@ var render = function() {
               var item = ref.item
               return [
                 _c("td", { staticClass: "text-left" }, [
-                  _c("small", { staticClass: "text-left" }, [
-                    _vm._v(
-                      "\r\n                    Nombre:" +
-                        _vm._s(item.contacto) +
-                        " "
-                    ),
-                    _c("br"),
-                    _vm._v(
-                      "\r\n                    Teléfono:" +
-                        _vm._s(item.contacto_telefono) +
-                        " "
-                    ),
-                    _c("br"),
-                    _vm._v(
-                      "\r\n                    Correo:" +
-                        _vm._s(item.contacto_correo) +
-                        " "
-                    ),
-                    _c("br")
-                  ])
+                  _vm._v(
+                    "\r\n                Nombre:" + _vm._s(item.contacto) + " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\r\n                Teléfono:" +
+                      _vm._s(item.contacto_telefono) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\r\n                Correo:" +
+                      _vm._s(item.contacto_correo) +
+                      " "
+                  ),
+                  _c("br")
                 ])
               ]
             }
@@ -2344,7 +2704,25 @@ var render = function() {
             key: "item.has_cliente.razon_social",
             fn: function(ref) {
               var item = ref.item
-              return [_c("td", [_vm._v(_vm._s(item.has_cliente.razon_social))])]
+              return [
+                _c("td", [
+                  _vm._v(
+                    "\r\n                " +
+                      _vm._s(item.has_cliente.razon_social)
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\r\n                " +
+                      _vm._s(
+                        item.has_cliente.has_sucursal.length > 0
+                          ? "Sucursal: " +
+                              item.has_cliente.has_sucursal[0].nombre_sucursal
+                          : ""
+                      ) +
+                      "\r\n            "
+                  )
+                ])
+              ]
             }
           },
           {
@@ -2592,6 +2970,42 @@ var render = function() {
                                 attrs: {
                                   "offset-y": "",
                                   dense: "",
+                                  items:
+                                    _vm.model.cliente_selected.has_sucursal,
+                                  "item-text": "nombre_sucursal",
+                                  outlined: "",
+                                  s: "",
+                                  label: "Seleccionar sucursal",
+                                  "return-object": ""
+                                },
+                                model: {
+                                  value: _vm.model.sucursal_cliente,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.model, "sucursal_cliente", $$v)
+                                  },
+                                  expression: "model.sucursal_cliente"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "3",
+                                lg: "2"
+                              }
+                            },
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  "offset-y": "",
+                                  dense: "",
                                   items: _vm.monedas,
                                   "item-text": "clave",
                                   outlined: "",
@@ -2619,7 +3033,7 @@ var render = function() {
                                 xs: "12",
                                 sm: "12",
                                 md: "3",
-                                lg: "3"
+                                lg: "2"
                               }
                             },
                             [
@@ -2654,7 +3068,7 @@ var render = function() {
                                 xs: "12",
                                 sm: "12",
                                 md: "3",
-                                lg: "3"
+                                lg: "2"
                               }
                             },
                             [

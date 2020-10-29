@@ -49,7 +49,7 @@
     <table>
         <tr>
             <th  colspan="11"  id="cabecera_logo">
-            <img src="{{ asset('img/accredian-bco.png')}}" alt="logo de la empresa"  />
+            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa"  />
                 <h2>Recibo</h2>
             </th>
         </tr>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cliente;
+use App\Models\{Cliente,SucursalCliente};
 use Illuminate\Http\Request;
 use DB;
 
@@ -17,7 +17,7 @@ class ClienteController extends Controller
     public function index()
     {
         try {
-            $cliente = Cliente::all();
+            $cliente = Cliente::with(['hasMetodoDePago','hasCondicionDePago', 'hasSucursal'])->get();
             return $cliente;     
         } catch (Exception $e) {
             throw new Exception($e, 1);
@@ -61,7 +61,18 @@ class ClienteController extends Controller
                 $cliente->correo_contacto = $request['correo_contacto'];
                 $cliente->iva = $request['iva'];
                 $cliente->credito = $request['credito'];
+                $cliente->metodo_de_pago_id = $request['metodo_de_pago']['id'];
+                $cliente->condicion_de_pago_id = $request['condicion_de_pago']['id'];
                 $cliente->save();
+                
+                foreach($request['sucursales'] as $key => $value){
+                    $sucursal = new SucursalCliente();
+                    $sucursal->nombre_sucursal = $value['nombre'];
+                    $sucursal->direccion_sucursal = $value['direccion'];
+                    $sucursal->telefono = $value['telefono'];
+                    $sucursal->cliente_id = $cliente['id'];
+                    $sucursal->save();
+                }
             },5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
@@ -120,6 +131,8 @@ class ClienteController extends Controller
                     'celular_contacto' => $request['celular_contacto'],
                     'correo_contacto' => $request['correo_contacto'],
                     'iva' => $request['iva'],
+                    'metodo_de_pago_id' => $request['metodo_de_pago']['id'],
+                    'condicion_de_pago_id' => $request['condicion_de_pago']['id'],
                 ]);
             },5);
         } catch (Exception $e) {

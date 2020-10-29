@@ -11,7 +11,6 @@ export default class clienteServices{
 	}
 	async agregarCliente(model){
 		try{
-			console.log({model})
 			let {data} = await axios.post('/api/add-cliente', model)
 			store.commit('SetDialogAddCliente', false)
 		}catch(e){

@@ -6,6 +6,9 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+            <v-btn fab color="primary" class="float-right ml-5" @click="services.cotizacionServices.getlistCotizaciones()">
+                <v-icon>mdi-reload</v-icon>
+            </v-btn>
             <v-btn fab color="primary" class="float-right" @click="$store.commit('setDialogAddCotizacion', true)">
                 <v-icon>mdi-plus</v-icon>
             </v-btn>
@@ -33,31 +36,78 @@
         </template>
         <template v-slot:item.accion="{ item }">
             <td>
-                <v-btn icon small color="primary" @click="ViewCotizacion(item)">
-                    <v-icon>mdi-eye</v-icon>
-                </v-btn>
-                <v-btn icon small color="error" @click="eliminarCotizacion(item)">
-                    <v-icon>mdi-delete</v-icon>
-                </v-btn>
-                <v-btn icon small color="warning" @click="EditarCotizacion(item)">
-                    <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-btn icon small color="info" @click="printCotizacion(item)">
-                    <v-icon>mdi-printer</v-icon>
-                </v-btn>
+                <v-menu bottom left class="text-center">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn color="primary" icon v-bind="attrs" v-on="on">
+                            <v-icon>mdi-dots-vertical</v-icon>
+                        </v-btn>
+                    </template>
+
+                    <v-list>
+                        <v-list-item>
+                            <v-tooltip left>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn icon small color="primary" @click="ViewCotizacion(item)">
+                                        <v-icon color="primary" dark v-bind="attrs" v-on="on">
+                                            mdi-eye
+                                        </v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>Orden de servicio</span>
+                            </v-tooltip>
+                        </v-list-item>
+                        <v-list-item>
+                            <v-tooltip left>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn icon small color="error" @click="eliminarCotizacion(item)">
+                                        <v-icon color="error" dark v-bind="attrs" v-on="on">
+                                            mdi-delete
+                                        </v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>Eliminar cotizacion</span>
+                            </v-tooltip>
+                        </v-list-item>
+                        <v-list-item>
+                            <v-tooltip left>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn icon small color="warning" @click="EditarCotizacion(item)">
+                                        <v-icon color="warning" dark v-bind="attrs" v-on="on">
+                                            mdi-pencil
+                                        </v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>Editar cotizacion</span>
+                            </v-tooltip>
+                        </v-list-item>
+                        <v-list-item>
+                            <v-tooltip left>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn icon small color="info" @click="printCotizacion(item)">
+                                        <v-icon color="info" dark v-bind="attrs" v-on="on">
+                                            mdi-printer
+                                        </v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>Imprimir cotizacion</span>
+                            </v-tooltip>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </td>
         </template>
         <template v-slot:item.contacto="{ item }">
             <td class="text-left">
-                <small class="text-left">
-                    Nombre:{{ item.contacto }} <br />
-                    Teléfono:{{ item.contacto_telefono }} <br />
-                    Correo:{{ item.contacto_correo }} <br />
-                </small>
+                Nombre:{{ item.contacto }} <br />
+                Teléfono:{{ item.contacto_telefono }} <br />
+                Correo:{{ item.contacto_correo }} <br />
             </td>
         </template>
         <template v-slot:item.has_cliente.razon_social="{ item }">
-            <td>{{ item.has_cliente.razon_social }}</td>
+            <td>
+                {{ item.has_cliente.razon_social }}<br />
+                {{ item.has_cliente.has_sucursal.length > 0 ? `Sucursal: ${item.has_cliente.has_sucursal[0].nombre_sucursal}` : '' }}
+            </td>
         </template>
         <template v-slot:item.has_empleado.nombre_completo="{ item }">
             <td>{{ item.has_empleado.nombre_completo }}</td>
@@ -99,65 +149,66 @@ export default {
     },
     data() {
         return {
+            menu: false,
             headers_cotizacion: [{
                     text: "Folio",
                     value: "id",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Fecha",
                     value: "created_at",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Cliente",
                     value: "has_cliente.razon_social",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Contacto",
                     value: "contacto",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Vendedor",
                     value: "has_empleado.nombre_completo",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Estado",
                     value: "estado_de_la_cotizacion",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Tipo de Servicio",
                     value: "tipo_de_servicio",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Moneda",
                     value: "has_moneda",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Sub Total",
                     value: "sub_total",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "IVA",
                     value: "iva",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Total",
                     value: "total",
-                    align: 'center',
+                    align: 'start',
                 },
                 {
                     text: "Accion",
                     value: "accion",
-                    align: 'center',
+                    align: 'start',
                 },
             ],
             search_cot: "",

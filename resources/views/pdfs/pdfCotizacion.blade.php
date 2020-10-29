@@ -47,7 +47,7 @@
     <table>
         <tr>
             <th colspan="11" id="cabecera_logo">
-                <img src="{{ asset('img/accredian-bco.png')}}" alt="logo de la empresa"  />
+            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa"  />
                 <h2>Cotizacion</h2>
             </th>
         </tr>
@@ -58,6 +58,9 @@
                 <div> <strong> Contacto:</strong> {{$data['has_cliente']['nombre_completo']}}</div>
                 <div> <strong> Teléfono:</strong> {{$data['has_cliente']['celular_contacto']}}</div>
                 <div> <strong> Correo:</strong>{{$data['has_cliente']['correo_contacto']}} </div>
+                <div> <strong> Sucursal:</strong>{{$data['has_cliente']['has_sucursal'][0]['nombre_sucursal']}} </div>
+                <div> <strong> Direccion: sucursal:</strong>{{$data['has_cliente']['has_sucursal'][0]['direccion_sucursal']}} </div>
+                <div> <strong> Telefono: sucursal:</strong>{{$data['has_cliente']['has_sucursal'][0]['telefono']}} </div>
             </td>
             <td colspan="6">
                 <div> <strong> Cotizacion:</strong> {{$data['id']}}</div>

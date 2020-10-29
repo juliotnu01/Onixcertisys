@@ -27,6 +27,7 @@ class CotizacionController extends Controller
         try {
             $cotizaciones = Cotizacion::with([
                 'hasCliente',
+                'hasCliente.hasSucursal',
                 'hasEmpleado',
                 'hasMoneda',
                 'hasTiempoDeEntrega',
@@ -65,6 +66,7 @@ class CotizacionController extends Controller
             return DB::transaction(function () use ($request, $cotizacion) {
 
                 $cotizacion->cliente_id = $request['cliente_id'];
+                $cotizacion->sucursal_cliente_id = $request['sucursal'];
                 $cotizacion->empleado_id = $request['empleado_id'];
                 $cotizacion->moneda_id = $request['moneda_id'];
                 $cotizacion->tiempo_de_entrega_id = $request['tiempo_de_entrega_id'];
@@ -220,7 +222,13 @@ class CotizacionController extends Controller
                     Cotizacion::find($request['id'])->update([
                         'ruta_print_document' => $url
                     ]);
-            return Response(Cotizacion::with('hasMoneda','hasTiempoDeEntrega', 'hasCliente', 'hasPartidas', 'hasPartidas.hasIntrumento', 'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
+            return Response(Cotizacion::with('hasMoneda',
+                                             'hasTiempoDeEntrega', 
+                                             'hasCliente', 
+                                             'hasCliente.hasSucursal', 
+                                             'hasPartidas', 
+                                             'hasPartidas.hasIntrumento', 
+                                             'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
         } catch (\Throwable $th) {
             throw $th;
         }

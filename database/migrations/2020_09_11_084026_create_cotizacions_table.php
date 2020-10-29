@@ -15,10 +15,11 @@ class CreateCotizacionsTable extends Migration
     {
         Schema::create('cotizacions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade'); 
-            $table->foreignId('empleado_id')->constrained('empleados')->onDelete('cascade'); 
-            $table->foreignId('moneda_id')->constrained('monedas')->onDelete('cascade'); 
-            $table->foreignId('tiempo_de_entrega_id')->constrained('tiempo_de_entregas')->onDelete('cascade');
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes'); 
+            $table->foreignId('empleado_id')->nullable()->constrained('empleados'); 
+            $table->foreignId('moneda_id')->nullable()->constrained('monedas'); 
+            $table->foreignId('tiempo_de_entrega_id')->nullable()->constrained('tiempo_de_entregas');
+            $table->foreignId('sucursal_cliente_id')->nullable()->constrained('sucursal_clientes');
             $table->string('tipo_de_servicio')->nullable(); 
             $table->string('nota_para_la_cotizacion')->nullable(); 
             $table->string('estado_de_la_cotizacion')->nullable(); 

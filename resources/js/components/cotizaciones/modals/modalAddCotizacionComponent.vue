@@ -6,7 +6,9 @@
                 <v-icon>mdi-close</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn text dark @click.prevent="$store.commit('setDialogCargarPartidaMasivamente', true)" tile>
+            <v-btn text dark @click.prevent="
+            $store.commit('setDialogCargarPartidaMasivamente', true)
+          " tile>
                 <v-icon>mdi-file-upload</v-icon> Cargar Partidas masivamente
             </v-btn>
             <v-btn text dark @click.prevent="addCotizacion" tile>
@@ -22,12 +24,15 @@
                             <v-autocomplete offset-y dense v-model="model.cliente_selected" :items="clientes" item-text="razon_social" outlined s label="Seleccionar Cliente" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                            <v-autocomplete offset-y dense v-model="model.sucursal_cliente" :items="model.cliente_selected.has_sucursal" item-text="nombre_sucursal" outlined s label="Seleccionar sucursal" return-object />
+                        </v-col>
+                        <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                             <v-autocomplete offset-y dense v-model="model.moneda_selected" :items="monedas" item-text="clave" outlined s label="Seleccionar Moneda" return-object></v-autocomplete>
                         </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                        <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                             <v-autocomplete offset-y dense v-model="model.tde_selected" :items="tiempos_de_entrega" item-text="nombre" outlined s label="Tiempo de Entrega" return-object></v-autocomplete>
                         </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                        <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                             <v-autocomplete offset-y dense v-model="model.empleado_selected" :items="empleados" item-text="nombre_completo" outlined s label="Empleado" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -169,10 +174,10 @@
 import {
     mapGetters
 } from "vuex";
-import modalCargarPartidaMasivamente from './modalCargarPartidaMasivamenteComponent'
+import modalCargarPartidaMasivamente from "./modalCargarPartidaMasivamenteComponent";
 export default {
     components: {
-        'modal-cargar-partidas-masivamente': modalCargarPartidaMasivamente
+        "modal-cargar-partidas-masivamente": modalCargarPartidaMasivamente,
     },
     data() {
         return {
@@ -207,6 +212,7 @@ export default {
             ],
             model: {
                 cliente_selected: {},
+                sucursal_cliente: {},
                 moneda_selected: {},
                 tde_selected: {},
                 empleado_selected: {},
@@ -347,7 +353,7 @@ export default {
             "empleados",
             "tiempos_de_entrega",
             "instrumentos",
-            'masivPartidas'
+            "masivPartidas",
         ]),
         openDialog: {
             get() {
@@ -472,8 +478,8 @@ export default {
                 importe: 0,
                 servicio: {},
                 unidad: {},
-            }
-            this.masivPartidas.forEach(item => {
+            };
+            this.masivPartidas.forEach((item) => {
                 partida = {
                     identificacion: item.identificacion,
                     instrumento: item.has_instrumento,
@@ -484,11 +490,10 @@ export default {
                     importe: item.cantidad * item.has_instrumento.precio_venta,
                     servicio: item.servicio,
                     unidad: item.unidad,
-                }
+                };
                 this.model.partidas.push(partida);
-            })
-
-        }
+            });
+        },
     },
 };
 </script>

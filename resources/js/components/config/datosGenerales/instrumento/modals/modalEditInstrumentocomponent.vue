@@ -1,45 +1,48 @@
 <template>
-    <v-app>
-        <v-dialog v-model="openDialog" width="600">
-            <v-card>
-                <v-card-title>Editar Instrumento</v-card-title>
-                <v-container>
-                    <v-card-text>
-                        <v-form ref="f_mag">
-                            <v-row align="center" justify="space-around">
-                                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-                                    <v-text-field :rules="[rules.required]" label="Nombre" outlined v-model="instrumento.nombre"></v-text-field>
-                                </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-                                    <v-textarea outlined :rules="[rules.required]" outlined v-model="instrumento.alcance" label="Alcance" ></v-textarea>
-                                </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                    <v-select v-model="instrumento.acreditacion_selected"  :items="acreditaciones" item-text="nombre" return-object label="Acreditación" outlined/>
-                                </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                    <v-select v-model="instrumento.magnitud_selected"  :items="magnitudes" item-text="nombre" return-object  label="Area" outlined/>
-                                </v-col>
-                                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                    <v-text-field :rules="[rules.required]" label="Precio Venta" outlined v-model="instrumento.precio_venta"></v-text-field>
-                                </v-col>
-                            </v-row>
-                        </v-form>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn text color="blue" @click.prevent="EditIntrumento">
-                            Editar
-                        </v-btn>
-                        <v-btn text color="red" @click.prevent="openDialog = false">
-                            Cerrar
-                        </v-btn>
-                    </v-card-actions>
-                </v-container>
-            </v-card>
-        </v-dialog>
-    </v-app>
+<v-app>
+    <v-dialog v-model="openDialog" width="600">
+        <v-card>
+            <v-card-title>Editar Instrumento</v-card-title>
+            <v-container>
+                <v-card-text>
+                    <v-form ref="f_mag">
+                        <v-row align="center" justify="space-around">
+                            <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                                <v-text-field :rules="[rules.required]" label="Nombre" outlined v-model="instrumento.nombre"></v-text-field>
+                            </v-col>
+                            <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                                <v-textarea outlined :rules="[rules.required]" outlined v-model="instrumento.alcance" label="Alcance"></v-textarea>
+                            </v-col>
+                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                <v-autocomplete v-model="instrumento.has_acreditacion" :items="acreditaciones" item-text="nombre" return-object label="Acreditación" outlined />
+                            </v-col>
+                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                <v-autocomplete v-model="instrumento.has_magnitud" :items="magnitudes" item-text="nombre" return-object label="Area" outlined />
+                            </v-col>
+                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                                <v-text-field :rules="[rules.required]" label="Precio Venta" outlined v-model="instrumento.precio_venta"></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn text color="blue" @click.prevent="EditIntrumento">
+                        Editar
+                    </v-btn>
+                    <v-btn text color="red" @click.prevent="openDialog = false">
+                        Cerrar
+                    </v-btn>
+                </v-card-actions>
+            </v-container>
+        </v-card>
+    </v-dialog>
+</v-app>
 </template>
+
 <script>
-import { mapGetters } from 'vuex'
+import {
+    mapGetters
+} from 'vuex'
 export default {
     data() {
         return {
@@ -84,10 +87,9 @@ export default {
                     alcance: '',
                     acreditacion: '',
                     precio_venta: ''
-            }
+                }
             }
         }
     }
 };
-
 </script>

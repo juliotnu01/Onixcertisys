@@ -423,14 +423,7 @@ export default new Vuex.Store({
         },
         setInstrumento(state, data) {
             state.instrumento = data;
-            var mag = state.magnitudes.find(
-                item => item.id === data.has_magnitud.id
-            );
-            var acre = state.acreditaciones.find(
-                item => item.id === data.has_acreditacion.id
-            );
-            state.instrumento.acreditacion_selected = mag;
-            state.instrumento.magnitud_selected = acre;
+           
         },
         setProcedimientos(state, data) {
             state.procedimientos = data;
