@@ -47,7 +47,7 @@
     <table>
         <tr>
             <th colspan="11" id="cabecera_logo">
-            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa"  />
+            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa"  width="100"/>
                 <h2>Cotizacion</h2>
             </th>
         </tr>
