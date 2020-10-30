@@ -81,7 +81,7 @@
                             <v-text-field v-model="partida.cantidad" outlined label="Cantidad" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                            <v-btn color="primary" block @click="AgregarPartida" small dense>
+                            <v-btn color="primary" block @click="AgregarPartida">
                                 Agregar Partida
                                 <v-icon small>mdi-plus</v-icon>
                             </v-btn>
@@ -142,7 +142,7 @@
                                     {{item.unidad.name}}
                                 </td>
                                 <td>
-                                    {{item.instrumento.nombre}}
+                                    {{item.instrumento_nombre}}
                                 </td>
                                 <td>
                                     <v-text-field label="Marca" v-model="item.marca" outlined dense small class="m-0 p-0" />
@@ -160,7 +160,7 @@
                                     {{item.instrumento.has_acreditacion.nombre}}
                                 </td>
                                 <td>
-                                    <v-text-field label="Precio venta" v-model="item.instrumento.precio_venta" outlined dense small class="m-0 p-0" />
+                                    <v-text-field label="Precio venta" v-model="item.precio_venta" outlined dense small class="m-0 p-0" @change="ActualizarImporte(item)" />
                                 </td>
                                 <td>
                                     <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0" />
@@ -175,26 +175,17 @@
                                 <td :colspan="12">
                                     <div class="text-right">
                                         <h3>
-                                            SUBTOTAL :{{
-                        var_computed_sub_total
-                          | numberFormat(model.moneda_selected.clave)
-                      }}
+                                            SUBTOTAL :{{var_computed_sub_total | numberFormat(model.moneda_selected.clave)}}
                                         </h3>
                                     </div>
                                     <div class="text-right">
                                         <h3>
-                                            IVA :{{
-                        var_computed_iva
-                          | numberFormat(model.moneda_selected.clave)
-                      }}
+                                            IVA :{{var_computed_iva | numberFormat(model.moneda_selected.clave) }}
                                         </h3>
                                     </div>
                                     <div class="text-right">
                                         <h3>
-                                            TOTAL :{{
-                        var_computed_total
-                          | numberFormat(model.moneda_selected.clave)
-                      }}
+                                            TOTAL :{{ var_computed_total | numberFormat(model.moneda_selected.clave) }}
                                         </h3>
                                     </div>
                                 </td>
@@ -336,14 +327,6 @@ export default {
                 this.$store.commit("setDialogAddCotizacion", val);
             },
         },
-        var_computed_importe_instrumento: {
-            get() {
-                return this.partida.importe;
-            },
-            set(newVal) {
-                this.partida.importe = newVal;
-            },
-        },
         var_computed_sub_total: {
             get() {
                 var result = 0;
@@ -392,21 +375,20 @@ export default {
         this.services.instrumentoServices.getlistInstrumentos();
     },
     methods: {
-        ActualizarImporte(cantidad, pvp) {
-            this.var_computed_importe_instrumento = cantidad * pvp;
-        },
         AgregarPartida() {
             for (var i = 0; i < this.partida.cantidad; i++) {
                 var model = {
                     identificacion: this.partida.identificacion,
                     instrumento: this.partida.instrumento,
+                    instrumento_nombre: this.partida.instrumento.nombre,
                     cantidad: 1,
                     marca: this.partida.marca,
                     modelo: this.partida.modelo,
                     serie: this.partida.serie,
-                    importe: 0,
+                    importe: (this.partida.instrumento.precio_venta * 1),
                     servicio: this.partida.servicio,
                     unidad: this.partida.unidad,
+                    precio_venta: this.partida.instrumento.precio_venta
 
                 }
                 this.model.partidas.push(model);
@@ -458,6 +440,7 @@ export default {
             var partida = {
                 identificacion: "",
                 instrumento: {},
+                instrumento_nombre: '',
                 cantidad: 0,
                 marca: "",
                 modelo: "",
@@ -465,22 +448,35 @@ export default {
                 importe: 0,
                 servicio: {},
                 unidad: {},
+                precio_venta: 0
+
             };
             this.masivPartidas.forEach((item) => {
+                console.log({
+                    item
+                })
                 partida = {
                     identificacion: item.identificacion,
                     instrumento: item.has_instrumento,
-                    cantidad: item.cantidad,
+                    instrumento_nombre: item.has_instrumento.nombre,
+                    cantidad: 1,
                     marca: item.marca,
                     modelo: item.modelo,
                     serie: item.serie,
-                    importe: item.cantidad * item.has_instrumento.precio_venta,
+                    importe: 1 * item.has_instrumento.precio_venta,
                     servicio: item.servicio,
                     unidad: item.unidad,
+                    precio_venta: item.has_instrumento.precio_venta
                 };
                 this.model.partidas.push(partida);
             });
         },
+        ActualizarImporte(item) {
+            console.log({
+                item
+            })
+            item.importe = (item.cantidad * item.precio_venta)
+        }
     },
 };
 </script>

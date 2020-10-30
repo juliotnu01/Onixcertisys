@@ -513,15 +513,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -625,14 +616,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.commit("setDialogAddCotizacion", val);
       }
     },
-    var_computed_importe_instrumento: {
-      get: function get() {
-        return this.partida.importe;
-      },
-      set: function set(newVal) {
-        this.partida.importe = newVal;
-      }
-    },
     var_computed_sub_total: {
       get: function get() {
         var result = 0;
@@ -704,21 +687,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    ActualizarImporte: function ActualizarImporte(cantidad, pvp) {
-      this.var_computed_importe_instrumento = cantidad * pvp;
-    },
     AgregarPartida: function AgregarPartida() {
       for (var i = 0; i < this.partida.cantidad; i++) {
         var model = {
           identificacion: this.partida.identificacion,
           instrumento: this.partida.instrumento,
+          instrumento_nombre: this.partida.instrumento.nombre,
           cantidad: 1,
           marca: this.partida.marca,
           modelo: this.partida.modelo,
           serie: this.partida.serie,
-          importe: 0,
+          importe: this.partida.instrumento.precio_venta * 1,
           servicio: this.partida.servicio,
-          unidad: this.partida.unidad
+          unidad: this.partida.unidad,
+          precio_venta: this.partida.instrumento.precio_venta
         };
         this.model.partidas.push(model);
       }
@@ -797,29 +779,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var partida = {
         identificacion: "",
         instrumento: {},
+        instrumento_nombre: '',
         cantidad: 0,
         marca: "",
         modelo: "",
         serie: "",
         importe: 0,
         servicio: {},
-        unidad: {}
+        unidad: {},
+        precio_venta: 0
       };
       this.masivPartidas.forEach(function (item) {
+        console.log({
+          item: item
+        });
         partida = {
           identificacion: item.identificacion,
           instrumento: item.has_instrumento,
-          cantidad: item.cantidad,
+          instrumento_nombre: item.has_instrumento.nombre,
+          cantidad: 1,
           marca: item.marca,
           modelo: item.modelo,
           serie: item.serie,
-          importe: item.cantidad * item.has_instrumento.precio_venta,
+          importe: 1 * item.has_instrumento.precio_venta,
           servicio: item.servicio,
-          unidad: item.unidad
+          unidad: item.unidad,
+          precio_venta: item.has_instrumento.precio_venta
         };
 
         _this4.model.partidas.push(partida);
       });
+    },
+    ActualizarImporte: function ActualizarImporte(item) {
+      console.log({
+        item: item
+      });
+      item.importe = item.cantidad * item.precio_venta;
     }
   }
 });
@@ -3567,12 +3562,7 @@ var render = function() {
                               _c(
                                 "v-btn",
                                 {
-                                  attrs: {
-                                    color: "primary",
-                                    block: "",
-                                    small: "",
-                                    dense: ""
-                                  },
+                                  attrs: { color: "primary", block: "" },
                                   on: { click: _vm.AgregarPartida }
                                 },
                                 [
@@ -3728,7 +3718,7 @@ var render = function() {
                                     _c("td", [
                                       _vm._v(
                                         "\r\n                                    " +
-                                          _vm._s(item.instrumento.nombre) +
+                                          _vm._s(item.instrumento_nombre) +
                                           "\r\n                                "
                                       )
                                     ]),
@@ -3832,18 +3822,21 @@ var render = function() {
                                             dense: "",
                                             small: ""
                                           },
+                                          on: {
+                                            change: function($event) {
+                                              return _vm.ActualizarImporte(item)
+                                            }
+                                          },
                                           model: {
-                                            value:
-                                              item.instrumento.precio_venta,
+                                            value: item.precio_venta,
                                             callback: function($$v) {
                                               _vm.$set(
-                                                item.instrumento,
+                                                item,
                                                 "precio_venta",
                                                 $$v
                                               )
                                             },
-                                            expression:
-                                              "item.instrumento.precio_venta"
+                                            expression: "item.precio_venta"
                                           }
                                         })
                                       ],
