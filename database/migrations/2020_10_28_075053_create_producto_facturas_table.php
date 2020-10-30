@@ -18,7 +18,7 @@ class CreateProductoFacturasTable extends Migration
             $table->foreignId('factura_id')->nullable()->constrained('facturas');
             $table->foreignId('recibo_id')->nullable()->constrained('recibos');
             $table->foreignId('cotizacion_id')->nullable()->constrained('cotizacions');
-            $table->foreignId('instrumento_id')->nullable()->constrained('cotizacions');
+            $table->foreignId('instrumento_id')->nullable()->constrained('instrumentos');
             $table->string('informe_id')->nullable();
             $table->string('conceopto')->nullable();
             $table->bigInteger('precio_unitario')->nullable();

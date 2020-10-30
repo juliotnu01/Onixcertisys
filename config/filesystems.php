@@ -61,6 +61,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        
         'documentos_excel' => [
             'driver' => 'local',
             'root' => storage_path('app/public/'),

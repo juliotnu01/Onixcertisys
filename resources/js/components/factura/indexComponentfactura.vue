@@ -60,7 +60,7 @@
                         </v-col>
                     </v-row>
                 </v-col>
-                <!--<v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
+                <v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
                     <v-row>
                         <v-col cols="12" xs="12" sm="6" md="6">
                             <v-autocomplete :items="monedas" v-model="model.factura_nueva.moneda" item-text="nombre_moneda" return-object label="Moneda" outlined clearable />
@@ -81,7 +81,7 @@
                             <v-textarea outlined label="NOTA" v-model="model.factura_nueva.nota_de_factura" outlined />
                         </v-col>
                     </v-row>
-                </v-col>-->
+                </v-col>
             </v-row>
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -89,7 +89,7 @@
                 <template v-slot:item.has_intrumento="{item}">
                     <td class="text-left">
                         {{item.has_intrumento.nombre}}<br />
-                        ID:{{item.informe_id}}<br />
+                        ID:{{item.identificacion}}<br />
                         Marca:{{item.marca}}<br />
                         Modelo:{{item.modelo}}<br />
                         Serie:{{item.serie}}<br />

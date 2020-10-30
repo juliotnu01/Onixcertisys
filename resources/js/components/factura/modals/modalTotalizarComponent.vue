@@ -61,7 +61,7 @@
                                         </td>
                                         <td class="text-left">
                                             {{item.has_intrumento.nombre}}<br />
-                                            ID:{{item.informe_id}}<br />
+                                            ID:{{item.identificacion}}<br />
                                             Marca:{{item.marca}}<br />
                                             Modelo:{{item.modelo}}<br />
                                             Serie:{{item.serie}}<br />

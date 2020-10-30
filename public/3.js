@@ -1244,6 +1244,228 @@ var render = function() {
                         ],
                         1
                       )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.tipoFacturaSelected.value == 2
+                    ? _c(
+                        "v-col",
+                        { attrs: { cols: "12", xs: "12", sm: "12", md: "12" } },
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "6",
+                                    md: "6"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.monedas,
+                                      "item-text": "nombre_moneda",
+                                      "return-object": "",
+                                      label: "Moneda",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.moneda,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "moneda",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.moneda"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "6",
+                                    md: "6"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.empleados,
+                                      "item-text": "nombre_completo",
+                                      "return-object": "",
+                                      label: "Vendedor",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.vendedor,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "vendedor",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.vendedor"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Forma de pago",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.recibo.forma_de_pago,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.recibo,
+                                          "forma_de_pago",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.recibo.forma_de_pago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Metodo de pago",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.recibo.metodo_de_pago,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.recibo,
+                                          "metodo_de_pago",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.recibo.metodo_de_pago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.clientes,
+                                      "item-text": "razon_social",
+                                      "return-object": "",
+                                      label: "Cliente",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.cliente,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "cliente",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.cliente"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "NOTA",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.model.factura_nueva.nota_de_factura,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "nota_de_factura",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "model.factura_nueva.nota_de_factura"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     : _vm._e()
                 ],
                 1
@@ -1277,7 +1499,7 @@ var render = function() {
                           _c("br"),
                           _vm._v(
                             "\r\n                        ID:" +
-                              _vm._s(item.informe_id)
+                              _vm._s(item.identificacion)
                           ),
                           _c("br"),
                           _vm._v(
@@ -1926,7 +2148,7 @@ var render = function() {
                                                           _vm._v(
                                                             "\r\n                                            ID:" +
                                                               _vm._s(
-                                                                item.informe_id
+                                                                item.identificacion
                                                               )
                                                           ),
                                                           _c("br"),
@@ -2207,7 +2429,7 @@ var render = function() {
                                   ],
                                   null,
                                   false,
-                                  200477744
+                                  658115051
                                 )
                               })
                             ],
