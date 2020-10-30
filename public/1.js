@@ -1317,81 +1317,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1434,46 +1359,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         servicio: {},
         unidad: {}
       },
-      headers_cotizacion: [{
-        text: "Identicacion",
-        value: "identificacion"
-      }, {
-        text: "Servicio",
-        value: "servicio"
-      }, {
-        text: "Unidad",
-        value: "unidad"
-      }, {
-        text: "Instrumento",
-        value: "has_intrumento.nombre"
-      }, {
-        text: "Marca",
-        value: "marca"
-      }, {
-        text: "Modelo",
-        value: "modelo"
-      }, {
-        text: "Serie",
-        value: "serie"
-      }, {
-        text: "Alcance",
-        value: "has_intrumento.alcance"
-      }, {
-        text: "Acreditacion",
-        value: "has_intrumento.has_acreditacion.nombre"
-      }, {
-        text: "Cantidad",
-        value: "cantidad"
-      }, {
-        text: "Precio Unitario",
-        value: "has_intrumento.precio_venta"
-      }, {
-        text: "Importe",
-        value: "importe"
-      }, {
-        text: "Accion",
-        value: "accion"
-      }],
       servicio_partida: [{
         name: "Calibracion",
         value: 1
@@ -1593,18 +1478,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.var_computed_importe_instrumento = cantidad * pvp;
     },
     AgregarPartida: function AgregarPartida() {
-      var _obj;
+      for (var i = 0; i < this.partida.cantidad; i++) {
+        var _obj;
 
-      var obj = (_obj = {
-        identificacion: this.partida.identificacion,
-        has_intrumento: this.partida.instrumento,
-        cantidad: this.partida.cantidad,
-        marca: this.partida.marca,
-        modelo: this.partida.modelo,
-        serie: this.partida.serie,
-        importe: this.partida.importe
-      }, _defineProperty(_obj, "marca", this.partida.marca), _defineProperty(_obj, "modelo", this.partida.modelo), _defineProperty(_obj, "serie", this.partida.serie), _defineProperty(_obj, "servicio", this.partida.servicio.name), _defineProperty(_obj, "unidad", this.partida.unidad.name), _obj);
-      this.cotizacion.has_partidas.push(obj);
+        var obj = (_obj = {
+          identificacion: this.partida.identificacion,
+          has_intrumento: this.partida.instrumento,
+          cantidad: this.partida.cantidad,
+          marca: this.partida.marca,
+          modelo: this.partida.modelo,
+          serie: this.partida.serie,
+          importe: this.partida.importe
+        }, _defineProperty(_obj, "marca", this.partida.marca), _defineProperty(_obj, "modelo", this.partida.modelo), _defineProperty(_obj, "serie", this.partida.serie), _defineProperty(_obj, "servicio", this.partida.servicio.name), _defineProperty(_obj, "unidad", this.partida.unidad.name), _defineProperty(_obj, "importe", this.partida.instrumento.precio_venta * 1), _obj);
+        this.cotizacion.has_partidas.push(obj);
+      }
+
       this.partida = {
         identificacion: "",
         instrumento: {},
@@ -1647,9 +1535,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     eliminarPartida: function eliminarPartida(item) {
       this.services.partidaServices.EliminarPartida(item);
-      var index = this.cotizacion.has_partidas.findIndex(function (item) {
-        return item.id === item.id || item.identificacion === item.identificacion;
-      });
+      var index = this.cotizacion.has_partidas.indexOf(item);
       this.cotizacion.has_partidas.splice(index, 1);
     },
     open: function open() {
@@ -5005,32 +4891,6 @@ var render = function() {
                               }
                             },
                             [
-                              _c("v-text-field", {
-                                attrs: { outlined: "", label: "Identicacion" },
-                                model: {
-                                  value: _vm.partida.identificacion,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.partida, "identificacion", $$v)
-                                  },
-                                  expression: "partida.identificacion"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
                               _c("v-select", {
                                 attrs: {
                                   "offset-y": "",
@@ -5163,161 +5023,12 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: { outlined: "", label: "Cantidad" },
-                                on: {
-                                  change: function($event) {
-                                    return _vm.ActualizarImporte(
-                                      _vm.partida.cantidad,
-                                      _vm.partida.instrumento.precio_venta
-                                    )
-                                  }
-                                },
                                 model: {
                                   value: _vm.partida.cantidad,
                                   callback: function($$v) {
                                     _vm.$set(_vm.partida, "cantidad", $$v)
                                   },
                                   expression: "partida.cantidad"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: { outlined: "", label: "Marca" },
-                                model: {
-                                  value: _vm.partida.marca,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.partida, "marca", $$v)
-                                  },
-                                  expression: "partida.marca"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: { outlined: "", label: "Modelo" },
-                                model: {
-                                  value: _vm.partida.modelo,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.partida, "modelo", $$v)
-                                  },
-                                  expression: "partida.modelo"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: { outlined: "", label: "Serie" },
-                                model: {
-                                  value: _vm.partida.serie,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.partida, "serie", $$v)
-                                  },
-                                  expression: "partida.serie"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  outlined: "",
-                                  label: "Precio Unitario"
-                                },
-                                model: {
-                                  value: _vm.partida.instrumento.precio_venta,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.partida.instrumento,
-                                      "precio_venta",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "partida.instrumento.precio_venta"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "2",
-                                lg: "2"
-                              }
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  disabled: "",
-                                  outlined: "",
-                                  label: "Importe"
-                                },
-                                model: {
-                                  value: _vm.var_computed_importe_instrumento,
-                                  callback: function($$v) {
-                                    _vm.var_computed_importe_instrumento = $$v
-                                  },
-                                  expression: "var_computed_importe_instrumento"
                                 }
                               })
                             ],
@@ -5367,378 +5078,371 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-data-table", {
-                    staticClass: "elevation-1 mt-5",
-                    attrs: {
-                      dense: "",
-                      headers: _vm.headers_cotizacion,
-                      items: _vm.cotizacion.has_partidas,
-                      "item-key": "name"
-                    },
+                  _c("v-simple-table", {
                     scopedSlots: _vm._u([
                       {
-                        key: "item.identificacion",
-                        fn: function(ref) {
-                          var item = ref.item
+                        key: "default",
+                        fn: function() {
                           return [
-                            _c(
-                              "v-edit-dialog",
-                              {
-                                attrs: { "return-value": item.identificacion },
-                                on: {
-                                  "update:returnValue": function($event) {
-                                    return _vm.$set(
-                                      item,
-                                      "identificacion",
-                                      $event
-                                    )
-                                  },
-                                  "update:return-value": function($event) {
-                                    return _vm.$set(
-                                      item,
-                                      "identificacion",
-                                      $event
-                                    )
-                                  },
-                                  open: _vm.open
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "input",
-                                      fn: function() {
-                                        return [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "identificacion",
-                                              dense: "",
-                                              small: "",
-                                              outlined: ""
-                                            },
-                                            model: {
-                                              value: item.identificacion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  item,
-                                                  "identificacion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "item.identificacion"
-                                            }
-                                          })
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                            " +
-                                    _vm._s(item.identificacion) +
-                                    "\r\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.marca",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c(
-                              "v-edit-dialog",
-                              {
-                                attrs: { "return-value": item.marca },
-                                on: {
-                                  "update:returnValue": function($event) {
-                                    return _vm.$set(item, "marca", $event)
-                                  },
-                                  "update:return-value": function($event) {
-                                    return _vm.$set(item, "marca", $event)
-                                  },
-                                  open: _vm.open
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "input",
-                                      fn: function() {
-                                        return [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "marca",
-                                              dense: "",
-                                              small: "",
-                                              outlined: ""
-                                            },
-                                            model: {
-                                              value: item.marca,
-                                              callback: function($$v) {
-                                                _vm.$set(item, "marca", $$v)
-                                              },
-                                              expression: "item.marca"
-                                            }
-                                          })
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                            " +
-                                    _vm._s(item.marca) +
-                                    "\r\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.modelo",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c(
-                              "v-edit-dialog",
-                              {
-                                attrs: { "return-value": item.modelo },
-                                on: {
-                                  "update:returnValue": function($event) {
-                                    return _vm.$set(item, "modelo", $event)
-                                  },
-                                  "update:return-value": function($event) {
-                                    return _vm.$set(item, "modelo", $event)
-                                  },
-                                  open: _vm.open
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "input",
-                                      fn: function() {
-                                        return [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "modelo",
-                                              dense: "",
-                                              small: "",
-                                              outlined: ""
-                                            },
-                                            model: {
-                                              value: item.modelo,
-                                              callback: function($$v) {
-                                                _vm.$set(item, "modelo", $$v)
-                                              },
-                                              expression: "item.modelo"
-                                            }
-                                          })
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                            " +
-                                    _vm._s(item.modelo) +
-                                    "\r\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.serie",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c(
-                              "v-edit-dialog",
-                              {
-                                attrs: { "return-value": item.serie },
-                                on: {
-                                  "update:returnValue": function($event) {
-                                    return _vm.$set(item, "serie", $event)
-                                  },
-                                  "update:return-value": function($event) {
-                                    return _vm.$set(item, "serie", $event)
-                                  },
-                                  open: _vm.open
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "input",
-                                      fn: function() {
-                                        return [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "serie",
-                                              dense: "",
-                                              small: "",
-                                              outlined: ""
-                                            },
-                                            model: {
-                                              value: item.serie,
-                                              callback: function($$v) {
-                                                _vm.$set(item, "serie", $$v)
-                                              },
-                                              expression: "item.serie"
-                                            }
-                                          })
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                            " +
-                                    _vm._s(item.serie) +
-                                    "\r\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.has_intrumento.precio_venta",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _vm._v(
-                                "\r\n                            " +
-                                  _vm._s(
-                                    _vm._f("numberFormat")(
-                                      item.has_intrumento.precio_venta
-                                    )
-                                  ) +
-                                  "\r\n                        "
-                              )
-                            ])
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.importe",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c("td", { staticClass: "text-center" }, [
-                              _vm._v(
-                                "\r\n                            " +
-                                  _vm._s(_vm._f("numberFormat")(item.importe)) +
-                                  "\r\n                        "
-                              )
-                            ])
-                          ]
-                        }
-                      },
-                      {
-                        key: "item.accion",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      icon: "",
-                                      small: "",
-                                      color: "error"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.eliminarPartida(item)
-                                      }
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v("mdi-delete")])],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        }
-                      },
-                      {
-                        key: "body.append",
-                        fn: function(ref) {
-                          var headers = ref.headers
-                          return [
-                            _c("tr", [
-                              _c("td", { attrs: { colspan: headers.length } }, [
-                                _c("div", { staticClass: "text-right" }, [
-                                  _c("h3", [
-                                    _vm._v(
-                                      "\r\n                                        SUBTOTAL : " +
-                                        _vm._s(
-                                          _vm._f("numberFormat")(
-                                            _vm.var_computed_sub_total
-                                          )
-                                        ) +
-                                        "\r\n                                    "
-                                    )
-                                  ])
+                            _c("thead", [
+                              _c("tr", [
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Identicacion\r\n                                "
+                                  )
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "text-right" }, [
-                                  _c("h3", [
-                                    _vm._v(
-                                      "IVA : " +
-                                        _vm._s(
-                                          _vm._f("numberFormat")(
-                                            _vm.var_computed_iva
-                                          )
-                                        )
-                                    )
-                                  ])
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Servicio\r\n                                "
+                                  )
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "text-right" }, [
-                                  _c("h3", [
-                                    _vm._v(
-                                      "TOTAL : " +
-                                        _vm._s(
-                                          _vm._f("numberFormat")(
-                                            _vm.var_computed_total
-                                          )
-                                        )
-                                    )
-                                  ])
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Unidad\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Instrumento\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Marca\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Modelo\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Serie\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Alcance\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Acreditacion\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Precio Unitario\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Importe\r\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v(
+                                    "\r\n                                    Accion\r\n                                "
+                                  )
                                 ])
                               ])
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              [
+                                _vm._l(_vm.cotizacion.has_partidas, function(
+                                  item,
+                                  p
+                                ) {
+                                  return _c("tr", { key: p }, [
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Identifcacion",
+                                            outlined: "",
+                                            dense: "",
+                                            small: ""
+                                          },
+                                          model: {
+                                            value: item.identificacion,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                item,
+                                                "identificacion",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "item.identificacion"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\r\n                                    " +
+                                          _vm._s(item.servicio) +
+                                          "\r\n                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\r\n                                    " +
+                                          _vm._s(item.unidad) +
+                                          "\r\n                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\r\n                                    " +
+                                          _vm._s(item.has_intrumento.nombre) +
+                                          "\r\n                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Marca",
+                                            outlined: "",
+                                            dense: "",
+                                            small: ""
+                                          },
+                                          model: {
+                                            value: item.marca,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "marca", $$v)
+                                            },
+                                            expression: "item.marca"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Modelo",
+                                            outlined: "",
+                                            dense: "",
+                                            small: ""
+                                          },
+                                          model: {
+                                            value: item.modelo,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "modelo", $$v)
+                                            },
+                                            expression: "item.modelo"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Serie",
+                                            outlined: "",
+                                            dense: "",
+                                            small: ""
+                                          },
+                                          model: {
+                                            value: item.serie,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "serie", $$v)
+                                            },
+                                            expression: "item.serie"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\r\n                                    " +
+                                          _vm._s(item.has_intrumento.alcance) +
+                                          "\r\n                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\r\n                                    " +
+                                          _vm._s(
+                                            item.has_intrumento.has_acreditacion
+                                              .nombre
+                                          ) +
+                                          "\r\n                                "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Precio venta",
+                                            outlined: "",
+                                            dense: "",
+                                            small: "",
+                                            disabled: ""
+                                          },
+                                          model: {
+                                            value:
+                                              item.has_intrumento.precio_venta,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                item.has_intrumento,
+                                                "precio_venta",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "item.has_intrumento.precio_venta"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "Importe",
+                                            outlined: "",
+                                            dense: "",
+                                            small: "",
+                                            disabled: ""
+                                          },
+                                          model: {
+                                            value: item.importe,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "importe", $$v)
+                                            },
+                                            expression: "item.importe"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              icon: "",
+                                              small: "",
+                                              color: "error"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.eliminarPartida(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [_vm._v("mdi-delete")])
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                }),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", { attrs: { colspan: 12 } }, [
+                                    _c("div", { staticClass: "text-right" }, [
+                                      _c("h3", [
+                                        _vm._v(
+                                          "\r\n                                            SUBTOTAL :" +
+                                            _vm._s(
+                                              _vm._f("numberFormat")(
+                                                _vm.var_computed_sub_total,
+                                                ""
+                                              )
+                                            ) +
+                                            "\r\n                                        "
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "text-right" }, [
+                                      _c("h3", [
+                                        _vm._v(
+                                          "\r\n                                            IVA :" +
+                                            _vm._s(
+                                              _vm._f("numberFormat")(
+                                                _vm.var_computed_iva,
+                                                ""
+                                              )
+                                            ) +
+                                            "\r\n                                        "
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "text-right" }, [
+                                      _c("h3", [
+                                        _vm._v(
+                                          "\r\n                                            TOTAL :" +
+                                            _vm._s(
+                                              _vm._f("numberFormat")(
+                                                _vm.var_computed_total,
+                                                ""
+                                              )
+                                            ) +
+                                            "\r\n                                        "
+                                        )
+                                      ])
+                                    ])
+                                  ])
+                                ])
+                              ],
+                              2
+                            )
                           ]
-                        }
+                        },
+                        proxy: true
                       }
                     ])
                   })

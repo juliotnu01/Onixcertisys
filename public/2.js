@@ -143,178 +143,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -331,10 +159,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       open: [],
       users: [],
       search: null,
-      userSelected: {}
+      magnitudSelected: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "empleados"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "magnitudes"])), {}, {
     items: function items() {
       return [{
         name: "Ordenes de servicios",
@@ -362,7 +190,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               _context.next = 4;
-              return _this.services.empleadoServices.getlistEmpleados();
+              return _this.services.magnitudesServices.getListMagnitudes();
 
             case 4:
             case "end":
@@ -1214,20 +1042,19 @@ var render = function() {
                                             [
                                               _c("v-autocomplete", {
                                                 attrs: {
-                                                  items: _vm.empleados,
+                                                  items: _vm.magnitudes,
                                                   outlined: "",
                                                   dense: "",
-                                                  "item-text":
-                                                    "nombre_completo",
+                                                  "item-text": "nombre",
                                                   "return-object": "",
-                                                  label: "Seleccionar empleado"
+                                                  label: "Seleccionar magnitud"
                                                 },
                                                 model: {
-                                                  value: _vm.userSelected,
+                                                  value: _vm.magnitudSelected,
                                                   callback: function($$v) {
-                                                    _vm.userSelected = $$v
+                                                    _vm.magnitudSelected = $$v
                                                   },
-                                                  expression: "userSelected"
+                                                  expression: "magnitudSelected"
                                                 }
                                               })
                                             ],
@@ -1257,7 +1084,7 @@ var render = function() {
                                                     click: function($event) {
                                                       return _vm.imprimirReciboUser(
                                                         _vm.selected,
-                                                        _vm.userSelected
+                                                        _vm.magnitudSelected
                                                       )
                                                     }
                                                   }

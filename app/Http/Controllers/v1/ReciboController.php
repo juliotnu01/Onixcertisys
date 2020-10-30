@@ -198,8 +198,10 @@ class ReciboController extends Controller
             ])->first();
 
         $recibo['has_partidas'] = collect($request['has_partidas'])->reject(function ($value) use ($user_tecnico) {
-            return $value['has_empleado']['id'] != $user_tecnico;
+            return $value['has_intrumento']['has_magnitud']['id'] != $user_tecnico; // VARIABLE DE MAGNITUD 
         });
+
+
         $data = collect($recibo);
         $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data'));
         Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-asignacion-{$user_tecnico}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());

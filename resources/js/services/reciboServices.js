@@ -42,23 +42,5 @@ export default class reciboServices {
             console.log(e);
         }
     }
-
-    // async actualizarAcreditaciones(model) {
-    //     try {
-    //         let { data } = await axios.put("/api/edit-acreditacion", model);
-    //         store.commit("setDialogEditAcreditacion", false);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // async EliminarAcreditaciones(model) {
-    //     try {
-    //         let { data } = await axios.delete(
-    //             `/api/edit-acreditacion/${model.id}`
-    //         );
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    
 }
