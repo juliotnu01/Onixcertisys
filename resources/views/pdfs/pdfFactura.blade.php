@@ -34,7 +34,7 @@
             font-size: 20px;
             position: absolute;
             left: 70px;
-            top: 23px;
+            top: 16px;
             color: white;
         }
         .cabecera_factura .titulo_cabecera_factura img{
