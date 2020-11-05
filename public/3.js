@@ -699,8 +699,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 try {
                   _this.services.facturaServices.agregarFactura(_this.factura);
-
-                  _this.$store.commit("setDialogAddFactura", false);
                 } catch (e) {
                   console.log(e);
                 }

@@ -136,7 +136,6 @@ export default {
         async RegistrarFactura() {
             try {
                 this.services.facturaServices.agregarFactura(this.factura)
-                this.$store.commit("setDialogAddFactura", false)
             } catch (e) {
                 console.log(e)
             }

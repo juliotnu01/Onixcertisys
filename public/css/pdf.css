@@ -1,0 +1,36 @@
+
+    body{
+        width: 100%;
+        padding-left: 0px;
+    }
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border: none;
+        font-size: 9px;
+    }
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        border: none;
+    }
+
+    tr:nth-child(even) {
+        background-color: #0095d93b;
+        border: none;
+        text-align: center;
+    }
+
+    #cabecera_logo {
+        background: rgba(0, 49, 119, 1);
+        max-height: 300px;
+        width: 100%;
+    }
+
+    #cabecera_logo h2 {
+        color: white;
+        float: right;
+        font-size: 30px;
+    }
