@@ -6,10 +6,24 @@
                 <v-img :src="`${root}/img/login-logo.png`" width="200" />
             </router-link>
         </v-toolbar-title>
-        <v-btn icon text>
-            <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png" />
-            Clientes
-        </v-btn>
+        <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                    <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png" />
+                    Clientes
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item>
+                    <v-list-item-title>
+                        <router-link :to="{ name: 'home.cliente' }">
+                            <v-icon>mdi-account-box-multiple </v-icon>
+                            Gestionar Cliente
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
         <v-spacer></v-spacer>
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">

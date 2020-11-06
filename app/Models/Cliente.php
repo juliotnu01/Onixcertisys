@@ -20,4 +20,8 @@ class Cliente extends Model
     {
         return $this->hasMany(SucursalCliente::class, 'cliente_id');
     }
+    public function hasCotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class, 'cliente_id');
+    }
 }

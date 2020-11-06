@@ -35,6 +35,33 @@ export default class cotizacionServices {
             console.log(e);
         }
     }
+    async agregarCotizacionDuplicada(cot) {
+        try {
+            var model = {
+                id: cot.id,
+                cliente_id: cot.has_cliente.id,
+                moneda_id: cot.has_moneda.id,
+                empleado_id: cot.has_empleado.id,
+                tiempo_de_entrega_id: cot.has_tiempo_de_entrega.id,
+                tipo_de_servicio: cot.tipo_de_servicio.name,
+                nota_para_la_cotizacion: cot.nota_para_la_cotizacion,
+                estado_de_la_cotizacion: cot.estado_de_la_cotizacion.name,
+                contacto: cot.has_cliente.nombre_completo,
+                contacto_telefono: cot.has_cliente.celular_contacto,
+                contacto_correo: cot.has_cliente.correo_contacto,
+                condicion: cot.condicion,
+                nota_de_seguimiento: cot.nota_de_seguimiento,
+                partidas: cot.has_partidas,
+                sub_total: cot.sub_total,
+                iva: cot.iva,
+                total: cot.total
+            };
+            let { data } = await axios.post("/api/add-cotizacion-duplicate", model);
+            store.commit("setDialogAddCotizacion", false);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     async actualizarCotizacion(cot) {
         try {

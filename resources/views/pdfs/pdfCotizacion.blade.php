@@ -5,32 +5,34 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style>
-        body{
+        body {
             width: 100%;
             padding-left: 0px;
         }
+
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             border: none;
             font-size: 9px;
         }
+
         td,
         th {
-            border: 1px solid #dddddd;
+            border: 1px solid #cecece;
             text-align: left;
             padding: 8px;
             border: none;
         }
 
         tr:nth-child(even) {
-            background-color: #0095d93b;
+            background-color: #cecece;
             border: none;
             text-align: center;
         }
 
         #cabecera_logo {
-            background: rgba(0, 49, 119, 1);
+            background: #cecece;
             max-height: 300px;
         }
 
@@ -47,7 +49,13 @@
         <tr>
             <th colspan="11" id="cabecera_logo">
             <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa" width="50" />
-                <h2>Cotizacion</h2>
+                <div>Cotizacion</div>
+                <div style="text-align: right;">
+                    <span style="text-align: right;">{{$empresa['nombre_empresa']}}</span> <br />
+                    <span style="text-align: right;">{{$empresa['actividad_comercial']}}</span><br />
+                    <span style="text-align: right;">{{$empresa['rfc']}}</span><br />
+                    <span style="text-align: right;">{{$empresa['direccion'] }} {{$empresa['ciudad']}} {{$empresa['estado']}} {{ $empresa['pais']}} </span>
+                </div>
             </th>
         </tr>
         <tr>
@@ -57,8 +65,8 @@
                 <div> <strong> Contacto:</strong> {{$data['has_cliente']['nombre_completo']}}</div>
                 <div> <strong> Teléfono:</strong> {{$data['has_cliente']['celular_contacto']}}</div>
                 <div> <strong> Correo:</strong>{{$data['has_cliente']['correo_contacto']}} </div>
-                @if (count($data['has_cliente']['has_sucursal']) >  0 )
-                <div> <strong> Sucursal:</strong>{{$data['has_cliente']['has_sucursal'][0]['nombre_sucursal']  }} </div>
+                @if (count($data['has_cliente']['has_sucursal']) > 0 )
+                <div> <strong> Sucursal:</strong>{{$data['has_cliente']['has_sucursal'][0]['nombre_sucursal'] }} </div>
                 <div> <strong> Direccion: sucursal:</strong>{{ $data['has_cliente']['has_sucursal'][0]['direccion_sucursal'] }} </div>
                 <div> <strong> Telefono: sucursal:</strong>{{ $data['has_cliente']['has_sucursal'][0]['telefono'] }} </div>
                 @endif
@@ -72,32 +80,32 @@
                 <div> <strong> Condicion:</strong>{{$data['condicion']}}</div>
             </td>
         </tr>
-        <tr style=" background: rgba(0, 49, 119, 1); color: white; ">
-            <td>Cantidad</td>
-            <td>Servicio</td>
-            <td>Instrumento</td>
-            <td>Marca</td>
-            <td>Modelo</td>
-            <td>Serie</td>
-            <td>Alcance</td>
-            <td>ID</td>
-            <td>Acreditaciión</td>
-            <td>Precio Unitario</td>
-            <td>Importe</td>
+        <tr style=" background: #ffffff;">
+            <td style="text-align: center;">Cantidad</td>
+            <td style="text-align: center;">Servicio</td>
+            <td style="text-align: center;">Instrumento</td>
+            <td style="text-align: center;">Marca</td>
+            <td style="text-align: center;">Modelo</td>
+            <td style="text-align: center;">Serie</td>
+            <td style="text-align: center;">Alcance</td>
+            <td style="text-align: center;">ID</td>
+            <td style="text-align: center;">Acreditaciión</td>
+            <td style="text-align: center;">Precio Unitario</td>
+            <td style="text-align: center;">Importe</td>
         </tr>
         @foreach($data['has_partidas'] as $item)
         <tr>
-            <td style="text-align: center;" >{{$item['cantidad']}}</td>
-            <td style="text-align: center;" >{{$item['servicio']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['nombre']}}</td>
-            <td style="text-align: center;" >{{$item['marca']}}</td>
-            <td style="text-align: center;" >{{$item['modelo']}}</td>
-            <td style="text-align: center;" >{{$item['serie']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['alcance']}}</td>
-            <td style="text-align: center;" >{{$item['identificacion']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
-            <td style="text-align: center;" > {{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
-            <td style="text-align: center;" > {{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
+            <td style="text-align: center;">{{$item['cantidad']}}</td>
+            <td style="text-align: center;">{{$item['servicio']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['nombre']}}</td>
+            <td style="text-align: center;">{{$item['marca']}}</td>
+            <td style="text-align: center;">{{$item['modelo']}}</td>
+            <td style="text-align: center;">{{$item['serie']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['alcance']}}</td>
+            <td style="text-align: center;">{{$item['identificacion']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
+            <td style="text-align: center;"> {{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
+            <td style="text-align: center;"> {{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
         </tr>
         @endforeach
         <tr>
@@ -108,15 +116,23 @@
             </td>
         </tr>
         <tr>
-            <td  style="text-align: center; margin-top: 20px" colspan="6">
-                _______________________________ <br/>
+            <td colspan="6">
+                <strong> Nota de la cotizacion:</strong> {{$data['nota_para_la_cotizacion']}}
+            </td>
+            <td colspan="5">
+                <strong>Nota de la seguimiento: </strong> {{$data['nota_de_seguimiento']}}
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; margin-top: 200px" colspan="6">
+                _______________________________ <br />
                 Ejecutivo(a) de ventas
             </td>
-            <td  style="text-align: center; margin-top: 20px" colspan="5" >
-                _______________________________ <br/>
+            <td style="text-align: center; margin-top: 200px" colspan="5">
+                _______________________________ <br />
                 Autorización Cliente
             </td>
-        </tr>  
+        </tr>
     </table>
 </body>
 

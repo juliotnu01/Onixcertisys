@@ -17,7 +17,24 @@ class ClienteController extends Controller
     public function index()
     {
         try {
-            $cliente = Cliente::with(['hasMetodoDePago','hasCondicionDePago', 'hasSucursal'])->get();
+            $cliente = Cliente::with([
+                'hasMetodoDePago',
+                'hasCondicionDePago', 
+                'hasSucursal', 
+                'hasCotizaciones',
+                'hasCotizaciones.hasCliente',
+                'hasCotizaciones.hasEmpleado',
+                'hasCotizaciones.hasMoneda',
+                'hasCotizaciones.hasTiempoDeEntrega',
+                'hasCotizaciones.hasPartidas',
+                'hasCotizaciones.hasPartidas.hasIntrumento',
+                'hasCotizaciones.hasPartidas.hasIntrumento.hasAcreditacion',
+                'hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud',
+                'hasCotizaciones.hasPartidas.hasCalibracion',
+                'hasCotizaciones.hasPartidas.hasEmpleado',
+                'hasCotizaciones.hasPartidas.hasRecibo',
+                'hasCotizaciones.hasPartidas.hasTecnico',
+                ])->get();
             return $cliente;     
         } catch (Exception $e) {
             throw new Exception($e, 1);
