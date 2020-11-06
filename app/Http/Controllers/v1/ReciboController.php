@@ -23,6 +23,8 @@ class ReciboController extends Controller
             $recibos = Recibo::with([
                 'hasCotizaicon',
                 'hasCotizaicon.hasCliente',
+                'hasCotizaicon.hasCliente.hasMetodoDePago',
+                'hasCotizaicon.hasCliente.hasCondicionDePago',
                 'hasCotizaicon.hasMoneda',
                 'hasCotizaicon.hasEmpleado',
                 'hasPartidas',
@@ -44,6 +46,8 @@ class ReciboController extends Controller
             $recibos = Recibo::with([
                 'hasCotizaicon',
                 'hasCotizaicon.hasCliente',
+                'hasCotizaicon.hasCliente.hasMetodoDePago',
+                'hasCotizaicon.hasCliente.hasCondicionDePago',
                 'hasCotizaicon.hasMoneda',
                 'hasCotizaicon.hasEmpleado',
                 'hasPartidas',

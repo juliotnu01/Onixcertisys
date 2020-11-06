@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Factura,ProductoFactura, Recibo,Empresa};
+use App\Models\{Factura,ProductoFactura, Recibo,Empresa, Cliente};
 use Illuminate\Http\Request;
 use DB;
 use PDF;
+use QrCode;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Resources\RecibosCollection;
+use Luecano\NumeroALetras\NumeroALetras;
+
 
 class FacturaController extends Controller
 {
@@ -77,14 +80,25 @@ class FacturaController extends Controller
                         'hasPartidas.hasIntrumento',
                         'hasPartidas.hasIntrumento.hasMagnitud',
                         'hasPartidas.hasIntrumento.hasAcreditacion'])->find($value['recibo_id']);
+                        Recibo::find($value['recibo_id'])->update([
+                            'estado' => 'facturado'
+                        ]);
                 }
 
                 $RecibosPartidas = new RecibosCollection($data2);
                 $dataFactura = collect($RecibosPartidas);
-               
-                $pdf = PDF::loadView('pdfs.pdfFactura', compact('dataFactura'));
-                Storage::disk('store_pdfs')->put("/facturas/factura.pdf", $pdf->stream());
-                $url = Storage::disk('store_pdfs')->url("/facturas/factura.pdf");
+                $cliente = Cliente::with(['hasMetodoDePago','hasCondicionDePago'])->find($request['cliente']['id']);
+                $empresa = Empresa::find(1);
+                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('||1.1|90225f67-0fe4-4841-924c-76a4f35a9ee1|2020-10-29T15:08:26|LSO1306189R5|hzn7VWCZx3TupITNv9ocsAyoMi3MPaZ9fbJJ/bz6MKrs41f4jw89xyLvhP/PsJGMQ/SbqgxA7zInjAZRJh65o/c/WJ0s2KSBQSQucuMAJ+Wdx5PO4LNkOJl5XLr47n9El/+P0Xwob691CbPIZ4+wUvnTO053xC5pzpLSRFHu5bmd2hIKxPFcMS2dhjGn4ITcrwstkQZs/dxO954ir09wxnxzowDJ27bCYEauqW1DJQ2AUNdwPxGB+ZEtwiD4mPa4YeSJqlqiONPho5udxFDF2fTNowWmBfTX6id7kg2oUsWIMahNfKFWHkS3hUjccwyrOK+lTBXJ2DwZ2ozG1rr0pw==|00001000000408254801||'));
+                $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
+                
+                $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request', 'qrcode', 'spell']));
+                Storage::disk('store_pdfs')->put("/facturas/factura_{$factura['id']}_". substr($factura['created_at'], 0, 10) ."_.pdf", $pdf->stream());
+                $url = Storage::disk('store_pdfs')->url("/facturas/factura_{$factura['id']}_". substr($factura['created_at'], 0, 10) ."_.pdf");
+                Factura::find($factura['id'])->update([
+                    'ruta_pdf' => $url
+                ]);
+                return $url;
                 
             });
 

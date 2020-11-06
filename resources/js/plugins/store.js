@@ -109,7 +109,8 @@ export default new Vuex.Store({
         recibos_cliente: [],
         dialog_add_factura: false,
         factura: {},
-
+        dialog_pdf_factura: false, 
+        ruta_pdf_factura: '',
         
     },
     getters: {
@@ -206,6 +207,8 @@ export default new Vuex.Store({
         recibos_cliente: state => state.recibos_cliente,
         dialog_add_factura: state  => state.dialog_add_factura,
         factura: state => state.factura,
+        dialog_pdf_factura: state => state.dialog_pdf_factura,
+        ruta_pdf_factura: state => state.ruta_pdf_factura,
     },
     mutations: {
         setListUser(state, data) {
@@ -603,6 +606,13 @@ export default new Vuex.Store({
         },
         setDialogFactura(state, data){
             state.factura = data
+        },
+        setDialogPdfFactura(state, data){
+            state.dialog_pdf_factura = data
+        },
+        setRutaPdfFactura(state, data){
+            state.ruta_pdf_factura = data
+            
         }
     
     },

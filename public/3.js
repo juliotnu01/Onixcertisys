@@ -185,6 +185,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -219,10 +225,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipo_de_factura: [{
         name: 'Generar factura de las orde de servicio ',
         value: 1
-      }, {
-        name: 'Generar factura en blanco',
-        value: 2
-      }],
+      } // {
+      //     name: 'Generar factura en blanco',
+      //     value: 2
+      // },
+      ],
       tipoFacturaSelected: {},
       headers_partidas_factura: [{
         text: 'Orden de Servicio',
@@ -285,11 +292,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       ClienteSelected: {},
       partidas_acumuladas: [],
-      cotizacion_partida: {
-        forma_de_pago: '',
-        metodo_de_pago: '',
-        nota_de_factura: ''
-      }
+      cotizacion_partida: {}
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'recibos', 'clientes', 'monedas', 'empleados', 'instrumentos', 'clientes', 'recibos_cliente'])), {}, {
@@ -509,17 +512,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   cliente: _this5.cotizacion_partida,
                   subtotal: _this5.var_computed_subtotal,
                   iva: _this5.var_computed_iva,
-                  total: _this5.var_computed_total
+                  total: _this5.var_computed_total,
+                  nota: _this5.cotizacion_partida.nota_de_factura
                 };
-                console.log({
-                  dataFactura: dataFactura
-                });
 
                 _this5.$store.commit('setDialogFactura', dataFactura);
 
                 _this5.$store.commit("setDialogAddFactura", true);
 
-              case 4:
+              case 3:
               case "end":
                 return _context4.stop();
             }
@@ -558,6 +559,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -1111,108 +1114,45 @@ var render = function() {
                                   )
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "4",
-                                    md: "4"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Forma de pago",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.cotizacion_partida.forma_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.cotizacion_partida,
-                                          "forma_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "cotizacion_partida.forma_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
+                              _c("v-spacer"),
                               _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "4",
-                                    md: "4"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Metodo de pago",
-                                      outlined: ""
+                              Object.entries(_vm.cotizacion_partida).length > 3
+                                ? _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "6",
+                                        md: "6"
+                                      }
                                     },
-                                    model: {
-                                      value:
-                                        _vm.cotizacion_partida.metodo_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.cotizacion_partida,
-                                          "metodo_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "cotizacion_partida.metodo_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "NOTA",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.cotizacion_partida.nota_de_factura,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.cotizacion_partida,
-                                          "nota_de_factura",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "cotizacion_partida.nota_de_factura"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: {
+                                          outlined: "",
+                                          label: "NOTA",
+                                          outlined: ""
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.cotizacion_partida
+                                              .nota_de_factura,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.cotizacion_partida,
+                                              "nota_de_factura",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "cotizacion_partida.nota_de_factura"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
                               _vm._v(" "),
                               _c(
                                 "v-col",
@@ -1233,228 +1173,6 @@ var render = function() {
                                     },
                                     [_vm._v("Totalizar")]
                                   )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.tipoFacturaSelected.value == 2
-                    ? _c(
-                        "v-col",
-                        { attrs: { cols: "12", xs: "12", sm: "12", md: "12" } },
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "6",
-                                    md: "6"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.monedas,
-                                      "item-text": "nombre_moneda",
-                                      "return-object": "",
-                                      label: "Moneda",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.moneda,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "moneda",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.moneda"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "6",
-                                    md: "6"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.empleados,
-                                      "item-text": "nombre_completo",
-                                      "return-object": "",
-                                      label: "Vendedor",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.vendedor,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "vendedor",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.vendedor"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Forma de pago",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.recibo.forma_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.recibo,
-                                          "forma_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.recibo.forma_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Metodo de pago",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.recibo.metodo_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.recibo,
-                                          "metodo_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.recibo.metodo_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.clientes,
-                                      "item-text": "razon_social",
-                                      "return-object": "",
-                                      label: "Cliente",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.cliente,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "cliente",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.cliente"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "NOTA",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.model.factura_nueva.nota_de_factura,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "nota_de_factura",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "model.factura_nueva.nota_de_factura"
-                                    }
-                                  })
                                 ],
                                 1
                               )
@@ -1929,6 +1647,26 @@ var render = function() {
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
                                           .correo_electronico_factura
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(
+                                    "Metodo de pago:" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .has_metodo_de_pago.nombre
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(
+                                    "Forma de pago :" +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .has_condicion_de_pago.nombre
                                       )
                                   )
                                 ]),

@@ -19,7 +19,10 @@
                                 <template v-slot:selection="data">
                                     <v-chip v-bind="data.attrs" :input-value="data.selected" close @click="data.select" @click:close="remove(data.item)">
                                         Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
-                                        <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                        <v-alert color="primary" v-if="data.item.estado === 'pendiente'" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                            {{data.item.estado}}
+                                        </v-alert>
+                                        <v-alert color="success" v-else dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
                                     </v-chip>
@@ -27,13 +30,19 @@
                                 <template v-slot:item="data">
                                     <template v-if="typeof data.item !== 'object'">
                                         Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
-                                        <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                        <v-alert color="primary" v-if="data.item.estado === 'pendiente'" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                            {{data.item.estado}}
+                                        </v-alert>
+                                        <v-alert color="success" v-else dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
                                     </template>
                                     <template v-else>
                                         Orden de servicio: {{data.item.id}} - {{data.item.has_cotizaicon.has_cliente.razon_social}}
-                                        <v-alert color="primary" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                        <v-alert color="primary" v-if="data.item.estado === 'pendiente'" dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
+                                            {{data.item.estado}}
+                                        </v-alert>
+                                        <v-alert color="success" v-else dark :value="true" class="ml-4" dense small style="position: relative; top: 8px; height: 23px; padding-top: 0px;">
                                             {{data.item.estado}}
                                         </v-alert>
                                     </template>
@@ -46,13 +55,19 @@
                         <v-col cols="12" xs="12" sm="12" md="4" lg="4" v-if="Object.entries(cotizacion_partida).length > 3">
                             <v-text-field label="Moneda" v-model="cotizacion_partida.has_moneda.clave" outlined disabled />
                         </v-col>
+                        <!--
                         <v-col cols="12" xs="12" sm="4" md="4">
-                            <v-text-field label="Forma de pago" v-model="cotizacion_partida.forma_de_pago" outlined />
+                            <pre>{{cotizacion_partida.has_cliente.has_metodo_de_pago}}</pre>
+                            <v-text-field label="Forma de pago" v-model="cotizacion_partida.has_cliente.has_condicion_de_pago.nombre" outlined disabled />
                         </v-col>
+                            -->
+                        <!--
                         <v-col cols="12" xs="12" sm="4" md="4">
-                            <v-text-field label="Metodo de pago" v-model="cotizacion_partida.metodo_de_pago" outlined />
+                            <v-text-field label="Metodo de pago" v-model="cotizacion_partida" outlined disabled />
                         </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="12">
+                            -->
+                        <v-spacer />
+                        <v-col cols="12" xs="12" sm="6" md="6" v-if="Object.entries(cotizacion_partida).length > 3">
                             <v-textarea outlined label="NOTA" v-model="cotizacion_partida.nota_de_factura" outlined />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="12">
@@ -60,7 +75,7 @@
                         </v-col>
                     </v-row>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
+                <!--<v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
                     <v-row>
                         <v-col cols="12" xs="12" sm="6" md="6">
                             <v-autocomplete :items="monedas" v-model="model.factura_nueva.moneda" item-text="nombre_moneda" return-object label="Moneda" outlined clearable />
@@ -81,7 +96,7 @@
                             <v-textarea outlined label="NOTA" v-model="model.factura_nueva.nota_de_factura" outlined />
                         </v-col>
                     </v-row>
-                </v-col>
+                </v-col>-->
             </v-row>
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -149,6 +164,7 @@
         </v-col>
     </v-row>
     <modal-add-factura />
+    <modal-pdf-factura />
 </v-app>
 </template>
 
@@ -157,9 +173,11 @@ import {
     mapGetters
 } from 'vuex'
 import modalADDFactura from './modals/modalTotalizarComponent.vue'
+import modalPdfFactura from './modals/modalPdfFacturaComponent'
 export default {
     components: {
         'modal-add-factura': modalADDFactura,
+        'modal-pdf-factura': modalPdfFactura,
     },
     data() {
         return {
@@ -190,10 +208,10 @@ export default {
                     name: 'Generar factura de las orde de servicio ',
                     value: 1
                 },
-                {
-                    name: 'Generar factura en blanco',
-                    value: 2
-                },
+                // {
+                //     name: 'Generar factura en blanco',
+                //     value: 2
+                // },
             ],
             tipoFacturaSelected: {},
             headers_partidas_factura: [{
@@ -270,11 +288,7 @@ export default {
             ],
             ClienteSelected: {},
             partidas_acumuladas: [],
-            cotizacion_partida: {
-                forma_de_pago: '',
-                metodo_de_pago: '',
-                nota_de_factura: '',
-            },
+            cotizacion_partida: {},
         }
     },
     computed: {
@@ -404,11 +418,9 @@ export default {
                 cliente: this.cotizacion_partida,
                 subtotal: this.var_computed_subtotal,
                 iva: this.var_computed_iva,
-                total: this.var_computed_total
+                total: this.var_computed_total,
+                nota: this.cotizacion_partida.nota_de_factura
             }
-            console.log({
-                dataFactura
-            })
             this.$store.commit('setDialogFactura', dataFactura)
             this.$store.commit("setDialogAddFactura", true);
 

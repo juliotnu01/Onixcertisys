@@ -18,6 +18,7 @@ class CreateFacturasTable extends Migration
             $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->foreignId('moneda_id')->nullable()->constrained('monedas');
             $table->string('nota')->nullable();
+            $table->string('ruta_pdf')->nullable();
             $table->bigInteger('resta')->nullable();
             $table->bigInteger('subtotal')->nullable();
             $table->bigInteger('iva')->nullable();
