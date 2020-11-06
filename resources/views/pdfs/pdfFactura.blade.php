@@ -79,8 +79,8 @@
             <tr>
                 <th>
                     <div class="cabecera_factura">
-                    <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa" width="50" />
                         <div class="titulo_cabecera_factura">
+                            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa" width="50" />
                             <span>
                                 Factura
                             </span>
