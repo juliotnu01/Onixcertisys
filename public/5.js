@@ -1935,26 +1935,6 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("h4", [
-                                  _vm._v(
-                                    "Metodo de pago:" +
-                                      _vm._s(
-                                        _vm.factura.cliente.has_cliente
-                                          .has_metodo_de_pago.nombre
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h4", [
-                                  _vm._v(
-                                    "Forma de pago :" +
-                                      _vm._s(
-                                        _vm.factura.cliente.has_cliente
-                                          .has_condicion_de_pago.nombre
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("h4", { staticClass: "text-right" }, [
                                   _vm._v(
                                     "Vendedor:" +

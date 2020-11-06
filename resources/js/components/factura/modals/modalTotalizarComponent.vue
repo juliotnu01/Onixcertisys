@@ -15,8 +15,8 @@
                             <h4>Dirección:{{factura.cliente.has_cliente.direccion_fiscal}} - {{factura.cliente.has_cliente.ciudad_estad_pais}}</h4>
                             <h4>Teléfono:{{factura.cliente.has_cliente.telefono}}</h4>
                             <h4>Correo:{{factura.cliente.has_cliente.correo_electronico_factura}}</h4>
-                            <h4>Metodo de pago:{{factura.cliente.has_cliente.has_metodo_de_pago.nombre}}</h4>
-                            <h4>Forma de pago :{{factura.cliente.has_cliente.has_condicion_de_pago.nombre}}</h4>
+                            <!--<h4>Metodo de pago:{{factura.cliente.has_cliente.has_metodo_de_pago.nombre}}</h4>
+                            <h4>Forma de pago :{{factura.cliente.has_cliente.has_condicion_de_pago.nombre}}</h4>-->
 
                             <h4 class="text-right">Vendedor:{{factura.cliente.has_empleado.nombre_completo}}</h4>
                             <h4 class="text-right">Fecha:{{fecha}}</h4><br />
