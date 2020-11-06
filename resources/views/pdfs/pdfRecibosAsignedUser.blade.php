@@ -19,20 +19,20 @@
 
         td,
         th {
-            border: 1px solid #dddddd;
+            border: 1px solid #cecece;
             text-align: left;
             padding: 8px;
             border: none;
         }
 
         tr:nth-child(even) {
-            background-color: #0095d93b;
+            background-color: #cecece;
             border: none;
             text-align: center;
         }
 
         #cabecera_logo {
-            background: rgba(0, 49, 119, 1);
+            background: #cecece;
             max-height: 300px;
         }
 
@@ -48,9 +48,15 @@
 <body>
     <table>
         <tr>
-            <th  colspan="11"  id="cabecera_logo">
-            <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa"  />
-                <h2>Recibo</h2>
+            <th colspan="11" id="cabecera_logo">
+                <img src="{{ asset('img/accredian-bco-mini.png')}}" alt="logo de la empresa" width="50" />
+                <div>Orden de servicio</div>
+                <div style="text-align: right;">
+                    <span style="text-align: right;">{{$empresa['nombre_empresa']}}</span> <br />
+                    <span style="text-align: right;">{{$empresa['actividad_comercial']}}</span><br />
+                    <span style="text-align: right;">{{$empresa['rfc']}}</span><br />
+                    <span style="text-align: right;">{{$empresa['direccion'] }} {{$empresa['ciudad']}} {{$empresa['estado']}} {{ $empresa['pais']}} </span>
+                </div>
             </th>
         </tr>
         <tr>
@@ -69,35 +75,35 @@
                 <div> <strong> Estado:</strong>{{$data['estado']}}</div>
             </td>
         </tr>
-        <tr style=" background: rgba(0, 49, 119, 1); color: white; ">
-            <td  style="text-align: center;"  >Cantidad</td>
-            <td  style="text-align: center;"  >Servicio</td>
-            <td  style="text-align: center;"  >Instrumento</td>
-            <td  style="text-align: center;"  >Alcance</td>
-            <td  style="text-align: center;"  >Acreditacion</td>
-            <td  style="text-align: center;"  >Magnitud</td>
-            <td  style="text-align: center;"  >Marca</td>
-            <td  style="text-align: center;"  >Modelo</td>
-            <td  style="text-align: center;"  >Serie</td>
-            <td  style="text-align: center;"  >ID</td>
-            <td  style="text-align: center;"  >Asignado</td>
+        <tr style=" background: #cecece;  ">
+            <td style="text-align: center;">Cantidad</td>
+            <td style="text-align: center;">Servicio</td>
+            <td style="text-align: center;">Instrumento</td>
+            <td style="text-align: center;">Alcance</td>
+            <td style="text-align: center;">Acreditacion</td>
+            <td style="text-align: center;">Magnitud</td>
+            <td style="text-align: center;">Marca</td>
+            <td style="text-align: center;">Modelo</td>
+            <td style="text-align: center;">Serie</td>
+            <td style="text-align: center;">ID</td>
+            <td style="text-align: center;">Asignado</td>
         </tr>
         @foreach($data['has_partidas'] as $item)
         <tr>
-            <td style="text-align: center;" >{{$item['cantidad']}}</td>
-            <td style="text-align: center;" >{{$item['servicio']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['nombre']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['alcance']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
-            <td style="text-align: center;" >{{$item['has_intrumento']['has_magnitud']['nombre']}}</td>
-            <td style="text-align: center;" >{{$item['marca']}}</td>
-            <td style="text-align: center;" >{{$item['modelo']}}</td>
-            <td style="text-align: center;" >{{$item['serie']}}</td>
-            <td style="text-align: center;" >{{$item['identificacion']}}</td>
-            <td style="text-align: center;" >{{$item['has_empleado'] ? $item['has_empleado']['nombre_completo'] : 'Sin Asigar'  }}</td>
+            <td style="text-align: center;">{{$item['cantidad']}}</td>
+            <td style="text-align: center;">{{$item['servicio']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['nombre']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['alcance']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
+            <td style="text-align: center;">{{$item['has_intrumento']['has_magnitud']['nombre']}}</td>
+            <td style="text-align: center;">{{$item['marca']}}</td>
+            <td style="text-align: center;">{{$item['modelo']}}</td>
+            <td style="text-align: center;">{{$item['serie']}}</td>
+            <td style="text-align: center;">{{$item['identificacion']}}</td>
+            <td style="text-align: center;">{{$item['has_empleado'] ? $item['has_empleado']['nombre_completo'] : 'Sin Asigar'  }}</td>
         </tr>
         @endforeach
-         
+
     </table>
 </body>
 

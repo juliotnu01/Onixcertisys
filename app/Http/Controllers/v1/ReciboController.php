@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Recibo, Partida, Cotizacion};
+use App\Models\{Recibo, Partida, Cotizacion, Empresa};
 use Illuminate\Http\Request;
 use DB;
 use PDF;
@@ -182,7 +182,8 @@ class ReciboController extends Controller
     public function printRecibos(Request $request)
     {
         $data = collect($request->all());
-        $pdf = PDF::loadView('pdfs.pdfRecibos', compact('data'));
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('pdfs.pdfRecibos', compact('data', 'empresa'));
         Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
         $url = Storage::disk('store_pdfs')->url("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
         Recibo::find($request['id'])->update([
@@ -207,7 +208,8 @@ class ReciboController extends Controller
 
 
         $data = collect($recibo);
-        $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data'));
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data', 'empresa'));
         Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-asignacion-{$user_tecnico}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
         $url = Storage::disk('store_pdfs')->url("/recibos/recibo-{$request['id']}-asignacion-{$user_tecnico}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
         Recibo::find($request['id'])->update([

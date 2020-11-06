@@ -108,7 +108,7 @@
                         <template v-slot:item.informe="{ item }">
                             <td>
                                 <span v-if="item.informe_id">{{item.informe_id}}</span>
-                                <v-btn v-else color="primary" block class="text-center mt-5" @click="GenerarIdInforme(item)">Generar ID Informe</v-btn>
+                                <v-btn v-else color="primary" block class="text-center mt-5" @click="GenerarIdInforme(item)">Generar Certificado</v-btn>
                             </td>
                         </template>
                         <template v-slot:item.convert_recibo="{ item }">
@@ -185,7 +185,7 @@ export default {
                     align: "center",
                 },
                 {
-                    text: "Vigencia(dias)",
+                    text: "Vigencia(Meses)",
                     value: "vigencia",
                     align: "center",
                 },

@@ -1747,7 +1747,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "tipo",
         align: "center"
       }, {
-        text: "Vigencia(dias)",
+        text: "Vigencia(Meses)",
         value: "vigencia",
         align: "center"
       }, {
@@ -6139,7 +6139,7 @@ var render = function() {
                                                 }
                                               }
                                             },
-                                            [_vm._v("Generar ID Informe")]
+                                            [_vm._v("Generar Certificado")]
                                           )
                                     ],
                                     1
