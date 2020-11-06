@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportMasivPartidas;
+use Luecano\NumeroALetras\NumeroALetras;
 
 
 
@@ -255,11 +256,12 @@ class CotizacionController extends Controller
         try {
             $data = collect($request->all());
             $empresa = Empresa::find(1);
+            $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['has_moneda']['nombre_moneda'], 'CENTAVOS');
             $exists = Storage::disk('store_pdfs')->exists("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             if($exists) {
                 Storage::disk('store_pdfs')->delete("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             }
-            $pdf = PDF::loadView('pdfs.pdfCotizacion', compact(['data', 'empresa']));
+            $pdf = PDF::loadView('pdfs.pdfCotizacion', compact(['data', 'empresa', 'spell']));
             Storage::disk('store_pdfs')->put("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
             $url = Storage::disk('store_pdfs')->url("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
                     Cotizacion::find($request['id'])->update([

@@ -116,6 +116,11 @@
             </td>
         </tr>
         <tr>
+            <td style="text-align: center;" colspan="11">
+                {{$spell}}
+            </td>
+        </tr>
+        <tr>
             <td colspan="6">
                 <strong> Nota de la cotizacion:</strong> {{$data['nota_para_la_cotizacion']}}
             </td>
