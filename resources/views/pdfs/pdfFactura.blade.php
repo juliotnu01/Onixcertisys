@@ -3,17 +3,84 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="{{ asset('css/app.css')}} ">
-    
+    <style>
+        body {
+            width: 100%;
+            padding-left: 0px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            font-size: 12px;
+            width: 100%;
+            font-size: 10px;
+        }
+
+        .cabecera_factura {
+            font-family: arial, sans-serif;
+            font-size: 9px;
+            width: 100%;
+            background-color: #cecece;
+        }
+
+        .cabecera_factura .titulo_cabecera_factura {
+            font-family: arial, sans-serif;
+            width: 30%;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cabecera_factura .titulo_cabecera_factura span {
+            font-family: arial, sans-serif;
+            font-size: 20px;
+            position: absolute;
+            left: 70px;
+            top: 16px;
+            color: white;
+        }
+
+        .cabecera_factura .titulo_cabecera_factura img {
+            position: absolute;
+            left: 15px;
+        }
+
+        .cabecera_factura .info_empresa_cabecera_factura {
+            font-family: arial, sans-serif;
+            width: 50%;
+            float: right;
+            position: relative;
+            transform: translate(0px, -50px);
+            height: 50px;
+            color: white;
+            text-align: right;
+            font-size: 8px;
+        }
+
+        .table_info_cliente {
+            border: 1px solid;
+        }
+
+        #table_instrumento tbody tr {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #table_instrumento td,
+        th {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
-    <table class="table table-dark" >
+    <table>
         <thead>
             <tr>
                 <th>
                     <div class="cabecera_factura">
                         <div class="titulo_cabecera_factura">
+                            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="50" />
                             <span>
                                 Factura
                             </span>
