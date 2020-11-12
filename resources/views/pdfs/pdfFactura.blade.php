@@ -143,7 +143,12 @@
 				<span style=""></span><br>
 				<span style=""></span>
 		    </td>
-		</tr>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <strong>Nota:</strong>{{$request['nota']}}
+            </td>
+        </tr>
 	</table>
 
     <br />
