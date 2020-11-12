@@ -6,14 +6,14 @@
 </head>
 
 <body>
-    <table class="page_header" style="width:100%; height: 120px; font-size:8px">
+    <table class="page_header" style="width:100%; height: 120px; font-size:10px">
         <tr style="vertical-align: top">
             <td style="width:100%">
                 <img src="{{ asset('img/cotizacion_cab.png') }}" style="width: 100%;">
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; font-size:8px">
+    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; font-size:10px">
 		<tr style="vertical-align: top">
 		    <td style="width:70%">
 				<span style=""><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
@@ -46,7 +46,7 @@
 		    </td>
 		</tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; font-size:8px" cellspacing=0>
+    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; font-size:10px" cellspacing=0>
         <tr bgcolor="#0095d9" border-radius="15px">
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Cant</th>
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Serv</th>
@@ -62,7 +62,7 @@
         </tr>
    
         @foreach($data['has_partidas'] as $item)
-        <tr style="font-size:8px">
+        <tr >
             <td class="top"      style="border:1px solid #0095d9; width:  5%; text-align: center">{{$item['cantidad']}}</td>
             <td class="top left" style="border:1px solid #0095d9; width:  5%; text-align: center">{{substr($item['servicio'], 0, 1)}}</td>
             <td class="top left" style="border:1px solid #0095d9; width: 20%; text-align: left">  {{$item['has_intrumento']['nombre']}}</td>
