@@ -63,50 +63,50 @@
    
         @foreach($data['has_partidas'] as $item)
         <tr >
-            <td class="top"      style="border:1px solid #0095d9; width:  5%; text-align: center">{{$item['cantidad']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width:  5%; text-align: center">{{substr($item['servicio'], 0, 1)}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width: 20%; text-align: left">  {{$item['has_intrumento']['nombre']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width:  8%; text-align: center">{{$item['marca']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width:  8%; text-align: center">{{$item['modelo']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width:  8%; text-align: center">{{$item['serie']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width:  8%; text-align: center">{{$item['has_intrumento']['alcance']}}</td>
-			<td class="top left" style="border:1px solid #0095d9; width:  8%; text-align: center">{{$item['identificacion']}}</td>
-			<td class="top left" style="border:1px solid #0095d9; width: 10%; text-align: center">{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; width: 10%; text-align: right"> {{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
-			<td class="top left" style="border:1px solid #0095d9; width: 10%; text-align: right"> {{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
+            <td class="top"      style="border:1px solid #0095d9;  text-align: center">{{$item['cantidad']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{substr($item['servicio'], 0, 1)}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: left">  {{$item['has_intrumento']['nombre']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['marca']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['modelo']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['serie']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['has_intrumento']['alcance']}}</td>
+			<td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['identificacion']}}</td>
+			<td class="top left"  style="border:1px solid #0095d9;  text-align: center">{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
+            <td class="top left"  style="border:1px solid #0095d9;  text-align: right"> {{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
+			<td class="top left"  style="border:1px solid #0095d9;  text-align: right"> {{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
         </tr>
         @endforeach
 		
 
         <tr style="vertical-align: top">
-            <td class="" colspan="11" style="text-align:right">
+            <td colspan="11" style="text-align:right">
                 <b>SubTotal</b>
             </td>
-            <td class="" style="text-align:right;padding: 5px; ">
+            <td style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['sub_total'], 2, ',', '.')}}
             </td>
         </tr>
         <tr style="vertical-align: top">
-            <td class="" colspan="11" style="text-align:center">
+            <td colspan="11" style="text-align:center">
 
             </td>
-            <td class="" colspan="11" style="text-align:right">
+            <td colspan="11" style="text-align:right">
                 <b>I.V.A. </b>
             </td>
-            <td class="" style="text-align:right;padding: 5px; ">
+            <td style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['iva'], 2, ',', '.')}}
             </td>
         </tr>
         <tr style="vertical-align: top">
-            <td class="" colspan="11" style="text-align:right">
+            <td colspan="11" style="text-align:right">
                 <b>Total</b>
             </td>
-            <td class="" style="text-align:right;padding: 5px; ">
+            <td style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['total'], 2, ',', '.')}}
             </td>
         </tr>
 		<tr style="vertical-align: top">
-			<td class="" colspan="11"  style="text-align:center">
+			<td colspan="11"  style="text-align:center">
             {{$spell}}
 			</td>
 		</tr>
