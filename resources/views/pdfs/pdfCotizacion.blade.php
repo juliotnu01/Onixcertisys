@@ -15,8 +15,8 @@
     </table>
     <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; font-size: 10px">
 		<tr style="vertical-align: top">
-		    <td style="width:76%">
-				<span style="font-size:11pt"><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
+		    <td style="width:70%">
+				<span style=""><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
 				<span style="color:#003177">{{$data['has_cliente']['direccion_fiscal']}}</span><br>
 				<span style="color:#003177">{{$data['has_cliente']['nombre_completo']}}</span><br>
 				<span style="color:#003177"><b>Contacto:</b> {{$data['has_cliente']['nombre_completo']}}</span><br>
@@ -28,21 +28,21 @@
                 <span style="color:#003177"> <p> Telefono: sucursal:</p>{{ $data['has_cliente']['has_sucursal'][0]['telefono'] }} </span>
                 @endif
 		    </td>
-		    <td style="width:12%;text-align:right;">
-		    	<span style="font-size:11pt;"><b>Folio:</b></span><br>
-				<span style="font-size:11pt;"><b>Fecha:</b></span><br>
-				<span style="font-size:11pt;"><b>T.Entrega:</b></span><br>
-				<span style="font-size:11pt;"><b>Moneda:</b></span><br>
-				<span style="font-size:11pt;"><b>Servicio:</b></span><br>
-				<span style="font-size:11pt;"><b>Condicion:</b></span>
+		    <td style="width:30%;text-align:right;">
+		    	<span style="""><b>Folio:</b></span><br>
+				<span style="""><b>Fecha:</b></span><br>
+				<span style="""><b>T.Entrega:</b></span><br>
+				<span style="""><b>Moneda:</b></span><br>
+				<span style="""><b>Servicio:</b></span><br>
+				<span style="""><b>Condicion:</b></span>
 		    </td>
-		    <td style="width:12%">
-		    	<span style="font-size:11pt; color:red;">{{$data['id']}}</span><br>
-				<span style="font-size:11pt; color:#003177">{{substr($data['created_at'], 0, 10)}}</span><br>
-				<span style="font-size:11pt; color:#003177">{{$data['has_tiempo_de_entrega']['nombre']}}</span><br>
-				<span style="font-size:11pt; color:#003177">{{$data['has_moneda']['clave']}}</span><br>
-				<span style="font-size:11pt; color:#003177">{{$data['tipo_de_servicio']}}</span><br>
-				<span style="font-size:11pt; color:#003177">{{$data['condicion']}}</span>
+		    <td style="width:30%">
+		    	<span style="" color:red;">{{$data['id']}}</span><br>
+				<span style="" color:#003177">{{substr($data['created_at'], 0, 10)}}</span><br>
+				<span style="" color:#003177">{{$data['has_tiempo_de_entrega']['nombre']}}</span><br>
+				<span style="" color:#003177">{{$data['has_moneda']['clave']}}</span><br>
+				<span style="" color:#003177">{{$data['tipo_de_servicio']}}</span><br>
+				<span style="" color:#003177">{{$data['condicion']}}</span>
 		    </td>
 		</tr>
     </table>
