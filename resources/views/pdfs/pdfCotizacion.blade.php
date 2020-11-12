@@ -79,7 +79,7 @@
 		
 
         <tr style="vertical-align: top">
-            <td class="" colspan=5 style="text-align:right">
+            <td class="" colspan="11" style="text-align:right">
                 <b>SubTotal</b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
@@ -87,10 +87,10 @@
             </td>
         </tr>
         <tr style="vertical-align: top">
-            <td class="" colspan=4 style="text-align:center">
+            <td class="" colspan="11" style="text-align:center">
 
             </td>
-            <td class="" colspan=1 style="text-align:right">
+            <td class="" colspan="11" style="text-align:right">
                 <b>I.V.A. </b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
@@ -98,7 +98,7 @@
             </td>
         </tr>
         <tr style="vertical-align: top">
-            <td class="" colspan=5 style="text-align:right">
+            <td class="" colspan="11" style="text-align:right">
                 <b>Total</b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
@@ -106,7 +106,7 @@
             </td>
         </tr>
 		<tr style="vertical-align: top">
-			<td class="" colspan=11 style="text-align:center">
+			<td class="" colspan="11"  style="text-align:center">
             {{$spell}}
 			</td>
 		</tr>
