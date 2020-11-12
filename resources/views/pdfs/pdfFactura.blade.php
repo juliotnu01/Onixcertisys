@@ -13,7 +13,7 @@
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding:5px;">
+    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding:5px; font-size: 10px">
         <tr style="vertical-align: top">
             <td style="width:15%">
                 <span style=""><b>Nombre Emisor:</b></span><br>
@@ -70,7 +70,7 @@
             <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: center"></td>
             <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: center">1</td>
             <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: center">{{$value2['unidad']}}</td>
-            <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: right">
+            <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: left">
                 <div>
                     {{$value2['has_intrumento']['nombre']}}
                 </div>
