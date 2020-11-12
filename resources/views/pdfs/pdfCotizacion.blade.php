@@ -29,20 +29,20 @@
                 @endif
 		    </td>
 		    <td style="width:30%;text-align:right;">
-		    	<span style="""><b>Folio:</b></span><br>
-				<span style="""><b>Fecha:</b></span><br>
-				<span style="""><b>T.Entrega:</b></span><br>
-				<span style="""><b>Moneda:</b></span><br>
-				<span style="""><b>Servicio:</b></span><br>
-				<span style="""><b>Condicion:</b></span>
+		    	<span style=""><b>Folio:</b></span><br>
+				<span style=""><b>Fecha:</b></span><br>
+				<span style=""><b>T.Entrega:</b></span><br>
+				<span style=""><b>Moneda:</b></span><br>
+				<span style=""><b>Servicio:</b></span><br>
+				<span style=""><b>Condicion:</b></span>
 		    </td>
 		    <td style="width:30%">
-		    	<span style="" color:red;">{{$data['id']}}</span><br>
-				<span style="" color:#003177">{{substr($data['created_at'], 0, 10)}}</span><br>
-				<span style="" color:#003177">{{$data['has_tiempo_de_entrega']['nombre']}}</span><br>
-				<span style="" color:#003177">{{$data['has_moneda']['clave']}}</span><br>
-				<span style="" color:#003177">{{$data['tipo_de_servicio']}}</span><br>
-				<span style="" color:#003177">{{$data['condicion']}}</span>
+		    	<span style=" color:red;">{{$data['id']}}</span><br>
+				<span style=" color:#003177">{{substr($data['created_at'], 0, 10)}}</span><br>
+				<span style=" color:#003177">{{$data['has_tiempo_de_entrega']['nombre']}}</span><br>
+				<span style=" color:#003177">{{$data['has_moneda']['clave']}}</span><br>
+				<span style=" color:#003177">{{$data['tipo_de_servicio']}}</span><br>
+				<span style=" color:#003177">{{$data['condicion']}}</span>
 		    </td>
 		</tr>
     </table>
