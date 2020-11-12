@@ -98,7 +98,7 @@
                 <b>SubTotal</b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
-
+            {{$request['cliente']['has_moneda']['clave']}} @money($request['subtotal'])
             </td>
         </tr>
         <tr style="vertical-align: top">
@@ -106,10 +106,10 @@
 
             </td>
             <td class="" colspan=1 style="text-align:right">
-                <b>I.V.A. </b>
+                <b>I.V.A. <small>({{$cliente['iva']}}%)</small></b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
-
+            {{$request['cliente']['has_moneda']['clave']}} @money($request['iva'])
             </td>
         </tr>
         <tr style="vertical-align: top">
@@ -117,10 +117,34 @@
                 <b>Total</b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
-
+            {{$request['cliente']['has_moneda']['clave']}} @money($request['subtotal'])
             </td>
         </tr>
     </table>
+    <table style="width:100%; padding: 5px;" cellspacing=0>
+		<tr style="vertical-align: top">
+		    <td style="width:13%">
+				<span style=""><b>Moneda:</b></span><br>
+				<span style=""><b>Forma de Pago:</b></span><br>
+				<span style=""><b>Método de Pago:</b></span>
+		    </td>
+		    <td style="width:42%">
+				<span style="">{{$request['cliente']['has_moneda']['nombre_moneda']}}</span><br>
+				<span style="">{{$request['cliente']['has_cliente']['has_condicion_de_pago']['nombre']}}</span><br>
+				<span style="">{{$request['cliente']['has_cliente']['has_metodo_de_pago']['nombre']}}</span>
+		    </td>
+		    <td style="width:18%">
+				<span style=""><b>RFC del proveedor SAT:</b></span><br>
+				<span style=""><b>Serie certificado SAT:</b></span><br>
+				<span style=""><b>Fecha de certificación:</b></span>
+		    </td>
+		    <td style="width:28%">
+				<span style="">SAT970701NN3</span><br>
+				<span style=""></span><br>
+				<span style=""></span>
+		    </td>
+		</tr>
+	</table>
 
     <br />
     <br />
