@@ -48,7 +48,7 @@
     <table class="page_header" style="width:100%; height: 120px;">
         <tr style="vertical-align: top">
             <td style="width:100%">
-                <img src=" {{ asset('img/cotizacion_cab.png')}} " style="width: 100%;">
+                <img src=" {{ asset('/img/cotizacion_cab.png')}} " style="width: 100%;">
             </td>
         </tr>
     </table>
