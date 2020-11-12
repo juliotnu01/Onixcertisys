@@ -78,7 +78,7 @@
         @endforeach
 		
 		<tr style="vertical-align: top">
-			<td class="" colspan=10 style="text-align:right">
+			<td class="" colspan=11 style="text-align:right">
 				<b>SubTotal</b> 
 			</td>
             <td class="" style="text-align:right">
@@ -86,7 +86,7 @@
 			</td>
 		</tr>
 		<tr style="vertical-align: top">
-			<td class="" colspan=10 style="text-align:right">
+			<td class="" colspan=11 style="text-align:right">
 				<b>I.V.A. </b> 
 			</td>
             <td class="" style="text-align:right">
@@ -94,7 +94,7 @@
 			</td>
 		</tr>
 		<tr style="vertical-align: top">
-			<td class="" colspan=10 style="text-align:right">
+			<td class="" colspan=11 style="text-align:right">
 				<b>Total</b> 
 			</td>
 			<td class="" style="text-align:right">
@@ -102,7 +102,7 @@
 			</td>
 		</tr>
 		<tr style="vertical-align: top">
-			<td class="" colspan=7 style="text-align:center">
+			<td class="" colspan=11 style="text-align:center">
             {{$spell}}
 			</td>
 		</tr>
