@@ -50,13 +50,6 @@
     </table>
 
     <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding: 0px;" cellspacing=0>
-        @foreach($dataFactura as $value)
-        <tr>
-            <td colspan="6">
-                <strong> Orden de servicio :</strong> {{$value['id']}} <strong> Fecha: </strong> {{substr($value['created_at'], 0, 19)}}
-            </td>
-        </tr>
-        @foreach($value['has_partidas'] as $value2)
         <tr bgcolor="#0095d9">
             <th style="color:#fff; height:10px; border-radius:14px 0px 0px 0px; padding: 5px; width: 14%; text-align:center">Clave SAT</th>
             <th style="color:#fff; height:10px; padding: 5px; width: 14%; text-align:center">Cantidad</th>
@@ -65,7 +58,14 @@
             <th style="color:#fff; height:10px; padding: 5px; width: 14%; text-align:right">Precio U</th>
             <th style="color:#fff; height:10px; border-radius:0px 14px 0px 0px; padding: 5px; width: 14%; text-align:right">Importe</th>
         </tr>
-
+        
+        @foreach($dataFactura as $value)
+        <tr>
+            <td colspan="6">
+                <strong> Orden de servicio :</strong> {{$value['id']}} <strong> Fecha: </strong> {{substr($value['created_at'], 0, 19)}}
+            </td>
+        </tr>
+        @foreach($value['has_partidas'] as $value2)
         <tr style="font-size:8pt">
             <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: center"></td>
             <td style="border:1px solid #0095d9; width: 14%; padding: 5px; text-align: center">1</td>
