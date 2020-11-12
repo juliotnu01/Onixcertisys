@@ -79,7 +79,7 @@
                 <th>
                     <div class="cabecera_factura">
                         <div class="titulo_cabecera_factura">
-                            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="50" />
+                            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa"  />
                         </div>
                     </div>
                 </th>
