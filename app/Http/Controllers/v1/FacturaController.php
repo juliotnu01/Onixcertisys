@@ -98,7 +98,7 @@ class FacturaController extends Controller
                 Factura::find($factura['id'])->update([
                     'ruta_pdf' => $url
                 ]);
-                return $url;
+                return  $url;
                 
             });
 
