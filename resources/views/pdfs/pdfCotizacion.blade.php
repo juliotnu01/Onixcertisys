@@ -77,30 +77,34 @@
         </tr>
         @endforeach
 		
-		<tr style="vertical-align: top">
-			<td class="" colspan=11 style="text-align:right">
-				<b>SubTotal</b> 
-			</td>
-            <td class="" style="text-align:right">
+
+        <tr style="vertical-align: top">
+            <td class="" colspan=5 style="text-align:right">
+                <b>SubTotal</b>
+            </td>
+            <td class="" style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['sub_total'], 2, ',', '.')}}
-			</td>
-		</tr>
-		<tr style="vertical-align: top">
-			<td class="" colspan=11 style="text-align:right">
-				<b>I.V.A. </b> 
-			</td>
-            <td class="" style="text-align:right">
+            </td>
+        </tr>
+        <tr style="vertical-align: top">
+            <td class="" colspan=4 style="text-align:center">
+
+            </td>
+            <td class="" colspan=1 style="text-align:right">
+                <b>I.V.A. </b>
+            </td>
+            <td class="" style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['iva'], 2, ',', '.')}}
-			</td>
-		</tr>
-		<tr style="vertical-align: top">
-			<td class="" colspan=11 style="text-align:right">
-				<b>Total</b> 
-			</td>
-			<td class="" style="text-align:right">
+            </td>
+        </tr>
+        <tr style="vertical-align: top">
+            <td class="" colspan=5 style="text-align:right">
+                <b>Total</b>
+            </td>
+            <td class="" style="text-align:right;padding: 5px; ">
             {{$data['has_moneda']['clave']}} {{number_format($data['total'], 2, ',', '.')}}
-			</td>
-		</tr>
+            </td>
+        </tr>
 		<tr style="vertical-align: top">
 			<td class="" colspan=11 style="text-align:center">
             {{$spell}}

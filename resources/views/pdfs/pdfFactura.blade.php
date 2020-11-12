@@ -16,35 +16,35 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding:5px; font-size: 10px">
         <tr style="vertical-align: top">
             <td style="width:15%">
-                <span style=""><b>Nombre Emisor:</b></span><br>
-                <span style=""><b>R.F.C. Emisor:</b></span><br>
-                <span style=""><b>Nombre Receptor:</b></span><br>
-                <span style=""><b>R.F.C. Receptor:</b></span><br>
-                <span style=""><b>Uso del CFDI:</b></span>
+                <span><b>Nombre Emisor:</b></span><br>
+                <span><b>R.F.C. Emisor:</b></span><br>
+                <span><b>Nombre Receptor:</b></span><br>
+                <span><b>R.F.C. Receptor:</b></span><br>
+                <span><b>Uso del CFDI:</b></span>
             </td>
             <td style="width:35%">
-                <span style="">{{$empresa['nombre_empresa']}}</span><br>
-                <span style="">{{$empresa['rfc']}}</span><br>
-                <span style="">{{$cliente['razon_social']}}</span><br>
-                <span style="">{{$cliente['rfc']}}</span><br>
-                <span style=""></span>
+                <span>{{$empresa['nombre_empresa']}}</span><br>
+                <span>{{$empresa['rfc']}}</span><br>
+                <span>{{$cliente['razon_social']}}</span><br>
+                <span>{{$cliente['rfc']}}</span><br>
+                <span></span>
             </td>
 
             <td style="width:20%;text-align:right;">
-                <span style=""><b>Folio Fiscal:</b></span><br>
-                <span style=""><b>Serie y Folio:</b></span><br>
-                <span style=""><b>C.P. Fecha Emisión:</b></span><br>
-                <span style=""><b>Tipo Comprobante:</b></span><br>
-                <span style=""><b>Régimen Fiscal:</b></span><br>
-                <span style=""><b>Órden de Compra:</b></span>
+                <span><b>Folio Fiscal:</b></span><br>
+                <span><b>Serie y Folio:</b></span><br>
+                <span><b>C.P. Fecha Emisión:</b></span><br>
+                <span><b>Tipo Comprobante:</b></span><br>
+                <span><b>Régimen Fiscal:</b></span><br>
+                <span><b>Órden de Compra:</b></span>
             </td>
             <td style="width:30%">
-                <span style=""></span><br>
-                <span style=""><b></b></span><br>
-                <span style=""><b></b></span><br>
-                <span style=""></span><br>
-                <span style=""></span><br>
-                <span style=""></span>
+                <span></span><br>
+                <span><b></b></span><br>
+                <span><b></b></span><br>
+                <span></span><br>
+                <span></span><br>
+                <span></span>
             </td>
         </tr>
     </table>
