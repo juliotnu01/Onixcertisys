@@ -24,8 +24,7 @@
         }
 
         .cabecera_factura .titulo_cabecera_factura {
-            font-family: arial, sans-serif;
-            width: 30%;
+            width: 100v;
             height: 50px;
             margin: 0;
             padding: 0;
@@ -81,15 +80,6 @@
                     <div class="cabecera_factura">
                         <div class="titulo_cabecera_factura">
                             <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="50" />
-                            <span>
-                                Factura
-                            </span>
-                        </div>
-                        <div class="info_empresa_cabecera_factura">
-                            <span>{{$empresa['nombre_empresa']}}</span> <br />
-                            <span>{{$empresa['actividad_comercial']}}</span><br />
-                            <span>{{$empresa['rfc']}}</span><br />
-                            <span>{{$empresa['direccion'] }} {{$empresa['ciudad']}} {{$empresa['estado']}} {{ $empresa['pais']}} </span>
                         </div>
                     </div>
                 </th>
