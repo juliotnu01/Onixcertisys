@@ -6,14 +6,14 @@
 </head>
 
 <body>
-    <table class="page_header" style="width:100%; height: 120px;">
+    <table class="page_header" style="width:100%; height: 120px; font-size: 10px">
         <tr style="vertical-align: top">
             <td style="width:100%">
                 <img src="{{ asset('img/cotizacion_cab.png') }}" style="width: 100%;">
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px;">
+    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; font-size: 10px">
 		<tr style="vertical-align: top">
 		    <td style="width:76%">
 				<span style="font-size:11pt"><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
@@ -46,7 +46,7 @@
 		    </td>
 		</tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius:15px;" cellspacing=0>
+    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; font-size: 10px" cellspacing=0>
         <tr bgcolor="#0095d9" border-radius="15px">
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Cant</th>
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Serv</th>
