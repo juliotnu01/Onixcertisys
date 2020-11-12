@@ -73,19 +73,13 @@
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <div class="cabecera_factura">
-                        <div class="titulo_cabecera_factura">
-                            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa"  />
-                        </div>
-                    </div>
-                </th>
-            </tr>
-        </thead>
-    </table>
+    <table class="page_header" style="width:100%;">
+		<tr style="vertical-align: top">
+		    <td style="width:100%">
+				<img src="{{ asset('img/factura_cab.png')}}" style="width: 100%;">
+			 </td>
+		</tr>
+	</table>
     <table class="table_info_cliente">
         <thead>
             <tr>
