@@ -49,7 +49,7 @@
         </tr>
     </table>
 
-    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding: 0px;" cellspacing=0>
+    <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding: 0px; font-size: 10px" cellspacing=0>
         <tr bgcolor="#0095d9">
             <th style="color:#fff; height:10px; border-radius:14px 0px 0px 0px; padding: 5px; width: 14%; text-align:center">Clave SAT</th>
             <th style="color:#fff; height:10px; padding: 5px; width: 14%; text-align:center">Cantidad</th>
@@ -121,7 +121,7 @@
             </td>
         </tr>
     </table>
-    <table style="width:100%; padding: 5px;" cellspacing=0>
+    <table style="width:100%; padding: 5px; font-size: 10px" cellspacing=0>
 		<tr style="vertical-align: top">
 		    <td style="width:13%">
 				<span style=""><b>Moneda:</b></span><br>
