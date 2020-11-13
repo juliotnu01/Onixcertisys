@@ -6,7 +6,7 @@
             <v-text-field label="Buscar Cliente" placeholder="" v-model="search_cli" outlined small></v-text-field>
             <v-spacer></v-spacer>
             <v-file-input label="Seleccionar documento (.xls | .xlsx)" outlined v-model="file_cliente" />
-            <v-btn icon dark color="primary" @click="agregarFileCliente">
+            <v-btn icon dark color="primary" @click="agregarFileCliente" :loading="load_cliente_file">
                 <v-icon dark large>mdi-file-upload</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="primary" @click="$store.commit('SetDialogAddCliente', true)">
@@ -143,6 +143,7 @@ export default {
             ],
             search_cli: "",
             file_cliente: {},
+            load_cliente_file: false,
         };
     },
     computed: {
@@ -161,6 +162,7 @@ export default {
             this.services.clienteServices.getlistclientes();
         },
         async agregarFileCliente() {
+            this.load_cliente_file = true
             var dataCliente = new FormData();
             dataCliente.append("file_cliente", this.file_cliente);
             try {
@@ -171,7 +173,10 @@ export default {
                         "Content-Type": "multipart/form-data",
                     }
                 });
+                this.load_cliente_file = false
+                this.services.clienteServices.getlistclientes();
             } catch (e) {
+                this.load_cliente_file = false
                 console.log(e);
             }
         },

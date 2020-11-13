@@ -34,10 +34,10 @@
                             <v-select offset-y dense v-model="cotizacion.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object prepend-icon="mdi-flag"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.nombre_completo" dense outlined label="Contacto" />
+                            <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.nombre_contacto" dense outlined label="Contacto" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.celular_contacto" dense outlined label="Teléfono" />
+                            <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.telefono_contacto" dense outlined label="Teléfono" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-text-field :rules="[rules.required]" v-model="cotizacion.has_cliente.correo_contacto" dense outlined label="Correo" />

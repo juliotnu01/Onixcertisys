@@ -3079,16 +3079,16 @@ var render = function() {
                                 },
                                 model: {
                                   value:
-                                    _vm.model.cliente_selected.nombre_completo,
+                                    _vm.model.cliente_selected.nombre_contacto,
                                   callback: function($$v) {
                                     _vm.$set(
                                       _vm.model.cliente_selected,
-                                      "nombre_completo",
+                                      "nombre_contacto",
                                       $$v
                                     )
                                   },
                                   expression:
-                                    "model.cliente_selected.nombre_completo"
+                                    "model.cliente_selected.nombre_contacto"
                                 }
                               })
                             ],
@@ -3116,16 +3116,17 @@ var render = function() {
                                 },
                                 model: {
                                   value:
-                                    _vm.model.cliente_selected.celular_contacto,
+                                    _vm.model.cliente_selected
+                                      .telefono_contacto,
                                   callback: function($$v) {
                                     _vm.$set(
                                       _vm.model.cliente_selected,
-                                      "celular_contacto",
+                                      "telefono_contacto",
                                       $$v
                                     )
                                   },
                                   expression:
-                                    "model.cliente_selected.celular_contacto"
+                                    "model.cliente_selected.telefono_contacto"
                                 }
                               })
                             ],
@@ -4663,16 +4664,16 @@ var render = function() {
                                     model: {
                                       value:
                                         _vm.cotizacion.has_cliente
-                                          .nombre_completo,
+                                          .nombre_contacto,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.cotizacion.has_cliente,
-                                          "nombre_completo",
+                                          "nombre_contacto",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion.has_cliente.nombre_completo"
+                                        "cotizacion.has_cliente.nombre_contacto"
                                     }
                                   })
                                 ],
@@ -4701,16 +4702,16 @@ var render = function() {
                                     model: {
                                       value:
                                         _vm.cotizacion.has_cliente
-                                          .celular_contacto,
+                                          .telefono_contacto,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.cotizacion.has_cliente,
-                                          "celular_contacto",
+                                          "telefono_contacto",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion.has_cliente.celular_contacto"
+                                        "cotizacion.has_cliente.telefono_contacto"
                                     }
                                   })
                                 ],
