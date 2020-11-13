@@ -78,6 +78,7 @@ Route::post('/asignar-tecnico-partida', 'v1\EmpleadoController@asignarTecnicoPar
 
 Route::get('/get-clientes', 'v1\ClienteController@index');
 Route::post('/add-cliente', 'v1\ClienteController@store');
+Route::post('/cargar-file-cliente', 'v1\ClienteController@storeFileCliente');
 Route::put('/edit-cliente', 'v1\ClienteController@update');
 Route::delete('/delete-cliente/{id}', 'v1\ClienteController@destroy');
 
