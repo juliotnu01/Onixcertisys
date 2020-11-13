@@ -124,24 +124,24 @@
     <table style="width:100%; padding: 5px; font-size: 10px" cellspacing=0>
 		<tr style="vertical-align: top">
 		    <td style="width:13%">
-				<span style=""><b>Moneda:</b></span><br>
-				<span style=""><b>Forma de Pago:</b></span><br>
-				<span style=""><b>Método de Pago:</b></span>
+				<span><b>Moneda:</b></span><br>
+				<span><b>Forma de Pago:</b></span><br>
+				<span><b>Método de Pago:</b></span>
 		    </td>
 		    <td style="width:42%">
-				<span style="">{{$request['cliente']['has_moneda']['nombre_moneda']}}</span><br>
-				<span style="">{{$request['cliente']['has_cliente']['has_condicion_de_pago']['nombre']}}</span><br>
-				<span style="">{{$request['cliente']['has_cliente']['has_metodo_de_pago']['nombre']}}</span>
+				<span>{{$request['cliente']['has_moneda']['nombre_moneda']}}</span><br>
+				<span>{{$request['cliente']['has_cliente']['has_condicion_de_pago']['nombre']}}</span><br>
+				<span>{{$request['cliente']['has_cliente']['has_metodo_de_pago']['nombre']}}</span>
 		    </td>
 		    <td style="width:18%">
-				<span style=""><b>RFC del proveedor SAT:</b></span><br>
-				<span style=""><b>Serie certificado SAT:</b></span><br>
-				<span style=""><b>Fecha de certificación:</b></span>
+				<span><b>RFC del proveedor SAT:</b></span><br>
+				<span><b>Serie certificado SAT:</b></span><br>
+				<span><b>Fecha de certificación:</b></span>
 		    </td>
 		    <td style="width:28%">
-				<span style="">SAT970701NN3</span><br>
-				<span style=""></span><br>
-				<span style=""></span>
+				<span>SAT970701NN3</span><br>
+				<span></span><br>
+				<span></span>
 		    </td>
         </tr>
         <tr>
