@@ -18,9 +18,9 @@
         <tr style="vertical-align: top">
             <td style="width:76%">
                 <span style="font-size:11pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
-                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['direccion_fiscal']}}</span><br>
-                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['nombre_completo']}}</span><br>
-                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['celular_contacto']}}</span><br>
+                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['domicilio_fiscal']}}</span><br>
+                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['nombre_contacto']}}</span><br>
+                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['telefono_contacto']}}</span><br>
                 <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['correo_contacto']}}</span>
             </td>
             <td style="width:12%;text-align:right;">
