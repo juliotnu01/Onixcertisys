@@ -17,19 +17,31 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px;">
         <tr style="vertical-align: top">
             <td style="width:76%">
-                <span style="font-size:11pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
+                <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
                 <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['domicilio_fiscal']}}</span><br>
                 <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['nombre_contacto']}}</span><br>
                 <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['telefono_contacto']}}</span><br>
                 <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['correo_contacto']}}</span>
             </td>
             <td style="width:12%;text-align:right;">
-                <span style="font-size:11pt;"><b>Folio:</b></span><br>
-                <span style="font-size:11pt;"><b>Fecha:</b></span>
+                <span style="font-size:10pt;"><b>Folio:</b></span><br>
+                <span style="font-size:10pt;"><b>Fecha:</b></span>
             </td>
             <td style="width:12%">
-                <span style="font-size:11pt; color:red;">{{$data['has_cotizaicon']['id']}}</span><br>
-                <span style="font-size:11pt; color:#003177">{{substr($data['created_at'], 0, 10)}}</span>
+                <span style="font-size:10pt; color:red;">{{$data['has_cotizaicon']['id']}}</span><br>
+                <span style="font-size:10pt; color:#003177">{{substr($data['created_at'], 0, 10)}}</span>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px;">
+        <tr style="vertical-align: top">
+            <td style="width:76%">
+                <span style="color:#003177"><b>Dia de Revision:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_revision']}}</span><br>
+                <span style="color:#003177"><b>Horario de Revision:</b> {{$data['has_cotizaicon']['has_cliente']['dias_de_revision_horario']}}</span><br>
+                <span style="color:#003177"><b>Dia de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion']}}</span>
+                <span style="color:#003177"><b>Horario de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion_horario']}}</span>
+                <span style="color:#003177"><b>Dia de Pago:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_pago']}}</span>
+                <span style="color:#003177"><b>Horario de Pago:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_pago_horario']}}</span>
             </td>
         </tr>
     </table>
