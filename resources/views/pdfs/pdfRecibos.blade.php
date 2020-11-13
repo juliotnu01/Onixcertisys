@@ -14,7 +14,7 @@
         </tr>
     </table>
 
-    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px;">
+    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; margin-top: 30px">
         <tr style="vertical-align: top">
             <td style="width:76%">
                 <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
@@ -33,19 +33,19 @@
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px;">
+    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; margin-top: 30px">
         <tr style="vertical-align: top">
             <td style="width:76%">
                 <span style="color:#003177"><b>Dia de Revision:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_revision']}}</span><br>
                 <span style="color:#003177"><b>Horario de Revision:</b> {{$data['has_cotizaicon']['has_cliente']['dias_de_revision_horario']}}</span><br>
-                <span style="color:#003177"><b>Dia de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion']}}</span>
-                <span style="color:#003177"><b>Horario de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion_horario']}}</span>
-                <span style="color:#003177"><b>Dia de Pago:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_pago']}}</span>
+                <span style="color:#003177"><b>Dia de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion']}}</span> <br>
+                <span style="color:#003177"><b>Horario de Confirmacion:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_confirmacion_horario']}}</span><br>
+                <span style="color:#003177"><b>Dia de Pago:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_pago']}}</span><br>
                 <span style="color:#003177"><b>Horario de Pago:</b>{{$data['has_cotizaicon']['has_cliente']['dias_de_pago_horario']}}</span>
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;" cellspacing=0>
+    <table style="width:100%;border:2px solid #0095d9; margin-top: 30px" cellspacing=0>
         <tr bgcolor="#0095d9" style="font-size:8pt">
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Cant</th>
             <th style="color:#fff; height:20px; padding: 5px;  text-align:center">Serv</th>
