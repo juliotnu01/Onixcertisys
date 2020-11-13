@@ -17,10 +17,9 @@
         <tr style="vertical-align: top">
             <td style="width:70%">
                 <span style="color:#003177"><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
-                <span style="color:#003177">{{$data['has_cliente']['direccion_fiscal']}}</span><br>
-                <span style="color:#003177">{{$data['has_cliente']['nombre_completo']}}</span><br>
-                <span style="color:#003177"><b>Contacto:</b> {{$data['has_cliente']['nombre_completo']}}</span><br>
-                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cliente']['celular_contacto']}} </span><br>
+                <span style="color:#003177">{{$data['has_cliente']['domicilio_fiscal']}}</span><br>
+                <span style="color:#003177"><b>Contacto:</b> {{$data['has_cliente']['nombre_contacto']}}</span><br>
+                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cliente']['telefono_contacto']}} </span><br>
                 <span style="color:#003177"><b>Correo:</b> {{$data['has_cliente']['correo_contacto']}}</span><br>
 
             </td>
