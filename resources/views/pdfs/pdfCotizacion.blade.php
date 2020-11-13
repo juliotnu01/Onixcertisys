@@ -104,7 +104,7 @@
             </td>
         </tr>
     </table>
-    <table cellspacing="10" style="width: 100%; text-align: left; font-size: 11pt;">
+    <table cellspacing="10" style="width: 100%; text-align: left; font-size: 11pt; margin-top: 100px">
         <tr>
             <td style="width:33%;text-align: center;border-top:solid 1px">
                 <b>Ejecutivo de ventas</b>
