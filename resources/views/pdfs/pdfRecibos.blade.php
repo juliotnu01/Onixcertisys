@@ -49,7 +49,7 @@
         @foreach($data['has_partidas'] as $item)
         <tr style="font-size:8pt">
             <td class="top" style="border:1px solid #0095d9; text-align: center">{{$item['cantidad']}}</td>
-            <td class="top left" style="border:1px solid #0095d9; text-align: center">{{$item['servicio']}}</td>
+            <td class="top left" style="border:1px solid #0095d9; text-align: center">{{ substr($item['servicio'], 0, 1)}}</td>
             <td class="top left" style="border:1px solid #0095d9; text-align: left"> {{$item['informe_id']}} - {{$item['has_intrumento']['nombre']}}</td>
             <td class="top left" style="border:1px solid #0095d9; text-align: left"> {{$item['has_intrumento']['has_magnitud']['nombre']}}</td>
             <td class="top left" style="border:1px solid #0095d9; text-align: left">{{$item['marca']}}</td>
