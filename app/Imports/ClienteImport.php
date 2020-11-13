@@ -48,12 +48,12 @@ class ClienteImport implements WithMappedCells, ToModel
             'forma_de_pago' => 'F37',
             'correo_electronico_para_el_envio_de_factura' => 'B38',
             'se_requiere_orden_de_compra_para_facturar' => 'B39',
-            'servicio_solicitado' => 'B41',
-            'nombre_quien_brinda_la_info' => 'B47',
-            'telefono_quien_brinda_la_info' => 'B48',
-            'fecha_quien_brinda_la_info' => 'B49',
-            'puesto_quien_brinda_la_info' => 'E47',
-            'correo_quien_brinda_la_info' => 'E48',
+            'servicio_solicitado' => 'B43',
+            'nombre_quien_brinda_la_info' => 'B49',
+            'telefono_quien_brinda_la_info' => 'B50',
+            'fecha_quien_brinda_la_info' => 'B51',
+            'puesto_quien_brinda_la_info' => 'E49',
+            'correo_quien_brinda_la_info' => 'E50',
             'iva' => 'F39'
         ];
     }
