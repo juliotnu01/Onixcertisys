@@ -62,6 +62,11 @@
                                 </template>
                             </v-simple-table>
                         </v-col>
+                        <v-col cols="12">
+                            <pre>
+                            {{var_computed_total_vendido}}
+                            </pre>
+                        </v-col>
                     </v-row>
                 </v-card-text>
             </v-card>
@@ -74,12 +79,14 @@
 import {
     mapGetters
 } from 'vuex'
+
 export default {
     data() {
         return {
             // data para reporte de ventas por magnitud
             magnitud_selected: {},
-            instrumento_selected: {}
+            instrumento_selected: {},
+
         }
     },
     mounted() {
@@ -87,6 +94,28 @@ export default {
     },
     computed: {
         ...mapGetters(['services', 'magnitudes_para_reporte']),
+        var_computed_total_vendido: {
+            get() {
+                var result = [],
+                    count = 0;
+
+                if (Object.entries(this.instrumento_selected).length > 0) {
+                    for (var i = 0; this.instrumento_selected.belongs_partida.length > i; i++) {
+                        for (var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo.length > j; j++) {
+                            if (this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j] !== this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[count]) {
+                                count++
+                                result[count] = this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j]
+                            }
+                        }
+                    }
+
+                }
+                return result
+            },
+            set(val) {
+                this.instrumento_selected = val
+            }
+        }
     }
 }
 </script>

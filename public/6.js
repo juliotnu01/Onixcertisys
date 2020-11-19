@@ -88,6 +88,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -100,7 +105,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.services.magnitudesServices.getListMagnitudesParaReporte();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'magnitudes_para_reporte']))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'magnitudes_para_reporte'])), {}, {
+    var_computed_total_vendido: {
+      get: function get() {
+        var result = [],
+            count = 0;
+
+        if (Object.entries(this.instrumento_selected).length > 0) {
+          for (var i = 0; this.instrumento_selected.belongs_partida.length > i; i++) {
+            for (var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo.length > j; j++) {
+              if (this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j] !== this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[count]) {
+                count++;
+                result[count] = this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j];
+              }
+            }
+          }
+        }
+
+        return result;
+      },
+      set: function set(val) {
+        this.instrumento_selected = val;
+      }
+    }
+  })
 });
 
 /***/ }),
@@ -408,7 +436,17 @@ var render = function() {
                               })
                             ],
                             1
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("v-col", { attrs: { cols: "12" } }, [
+                            _c("pre", [
+                              _vm._v(
+                                "\r\n                            " +
+                                  _vm._s(_vm.var_computed_total_vendido) +
+                                  "\r\n                            "
+                              )
+                            ])
+                          ])
                         ],
                         1
                       )
