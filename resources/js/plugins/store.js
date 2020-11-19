@@ -112,7 +112,8 @@ export default new Vuex.Store({
         dialog_pdf_factura: false, 
         ruta_pdf_factura: '',
         dialog_duplicate_cotizacion: false,
-        cotizacion_para_duplicar: {}
+        cotizacion_para_duplicar: {},
+        magnitudes_para_reporte: [],
         
     },
     getters: {
@@ -213,6 +214,7 @@ export default new Vuex.Store({
         ruta_pdf_factura: state => state.ruta_pdf_factura,
         dialog_duplicate_cotizacion: state => state.dialog_duplicate_cotizacion,
         cotizacion_para_duplicar: state => state.cotizacion_para_duplicar,
+        magnitudes_para_reporte: state => state.magnitudes_para_reporte,
     },
     mutations: {
         setListUser(state, data) {
@@ -623,7 +625,10 @@ export default new Vuex.Store({
         },
         setCotizacionParaDuplicar(state, data){
             state.cotizacion_para_duplicar = data
-        }
+        },
+        setMagnitudesParaReporte(state, data){
+            state.magnitudes_para_reporte = data
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {

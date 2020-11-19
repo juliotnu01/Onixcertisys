@@ -36,6 +36,7 @@ Route::get('/get-empresa', 'v1\EmpresaController@index');
 Route::post('/add-empresa', 'v1\EmpresaController@store');
 
 Route::get('/get-magnitudes', 'v1\MagnitudesController@index');
+Route::get('/get-magnitud-espesifica', 'v1\MagnitudesController@indexMagnitud');
 Route::post('/add-magnitudes', 'v1\MagnitudesController@store');
 Route::put('/edit-magnitud', 'v1\MagnitudesController@update');
 Route::delete('/delete-magnitud/{id}', 'v1\MagnitudesController@destroy');
@@ -130,7 +131,7 @@ Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibraci
 // Route::put('/edit-patron', 'v1\PatronController@update');
 // Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
 
-// Route::get('/get-patrones', 'v1\PatronController@index');
+Route::get('/get-facturas', 'v1\FacturaController@index');
 Route::post('/add-factura', 'v1\FacturaController@store');
 // Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
 // Route::put('/edit-patron', 'v1\PatronController@update');

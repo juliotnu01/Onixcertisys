@@ -30,6 +30,10 @@ class Cotizacion extends Model
     {
         return $this->hasMany(Partida::class, 'cotizacion_id');
     }
+    public function belongsRecibo()
+    {
+        return $this->hasMany(Recibo::class, 'cotizacion_id');
+    }
 
 
 }

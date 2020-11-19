@@ -76,5 +76,13 @@ export default new router({
                     "../components/cliente/indexClienteComponent.vue"
                 )
         },
+        {
+            path: "/reportes",
+            name: "home.reportes",
+            component: () =>
+                import(
+                    "../components/reportes/indexReportesComponents.vue"
+                )
+        },
     ]
 });

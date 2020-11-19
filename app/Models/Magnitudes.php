@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Magnitudes extends Model
 {
     protected $guarded = [];
+
+    public function has_instrumento()
+    {
+        return $this->hasMany(Instrumento::class,'magnitude_id');
+    }
 }

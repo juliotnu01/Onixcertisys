@@ -81,10 +81,24 @@
             </v-list>
         </v-menu>
         <v-spacer></v-spacer>
-        <v-btn icon text>
-            <img src="https://img.icons8.com/dusk/40/000000/guarantee.png" />
-            Calidad
-        </v-btn>
+        <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn icon text v-bind="attrs" v-on="on">
+                    <img src="https://img.icons8.com/dusk/40/000000/guarantee.png" />
+                    Calidad
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item>
+                    <v-list-item-title>
+                        <router-link :to="{ name: 'home.reportes' }">
+                            <v-icon>mdi-file-chart</v-icon>
+                            Reportes
+                        </router-link>
+                    </v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
         <v-spacer></v-spacer>
         <v-btn icon>
             <v-icon>mdi-bell</v-icon>

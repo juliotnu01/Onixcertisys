@@ -26,5 +26,9 @@ class Partida extends Model
     public function hasTecnico(){
         return $this->belongsTo(Empleado::class,'empleado_id');
     }
+    public function belongsCotizacion()
+    {
+        return $this->belongsTo(Cotizacion::class, 'cotizacion_id');
+    }
     
 }

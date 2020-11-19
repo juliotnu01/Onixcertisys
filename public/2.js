@@ -284,12 +284,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sorable: false,
         align: 'center',
         value: 'importe'
-      }, {
-        text: 'Accion',
-        sorable: false,
-        align: 'center',
-        value: 'accion'
-      }],
+      } // {
+      //     text: 'Accion',
+      //     sorable: false,
+      //     align: 'center',
+      //     value: 'accion'
+      // },
+      ],
       tipo_de_servicio: [{
         name: "Calibracion",
         value: 1
@@ -1491,34 +1492,6 @@ var render = function() {
                               "\r\n                    "
                           )
                         ])
-                      ]
-                    }
-                  },
-                  {
-                    key: "item.accion",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _c(
-                          "td",
-                          { attrs: { clas: "text-left" } },
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: { color: "error", icon: "", fab: "" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.EliminarPartida(item)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("mdi-delete")])],
-                              1
-                            )
-                          ],
-                          1
-                        )
                       ]
                     }
                   },

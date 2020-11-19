@@ -125,13 +125,13 @@
                         {{item.importe | numberFormat(Object.entries(cotizacion_partida).length > 3 ? cotizacion_partida.has_moneda.clave: '' )}}
                     </td>
                 </template>
-                <template v-slot:item.accion="{item}">
+                <!--<template v-slot:item.accion="{item}">
                     <td clas="text-left">
                         <v-btn color="error" icon fab @click="EliminarPartida(item)">
                             <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </td>
-                </template>
+                </template>-->
                 <template v-slot:item.has_calibracion="{item}">
                     <td clas="text-left">
                         <v-alert dense outlined type="error" v-if="!item.has_calibracion" class="m-0 p-0">
@@ -262,12 +262,12 @@ export default {
                     align: 'center',
                     value: 'importe'
                 },
-                {
-                    text: 'Accion',
-                    sorable: false,
-                    align: 'center',
-                    value: 'accion'
-                },
+                // {
+                //     text: 'Accion',
+                //     sorable: false,
+                //     align: 'center',
+                //     value: 'accion'
+                // },
             ],
             tipo_de_servicio: [{
                     name: "Calibracion",

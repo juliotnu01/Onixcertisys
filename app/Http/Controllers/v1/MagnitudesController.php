@@ -23,6 +23,20 @@ class MagnitudesController extends Controller
             
         } 
     }
+    public function indexMagnitud()
+    {
+       try {
+            $magnitudes = Magnitudes::with(  'has_instrumento',
+                                             'has_instrumento.belongsPartida', 
+                                             'has_instrumento.belongsPartida.belongsCotizacion', 
+                                             'has_instrumento.belongsPartida.belongsCotizacion.hasCliente', 
+                                             'has_instrumento.belongsPartida.belongsCotizacion.belongsRecibo')->get(['id', 'clave', 'nombre']);
+            return $magnitudes;
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        } 
+    }
 
     /**
      * Show the form for creating a new resource.

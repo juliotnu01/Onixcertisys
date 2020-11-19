@@ -11,7 +11,6 @@ export default class facturaServices {
     async agregarFactura(model) {
         try {
             let { data } = await axios.post("/api/add-factura", model);
-            console.log({dataf: data})
             store.commit("setDialogAddFactura", false);
             store.commit("setRutaPdfFactura", data);
             store.commit("setDialogPdfFactura", true);

@@ -24,7 +24,16 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return Factura::with(
+                                 'hasCliente', 
+                                 'hasCliente.hasCotizaciones',
+                                 'hasCliente.hasCotizaciones.hasPartidas',
+                                 'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento',
+                                 'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud')->get();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -69,12 +78,13 @@ class FacturaController extends Controller
                 }
                 $data = collect($request->all());
                 foreach ($data['partidas'] as $key => $value) {
+                    
                     $data2[$value['recibo_id']] = Recibo::with([
                         'hasCotizaicon',
                         'hasCotizaicon.hasCliente',
                         'hasCotizaicon.hasMoneda',
                         'hasCotizaicon.hasEmpleado',
-                        'hasPartidas',
+                        'hasPartidas' ,
                         'hasPartidas.hasCalibracion',
                         'hasPartidas.hasEmpleado',
                         'hasPartidas.hasIntrumento',

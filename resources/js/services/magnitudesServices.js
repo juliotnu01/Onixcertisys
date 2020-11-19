@@ -10,6 +10,15 @@ export default class magnitudesServices{
 			console.log(e)
 		}
 	}
+	async getListMagnitudesParaReporte(model){
+		try{
+			let {data} = await axios('/api/get-magnitud-espesifica')
+			store.commit('setMagnitudesParaReporte', data)
+			
+		}catch(e){
+			console.log(e)
+		}
+	}
 
 	async addMagnitud(model){
 		try{
