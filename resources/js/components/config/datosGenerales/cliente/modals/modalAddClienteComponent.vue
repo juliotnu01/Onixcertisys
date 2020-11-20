@@ -199,6 +199,53 @@
                             </v-row>
                         </v-card-text>
                     </v-card>
+                    <v-card class="mt-5 elevation-1">
+                        <v-card-title primary-title>
+                            Agregar Sucursal
+                        </v-card-title>
+                        <v-card-text>
+                            <v-row>
+                                <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.nombre"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.direccion"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.telefono"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                                    <v-btn color="success" @click="AgregarSucursal" block>Agregar</v-btn>
+                                </v-col>
+                                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                                    <v-simple-table>
+                                        <template v-slot:default>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        Nombre
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Direccion
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Telefono
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(item, s) in model.sucursales" :key="s">
+                                                    <td class="text-center">{{ item.nombre }}</td>
+                                                    <td class="text-center">{{ item.direccion }}</td>
+                                                    <td class="text-center">{{ item.telefono }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn text color="blue" @click="addCliente"> Agregar </v-btn>

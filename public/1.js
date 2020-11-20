@@ -222,6 +222,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "total",
         align: 'start'
       }, {
+        text: "Nota de seguimiento",
+        value: "nota_de_seguimiento",
+        align: 'start'
+      }, {
         text: "Accion",
         value: "accion",
         align: 'start'

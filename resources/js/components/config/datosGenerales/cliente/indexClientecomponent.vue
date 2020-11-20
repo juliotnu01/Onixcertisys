@@ -26,7 +26,7 @@
             </template>
             <template v-slot:item.created_at="{ item }">
                 <td class="text-center">
-                    {{ item.created_at }}
+                    {{ item.created_at.substr(0, 10) }}
                 </td>
             </template>
         </v-data-table>
@@ -66,19 +66,7 @@ export default {
                     text: "Direccion Fiscal",
                     align: "center",
                     sortable: false,
-                    value: "direccion_fiscal",
-                },
-                {
-                    text: "Ciudad / Estado / Pais",
-                    align: "center",
-                    sortable: false,
-                    value: "ciudad_estad_pais",
-                },
-                {
-                    text: "COdigo Postal",
-                    align: "center",
-                    sortable: false,
-                    value: "codigo_postal",
+                    value: "domicilio_fiscal",
                 },
                 {
                     text: "R.F.C",
@@ -90,37 +78,19 @@ export default {
                     text: "Teléfono",
                     align: "center",
                     sortable: false,
-                    value: "telefono",
-                },
-                {
-                    text: "Descuento (%)",
-                    align: "center",
-                    sortable: false,
-                    value: "descuento",
+                    value: "telefono_empresa",
                 },
                 {
                     text: "Correo Electronico para la factura",
                     align: "center",
                     sortable: false,
-                    value: "correo_electronico_factura",
+                    value: "correo_electronico_para_el_envio_de_factura",
                 },
                 {
-                    text: "Sitio Web",
+                    text: "Nombre Contacto",
                     align: "center",
                     sortable: false,
-                    value: "sitio_web",
-                },
-                {
-                    text: "vendedor",
-                    align: "center",
-                    sortable: false,
-                    value: "Vendedor",
-                },
-                {
-                    text: "Credito (%)",
-                    align: "center",
-                    sortable: false,
-                    value: "credito",
+                    value: "nombre_contacto",
                 },
                 {
                     text: "IVA (%)",

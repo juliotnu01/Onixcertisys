@@ -206,6 +206,11 @@ export default {
                     align: 'start',
                 },
                 {
+                    text: "Nota de seguimiento",
+                    value: "nota_de_seguimiento",
+                    align: 'start',
+                },
+                {
                     text: "Accion",
                     value: "accion",
                     align: 'start',

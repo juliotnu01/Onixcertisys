@@ -9,13 +9,28 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -105,30 +120,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.services.magnitudesServices.getListMagnitudesParaReporte();
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'magnitudes_para_reporte'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'magnitudes_para_reporte'])), {}, {
     var_computed_total_vendido: {
       get: function get() {
+        var _this = this;
+
         var result = [],
-            count = 0;
+            data = 0;
 
         if (Object.entries(this.instrumento_selected).length > 0) {
           for (var i = 0; this.instrumento_selected.belongs_partida.length > i; i++) {
             for (var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo.length > j; j++) {
-              if (this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j] !== this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[count]) {
-                count++;
-                result[count] = this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j];
+              if (!result.some(function (item) {
+                return item.id == _this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j].id;
+              })) {
+                result.push(this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j]);
               }
             }
           }
         }
 
-        return result;
+        result.forEach(function (item) {
+          data += item.total;
+        });
+        return data;
       },
       set: function set(val) {
         this.instrumento_selected = val;
       }
     }
-  })
+  }),
+  methods: {
+    getReporteVentasMagnitud: function getReporteVentasMagnitud() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var model, _yield$axios$post, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                model = {
+                  total_vendido: _this2.var_computed_total_vendido,
+                  instrumento_selected: _this2.instrumento_selected
+                };
+                _context.next = 4;
+                return axios.post('/api/get-reporte-magnitud-ventas', model);
+
+              case 4:
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
+    }
+  }
 });
 
 /***/ }),
@@ -322,7 +382,7 @@ var render = function() {
                                               { staticClass: "text-center" },
                                               [
                                                 _vm._v(
-                                                  "\r\n                                                Cotizacion\r\n                                            "
+                                                  "\r\n                                                Folio\r\n                                            "
                                                 )
                                               ]
                                             ),
@@ -342,7 +402,17 @@ var render = function() {
                                               { staticClass: "text-center" },
                                               [
                                                 _vm._v(
-                                                  "\r\n                                                Recibo\r\n                                            "
+                                                  "\r\n                                                Factura\r\n                                            "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "th",
+                                              { staticClass: "text-center" },
+                                              [
+                                                _vm._v(
+                                                  "\r\n                                                Fecha\r\n                                            "
                                                 )
                                               ]
                                             )
@@ -422,6 +492,23 @@ var render = function() {
                                                       )
                                                     )
                                                   ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass: "text-center"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        item.belongs_cotizacion.belongs_recibo[0].created_at.substr(
+                                                          0,
+                                                          10
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
                                                 )
                                               ])
                                             }
@@ -439,14 +526,39 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("v-col", { attrs: { cols: "12" } }, [
-                            _c("pre", [
+                            _c("h1", [
                               _vm._v(
-                                "\r\n                            " +
-                                  _vm._s(_vm.var_computed_total_vendido) +
-                                  "\r\n                            "
+                                " Total Facturado: " +
+                                  _vm._s(
+                                    _vm._f("numberFormat")(
+                                      _vm.var_computed_total_vendido
+                                    )
+                                  )
                               )
                             ])
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "success", block: "" },
+                                  on: { click: _vm.getReporteVentasMagnitud }
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                Obtener Reporte  "
+                                  ),
+                                  _c("v-icon", [_vm._v("mdi-printer")])
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )

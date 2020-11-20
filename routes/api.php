@@ -37,6 +37,7 @@ Route::post('/add-empresa', 'v1\EmpresaController@store');
 
 Route::get('/get-magnitudes', 'v1\MagnitudesController@index');
 Route::get('/get-magnitud-espesifica', 'v1\MagnitudesController@indexMagnitud');
+Route::post('/get-reporte-magnitud-ventas', 'v1\ReporteVentasPorMagnitudController@storeReporteVentasMagnitud'); // reporte ventas por magnitud
 Route::post('/add-magnitudes', 'v1\MagnitudesController@store');
 Route::put('/edit-magnitud', 'v1\MagnitudesController@update');
 Route::delete('/delete-magnitud/{id}', 'v1\MagnitudesController@destroy');

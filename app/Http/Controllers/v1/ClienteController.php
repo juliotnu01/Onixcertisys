@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Cliente,SucursalCliente};
+use App\Models\{Cliente, SucursalCliente};
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ClienteImport;
@@ -21,8 +21,8 @@ class ClienteController extends Controller
         try {
             $cliente = Cliente::with([
                 'hasMetodoDePago',
-                'hasCondicionDePago', 
-                'hasSucursal', 
+                'hasCondicionDePago',
+                'hasSucursal',
                 'hasCotizaciones',
                 'hasCotizaciones.hasCliente',
                 'hasCotizaciones.hasEmpleado',
@@ -36,11 +36,10 @@ class ClienteController extends Controller
                 'hasCotizaciones.hasPartidas.hasEmpleado',
                 'hasCotizaciones.hasPartidas.hasRecibo',
                 'hasCotizaciones.hasPartidas.hasTecnico',
-                ])->get();
-            return $cliente;     
+            ])->get();
+            return $cliente;
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -63,15 +62,14 @@ class ClienteController extends Controller
     public function store(Request $request, Cliente $cliente)
     {
         try {
-            return DB::transaction( function() use ($request, $cliente) {
-                
+            return DB::transaction(function () use ($request, $cliente) {
                 $cliente->nombre_contacto = $request['nombre_contacto'];
                 $cliente->telefono_contacto = $request['telefono_contacto'];
                 $cliente->cargo_contacto = $request['cargo_contacto'];
                 $cliente->correo_contacto = $request['correo_contacto'];
                 $cliente->razon_social = $request['razon_social'];
                 $cliente->domicilio_fiscal = $request['domicilio_fiscal'];
-                $cliente->ciudad = $request['ciudad']; 
+                $cliente->ciudad = $request['ciudad'];
                 $cliente->estado = $request['estado'];
                 $cliente->rfc = $request['rfc'];
                 $cliente->cp = $request['cp'];
@@ -108,21 +106,28 @@ class ClienteController extends Controller
                 $cliente->puesto_quien_brinda_la_info = $request['puesto_quien_brinda_la_info'];
                 $cliente->correo_quien_brinda_la_info = $request['correo_quien_brinda_la_info'];
                 $cliente->iva = $request['iva'];
-                $cliente->save(); 
-            },5);
+                $cliente->save();
+
+                for ($i = 0; $i < collect($request['sucursales'])->count(); $i++) {
+                    $sucursal = new SucursalCliente();
+                    $sucursal->nombre_sucursal = $request['sucursales'][$i]['nombre'];
+                    $sucursal->direccion_sucursal = $request['sucursales'][$i]['direccion'];
+                    $sucursal->telefono = $request['sucursales'][$i]['telefono'];
+                    $sucursal->cliente_id = $cliente['id'];
+                    $sucursal->save();
+                }
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
     public function storeFileCliente(Request $request)
     {
         try {
-                Excel::import(new ClienteImport, $request->file('file_cliente'));
-                return ;
+            Excel::import(new ClienteImport, $request->file('file_cliente'));
+            return;
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -158,32 +163,64 @@ class ClienteController extends Controller
     public function update(Request $request, Cliente $cliente)
     {
         try {
-            return DB::transaction(function() use ($request, $cliente){
+            return DB::transaction(function () use ($request, $cliente) {
 
                 $cliente->find($request['id'])->update([
-                    'razon_social' => $request['razon_social'],
-                    'direccion_fiscal' => $request['direccion_fiscal'],
-                    'ciudad_estad_pais' => $request['ciudad_estad_pais'],
-                    'codigo_postal' => $request['codigo_postal'],
-                    'rfc' => $request['rfc'],
-                    'telefono' => $request['telefono'],
-                    'descuento' => $request['descuento'],
-                    'correo_electronico_factura' => $request['correo_electronico_factura'],
-                    'sitio_web' => $request['sitio_web'],
-                    'vendedor' => $request['vendedor']['nombre_completo'],
-                    'credito' => $request['credito'],
-                    'nombre_completo' => $request['nombre_completo'],
-                    'telefono_contacto' => $request['telefono_contacto'],
-                    'celular_contacto' => $request['celular_contacto'],
+                    'nombre_contacto' => $request['nombre_contacto'],
+                    ' telefono_contacto' => $request['telefono_contacto'],
+                    ' cargo_contacto' => $request['cargo_contacto'],
                     'correo_contacto' => $request['correo_contacto'],
-                    'iva' => $request['iva'],
-                    'metodo_de_pago_id' => $request['metodo_de_pago']['id'],
-                    'condicion_de_pago_id' => $request['condicion_de_pago']['id'],
+                    'razon_social' => $request['razon_social'],
+                    'domicilio_fiscal' => $request['domicilio_fiscal'],
+                    'ciudad' => $request['ciudad'],
+                    'estado' => $request['estado'],
+                    'rfc' => $request['rfc'],
+                    'cp' => $request['cp'],
+                    'telefono_empresa' => $request['telefono_empresa'],
+                    'domicilio_servicio' => $request['domicilio_servicio'],
+                    ' info_cli_compras' => $request['info_cli_compras'],
+                    ' info_cli_compras_correo' => $request['info_cli_compras_correo'],
+                    ' info_cli_compras_telefono' => $request['info_cli_compras_telefono'],
+                    ' info_cli_pagos' => $request['info_cli_pagos'],
+                    ' info_cli_pagos_correo' => $request['info_cli_pagos_correo'],
+                    ' info_cli_pagos_telefono' => $request['info_cli_pagos_telefono'],
+                    'info_cli_almacen' => $request['info_cli_almacen'],
+                    ' info_cli_almacen_correo' => $request['info_cli_almacen_correo'],
+                    'info_cli_almacen_telefono' => $request['info_cli_almacen_telefono'],
+                    ' dias_de_revision' => $request['dias_de_revision'],
+                    ' dias_de_revision_horario' => $request['dias_de_revision_horario'],
+                    ' dias_de_confirmacion' => $request['dias_de_confirmacion'],
+                    'dias_de_confirmacion_horario' => $request['dias_de_confirmacion_horario'],
+                    ' dias_de_pago' => $request['dias_de_pago'],
+                    ' dias_de_pago_horario' => $request['dias_de_pago_horario'],
+                    ' nombre_de_la_persona_responsable_de_pago' => $request['nombre_de_la_persona_responsable_de_pago'],
+                    ' nombre_de_la_persona_responsable_de_pago_puesto_cargo' => $request['nombre_de_la_persona_responsable_de_pago_puesto_cargo'],
+                    ' nombre_de_la_persona_responsable_de_pago_puesto_cargo_telf' => $request['nombre_de_la_persona_responsable_de_pago_puesto_cargo_telf'],
+                    ' nombre_de_la_persona_responsable_de_pago_puesto_cargo_correo' => $request['nombre_de_la_persona_responsable_de_pago_puesto_cargo_correo'],
+                    ' metodo_de_pago' => $request['metodo_de_pago'],
+                    ' cfdi' => $request['cfdi'],
+                    ' forma_de_pago' => $request['forma_de_pago'],
+                    ' correo_electronico_para_el_envio_de_factura' => $request['correo_electronico_para_el_envio_de_factura'],
+                    ' se_requiere_orden_de_compra_para_facturar' => $request['se_requiere_orden_de_compra_para_facturar'],
+                    ' servicio_solicitado' => $request['servicio_solicitado'],
+                    ' nombre_quien_brinda_la_info' => $request['nombre_quien_brinda_la_info'],
+                    ' telefono_quien_brinda_la_info' => $request['telefono_quien_brinda_la_info'],
+                    ' fecha_quien_brinda_la_info' => $request['fecha_quien_brinda_la_info'],
+                    ' puesto_quien_brinda_la_info' => $request['puesto_quien_brinda_la_info'],
+                    ' correo_quien_brinda_la_info' => $request['correo_quien_brinda_la_info'],
+                    ' iva' => $request['iva'],
                 ]);
-            },5);
+              
+                for ($i = 0; $i < collect($request['sucursales'])->count(); $i++) {
+                    SucursalCliente::updateOrCreate([
+                        'nombre_sucursal' => $request['sucursales'][$i]['nombre'],
+                        'direccion_sucursal' => $request['sucursales'][$i]['direccion'],
+                        'telefono' => $request['sucursales'][$i]['telefono'],
+                    ]);
+                }
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -196,12 +233,11 @@ class ClienteController extends Controller
     public function destroy($id, Cliente $cliente)
     {
         try {
-            return DB::transaction(function() use ($id, $cliente){
+            return DB::transaction(function () use ($id, $cliente) {
                 $cliente->find($id)->delete();
-            },5);
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 }

@@ -133,4 +133,8 @@ class MagnitudesController extends Controller
             
         }
     }
+    public function storeReporteVentasMagnitud()
+    {
+        
+    }
 }
