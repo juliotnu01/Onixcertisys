@@ -78,6 +78,15 @@
                 </v-card-text>
             </v-card>
         </v-col>
+        <v-col cols="6">
+            <v-card>
+                <v-btn @click="$refs.myPdfComponent.print()" text icon>
+                    <v-icon>mdi-printer</v-icon>
+                </v-btn>
+                </v-toolbar>
+                <pdf ref="myPdfComponent" :src="pdf_ruta"></pdf>
+            </v-card>
+        </v-col>
     </v-row>
 </v-app>
 </template>
@@ -85,61 +94,82 @@
 <script>
 import {
     mapGetters
-} from 'vuex'
-
+} from "vuex";
+import pdf from "vue-pdf";
 export default {
+    components: {
+        pdf,
+    },
     data() {
         return {
             // data para reporte de ventas por magnitud
             magnitud_selected: {},
             instrumento_selected: {},
-
-        }
+            pdf_ruta: '',
+        };
     },
     mounted() {
         this.services.magnitudesServices.getListMagnitudesParaReporte();
     },
     computed: {
-        ...mapGetters(['services', 'magnitudes_para_reporte']),
+        ...mapGetters(["services", "magnitudes_para_reporte"]),
         var_computed_total_vendido: {
             get() {
                 var result = [],
                     data = 0;
 
                 if (Object.entries(this.instrumento_selected).length > 0) {
-                    for (var i = 0; this.instrumento_selected.belongs_partida.length > i; i++) {
-                        for (var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo.length > j; j++) {
-                            if (!result.some(item => item.id == this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j].id)) {
-                                result.push(this.instrumento_selected.belongs_partida[i].belongs_cotizacion.belongs_recibo[j])
+                    for (
+                        var i = 0; this.instrumento_selected.belongs_partida.length > i; i++
+                    ) {
+                        for (
+                            var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion
+                            .belongs_recibo.length > j; j++
+                        ) {
+                            if (
+                                !result.some(
+                                    (item) =>
+                                    item.id ==
+                                    this.instrumento_selected.belongs_partida[i]
+                                    .belongs_cotizacion.belongs_recibo[j].id
+                                )
+                            ) {
+                                result.push(
+                                    this.instrumento_selected.belongs_partida[i]
+                                    .belongs_cotizacion.belongs_recibo[j]
+                                );
                             }
                         }
                     }
-
                 }
-                result.forEach(item => {
-                    data += item.total
-                })
-                return data
+                result.forEach((item) => {
+                    data += item.total;
+                });
+                return data;
             },
             set(val) {
-                this.instrumento_selected = val
-            }
-        }
+                this.instrumento_selected = val;
+            },
+        },
     },
     methods: {
         async getReporteVentasMagnitud() {
             try {
                 var model = {
                     total_vendido: this.var_computed_total_vendido,
-                    instrumento_selected: this.instrumento_selected
-                }
+                    instrumento_selected: this.instrumento_selected,
+                };
                 let {
                     data
-                } = await axios.post('/api/get-reporte-magnitud-ventas', model)
+                } = await axios.post(
+                    "/api/get-reporte-magnitud-ventas",
+                    model
+                );
+                this.pdf_ruta = data
             } catch (e) {
-                console.log(e)
+                console.log(e);
             }
-        }
-    }
-}
+        },
+    },
+};
 </script>
