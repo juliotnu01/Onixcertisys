@@ -24,6 +24,9 @@
                             </template>
                         </v-data-table>
                     </v-col>
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                        <!--<cliente />-->
+                    </v-col>
                 </v-row>
             </v-card-text>
         </v-card>
@@ -37,9 +40,11 @@ import {
     mapGetters
 } from 'vuex'
 import modalParaDuplicar from './modals/modalDuplicateCotizacionComponent.vue'
+// import clienteComponent from './cliente/indexClientecomponent.vue'
 export default {
     components: {
-        'modal-para-duplicar': modalParaDuplicar
+        'modal-para-duplicar': modalParaDuplicar,
+        // 'cliente': clienteComponent,
     },
     data() {
         return {

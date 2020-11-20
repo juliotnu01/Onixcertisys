@@ -23,6 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{q?}', function(){
     return view('home');
 })->where('q', '.*');
-Route::get('/test', function(){
-    return view('pdfs.pdfFactura');
-});
+

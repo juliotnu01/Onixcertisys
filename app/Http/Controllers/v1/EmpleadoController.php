@@ -9,6 +9,7 @@ use DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Events\AsignacionOrdenDeServicio;
 
 class EmpleadoController extends Controller
 {
@@ -167,6 +168,12 @@ class EmpleadoController extends Controller
                         'empleado_id' =>  $request['model']['has_empleado']['id'],
                         'ruta_doc_calibracion' => $request['documento']
                     ]);
+                    
+                    $asignacion = (Object)[
+                        "mensaje" => "tecnico asignado",
+                        "usuario" => 'Juliot'
+                    ];
+                    event(new AsignacionOrdenDeServicio($asignacion));
                 }
 
             },5);

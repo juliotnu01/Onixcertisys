@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -108,19 +109,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       // data para reporte de ventas por magnitud
       magnitud_selected: {},
-      instrumento_selected: {}
+      instrumento_selected: {},
+      pdf_ruta: ''
     };
   },
   mounted: function mounted() {
     this.services.magnitudesServices.getListMagnitudesParaReporte();
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'magnitudes_para_reporte'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "magnitudes_para_reporte"])), {}, {
     var_computed_total_vendido: {
       get: function get() {
         var _this = this;
@@ -161,31 +176,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
+                _this2.pdf_ruta = '';
+                _context.prev = 1;
                 model = {
                   total_vendido: _this2.var_computed_total_vendido,
                   instrumento_selected: _this2.instrumento_selected
                 };
-                _context.next = 4;
-                return axios.post('/api/get-reporte-magnitud-ventas', model);
+                _context.next = 5;
+                return axios.post("/api/get-reporte-magnitud-ventas", model);
 
-              case 4:
+              case 5:
                 _yield$axios$post = _context.sent;
                 data = _yield$axios$post.data;
-                _context.next = 11;
+                _this2.pdf_ruta = data;
+                _context.next = 13;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
 
-              case 11:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[1, 10]]);
       }))();
     }
   }
@@ -570,6 +587,38 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "6" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "", icon: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.$refs.myPdfComponent.print()
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("mdi-printer")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("pdf", {
+                    ref: "myPdfComponent",
+                    attrs: { src: _vm.pdf_ruta }
+                  })
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -651,6 +700,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReportesComponents_vue_vue_type_template_id_621ba1a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ 1:
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/*!**********************!*\
+  !*** http (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 4:
+/*!***********************!*\
+  !*** https (ignored) ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 5:
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

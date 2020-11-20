@@ -51,11 +51,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
+ // import clienteComponent from './cliente/indexClientecomponent.vue'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-para-duplicar': _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    'modal-para-duplicar': _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"] // 'cliente': clienteComponent,
+
   },
   data: function data() {
     return {
@@ -708,7 +713,17 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("v-col", {
+                        attrs: {
+                          cols: "12",
+                          xs: "12",
+                          sm: "12",
+                          md: "12",
+                          lg: "12"
+                        }
+                      })
                     ],
                     1
                   )
