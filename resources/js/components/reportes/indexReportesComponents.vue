@@ -154,6 +154,7 @@ export default {
     },
     methods: {
         async getReporteVentasMagnitud() {
+            this.pdf_ruta = ''
             try {
                 var model = {
                     total_vendido: this.var_computed_total_vendido,
