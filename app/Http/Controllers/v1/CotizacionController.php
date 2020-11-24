@@ -37,7 +37,7 @@ class CotizacionController extends Controller
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
-            ])->get();
+            ])->orderBy('id', 'desc')->get();
             return Response($cotizaciones);
         } catch (Exception $e) {
             throw new Exception($e, 1);

@@ -9,7 +9,6 @@
     <table class="page_header" style="width:100%;">
         <tr style="vertical-align: top">
             <td style="width:100%">
-            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa"  />
             </td>
         </tr>
     </table>
