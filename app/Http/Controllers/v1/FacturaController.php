@@ -32,7 +32,25 @@ class FacturaController extends Controller
                                  'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento',
                                  'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud')->get();
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
+        }
+    }
+    public function indexFacturaParaEstadistica()
+    {
+        try {
+           $factura = Factura::with(
+                'hasCliente', 
+                'hasCliente.hasCotizaciones',
+                'hasCliente.hasCotizaciones.hasPartidas',
+                'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento',
+                'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud')->get();
+
+                $data = collect($factura)->groupBy(function($item, $key){
+                    return substr($item['created_at'], 0, 10);
+                });
+                return Response()->json(new RecibosCollection($data));
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 

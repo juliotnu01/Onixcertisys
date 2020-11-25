@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportMasivPartidas;
 use Luecano\NumeroALetras\NumeroALetras;
+use App\Http\Resources\RecibosCollection;
 
 
 
@@ -37,8 +38,31 @@ class CotizacionController extends Controller
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
-            ])->orderBy('id', 'desc')->get();
+            ])->get();
             return Response($cotizaciones);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
+    }
+    public function indexCotizacionesParaEstadistica()
+    {
+        try {
+            $cotizaciones = Cotizacion::with([
+                'hasCliente',
+                'hasCliente.hasSucursal',
+                'hasEmpleado',
+                'hasMoneda',
+                'hasTiempoDeEntrega',
+                'hasPartidas',
+                'hasPartidas.hasCalibracion',
+                'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.hasMagnitud',
+                'hasPartidas.hasIntrumento.hasAcreditacion'
+            ])->orderBy('id', 'desc')->get();
+            $data = collect($cotizaciones)->groupBy(function($item, $key){
+                return substr($item['created_at'], 0, 10);
+            });
+            return Response()->json(new RecibosCollection($data));
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

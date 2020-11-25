@@ -101,6 +101,7 @@ Route::put('/edit-patron', 'v1\PatronController@update');
 Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
 
 Route::get('/get-cotizaciones', 'v1\CotizacionController@index');
+Route::get('/get-cotizaciones-estadisticas', 'v1\CotizacionController@indexCotizacionesParaEstadistica');
 Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 Route::post('/add-cotizacion-duplicate', 'v1\CotizacionController@storeDuplicate');
 Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
@@ -133,6 +134,7 @@ Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibraci
 // Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
 
 Route::get('/get-facturas', 'v1\FacturaController@index');
+Route::get('/get-facturas-para-estadistica', 'v1\FacturaController@indexFacturaParaEstadistica');
 Route::post('/add-factura', 'v1\FacturaController@store');
 // Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
 // Route::put('/edit-patron', 'v1\PatronController@update');

@@ -8,6 +8,14 @@ export default class cotizacionServices {
             console.log(e);
         }
     }
+    async getlistCotizacionesParaEstadistica() {
+        try {
+            let { data } = await axios("/api/get-cotizaciones-estadisticas");
+            store.commit("setCotizacionesEstadistica", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async agregarCotizacion(cot) {
         try {
             var model = {

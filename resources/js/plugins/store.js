@@ -114,6 +114,9 @@ export default new Vuex.Store({
         dialog_duplicate_cotizacion: false,
         cotizacion_para_duplicar: {},
         magnitudes_para_reporte: [],
+        facturas: [],
+        facturas_estadistica: [],
+        cotizaciones_estadisticas: [],
         
     },
     getters: {
@@ -215,6 +218,9 @@ export default new Vuex.Store({
         dialog_duplicate_cotizacion: state => state.dialog_duplicate_cotizacion,
         cotizacion_para_duplicar: state => state.cotizacion_para_duplicar,
         magnitudes_para_reporte: state => state.magnitudes_para_reporte,
+        facturas: state => state.facturas,
+        facturas_estadistica: state =>  state.facturas_estadistica,
+        cotizaciones_estadisticas: state => state.cotizaciones_estadisticas,
     },
     mutations: {
         setListUser(state, data) {
@@ -629,6 +635,15 @@ export default new Vuex.Store({
         setMagnitudesParaReporte(state, data){
             state.magnitudes_para_reporte = data
         },
+        setFacturas(state, data){
+            state.facturas = data
+        },
+        setFacturasEstadistica(state, data){
+            state.facturas_estadistica = data
+        },
+        setCotizacionesEstadistica(state, data){
+            state.cotizaciones_estadisticas = data
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {

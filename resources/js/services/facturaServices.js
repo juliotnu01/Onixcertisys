@@ -1,13 +1,21 @@
 import store from "../plugins/store.js";
 export default class facturaServices {
-    // async getlistAcreditaciones() {
+    // async getlistFacturas() {
     //     try {
-    //         let { data } = await axios("/api/get-acreditaciones");
-    //         store.commit("setAcreditaciones", data);
+    //         let { data } = await axios("/api/get-facturas-para-estadistica");
+    //         store.commit("setFacturasEstadistica", data);
     //     } catch (e) {
     //         console.log(e);
     //     }
     // }
+    async getlistFacturasEstadistica() {
+        try {
+            let { data } = await axios("/api/get-facturas-para-estadistica");
+            store.commit("setFacturasEstadistica", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async agregarFactura(model) {
         try {
             let { data } = await axios.post("/api/add-factura", model);

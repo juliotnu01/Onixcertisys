@@ -12,7 +12,12 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                 <h3>{{ var_computed_orden_de_servicio_por_facturar | numberFormat('MXN') }}</h3>
+                <h3>
+                  {{
+                    var_computed_orden_de_servicio_por_facturar
+                      | numberFormat("MXN")
+                  }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -28,7 +33,12 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                 <h3>{{ var_computed_orden_de_servicio_facturado | numberFormat('MXN') }}</h3>
+                <h3>
+                  {{
+                    var_computed_orden_de_servicio_facturado
+                      | numberFormat("MXN")
+                  }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -44,7 +54,11 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                 <h3>{{ var_computed_partidas_sin_asignadas | numberFormat('MXN') }}</h3>
+                <h3>
+                  {{
+                    var_computed_partidas_sin_asignadas | numberFormat("MXN")
+                  }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -60,7 +74,9 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                 <h3>{{ var_computed_partidas_asignadas | numberFormat('MXN') }}</h3>
+                <h3>
+                  {{ var_computed_partidas_asignadas | numberFormat("MXN") }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -76,7 +92,12 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                 <h3>{{ var_computed_partidas_asignadas_en_proceso | numberFormat('MXN') }}</h3>
+                <h3>
+                  {{
+                    var_computed_partidas_asignadas_en_proceso
+                      | numberFormat("MXN")
+                  }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -92,10 +113,12 @@
           <v-card-text>
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
-                <h3>{{
-                  var_computed_partidas_asignadas_en_calibracion_terminada
-                     | numberFormat('MXN')
-                }}</h3>
+                <h3>
+                  {{
+                    var_computed_partidas_asignadas_en_calibracion_terminada
+                      | numberFormat("MXN")
+                  }}
+                </h3>
               </v-col>
             </v-row>
           </v-card-text>
@@ -103,20 +126,13 @@
       </v-col>
       <v-col cols="12">
         <v-card class="mt-4" width="100%">
-          <v-sheet
-            class="v-sheet--offset mx-auto"
-            color="cyan"
-            elevation="12"
-            max-width="calc(100% - 32px)"
-          >
-            <v-sparkline
-              :labels="labels"
-              :value="value"
-              color="white"
-              line-width="2"
-              padding="16"
-            ></v-sparkline>
-          </v-sheet>
+          <apexcharts
+            width="100%"
+            height="300px"
+            type="line"
+            :options="opcionesJuliot"
+            :series="opcionesJuliot.series"
+          ></apexcharts>
           <v-card-text class="pt-0">
             <div class="title font-weight-light mb-2">
               Grafica de cotizacion y facturación
@@ -161,7 +177,7 @@
       </v-col>
       <v-col cols="12">
         <v-row>
-          <v-col cols="12" md="6">
+          <!--<v-col cols="12" md="6">
             <v-data-table
               :headers="headers"
               :items="desserts"
@@ -176,7 +192,7 @@
               :items-per-page="5"
               class="elevation-3"
             ></v-data-table>
-          </v-col>
+          </v-col>-->
         </v-row>
       </v-col>
     </v-row>
@@ -184,33 +200,58 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-
+import VueApexCharts from "vue-apexcharts";
 export default {
+  components: {
+    apexcharts: VueApexCharts,
+  },
   data() {
     return {
-      head_menu: [
-        { text: "Total en Orden de Servicio sin facturar" },
-        { text: "Total en Recepción" },
-        { text: "Total en Asignación" },
-        { text: "Total en calibración" },
-        { text: "Total  Calibrados" },
-        { text: "Total  Cancelados" },
-      ],
-      labels: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
-      value: [200, 675, 410, 390, 310, 460, 250, 240],
-      headers: [
-        {
-          text: "Ultimas Cotizaciones Pendientes",
-          align: "start",
-          sortable: false,
-          value: "name",
-        },
-      ],
-      desserts: [],
+      //   chartOptions: {
+      //     series: [
+      //       {
+      //         name: "Cotizacion",
+      //         data: [],
+      //       },
+      //     ],
+      //     dataLabels: {
+      //       enabled: false,
+      //     },
+      //     title: {
+      //       text: "Page Statistics",
+      //       align: "left",
+      //     },
+      //     // legend: {
+      //     //   tooltipHoverFormatter: function (val, opts) {
+      //     //     return (
+      //     //       val +
+      //     //       " - " +
+      //     //       opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
+      //     //       ""
+      //     //     );
+      //     //   },
+      //     // },
+      //     xaxis: {
+      //       categories: [
+      //         //   '01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
+      //         // '10 Jan', '11 Jan', '12 Jan'
+      //       ],
+      //     },
+      //     grid: {
+      //       borderColor: "#f1f1f1",
+      //     },
+      //   },
+      opcionesJuliot: {},
     };
   },
   computed: {
-    ...mapGetters(["services", "recibos", "partidas"]),
+    ...mapGetters([
+      "services",
+      "recibos",
+      "partidas",
+      "facturas_estadistica",
+      "cotizaciones_estadisticas",
+    ]),
     var_computed_orden_de_servicio_por_facturar: {
       get() {
         var result = 0;
@@ -317,10 +358,51 @@ export default {
         this.partidas = val;
       },
     },
+    var_test_chart: {
+      get() {
+        var a = [1, 2, 3, 4, 5, 6];
+        return a;
+      },
+      set(val) {
+        this.chartOptions = val;
+      },
+    },
   },
   async mounted() {
     await this.services.reciboServices.getlistRecibos();
     await this.services.partidaServices.getlistpartidas();
+    await this.services.cotizacionServices.getlistCotizacionesParaEstadistica();
+    await this.services.facturaServices.getlistFacturasEstadistica();
+    this.cargarChart();
+  },
+  methods: {
+    cargarChart() {
+      var data = {
+        dataLabels: {
+          enabled: false,
+        },
+        title: {
+          text: "Cotizaciones Generadas",
+          align: "left",
+        },
+        xaxis: {
+          categories: [],
+        },
+        series: [
+          {
+            name: "Cotizacion",
+            data: [],
+          },
+        ],
+      };
+      for (let [key, value] of Object.entries(this.cotizaciones_estadisticas)) {
+        data.xaxis.categories.push(key);
+        for (var i = 0; value.length > i; i++) {
+          data.series[0].data.push(value[i].total);
+        }
+      }
+      this.opcionesJuliot = data;
+    },
   },
 };
 </script>
