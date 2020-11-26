@@ -43,7 +43,7 @@ class FacturaController extends Controller
                 'hasCliente.hasCotizaciones',
                 'hasCliente.hasCotizaciones.hasPartidas',
                 'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento',
-                'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud')->get();
+                'hasCliente.hasCotizaciones.hasPartidas.hasIntrumento.hasMagnitud')->orderBy('id', 'desc')->get();
 
                 $data = collect($factura)->groupBy(function($item, $key){
                     return substr($item['created_at'], 0, 10);

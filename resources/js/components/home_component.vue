@@ -124,60 +124,32 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col cols="12">
+      <v-col cols="6">
         <v-card class="mt-4" width="100%">
           <apexcharts
             width="100%"
             height="300px"
             type="line"
-            :options="opcionesJuliot"
-            :series="opcionesJuliot.series"
-          ></apexcharts>
-          <v-card-text class="pt-0">
-            <div class="title font-weight-light mb-2">
-              Grafica de cotizacion y facturación
-            </div>
-            <v-divider class="my-2"></v-divider>
-            <v-row>
-              <v-col cols="12" md="3">
-                <v-card max-width="344" color="orange" dark>
-                  <v-card-text>
-                    <h4>Pendientes 2020</h4>
-                    <p class="display-1 text--primary">$99.999.99,99</p>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="3">
-                <v-card max-width="344" color="green" dark>
-                  <v-card-text>
-                    <h4>Vendidas 2020</h4>
-                    <p class="display-1 text--primary">$99.999.99,99</p>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="3">
-                <v-card max-width="344" color="red" dark>
-                  <v-card-text>
-                    <h4>Canceladas 2020</h4>
-                    <p class="display-1 text--primary">$99.999.99,99</p>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="3">
-                <v-card max-width="344" color="blue" dark>
-                  <v-card-text>
-                    <h4>Clientes 2020</h4>
-                    <p class="display-1 text--primary">9999</p>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card-text>
+            :options="opcionesCotizacion"
+            :series="opcionesCotizacion.series"
+          />
+        </v-card>
+      </v-col>
+      <v-col cols="6">
+        <v-card class="mt-4" width="100%">
+          <apexcharts
+            width="100%"
+            height="300px"
+            type="line"
+            :options="opcionesFactura"
+            :series="opcionesFactura.series"
+          />
+         
         </v-card>
       </v-col>
       <v-col cols="12">
         <v-row>
-          <!--<v-col cols="12" md="6">
+         <v-col cols="12" md="6">
             <v-data-table
               :headers="headers"
               :items="desserts"
@@ -192,7 +164,7 @@
               :items-per-page="5"
               class="elevation-3"
             ></v-data-table>
-          </v-col>-->
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -207,41 +179,8 @@ export default {
   },
   data() {
     return {
-      //   chartOptions: {
-      //     series: [
-      //       {
-      //         name: "Cotizacion",
-      //         data: [],
-      //       },
-      //     ],
-      //     dataLabels: {
-      //       enabled: false,
-      //     },
-      //     title: {
-      //       text: "Page Statistics",
-      //       align: "left",
-      //     },
-      //     // legend: {
-      //     //   tooltipHoverFormatter: function (val, opts) {
-      //     //     return (
-      //     //       val +
-      //     //       " - " +
-      //     //       opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
-      //     //       ""
-      //     //     );
-      //     //   },
-      //     // },
-      //     xaxis: {
-      //       categories: [
-      //         //   '01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
-      //         // '10 Jan', '11 Jan', '12 Jan'
-      //       ],
-      //     },
-      //     grid: {
-      //       borderColor: "#f1f1f1",
-      //     },
-      //   },
-      opcionesJuliot: {},
+      opcionesCotizacion: {},
+      opcionesFactura: {},
     };
   },
   computed: {
@@ -377,7 +316,7 @@ export default {
   },
   methods: {
     cargarChart() {
-      var data = {
+      var dataCotizacion = {
         dataLabels: {
           enabled: false,
         },
@@ -390,18 +329,51 @@ export default {
         },
         series: [
           {
-            name: "Cotizacion",
+            name: "Cotizaciones",
             data: [],
           },
         ],
-      };
+      },  
+       datafactura = {
+        dataLabels: {
+          enabled: false,
+        },
+        title: {
+          text: "Facturas Generadas",
+          align: "left",
+        },
+        xaxis: {
+          categories: [],
+        },
+        series: [
+          {
+            name: "Facturas",
+            data: [],
+          },
+        ],
+         grid: {
+            borderColor: "#cecece",
+          },
+      }  ;
       for (let [key, value] of Object.entries(this.cotizaciones_estadisticas)) {
-        data.xaxis.categories.push(key);
         for (var i = 0; value.length > i; i++) {
-          data.series[0].data.push(value[i].total);
+        dataCotizacion.xaxis.categories.push(key);
+            var total = 0;
+            total += value[i].total;
         }
+        dataCotizacion.series[0].data.push(total);
       }
-      this.opcionesJuliot = data;
+      this.opcionesCotizacion = dataCotizacion;
+
+       for (let [key2, value2] of Object.entries(this.facturas_estadistica)) {
+        for (var i = 0; value2.length > i; i++) {
+        datafactura.xaxis.categories.push(key2);
+            var total = 0;
+            total += value2[i].total;
+        }
+        datafactura.series[0].data.push(total);
+      }
+      this.opcionesFactura = datafactura;
     },
   },
 };

@@ -38,7 +38,7 @@ class CotizacionController extends Controller
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
-            ])->get();
+            ])->orderBy('id', 'desc')->get();
             return Response($cotizaciones);
         } catch (Exception $e) {
             throw new Exception($e, 1);
@@ -61,7 +61,7 @@ class CotizacionController extends Controller
             ])->orderBy('id', 'desc')->get();
             $data = collect($cotizaciones)->groupBy(function($item, $key){
                 return substr($item['created_at'], 0, 10);
-            });
+            })->reverse();
             return Response()->json(new RecibosCollection($data));
         } catch (Exception $e) {
             throw new Exception($e, 1);
