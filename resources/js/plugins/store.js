@@ -117,6 +117,8 @@ export default new Vuex.Store({
         facturas: [],
         facturas_estadistica: [],
         cotizaciones_estadisticas: [],
+        dialog_realizacion_calibracion: false,
+        partida_para_calibrar:{},
         
     },
     getters: {
@@ -221,6 +223,8 @@ export default new Vuex.Store({
         facturas: state => state.facturas,
         facturas_estadistica: state =>  state.facturas_estadistica,
         cotizaciones_estadisticas: state => state.cotizaciones_estadisticas,
+        dialog_realizacion_calibracion: state => state.dialog_realizacion_calibracion,
+        partida_para_calibrar: state =>  state.partida_para_calibrar,
     },
     mutations: {
         setListUser(state, data) {
@@ -643,6 +647,13 @@ export default new Vuex.Store({
         },
         setCotizacionesEstadistica(state, data){
             state.cotizaciones_estadisticas = data
+        },
+        setDialogRealizacionCalibracion(state, data){
+            state.dialog_realizacion_calibracion = data
+        },
+        setPartidaParaCalibrar(state, data){
+            console.log({ppC:data})
+            state.partida_para_calibrar = data
         }
     },
     actions: {

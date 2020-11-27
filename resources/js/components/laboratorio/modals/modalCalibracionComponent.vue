@@ -99,6 +99,7 @@
             </v-container>
         </v-card>
     </v-dialog>
+    <modal-realizacion-calibracion/>
 </v-app>
 </template>
 
@@ -106,7 +107,11 @@
 import {
     mapGetters
 } from "vuex";
+import modalRealizacionCalibracion from './modalRealizacionCalibracion.vue'
 export default {
+    components:{
+        'modal-realizacion-calibracion': modalRealizacionCalibracion
+    },
     data() {
         return {
             patronSelected: '',
@@ -164,17 +169,19 @@ export default {
     methods: {
         async IniciarCalibracion() {
             try {
-                var model = {
-                    tipo_de_calibracion: this.TipocalibracionSelected,
-                    patron_de_calibracion: this.patronSelected,
-                    procedimiento_de_calibracion: this.procedimientoSelected,
-                    fecha_anomalia: this.date,
-                    descripcion_anomalia: this.descripcion_anomalia,
-                    observacion_tecnico: this.observacion_de_tecnico,
-                    id_partida: this.partida.id
-                }
-                await this.services.calibracionServices.agregarCalibracion(model)
-                await this.services.partidaServices.getlistpartidasParaCalibrar()
+                this.$store.commit("setDialogRealizacionCalibracion", true);
+                this.$store.commit("setPartidaParaCalibrar", this.partida);
+                // var model = {
+                //     tipo_de_calibracion: this.TipocalibracionSelected,
+                //     patron_de_calibracion: this.patronSelected,
+                //     procedimiento_de_calibracion: this.procedimientoSelected,
+                //     fecha_anomalia: this.date,
+                //     descripcion_anomalia: this.descripcion_anomalia,
+                //     observacion_tecnico: this.observacion_de_tecnico,
+                //     id_partida: this.partida.id
+                // }
+                // await this.services.calibracionServices.agregarCalibracion(model)
+                // await this.services.partidaServices.getlistpartidasParaCalibrar()
             } catch (e) {
                 console.log(e)
             }

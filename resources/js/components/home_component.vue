@@ -132,6 +132,7 @@
             type="line"
             :options="opcionesCotizacion"
             :series="opcionesCotizacion.series"
+            ref="chart1"
           />
         </v-card>
       </v-col>
