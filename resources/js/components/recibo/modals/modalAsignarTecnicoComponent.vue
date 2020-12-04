@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-dialog v-model="openDialog" width="600">
+    <v-dialog v-model="openDialog" width="1024">
         <v-card>
             <v-card-title>Asigar Tecnico</v-card-title>
             <v-container>
@@ -55,8 +55,12 @@
                         <v-select v-else v-model="TipoDocumentoSelected" :items="item_Tipo_documento_para_subir" item-text="name" return-object outlined label=" Seleccionar metodo para cargar documento" />
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-if="Object.entries(this.TipoDocumentoSelected).length > 0">
-                        <v-file-input label="Cargar documento (.xls / .xlsx)" outlined dense v-if="TipoDocumentoSelected.value == 1" v-model="TipoDocumentoSelected.file" />
-                        <v-text-field label="Copiar enlace del documento" placeholder=" " outlined v-else v-model="TipoDocumentoSelected.file" />
+                    <div v-if="TipoDocumentoSelected.value == 1">
+                        <v-file-input label="Cargar documento (.xls / .xlsx)" outlined dense  v-model="TipoDocumentoSelected.file" />
+                    </div>
+                    <div v-else>
+                        <v-text-field label="Copiar enlace del documento" placeholder=" " outlined  v-model="TipoDocumentoSelected.file" />
+                    </div>
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-autocomplete v-model="partida_tecnico.has_empleado" item-text="nombre_completo" return return-object :items="empleados" outlined label="Seleccionar Tecnico"></v-autocomplete>
@@ -81,9 +85,7 @@ import {
 export default {
     data() {
         return {
-            rules: {
-                required: (value) => !!value || "Este campo es requerido.",
-            },
+           
             TipoDocumentoSelected: {},
             item_Tipo_documento_para_subir: [{
                     name: "Cargar Documento",
@@ -119,6 +121,7 @@ export default {
     },
     methods: {
         asignarTecnico() {
+            console.log(this.TipoDocumentoSelected)
             this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
         },
     },

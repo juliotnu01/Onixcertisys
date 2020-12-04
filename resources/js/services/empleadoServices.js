@@ -49,6 +49,8 @@ export default class empleadoServices{
 				form.append('tipo_documento', file.value)
 				let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
 				store.commit('setDialogAsignarTecnico', false)
+				var model_notificacion = {mensaje: 'Tecnico Asigado con exito', status: true, color: 'success'}
+            	store.commit("setNotificacion", model_notificacion);
 
 			}else{
 				let {data} = await axios.post(`/api/asignar-tecnico-partida`,{model, documento:file.file})
@@ -56,6 +58,8 @@ export default class empleadoServices{
 			}
 		} catch (e) {
 			console.log(e)	
+			var model_notificacion = {mensaje: `!Ha ocurrido un error al momento de asignar una partida a un tecnico --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 

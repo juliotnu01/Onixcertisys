@@ -357,15 +357,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rules: {
-        required: function required(value) {
-          return !!value || "Este campo es requerido.";
-        }
-      },
       TipoDocumentoSelected: {},
       item_Tipo_documento_para_subir: [{
         name: "Cargar Documento",
@@ -393,6 +392,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     asignarTecnico: function asignarTecnico() {
+      console.log(this.TipoDocumentoSelected);
       this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
     }
   }
@@ -1198,7 +1198,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { width: "600" },
+          attrs: { width: "1024" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -1790,47 +1790,61 @@ var render = function() {
                                 },
                                 [
                                   _vm.TipoDocumentoSelected.value == 1
-                                    ? _c("v-file-input", {
-                                        attrs: {
-                                          label:
-                                            "Cargar documento (.xls / .xlsx)",
-                                          outlined: "",
-                                          dense: ""
-                                        },
-                                        model: {
-                                          value: _vm.TipoDocumentoSelected.file,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.TipoDocumentoSelected,
-                                              "file",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "TipoDocumentoSelected.file"
-                                        }
-                                      })
-                                    : _c("v-text-field", {
-                                        attrs: {
-                                          label: "Copiar enlace del documento",
-                                          placeholder: " ",
-                                          outlined: ""
-                                        },
-                                        model: {
-                                          value: _vm.TipoDocumentoSelected.file,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.TipoDocumentoSelected,
-                                              "file",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "TipoDocumentoSelected.file"
-                                        }
-                                      })
-                                ],
-                                1
+                                    ? _c(
+                                        "div",
+                                        [
+                                          _c("v-file-input", {
+                                            attrs: {
+                                              label:
+                                                "Cargar documento (.xls / .xlsx)",
+                                              outlined: "",
+                                              dense: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.TipoDocumentoSelected.file,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.TipoDocumentoSelected,
+                                                  "file",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "TipoDocumentoSelected.file"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    : _c(
+                                        "div",
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label:
+                                                "Copiar enlace del documento",
+                                              placeholder: " ",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.TipoDocumentoSelected.file,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.TipoDocumentoSelected,
+                                                  "file",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "TipoDocumentoSelected.file"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                ]
                               )
                             : _vm._e(),
                           _vm._v(" "),

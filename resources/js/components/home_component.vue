@@ -358,6 +358,7 @@ export default {
     this.cargarChart();
     await this.services.cotizacionServices.getlistCotizaciones();
     await this.services.reciboServices.getlistRecibos();
+    this.listenAsignaciones()
   },
   methods: {
     cargarChart() {
@@ -424,6 +425,12 @@ export default {
       this.$store.commit("setDialogEditCotizacion", true);
       this.$store.commit("setCotizacion", item);
     },
+    listenAsignaciones(){
+      Echo.channel('asignacion')
+      .listen('AsignacionOrdenDeServicio', (item) => {
+             console.log(item)
+      })
+    }
   },
 };
 </script>

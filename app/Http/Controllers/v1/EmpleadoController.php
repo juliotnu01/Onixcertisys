@@ -10,6 +10,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Events\AsignacionOrdenDeServicio;
+use Illuminate\Http\File;
+
 
 class EmpleadoController extends Controller
 {
@@ -157,24 +159,25 @@ class EmpleadoController extends Controller
                 if($request['tipo_documento'] == 1){
                     $data = json_decode($request['model']);
                     $nameFIle = $request->file('documento')->getClientOriginalName();
-                    Storage::disk('documentos_excel')->putFileAs("/documentos/excels/",$request->file('documento'), $nameFIle);
-                    $url = asset(Storage::url($nameFIle));
+                    Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
+                   $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
                     $partida->find($data->id)->update([
                         'empleado_id' =>  $data->has_empleado->id,
                         'ruta_doc_calibracion' => $url
                     ]);
+                    $asignacion = (Object)[
+                        "mensaje" => "tecnico asignado",
+                        "usuario" => 'Juliot'
+                    ];
+                    event(new AsignacionOrdenDeServicio($asignacion));
                 }else {
                     $partida->find($request['model']['id'])->update([
                         'empleado_id' =>  $request['model']['has_empleado']['id'],
                         'ruta_doc_calibracion' => $request['documento']
                     ]);
                     
-                    $asignacion = (Object)[
-                        "mensaje" => "tecnico asignado",
-                        "usuario" => 'Juliot'
-                    ];
-                    event(new AsignacionOrdenDeServicio($asignacion));
                 }
+
 
             },5);
         } catch (Exception $e) {
