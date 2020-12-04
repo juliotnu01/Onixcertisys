@@ -59,6 +59,7 @@
                                 </v-btn>
                             </td>
                         </template>
+                        
                         <template v-slot:item.add_user="{ item }">
                             <td class="text-center">
                                 <v-btn class="mx-2" dark color="green" text block @click="asignarRol(item)">Asignar rol</v-btn>
@@ -71,8 +72,8 @@
     </v-row>
     <modal-usuario />
     <modal-rol />
-    <modal-asignar-rol />
-    <modal-asignar-permiso />
+    <modal-asignar-rol :RolAsignado="llamado" />
+    <modal-asignar-permiso  />
     <modal-editar-usuario />
     <modal-editar-rol />
 </v-app>
@@ -204,6 +205,10 @@ export default {
         },
         async eliminarRol(rol) {
             await this.services.rolServices.deleteRol(rol);
+            await this.services.rolServices.getListRoles();
+        },
+       async llamado(status){
+              await this.services.userServices.getListUser();
             await this.services.rolServices.getListRoles();
         },
     },

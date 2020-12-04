@@ -88,6 +88,7 @@
             </v-card>
         </v-col>
     </v-row>
+    <notificacion/>
 </v-app>
 </template>
 
@@ -96,9 +97,11 @@ import {
     mapGetters
 } from "vuex";
 import pdf from "vue-pdf";
+import notificacionComponent from '../notificacion/indexComponentNotificacion'
 export default {
     components: {
         pdf,
+        'notificacion': notificacionComponent
     },
     data() {
         return {

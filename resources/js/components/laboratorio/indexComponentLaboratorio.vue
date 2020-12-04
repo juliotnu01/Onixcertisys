@@ -26,6 +26,7 @@
         </v-data-table>
     </v-card>
     <modal-calibracion />
+    <notificacion/>
 </v-app>
 </template>
 
@@ -34,9 +35,11 @@ import {
     mapGetters
 } from "vuex";
 import modalCalibracion from './modals/modalCalibracionComponent.vue'
+import notificacionComponent from '../notificacion/indexComponentNotificacion'
 export default {
     components: {
-        'modal-calibracion': modalCalibracion
+        'modal-calibracion': modalCalibracion,
+        'notificacion': notificacionComponent
     },
     data() {
         return {

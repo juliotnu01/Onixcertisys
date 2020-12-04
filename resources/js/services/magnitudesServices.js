@@ -5,18 +5,26 @@ export default class magnitudesServices{
 		try{
 			let {data} = await axios('/api/get-magnitudes')
 			store.commit('setMagnitudes', data)
+			 var model_notificacion = {mensaje: 'Magnitudes cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 			
 		}catch(e){
 			console.log(e)
+			 var model_notificacion = {mensaje: `!Ha ocurrido un error en las magnitudes --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
+			
 		}
 	}
 	async getListMagnitudesParaReporte(model){
 		try{
 			let {data} = await axios('/api/get-magnitud-espesifica')
 			store.commit('setMagnitudesParaReporte', data)
-			
+			 var model_notificacion = {mensaje: 'Magnitudes cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			 var model_notificacion = {mensaje: `!Ha ocurrido un error en las Magnitudes --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 

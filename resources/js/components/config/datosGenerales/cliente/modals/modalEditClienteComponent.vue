@@ -268,10 +268,10 @@
                                     <v-text-field label="Correo para el envio de la factura" outlined v-model="cliente.correo_electronico_para_el_envio_de_factura"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Se Requiere Orden de Compra" outlined v-model="cliente.se_requiere_orden_de_compra_para_facturar"></v-text-field>
+                                    <v-text-field label="Se Requiere Orden de Compra para facturar" outlined v-model="cliente.se_requiere_orden_de_compra_para_facturar"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Se Requiere Orden de Compra" outlined v-model="cliente.iva"></v-text-field>
+                                    <v-text-field label="I.V.A." outlined v-model="cliente.iva"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-card-text>
@@ -296,19 +296,19 @@
                         <v-card-text>
                             <v-row>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="cliente.nombre_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Nombre quien Brinda la informacion" outlined v-model="cliente.nombre_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="cliente.telefono_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Telefono quien Brinda la informacion" outlined v-model="cliente.telefono_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="cliente.fecha_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="fecha quien Brinda la informacion" outlined v-model="cliente.fecha_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="cliente.puesto_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="cargo quien Brinda la informacion" outlined v-model="cliente.puesto_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="cliente.correo_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="correo quien Brinda la informacion" outlined v-model="cliente.correo_quien_brinda_la_info"></v-text-field>
                                 </v-col>
 
                             </v-row>
@@ -369,7 +369,7 @@
                     </v-card>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn text color="blue" @click="addCliente"> Agregar </v-btn>
+                    <v-btn text color="blue" @click="addCliente"> Editar </v-btn>
                     <v-btn text color="red" @click="openDialog = false"> Cerrar </v-btn>
                 </v-card-actions>
             </v-container>
@@ -432,10 +432,8 @@ export default {
     },
     methods: {
         async addCliente() {
-            if (this.$refs.f_mag.validate()) {
                 await this.services.clienteServices.actualizarCliente(this.cliente)
                 await this.services.clienteServices.getlistclientes()
-            }
         },
         AgregarSucursal() {
             this.cliente.has_sucursal.push(this.sucursal)

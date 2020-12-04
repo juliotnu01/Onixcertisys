@@ -22,7 +22,7 @@
             </template>
             <template v-slot:item.created_at="{ item }">
                 <td class="text-center">
-                    {{item.created_at}}
+                    {{item.created_at.substr(0, 10)}}
                 </td>
             </template>
         </v-data-table>

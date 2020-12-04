@@ -4,16 +4,25 @@ export default class cotizacionServices {
         try {
             let { data } = await axios("/api/get-cotizaciones");
             store.commit("setCotizaciones", data);
+            var model_notificacion = {mensaje: 'Cotizacion cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
+            
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error en las cotizaciones --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async getlistCotizacionesParaEstadistica() {
         try {
             let { data } = await axios("/api/get-cotizaciones-estadisticas");
             store.commit("setCotizacionesEstadistica", data);
+            var model_notificacion = {mensaje: 'Cotizacion cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async agregarCotizacion(cot) {
@@ -39,8 +48,13 @@ export default class cotizacionServices {
             };
             let { data } = await axios.post("/api/add-cotizacion", model);
             store.commit("setDialogAddCotizacion", false);
+            var model_notificacion = {mensaje: 'Cotizacion agregada con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
+
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async agregarCotizacionDuplicada(cot) {
@@ -68,6 +82,8 @@ export default class cotizacionServices {
             store.commit("setDialogAddCotizacion", false);
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
 
@@ -96,6 +112,8 @@ export default class cotizacionServices {
             store.commit("setDialogEditCotizacion", false);
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
 
@@ -106,6 +124,8 @@ export default class cotizacionServices {
             );
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
 
@@ -116,6 +136,8 @@ export default class cotizacionServices {
            await store.commit('setDialogViewPdfCotizacion', true)
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async getMasivPartidas() {
@@ -124,6 +146,8 @@ export default class cotizacionServices {
            await store.commit('setMasivPartidas', data)
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
 }

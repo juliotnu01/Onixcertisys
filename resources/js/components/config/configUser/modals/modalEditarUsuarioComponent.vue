@@ -4,14 +4,14 @@
         <v-card>
             <v-card-title>Editar Usuario</v-card-title>
             <v-container>
-                <v-row justify="center">
+                <v-row justify="center" v-if="this.userEdit.user_has_rol != null">
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-text-field label="Nombre de Usuario" outlined v-model="userEdit.name" />
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-text-field label="Correo de Usuario" outlined v-model="userEdit.email" />
                     </v-col>
-                    <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12"  >
                         <v-text-field label="Rol de Usuario" outlined v-model="userEdit.user_has_rol.name_rol" disabled v-if="Object.entries(this.user).length > 0" />
                     </v-col>
                     <h3>Premisos globales</h3>
@@ -27,8 +27,7 @@
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-switch label="eliminar" v-model="userEdit.user_has_rol.associated_rol_premission.eliminar" v-if="Object.entries(this.user).length > 0" />
                     </v-col>
-                    <!--                
-                -->
+                  
                 </v-row>
             </v-container>
             <v-card-actions>
@@ -73,6 +72,10 @@ export default {
             }
         },
 
+    },
+     async mounted() {
+        await this.services.userServices.getListUser();
+        await this.services.rolServices.getListRoles();
     },
     methods: {
         async actualizarDatos() {

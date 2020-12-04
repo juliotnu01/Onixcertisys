@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalTotalizarComponent.vue */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue");
 /* harmony import */ var _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalPdfFacturaComponent */ "./resources/js/components/factura/modals/modalPdfFacturaComponent.vue");
+/* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
 
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -202,13 +203,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'modal-add-factura': _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'modal-pdf-factura': _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'modal-pdf-factura': _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -1690,7 +1694,9 @@ var render = function() {
       _vm._v(" "),
       _c("modal-add-factura"),
       _vm._v(" "),
-      _c("modal-pdf-factura")
+      _c("modal-pdf-factura"),
+      _vm._v(" "),
+      _c("notificacion")
     ],
     1
   )

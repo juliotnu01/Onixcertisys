@@ -112,6 +112,7 @@
     </v-card>
     <modal-asignar-tecnico />
     <modal-pdf />
+    <notificacion/>
 </v-app>
 </template>
 
@@ -121,10 +122,12 @@ import {
 } from "vuex";
 import modalAsignarTecnico from "./modals/modalAsignarTecnicoComponent";
 import modalViewPdfComponent from "./modals/modalViewPdfComponent";
+import notificacionComponent from '../notificacion/indexComponentNotificacion'
 export default {
     components: {
         "modal-asignar-tecnico": modalAsignarTecnico,
         "modal-pdf": modalViewPdfComponent,
+        'notificacion': notificacionComponent
     },
     data() {
         return {

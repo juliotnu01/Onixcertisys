@@ -12,8 +12,12 @@ export default class facturaServices {
         try {
             let { data } = await axios("/api/get-facturas-para-estadistica");
             store.commit("setFacturasEstadistica", data);
+            var model_notificacion = {mensaje: 'Facturas cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error en las facturas --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async agregarFactura(model) {

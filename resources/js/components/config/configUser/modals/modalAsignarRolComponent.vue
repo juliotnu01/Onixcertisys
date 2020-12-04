@@ -64,8 +64,8 @@ export default {
                 }
                 if (this.var_user_selected != {}) {
                     await this.services.rolServices.asignarRol(model)
-                    await this.services.rolServices.getListRoles()
-                    await this.services.userServices.getListUser()
+                    this.$emit('RolAsignado', true)
+                    
                 }
             } catch (e) {
                 console.log(e)

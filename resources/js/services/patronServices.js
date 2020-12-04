@@ -5,8 +5,12 @@ export default class patronServices{
 		try	{
 			let {data} = await axios('/api/get-patrones')
 			store.commit('setPatrones', data)
+				 var model_notificacion = {mensaje: 'Patrones cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			 var model_notificacion = {mensaje: `!Ha ocurrido un error en los Patrones --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 	async agregarPatrones(model){

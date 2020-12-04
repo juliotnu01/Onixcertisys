@@ -5,8 +5,12 @@ export default class empleadoServices{
 		try	{
 			let {data} = await axios('/api/get-empleados')
 			store.commit('setEmpleados', data)
+			var model_notificacion = {mensaje: 'Empleados cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			var model_notificacion = {mensaje: `!Ha ocurrido un error en los empleados --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 	async agregarEmpleado(model){

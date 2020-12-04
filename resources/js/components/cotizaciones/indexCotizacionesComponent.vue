@@ -129,6 +129,7 @@
     <modal-edit />
     <modal-view />
     <modal-pdf />
+    <notificacion/>
 </v-app>
 </template>
 
@@ -140,12 +141,14 @@ import modaladdCotizacion from "./modals/modalAddCotizacionComponent.vue";
 import modaleditCotizacion from "./modals/modalEditCotizacionComponent";
 import modalViewCotizacion from "./modals/modalViewCotizacionComponent";
 import modalViewPdfCotizaicon from './modals/modalViewPdfComponent'
+import NotificacionComponent from '../notificacion/indexComponentNotificacion.vue'
 export default {
     components: {
         "modal-add": modaladdCotizacion,
         "modal-edit": modaleditCotizacion,
         "modal-view": modalViewCotizacion,
         "modal-pdf": modalViewPdfCotizaicon,
+        'notificacion': NotificacionComponent,
     },
     data() {
         return {
@@ -224,6 +227,7 @@ export default {
     },
     mounted() {
         this.services.cotizacionServices.getlistCotizaciones();
+
     },
     methods: {
         async EditarCotizacion(cot) {

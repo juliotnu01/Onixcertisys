@@ -165,6 +165,7 @@
     </v-row>
     <modal-add-factura />
     <modal-pdf-factura />
+    <notificacion/>
 </v-app>
 </template>
 
@@ -174,10 +175,12 @@ import {
 } from 'vuex'
 import modalADDFactura from './modals/modalTotalizarComponent.vue'
 import modalPdfFactura from './modals/modalPdfFacturaComponent'
+import notificacionComponent from '../notificacion/indexComponentNotificacion'
 export default {
     components: {
         'modal-add-factura': modalADDFactura,
         'modal-pdf-factura': modalPdfFactura,
+        'notificacion': notificacionComponent,
     },
     data() {
         return {

@@ -42,16 +42,16 @@
                             <v-select offset-y dense v-model="model.estado_cotizacion_selected" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object prepend-icon="mdi-flag"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="model.cliente_selected.nombre_contacto" dense outlined label="Contacto" />
+                            <v-text-field v-model="model.cliente_selected.nombre_contacto" dense outlined label="Contacto" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="model.cliente_selected.telefono_contacto" dense outlined label="Teléfono" />
+                            <v-text-field v-model="model.cliente_selected.telefono_contacto" dense outlined label="Teléfono" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="model.cliente_selected.correo_contacto" dense outlined label="Correo" />
+                            <v-text-field v-model="model.cliente_selected.correo_contacto" dense outlined label="Correo" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="model.condiciones" dense outlined label="Condiciones" />
+                            <v-text-field v-model="model.condiciones" dense outlined label="Condiciones" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                             <v-textarea v-model="model.nota_cotizacion" outlined label="Notas de la cotizacion"></v-textarea>
@@ -157,7 +157,7 @@
                                     {{item.instrumento.alcance}}
                                 </td>
                                 <td>
-                                    {{item.instrumento.has_acreditacion.nombre}}
+                                    {{item.instrumento.has_acreditacion.instrumento_nombre}}
                                 </td>
                                 <td>
                                     <v-text-field label="Precio venta" v-model="item.precio_venta" outlined dense small class="m-0 p-0" @change="ActualizarImporte(item)" />
@@ -452,9 +452,6 @@ export default {
 
             };
             this.masivPartidas.forEach((item) => {
-                console.log({
-                    item
-                })
                 partida = {
                     identificacion: item.identificacion,
                     instrumento: item.has_instrumento,

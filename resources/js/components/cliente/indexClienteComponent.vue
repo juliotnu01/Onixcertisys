@@ -32,6 +32,7 @@
         </v-card>
     </v-col>
     <modal-para-duplicar />
+    <notificacion/>
 </v-row>
 </template>
 
@@ -41,9 +42,11 @@ import {
 } from 'vuex'
 import modalParaDuplicar from './modals/modalDuplicateCotizacionComponent.vue'
 // import clienteComponent from './cliente/indexClientecomponent.vue'
+import notificacionComponent from '../notificacion/indexComponentNotificacion.vue'
 export default {
     components: {
         'modal-para-duplicar': modalParaDuplicar,
+        'notificacion': notificacionComponent,
         // 'cliente': clienteComponent,
     },
     data() {

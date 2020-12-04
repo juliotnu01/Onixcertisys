@@ -5,8 +5,12 @@ export default class instrumentoServices{
 		try	{
 			let {data} = await axios('/api/get-instrumentos')
 			store.commit('setInstrumentos', data)
+			var model_notificacion = {mensaje: 'Instrumentos cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			var model_notificacion = {mensaje: `!Ha ocurrido un error en los instrumentos --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 	async agregarInstrumento(model){

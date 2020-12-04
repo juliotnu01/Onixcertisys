@@ -153,10 +153,10 @@
                                     <v-text-field label="Correo para el envio de la factura" outlined v-model="model.correo_electronico_para_el_envio_de_factura"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Se Requiere Orden de Compra" outlined v-model="model.se_requiere_orden_de_compra_para_facturar"></v-text-field>
+                                    <v-text-field label="Se Requiere Orden de Compra para facturar" outlined v-model="model.se_requiere_orden_de_compra_para_facturar"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Se Requiere Orden de Compra" outlined v-model="model.iva"></v-text-field>
+                                    <v-text-field label="I.V.A." outlined v-model="model.iva"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-card-text>

@@ -4,8 +4,12 @@ export default class acreditacionesServices {
         try {
             let { data } = await axios("/api/get-acreditaciones");
             store.commit("setAcreditaciones", data);
+            	 var model_notificacion = {mensaje: 'Acreditaciones cargadas con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
         } catch (e) {
             console.log(e);
+             var model_notificacion = {mensaje: `!Ha ocurrido un error en las acreditaciones --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async agregarAcreditaciones(model) {

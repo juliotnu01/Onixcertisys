@@ -119,6 +119,7 @@ export default new Vuex.Store({
         cotizaciones_estadisticas: [],
         dialog_realizacion_calibracion: false,
         partida_para_calibrar:{},
+        snackbar: {mensaje: '', status: false, color: ''},
         
     },
     getters: {
@@ -225,6 +226,7 @@ export default new Vuex.Store({
         cotizaciones_estadisticas: state => state.cotizaciones_estadisticas,
         dialog_realizacion_calibracion: state => state.dialog_realizacion_calibracion,
         partida_para_calibrar: state =>  state.partida_para_calibrar,
+        snackbar: state => state.snackbar,
     },
     mutations: {
         setListUser(state, data) {
@@ -652,8 +654,10 @@ export default new Vuex.Store({
             state.dialog_realizacion_calibracion = data
         },
         setPartidaParaCalibrar(state, data){
-            console.log({ppC:data})
             state.partida_para_calibrar = data
+        },
+        setNotificacion(state, data){
+            state.snackbar = data
         }
     },
     actions: {
