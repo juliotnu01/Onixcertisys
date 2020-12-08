@@ -132,9 +132,9 @@ class CotizacionController extends Controller
 
     public function storeDuplicate(Request $request, Cotizacion $cotizacion)
     {
+        
         try {
             return DB::transaction(function () use ($request, $cotizacion) {
-
                     $cotizacion->cliente_id = $request['cliente_id'];
                     $cotizacion->empleado_id = $request['empleado_id'];
                     $cotizacion->moneda_id = $request['moneda_id'];

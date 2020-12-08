@@ -24,8 +24,12 @@ export default class reciboServices {
         try {
             let { data } = await axios.post("/api/add-recibo", model);
             store.commit("setDialogViewCotizacion", false);
+            var model_notificacion = {mensaje: 'Ordenes de servicio agregada con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
         } catch (e) {
             console.log(e);
+            var model_notificacion = {mensaje: `!Ha ocurrido un error en las O.D.S. --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
         }
     }
     async imprimirRecibo(model) {

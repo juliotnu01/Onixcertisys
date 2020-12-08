@@ -95,8 +95,8 @@ class InstrumentoController extends Controller
                 $instrumento->find($request['id'])->update([
                     'nombre' => $request['nombre'],
                     'alcance' => $request['alcance'],
-                    'acreditacion_id' => $request['acreditacion_selected']['id'],
-                    'magnitude_id' => $request['magnitud_selected']['id'],
+                    'acreditacion_id' => $request['has_acreditacion']['id'],
+                    'magnitude_id' => $request['has_magnitud']['id'],
                     'precio_venta' => $request['precio_venta'],
                 ]);
 

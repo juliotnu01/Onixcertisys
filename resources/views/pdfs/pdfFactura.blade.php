@@ -16,21 +16,23 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius:15px; padding:5px; font-size: 10px">
         <tr style="vertical-align: top">
             <td style="width:15%">
-                <span><b>Nombre Emisor:</b></span><br>
-                <span><b>R.F.C. Emisor:</b></span><br>
-                <span><b>Nombre Receptor:</b></span><br>
-                <span><b>R.F.C. Receptor:</b></span><br>
-                <span><b>Uso del CFDI:</b></span>
+            <div><span><b>Nombre Emisor:</b></span></div>
+            <div><span><b>R.F.C. Emisor:</b></span></div>
+            <div><span><b>Nombre Receptor:</b></span></div>
+            <div><span><b>R.F.C. Receptor:</b></span></div>
+            <div><span><b>Uso del CFDI:</b></span></div>
+
             </td>
-            <td style="width:35%">
-                <span>{{$empresa['nombre_empresa']}}</span><br>
-                <span>{{$empresa['rfc']}}</span><br>
-                <span>{{$cliente['razon_social']}}</span><br>
-                <span>{{$cliente['rfc']}}</span><br>
-                <span></span>
+            <td style="width:50%">
+                <div><span>{{$empresa['nombre_empresa']}}</span></div>
+                <div><span>{{$empresa['rfc']}}</span></div>
+                <div><span><small>{{$cliente['razon_social']}}</small></span></div>
+                <div><span>{{$cliente['rfc']}}</span></div>
+                <div><span>{{$cliente['cfdi']}}</span></div>
+                
             </td>
 
-            <td style="width:20%;text-align:right;">
+            <td style="width:15%;text-align:right;">
                 <span><b>Folio Fiscal:</b></span><br>
                 <span><b>Serie y Folio:</b></span><br>
                 <span><b>C.P. Fecha Emisión:</b></span><br>
@@ -38,12 +40,12 @@
                 <span><b>Régimen Fiscal:</b></span><br>
                 <span><b>Órden de Compra:</b></span>
             </td>
-            <td style="width:30%">
-                <span></span><br>
-                <span><b></b></span><br>
-                <span><b></b></span><br>
+            <td style="width:20%">
                 <span></span><br>
                 <span></span><br>
+                <span>{{$factura['created_at']}}</span><br>
+                <span>Ingreso</span><br>
+                <span>General de personal Morales</span><br>
                 <span></span>
             </td>
         </tr>
@@ -117,7 +119,7 @@
                 <b>Total</b>
             </td>
             <td class="" style="text-align:right;padding: 5px; ">
-            {{$request['cliente']['has_moneda']['clave']}} @money($request['subtotal'])
+            {{$request['cliente']['has_moneda']['clave']}} @money($request['total'])
             </td>
         </tr>
     </table>
@@ -130,8 +132,8 @@
 		    </td>
 		    <td style="width:42%">
 				<span>{{$request['cliente']['has_moneda']['nombre_moneda']}}</span><br>
-				<span>{{$request['cliente']['has_cliente']['has_condicion_de_pago']['nombre']}}</span><br>
-				<span>{{$request['cliente']['has_cliente']['has_metodo_de_pago']['nombre']}}</span>
+				<span>{{$cliente['forma_de_pago']}}</span><br>
+				<span>{{$cliente['metodo_de_pago']}}</span>
 		    </td>
 		    <td style="width:18%">
 				<span><b>RFC del proveedor SAT:</b></span><br>
@@ -150,10 +152,14 @@
             </td>
         </tr>
 	</table>
-
-    <br />
-    <br />
-    <img src="data:image/png;base64, {!! $qrcode !!}">
+   
+    <table style="width:100%; padding: 5px;" cellspacing=0>
+		<tr>
+			<td style="width:15%;" rowspan=2><img src="data:image/png;base64, {!! $qrcode !!}"></td>
+		</tr>
+		<tr>
+		</tr>
+	</table>
 </body>
 
 </html>

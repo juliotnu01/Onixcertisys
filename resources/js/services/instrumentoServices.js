@@ -26,8 +26,12 @@ export default class instrumentoServices{
 		try{
 			let {data} = await axios.put('/api/edit-instrumento', model)
 			store.commit('setDialogEditInstrumento', false)
+			var model_notificacion = {mensaje: 'Instrumentos Actualizado con exito', status: true, color: 'warning'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			var model_notificacion = {mensaje: `!Ha ocurrido un error en editar el instrumentos --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 

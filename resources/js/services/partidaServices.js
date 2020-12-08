@@ -33,14 +33,14 @@ export default class partidaServices {
     //     }
     // }
 
-    // async actualizarAcreditaciones(model) {
-    //     try {
-    //         let { data } = await axios.put("/api/edit-acreditacion", model);
-    //         store.commit("setDialogEditAcreditacion", false);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    async actualizarPartida(model) {
+        try {
+            let { data } = await axios.put("/api/edit-partida", model);
+            // store.commit("setDialogEditAcreditacion", false);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     async EliminarPartida(model) {
         try {

@@ -164,6 +164,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -307,6 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalCargarPartidaMasivamenteComponent */ "./resources/js/components/cotizaciones/modals/modalCargarPartidaMasivamenteComponent.vue");
+/* harmony import */ var _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue */ "./resources/js/components/config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -521,11 +523,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    'modal-edit-instrumento': _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -816,10 +822,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     ActualizarImporte: function ActualizarImporte(item) {
-      console.log({
-        item: item
-      });
       item.importe = item.cantidad * item.precio_venta;
+    },
+    editarInstrumento: function editarInstrumento(inst) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this5.$store.commit('setInstrumento', inst.instrumento);
+
+                _this5.$store.commit('setDialogEditInstrumento', true);
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   }
 });
@@ -3270,13 +3293,37 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        "\r\n                                    " +
-                                          _vm._s(item.instrumento_nombre) +
-                                          "\r\n                                "
-                                      )
-                                    ]),
+                                    _c(
+                                      "td",
+                                      [
+                                        _vm._v(
+                                          "\r\n                                    " +
+                                            _vm._s(item.instrumento_nombre) +
+                                            "\r\n                                    "
+                                        ),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "warning",
+                                              icon: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editarInstrumento(
+                                                  item
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [_vm._v("mdi-pencil")])
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "td",
@@ -3518,7 +3565,9 @@ var render = function() {
       _vm._v(" "),
       _c("modal-cargar-partidas-masivamente", {
         on: { cargarPartidas: _vm.cargarPartidasImportadas }
-      })
+      }),
+      _vm._v(" "),
+      _c("modal-edit-instrumento")
     ],
     1
   )

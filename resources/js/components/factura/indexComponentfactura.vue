@@ -68,7 +68,7 @@
                             -->
                         <v-spacer />
                         <v-col cols="12" xs="12" sm="6" md="6" v-if="Object.entries(cotizacion_partida).length > 3">
-                            <v-textarea outlined label="NOTA" v-model="cotizacion_partida.nota_de_factura" outlined />
+                            <v-textarea outlined label="NOTA" v-model="cotizacion_partida.nota_de_factura" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="12">
                             <v-btn color="success" @click="TotalizarFactura">Totalizar</v-btn>
@@ -117,7 +117,19 @@
                 </template>
                 <template v-slot:item.has_intrumento.precio_venta="{item}">
                     <td clas="text-left">
-                        {{item.has_intrumento.precio_venta | numberFormat(Object.entries(cotizacion_partida).length > 3 ? cotizacion_partida.has_moneda.clave: '' )}}
+                        <!-- <div v-show="item.has_intrumento.editPrecioVenta" >
+                            {{item.has_intrumento.precio_venta | numberFormat(Object.entries(cotizacion_partida).length > 3 ? cotizacion_partida.has_moneda.clave: '' )}}
+                        </div> -->
+                        <v-text-field
+                            label="precio venta"
+                            v-model="item.has_intrumento.precio_venta"
+                            small 
+                            dense
+                            outlined
+                            @change="ActualizarImporte(item)"
+                        ></v-text-field>
+                        <!-- <v-btn color="warning" v-show="!item.has_intrumento.editPrecioVenta" icon dense small  @click="item.has_intrumento.editPrecioVenta = true"><v-icon >mdi-pencil</v-icon></v-btn> -->
+                        <!-- <v-btn color="success"  v-show="item.has_intrumento.editPrecioVenta"  icon dense small  @click="item.has_intrumento.editPrecioVenta = false"><v-icon >mdi-check</v-icon></v-btn> -->
                     </td>
                 </template>
                 <template v-slot:item.importe="{item}">
@@ -125,13 +137,6 @@
                         {{item.importe | numberFormat(Object.entries(cotizacion_partida).length > 3 ? cotizacion_partida.has_moneda.clave: '' )}}
                     </td>
                 </template>
-                <!--<template v-slot:item.accion="{item}">
-                    <td clas="text-left">
-                        <v-btn color="error" icon fab @click="EliminarPartida(item)">
-                            <v-icon>mdi-delete</v-icon>
-                        </v-btn>
-                    </td>
-                </template>-->
                 <template v-slot:item.has_calibracion="{item}">
                     <td clas="text-left">
                         <v-alert dense outlined type="error" v-if="!item.has_calibracion" class="m-0 p-0">
@@ -292,6 +297,7 @@ export default {
             ClienteSelected: {},
             partidas_acumuladas: [],
             cotizacion_partida: {},
+            editPrecioVenta: false
         }
     },
     computed: {
@@ -351,7 +357,6 @@ export default {
         async addPartida() {
             try {
                 var model = {
-                    cantidad: this.instrumentoSelected.cantidad,
                     has_intrumento: this.instrumentoSelected.instrumento,
                     importe: (this.instrumentoSelected.cantidad * this.instrumentoSelected.instrumento.precio_venta),
                     marca: this.instrumentoSelected.marca,
@@ -405,6 +410,7 @@ export default {
                 for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
                     if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
                         this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j])
+                        console.log({p:this.model.recibo[i].has_partidas[j]})
                         for (var a of this.partidas_acumuladas) {
                             if (a.id === this.model.recibo[i].has_partidas[j].id) {
                                 a.cotizacionID = this.model.recibo[i].has_cotizaicon.id
@@ -426,6 +432,12 @@ export default {
             }
             this.$store.commit('setDialogFactura', dataFactura)
             this.$store.commit("setDialogAddFactura", true);
+
+        },
+        ActualizarImporte(item){
+            item.importe = item.has_intrumento.precio_venta
+            this.services.instrumentoServices.actualizarInstrumento(item.has_intrumento)
+            this.services.partidaServices.actualizarPartida(item)
 
         },
 

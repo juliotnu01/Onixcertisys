@@ -204,6 +204,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -310,7 +315,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       ClienteSelected: {},
       partidas_acumuladas: [],
-      cotizacion_partida: {}
+      cotizacion_partida: {},
+      editPrecioVenta: false
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'recibos', 'clientes', 'monedas', 'empleados', 'instrumentos', 'clientes', 'recibos_cliente'])), {}, {
@@ -408,7 +414,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 try {
                   model = {
-                    cantidad: _this2.instrumentoSelected.cantidad,
                     has_intrumento: _this2.instrumentoSelected.instrumento,
                     importe: _this2.instrumentoSelected.cantidad * _this2.instrumentoSelected.instrumento.precio_venta,
                     marca: _this2.instrumentoSelected.marca,
@@ -494,6 +499,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
           if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
             this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j]);
+            console.log({
+              p: this.model.recibo[i].has_partidas[j]
+            });
 
             var _iterator = _createForOfIteratorHelper(this.partidas_acumuladas),
                 _step;
@@ -545,6 +553,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee4);
       }))();
+    },
+    ActualizarImporte: function ActualizarImporte(item) {
+      item.importe = item.has_intrumento.precio_venta;
+      this.services.instrumentoServices.actualizarInstrumento(item.has_intrumento);
+      this.services.partidaServices.actualizarPartida(item);
     }
   }
 });
@@ -1330,11 +1343,7 @@ var render = function() {
                                     },
                                     [
                                       _c("v-textarea", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "NOTA",
-                                          outlined: ""
-                                        },
+                                        attrs: { outlined: "", label: "NOTA" },
                                         model: {
                                           value:
                                             _vm.cotizacion_partida
@@ -1458,21 +1467,37 @@ var render = function() {
                     fn: function(ref) {
                       var item = ref.item
                       return [
-                        _c("td", { attrs: { clas: "text-left" } }, [
-                          _vm._v(
-                            "\r\n                        " +
-                              _vm._s(
-                                _vm._f("numberFormat")(
-                                  item.has_intrumento.precio_venta,
-                                  Object.entries(_vm.cotizacion_partida)
-                                    .length > 3
-                                    ? _vm.cotizacion_partida.has_moneda.clave
-                                    : ""
-                                )
-                              ) +
-                              "\r\n                    "
-                          )
-                        ])
+                        _c(
+                          "td",
+                          { attrs: { clas: "text-left" } },
+                          [
+                            _c("v-text-field", {
+                              attrs: {
+                                label: "precio venta",
+                                small: "",
+                                dense: "",
+                                outlined: ""
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.ActualizarImporte(item)
+                                }
+                              },
+                              model: {
+                                value: item.has_intrumento.precio_venta,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    item.has_intrumento,
+                                    "precio_venta",
+                                    $$v
+                                  )
+                                },
+                                expression: "item.has_intrumento.precio_venta"
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ]
                     }
                   },
@@ -1885,13 +1910,21 @@ var render = function() {
                                     "Dirección:" +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .direccion_fiscal
+                                          .domicilio_fiscal
                                       ) +
                                       " - " +
                                       _vm._s(
-                                        _vm.factura.cliente.has_cliente
-                                          .ciudad_estad_pais
-                                      )
+                                        _vm.factura.cliente.has_cliente.ciudad
+                                      ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente.estado
+                                      ) +
+                                      " - " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente.estado
+                                      ) +
+                                      "  "
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -1899,7 +1932,8 @@ var render = function() {
                                   _vm._v(
                                     "Teléfono:" +
                                       _vm._s(
-                                        _vm.factura.cliente.has_cliente.telefono
+                                        _vm.factura.cliente.has_cliente
+                                          .telefono_empresa
                                       )
                                   )
                                 ]),
@@ -1909,7 +1943,7 @@ var render = function() {
                                     "Correo:" +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .correo_electronico_factura
+                                          .correo_electronico_para_el_envio_de_factura
                                       )
                                   )
                                 ]),

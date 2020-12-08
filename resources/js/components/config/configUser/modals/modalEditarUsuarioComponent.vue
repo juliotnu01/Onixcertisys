@@ -16,6 +16,14 @@
                     </v-col>
                     <h3>Premisos globales</h3>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                    <v-select
+                        :items="routes_vue"
+                        v-model="route_selected"
+                        label="Seleccionar Vista"
+                        return-object
+                        item-text="name"
+                    ></v-select>
+                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-switch label="crear" v-model="userEdit.user_has_rol.associated_rol_premission.crear" v-if="Object.entries(this.user).length > 0" />
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
@@ -26,6 +34,10 @@
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <v-switch label="eliminar" v-model="userEdit.user_has_rol.associated_rol_premission.eliminar" v-if="Object.entries(this.user).length > 0" />
+                    </v-col>
+                    </v-col>
+                    <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                        <v-btn block color="primary" dark @click="AgregarPermiso" >Agregar Permiso</v-btn>
                     </v-col>
                   
                 </v-row>
@@ -51,10 +63,14 @@ export default {
             },
             var_name_rol: '',
             var_user_selected: {},
+            user_rol:[
+                
+            ],
+            route_selected: {}
         }
     },
     computed: {
-        ...mapGetters(['services', 'dialog_editar_usuario', 'user']),
+        ...mapGetters(['services', 'dialog_editar_usuario', 'user', 'routes_vue']),
         openEditarDialog: {
             get() {
                 return this.dialog_editar_usuario
@@ -84,6 +100,13 @@ export default {
             } catch (e) {
                 console.log(e)
             }
+        },
+        AgregarPermiso(){
+            var model = {
+                ruta: this.route_selected,
+                permiso: this.userEdit.user_has_rol.associated_rol_premission
+            }
+            this.user_rol.push(model)
         }
     }
 };

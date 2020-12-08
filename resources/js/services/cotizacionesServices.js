@@ -59,15 +59,16 @@ export default class cotizacionServices {
     }
     async agregarCotizacionDuplicada(cot) {
         try {
+            console.log({cot})
             var model = {
                 id: cot.id,
                 cliente_id: cot.has_cliente.id,
                 moneda_id: cot.has_moneda.id,
                 empleado_id: cot.has_empleado.id,
                 tiempo_de_entrega_id: cot.has_tiempo_de_entrega.id,
-                tipo_de_servicio: cot.tipo_de_servicio.name,
+                tipo_de_servicio: cot.tipo_de_servicio,
                 nota_para_la_cotizacion: cot.nota_para_la_cotizacion,
-                estado_de_la_cotizacion: cot.estado_de_la_cotizacion.name,
+                estado_de_la_cotizacion: cot.estado_de_la_cotizacion,
                 contacto: cot.has_cliente.nombre_contacto,
                 contacto_telefono: cot.has_cliente.telefono_contacto,
                 contacto_correo: cot.has_cliente.correo_contacto,
@@ -79,7 +80,7 @@ export default class cotizacionServices {
                 total: cot.total
             };
             let { data } = await axios.post("/api/add-cotizacion-duplicate", model);
-            store.commit("setDialogAddCotizacion", false);
+            store.commit("setDialogDuplicateCotizacion", false);
         } catch (e) {
             console.log(e);
             var model_notificacion = {mensaje: `!Ha ocurrido un error --> ${e}¡`, status: true, color: 'error'}

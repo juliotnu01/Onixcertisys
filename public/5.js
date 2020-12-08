@@ -53,18 +53,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
- // import clienteComponent from './cliente/indexClientecomponent.vue'
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'modal-para-duplicar': _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__["default"] // 'cliente': clienteComponent,
-
+    'notificacion': _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -95,9 +90,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EnlazarCotizacion: function EnlazarCotizacion(item) {
       this.$store.commit('setCotizacionParaDuplicar', item);
       this.$store.commit('setDialogDuplicateCotizacion', true);
-      console.log({
-        item: item
-      });
     }
   }
 });
@@ -409,7 +401,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var result = 0;
 
         for (var i = 0; i < this.cotizacion_para_duplicar.has_partidas.length; i++) {
-          result += this.cotizacion_para_duplicar.has_partidas[i].importe;
+          result += parseInt(this.cotizacion_para_duplicar.has_partidas[i].importe);
         }
 
         this.cotizacion_para_duplicar.sub_total = parseInt(result);
@@ -477,9 +469,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    ActualizarImporte: function ActualizarImporte(cantidad, pvp) {
-      this.var_computed_importe_instrumento = cantidad * pvp;
-    },
     AgregarPartida: function AgregarPartida() {
       for (var i = 0; i < this.partida.cantidad; i++) {
         var _obj;
@@ -517,7 +506,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (!_this3.$refs.f_mag.validate()) {
-                  _context2.next = 3;
+                  _context2.next = 4;
                   break;
                 }
 
@@ -525,6 +514,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this3.services.cotizacionServices.agregarCotizacionDuplicada(_this3.cotizacion_para_duplicar);
 
               case 3:
+                _this3.cotizacion_para_duplicar = {};
+
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -537,8 +529,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var index = this.cotizacion_para_duplicar.has_partidas.indexOf(item);
       this.cotizacion_para_duplicar.has_partidas.splice(index, 1);
     },
-    open: function open() {
-      this.snack = true;
+    ActualizarImporte: function ActualizarImporte(item) {
+      item.importe = item.has_intrumento.precio_venta;
     }
   }
 });
@@ -717,17 +709,7 @@ var render = function() {
                           })
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("v-col", {
-                        attrs: {
-                          cols: "12",
-                          xs: "12",
-                          sm: "12",
-                          md: "12",
-                          lg: "12"
-                        }
-                      })
+                      )
                     ],
                     1
                   )
@@ -1029,6 +1011,7 @@ var render = function() {
                                       label: "Tipo de Servicio",
                                       outlined: "",
                                       "item-text": "name",
+                                      "item-value": "name",
                                       "return-object": "",
                                       "prepend-icon": "mdi-clock"
                                     },
@@ -1071,6 +1054,7 @@ var render = function() {
                                       label: "Estado de la cotizacion",
                                       outlined: "",
                                       "item-text": "name",
+                                      "item-value": "name",
                                       "return-object": "",
                                       "prepend-icon": "mdi-flag"
                                     },
@@ -1115,17 +1099,17 @@ var render = function() {
                                     model: {
                                       value:
                                         _vm.cotizacion_para_duplicar.has_cliente
-                                          .nombre_completo,
+                                          .nombre_contacto,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.cotizacion_para_duplicar
                                             .has_cliente,
-                                          "nombre_completo",
+                                          "nombre_contacto",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.has_cliente.nombre_completo"
+                                        "cotizacion_para_duplicar.has_cliente.nombre_contacto"
                                     }
                                   })
                                 ],
@@ -1154,17 +1138,17 @@ var render = function() {
                                     model: {
                                       value:
                                         _vm.cotizacion_para_duplicar.has_cliente
-                                          .celular_contacto,
+                                          .telefono_contacto,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.cotizacion_para_duplicar
                                             .has_cliente,
-                                          "celular_contacto",
+                                          "telefono_contacto",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.has_cliente.celular_contacto"
+                                        "cotizacion_para_duplicar.has_cliente.telefono_contacto"
                                     }
                                   })
                                 ],
@@ -1777,8 +1761,14 @@ var render = function() {
                                               label: "Precio venta",
                                               outlined: "",
                                               dense: "",
-                                              small: "",
-                                              disabled: ""
+                                              small: ""
+                                            },
+                                            on: {
+                                              change: function($event) {
+                                                return _vm.ActualizarImporte(
+                                                  item
+                                                )
+                                              }
                                             },
                                             model: {
                                               value:
@@ -1808,8 +1798,7 @@ var render = function() {
                                               label: "Importe",
                                               outlined: "",
                                               dense: "",
-                                              small: "",
-                                              disabled: ""
+                                              small: ""
                                             },
                                             model: {
                                               value: item.importe,

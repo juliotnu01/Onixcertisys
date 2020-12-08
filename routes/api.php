@@ -83,6 +83,7 @@ Route::post('/add-cliente', 'v1\ClienteController@store');
 Route::post('/cargar-file-cliente', 'v1\ClienteController@storeFileCliente');
 Route::put('/edit-cliente', 'v1\ClienteController@update');
 Route::delete('/delete-cliente/{id}', 'v1\ClienteController@destroy');
+Route::delete('/delete-sucursal/{id}', 'v1\ClienteController@destroySucursal');
 
 Route::get('/get-instrumentos', 'v1\InstrumentoController@index');
 Route::post('/add-instrumento', 'v1\InstrumentoController@store');
@@ -114,7 +115,7 @@ Route::get('/get-masiv-partidas', 'v1\CotizacionController@getMasivPartidas'); /
 Route::get('/get-partidas', 'v1\PartidaController@index');
 Route::get('/get-partidas-para-calibrar', 'v1\PartidaController@indexParaCalibrar');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');
-// Route::put('/edit-cotizacion', 'v1\CotizacionController@update');
+Route::put('/edit-partida', 'v1\PartidaController@update');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
 
 Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // identificador de informe de las partidas

@@ -20,7 +20,15 @@
             <v-list-item-title>
               <router-link :to="{ name: 'home.cliente' }">
                 <v-icon>mdi-account-box-multiple </v-icon>
-                Clonar cotizacion cliente
+                Enlazar cotizacion cliente
+              </router-link>
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link :to="{ name: 'home.cliente.add-cliente' }">
+                <v-icon>mdi-briefcase-account</v-icon>
+                Agregar cliente
               </router-link>
             </v-list-item-title>
           </v-list-item>

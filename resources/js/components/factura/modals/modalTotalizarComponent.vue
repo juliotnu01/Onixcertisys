@@ -12,9 +12,9 @@
                     <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                         <div>
                             <h4>Cliente:{{factura.cliente.has_cliente.razon_social}}</h4>
-                            <h4>Dirección:{{factura.cliente.has_cliente.direccion_fiscal}} - {{factura.cliente.has_cliente.ciudad_estad_pais}}</h4>
-                            <h4>Teléfono:{{factura.cliente.has_cliente.telefono}}</h4>
-                            <h4>Correo:{{factura.cliente.has_cliente.correo_electronico_factura}}</h4>
+                            <h4>Dirección:{{factura.cliente.has_cliente.domicilio_fiscal}} - {{factura.cliente.has_cliente.ciudad}} - {{factura.cliente.has_cliente.estado}} - {{factura.cliente.has_cliente.estado}}  </h4>
+                            <h4>Teléfono:{{factura.cliente.has_cliente.telefono_empresa}}</h4>
+                            <h4>Correo:{{factura.cliente.has_cliente.correo_electronico_para_el_envio_de_factura}}</h4>
                             <!--<h4>Metodo de pago:{{factura.cliente.has_cliente.has_metodo_de_pago.nombre}}</h4>
                             <h4>Forma de pago :{{factura.cliente.has_cliente.has_condicion_de_pago.nombre}}</h4>-->
 

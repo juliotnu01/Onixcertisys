@@ -143,6 +143,7 @@
                                 </td>
                                 <td>
                                     {{item.instrumento_nombre}}
+                                    <v-btn color="warning" icon @click="editarInstrumento(item)" ><v-icon>mdi-pencil</v-icon></v-btn>
                                 </td>
                                 <td>
                                     <v-text-field label="Marca" v-model="item.marca" outlined dense small class="m-0 p-0" />
@@ -197,6 +198,7 @@
         </v-card>
     </v-dialog>
     <modal-cargar-partidas-masivamente v-on:cargarPartidas="cargarPartidasImportadas" />
+    <modal-edit-instrumento/>
 </v-app>
 </template>
 
@@ -205,9 +207,11 @@ import {
     mapGetters
 } from "vuex";
 import modalCargarPartidaMasivamente from "./modalCargarPartidaMasivamenteComponent";
+import modalEditInstrumento from '../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue'
 export default {
     components: {
         "modal-cargar-partidas-masivamente": modalCargarPartidaMasivamente,
+        'modal-edit-instrumento': modalEditInstrumento
     },
     data() {
         return {
@@ -469,11 +473,13 @@ export default {
             });
         },
         ActualizarImporte(item) {
-            console.log({
-                item
-            })
+            
             item.importe = (item.cantidad * item.precio_venta)
-        }
+        },
+         async editarInstrumento(inst) {
+            this.$store.commit('setInstrumento', inst.instrumento)
+            this.$store.commit('setDialogEditInstrumento', true)
+        },
     },
 };
 </script>

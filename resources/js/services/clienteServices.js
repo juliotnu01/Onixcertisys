@@ -39,6 +39,13 @@ export default class clienteServices{
 			console.log(e)
 		}
 	}
+	async EliminarSucursalCliente(model){
+		try{
+			let {data} = await axios.delete(`/api/delete-sucursal/${model.id}`)
+		}catch(e){
+			console.log(e)
+		}
+	}
 
 
 }

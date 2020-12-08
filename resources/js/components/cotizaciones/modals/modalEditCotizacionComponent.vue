@@ -19,12 +19,15 @@
                             <v-autocomplete offset-y dense v-model="cotizacion.has_cliente" :items="clientes" item-text="razon_social" outlined s label="Seleccionar Cliente" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                            <v-autocomplete offset-y dense v-model="cotizacion.sucursal_cliente_id" :items="cotizacion.has_cliente.has_sucursal"   item-text="nombre_sucursal" outlined s label="Seleccionar sucursal" return-object />
+                        </v-col>
+                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-autocomplete offset-y dense v-model="cotizacion.has_moneda" :items="monedas" item-text="clave" outlined s label="Seleccionar Moneda" return-object></v-autocomplete>
                         </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-autocomplete offset-y dense v-model="cotizacion.has_tiempo_de_entrega" :items="tiempos_de_entrega" item-text="nombre" outlined s label="Tiempo de Entrega" return-object></v-autocomplete>
                         </v-col>
-                        <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+                        <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                             <v-autocomplete offset-y dense v-model="cotizacion.has_empleado" :items="empleados" item-text="nombre_completo" outlined s label="Empleado" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -135,6 +138,7 @@
                                 </td>
                                 <td>
                                     {{item.has_intrumento.nombre}}
+                                    <v-btn color="warning" icon @click="editarInstrumento(item)" ><v-icon>mdi-pencil</v-icon></v-btn>
                                 </td>
                                 <td>
                                     <v-text-field label="Marca" v-model="item.marca" outlined dense small class="m-0 p-0" />
@@ -152,10 +156,10 @@
                                     {{item.has_intrumento.has_acreditacion.nombre}}
                                 </td>
                                 <td>
-                                    <v-text-field label="Precio venta" v-model="item.has_intrumento.precio_venta" outlined dense small class="m-0 p-0" disabled />
+                                  <v-text-field label="Precio venta" v-model="item.has_intrumento.precio_venta" outlined dense small class="m-0 p-0" @change="ActualizarImporte(item)" />
                                 </td>
                                 <td>
-                                    <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0" disabled />
+                                    <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0" disable />
                                 </td>
                                 <td>
                                     <v-btn icon small color="error" @click="eliminarPartida(item)">
@@ -188,6 +192,7 @@
             </v-card-text>
         </v-card>
     </v-dialog>
+    <modal-edit-instrumento/>
 </v-app>
 </template>
 
@@ -195,7 +200,11 @@
 import {
     mapGetters
 } from "vuex";
+import modalEditInstrumento from '../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue'
 export default {
+    components:{
+        'modal-edit-instrumento': modalEditInstrumento,
+    },
     data() {
         return {
             rules: {
@@ -291,14 +300,6 @@ export default {
                 this.$store.commit("setDialogEditCotizacion", val);
             },
         },
-        var_computed_importe_instrumento: {
-            get() {
-                return this.partida.importe;
-            },
-            set(newVal) {
-                this.partida.importe = newVal;
-            },
-        },
         var_computed_sub_total: {
             get() {
                 var result = 0;
@@ -348,9 +349,6 @@ export default {
         this.services.instrumentoServices.getlistInstrumentos();
     },
     methods: {
-        ActualizarImporte(cantidad, pvp) {
-            this.var_computed_importe_instrumento = cantidad * pvp;
-        },
         AgregarPartida() {
             for (var i = 0; i < this.partida.cantidad; i++) {
                 var obj = {
@@ -395,9 +393,16 @@ export default {
             var index = this.cotizacion.has_partidas.indexOf(item)
             this.cotizacion.has_partidas.splice(index, 1);
         },
-        open() {
-            this.snack = true
-        }
+        ActualizarImporte(item){
+            item.importe = item.has_intrumento.precio_venta
+            this.services.instrumentoServices.actualizarInstrumento(item.has_intrumento)
+
+        },
+         async editarInstrumento(inst) {
+            this.$store.commit('setInstrumento', inst.has_intrumento)
+            this.$store.commit('setDialogEditInstrumento', true)
+        },
+       
     },
 };
 </script>

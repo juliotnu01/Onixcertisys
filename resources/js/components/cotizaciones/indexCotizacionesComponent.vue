@@ -25,6 +25,7 @@
                 <v-alert class="mt-5" type="info" icon="mdi-clock" dense v-if="item.estado_de_la_cotizacion == 'pendiente'"> {{item.estado_de_la_cotizacion}} </v-alert>
                 <v-alert class="mt-5" color="purple" icon="mdi-receipt" dense v-if="item.estado_de_la_cotizacion == 'Orden de servicio'" dark> {{item.estado_de_la_cotizacion}} </v-alert>
                 <v-alert class="mt-5" type="error" icon="mdi-close-octagon" dense v-if="item.estado_de_la_cotizacion == 'Rechazada'"> {{item.estado_de_la_cotizacion}} </v-alert>
+                <!-- <b>partidas:  {{item.partida_en_orden_de_servicio}} / {{item.has_partidas.length}}  {{ var_computed_partidas_en_recibo }} </b> -->
             </td>
         </template>
         <template v-slot:item.tipo_de_servicio="{ item }">
@@ -224,6 +225,26 @@ export default {
     },
     computed: {
         ...mapGetters(["services", "cotizaciones"]),
+        // TODO: corregir esto
+        // var_computed_partidas_en_recibo(){
+
+            
+        //     var result = 0;
+
+        //     for(var i = 0; this.cotizaciones.length > i; i++ ){
+        //         for(var j = 0; this.cotizaciones[i]['has_partidas'].length > j; j++ ){
+        //             if(!this.cotizaciones[i]['has_partidas'][j].convertir_recibo){
+        //                 result++
+        //             }else{
+        //                 result = 0
+        //             }
+        //                 this.cotizaciones[i].partida_en_orden_de_servicio = result
+        //         }
+        //                 console.log({result, c: this.cotizaciones[i].id})
+                
+        //     }
+        // } 
+        
     },
     mounted() {
         this.services.cotizacionServices.getlistCotizaciones();
@@ -245,6 +266,7 @@ export default {
         async printCotizacion(item) {
             await this.services.cotizacionServices.printCotizacion(item);
         },
+        
     },
 };
 </script>

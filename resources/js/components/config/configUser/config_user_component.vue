@@ -163,14 +163,16 @@ export default {
                     value: "add_user",
                 },
             ],
+            
         };
     },
     async mounted() {
         await this.services.userServices.getListUser();
         await this.services.rolServices.getListRoles();
+        console.log(this.routes_vue)
     },
     computed: {
-        ...mapGetters(["listUser", "services", "listRoles", "user"]),
+        ...mapGetters(["listUser", "services", "listRoles", "user", 'routes_vue']),
     },
     methods: {
         ...mapActions([

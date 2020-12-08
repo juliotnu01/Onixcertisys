@@ -6,7 +6,7 @@
                 <v-container>
                     <v-card-text>
                         <v-form ref="f_register_rol">
-                            <v-text-field :rules="[rules.required]" v-model="var_name_rol" outlined label="Nombre del rol" prepend-inner-icon="mdi-account-star" type="text"></v-text-field>
+                            <v-text-field  v-model="var_name_rol" outlined label="Nombre del rol" prepend-inner-icon="mdi-account-star" type="text"></v-text-field>
                             <v-select :items="listUser" label="Seleccionar un usuario" outlined :rules="[rules.required]" item-text="name" return-object v-model="var_user_selected"></v-select>
                             </v-col>
                         </v-form>
@@ -29,9 +29,6 @@ import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            rules: {
-                required: value => !!value || 'Este campo es requerido.',
-            },
             var_name_rol: '',
             var_user_selected: {},
         }

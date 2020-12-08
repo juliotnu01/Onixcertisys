@@ -27,16 +27,16 @@
                             <v-autocomplete offset-y dense v-model="cotizacion_para_duplicar.has_empleado" :items="empleados" item-text="nombre_completo" outlined s label="Empleado" return-object></v-autocomplete>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="cotizacion_para_duplicar.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" return-object prepend-icon="mdi-clock"></v-select>
+                          <v-select offset-y dense v-model="cotizacion_para_duplicar.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" item-value="name" return-object prepend-icon="mdi-clock"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                            <v-select offset-y dense v-model="cotizacion_para_duplicar.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object prepend-icon="mdi-flag"></v-select>
+                            <v-select offset-y dense v-model="cotizacion_para_duplicar.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" item-value="name" return-object prepend-icon="mdi-flag"></v-select>
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="cotizacion_para_duplicar.has_cliente.nombre_completo" dense outlined label="Contacto" />
+                            <v-text-field :rules="[rules.required]" v-model="cotizacion_para_duplicar.has_cliente.nombre_contacto" dense outlined label="Contacto" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                            <v-text-field :rules="[rules.required]" v-model="cotizacion_para_duplicar.has_cliente.celular_contacto" dense outlined label="Teléfono" />
+                            <v-text-field :rules="[rules.required]" v-model="cotizacion_para_duplicar.has_cliente.telefono_contacto" dense outlined label="Teléfono" />
                         </v-col>
                         <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                             <v-text-field :rules="[rules.required]" v-model="cotizacion_para_duplicar.has_cliente.correo_contacto" dense outlined label="Correo" />
@@ -151,10 +151,10 @@
                                     {{item.has_intrumento.has_acreditacion.nombre}}
                                 </td>
                                 <td>
-                                    <v-text-field label="Precio venta" v-model="item.has_intrumento.precio_venta" outlined dense small class="m-0 p-0" disabled />
+                                    <v-text-field label="Precio venta" v-model="item.has_intrumento.precio_venta" outlined dense small class="m-0 p-0" @change="ActualizarImporte(item)" />
                                 </td>
                                 <td>
-                                    <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0" disabled />
+                                    <v-text-field label="Importe" v-model="item.importe" outlined dense small class="m-0 p-0"  />
                                 </td>
                                 <td>
                                     <v-btn icon small color="error" @click="eliminarPartida(item)">
@@ -302,7 +302,7 @@ export default {
             get() {
                 var result = 0;
                 for (var i = 0; i < this.cotizacion_para_duplicar.has_partidas.length; i++) {
-                    result += this.cotizacion_para_duplicar.has_partidas[i].importe;
+                    result += parseInt(this.cotizacion_para_duplicar.has_partidas[i].importe);
                 }
                 this.cotizacion_para_duplicar.sub_total = parseInt(result);
                 return this.cotizacion_para_duplicar.sub_total;
@@ -347,10 +347,7 @@ export default {
         this.services.instrumentoServices.getlistInstrumentos();
     },
     methods: {
-        ActualizarImporte(cantidad, pvp) {
-            this.var_computed_importe_instrumento = cantidad * pvp;
-        },
-        AgregarPartida() {
+        AgregarPartida() {  
             for (var i = 0; i < this.partida.cantidad; i++) {
                 var obj = {
                     identificacion: this.partida.identificacion,
@@ -384,7 +381,7 @@ export default {
         async AddCotizacion() {
             if (this.$refs.f_mag.validate()) {
                 await this.services.cotizacionServices.agregarCotizacionDuplicada(this.cotizacion_para_duplicar);
-                // await this.services.cotizacionServices.getlistCotizaciones();
+                this.cotizacion_para_duplicar = {}
             }
         },
         eliminarPartida(item) {
@@ -392,8 +389,8 @@ export default {
             var index = this.cotizacion_para_duplicar.has_partidas.indexOf(item)
             this.cotizacion_para_duplicar.has_partidas.splice(index, 1);
         },
-        open() {
-            this.snack = true
+        ActualizarImporte(item){
+            item.importe = item.has_intrumento.precio_venta
         }
     },
 };

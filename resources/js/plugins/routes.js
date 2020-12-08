@@ -5,6 +5,7 @@ import configComponent from "../components/config/indexComponent.vue";
 import configUserComponent from "../components/config/configUser/config_user_component.vue";
 import empresaComponent from "../components/config/empresa/empresaComponent.vue";
 import datosDelSistemaComponent from "../components/config/datosGenerales/indexDatosGeneralesComponent.vue";
+
 Vue.use(router);
 export default new router({
     mode: "history",
@@ -82,6 +83,14 @@ export default new router({
             component: () =>
                 import(
                     "../components/reportes/indexReportesComponents.vue"
+                )
+        },
+        {
+            path: "/add-cliente",
+            name: "home.cliente.add-cliente",
+            component: () =>
+                import(
+                    "../components/cliente/agregar_cliente/indexComponentAgregarCliente.vue"
                 )
         },
     ]

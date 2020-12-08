@@ -15,10 +15,10 @@
                                     <v-text-field label="Nombre del Contacto" outlined v-model="model.nombre_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Cargo del Contacto" outlined v-model="model.telefono_contacto"></v-text-field>
+                                    <v-text-field label="Cargo del Contacto" outlined v-model="model.cargo_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Tefl, Ext. del Contacto" outlined v-model="model.cargo_contacto"></v-text-field>
+                                    <v-text-field label="Tefl, Ext. del Contacto" outlined v-model="model.telefono_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                     <v-text-field label="Correo del Contacto" outlined v-model="model.correo_contacto"></v-text-field>
@@ -181,19 +181,19 @@
                         <v-card-text>
                             <v-row>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="model.nombre_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Quien brinda la informacion" outlined v-model="model.nombre_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="model.telefono_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Telefono brinda la informacion" outlined v-model="model.telefono_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="model.fecha_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Fecha quien brinda la informacion" outlined v-model="model.fecha_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="model.puesto_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Puesto quien brinda la informacion" outlined v-model="model.puesto_quien_brinda_la_info"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="model.correo_quien_brinda_la_info"></v-text-field>
+                                    <v-text-field label="Correo quien brinda la informacion" outlined v-model="model.correo_quien_brinda_la_info"></v-text-field>
                                 </v-col>
 
                             </v-row>
@@ -238,6 +238,7 @@
                                                     <td class="text-center">{{ item.nombre }}</td>
                                                     <td class="text-center">{{ item.direccion }}</td>
                                                     <td class="text-center">{{ item.telefono }}</td>
+                                                    <td class="text-center"><v-btn color="error" icon @click="eliminarSucursal(item)" ><v-icon>mdi-delete</v-icon></v-btn></td>
                                                 </tr>
                                             </tbody>
                                         </template>
@@ -256,7 +257,6 @@
     </v-dialog>
 </v-app>
 </template>
-
 <script>
 import {
     mapGetters
@@ -394,6 +394,11 @@ export default {
         },
         AgregarSucursal() {
             this.model.sucursales.push(this.sucursal);
+            this.sucursal = {
+                nombre: "",
+                direccion: "",
+                telefono: "",
+            }
         },
         eliminarSucursal(suc) {
             var index = this.model.sucursales.indexOf(suc);

@@ -130,10 +130,10 @@
                                     <v-text-field label="Nombre del Contacto" outlined v-model="cliente.nombre_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Cargo del Contacto" outlined v-model="cliente.telefono_contacto"></v-text-field>
+                                    <v-text-field label="Cargo del Contacto" outlined v-model="cliente.cargo_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Tefl, Ext. del Contacto" outlined v-model="cliente.cargo_contacto"></v-text-field>
+                                    <v-text-field label="Tefl, Ext. del Contacto" outlined v-model="cliente.telefono_contacto"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                     <v-text-field label="Correo del Contacto" outlined v-model="cliente.correo_contacto"></v-text-field>
@@ -321,10 +321,10 @@
                         <v-card-text>
                             <v-row>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.nombre"></v-text-field>
+                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.nombre_sucursal"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.direccion"></v-text-field>
+                                    <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.direccion_sucursal"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                                     <v-text-field label="Servicio Solicitado" outlined v-model="sucursal.telefono"></v-text-field>
@@ -358,6 +358,9 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <v-text-field label="" outlined v-model="item.telefono " small dense></v-text-field>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <v-btn color="error" @click="eliminarSucursal(item)" icon ><v-icon>mdi-delete</v-icon></v-btn>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -437,7 +440,18 @@ export default {
         },
         AgregarSucursal() {
             this.cliente.has_sucursal.push(this.sucursal)
+            this.sucursal =  {
+                nombre_sucursal: '',
+                direccion_sucursal: '',
+                telefono: '',
+            }
         },
+        async eliminarSucursal(suc){
+            console.log({suc})
+               await this.services.clienteServices.EliminarSucursalCliente(suc)
+               var index  = this.cliente.has_sucursal.indexOf(suc)
+               this.cliente.has_sucursal.splice(index, 1)
+        }
 
     }
 };

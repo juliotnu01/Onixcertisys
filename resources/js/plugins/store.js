@@ -4,6 +4,7 @@ import services from "../services.js";
 import moment from "moment";
 import momentTz from "moment-timezone";
 import { findLastKey } from "lodash";
+import router from  './routes'
 
 Vue.use(Vuex);
 
@@ -120,6 +121,7 @@ export default new Vuex.Store({
         dialog_realizacion_calibracion: false,
         partida_para_calibrar:{},
         snackbar: {mensaje: '', status: false, color: ''},
+        routes_vue: router.options.routes,
         
     },
     getters: {
@@ -227,6 +229,7 @@ export default new Vuex.Store({
         dialog_realizacion_calibracion: state => state.dialog_realizacion_calibracion,
         partida_para_calibrar: state =>  state.partida_para_calibrar,
         snackbar: state => state.snackbar,
+        routes_vue: state => state.routes_vue,
     },
     mutations: {
         setListUser(state, data) {
