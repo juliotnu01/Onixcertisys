@@ -126,14 +126,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__["default"]
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       // data para reporte de ventas por magnitud
       magnitud_selected: {},
       instrumento_selected: {},
-      pdf_ruta: ''
+      pdf_ruta: ""
     };
   },
   mounted: function mounted() {
@@ -180,7 +180,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.pdf_ruta = '';
+                _this2.pdf_ruta = "";
                 _context.prev = 1;
                 model = {
                   total_vendido: _this2.var_computed_total_vendido,

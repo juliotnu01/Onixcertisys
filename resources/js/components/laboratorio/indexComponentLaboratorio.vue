@@ -3,6 +3,13 @@
     <v-card>
         <v-text-field label="Buscar Instrumento" v-model="search" outlined />
         <v-data-table :headers="headers" :items="partidas_para_calibrar" :items-per-page="5" class="elevation-1" :search="search">
+            <template v-slot:item.ruta_pdf_calibracion="{item}">
+                <td class="text-center">
+                    <v-btn color="primary" target="_blank" :href="item.ruta_pdf_calibracion" block>
+                        <v-icon>mdi-eye</v-icon>
+                    </v-btn>
+                </td>
+            </template>
             <template v-slot:item.accion="{item}">
                 <td class="text-rigth">
                     <v-btn icon color="primary" @click="Calibrar(item)">
@@ -85,6 +92,12 @@ export default {
                     align: "center",
                     sortable: true,
                     value: "has_calibracion",
+                },
+                {
+                    text: "Certificado de la calibracion",
+                    align: "center",
+                    sortable: true,
+                    value: "ruta_pdf_calibracion",
                 },
                 {
                     text: "Accion",

@@ -145,6 +145,94 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -153,7 +241,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -581,7 +669,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                        Seleccionar Orden de servicio\r\n                    "
+                                "\n            Seleccionar Orden de servicio\n          "
                               )
                             ]
                           )
@@ -593,7 +681,7 @@ var render = function() {
                                 _c("h6", { staticClass: "headline mb-2" }, [
                                   _c("strong", [_vm._v("Cliente: ")]),
                                   _vm._v(
-                                    "\r\n                                " +
+                                    "\n                " +
                                       _vm._s(
                                         _vm.selected.has_cotizaicon.has_cliente
                                           .razon_social
@@ -733,11 +821,11 @@ var render = function() {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                "\r\n                                                    " +
+                                                                "\n                          " +
                                                                   _vm._s(
                                                                     item.identificacion
                                                                   ) +
-                                                                  "\r\n                                                "
+                                                                  "\n                        "
                                                               )
                                                             ]
                                                           ),
@@ -764,11 +852,11 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\r\n                                                        " +
+                                                                    "\n                            " +
                                                                       _vm._s(
                                                                         item.servicio
                                                                       ) +
-                                                                      "\r\n                                                    "
+                                                                      "\n                          "
                                                                   )
                                                                 ]
                                                               )
@@ -799,11 +887,11 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\r\n                                                        " +
+                                                                    "\n                            " +
                                                                       _vm._s(
                                                                         item.tipo
                                                                       ) +
-                                                                      "\r\n                                                    "
+                                                                      "\n                          "
                                                                   )
                                                                 ]
                                                               )
@@ -836,7 +924,7 @@ var render = function() {
                                                                     },
                                                                     [
                                                                       _vm._v(
-                                                                        "\r\n                                                        por inicar\r\n                                                    "
+                                                                        "\n                            por inicar\n                          "
                                                                       )
                                                                     ]
                                                                   )
@@ -860,13 +948,13 @@ var render = function() {
                                                                     },
                                                                     [
                                                                       _vm._v(
-                                                                        "\r\n                                                        " +
+                                                                        "\n                            " +
                                                                           _vm._s(
                                                                             item
                                                                               .has_calibracion
                                                                               .estado
                                                                           ) +
-                                                                          "\r\n                                                    "
+                                                                          "\n                          "
                                                                       )
                                                                     ]
                                                                   )
@@ -886,13 +974,13 @@ var render = function() {
                                                                     },
                                                                     [
                                                                       _vm._v(
-                                                                        "\r\n                                                        " +
+                                                                        "\n                            " +
                                                                           _vm._s(
                                                                             item
                                                                               .has_calibracion
                                                                               .estado
                                                                           ) +
-                                                                          "\r\n                                                    "
+                                                                          "\n                          "
                                                                       )
                                                                     ]
                                                                   )
@@ -910,13 +998,13 @@ var render = function() {
                                                               item.has_empleado
                                                                 ? _c("div", [
                                                                     _vm._v(
-                                                                      "\r\n                                                        " +
+                                                                      "\n                            " +
                                                                         _vm._s(
                                                                           item
                                                                             .has_empleado
                                                                             .nombre_completo
                                                                         ) +
-                                                                        "\r\n                                                    "
+                                                                        "\n                          "
                                                                     )
                                                                   ])
                                                                 : _c(
@@ -944,7 +1032,7 @@ var render = function() {
                                                                         },
                                                                         [
                                                                           _vm._v(
-                                                                            "\r\n                                                            Sin Asignar\r\n                                                        "
+                                                                            "\n                              Sin Asignar\n                            "
                                                                           )
                                                                         ]
                                                                       )

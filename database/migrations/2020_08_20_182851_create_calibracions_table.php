@@ -23,6 +23,7 @@ class CreateCalibracionsTable extends Migration
             $table->string('fecha_terminacion_calibracion')->nullable();
             $table->string('descripcion_anomalia')->nullable();
             $table->string('observacion_tecnico')->nullable();
+            $table->string('certificado_doc')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

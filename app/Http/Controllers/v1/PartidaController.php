@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Partida;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Http\File;
+
 class PartidaController extends Controller
 {
     /**
@@ -134,6 +138,22 @@ class PartidaController extends Controller
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
+        }
+    }
+
+    public function cargarCertificadoPdfPartida(Request $request)
+    {
+        try {
+            $partida = json_decode($request['partida']);
+            Storage::disk('store_pdfs')->putFileAs("/certificados", new File($request->file('pdf_calibracion')), "certificado-{$partida->informe_id}-cliente-{$partida->has_recibo->has_cotizaicon->has_cliente->razon_social}.pdf");
+            $url = Storage::disk('store_pdfs')->url("/certificados/certificado-{$partida->informe_id}-cliente-{$partida->has_recibo->has_cotizaicon->has_cliente->razon_social}.pdf");
+            Partida::find($partida->id)->update([
+                'ruta_pdf_calibracion' => $url
+            ]);
+            return response($url);
+            
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 }

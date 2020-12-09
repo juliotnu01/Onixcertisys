@@ -93,87 +93,87 @@
 </template>
 
 <script>
-import {
-    mapGetters
-} from "vuex";
+import { mapGetters } from "vuex";
 import pdf from "vue-pdf";
-import notificacionComponent from '../notificacion/indexComponentNotificacion'
+import notificacionComponent from "../notificacion/indexComponentNotificacion";
 export default {
-    components: {
-        pdf,
-        'notificacion': notificacionComponent
-    },
-    data() {
-        return {
-            // data para reporte de ventas por magnitud
-            magnitud_selected: {},
-            instrumento_selected: {},
-            pdf_ruta: '',
-        };
-    },
-    mounted() {
-        this.services.magnitudesServices.getListMagnitudesParaReporte();
-    },
-    computed: {
-        ...mapGetters(["services", "magnitudes_para_reporte"]),
-        var_computed_total_vendido: {
-            get() {
-                var result = [],
-                    data = 0;
+  components: {
+    pdf,
+    notificacion: notificacionComponent,
+  },
+  data() {
+    return {
+      // data para reporte de ventas por magnitud
+      magnitud_selected: {},
+      instrumento_selected: {},
+      pdf_ruta: "",
+    };
+  },
+  mounted() {
+    this.services.magnitudesServices.getListMagnitudesParaReporte();
+  },
+  computed: {
+    ...mapGetters(["services", "magnitudes_para_reporte"]),
+    var_computed_total_vendido: {
+      get() {
+        var result = [],
+          data = 0;
 
-                if (Object.entries(this.instrumento_selected).length > 0) {
-                    for (
-                        var i = 0; this.instrumento_selected.belongs_partida.length > i; i++
-                    ) {
-                        for (
-                            var j = 0; this.instrumento_selected.belongs_partida[i].belongs_cotizacion
-                            .belongs_recibo.length > j; j++
-                        ) {
-                            if (
-                                !result.some(
-                                    (item) =>
-                                    item.id ==
-                                    this.instrumento_selected.belongs_partida[i]
-                                    .belongs_cotizacion.belongs_recibo[j].id
-                                )
-                            ) {
-                                result.push(
-                                    this.instrumento_selected.belongs_partida[i]
-                                    .belongs_cotizacion.belongs_recibo[j]
-                                );
-                            }
-                        }
-                    }
-                }
-                result.forEach((item) => {
-                    data += item.total;
-                });
-                return data;
-            },
-            set(val) {
-                this.instrumento_selected = val;
-            },
-        },
-    },
-    methods: {
-        async getReporteVentasMagnitud() {
-            this.pdf_ruta = ''
-            try {
-                var model = {
-                    total_vendido: this.var_computed_total_vendido,
-                    instrumento_selected: this.instrumento_selected,
-                };
-                let {
-                    data
-                } = await axios.post(
-                    "/api/get-reporte-magnitud-ventas",
-                    model
+        if (Object.entries(this.instrumento_selected).length > 0) {
+          for (
+            var i = 0;
+            this.instrumento_selected.belongs_partida.length > i;
+            i++
+          ) {
+            for (
+              var j = 0;
+              this.instrumento_selected.belongs_partida[i].belongs_cotizacion
+                .belongs_recibo.length > j;
+              j++
+            ) {
+              if (
+                !result.some(
+                  (item) =>
+                    item.id ==
+                    this.instrumento_selected.belongs_partida[i]
+                      .belongs_cotizacion.belongs_recibo[j].id
+                )
+              ) {
+                result.push(
+                  this.instrumento_selected.belongs_partida[i]
+                    .belongs_cotizacion.belongs_recibo[j]
                 );
-                this.pdf_ruta = data
-            } catch (e) {
-                console.log(e);
+              }
             }
-        },
+          }
+        }
+        result.forEach((item) => {
+          data += item.total;
+        });
+        return data;
+      },
+      set(val) {
+        this.instrumento_selected = val;
+      },
     },
+  },
+  methods: {
+    async getReporteVentasMagnitud() {
+      this.pdf_ruta = "";
+      try {
+        var model = {
+          total_vendido: this.var_computed_total_vendido,
+          instrumento_selected: this.instrumento_selected,
+        };
+        let { data } = await axios.post(
+          "/api/get-reporte-magnitud-ventas",
+          model
+        );
+        this.pdf_ruta = data;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  },
 };
 </script>

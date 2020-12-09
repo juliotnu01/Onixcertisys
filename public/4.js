@@ -357,23 +357,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                try {
-                  _this2.$store.commit("setDialogRealizacionCalibracion", true);
+                _context2.prev = 0;
+                model = {
+                  tipo_de_calibracion: _this2.TipocalibracionSelected,
+                  patron_de_calibracion: _this2.patronSelected,
+                  procedimiento_de_calibracion: _this2.procedimientoSelected,
+                  fecha_anomalia: _this2.date,
+                  descripcion_anomalia: _this2.descripcion_anomalia,
+                  observacion_tecnico: _this2.observacion_de_tecnico,
+                  id_partida: _this2.partida.id
+                };
+                _context2.next = 4;
+                return _this2.services.calibracionServices.agregarCalibracion(model);
 
-                  _this2.$store.commit("setPartidaParaCalibrar", _this2.partida); // var model = {
-                  //     tipo_de_calibracion: this.TipocalibracionSelected,
-                  //     patron_de_calibracion: this.patronSelected,
-                  //     procedimiento_de_calibracion: this.procedimientoSelected,
-                  //     fecha_anomalia: this.date,
-                  //     descripcion_anomalia: this.descripcion_anomalia,
-                  //     observacion_tecnico: this.observacion_de_tecnico,
-                  //     id_partida: this.partida.id
+              case 4:
+                _context2.next = 6;
+                return _this2.services.partidaServices.getlistpartidasParaCalibrar();
+
+              case 6:
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }))();
+    },
+    terminarCalibracion: function terminarCalibracion(calibracion) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                try {
+                  _this3.$store.commit("setDialogRealizacionCalibracion", true); // this.$store.commit("setPartidaParaCalibrar", this.partida);
+                  // var model = {
+                  //     id_calibracion: calibracion.has_calibracion.id,
+                  //     partida: calibracion
                   // }
-                  // await this.services.calibracionServices.agregarCalibracion(model)
+                  // await this.services.calibracionServices.terminarCalibracion(model)
                   // await this.services.partidaServices.getlistpartidasParaCalibrar()
 
                 } catch (e) {
@@ -382,48 +419,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 1:
               case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    terminarCalibracion: function terminarCalibracion(calibracion) {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var model;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                model = {
-                  id_calibracion: calibracion.has_calibracion.id,
-                  partida: calibracion
-                };
-                _context3.next = 4;
-                return _this3.services.calibracionServices.terminarCalibracion(model);
-
-              case 4:
-                _context3.next = 6;
-                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
-
-              case 6:
-                _context3.next = 11;
-                break;
-
-              case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
-                console.log(_context3.t0);
-
-              case 11:
-              case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3);
       }))();
     },
     formatDate: function formatDate(date) {
@@ -458,136 +457,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    apexcharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_1___default.a
-  },
-  data: function data() {
-    return {
-      var_err_ascendente: 0,
-      var_err_descendente: 0,
-      opcionesGraficaDesviacion: {},
-      var_xaxis_chart: ""
-    };
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "dialog_realizacion_calibracion"])), {}, {
-    openDialog: {
-      get: function get() {
-        return this.dialog_realizacion_calibracion;
-      },
-      set: function set(val) {
-        this.$store.commit("setDialogRealizacionCalibracion", val);
-      }
-    }
-  }),
-  methods: {
-    formatXaxis: function formatXaxis() {
-      var OpcionDesviacion = {
-        dataLabels: {
-          enabled: false
-        },
-        title: {
-          text: "Grafica de Desviacion",
-          align: "left"
-        },
-        xaxis: {
-          categories: []
-        },
-        series: [{
-          name: "Ascendente",
-          data: []
-        }, {
-          name: "Descendente",
-          data: []
-        }]
-      };
-      OpcionDesviacion.xaxis.categories = this.var_xaxis_chart.replace(/\s+/g, " ").trim().split(" ").map(function (val, index) {
-        return parseFloat(val.replace(",", ".")).toFixed(3);
-      });
-      OpcionDesviacion.series[0].data = this.var_err_ascendente.replace(/\s+/g, " ").trim().split(" ").map(function (val, index) {
-        return parseFloat(val.replace(",", ".")).toFixed(3);
-      });
-      OpcionDesviacion.series[1].data = this.var_err_descendente.replace(/\s+/g, " ").trim().split(" ").map(function (val, index) {
-        return parseFloat(val.replace(",", ".")).toFixed(3);
-      });
-      this.opcionesGraficaDesviacion = OpcionDesviacion;
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: c:\\laragon\\www\\Onixcertisys\\resources\\js\\components\\laboratorio\\modals\\modalRealizacionCalibracion.vue: Unexpected token (56:8)\n\n\u001b[0m \u001b[90m 54 | \u001b[39m        \u001b[36mtry\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 55 | \u001b[39m          let data \u001b[33m=\u001b[39m \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 | \u001b[39m        } \u001b[36mcatch\u001b[39m (error) {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 | \u001b[39m          console\u001b[33m.\u001b[39mlog(error)\u001b[0m\n\u001b[0m \u001b[90m 58 | \u001b[39m        }\u001b[0m\n\u001b[0m \u001b[90m 59 | \u001b[39m\u001b[0m\n    at Parser._raise (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.unexpected (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:8966:16)\n    at Parser.parseExprAtom (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10282:20)\n    at Parser.parseExprSubscripts (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)\n    at Parser.parseMaybeAssign (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9620:21)\n    at c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9586:39\n    at Parser.allowInAnd (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11296:16)\n    at Parser.parseMaybeAssignAllowIn (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9586:17)\n    at Parser.parseVar (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12096:70)\n    at Parser.parseVarStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11905:10)\n    at Parser.parseStatementContent (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11497:21)\n    at Parser.parseStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseBlock (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11982:10)\n    at Parser.parseTryStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11873:23)\n    at Parser.parseStatementContent (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11487:21)\n    at Parser.parseStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseBlock (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11982:10)\n    at Parser.parseFunctionBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10962:24)\n    at Parser.parseFunctionBodyAndFinish (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10945:10)\n    at Parser.parseMethod (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10882:10)\n    at Parser.parseObjectMethod (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10807:19)\n    at Parser.parseObjPropValue (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10840:23)\n    at Parser.parsePropertyDefinition (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10771:10)\n    at Parser.parseObjectLike (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10664:25)\n    at Parser.parseExprAtom (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10198:23)\n    at Parser.parseExprSubscripts (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)");
 
 /***/ }),
 
@@ -1887,84 +1759,31 @@ var render = function() {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "12" } },
+                        {
+                          attrs: {
+                            cols: "12",
+                            xs: "12",
+                            sm: "12",
+                            md: "6",
+                            lg: "6"
+                          }
+                        },
                         [
-                          _c("v-simple-table", {
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function() {
-                                  return [
-                                    _c("thead", [
-                                      _c("tr", [
-                                        _c("th", { staticClass: "text-left" }, [
-                                          _vm._v("Error Ascendente")
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("th", { staticClass: "text-left" }, [
-                                          _vm._v("Error Descendente")
-                                        ])
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tbody", [
-                                      _c("tr", [
-                                        _c(
-                                          "td",
-                                          [
-                                            _c("v-textarea", {
-                                              model: {
-                                                value: _vm.var_err_ascendente,
-                                                callback: function($$v) {
-                                                  _vm.var_err_ascendente = $$v
-                                                },
-                                                expression: "var_err_ascendente"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          [
-                                            _c("v-textarea", {
-                                              model: {
-                                                value: _vm.var_err_descendente,
-                                                callback: function($$v) {
-                                                  _vm.var_err_descendente = $$v
-                                                },
-                                                expression:
-                                                  "var_err_descendente"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          [
-                                            _c("v-textarea", {
-                                              on: { change: _vm.formatXaxis },
-                                              model: {
-                                                value: _vm.var_xaxis_chart,
-                                                callback: function($$v) {
-                                                  _vm.var_xaxis_chart = $$v
-                                                },
-                                                expression: "var_xaxis_chart"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        )
-                                      ])
-                                    ])
-                                  ]
-                                },
-                                proxy: true
-                              }
-                            ])
+                          _c("v-file-input", {
+                            attrs: {
+                              accept: "image/*",
+                              label: "Cargar Certificado (.pdf)",
+                              outlined: "",
+                              small: "",
+                              dense: ""
+                            },
+                            model: {
+                              value: _vm.var_calibracion_pdf,
+                              callback: function($$v) {
+                                _vm.var_calibracion_pdf = $$v
+                              },
+                              expression: "var_calibracion_pdf"
+                            }
                           })
                         ],
                         1
@@ -1972,17 +1791,40 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-col",
-                        { attrs: { cols: "12" } },
+                        {
+                          attrs: {
+                            cols: "12",
+                            xs: "12",
+                            sm: "12",
+                            md: "6",
+                            lg: "6"
+                          }
+                        },
                         [
-                          _c("apexcharts", {
-                            ref: "chart1",
-                            attrs: {
-                              width: "100%",
-                              height: "300px",
-                              type: "line",
-                              options: _vm.opcionesGraficaDesviacion,
-                              series: _vm.opcionesGraficaDesviacion.series
-                            }
+                          _c(
+                            "v-btn",
+                            { attrs: { color: "success", block: "" } },
+                            [_vm._v("Registrar Certificado")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            xs: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12"
+                          }
+                        },
+                        [
+                          _c("pdf", {
+                            ref: "myPdfComponent",
+                            attrs: { src: "" }
                           })
                         ],
                         1

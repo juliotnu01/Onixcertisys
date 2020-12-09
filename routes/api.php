@@ -114,6 +114,7 @@ Route::get('/get-masiv-partidas', 'v1\CotizacionController@getMasivPartidas'); /
 
 Route::get('/get-partidas', 'v1\PartidaController@index');
 Route::get('/get-partidas-para-calibrar', 'v1\PartidaController@indexParaCalibrar');
+Route::post('/cargar-certificado-partidas', 'v1\PartidaController@cargarCertificadoPdfPartida');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 Route::put('/edit-partida', 'v1\PartidaController@update');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');

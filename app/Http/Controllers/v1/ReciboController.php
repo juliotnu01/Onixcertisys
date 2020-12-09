@@ -10,6 +10,7 @@ use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\RecibosCollection;
+
 class ReciboController extends Controller
 {
     /**
@@ -58,8 +59,8 @@ class ReciboController extends Controller
                 'hasPartidas.hasIntrumento.hasAcreditacion'
             ])->get();
 
-            for ($i=0; $i < count($recibos) ; $i++) { 
-                $recibos[$i]['cliente'] = $recibos[$i]['hasCotizaicon']['hasCliente']; 
+            for ($i = 0; $i < count($recibos); $i++) {
+                $recibos[$i]['cliente'] = $recibos[$i]['hasCotizaicon']['hasCliente'];
             }
             $cliRecibos = $recibos->where('cliente.id', $cliente_id);
             return response()->json(new RecibosCollection($cliRecibos));

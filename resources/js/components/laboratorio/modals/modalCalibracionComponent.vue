@@ -35,7 +35,7 @@
                                 <v-text-field v-model="partida.vigencia" outlined label="Vencimiento" disabled />
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-                                <v-autocomplete v-if="partida.has_calibracion" v-model="partida.has_calibracion.tipo_de_calibracion" :items="item_tipo_de_calibracion" item-text="name" return-object outlined label="Tipo de calibracion" clearable />
+                                <v-autocomplete v-if="partida.has_calibracion" v-model="partida.has_calibracion.tipo_de_calibracion" :items="item_tipo_de_calibracion" item-text="name" item-value="name" return-object outlined label="Tipo de calibracion" clearable />
                                 <v-autocomplete v-else v-model="TipocalibracionSelected" :items="item_tipo_de_calibracion" item-text="name" return-object outlined label="Tipo de calibracion" clearable />
                             </v-col>
                             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
@@ -73,18 +73,22 @@
                             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                                 <v-btn color="primary" link :href="partida.ruta_doc_calibracion" target="_blank" block large class="mt-1">Documento de calibracion</v-btn>
                             </v-col>
-                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                            <v-col cols="12" xs="12" sm="12" md="6" lg="6" v-if="!partida.ruta_pdf_calibracion">
                                 <v-btn color="info" block @click="IniciarCalibracion">
                                     <v-icon>mdi-clock-start</v-icon>
                                     Iniciar calibracion
                                 </v-btn>
                             </v-col>
-                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                            <v-col cols="12" xs="12" sm="12" md="6" lg="6" v-if="!partida.ruta_pdf_calibracion" >
                                 <v-btn color="warning" block @click="terminarCalibracion(partida)">
                                     <v-icon>mdi-content-save</v-icon>
                                     finalizar calibracion
                                 </v-btn>
                             </v-col>
+                            <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-else block >
+                                <v-btn color="primary" block   target="_blank" :href="partida.ruta_pdf_calibracion"  > Visualizar Certificado <v-icon>mdi-eye</v-icon></v-btn>
+                            </v-col>
+
                         </v-row>
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -169,25 +173,26 @@ export default {
     methods: {
         async IniciarCalibracion() {
             try {
-                this.$store.commit("setDialogRealizacionCalibracion", true);
-                this.$store.commit("setPartidaParaCalibrar", this.partida);
-                // var model = {
-                //     tipo_de_calibracion: this.TipocalibracionSelected,
-                //     patron_de_calibracion: this.patronSelected,
-                //     procedimiento_de_calibracion: this.procedimientoSelected,
-                //     fecha_anomalia: this.date,
-                //     descripcion_anomalia: this.descripcion_anomalia,
-                //     observacion_tecnico: this.observacion_de_tecnico,
-                //     id_partida: this.partida.id
-                // }
-                // await this.services.calibracionServices.agregarCalibracion(model)
-                // await this.services.partidaServices.getlistpartidasParaCalibrar()
+                
+                var model = {
+                    tipo_de_calibracion: this.TipocalibracionSelected,
+                    patron_de_calibracion: this.patronSelected,
+                    procedimiento_de_calibracion: this.procedimientoSelected,
+                    fecha_anomalia: this.date,
+                    descripcion_anomalia: this.descripcion_anomalia,
+                    observacion_tecnico: this.observacion_de_tecnico,
+                    id_partida: this.partida.id
+                }
+                await this.services.calibracionServices.agregarCalibracion(model)
+                await this.services.partidaServices.getlistpartidasParaCalibrar()
             } catch (e) {
                 console.log(e)
             }
         },
         async terminarCalibracion(calibracion) {
             try {
+                this.$store.commit("setDialogRealizacionCalibracion", true);
+                this.$store.commit("setPartidaParaCalibrar", this.partida);
                 var model = {
                     id_calibracion: calibracion.has_calibracion.id,
                     partida: calibracion
