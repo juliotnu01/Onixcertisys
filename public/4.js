@@ -58,6 +58,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -104,6 +111,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         align: "center",
         sortable: true,
         value: "has_calibracion"
+      }, {
+        text: "Certificado de la calibracion",
+        align: "center",
+        sortable: true,
+        value: "ruta_pdf_calibracion"
       }, {
         text: "Accion",
         align: "center",
@@ -179,6 +191,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -400,29 +416,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                try {
-                  _this3.$store.commit("setDialogRealizacionCalibracion", true); // this.$store.commit("setPartidaParaCalibrar", this.partida);
-                  // var model = {
-                  //     id_calibracion: calibracion.has_calibracion.id,
-                  //     partida: calibracion
-                  // }
-                  // await this.services.calibracionServices.terminarCalibracion(model)
-                  // await this.services.partidaServices.getlistpartidasParaCalibrar()
+                _context3.prev = 0;
 
-                } catch (e) {
-                  console.log(e);
-                }
+                _this3.$store.commit("setDialogRealizacionCalibracion", true);
 
-              case 1:
+                _this3.$store.commit("setPartidaParaCalibrar", _this3.partida);
+
+                model = {
+                  id_calibracion: calibracion.has_calibracion.id,
+                  partida: calibracion
+                };
+                _context3.next = 6;
+                return _this3.services.calibracionServices.terminarCalibracion(model);
+
+              case 6:
+                _context3.next = 8;
+                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
+
+              case 8:
+                _context3.next = 13;
+                break;
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](0);
+                console.log(_context3.t0);
+
+              case 13:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
+        }, _callee3, null, [[0, 10]]);
       }))();
     },
     formatDate: function formatDate(date) {
@@ -457,9 +487,129 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: c:\\laragon\\www\\Onixcertisys\\resources\\js\\components\\laboratorio\\modals\\modalRealizacionCalibracion.vue: Unexpected token (56:8)\n\n\u001b[0m \u001b[90m 54 | \u001b[39m        \u001b[36mtry\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 55 | \u001b[39m          let data \u001b[33m=\u001b[39m \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 | \u001b[39m        } \u001b[36mcatch\u001b[39m (error) {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 | \u001b[39m          console\u001b[33m.\u001b[39mlog(error)\u001b[0m\n\u001b[0m \u001b[90m 58 | \u001b[39m        }\u001b[0m\n\u001b[0m \u001b[90m 59 | \u001b[39m\u001b[0m\n    at Parser._raise (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.unexpected (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:8966:16)\n    at Parser.parseExprAtom (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10282:20)\n    at Parser.parseExprSubscripts (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)\n    at Parser.parseMaybeAssign (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9620:21)\n    at c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9586:39\n    at Parser.allowInAnd (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11296:16)\n    at Parser.parseMaybeAssignAllowIn (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9586:17)\n    at Parser.parseVar (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12096:70)\n    at Parser.parseVarStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11905:10)\n    at Parser.parseStatementContent (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11497:21)\n    at Parser.parseStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseBlock (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11982:10)\n    at Parser.parseTryStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11873:23)\n    at Parser.parseStatementContent (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11487:21)\n    at Parser.parseStatement (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11430:17)\n    at Parser.parseBlockOrModuleBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:12012:25)\n    at Parser.parseBlockBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11998:10)\n    at Parser.parseBlock (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:11982:10)\n    at Parser.parseFunctionBody (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10962:24)\n    at Parser.parseFunctionBodyAndFinish (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10945:10)\n    at Parser.parseMethod (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10882:10)\n    at Parser.parseObjectMethod (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10807:19)\n    at Parser.parseObjPropValue (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10840:23)\n    at Parser.parsePropertyDefinition (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10771:10)\n    at Parser.parseObjectLike (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10664:25)\n    at Parser.parseExprAtom (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:10198:23)\n    at Parser.parseExprSubscripts (c:\\laragon\\www\\Onixcertisys\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      var_calibracion_pdf: null,
+      urlPdfCalibracion: ''
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_realizacion_calibracion", "partida"])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_realizacion_calibracion;
+      },
+      set: function set(val) {
+        this.$store.commit("setDialogRealizacionCalibracion", val);
+      }
+    }
+  }),
+  methods: {
+    cargarCertificado: function cargarCertificado() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var pdfCalibracion, _yield$axios$post, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                pdfCalibracion = new FormData();
+                pdfCalibracion.append("pdf_calibracion", _this.var_calibracion_pdf);
+                pdfCalibracion.append("partida", JSON.stringify(_this.partida));
+                _context.prev = 3;
+                _context.next = 6;
+                return axios.post("/api/cargar-certificado-partidas", pdfCalibracion, {
+                  headers: {
+                    "Content-Type": "multipart/form-data"
+                  }
+                });
+
+              case 6:
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
+                _this.urlPdfCalibracion = data;
+                _context.next = 11;
+                return _this.services.partidaServices.getlistpartidasParaCalibrar();
+
+              case 11:
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](3);
+                console.log(_context.t0);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[3, 13]]);
+      }))();
+    }
+  }
+});
 
 /***/ }),
 
@@ -504,6 +654,34 @@ var render = function() {
               search: _vm.search
             },
             scopedSlots: _vm._u([
+              {
+                key: "item.ruta_pdf_calibracion",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { staticClass: "text-center" },
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: {
+                              color: "primary",
+                              target: "_blank",
+                              href: item.ruta_pdf_calibracion,
+                              block: ""
+                            }
+                          },
+                          [_c("v-icon", [_vm._v("mdi-eye")])],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
               {
                 key: "item.accion",
                 fn: function(ref) {
@@ -988,6 +1166,7 @@ var render = function() {
                                               items:
                                                 _vm.item_tipo_de_calibracion,
                                               "item-text": "name",
+                                              "item-value": "name",
                                               "return-object": "",
                                               outlined: "",
                                               label: "Tipo de calibracion",
@@ -1488,78 +1667,122 @@ var render = function() {
                                     1
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "6",
-                                        lg: "6"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: { color: "info", block: "" },
-                                          on: { click: _vm.IniciarCalibracion }
-                                        },
-                                        [
-                                          _c("v-icon", [
-                                            _vm._v("mdi-clock-start")
-                                          ]),
-                                          _vm._v(
-                                            "\r\n                                    Iniciar calibracion\r\n                                "
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "6",
-                                        lg: "6"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
+                                  !_vm.partida.ruta_pdf_calibracion
+                                    ? _c(
+                                        "v-col",
                                         {
                                           attrs: {
-                                            color: "warning",
-                                            block: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.terminarCalibracion(
-                                                _vm.partida
-                                              )
-                                            }
+                                            cols: "12",
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "6",
+                                            lg: "6"
                                           }
                                         },
                                         [
-                                          _c("v-icon", [
-                                            _vm._v("mdi-content-save")
-                                          ]),
-                                          _vm._v(
-                                            "\r\n                                    finalizar calibracion\r\n                                "
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                color: "info",
+                                                block: ""
+                                              },
+                                              on: {
+                                                click: _vm.IniciarCalibracion
+                                              }
+                                            },
+                                            [
+                                              _c("v-icon", [
+                                                _vm._v("mdi-clock-start")
+                                              ]),
+                                              _vm._v(
+                                                "\r\n                                    Iniciar calibracion\r\n                                "
+                                              )
+                                            ],
+                                            1
                                           )
                                         ],
                                         1
                                       )
-                                    ],
-                                    1
-                                  )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.partida.ruta_pdf_calibracion
+                                    ? _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "6",
+                                            lg: "6"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                color: "warning",
+                                                block: ""
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.terminarCalibracion(
+                                                    _vm.partida
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("v-icon", [
+                                                _vm._v("mdi-content-save")
+                                              ]),
+                                              _vm._v(
+                                                "\r\n                                    finalizar calibracion\r\n                                "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "12",
+                                            lg: "12",
+                                            block: ""
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                color: "primary",
+                                                block: "",
+                                                target: "_blank",
+                                                href:
+                                                  _vm.partida
+                                                    .ruta_pdf_calibracion
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                " Visualizar Certificado "
+                                              ),
+                                              _c("v-icon", [_vm._v("mdi-eye")])
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
                                 ],
                                 1
                               )
@@ -1771,7 +1994,7 @@ var render = function() {
                         [
                           _c("v-file-input", {
                             attrs: {
-                              accept: "image/*",
+                              accept: "pdf/*",
                               label: "Cargar Certificado (.pdf)",
                               outlined: "",
                               small: "",
@@ -1803,7 +2026,10 @@ var render = function() {
                         [
                           _c(
                             "v-btn",
-                            { attrs: { color: "success", block: "" } },
+                            {
+                              attrs: { color: "success", block: "" },
+                              on: { click: _vm.cargarCertificado }
+                            },
                             [_vm._v("Registrar Certificado")]
                           )
                         ],
@@ -1824,7 +2050,7 @@ var render = function() {
                         [
                           _c("pdf", {
                             ref: "myPdfComponent",
-                            attrs: { src: "" }
+                            attrs: { src: _vm.urlPdfCalibracion }
                           })
                         ],
                         1
@@ -2056,6 +2282,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ 1:
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/*!**********************!*\
+  !*** http (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 4:
+/*!***********************!*\
+  !*** https (ignored) ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 5:
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

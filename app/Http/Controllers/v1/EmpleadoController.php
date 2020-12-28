@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Empleado,Partida};
+use App\Models\{Empleado, Partida};
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Arr;
@@ -11,6 +11,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Events\AsignacionOrdenDeServicio;
 use Illuminate\Http\File;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Excel;
+
 
 
 class EmpleadoController extends Controller
@@ -22,13 +26,13 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-       try {
+        try {
             $empleado = Empleado::all();
+
             return Response($empleado);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
-        } 
+        }
     }
 
     /**
@@ -50,7 +54,7 @@ class EmpleadoController extends Controller
     public function store(Request $request, Empleado $empleado)
     {
         try {
-            return DB::transaction(function() use ($request, $empleado){
+            return DB::transaction(function () use ($request, $empleado) {
 
                 $empleado->fecha_de_alta = $request['fecha_de_alta'];
                 $empleado->fecha_de_baja = $request['fecha_de_baja'];
@@ -65,13 +69,9 @@ class EmpleadoController extends Controller
                 $empleado->departamento = $request['departamento'];
                 $empleado->observaciones = $request['observaciones'];
                 $empleado->save();
-
-
-            },5);
-            
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -108,7 +108,7 @@ class EmpleadoController extends Controller
     {
 
         try {
-            return DB::transaction(function() use ($request, $empleado){
+            return DB::transaction(function () use ($request, $empleado) {
 
                 $empleado->find($request['id'])->update([
                     'fecha_de_alta' => $request['fecha_de_alta'],
@@ -125,12 +125,9 @@ class EmpleadoController extends Controller
                     'observaciones' => $request['observaciones'],
 
                 ]);
-
-            },5);
-            
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
@@ -143,46 +140,55 @@ class EmpleadoController extends Controller
     public function destroy($id,  Empleado $empleado)
     {
         try {
-            return DB::transaction(function() use ($id, $empleado){
+            return DB::transaction(function () use ($id, $empleado) {
                 $empleado->find($id)->delete();
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-            
         }
     }
 
     public function asignarTecnicoPartida(Request $request, Partida $partida)
     {
-        try {
-            return DB::transaction(function() use ($request, $partida){
-                if($request['tipo_documento'] == 1){
-                    $data = json_decode($request['model']);
-                    $nameFIle = $request->file('documento')->getClientOriginalName();
-                    Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
-                   $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
-                    $partida->find($data->id)->update([
-                        'empleado_id' =>  $data->has_empleado->id,
-                        'ruta_doc_calibracion' => $url
-                    ]);
-                    $asignacion = (Object)[
-                        "mensaje" => "tecnico asignado",
-                        "usuario" => 'Juliot'
-                    ];
-                    event(new AsignacionOrdenDeServicio($asignacion));
-                }else {
-                    $partida->find($request['model']['id'])->update([
-                        'empleado_id' =>  $request['model']['has_empleado']['id'],
-                        'ruta_doc_calibracion' => $request['documento']
-                    ]);
-                    
-                }
+        dd($request->file('data'));
+        
+        // $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+        // $spreadsheet = $reader->load($request->file('documento'));
+        // $reader->setLoadSheetsOnly("hoja de trabajo");
+        // // $spreadsheet = $reader->load($request->file('documento'));
+        // $spreadsheet->getActiveSheet()->getCell('C5')->setValue('Some value')->getValue();
+        // $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        // $writer->save("05featuredemo.xlsm");
+
+        // try {
+        //     return DB::transaction(function() use ($request, $partida){
+        //         if($request['tipo_documento'] == 1){
+        //             $data = json_decode($request['model']);
+        //             $nameFIle = $request->file('documento')->getClientOriginalName();
+        //             Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
+        //            $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
+        //             $partida->find($data->id)->update([
+        //                 'empleado_id' =>  $data->has_empleado->id,
+        //                 'ruta_doc_calibracion' => $url
+        //             ]);
+        //             $asignacion = (Object)[
+        //                 "mensaje" => "tecnico asignado",
+        //                 "usuario" => 'Juliot'
+        //             ];
+        //             event(new AsignacionOrdenDeServicio($asignacion));
+        //         }else {
+        //             $partida->find($request['model']['id'])->update([
+        //                 'empleado_id' =>  $request['model']['has_empleado']['id'],
+        //                 'ruta_doc_calibracion' => $request['documento']
+        //             ]);
+
+        //         }
 
 
-            },5);
-        } catch (Exception $e) {
-            throw new Exception($e, 1);
-            
-        }
+        //     },5);
+        // } catch (Exception $e) {
+        //     throw new Exception($e, 1);
+
+        // }
     }
 }
