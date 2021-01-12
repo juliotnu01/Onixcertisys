@@ -20,9 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/test-view', function () {
-    return view('testView');
-});
 Route::get('/home/{q?}', function () {
     return view('home');
 })->where('q', '.*');

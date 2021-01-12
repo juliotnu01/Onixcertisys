@@ -605,22 +605,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var workbook;
+        var fromData;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                workbook = xlsx__WEBPACK_IMPORTED_MODULE_2___default.a.read(_this.TipoDocumentoSelected.file, {
-                  bookType: "xlsm",
-                  bookSST: false,
-                  type: "array",
-                  bookVBA: true
-                });
-                console.log({
-                  workbook: workbook
+                fromData = new FormData();
+                fromData.append("documento", _this.TipoDocumentoSelected.file);
+                axios.post("http://localhost:4000/", fromData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data"
+                  }
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }

@@ -209,15 +209,221 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-add-factura': _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'modal-pdf-factura': _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "modal-add-factura": _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "modal-pdf-factura": _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -227,9 +433,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           cliente: {},
           moneda: {},
           vendedor: {},
-          forma_de_pago: '',
-          metodo_de_pago: '',
-          nota_de_factura: ''
+          forma_de_pago: "",
+          metodo_de_pago: "",
+          nota_de_factura: ""
         }
       },
       instrumentoSelected: {
@@ -239,13 +445,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: 1
         },
         instrumento: {},
-        importe: '',
-        marca: '',
-        modelo: '',
-        serie: ''
+        importe: "",
+        marca: "",
+        modelo: "",
+        serie: ""
       },
       tipo_de_factura: [{
-        name: 'Generar factura de las orde de servicio ',
+        name: "Generar factura de las orde de servicio ",
         value: 1
       } // {
       //     name: 'Generar factura en blanco',
@@ -254,45 +460,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ],
       tipoFacturaSelected: {},
       headers_partidas_factura: [{
-        text: 'Orden de Servicio',
+        text: "Orden de Servicio",
         sorable: false,
-        align: 'center',
-        value: 'reciboID'
+        align: "center",
+        value: "reciboID"
       }, {
-        text: 'Cotizacion',
+        text: "Cotizacion",
         sorable: false,
-        align: 'center',
-        value: 'cotizacionID'
+        align: "center",
+        value: "cotizacionID"
       }, {
-        text: 'ID',
+        text: "ID",
         sorable: false,
-        align: 'center',
-        value: 'informe_id'
+        align: "center",
+        value: "informe_id"
       }, {
-        text: 'Concepto',
+        text: "Concepto",
         sorable: false,
-        align: 'center',
-        value: 'servicio'
+        align: "center",
+        value: "servicio"
       }, {
-        text: 'Instrumento',
+        text: "Instrumento",
         sorable: false,
-        align: 'center',
-        value: 'has_intrumento'
+        align: "center",
+        value: "has_intrumento"
       }, {
-        text: 'Estado de la calibracion',
+        text: "Estado de la calibracion",
         sorable: false,
-        align: 'center',
-        value: 'has_calibracion'
+        align: "center",
+        value: "has_calibracion"
       }, {
-        text: 'Precio unitario',
+        text: "Precio unitario",
         sorable: false,
-        align: 'center',
-        value: 'has_intrumento.precio_venta'
+        align: "center",
+        value: "has_intrumento.precio_venta"
       }, {
-        text: 'Importe',
+        text: "Importe",
         sorable: false,
-        align: 'center',
-        value: 'importe'
+        align: "center",
+        value: "importe"
       } // {
       //     text: 'Accion',
       //     sorable: false,
@@ -319,7 +525,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       editPrecioVenta: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'recibos', 'clientes', 'monedas', 'empleados', 'instrumentos', 'clientes', 'recibos_cliente'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "clientes", "monedas", "empleados", "instrumentos", "clientes", "recibos_cliente"])), {}, {
     var_computed_subtotal: {
       get: function get() {
         var result = 0;
@@ -542,7 +748,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   nota: _this5.cotizacion_partida.nota_de_factura
                 };
 
-                _this5.$store.commit('setDialogFactura', dataFactura);
+                _this5.$store.commit("setDialogFactura", dataFactura);
 
                 _this5.$store.commit("setDialogAddFactura", true);
 
@@ -992,15 +1198,15 @@ var render = function() {
                                                 ),
                                                 [
                                                   _vm._v(
-                                                    "\r\n                                        Orden de servicio: " +
+                                                    "\n                    Orden de servicio: " +
                                                       _vm._s(data.item.id) +
-                                                      " - " +
+                                                      " -\n                    " +
                                                       _vm._s(
                                                         data.item.has_cotizaicon
                                                           .has_cliente
                                                           .razon_social
                                                       ) +
-                                                      "\r\n                                        "
+                                                      "\n                    "
                                                   ),
                                                   data.item.estado ===
                                                   "pendiente"
@@ -1025,11 +1231,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            " +
+                                                            "\n                      " +
                                                               _vm._s(
                                                                 data.item.estado
                                                               ) +
-                                                              "\r\n                                        "
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       )
@@ -1054,11 +1260,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            " +
+                                                            "\n                      " +
                                                               _vm._s(
                                                                 data.item.estado
                                                               ) +
-                                                              "\r\n                                        "
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       )
@@ -1075,16 +1281,16 @@ var render = function() {
                                               typeof data.item !== "object"
                                                 ? [
                                                     _vm._v(
-                                                      "\r\n                                        Orden de servicio: " +
+                                                      "\n                    Orden de servicio: " +
                                                         _vm._s(data.item.id) +
-                                                        " - " +
+                                                        " -\n                    " +
                                                         _vm._s(
                                                           data.item
                                                             .has_cotizaicon
                                                             .has_cliente
                                                             .razon_social
                                                         ) +
-                                                        "\r\n                                        "
+                                                        "\n                    "
                                                     ),
                                                     data.item.estado ===
                                                     "pendiente"
@@ -1110,12 +1316,12 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\r\n                                            " +
+                                                              "\n                      " +
                                                                 _vm._s(
                                                                   data.item
                                                                     .estado
                                                                 ) +
-                                                                "\r\n                                        "
+                                                                "\n                    "
                                                             )
                                                           ]
                                                         )
@@ -1141,28 +1347,28 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\r\n                                            " +
+                                                              "\n                      " +
                                                                 _vm._s(
                                                                   data.item
                                                                     .estado
                                                                 ) +
-                                                                "\r\n                                        "
+                                                                "\n                    "
                                                             )
                                                           ]
                                                         )
                                                   ]
                                                 : [
                                                     _vm._v(
-                                                      "\r\n                                        Orden de servicio: " +
+                                                      "\n                    Orden de servicio: " +
                                                         _vm._s(data.item.id) +
-                                                        " - " +
+                                                        " -\n                    " +
                                                         _vm._s(
                                                           data.item
                                                             .has_cotizaicon
                                                             .has_cliente
                                                             .razon_social
                                                         ) +
-                                                        "\r\n                                        "
+                                                        "\n                    "
                                                     ),
                                                     data.item.estado ===
                                                     "pendiente"
@@ -1188,12 +1394,12 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\r\n                                            " +
+                                                              "\n                      " +
                                                                 _vm._s(
                                                                   data.item
                                                                     .estado
                                                                 ) +
-                                                                "\r\n                                        "
+                                                                "\n                    "
                                                             )
                                                           ]
                                                         )
@@ -1219,12 +1425,12 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\r\n                                            " +
+                                                              "\n                      " +
                                                                 _vm._s(
                                                                   data.item
                                                                     .estado
                                                                 ) +
-                                                                "\r\n                                        "
+                                                                "\n                    "
                                                             )
                                                           ]
                                                         )
@@ -1235,7 +1441,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      3206093725
+                                      299028559
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -1419,29 +1625,19 @@ var render = function() {
                       return [
                         _c("td", { staticClass: "text-left" }, [
                           _vm._v(
-                            "\r\n                        " +
+                            "\n            " +
                               _vm._s(item.has_intrumento.nombre)
                           ),
                           _c("br"),
                           _vm._v(
-                            "\r\n                        ID:" +
-                              _vm._s(item.identificacion)
+                            "\n            ID:" + _vm._s(item.identificacion)
                           ),
                           _c("br"),
-                          _vm._v(
-                            "\r\n                        Marca:" +
-                              _vm._s(item.marca)
-                          ),
+                          _vm._v("\n            Marca:" + _vm._s(item.marca)),
                           _c("br"),
-                          _vm._v(
-                            "\r\n                        Modelo:" +
-                              _vm._s(item.modelo)
-                          ),
+                          _vm._v("\n            Modelo:" + _vm._s(item.modelo)),
                           _c("br"),
-                          _vm._v(
-                            "\r\n                        Serie:" +
-                              _vm._s(item.serie)
-                          ),
+                          _vm._v("\n            Serie:" + _vm._s(item.serie)),
                           _c("br")
                         ])
                       ]
@@ -1453,11 +1649,7 @@ var render = function() {
                       var item = ref.item
                       return [
                         _c("td", { staticClass: "text-left" }, [
-                          _vm._v(
-                            "\r\n                        Servicio de " +
-                              _vm._s(item.servicio) +
-                              "\r\n                    "
-                          )
+                          _vm._v("Servicio de " + _vm._s(item.servicio))
                         ])
                       ]
                     }
@@ -1508,7 +1700,7 @@ var render = function() {
                       return [
                         _c("td", { attrs: { clas: "text-left" } }, [
                           _vm._v(
-                            "\r\n                        " +
+                            "\n            " +
                               _vm._s(
                                 _vm._f("numberFormat")(
                                   item.importe,
@@ -1518,7 +1710,7 @@ var render = function() {
                                     : ""
                                 )
                               ) +
-                              "\r\n                    "
+                              "\n          "
                           )
                         ])
                       ]
@@ -1546,7 +1738,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\r\n                            por iniciar\r\n                        "
+                                      "\n              por iniciar\n            "
                                     )
                                   ]
                                 )
@@ -1563,9 +1755,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\r\n                            " +
+                                      "\n              " +
                                         _vm._s(item.has_calibracion.estado) +
-                                        "\r\n                        "
+                                        "\n            "
                                     )
                                   ]
                                 )
@@ -1581,9 +1773,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\r\n                            " +
+                                      "\n              " +
                                         _vm._s(item.has_calibracion.estado) +
-                                        "\r\n                        "
+                                        "\n            "
                                     )
                                   ]
                                 )
@@ -1618,7 +1810,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "SUBTOTAL: " +
+                                        "\n                  SUBTOTAL:\n                  " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_subtotal,
@@ -1629,7 +1821,8 @@ var render = function() {
                                                     .has_moneda.clave
                                                 : ""
                                             )
-                                          )
+                                          ) +
+                                          "\n                "
                                       )
                                     ])
                                   ]
@@ -1650,7 +1843,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "IVA : " +
+                                        "\n                  IVA :\n                  " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_iva,
@@ -1661,7 +1854,8 @@ var render = function() {
                                                     .has_moneda.clave
                                                 : ""
                                             )
-                                          )
+                                          ) +
+                                          "\n                "
                                       )
                                     ])
                                   ]
@@ -1682,7 +1876,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "TOTAL: " +
+                                        "\n                  TOTAL:\n                  " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_total,
@@ -1693,7 +1887,8 @@ var render = function() {
                                                     .has_moneda.clave
                                                 : ""
                                             )
-                                          )
+                                          ) +
+                                          "\n                "
                                       )
                                     ])
                                   ]

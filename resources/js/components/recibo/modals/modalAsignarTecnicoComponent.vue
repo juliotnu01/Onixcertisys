@@ -192,7 +192,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import XLSX from "xlsx";
+import xlsx from "xlsx";
 
 export default {
   data() {
@@ -228,14 +228,11 @@ export default {
   },
   methods: {
     async AsignarTecnico() {
-      var workbook = XLSX.read(this.TipoDocumentoSelected.file, {
-        bookType: "xlsm",
-        bookSST: false,
-        type: "array",
-        bookVBA: true,
+      var fromData = new FormData();
+      fromData.append("documento", this.TipoDocumentoSelected.file);
+      axios.post("http://localhost:4000/", fromData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-
-      console.log({ workbook });
     },
   },
 };
