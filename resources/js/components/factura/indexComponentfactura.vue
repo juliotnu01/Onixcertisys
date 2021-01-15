@@ -226,6 +226,9 @@
               </v-col>
               <v-col cols="12" xs="12" sm="12" md="12">
                 <v-btn color="success" @click="TotalizarFactura">Totalizar</v-btn>
+                <v-btn color="success" @click="dialogAddProducto = true"
+                  >Agregar items</v-btn
+                >
               </v-col>
             </v-row>
           </v-col>
@@ -377,6 +380,15 @@
     <modal-add-factura />
     <modal-pdf-factura />
     <notificacion />
+    <v-dialog v-model="dialogAddProducto">
+      <v-card>
+        <v-row>
+          <v-col>
+            <v-text-fields laberl="producto" />
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -393,6 +405,7 @@ export default {
   },
   data() {
     return {
+      dialogAddProducto: false,
       model: {
         recibo: [],
         factura_nueva: {

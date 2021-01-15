@@ -1,11 +1,11 @@
 <template>
-  <cliente/>
+  <cliente />
 </template>
 <script>
-import indexComponentCliente from '../../config/datosGenerales/cliente/indexClientecomponent.vue'
+import indexComponentCliente from "../../config/datosGenerales/cliente/indexClientecomponent.vue";
 export default {
-    components:{
-        'cliente': indexComponentCliente
-    }
-}
+  components: {
+    cliente: indexComponentCliente,
+  },
+};
 </script>

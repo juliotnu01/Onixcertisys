@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,174 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modals_modalCalibracionComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalCalibracionComponent.vue */ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue");
-/* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalAsignarTecnicoComponent */ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue");
+/* harmony import */ var _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalViewPdfComponent */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue");
+/* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    'modal-calibracion': _modals_modalCalibracionComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
-  data: function data() {
-    return {
-      search: '',
-      headers: [{
-        text: "Recibo",
-        align: "center",
-        sortable: true,
-        value: "has_recibo.id"
-      }, {
-        text: "Informe",
-        align: "center",
-        sortable: true,
-        value: "informe_id"
-      }, {
-        text: "Instrumento",
-        align: "center",
-        sortable: true,
-        value: "has_intrumento.nombre"
-      }, {
-        text: "Cliente",
-        align: "center",
-        sortable: true,
-        value: "has_recibo.has_cotizaicon.has_cliente.razon_social"
-      }, {
-        text: "Magnitud",
-        align: "center",
-        sortable: true,
-        value: "has_intrumento.has_magnitud.nombre"
-      }, {
-        text: "Tenico",
-        align: "center",
-        sortable: true,
-        value: "has_tecnico.nombre_completo"
-      }, {
-        text: "Estado de la calibracion",
-        align: "center",
-        sortable: true,
-        value: "has_calibracion"
-      }, {
-        text: "Certificado de la calibracion",
-        align: "center",
-        sortable: true,
-        value: "ruta_pdf_calibracion"
-      }, {
-        text: "Accion",
-        align: "center",
-        sortable: false,
-        value: "accion"
-      }]
-    };
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'partidas', 'partidas_para_calibrar'])),
-  mounted: function mounted() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _this.services.partidaServices.getlistpartidasParaCalibrar();
-
-            case 2:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  methods: {
-    Calibrar: function Calibrar(item) {
-      this.$store.commit('setDialogCalibracion', true);
-      this.$store.commit('setPartida', item);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modalRealizacionCalibracion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalRealizacionCalibracion.vue */ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue");
-
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -300,51 +136,119 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-realizacion-calibracion': _modalRealizacionCalibracion_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      patronSelected: '',
-      procedimientoSelected: '',
-      menu1: false,
-      date: new Date().toISOString().substr(0, 10),
-      dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
-      item_tipo_de_calibracion: [{
-        name: 'En laboratrio',
-        value: 1
-      }, {
-        name: 'En campo',
-        value: 2
-      }],
-      TipocalibracionSelected: {},
-      descripcion_anomalia: '',
-      observacion_de_tecnico: '',
-      fechaIniciaCalibracion: '',
-      terminaCalibracion: ''
+      userPrintSelected: {},
+      active: [],
+      avatar: null,
+      open: [],
+      users: [],
+      search: null,
+      magnitudSelected: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", 'patrones', 'procedimientos'])), {}, {
-    computedDateFormatted: function computedDateFormatted() {
-      return this.formatDate(this.date);
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "magnitudes"])), {}, {
+    items: function items() {
+      return [{
+        name: "Ordenes de servicios",
+        children: this.users
+      }];
     },
-    openDialog: {
-      get: function get() {
-        return this.dialog_calibracion;
-      },
-      set: function set(val) {
-        this.$store.commit("setDialogCalibracion", val);
-      }
+    selected: function selected() {
+      if (!this.active.length) return undefined;
+      var id = this.active[0];
+      return this.recibos.find(function (recibo) {
+        return recibo.id === id;
+      });
     }
   }),
-  watch: {
-    date: function date(val) {
-      this.dateFormatted = this.formatDate(this.date);
-    }
-  },
   mounted: function mounted() {
     var _this = this;
 
@@ -354,11 +258,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.services.patronServices.getlistPatrones();
+              return _this.services.reciboServices.getlistRecibos();
 
             case 2:
               _context.next = 4;
-              return _this.services.procedimientoServices.getlistProcedimientos();
+              return _this.services.magnitudesServices.getListMagnitudes();
 
             case 4:
             case "end":
@@ -369,123 +273,348 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    IniciarCalibracion: function IniciarCalibracion() {
+    AsignarTecnico: function AsignarTecnico(item) {
+      this.$store.commit("setPartidaTecnico", item);
+      this.$store.commit("setDialogAsignarTecnico", true);
+    },
+    imprimirRecibo: function imprimirRecibo(item) {
+      this.services.reciboServices.imprimirRecibo(item);
+    },
+    imprimirReciboUser: function imprimirReciboUser(item, user) {
+      this.services.reciboServices.imprimirReciboUser(item, user);
+    },
+    fetchUsers: function fetchUsers(item) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                model = {
-                  tipo_de_calibracion: _this2.TipocalibracionSelected,
-                  patron_de_calibracion: _this2.patronSelected,
-                  procedimiento_de_calibracion: _this2.procedimientoSelected,
-                  fecha_anomalia: _this2.date,
-                  descripcion_anomalia: _this2.descripcion_anomalia,
-                  observacion_tecnico: _this2.observacion_de_tecnico,
-                  id_partida: _this2.partida.id
-                };
-                _context2.next = 4;
-                return _this2.services.calibracionServices.agregarCalibracion(model);
+                return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
+                  item.children.push({
+                    name: "Orden de servicio: ".concat(recibo.id, " - Cliente: ").concat(recibo.has_cotizaicon.has_cliente.razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10)),
+                    id: recibo.id
+                  });
+                }));
 
-              case 4:
-                _context2.next = 6;
-                return _this2.services.partidaServices.getlistpartidasParaCalibrar();
-
-              case 6:
-                _context2.next = 11;
-                break;
-
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
-
-              case 11:
+              case 1:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2);
       }))();
     },
-    terminarCalibracion: function terminarCalibracion(calibracion) {
+    reload: function reload() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
+                _context3.next = 2;
+                return _this3.services.reciboServices.getlistRecibos();
 
-                _this3.$store.commit("setDialogRealizacionCalibracion", true);
+              case 2:
+                _this3.fetchUsers(_this3.items[0]);
 
-                _this3.$store.commit("setPartidaParaCalibrar", _this3.partida);
-
-                model = {
-                  id_calibracion: calibracion.has_calibracion.id,
-                  partida: calibracion
-                };
-                _context3.next = 6;
-                return _this3.services.calibracionServices.terminarCalibracion(model);
-
-              case 6:
-                _context3.next = 8;
-                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
-
-              case 8:
-                _context3.next = 13;
-                break;
-
-              case 10:
-                _context3.prev = 10;
-                _context3.t0 = _context3["catch"](0);
-                console.log(_context3.t0);
-
-              case 13:
+              case 3:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 10]]);
+        }, _callee3);
       }))();
-    },
-    formatDate: function formatDate(date) {
-      if (!date) return null;
-
-      var _date$split = date.split('-'),
-          _date$split2 = _slicedToArray(_date$split, 3),
-          year = _date$split2[0],
-          month = _date$split2[1],
-          day = _date$split2[2];
-
-      return "".concat(day, "/").concat(month, "/").concat(year);
-    },
-    parseDate: function parseDate(date) {
-      if (!date) return null;
-
-      var _date$split3 = date.split('/'),
-          _date$split4 = _slicedToArray(_date$split3, 3),
-          month = _date$split4[0],
-          day = _date$split4[1],
-          year = _date$split4[2];
-
-      return "".concat(year, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      TipoDocumentoSelected: {},
+      item_Tipo_documento_para_subir: [{
+        name: "Cargar Documento",
+        value: 1,
+        file: {}
+      }, {
+        name: "Colocar enlace directo al documento",
+        value: 2,
+        file: {}
+      }]
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados"])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_asignar_tecnico;
+      },
+      set: function set(val) {
+        this.$store.commit("setDialogAsignarTecnico", val);
+      }
+    }
+  }),
+  mounted: function mounted() {// this.services.empleadoServices.getlistEmpleados();
+  },
+  methods: {
+    AsignarTecnico: function AsignarTecnico() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var fromData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                fromData = new FormData();
+                fromData.append("documento", _this.TipoDocumentoSelected.file);
+                axios.post("http://localhost:4000/", fromData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -524,22 +653,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -547,76 +660,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
-    return {
-      var_calibracion_pdf: null,
-      urlPdfCalibracion: ''
-    };
+    return {};
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_realizacion_calibracion", "partida"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_pdf_recibos", 'recibo_print'])), {}, {
     openDialog: {
       get: function get() {
-        return this.dialog_realizacion_calibracion;
+        return this.dialog_pdf_recibos;
       },
       set: function set(val) {
-        this.$store.commit("setDialogRealizacionCalibracion", val);
+        this.$store.commit("setdialogPDfRecibos", val);
       }
     }
   }),
-  methods: {
-    cargarCertificado: function cargarCertificado() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var pdfCalibracion, _yield$axios$post, data;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                pdfCalibracion = new FormData();
-                pdfCalibracion.append("pdf_calibracion", _this.var_calibracion_pdf);
-                pdfCalibracion.append("partida", JSON.stringify(_this.partida));
-                _context.prev = 3;
-                _context.next = 6;
-                return axios.post("/api/cargar-certificado-partidas", pdfCalibracion, {
-                  headers: {
-                    "Content-Type": "multipart/form-data"
-                  }
-                });
-
-              case 6:
-                _yield$axios$post = _context.sent;
-                data = _yield$axios$post.data;
-                _this.urlPdfCalibracion = data;
-                _context.next = 11;
-                return _this.services.partidaServices.getlistpartidasParaCalibrar();
-
-              case 11:
-                _context.next = 16;
-                break;
-
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](3);
-                console.log(_context.t0);
-
-              case 16:
-              case "end":
-                return _context.stop();
-            }
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, null, [[3, 13]]);
-      }))();
-    }
-  }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {}
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913& ***!
+  \******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -634,244 +711,118 @@ var render = function() {
       _c(
         "v-card",
         [
-          _c("v-text-field", {
-            attrs: { label: "Buscar Instrumento", outlined: "" },
-            model: {
-              value: _vm.search,
-              callback: function($$v) {
-                _vm.search = $$v
-              },
-              expression: "search"
-            }
-          }),
-          _vm._v(" "),
-          _c("v-data-table", {
-            staticClass: "elevation-1",
-            attrs: {
-              headers: _vm.headers,
-              items: _vm.partidas_para_calibrar,
-              "items-per-page": 5,
-              search: _vm.search
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "item.ruta_pdf_calibracion",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { staticClass: "text-center" },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: {
-                              color: "primary",
-                              target: "_blank",
-                              href: item.ruta_pdf_calibracion,
-                              block: ""
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("mdi-eye")])],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                }
-              },
-              {
-                key: "item.accion",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { staticClass: "text-rigth" },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { icon: "", color: "primary" },
-                            on: {
-                              click: function($event) {
-                                return _vm.Calibrar(item)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("mdi-crosshairs-gps")])],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                }
-              },
-              {
-                key: "item.has_calibracion",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { staticClass: "text-rigth" },
-                      [
-                        !item.has_calibracion
-                          ? _c(
-                              "v-alert",
-                              {
-                                attrs: {
-                                  dense: "",
-                                  outlined: "",
-                                  type: "error"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                        por iniciar\r\n                    "
-                                )
-                              ]
-                            )
-                          : item.has_calibracion.estado === "en proceso"
-                          ? _c(
-                              "v-alert",
-                              {
-                                attrs: {
-                                  dense: "",
-                                  outlined: "",
-                                  type: "warning"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                        " +
-                                    _vm._s(item.has_calibracion.estado) +
-                                    "\r\n                    "
-                                )
-                              ]
-                            )
-                          : _c(
-                              "v-alert",
-                              {
-                                attrs: {
-                                  dense: "",
-                                  outlined: "",
-                                  type: "success"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                        " +
-                                    _vm._s(item.has_calibracion.estado) +
-                                    "\r\n                    "
-                                )
-                              ]
-                            )
-                      ],
-                      1
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("modal-calibracion"),
-      _vm._v(" "),
-      _c("notificacion")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854&":
-/*!***********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854& ***!
-  \***********************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-app",
-    [
-      _c(
-        "v-dialog",
-        {
-          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
-          model: {
-            value: _vm.openDialog,
-            callback: function($$v) {
-              _vm.openDialog = $$v
-            },
-            expression: "openDialog"
-          }
-        },
-        [
           _c(
-            "v-card",
+            "v-card-title",
+            { staticClass: "indigo white--text headline" },
             [
-              _c(
-                "v-toolbar",
-                { attrs: { dark: "", color: "primary" } },
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { icon: "", dark: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.openDialog = false
+              _c("v-text-field", {
+                attrs: {
+                  label: "Search Company Directory",
+                  dark: "",
+                  flat: "",
+                  "solo-inverted": "",
+                  "hide-details": "",
+                  clearable: "",
+                  "clear-icon": "mdi-close-circle-outline"
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { staticClass: "pa-4", attrs: { justify: "space-between" } },
+            [
+              Object.entries(this.recibos).length > 0
+                ? _c(
+                    "v-col",
+                    { attrs: { cols: "6" } },
+                    [
+                      _c("v-treeview", {
+                        attrs: {
+                          active: _vm.active,
+                          search: _vm.search,
+                          items: _vm.items,
+                          "load-children": _vm.fetchUsers,
+                          open: _vm.open,
+                          activatable: "",
+                          color: "warning",
+                          "open-on-click": "",
+                          transition: ""
+                        },
+                        on: {
+                          "update:active": function($event) {
+                            _vm.active = $event
+                          },
+                          "update:open": function($event) {
+                            _vm.open = $event
+                          }
                         }
-                      }
-                    },
-                    [_c("v-icon", [_vm._v("mdi-close")])],
+                      })
+                    ],
                     1
                   )
-                ],
-                1
-              ),
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-divider", { attrs: { vertical: "" } }),
               _vm._v(" "),
               _c(
-                "v-container",
+                "v-col",
+                { staticClass: "d-flex text-center" },
                 [
-                  Object.entries(this.partida).length > 0
-                    ? _c(
-                        "v-row",
-                        [
-                          _c(
-                            "v-col",
+                  _c(
+                    "v-scroll-y-transition",
+                    { attrs: { mode: "out-in" } },
+                    [
+                      !_vm.selected
+                        ? _c(
+                            "div",
                             {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "7",
-                                lg: "7"
-                              }
+                              staticClass:
+                                "title grey--text text--lighten-1 font-weight-light",
+                              staticStyle: { "align-self": "center" }
                             },
                             [
+                              _vm._v(
+                                "\n            Seleccionar Orden de servicio\n          "
+                              )
+                            ]
+                          )
+                        : _c(
+                            "v-card",
+                            { key: _vm.selected.id, staticClass: "pt-6" },
+                            [
+                              _c("v-card-text", [
+                                _c("h6", { staticClass: "headline mb-2" }, [
+                                  _c("strong", [_vm._v("Cliente: ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .razon_social
+                                      ) +
+                                      " "
+                                  ),
+                                  _c("br")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
                               _c(
                                 "v-row",
+                                {
+                                  staticClass: "text-left",
+                                  attrs: { tag: "v-card-text" }
+                                },
                                 [
                                   _c(
                                     "v-col",
@@ -880,761 +831,403 @@ var render = function() {
                                         cols: "12",
                                         xs: "12",
                                         sm: "12",
-                                        md: "4",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Recibo",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.has_recibo.id,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida.has_recibo,
-                                              "id",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "partida.has_recibo.id"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "4",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Partida",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.id,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.partida, "id", $$v)
-                                          },
-                                          expression: "partida.id"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "4",
-                                        lg: "6"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Instrumento",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.partida.has_intrumento.nombre,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida.has_intrumento,
-                                              "nombre",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "partida.has_intrumento.nombre"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "3",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-text-field", {
-                                            attrs: {
-                                              outlined: "",
-                                              label: "Inicia la Calibracion",
-                                              disabled: ""
-                                            },
-                                            model: {
-                                              value: _vm.partida.has_calibracion.fecha_inicio_calibracion.substr(
-                                                0,
-                                                10
-                                              ),
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion
-                                                    .fecha_inicio_calibracion,
-                                                  "substr(0,10)",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.fecha_inicio_calibracion.substr(0,10)"
-                                            }
-                                          })
-                                        : _c("v-text-field", {
-                                            attrs: {
-                                              outlined: "",
-                                              label: "Inicia la Calibracion",
-                                              disabled: ""
-                                            },
-                                            model: {
-                                              value: _vm.fechaIniciaCalibracion,
-                                              callback: function($$v) {
-                                                _vm.fechaIniciaCalibracion = $$v
-                                              },
-                                              expression:
-                                                "fechaIniciaCalibracion"
-                                            }
-                                          })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "3",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-text-field", {
-                                            attrs: {
-                                              outlined: "",
-                                              label: "Termina la Calibracion",
-                                              disabled: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .fecha_terminacion_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "fecha_terminacion_calibracion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.fecha_terminacion_calibracion"
-                                            }
-                                          })
-                                        : _c("v-text-field", {
-                                            attrs: {
-                                              outlined: "",
-                                              label: "Termina la Calibracion",
-                                              disabled: ""
-                                            },
-                                            model: {
-                                              value: _vm.terminaCalibracion,
-                                              callback: function($$v) {
-                                                _vm.terminaCalibracion = $$v
-                                              },
-                                              expression: "terminaCalibracion"
-                                            }
-                                          })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "3",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Vigencia",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.vigencia,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida,
-                                              "vigencia",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "partida.vigencia"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "3",
-                                        lg: "3"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Vencimiento",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.vigencia,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida,
-                                              "vigencia",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "partida.vigencia"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
                                         md: "12",
                                         lg: "12"
                                       }
                                     },
                                     [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-autocomplete", {
-                                            attrs: {
-                                              items:
-                                                _vm.item_tipo_de_calibracion,
-                                              "item-text": "name",
-                                              "item-value": "name",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Tipo de calibracion",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .tipo_de_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "tipo_de_calibracion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.tipo_de_calibracion"
-                                            }
-                                          })
-                                        : _c("v-autocomplete", {
-                                            attrs: {
-                                              items:
-                                                _vm.item_tipo_de_calibracion,
-                                              "item-text": "name",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Tipo de calibracion",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.TipocalibracionSelected,
-                                              callback: function($$v) {
-                                                _vm.TipocalibracionSelected = $$v
-                                              },
-                                              expression:
-                                                "TipocalibracionSelected"
-                                            }
-                                          })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "12",
-                                        lg: "12"
-                                      }
-                                    },
-                                    [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.patrones,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Patron a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .patron_de_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "patron_de_calibracion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.patron_de_calibracion"
-                                            }
-                                          })
-                                        : _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.patrones,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Patron a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value: _vm.patronSelected,
-                                              callback: function($$v) {
-                                                _vm.patronSelected = $$v
-                                              },
-                                              expression: "patronSelected"
-                                            }
-                                          })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "12",
-                                        lg: "12"
-                                      }
-                                    },
-                                    [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.procedimientos,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Procedimiento a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .procedimiento_de_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "procedimiento_de_calibracion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.procedimiento_de_calibracion"
-                                            }
-                                          })
-                                        : _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.procedimientos,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Procedimiento a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value: _vm.procedimientoSelected,
-                                              callback: function($$v) {
-                                                _vm.procedimientoSelected = $$v
-                                              },
-                                              expression:
-                                                "procedimientoSelected"
-                                            }
-                                          })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "12",
-                                        lg: "12"
-                                      }
-                                    },
-                                    [
-                                      _vm.partida.has_calibracion
-                                        ? _c(
-                                            "v-menu",
-                                            {
-                                              ref: "menu1",
-                                              attrs: {
-                                                "close-on-content-click": false,
-                                                transition: "scale-transition",
-                                                "offset-y": "",
-                                                "max-width": "290px",
-                                                "min-width": "290px"
-                                              },
-                                              scopedSlots: _vm._u(
-                                                [
-                                                  {
-                                                    key: "activator",
-                                                    fn: function(ref) {
-                                                      var on = ref.on
-                                                      var attrs = ref.attrs
-                                                      return [
-                                                        _c(
-                                                          "v-text-field",
-                                                          _vm._g(
-                                                            _vm._b(
-                                                              {
-                                                                attrs: {
-                                                                  label:
-                                                                    "Fecha de anomalia",
-                                                                  outlined: "",
-                                                                  "prepend-icon":
-                                                                    "mdi-calendar"
-                                                                },
-                                                                on: {
-                                                                  blur: function(
-                                                                    $event
-                                                                  ) {
-                                                                    _vm.date = _vm.parseDate(
-                                                                      _vm.dateFormatted
-                                                                    )
-                                                                  }
-                                                                },
-                                                                model: {
-                                                                  value:
-                                                                    _vm.dateFormatted,
-                                                                  callback: function(
-                                                                    $$v
-                                                                  ) {
-                                                                    _vm.dateFormatted = $$v
-                                                                  },
-                                                                  expression:
-                                                                    "dateFormatted"
-                                                                }
-                                                              },
-                                                              "v-text-field",
-                                                              attrs,
-                                                              false
-                                                            ),
-                                                            on
-                                                          )
+                                      _c("v-simple-table", {
+                                        attrs: { dense: "" },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "default",
+                                            fn: function() {
+                                              return [
+                                                _c("thead", [
+                                                  _c("tr", [
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Partida")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Identificación")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Servicio")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Tipo")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Estado de la Calibracion"
                                                         )
                                                       ]
-                                                    }
-                                                  }
-                                                ],
-                                                null,
-                                                false,
-                                                1048079218
-                                              ),
-                                              model: {
-                                                value: _vm.menu1,
-                                                callback: function($$v) {
-                                                  _vm.menu1 = $$v
-                                                },
-                                                expression: "menu1"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(" "),
-                                              _c("v-date-picker", {
-                                                attrs: { "no-title": "" },
-                                                on: {
-                                                  input: function($event) {
-                                                    _vm.menu1 = false
-                                                  }
-                                                },
-                                                model: {
-                                                  value: _vm.partida.has_calibracion.fecha_anomalia.substr(
-                                                    0,
-                                                    10
-                                                  ),
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.partida
-                                                        .has_calibracion
-                                                        .fecha_anomalia,
-                                                      "substr(0, 10)",
-                                                      $$v
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Asignar")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      {
+                                                        staticClass:
+                                                          "text-center"
+                                                      },
+                                                      [_vm._v("Acción")]
                                                     )
-                                                  },
-                                                  expression:
-                                                    "partida.has_calibracion.fecha_anomalia.substr(0, 10)"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        : _c(
-                                            "v-menu",
-                                            {
-                                              ref: "menu1",
-                                              attrs: {
-                                                "close-on-content-click": false,
-                                                transition: "scale-transition",
-                                                "offset-y": "",
-                                                "max-width": "290px",
-                                                "min-width": "290px"
-                                              },
-                                              scopedSlots: _vm._u(
-                                                [
-                                                  {
-                                                    key: "activator",
-                                                    fn: function(ref) {
-                                                      var on = ref.on
-                                                      var attrs = ref.attrs
-                                                      return [
-                                                        _c(
-                                                          "v-text-field",
-                                                          _vm._g(
-                                                            _vm._b(
-                                                              {
-                                                                attrs: {
-                                                                  label:
-                                                                    "Fecha de anomalia",
-                                                                  outlined: "",
-                                                                  "prepend-icon":
-                                                                    "mdi-calendar"
-                                                                },
-                                                                on: {
-                                                                  blur: function(
-                                                                    $event
-                                                                  ) {
-                                                                    _vm.date = _vm.parseDate(
-                                                                      _vm.dateFormatted
-                                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "tbody",
+                                                  _vm._l(
+                                                    _vm.selected.has_partidas,
+                                                    function(item) {
+                                                      return _c(
+                                                        "tr",
+                                                        { key: item.name },
+                                                        [
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(item.id)
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                          " +
+                                                                  _vm._s(
+                                                                    item.identificacion
+                                                                  ) +
+                                                                  "\n                        "
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-alert",
+                                                                {
+                                                                  staticClass:
+                                                                    "mt-5",
+                                                                  attrs: {
+                                                                    color:
+                                                                      "primary",
+                                                                    dark: "",
+                                                                    dense: "",
+                                                                    small: ""
                                                                   }
                                                                 },
-                                                                model: {
-                                                                  value:
-                                                                    _vm.dateFormatted,
-                                                                  callback: function(
-                                                                    $$v
-                                                                  ) {
-                                                                    _vm.dateFormatted = $$v
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n                            " +
+                                                                      _vm._s(
+                                                                        item.servicio
+                                                                      ) +
+                                                                      "\n                          "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-alert",
+                                                                {
+                                                                  staticClass:
+                                                                    "mt-5",
+                                                                  attrs: {
+                                                                    color:
+                                                                      "primary",
+                                                                    dark: "",
+                                                                    dense: "",
+                                                                    small: "",
+                                                                    outlined: ""
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n                            " +
+                                                                      _vm._s(
+                                                                        item.tipo
+                                                                      ) +
+                                                                      "\n                          "
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              item.has_calibracion ==
+                                                              null
+                                                                ? _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        dense:
+                                                                          "",
+                                                                        outlined:
+                                                                          "",
+                                                                        type:
+                                                                          "error"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                            por inicar\n                          "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : item
+                                                                    .has_calibracion
+                                                                    .estado ===
+                                                                  "en proceso"
+                                                                ? _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        dense:
+                                                                          "",
+                                                                        outlined:
+                                                                          "",
+                                                                        type:
+                                                                          "warning"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                            " +
+                                                                          _vm._s(
+                                                                            item
+                                                                              .has_calibracion
+                                                                              .estado
+                                                                          ) +
+                                                                          "\n                          "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _c(
+                                                                    "v-alert",
+                                                                    {
+                                                                      staticClass:
+                                                                        "mt-5",
+                                                                      attrs: {
+                                                                        dense:
+                                                                          "",
+                                                                        outlined:
+                                                                          "",
+                                                                        type:
+                                                                          "success"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                            " +
+                                                                          _vm._s(
+                                                                            item
+                                                                              .has_calibracion
+                                                                              .estado
+                                                                          ) +
+                                                                          "\n                          "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              item.has_empleado
+                                                                ? _c("div", [
+                                                                    _vm._v(
+                                                                      "\n                            " +
+                                                                        _vm._s(
+                                                                          item
+                                                                            .has_empleado
+                                                                            .nombre_completo
+                                                                        ) +
+                                                                        "\n                          "
+                                                                    )
+                                                                  ])
+                                                                : _c(
+                                                                    "div",
+                                                                    [
+                                                                      _c(
+                                                                        "v-alert",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mt-5",
+                                                                          staticStyle: {
+                                                                            "font-size":
+                                                                              "12px"
+                                                                          },
+                                                                          attrs: {
+                                                                            color:
+                                                                              "error",
+                                                                            dark:
+                                                                              "",
+                                                                            dense:
+                                                                              "",
+                                                                            small:
+                                                                              ""
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "\n                              Sin Asignar\n                            "
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ],
+                                                                    1
+                                                                  )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "td",
+                                                            {
+                                                              staticClass:
+                                                                "text-center"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-btn",
+                                                                {
+                                                                  attrs: {
+                                                                    color:
+                                                                      "success",
+                                                                    icon: "",
+                                                                    dense: "",
+                                                                    small: ""
                                                                   },
-                                                                  expression:
-                                                                    "dateFormatted"
-                                                                }
-                                                              },
-                                                              "v-text-field",
-                                                              attrs,
-                                                              false
-                                                            ),
-                                                            on
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.AsignarTecnico(
+                                                                        item
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-eye"
+                                                                    )
+                                                                  ])
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
                                                           )
-                                                        )
-                                                      ]
+                                                        ]
+                                                      )
                                                     }
-                                                  }
-                                                ],
-                                                null,
-                                                false,
-                                                1048079218
-                                              ),
-                                              model: {
-                                                value: _vm.menu1,
-                                                callback: function($$v) {
-                                                  _vm.menu1 = $$v
-                                                },
-                                                expression: "menu1"
-                                              }
+                                                  ),
+                                                  0
+                                                )
+                                              ]
                                             },
-                                            [
-                                              _vm._v(" "),
-                                              _c("v-date-picker", {
-                                                attrs: { "no-title": "" },
-                                                on: {
-                                                  input: function($event) {
-                                                    _vm.menu1 = false
-                                                  }
-                                                },
-                                                model: {
-                                                  value: _vm.date,
-                                                  callback: function($$v) {
-                                                    _vm.date = $$v
-                                                  },
-                                                  expression: "date"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
+                                            proxy: true
+                                          }
+                                        ])
+                                      })
                                     ],
                                     1
                                   )
                                 ],
                                 1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "5",
-                                lg: "5"
-                              }
-                            },
-                            [
+                              ),
+                              _vm._v(" "),
+                              _c("v-divider"),
+                              _vm._v(" "),
                               _c(
                                 "v-row",
                                 [
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "12",
-                                        lg: "12"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Cliente",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.partida.has_recibo
-                                              .has_cotizaicon.has_cliente
-                                              .razon_social,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida.has_recibo
-                                                .has_cotizaicon.has_cliente,
-                                              "razon_social",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "partida.has_recibo.has_cotizaicon.has_cliente.razon_social"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-col",
-                                    {
-                                      attrs: {
-                                        cols: "12",
-                                        xs: "12",
-                                        sm: "12",
-                                        md: "12",
-                                        lg: "12"
-                                      }
-                                    },
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          outlined: "",
-                                          label: "Tipo de servicio",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value: _vm.partida.tipo,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.partida, "tipo", $$v)
-                                          },
-                                          expression: "partida.tipo"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
                                   _c(
                                     "v-col",
                                     {
@@ -1648,255 +1241,131 @@ var render = function() {
                                     },
                                     [
                                       _c(
-                                        "v-btn",
-                                        {
-                                          staticClass: "mt-1",
-                                          attrs: {
-                                            color: "primary",
-                                            link: "",
-                                            href:
-                                              _vm.partida.ruta_doc_calibracion,
-                                            target: "_blank",
-                                            block: "",
-                                            large: ""
-                                          }
-                                        },
-                                        [_vm._v("Documento de calibracion")]
+                                        "v-row",
+                                        [
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "6",
+                                                lg: "6"
+                                              }
+                                            },
+                                            [
+                                              _c("v-autocomplete", {
+                                                attrs: {
+                                                  items: _vm.magnitudes,
+                                                  outlined: "",
+                                                  dense: "",
+                                                  "item-text": "nombre",
+                                                  "return-object": "",
+                                                  label: "Seleccionar magnitud"
+                                                },
+                                                model: {
+                                                  value: _vm.magnitudSelected,
+                                                  callback: function($$v) {
+                                                    _vm.magnitudSelected = $$v
+                                                  },
+                                                  expression: "magnitudSelected"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "2",
+                                                lg: "2"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.imprimirReciboUser(
+                                                        _vm.selected,
+                                                        _vm.magnitudSelected
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v("mdi-printer")
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-col",
+                                            {
+                                              attrs: {
+                                                cols: "12",
+                                                xs: "12",
+                                                sm: "12",
+                                                md: "4",
+                                                lg: "4"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    block: "",
+                                                    color: "primary"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.imprimirRecibo(
+                                                        _vm.selected
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Imprimir Orden de servicio"
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
-                                  ),
-                                  _vm._v(" "),
-                                  !_vm.partida.ruta_pdf_calibracion
-                                    ? _c(
-                                        "v-col",
-                                        {
-                                          attrs: {
-                                            cols: "12",
-                                            xs: "12",
-                                            sm: "12",
-                                            md: "6",
-                                            lg: "6"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                color: "info",
-                                                block: ""
-                                              },
-                                              on: {
-                                                click: _vm.IniciarCalibracion
-                                              }
-                                            },
-                                            [
-                                              _c("v-icon", [
-                                                _vm._v("mdi-clock-start")
-                                              ]),
-                                              _vm._v(
-                                                "\r\n                                    Iniciar calibracion\r\n                                "
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  !_vm.partida.ruta_pdf_calibracion
-                                    ? _c(
-                                        "v-col",
-                                        {
-                                          attrs: {
-                                            cols: "12",
-                                            xs: "12",
-                                            sm: "12",
-                                            md: "6",
-                                            lg: "6"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                color: "warning",
-                                                block: ""
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.terminarCalibracion(
-                                                    _vm.partida
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("v-icon", [
-                                                _vm._v("mdi-content-save")
-                                              ]),
-                                              _vm._v(
-                                                "\r\n                                    finalizar calibracion\r\n                                "
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _c(
-                                        "v-col",
-                                        {
-                                          attrs: {
-                                            cols: "12",
-                                            xs: "12",
-                                            sm: "12",
-                                            md: "12",
-                                            lg: "12",
-                                            block: ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                color: "primary",
-                                                block: "",
-                                                target: "_blank",
-                                                href:
-                                                  _vm.partida
-                                                    .ruta_pdf_calibracion
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                " Visualizar Certificado "
-                                              ),
-                                              _c("v-icon", [_vm._v("mdi-eye")])
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
+                                  )
                                 ],
                                 1
                               )
                             ],
                             1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "6",
-                                lg: "6"
-                              }
-                            },
-                            [
-                              _vm.partida.has_calibracion
-                                ? _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      name: "input-7-4",
-                                      label: "Decripcion de la anomalia"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.partida.has_calibracion
-                                          .descripcion_anomalia,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.partida.has_calibracion,
-                                          "descripcion_anomalia",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "partida.has_calibracion.descripcion_anomalia"
-                                    }
-                                  })
-                                : _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      name: "input-7-4",
-                                      label: "Decripcion de la anomalia"
-                                    },
-                                    model: {
-                                      value: _vm.descripcion_anomalia,
-                                      callback: function($$v) {
-                                        _vm.descripcion_anomalia = $$v
-                                      },
-                                      expression: "descripcion_anomalia"
-                                    }
-                                  })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "6",
-                                lg: "6"
-                              }
-                            },
-                            [
-                              _vm.partida.has_calibracion
-                                ? _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      name: "input-7-4",
-                                      label: "Observacion del tecnico"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.partida.has_calibracion
-                                          .observacion_tecnico,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.partida.has_calibracion,
-                                          "observacion_tecnico",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "partida.has_calibracion.observacion_tecnico"
-                                    }
-                                  })
-                                : _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      name: "input-7-4",
-                                      label: "Observacion del tecnico"
-                                    },
-                                    model: {
-                                      value: _vm.observacion_de_tecnico,
-                                      callback: function($$v) {
-                                        _vm.observacion_de_tecnico = $$v
-                                      },
-                                      expression: "observacion_de_tecnico"
-                                    }
-                                  })
-                            ],
-                            1
                           )
-                        ],
-                        1
-                      )
-                    : _vm._e()
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -1907,7 +1376,11 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-realizacion-calibracion")
+      _c("modal-asignar-tecnico"),
+      _vm._v(" "),
+      _c("modal-pdf"),
+      _vm._v(" "),
+      _c("notificacion")
     ],
     1
   )
@@ -1919,10 +1392,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996&":
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996& ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1940,7 +1413,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          attrs: { width: "1024" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -1953,110 +1426,710 @@ var render = function() {
           _c(
             "v-card",
             [
+              _c("v-card-title", [_vm._v("Asigar Tecnico")]),
+              _vm._v(" "),
               _c(
-                "v-toolbar",
-                { attrs: { dark: "", color: "primary" } },
+                "v-container",
+                [
+                  Object.entries(this.partida_tecnico).length > 0
+                    ? _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "3",
+                                lg: "3"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Recibo"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.recibo_id,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "recibo_id",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.recibo_id"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "3",
+                                lg: "3"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Cotizacion"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.cotizacion_id,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "cotizacion_id",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.cotizacion_id"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "3",
+                                lg: "3"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Partida"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.id,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.partida_tecnico, "id", $$v)
+                                  },
+                                  expression: "partida_tecnico.id"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Identificacion"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.identificacion,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "identificacion",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.identificacion"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Informe id"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.informe_id,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "informe_id",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.informe_id"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "servicio"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.servicio,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "servicio",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.servicio"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Instrumento"
+                                },
+                                model: {
+                                  value:
+                                    _vm.partida_tecnico.has_intrumento.nombre,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico.has_intrumento,
+                                      "nombre",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "partida_tecnico.has_intrumento.nombre"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Acreditacion"
+                                },
+                                model: {
+                                  value:
+                                    _vm.partida_tecnico.has_intrumento
+                                      .has_acreditacion.nombre,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico.has_intrumento
+                                        .has_acreditacion,
+                                      "nombre",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "partida_tecnico.has_intrumento.has_acreditacion.nombre"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Magnitud"
+                                },
+                                model: {
+                                  value:
+                                    _vm.partida_tecnico.has_intrumento
+                                      .has_magnitud.nombre,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico.has_intrumento
+                                        .has_magnitud,
+                                      "nombre",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "partida_tecnico.has_intrumento.has_magnitud.nombre"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Alcance"
+                                },
+                                model: {
+                                  value:
+                                    _vm.partida_tecnico.has_intrumento.alcance,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico.has_intrumento,
+                                      "alcance",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "partida_tecnico.has_intrumento.alcance"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Marca"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.marca,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.partida_tecnico, "marca", $$v)
+                                  },
+                                  expression: "partida_tecnico.marca"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Modelo"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.modelo,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.partida_tecnico, "modelo", $$v)
+                                  },
+                                  expression: "partida_tecnico.modelo"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Serie"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.serie,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.partida_tecnico, "serie", $$v)
+                                  },
+                                  expression: "partida_tecnico.serie"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "Cantidad"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.cantidad,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "cantidad",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.cantidad"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "4",
+                                lg: "4"
+                              }
+                            },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  disabled: "",
+                                  outlined: "",
+                                  label: "vigencia"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.vigencia,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "vigencia",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.vigencia"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "12"
+                              }
+                            },
+                            [
+                              _vm.partida_tecnico.ruta_doc_calibracion
+                                ? _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          _vm.partida_tecnico
+                                            .ruta_doc_calibracion,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n              Link del documento de calibracion\n            "
+                                      )
+                                    ]
+                                  )
+                                : _c("v-select", {
+                                    attrs: {
+                                      items: _vm.item_Tipo_documento_para_subir,
+                                      "item-text": "name",
+                                      "return-object": "",
+                                      outlined: "",
+                                      label:
+                                        " Seleccionar metodo para cargar documento"
+                                    },
+                                    model: {
+                                      value: _vm.TipoDocumentoSelected,
+                                      callback: function($$v) {
+                                        _vm.TipoDocumentoSelected = $$v
+                                      },
+                                      expression: "TipoDocumentoSelected"
+                                    }
+                                  })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          Object.entries(this.TipoDocumentoSelected).length > 0
+                            ? _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12",
+                                    lg: "12"
+                                  }
+                                },
+                                [
+                                  _vm.TipoDocumentoSelected.value == 1
+                                    ? _c(
+                                        "div",
+                                        [
+                                          _c("v-file-input", {
+                                            attrs: {
+                                              label:
+                                                "Cargar documento (.xls / .xlsx)",
+                                              outlined: "",
+                                              dense: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.TipoDocumentoSelected.file,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.TipoDocumentoSelected,
+                                                  "file",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "TipoDocumentoSelected.file"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    : _c(
+                                        "div",
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label:
+                                                "Copiar enlace del documento",
+                                              placeholder: " ",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.TipoDocumentoSelected.file,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.TipoDocumentoSelected,
+                                                  "file",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "TipoDocumentoSelected.file"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              attrs: {
+                                cols: "12",
+                                xs: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "12"
+                              }
+                            },
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  "item-text": "nombre_completo",
+                                  return: "",
+                                  "return-object": "",
+                                  items: _vm.empleados,
+                                  outlined: "",
+                                  label: "Seleccionar Tecnico"
+                                },
+                                model: {
+                                  value: _vm.partida_tecnico.has_empleado,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico,
+                                      "has_empleado",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "partida_tecnico.has_empleado"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
                 [
                   _c(
                     "v-btn",
                     {
-                      attrs: { icon: "", dark: "" },
+                      attrs: { text: "", color: "primary" },
+                      on: { click: _vm.AsignarTecnico }
+                    },
+                    [_vm._v(" Asignar Tecnico ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "", color: "error" },
                       on: {
                         click: function($event) {
                           _vm.openDialog = false
                         }
                       }
                     },
-                    [_c("v-icon", [_vm._v("mdi-close")])],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-row",
-                    [
-                      _c(
-                        "v-col",
-                        {
-                          attrs: {
-                            cols: "12",
-                            xs: "12",
-                            sm: "12",
-                            md: "6",
-                            lg: "6"
-                          }
-                        },
-                        [
-                          _c("v-file-input", {
-                            attrs: {
-                              accept: "pdf/*",
-                              label: "Cargar Certificado (.pdf)",
-                              outlined: "",
-                              small: "",
-                              dense: ""
-                            },
-                            model: {
-                              value: _vm.var_calibracion_pdf,
-                              callback: function($$v) {
-                                _vm.var_calibracion_pdf = $$v
-                              },
-                              expression: "var_calibracion_pdf"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        {
-                          attrs: {
-                            cols: "12",
-                            xs: "12",
-                            sm: "12",
-                            md: "6",
-                            lg: "6"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "success", block: "" },
-                              on: { click: _vm.cargarCertificado }
-                            },
-                            [_vm._v("Registrar Certificado")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        {
-                          attrs: {
-                            cols: "12",
-                            xs: "12",
-                            sm: "12",
-                            md: "12",
-                            lg: "12"
-                          }
-                        },
-                        [
-                          _c("pdf", {
-                            ref: "myPdfComponent",
-                            attrs: { src: _vm.urlPdfCalibracion }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
+                    [_vm._v(" Cerrar ")]
                   )
                 ],
                 1
@@ -2078,17 +2151,103 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/indexComponentLaboratorio.vue ***!
-  \***************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          model: {
+            value: _vm.openDialog,
+            callback: function($$v) {
+              _vm.openDialog = $$v
+            },
+            expression: "openDialog"
+          }
+        },
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { dark: "", color: "primary" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", dark: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.openDialog = false
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { text: "", icon: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$refs.myPdfComponent.print()
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-printer")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("pdf", {
+            ref: "myPdfComponent",
+            attrs: { src: _vm.recibo_print.ruta_pdf }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/recibo/indexReciboComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/recibo/indexReciboComponent.vue ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa& */ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa&");
-/* harmony import */ var _indexComponentLaboratorio_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexComponentLaboratorio.vue?vue&type=script&lang=js& */ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js&");
+/* harmony import */ var _indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexReciboComponent.vue?vue&type=template&id=75525913& */ "./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913&");
+/* harmony import */ var _indexReciboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexReciboComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -2098,9 +2257,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _indexComponentLaboratorio_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _indexReciboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2110,54 +2269,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/laboratorio/indexComponentLaboratorio.vue"
+component.options.__file = "resources/js/components/recibo/indexReciboComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************/
+/***/ "./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentLaboratorio_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexComponentLaboratorio.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentLaboratorio_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReciboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexReciboComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReciboComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa& ***!
-  \**********************************************************************************************************/
+/***/ "./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913& ***!
+  \************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/indexComponentLaboratorio.vue?vue&type=template&id=a3de02fa&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexReciboComponent.vue?vue&type=template&id=75525913& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/indexReciboComponent.vue?vue&type=template&id=75525913&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexComponentLaboratorio_vue_vue_type_template_id_a3de02fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexReciboComponent_vue_vue_type_template_id_75525913___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalCalibracionComponent.vue?vue&type=template&id=243ea854& */ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854&");
-/* harmony import */ var _modalCalibracionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalCalibracionComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771& */ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771&");
+/* harmony import */ var _modalAsignarTecnicoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalAsignarTecnicoComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -2167,9 +2326,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _modalCalibracionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _modalAsignarTecnicoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2179,54 +2338,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/laboratorio/modals/modalCalibracionComponent.vue"
+component.options.__file = "resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalCalibracionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalCalibracionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalCalibracionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalAsignarTecnicoComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854&":
-/*!*****************************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854& ***!
-  \*****************************************************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771& ***!
+  \***************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalCalibracionComponent.vue?vue&type=template&id=243ea854& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue?vue&type=template&id=243ea854&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue?vue&type=template&id=5be44771&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalCalibracionComponent_vue_vue_type_template_id_243ea854___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalAsignarTecnicoComponent_vue_vue_type_template_id_5be44771___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalRealizacionCalibracion.vue?vue&type=template&id=7c669996& */ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996&");
-/* harmony import */ var _modalRealizacionCalibracion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalRealizacionCalibracion.vue?vue&type=script&lang=js& */ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js&");
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=template&id=24657562& */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&");
+/* harmony import */ var _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -2236,9 +2395,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _modalRealizacionCalibracion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2248,44 +2407,44 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue"
+component.options.__file = "resources/js/components/recibo/modals/modalViewPdfComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalRealizacionCalibracion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996&":
-/*!*******************************************************************************************************************!*\
-  !*** ./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996& ***!
-  \*******************************************************************************************************************/
+/***/ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562& ***!
+  \********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalRealizacionCalibracion.vue?vue&type=template&id=7c669996& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue?vue&type=template&id=7c669996&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./modalViewPdfComponent.vue?vue&type=template&id=24657562& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/recibo/modals/modalViewPdfComponent.vue?vue&type=template&id=24657562&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalRealizacionCalibracion_vue_vue_type_template_id_7c669996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_modalViewPdfComponent_vue_vue_type_template_id_24657562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ 1:
+/***/ 4:
 /*!**********************!*\
   !*** zlib (ignored) ***!
   \**********************/
@@ -2296,7 +2455,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 5:
 /*!********************!*\
   !*** fs (ignored) ***!
   \********************/
@@ -2307,7 +2466,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3:
+/***/ 6:
 /*!**********************!*\
   !*** http (ignored) ***!
   \**********************/
@@ -2318,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
+/***/ 7:
 /*!***********************!*\
   !*** https (ignored) ***!
   \***********************/
@@ -2329,7 +2488,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 8:
 /*!*********************!*\
   !*** url (ignored) ***!
   \*********************/

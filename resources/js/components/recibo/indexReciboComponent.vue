@@ -62,22 +62,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr
-                          v-for="item in selected.has_partidas"
-                          :key="item.name"
-                        >
+                        <tr v-for="item in selected.has_partidas" :key="item.name">
                           <td class="text-center">{{ item.id }}</td>
                           <td class="text-center">
                             {{ item.identificacion }}
                           </td>
                           <td class="text-center">
-                            <v-alert
-                              color="primary"
-                              dark
-                              dense
-                              small
-                              class="mt-5"
-                            >
+                            <v-alert color="primary" dark dense small class="mt-5">
                               {{ item.servicio }}
                             </v-alert>
                           </td>
@@ -107,20 +98,12 @@
                               dense
                               outlined
                               type="warning"
-                              v-else-if="
-                                item.has_calibracion.estado === 'en proceso'
-                              "
+                              v-else-if="item.has_calibracion.estado === 'en proceso'"
                               class="mt-5"
                             >
                               {{ item.has_calibracion.estado }}
                             </v-alert>
-                            <v-alert
-                              dense
-                              outlined
-                              type="success"
-                              v-else
-                              class="mt-5"
-                            >
+                            <v-alert dense outlined type="success" v-else class="mt-5">
                               {{ item.has_calibracion.estado }}
                             </v-alert>
                           </td>
@@ -183,11 +166,8 @@
                       </v-btn>
                     </v-col>
                     <v-col cols="12" xs="12" sm="12" md="4" lg="4">
-                      <v-btn
-                        block
-                        color="primary"
-                        @click="imprimirRecibo(selected)"
-                        >Imprimir recibo</v-btn
+                      <v-btn block color="primary" @click="imprimirRecibo(selected)"
+                        >Imprimir Orden de servicio</v-btn
                       >
                     </v-col>
                   </v-row>

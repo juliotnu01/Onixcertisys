@@ -121,10 +121,46 @@ class ClienteController extends Controller
             throw new Exception($e, 1);
         }
     }
-    public function storeFileCliente(Request $request)
+    public function storeFileCliente(Request $request, Cliente $cliente)
     {
         try {
-            Excel::import(new ClienteImport, $request->file('file_cliente'));
+            return DB::transaction(function () use ($request , $cliente ) {
+
+                $cliente->nombre_contacto = $request['personaDeContacto']['nombre'];
+                $cliente->telefono_contacto = $request['personaDeContacto']['celular'];
+                // $cliente->extension_contacto = $request['personaDeContacto']['TelExt'];
+                $cliente->cargo_contacto = $request['personaDeContacto']['puesto'];
+                $cliente->correo_contacto = $request['personaDeContacto']['email'];
+
+                $cliente->info_cli_compras = $request['ContactoAdicionales']['compras']['compras'];
+                $cliente->info_cli_compras_correo = $request['ContactoAdicionales']['compras']['email'];
+                $cliente->info_cli_compras_telefono = $request['ContactoAdicionales']['compras']['telf'];
+                $cliente->info_cli_pagos = $request['ContactoAdicionales']['pagos']['compras'];
+                $cliente->info_cli_pagos_correo = $request['ContactoAdicionales']['pagos']['email'];
+                $cliente->info_cli_pagos_telefono = $request['ContactoAdicionales']['pagos']['telf'];
+                $cliente->info_cli_almacen = $request['ContactoAdicionales']['almacen']['compras'];
+                $cliente->info_cli_almacen_correo = $request['ContactoAdicionales']['almacen']['email'];
+                $cliente->info_cli_almacen_telefono = $request['ContactoAdicionales']['almacen']['telf'];
+                
+                $cliente->razon_social = $request['DatosFiscalesYRequerimientosParaFacturacion']['razonSocial'];
+                $cliente->domicilio_fiscal = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['calle'] ;
+                $cliente->ciudad = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['ciudad'];
+                $cliente->estado = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['estado'];
+                $cliente->rfc = $request['DatosFiscalesYRequerimientosParaFacturacion']['rfc'];
+                $cliente->cp = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cp'];
+                $cliente->cfdi = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cfdi'];
+                
+                // $cliente->correo_electronico_para_el_envio_de_factura = $request['DatosFiscalesYRequerimientosParaFacturacion']['emailParaEnvioFactura']['telfx'];
+                
+                $cliente->dias_de_revision = $request['revisionDeFacturaYpago']['diasDeRevisionDeFactura']['dias'];
+                $cliente->dias_de_revision_horario = $request['revisionDeFacturaYpago']['diasDeRevisionDeFactura']['horas'];
+                $cliente->dias_de_confirmacion = $request['revisionDeFacturaYpago']['diasDeConfirmacionnDepago']['dias'];
+                $cliente->dias_de_confirmacion_horario = $request['revisionDeFacturaYpago']['diasDeConfirmacionnDepago']['horas'];
+                $cliente->dias_de_pago = $request['revisionDeFacturaYpago']['diasDepago']['dias'];
+                $cliente->dias_de_pago_horario = $request['revisionDeFacturaYpago']['diasDepago']['horas'];
+                $cliente->save();
+
+            });
             return;
         } catch (Exception $e) {
             throw new Exception($e, 1);
