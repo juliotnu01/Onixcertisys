@@ -426,7 +426,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -1960,14 +1959,8 @@ var render = function() {
             "v-card",
             [
               _c(
-                "v-row",
-                [
-                  _c(
-                    "v-col",
-                    [_c("v-text-fields", { attrs: { laberl: "producto" } })],
-                    1
-                  )
-                ],
+                "v-col",
+                [_c("v-text-fields", { attrs: { laberl: "producto" } })],
                 1
               )
             ],

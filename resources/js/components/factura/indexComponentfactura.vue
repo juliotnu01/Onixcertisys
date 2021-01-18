@@ -382,8 +382,7 @@
     <notificacion />
     <v-dialog v-model="dialogAddProducto">
       <v-card>
-        <v-row>
-          <v-col>
+        <v-row         <v-col>
             <v-text-fields laberl="producto" />
           </v-col>
         </v-row>
