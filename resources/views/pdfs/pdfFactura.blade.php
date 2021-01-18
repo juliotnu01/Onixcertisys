@@ -6,10 +6,10 @@
 </head>
 
 <body>
-    <table class="page_header" style="width:100%;">
+    <table class="page_header" >
         <tr style="vertical-align: top">
-            <td style="width:100%">
-            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="100" />
+            <td >
+            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="100%" />
             </td>
         </tr>
     </table>
