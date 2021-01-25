@@ -1,6 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app color="#fff"  v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.md || $vuetify.breakpoint.xl ">
+    <v-app-bar
+      app
+      color="#fff"
+      v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.md || $vuetify.breakpoint.xl"
+    >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <router-link to="/">
           <v-img :src="`${root}/img/login-logo.png`" width="200" />
@@ -9,9 +13,7 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on">
-            <img
-              src="https://img.icons8.com/dusk/40/000000/permanent-job.png"
-            />
+            <img src="https://img.icons8.com/dusk/40/000000/permanent-job.png" />
             Clientes
           </v-btn>
         </template>
@@ -114,12 +116,7 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <v-menu
-        v-model="menu"
-        :close-on-content-click="false"
-        :nudge-width="200"
-        offset-x
-      >
+      <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon large v-bind="attrs" v-on="on">
             <v-avatar size="32px" item>{{ user.name }}</v-avatar>
@@ -129,10 +126,7 @@
           <v-list>
             <v-list-item>
               <v-list-item-avatar>
-                <img
-                  src="https://cdn.vuetifyjs.com/images/john.jpg"
-                  alt="John"
-                />
+                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
@@ -160,7 +154,9 @@
         </v-card>
       </v-menu>
     </v-app-bar>
-    <v-main v-if="$vuetify.breakpoint.lg  || $vuetify.breakpoint.md || $vuetify.breakpoint.xl ">
+    <v-main
+      v-if="$vuetify.breakpoint.lg || $vuetify.breakpoint.md || $vuetify.breakpoint.xl"
+    >
       <v-container fluid>
         <v-row>
           <v-col cols="12" xs="12" sm="12" md="12" lg="12">
@@ -174,7 +170,7 @@
     <!-- bar mobile-->
     <v-card
       class="mx-auto overflow-hidden"
-      v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm "
+      v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
     >
       <v-app-bar color="#ffffff">
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
@@ -228,9 +224,7 @@
                       </router-link>
                     </v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="logout"
-                      >Cerrar Sesion</v-btn
-                    >
+                    <v-btn color="primary" text @click="logout">Cerrar Sesion</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-menu>
@@ -258,9 +252,7 @@
                 </router-link>
               </v-list-item-title>
 
-              <v-list-item-icon>
-                
-              </v-list-item-icon>
+              <v-list-item-icon> </v-list-item-icon>
             </v-list-item>
           </v-list-group>
           <v-list-group no-action sub-group>
@@ -308,9 +300,7 @@
                   Calibracion
                 </router-link>
               </v-list-item-title>
-              <v-list-item-icon>
-                
-              </v-list-item-icon>
+              <v-list-item-icon> </v-list-item-icon>
             </v-list-item>
           </v-list-group>
           <v-list-group no-action sub-group>
@@ -326,9 +316,7 @@
                   Reportes
                 </router-link>
               </v-list-item-title>
-              <v-list-item-icon>
-                
-              </v-list-item-icon>
+              <v-list-item-icon> </v-list-item-icon>
             </v-list-item>
           </v-list-group>
         </v-list>

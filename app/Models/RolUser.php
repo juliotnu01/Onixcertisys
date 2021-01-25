@@ -12,7 +12,7 @@ class RolUser extends Model
     {
     	return $this->hasOne(PermissionRolUser::class, 'rol_user_id');
     }
-
+   
     public function relatedUser()
     {
     	return $this->hasMany('App\User', 'id');

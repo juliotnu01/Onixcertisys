@@ -8,12 +8,21 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Models\{RolUser,PermissionRolUser};
 use DB;
+use Auth;
 
 class userController extends Controller
 {
+    public function howCheck(){
+        try {
+            dd(Auth::id());
+            return ;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function index()
     {
-    	$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission'])->get();
+    	$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission', 'userHasRol.associatedRolPremission.hasRouteAsociate'])->get();
     	for ($i=0; $i < count($user); $i++) { 
     		$user[$i]->rol_user = $user[$i]->userHasRol['name_rol'];
     	}
@@ -22,7 +31,7 @@ class userController extends Controller
     public function findUser($id)
     {
     	try {
-    		$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission'])->find($id);
+    		$user = User::with(['userHasRol', 'userHasRol.associatedRolPremission','userHasRol.associatedRolPremission.hasRouteAsociate'])->find($id);
     		return response($user);
     	} catch (Exception $e) {
     		throw new Exception($e, 1);

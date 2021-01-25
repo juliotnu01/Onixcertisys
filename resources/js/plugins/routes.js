@@ -5,6 +5,8 @@ import configComponent from "../components/config/indexComponent.vue";
 import configUserComponent from "../components/config/configUser/config_user_component.vue";
 import empresaComponent from "../components/config/empresa/empresaComponent.vue";
 import datosDelSistemaComponent from "../components/config/datosGenerales/indexDatosGeneralesComponent.vue";
+import userServices from '../services/userServices.js'
+import store from './store.js'
 
 Vue.use(router);
 export default new router({
@@ -14,7 +16,11 @@ export default new router({
         {
             path: "/",
             name: "home.component",
-            component: homeComponent
+            component: homeComponent,
+            beforeEnter: (to, from, next) => {
+                console.log({to, from,next, u:store.sat })
+                next();
+            }
         },
         {
             path: "/config",
@@ -22,7 +28,7 @@ export default new router({
             component: configComponent,
             children: [
                 {
-                    path: "",
+                    path: "/",
                     name: "config-user",
                     component: configUserComponent
                 },
@@ -65,25 +71,19 @@ export default new router({
             path: "/factura",
             name: "home.factura",
             component: () =>
-                import(
-                    "../components/factura/indexComponentfactura.vue"
-                )
+                import("../components/factura/indexComponentfactura.vue")
         },
         {
             path: "/cliente",
             name: "home.cliente",
             component: () =>
-                import(
-                    "../components/cliente/indexClienteComponent.vue"
-                )
+                import("../components/cliente/indexClienteComponent.vue")
         },
         {
             path: "/reportes",
             name: "home.reportes",
             component: () =>
-                import(
-                    "../components/reportes/indexReportesComponents.vue"
-                )
+                import("../components/reportes/indexReportesComponents.vue")
         },
         {
             path: "/add-cliente",
@@ -92,6 +92,6 @@ export default new router({
                 import(
                     "../components/cliente/agregar_cliente/indexComponentAgregarCliente.vue"
                 )
-        },
+        }
     ]
 });

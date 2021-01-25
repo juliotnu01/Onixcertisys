@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/how-check', 'v1\userController@howCheck');
 Route::get('/list-user', 'v1\userController@index');
 Route::get('/find-user/{id}', 'v1\userController@findUser');
 Route::post('/register-user', 'v1\userController@registerUSer');

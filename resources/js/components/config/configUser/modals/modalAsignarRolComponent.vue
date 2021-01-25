@@ -9,7 +9,7 @@
                 </v-card-text>
                 <v-card-text>
                     <v-form ref="f_register_rol">
-                        <v-select :items="listUser" label="Seleccionar un usuario" outlined :rules="[rules.required]" item-text="name" return-object v-model="var_user_selected"></v-select>
+                        <v-select :items="listUser" label="Seleccionar un usuario" outlined item-text="name" return-object v-model="var_user_selected"></v-select>
                         </v-col>
                     </v-form>
                 </v-card-text>
