@@ -17,8 +17,12 @@ export default class clienteServices{
 		try{
 			let {data} = await axios.post('/api/add-cliente', model)
 			store.commit('SetDialogAddCliente', false)
+			var model_notificacion = {mensaje: `Cliente Agregado con exito --> ${e}¡`, status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
 		}catch(e){
 			console.log(e)
+			var model_notificacion = {mensaje: `!Ha ocurrido al agregar cliente --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
 		}
 	}
 

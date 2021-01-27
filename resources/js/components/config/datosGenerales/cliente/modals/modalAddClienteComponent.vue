@@ -197,7 +197,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
-                    label="Compras"
+                    label="Ciudad"
                     outlined
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
@@ -207,7 +207,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
-                    label="Compras"
+                    label="Esado"
                     outlined
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
@@ -217,7 +217,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
-                    label="Compras"
+                    label="C.P."
                     outlined
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
@@ -227,7 +227,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                   <v-select
-                    :item="listCondicionDePago"
+                    :items="listCondicionDePago"
                     label="Formas de pago"
                     outlined
                     item-text="nombre"
@@ -250,7 +250,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                   <v-select
-                    :item="monedas"
+                    :items="monedas"
                     label="Moneda de Factura"
                     outlined
                     item-text="nombre_moneda"
@@ -273,28 +273,28 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                    <v-select
-                    :item="list_metodo_de_pago"
+                    :items="list_metodo_de_pago"
                     label="Metodo de pago"
                     outlined
                     item-text="nombre"
                     return-object
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
-                        .domicilioFiscalParaFacturacion.terminosDePago
+                        .domicilioFiscalParaFacturacion.metodoDePago
                     "
                   />
                 </v-col>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                    <v-select
-                    :item="items_terminos_de_pago"
+                    :items="items_terminos_de_pago"
                     label="terminos de pago"
                     outlined
                     item-text="name"
                     return-object
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
-                        .domicilioFiscalParaFacturacion.metodoDePago
+                        .domicilioFiscalParaFacturacion.terminosDePago
                     "
                   />
                 </v-col>
@@ -410,14 +410,21 @@
                     v-model="model.revisionDeFacturasYpagos.informacionAdicionalComplementoDePago"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                <v-col cols="12" xs="12" sm="12" md="10" lg="10">
                   <v-text-field
                     label="Listar requerimientos de acceso a la planta"
                     outlined
-                    v-model="model.revisionDeFacturasYpagos.informacionAdicionalComplementoDePago"
+                    v-model="model.revisionDeFacturasYpagos.listaRequerimientoDeAccesoAlaPlata"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                   <v-text-field
+                    label="I.V.A. %"
+                    outlined
+                    v-model="model.iva"
+                  ></v-text-field>
+                </v-col>
+                <!-- <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-data-table
                     :headers="headers_sucursal"
                     :items="model.sucursales"
@@ -472,10 +479,14 @@
                               @keyup.enter="AgregarSucursal"
                             ></v-text-field>
                         </td>
+                        <td>
+                           <v-btn color="success" @click="AgregarSucursal"  > <v-icon>mdi-company</v-icon> Agregar Sucursal</v-btn>
+                        </td>
                       </tr>
                   </template>
                   </v-data-table>
                 </v-col>
+                -->
               </v-row>
             </v-card-text>
           </v-card>
@@ -485,12 +496,17 @@
           <v-btn text color="red" @click="openDialog = false"> Cerrar </v-btn>
         </v-card-actions>
       </v-card>
+      <notificacion/>
     </v-dialog>
   </v-app>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import NotificacionComponent from '../../../../notificacion/indexComponentNotificacion.vue'
 export default {
+  components:{
+      'notificacion': NotificacionComponent
+  },
   data() {
     return {
       headers_sucursal:[
@@ -609,59 +625,83 @@ export default {
   async mounted() {
     await this.services.metodoDePagoServices.getlistMetodoDePago();
     await this.services.condicionDePagoServices.getlistCondicionDePago();
+    await this.services.monedaServices.getlistMonedas();
   },
   methods: {
     async addCliente() {
       await this.services.clienteServices.agregarCliente(this.model);
       await this.services.clienteServices.getlistclientes();
       this.model = {
-        nombre_contacto: "",
-        telefono_contacto: "",
-        cargo_contacto: "",
-        correo_contacto: "",
-        razon_social: "",
-        domicilio_fiscal: "",
-        ciudad: "",
-        estado: "",
-        rfc: "",
-        cp: "",
-        telefono_empresa: "",
-        domicilio_servicio: "",
-        info_cli_compras: "",
-        info_cli_compras_correo: "",
-        info_cli_compras_telefono: "",
-        info_cli_pagos: "",
-        info_cli_pagos_correo: "",
-        info_cli_pagos_telefono: "",
-        info_cli_almacen: "",
-        info_cli_almacen_correo: "",
-        info_cli_almacen_telefono: "",
-        dias_de_revision: "",
-        dias_de_revision_horario: "",
-        dias_de_confirmacion: "",
-        dias_de_confirmacion_horario: "",
-        dias_de_pago: "",
-        dias_de_pago_horario: "",
-        nombre_de_la_persona_responsable_de_pago: "",
-        nombre_de_la_persona_responsable_de_pago_puesto_cargo: "",
-        nombre_de_la_persona_responsable_de_pago_puesto_cargo_telf: "",
-        nombre_de_la_persona_responsable_de_pago_puesto_cargo_correo: "",
-        metodo_de_pago: "",
-        cfdi: "",
-        forma_de_pago: "",
-        correo_electronico_para_el_envio_de_factura: "",
-        se_requiere_orden_de_compra_para_facturar: "",
-        servicio_solicitado: "",
-        nombre_quien_brinda_la_info: "",
-        telefono_quien_brinda_la_info: "",
-        fecha_quien_brinda_la_info: "",
-        puesto_quien_brinda_la_info: "",
-        correo_quien_brinda_la_info: "",
-        sucursales: [],
+        servicio_solicitado: [],
+        persona_de_contacto: {
+          nombre: "",
+          celular: "",
+          tel_ext: "",
+          email: "",
+          puesto: "",
+        },
+        contacto_adicionales: {
+          compras: "",
+          correo_compras: "",
+          telf_compras: "",
+          pagos: "",
+          correo_pagos: "",
+          telf_pagos: "",
+          almacen: "",
+          correo_almacen: "",
+          telf_almacen: "",
+        },
+        datosFisicosYRequerimientosDeFactuacion: {
+          razon_social: "",
+          rfc: "",
+          domicilioFiscalParaFacturacion: {
+            calle: "",
+            numero: "",
+            colonia: "",
+            ciudad: "",
+            estado: "",
+            cp: "",
+            formaDePago: [],
+            monedaFactura: [],
+            emailEnvioFactura: "",
+            cfdi: "",
+            metodoDePago: [],
+            terminosDePago: [],
+          },
+        },
+        revisionDeFacturasYpagos:{
+          descripcionRevisionFactura: '',
+          diasRevisionFactura: '',
+          horaDiasRevisionFactura: '',
+          diasDeConfirmacionDePago: '',
+          horaDiasDeConfirmacionDePago: '',
+          diasDePago: '',
+          horaDiasDePago: '',
+          linkPortal:'',
+          usuarioContrasena:[],
+          indicacionesAltaFacturaPortal:[],
+          correoSoporteTecnicoPortal:'',
+          bancoOrdenante:'',
+          cuentaDePago:'',
+          complementoDePagoSeEnviaPorEmail:'',
+          informacionAdicionalComplementoDePago:'',
+        },
+        listaRequerimientoDeAccesoAlaPlata:{
+        },
+        sucursales:[],
+        iva: 0,
       };
+        var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'};
+        this.$store.commit("setNotificacion", model_notificacion);
     },
     AgregarSucursal() {
-      this.model.sucursales.push(this.sucursal);
+      var index = this.model.sucursales.find(item => item.nombre === this.sucursal.nombre);
+      if (!index) {
+        this.model.sucursales.push(this.sucursal);
+      }else{
+             var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'}
+             this.$store.commit("setNotificacion", model_notificacion);
+      }
       this.sucursal = {
          nombre: "",
         direccion: "",

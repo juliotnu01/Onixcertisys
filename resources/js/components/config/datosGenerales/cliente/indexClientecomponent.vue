@@ -11,7 +11,7 @@
           small
         ></v-text-field>
         <v-spacer></v-spacer>
-        <v-file-input
+        <!-- <v-file-input
           label="Seleccionar documento (.xls | .xlsx)"
           outlined
           v-model="file_cliente"
@@ -26,6 +26,7 @@
         >
           <v-icon dark large>mdi-file-upload</v-icon>
         </v-btn>
+        -->
         <v-btn
           class="mx-2"
           fab
@@ -57,6 +58,30 @@
             {{ item.created_at.substr(0, 10) }}
           </td>
         </template>
+        <template v-slot:item.direccion_fiscal="{ item }">
+          <td class="text-center">
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle }} -
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero }} -
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia }} -
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad }} -
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado }} -
+            {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp }}
+          </td>
+        </template>
+        <template v-slot:item.telefonos="{ item }">
+          <td class="text-center">
+            Telf.: Compra: {{ item.contacto_adicionales_compra_telf }} <br />
+            Telf.: Pagos: {{ item.contacto_adicionales_pagos_telf }} <br />
+            Telf.: Almacen: {{ item.contacto_adicionales_pagos_telf }} <br />
+          </td>
+        </template>
+        <template v-slot:item.contacto="{ item }">
+          <td class="text-center">
+            Contact.: Compra: {{ item.contacto_adicionales_compra }} <br />
+            Contact.: Pagos: {{ item.contacto_adicionales_pagos }} <br />
+            Contact.: Almacen: {{ item.contacto_adicionales_almacen }} <br />
+          </td>
+        </template>
       </v-data-table>
     </v-card>
     <modal-add />
@@ -86,57 +111,52 @@ export default {
           value: "id",
         },
         {
-          text: "Nombre / Razon Social",
+          text: "Nombre / Razon social",
           align: "center",
           sortable: false,
-          value: "razon_social",
+          sortable: true,
+          value: "datos_fisicos_requeremientos_facturacion_razon_social",
         },
         {
-          text: "Direccion Fiscal",
+          text: "Direccion",
           align: "center",
           sortable: false,
-          value: "domicilio_fiscal",
+          sortable: true,
+          value: "direccion_fiscal",
         },
         {
-          text: "R.F.C",
+          text: "R.F.C.",
           align: "center",
           sortable: false,
-          value: "rfc",
+          sortable: true,
+          value: "datos_fisicos_requeremientos_facturacion_rfc",
         },
         {
-          text: "Teléfono",
+          text: "Telefonos",
           align: "center",
           sortable: false,
-          value: "telefono_empresa",
+          sortable: true,
+          value: "telefonos",
         },
         {
-          text: "Correo Electronico para la factura",
+          text: "Correo Electronico para el envio de la factura",
           align: "center",
           sortable: false,
-          value: "correo_electronico_para_el_envio_de_factura",
+          sortable: true,
+          value: "correo_envio_factura",
         },
         {
-          text: "Nombre Contacto",
+          text: "Nombres contactos",
           align: "center",
           sortable: false,
-          value: "nombre_contacto",
+          sortable: true,
+          value: "contacto",
         },
         {
-          text: "IVA (%)",
+          text: "Accion",
           align: "center",
           sortable: false,
-          value: "iva",
-        },
-        {
-          text: "Agregado",
-          align: "center",
-          sortable: false,
-          value: "created_at",
-        },
-        {
-          text: "Acción",
-          align: "center",
-          sortable: false,
+          sortable: true,
           value: "accion",
         },
       ],
@@ -157,7 +177,71 @@ export default {
       this.file = event.target.files ? event.target.files[0] : null;
     },
     async EditarCliente(cli) {
-      this.$store.commit("setCliente", cli);
+      var data = {
+        id: cli.id,
+        servicio_solicitado: JSON.parse(cli.servicio_solicitado),
+        persona_de_contacto: {
+          nombre: cli.persona_de_contacto_nombre,
+          celular: cli.persona_de_contacto_celular,
+          tel_ext: cli.persona_de_contacto_te_ext,
+          email: cli.persona_de_contacto_email,
+          puesto: cli.persona_de_contacto_puesto,
+        },
+        contacto_adicionales: {
+          compras: cli.contacto_adicionales_compra,
+          correo_compras: cli.contacto_adicionales_compra_correo,
+          telf_compras: cli.contacto_adicionales_compra_telf,
+          pagos: cli.contacto_adicionales_pagos,
+          correo_pagos: cli.contacto_adicionales_pagos_correo,
+          telf_pagos: cli.contacto_adicionales_pagos_telf,
+          almacen: cli.contacto_adicionales_almacen,
+          correo_almacen: cli.contacto_adicionales_correo,
+          telf_almacen: cli.contacto_adicionales_telf,
+        },
+        datosFisicosYRequerimientosDeFactuacion: {
+          razon_social: cli.datos_fisicos_requeremientos_facturacion_razon_social,
+          rfc: cli.datos_fisicos_requeremientos_facturacion_rfc,
+          domicilioFiscalParaFacturacion: {
+            calle: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle,
+            numero: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero,
+            colonia: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia,
+            ciudad: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad,
+            estado: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado,
+            cp: cli.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp,
+            formaDePago: cli.forma_de_pago,
+            monedaFactura: cli.moneda_factura,
+            emailEnvioFactura: cli.correo_envio_factura,
+            cfdi: cli.cdfi,
+            metodoDePago: cli.metodo_de_pago,
+            terminosDePago: cli.termino_de_pago,
+          },
+        },
+        revisionDeFacturasYpagos: {
+          descripcionRevisionFactura:
+            cli.revision_de_factura_pagos_descripcion_revision_factura,
+          diasRevisionFactura: cli.revision_de_factura_pagos_dias_revision_factura,
+          horaDiasRevisionFactura: cli.revision_de_factura_pagos_hora_revision_factura,
+          diasDeConfirmacionDePago: cli.revision_de_factura_pagos_dias_confirmacion_pagos,
+          horaDiasDeConfirmacionDePago:
+            cli.revision_de_factura_pagos_hora_confirmacion_pagos,
+          diasDePago: cli.revision_de_factura_pagos_dias_pagos,
+          horaDiasDePago: cli.revision_de_factura_pagos_hora_pagos,
+          linkPortal: cli.link_portal,
+          usuarioContrasena: cli.usuario_contraseña,
+          indicacionesAltaFacturaPortal: cli.indiciones_alta_factura,
+          correoSoporteTecnicoPortal: cli.correo_soporte_tecnico_portal,
+          bancoOrdenante: cli.banco_ordenante,
+          cuentaDePago: cli.cuenta_de_pago,
+          complementoDePagoSeEnviaPorEmail: cli.complemento_de_pago_se_envia_por_email,
+          informacionAdicionalComplementoDePago:
+            cli.informacion_adicional_complemento_de_pago,
+          listaRequerimientoDeAccesoAlaPlata: cli.lista_requerimiento_acceso_planta,
+        },
+        iva: cli.iva,
+        sucursales: [],
+      };
+
+      this.$store.commit("setCliente", data);
       this.$store.commit("setDialogEditCliente", true);
     },
     async EliminarCliente(cli) {
