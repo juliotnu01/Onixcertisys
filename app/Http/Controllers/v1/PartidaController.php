@@ -21,6 +21,8 @@ class PartidaController extends Controller
     {
         try {
             $partida = Partida::with(['hasIntrumento',
+                                        'hasNotaDeSeguimiento',
+                                        'hasNotaDeSeguimiento.hasOnwNote',
                                       'hasIntrumento.hasMagnitud', 
                                       'hasCalibracion',
                                       'hasRecibo', 

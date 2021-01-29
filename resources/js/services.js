@@ -20,6 +20,7 @@ import identificadorInformeServices from './services/IdenficadorInformeServices.
 import reciboServices from './services/reciboServices.js'
 import calibracionServices from './services/calibracionServices.js'
 import facturaServices from './services/facturaServices.js'
+import NotasDeSeguimientoServices from './services/NotaDeSeguimientoServices.js'
 
 export default {
     userServices: new userServices(),
@@ -44,4 +45,5 @@ export default {
     reciboServices: new reciboServices(),
     calibracionServices: new calibracionServices(),
     facturaServices: new facturaServices(),
+    NotdasDeSeguimientoServices: new NotasDeSeguimientoServices(),
 }

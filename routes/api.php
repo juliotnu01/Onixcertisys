@@ -142,3 +142,9 @@ Route::post('/add-factura', 'v1\FacturaController@store');
 // Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
 // Route::put('/edit-patron', 'v1\PatronController@update');
 // Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');
+
+Route::get('/get-nota-de-seguimiento', 'v1\NotaDeSeguimientoController@index');
+Route::post('/iniciar-nota-seguimiento-cotizacion', 'v1\NotaDeSeguimientoController@store');
+Route::post('/add-nota-seguimiento-cotizacion', 'v1\NotaDeSeguimientoController@addNotaCotizacionstore');
+Route::post('/iniciar-nota-seguimiento-calibracion', 'v1\NotaDeSeguimientoController@storeCalibracion');
+Route::post('/add-nota-seguimiento-calibracion', 'v1\NotaDeSeguimientoController@addNotaCalibracionstore');

@@ -122,7 +122,8 @@ export default new Vuex.Store({
         partida_para_calibrar:{},
         snackbar: {mensaje: '', status: false, color: ''},
         routes_vue: router.options.routes,
-        
+        dialog_nota_de_seguimiento: false,
+        NotdasDeSeguimiento: [],
     },
     getters: {
         services: state => state.services,
@@ -230,6 +231,9 @@ export default new Vuex.Store({
         partida_para_calibrar: state =>  state.partida_para_calibrar,
         snackbar: state => state.snackbar,
         routes_vue: state => state.routes_vue,
+        dialog_nota_de_seguimiento: state => state.dialog_nota_de_seguimiento,
+        NotdasDeSeguimiento: state => state.NotdasDeSeguimiento,
+        
     },
     mutations: {
         setListUser(state, data) {
@@ -661,6 +665,12 @@ export default new Vuex.Store({
         },
         setNotificacion(state, data){
             state.snackbar = data
+        },
+        setDialogNotaDeSeguimiento(state, data){
+            state.dialog_nota_de_seguimiento = data
+        },
+        setNotasDeSeguimiento(state, data){
+            state.NotdasDeSeguimiento = data
         }
     },
     actions: {

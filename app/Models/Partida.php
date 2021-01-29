@@ -30,5 +30,8 @@ class Partida extends Model
     {
         return $this->belongsTo(Cotizacion::class, 'cotizacion_id');
     }
-    
+    public function hasNotaDeSeguimiento()
+    {
+        return $this->hasMany(NotaDeSeguimiento::class, 'partida_id');
+    }
 }

@@ -16,7 +16,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalEditCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalEditCotizacionComponent.vue");
 /* harmony import */ var _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modals/modalViewCotizacionComponent */ "./resources/js/components/cotizaciones/modals/modalViewCotizacionComponent.vue");
 /* harmony import */ var _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modals/modalViewPdfComponent */ "./resources/js/components/cotizaciones/modals/modalViewPdfComponent.vue");
-/* harmony import */ var _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion.vue */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _modals_indexNotaDeseguimientoComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modals/indexNotaDeseguimientoComponent.vue */ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue");
+/* harmony import */ var _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion.vue */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -165,6 +166,95 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -177,7 +267,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     "modal-edit": _modals_modalEditCotizacionComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     "modal-view": _modals_modalViewCotizacionComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
     "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    "modal-nota-seguimiento": _modals_indexNotaDeseguimientoComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    notificacion: _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
@@ -185,60 +276,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       headers_cotizacion: [{
         text: "Folio",
         value: "id",
-        align: 'start'
+        align: "start"
       }, {
         text: "Fecha",
         value: "created_at",
-        align: 'start'
+        align: "start"
       }, {
         text: "Cliente",
-        value: "has_cliente.razon_social",
-        align: 'start'
+        value: "has_cliente.datos_fisicos_requeremientos_facturacion_razon_social",
+        align: "start"
       }, {
         text: "Contacto",
         value: "contacto",
-        align: 'start'
+        align: "start"
       }, {
         text: "Vendedor",
         value: "has_empleado.nombre_completo",
-        align: 'start'
+        align: "start"
       }, {
         text: "Estado",
         value: "estado_de_la_cotizacion",
-        align: 'start'
+        align: "start"
       }, {
         text: "Tipo de Servicio",
         value: "tipo_de_servicio",
-        align: 'start'
+        align: "start"
       }, {
         text: "Moneda",
         value: "has_moneda",
-        align: 'start'
+        align: "start"
       }, {
         text: "Sub Total",
         value: "sub_total",
-        align: 'start'
+        align: "start"
       }, {
         text: "IVA",
         value: "iva",
-        align: 'start'
+        align: "start"
       }, {
         text: "Total",
         value: "total",
-        align: 'start'
+        align: "start"
       }, {
         text: "Nota de seguimiento",
         value: "nota_de_seguimiento",
-        align: 'start'
+        align: "start"
       }, {
         text: "Accion",
         value: "accion",
-        align: 'start'
+        align: "start"
       }],
       search_cot: ""
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "cotizaciones"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "cotizaciones", "dialog_nota_de_seguimiento"])),
   mounted: function mounted() {
     this.services.cotizacionServices.getlistCotizaciones();
   },
@@ -288,6 +379,397 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }, _callee2);
+      }))();
+    },
+    hacerNotaDeSeguimiento: function hacerNotaDeSeguimiento(item) {
+      this.$store.commit("setDialogNotaDeSeguimiento", true);
+      this.$store.commit("setCotizacion", item);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_pdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-pdf */ "./node_modules/vue-pdf/src/vuePdfNoSss.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pdf: vue_pdf__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      var_instrumento_selected: {},
+      model_inicio_cotizacion: {
+        nota_seguimiento: ""
+      },
+      add_comentario_cotizacion: {
+        nota_seguimiento: ""
+      }
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_nota_de_seguimiento", "NotdasDeSeguimiento", "cotizacion"])), {}, {
+    openDialog: {
+      get: function get() {
+        return this.dialog_nota_de_seguimiento;
+      },
+      set: function set(val) {
+        this.$store.commit("setDialogNotaDeSeguimiento", val);
+      }
+    }
+  }),
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.services.NotdasDeSeguimientoServices.getlisNotasDeSeguimiento();
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    iniciarNotaSeguimientoCotizacion: function iniciarNotaSeguimientoCotizacion() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _yield$axios$post, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+
+                _this2.cotizacion.has_nota_de_seguimiento.push(_this2.model_inicio_cotizacion);
+
+                _context2.next = 4;
+                return axios.post("/api/iniciar-nota-seguimiento-cotizacion", {
+                  model: _this2.model_inicio_cotizacion,
+                  cotizacion: _this2.cotizacion
+                });
+
+              case 4:
+                _yield$axios$post = _context2.sent;
+                data = _yield$axios$post.data;
+                _this2.model_inicio_cotizacion = {
+                  nota_seguimiento: ""
+                };
+                _context2.next = 12;
+                break;
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 9]]);
+      }))();
+    },
+    iniciarNotaSeguimientoCalibracion: function iniciarNotaSeguimientoCalibracion() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _yield$axios$post2, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+
+                _this3.var_instrumento_selected.has_nota_de_seguimiento.push(_this3.model_inicio_cotizacion);
+
+                _context3.next = 4;
+                return axios.post("/api/iniciar-nota-seguimiento-calibracion", {
+                  model: _this3.model_inicio_cotizacion,
+                  partida: _this3.var_instrumento_selected
+                });
+
+              case 4:
+                _yield$axios$post2 = _context3.sent;
+                data = _yield$axios$post2.data;
+                _this3.model_inicio_cotizacion = {
+                  nota_seguimiento: ""
+                };
+                _context3.next = 12;
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](0);
+                console.log(_context3.t0);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 9]]);
+      }))();
+    },
+    AgregarComentarioACalibracion: function AgregarComentarioACalibracion(item) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var _yield$axios$post3, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios.post("/api/add-nota-seguimiento-calibracion", {
+                  model: _this4.add_comentario_cotizacion,
+                  partida: item
+                });
+
+              case 3:
+                _yield$axios$post3 = _context4.sent;
+                data = _yield$axios$post3.data;
+                item.has_onw_note.push(_this4.add_comentario_cotizacion);
+                _this4.add_comentario_cotizacion = {
+                  nota_seguimiento: ""
+                };
+                _context4.next = 12;
+                break;
+
+              case 9:
+                _context4.prev = 9;
+                _context4.t0 = _context4["catch"](0);
+                console.log(_context4.t0);
+
+              case 12:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 9]]);
+      }))();
+    },
+    AgregarComentarioACotizacion: function AgregarComentarioACotizacion(item) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var _yield$axios$post4, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return axios.post("/api/add-nota-seguimiento-cotizacion", {
+                  model: _this5.add_comentario_cotizacion,
+                  cotizacion: item
+                });
+
+              case 3:
+                _yield$axios$post4 = _context5.sent;
+                data = _yield$axios$post4.data;
+                item.has_onw_note.push(_this5.add_comentario_cotizacion);
+                _this5.add_comentario_cotizacion = {
+                  nota_seguimiento: ""
+                };
+                _context5.next = 12;
+                break;
+
+              case 9:
+                _context5.prev = 9;
+                _context5.t0 = _context5["catch"](0);
+                console.log(_context5.t0);
+
+              case 12:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 9]]);
       }))();
     }
   }
@@ -525,13 +1007,171 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'modal-edit-instrumento': _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "modal-edit-instrumento": _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -793,7 +1433,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var partida = {
         identificacion: "",
         instrumento: {},
-        instrumento_nombre: '',
+        instrumento_nombre: "",
         cantidad: 0,
         marca: "",
         modelo: "",
@@ -832,9 +1472,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this5.$store.commit('setInstrumento', inst.instrumento);
+                _this5.$store.commit("setInstrumento", inst.instrumento);
 
-                _this5.$store.commit('setDialogEditInstrumento', true);
+                _this5.$store.commit("setDialogEditInstrumento", true);
 
               case 2:
               case "end":
@@ -1571,7 +2211,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {};
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_view_pdf_cotizacion", 'cotizacion_print'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_view_pdf_cotizacion", "cotizacion_print"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_view_pdf_cotizacion;
@@ -1747,9 +2387,9 @@ var render = function() {
               return [
                 _c("td", [
                   _vm._v(
-                    "\r\n                " +
+                    "\n        " +
                       _vm._s(item.created_at.substr(0, 10)) +
-                      "\r\n            "
+                      "\n      "
                   )
                 ])
               ]
@@ -1776,7 +2416,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                              "\n          " +
+                                _vm._s(item.estado_de_la_cotizacion) +
+                                "\n        "
                             )
                           ]
                         )
@@ -1796,7 +2438,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                              "\n          " +
+                                _vm._s(item.estado_de_la_cotizacion) +
+                                "\n        "
                             )
                           ]
                         )
@@ -1815,7 +2459,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              " " + _vm._s(item.estado_de_la_cotizacion) + " "
+                              "\n          " +
+                                _vm._s(item.estado_de_la_cotizacion) +
+                                "\n        "
                             )
                           ]
                         )
@@ -1846,7 +2492,13 @@ var render = function() {
                               outlined: ""
                             }
                           },
-                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(item.tipo_de_servicio) +
+                                "\n        "
+                            )
+                          ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -1862,7 +2514,13 @@ var render = function() {
                               outlined: ""
                             }
                           },
-                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(item.tipo_de_servicio) +
+                                "\n        "
+                            )
+                          ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -1878,7 +2536,13 @@ var render = function() {
                               outlined: ""
                             }
                           },
-                          [_vm._v(" " + _vm._s(item.tipo_de_servicio) + " ")]
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(item.tipo_de_servicio) +
+                                "\n        "
+                            )
+                          ]
                         )
                       : _vm._e()
                   ],
@@ -1991,7 +2655,7 @@ var render = function() {
                                                     ),
                                                     [
                                                       _vm._v(
-                                                        "\r\n                                            mdi-eye\r\n                                        "
+                                                        "\n                      mdi-eye\n                    "
                                                       )
                                                     ]
                                                   )
@@ -2065,7 +2729,7 @@ var render = function() {
                                                     ),
                                                     [
                                                       _vm._v(
-                                                        "\r\n                                            mdi-delete\r\n                                        "
+                                                        "\n                      mdi-delete\n                    "
                                                       )
                                                     ]
                                                   )
@@ -2139,7 +2803,7 @@ var render = function() {
                                                     ),
                                                     [
                                                       _vm._v(
-                                                        "\r\n                                            mdi-pencil\r\n                                        "
+                                                        "\n                      mdi-pencil\n                    "
                                                       )
                                                     ]
                                                   )
@@ -2213,7 +2877,7 @@ var render = function() {
                                                     ),
                                                     [
                                                       _vm._v(
-                                                        "\r\n                                            mdi-printer\r\n                                        "
+                                                        "\n                      mdi-printer\n                    "
                                                       )
                                                     ]
                                                   )
@@ -2254,20 +2918,14 @@ var render = function() {
               var item = ref.item
               return [
                 _c("td", { staticClass: "text-left" }, [
+                  _vm._v("\n        Nombre:" + _vm._s(item.contacto) + " "),
+                  _c("br"),
                   _vm._v(
-                    "\r\n                Nombre:" + _vm._s(item.contacto) + " "
+                    "\n        Teléfono:" + _vm._s(item.contacto_telefono) + " "
                   ),
                   _c("br"),
                   _vm._v(
-                    "\r\n                Teléfono:" +
-                      _vm._s(item.contacto_telefono) +
-                      " "
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\r\n                Correo:" +
-                      _vm._s(item.contacto_correo) +
-                      " "
+                    "\n        Correo:" + _vm._s(item.contacto_correo) + " "
                   ),
                   _c("br")
                 ])
@@ -2275,26 +2933,20 @@ var render = function() {
             }
           },
           {
-            key: "item.has_cliente.razon_social",
+            key:
+              "item.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social",
             fn: function(ref) {
               var item = ref.item
               return [
                 _c("td", [
                   _vm._v(
-                    "\r\n                " +
-                      _vm._s(item.has_cliente.razon_social)
-                  ),
-                  _c("br"),
-                  _vm._v(
-                    "\r\n                " +
+                    "\n        " +
                       _vm._s(
-                        item.has_cliente.has_sucursal.length > 0
-                          ? "Sucursal: " +
-                              item.has_cliente.has_sucursal[0].nombre_sucursal
-                          : ""
-                      ) +
-                      "\r\n            "
-                  )
+                        item.has_cliente
+                          .datos_fisicos_requeremientos_facturacion_razon_social
+                      )
+                  ),
+                  _c("br")
                 ])
               ]
             }
@@ -2362,6 +3014,35 @@ var render = function() {
                 ])
               ]
             }
+          },
+          {
+            key: "item.nota_de_seguimiento",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: {
+                      color: "success",
+                      small: "",
+                      dense: "",
+                      block: ""
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.hacerNotaDeSeguimiento(item)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v("\n        Nota de seguimiento "),
+                    _c("v-icon", [_vm._v("mdi-note")])
+                  ],
+                  1
+                )
+              ]
+            }
           }
         ])
       }),
@@ -2374,7 +3055,576 @@ var render = function() {
       _vm._v(" "),
       _c("modal-pdf"),
       _vm._v(" "),
-      _c("notificacion")
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("modal-nota-seguimiento")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-app",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "" },
+          model: {
+            value: _vm.openDialog,
+            callback: function($$v) {
+              _vm.openDialog = $$v
+            },
+            expression: "openDialog"
+          }
+        },
+        [
+          _c(
+            "v-toolbar",
+            { attrs: { dark: "", color: "primary" } },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", dark: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.openDialog = false
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("mdi-close")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-sheet",
+            [
+              _c(
+                "v-row",
+                [
+                  _vm._l(_vm.cotizacion.has_nota_de_seguimiento, function(
+                    i,
+                    n
+                  ) {
+                    return _c(
+                      "v-col",
+                      {
+                        key: n,
+                        attrs: { xs: "12", sm: "12", md: "12", lg: "12" }
+                      },
+                      [
+                        _c(
+                          "v-card",
+                          { staticClass: "m-5 elevation-2" },
+                          [
+                            _c(
+                              "v-card-text",
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(i.nota_seguimiento) +
+                                    "\n              "
+                                ),
+                                _c("v-divider")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "text-right p-5" },
+                              _vm._l(i.has_onw_note, function(sc, x) {
+                                return _c(
+                                  "span",
+                                  { key: x },
+                                  [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(sc.nota_seguimiento) +
+                                        "\n                "
+                                    ),
+                                    _c("v-divider")
+                                  ],
+                                  1
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-actions",
+                              [
+                                _c(
+                                  "v-row",
+                                  [
+                                    _c(
+                                      "v-col",
+                                      {
+                                        attrs: {
+                                          xs: "12",
+                                          sm: "12",
+                                          md: "2",
+                                          lg: "2"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: { color: "primary" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.AgregarComentarioACotizacion(
+                                                  i
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Agregar comentario")]
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      {
+                                        attrs: {
+                                          xs: "12",
+                                          sm: "12",
+                                          md: "10",
+                                          lg: "10"
+                                        }
+                                      },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            name: "name",
+                                            label:
+                                              "Escribe un comentario para el seguimiento de la cotizacion",
+                                            id: "id",
+                                            outlined: ""
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.add_comentario_cotizacion
+                                                .nota_seguimiento,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.add_comentario_cotizacion,
+                                                "nota_seguimiento",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "add_comentario_cotizacion.nota_seguimiento"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm._l(
+                    _vm.var_instrumento_selected.has_nota_de_seguimiento,
+                    function(i, n) {
+                      return _c(
+                        "v-col",
+                        {
+                          key: n,
+                          attrs: { xs: "12", sm: "12", md: "12", lg: "12" }
+                        },
+                        [
+                          _c(
+                            "v-card",
+                            { staticClass: "m-5 elevation-2" },
+                            [
+                              _c(
+                                "v-card-text",
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(i.nota_seguimiento) +
+                                      "\n              "
+                                  ),
+                                  _c("v-divider")
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "text-right p-5" },
+                                _vm._l(i.has_onw_note, function(sc, x) {
+                                  return _c(
+                                    "span",
+                                    { key: x },
+                                    [
+                                      _vm._v(
+                                        "\n                " +
+                                          _vm._s(sc.nota_seguimiento)
+                                      ),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("v-divider")
+                                    ],
+                                    1
+                                  )
+                                }),
+                                0
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                [
+                                  _c(
+                                    "v-row",
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "10",
+                                            lg: "10"
+                                          }
+                                        },
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              name: "name",
+                                              label:
+                                                "Escribe un comentario para el seguimiento de la calibracion",
+                                              id: "id",
+                                              outlined: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.add_comentario_cotizacion
+                                                  .nota_seguimiento,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.add_comentario_cotizacion,
+                                                  "nota_seguimiento",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "add_comentario_cotizacion.nota_seguimiento"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "2",
+                                            lg: "2"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "primary" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.AgregarComentarioACalibracion(
+                                                    i
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Agregar comentario")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { xs: "12", sm: "12", md: "12", lg: "12" } },
+                    [
+                      _c(
+                        "v-card",
+                        { staticClass: "mx-auto p-5" },
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12",
+                                    lg: "12"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-row",
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "8",
+                                            lg: "8"
+                                          }
+                                        },
+                                        [
+                                          _c("v-textarea", {
+                                            attrs: {
+                                              outlined: "",
+                                              label: "Escribe un comentario"
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.model_inicio_cotizacion
+                                                  .nota_seguimiento,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.model_inicio_cotizacion,
+                                                  "nota_seguimiento",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "model_inicio_cotizacion.nota_seguimiento"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "4",
+                                            lg: "4"
+                                          }
+                                        },
+                                        [
+                                          _c("v-autocomplete", {
+                                            attrs: {
+                                              items:
+                                                _vm.cotizacion.has_partidas,
+                                              outlined: "",
+                                              chips: "",
+                                              label: "Seleccionar Instrumento",
+                                              "return-object": ""
+                                            },
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "selection",
+                                                fn: function(data) {
+                                                  return [
+                                                    _vm._v(
+                                                      "\n                        " +
+                                                        _vm._s(
+                                                          data.item
+                                                            .has_intrumento
+                                                            .nombre
+                                                        ) +
+                                                        "\n                      "
+                                                    )
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                key: "item",
+                                                fn: function(data) {
+                                                  return [
+                                                    _vm._v(
+                                                      "\n                        " +
+                                                        _vm._s(
+                                                          data.item
+                                                            .has_intrumento
+                                                            .nombre
+                                                        ) +
+                                                        "\n                      "
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ]),
+                                            model: {
+                                              value:
+                                                _vm.var_instrumento_selected,
+                                              callback: function($$v) {
+                                                _vm.var_instrumento_selected = $$v
+                                              },
+                                              expression:
+                                                "var_instrumento_selected"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-row",
+                                            [
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                {
+                                                  attrs: {
+                                                    xs: "12",
+                                                    sm: "12",
+                                                    md: "12",
+                                                    lg: "12"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        color: "success",
+                                                        block: ""
+                                                      },
+                                                      on: {
+                                                        click:
+                                                          _vm.iniciarNotaSeguimientoCalibracion
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Inicar Seguimiento del instrumento"
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-col",
+                                                {
+                                                  attrs: {
+                                                    xs: "12",
+                                                    sm: "12",
+                                                    md: "12",
+                                                    lg: "12"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        color: "warning",
+                                                        block: ""
+                                                      },
+                                                      on: {
+                                                        click:
+                                                          _vm.iniciarNotaSeguimientoCotizacion
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Inicar Seguimiento de la cotizacion\n                        "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -2453,7 +3703,7 @@ var render = function() {
                 },
                 [
                   _c("v-icon", [_vm._v("mdi-file-upload")]),
-                  _vm._v(" Cargar Partidas masivamente\r\n            ")
+                  _vm._v(" Cargar Partidas masivamente\n      ")
                 ],
                 1
               ),
@@ -2471,7 +3721,7 @@ var render = function() {
                 },
                 [
                   _c("v-icon", [_vm._v("mdi-content-save")]),
-                  _vm._v(" Guardar\r\n            ")
+                  _vm._v(" Guardar\n      ")
                 ],
                 1
               )
@@ -2502,8 +3752,8 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "2",
+                                lg: "2"
                               }
                             },
                             [
@@ -2512,7 +3762,9 @@ var render = function() {
                                   "offset-y": "",
                                   dense: "",
                                   items: _vm.clientes,
-                                  "item-text": "razon_social",
+                                  "item-text":
+                                    "datos_fisicos_requeremientos_facturacion_razon_social",
+                                  "item-value": "id",
                                   outlined: "",
                                   s: "",
                                   label: "Seleccionar Cliente",
@@ -2537,8 +3789,8 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "2",
+                                lg: "2"
                               }
                             },
                             [
@@ -2760,8 +4012,8 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "4",
+                                lg: "4"
                               }
                             },
                             [
@@ -2773,16 +4025,17 @@ var render = function() {
                                 },
                                 model: {
                                   value:
-                                    _vm.model.cliente_selected.nombre_contacto,
+                                    _vm.model.cliente_selected
+                                      .contacto_adicionales_compra,
                                   callback: function($$v) {
                                     _vm.$set(
                                       _vm.model.cliente_selected,
-                                      "nombre_contacto",
+                                      "contacto_adicionales_compra",
                                       $$v
                                     )
                                   },
                                   expression:
-                                    "model.cliente_selected.nombre_contacto"
+                                    "model.cliente_selected.contacto_adicionales_compra"
                                 }
                               })
                             ],
@@ -2796,8 +4049,8 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "4",
+                                lg: "4"
                               }
                             },
                             [
@@ -2810,16 +4063,16 @@ var render = function() {
                                 model: {
                                   value:
                                     _vm.model.cliente_selected
-                                      .telefono_contacto,
+                                      .contacto_adicionales_compra_telf,
                                   callback: function($$v) {
                                     _vm.$set(
                                       _vm.model.cliente_selected,
-                                      "telefono_contacto",
+                                      "contacto_adicionales_compra_telf",
                                       $$v
                                     )
                                   },
                                   expression:
-                                    "model.cliente_selected.telefono_contacto"
+                                    "model.cliente_selected.contacto_adicionales_compra_telf"
                                 }
                               })
                             ],
@@ -2833,8 +4086,8 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "4",
+                                lg: "4"
                               }
                             },
                             [
@@ -2846,16 +4099,17 @@ var render = function() {
                                 },
                                 model: {
                                   value:
-                                    _vm.model.cliente_selected.correo_contacto,
+                                    _vm.model.cliente_selected
+                                      .contacto_adicionales_compra_correo,
                                   callback: function($$v) {
                                     _vm.$set(
                                       _vm.model.cliente_selected,
-                                      "correo_contacto",
+                                      "contacto_adicionales_compra_correo",
                                       $$v
                                     )
                                   },
                                   expression:
-                                    "model.cliente_selected.correo_contacto"
+                                    "model.cliente_selected.contacto_adicionales_compra_correo"
                                 }
                               })
                             ],
@@ -2869,17 +4123,13 @@ var render = function() {
                                 cols: "12",
                                 xs: "12",
                                 sm: "12",
-                                md: "3",
-                                lg: "3"
+                                md: "6",
+                                lg: "6"
                               }
                             },
                             [
-                              _c("v-text-field", {
-                                attrs: {
-                                  dense: "",
-                                  outlined: "",
-                                  label: "Condiciones"
-                                },
+                              _c("v-textarea", {
+                                attrs: { outlined: "", label: "Condiciones" },
                                 model: {
                                   value: _vm.model.condiciones,
                                   callback: function($$v) {
@@ -2915,35 +4165,6 @@ var render = function() {
                                     _vm.$set(_vm.model, "nota_cotizacion", $$v)
                                   },
                                   expression: "model.nota_cotizacion"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              attrs: {
-                                cols: "12",
-                                xs: "12",
-                                sm: "12",
-                                md: "6",
-                                lg: "6"
-                              }
-                            },
-                            [
-                              _c("v-textarea", {
-                                attrs: {
-                                  outlined: "",
-                                  label: "Notas de seguimiento"
-                                },
-                                model: {
-                                  value: _vm.model.nota_seguimiento,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.model, "nota_seguimiento", $$v)
-                                  },
-                                  expression: "model.nota_seguimiento"
                                 }
                               })
                             ],
@@ -3145,7 +4366,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\r\n                                Agregar Partida\r\n                                "
+                                    "\n                Agregar Partida\n                "
                                   ),
                                   _c("v-icon", { attrs: { small: "" } }, [
                                     _vm._v("mdi-plus")
@@ -3172,75 +4393,51 @@ var render = function() {
                             _c("thead", [
                               _c("tr", [
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Identicacion\r\n                                "
-                                  )
+                                  _vm._v("Identicacion")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Servicio\r\n                                "
-                                  )
+                                  _vm._v("Servicio")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Unidad\r\n                                "
-                                  )
+                                  _vm._v("Unidad")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Instrumento\r\n                                "
-                                  )
+                                  _vm._v("Instrumento")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Marca\r\n                                "
-                                  )
+                                  _vm._v("Marca")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Modelo\r\n                                "
-                                  )
+                                  _vm._v("Modelo")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Serie\r\n                                "
-                                  )
+                                  _vm._v("Serie")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Alcance\r\n                                "
-                                  )
+                                  _vm._v("Alcance")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Acreditacion\r\n                                "
-                                  )
+                                  _vm._v("Acreditacion")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Precio Unitario\r\n                                "
-                                  )
+                                  _vm._v("Precio Unitario")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Importe\r\n                                "
-                                  )
+                                  _vm._v("Importe")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Accion\r\n                                "
-                                  )
+                                  _vm._v("Accion")
                                 ])
                               ])
                             ]),
@@ -3279,17 +4476,17 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        "\r\n                                    " +
+                                        "\n                  " +
                                           _vm._s(item.servicio.name) +
-                                          "\r\n                                "
+                                          "\n                "
                                       )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        "\r\n                                    " +
+                                        "\n                  " +
                                           _vm._s(item.unidad.name) +
-                                          "\r\n                                "
+                                          "\n                "
                                       )
                                     ]),
                                     _vm._v(" "),
@@ -3297,9 +4494,9 @@ var render = function() {
                                       "td",
                                       [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(item.instrumento_nombre) +
-                                            "\r\n                                    "
+                                            "\n                  "
                                         ),
                                         _c(
                                           "v-btn",
@@ -3396,20 +4593,20 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        "\r\n                                    " +
+                                        "\n                  " +
                                           _vm._s(item.instrumento.alcance) +
-                                          "\r\n                                "
+                                          "\n                "
                                       )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        "\r\n                                    " +
+                                        "\n                  " +
                                           _vm._s(
                                             item.instrumento.has_acreditacion
                                               .instrumento_nombre
                                           ) +
-                                          "\r\n                                "
+                                          "\n                "
                                       )
                                     ]),
                                     _vm._v(" "),
@@ -3501,14 +4698,14 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            SUBTOTAL :" +
+                                          "\n                      SUBTOTAL :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_sub_total,
                                                 _vm.model.moneda_selected.clave
                                               )
                                             ) +
-                                            "\r\n                                        "
+                                            "\n                    "
                                         )
                                       ])
                                     ]),
@@ -3516,14 +4713,14 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            IVA :" +
+                                          "\n                      IVA :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_iva,
                                                 _vm.model.moneda_selected.clave
                                               )
                                             ) +
-                                            "\r\n                                        "
+                                            "\n                    "
                                         )
                                       ])
                                     ]),
@@ -3531,14 +4728,14 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            TOTAL :" +
+                                          "\n                      TOTAL :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_total,
                                                 _vm.model.moneda_selected.clave
                                               )
                                             ) +
-                                            "\r\n                                        "
+                                            "\n                    "
                                         )
                                       ])
                                     ])
@@ -4980,6 +6177,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCotizacionesComponent_vue_vue_type_template_id_57f955a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6& */ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6&");
+/* harmony import */ var _indexNotaDeseguimientoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _indexNotaDeseguimientoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexNotaDeseguimientoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexNotaDeseguimientoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6& ***!
+  \************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cotizaciones/modals/indexNotaDeseguimientoComponent.vue?vue&type=template&id=60fa76f6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexNotaDeseguimientoComponent_vue_vue_type_template_id_60fa76f6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

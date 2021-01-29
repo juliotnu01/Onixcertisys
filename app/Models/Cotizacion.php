@@ -34,6 +34,14 @@ class Cotizacion extends Model
     {
         return $this->hasMany(Recibo::class, 'cotizacion_id');
     }
+    public function belongsToSucursalCliente()
+    {
+        return $this->belongsTo(SucursalCliente::class, 'sucursal_cliente_id');
+    }
+    public function hasNotaDeSeguimiento()
+    {
+        return $this->hasMany(NotaDeSeguimiento::class, 'cotizacion_id');
+    }
 
 
 }

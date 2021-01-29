@@ -102,7 +102,7 @@ class ClienteController extends Controller
                 $cliente->revision_de_factura_pagos_hora_pagos = $request['revisionDeFacturasYpagos']['horaDiasDePago'];
                 $cliente->link_portal = $request['revisionDeFacturasYpagos']['linkPortal'];
                 $cliente->usuario_contraseña = $request['revisionDeFacturasYpagos']['usuarioContrasena'];
-                $cliente->indiciones_alta_factura = $request['revisionDeFacturasYpagos']['indicacionesAltaFacturaPortal'];
+                // $cliente->indiciones_alta_factura = $request['revisionDeFacturasYpagos']['indicacionesAltaFacturaPortal'];
                 $cliente->correo_soporte_tecnico_portal = $request['revisionDeFacturasYpagos']['correoSoporteTecnicoPortal'];
                 $cliente->banco_ordenante = $request['revisionDeFacturasYpagos']['bancoOrdenante'];
                 $cliente->cuenta_de_pago = $request['revisionDeFacturasYpagos']['cuentaDePago'];
@@ -112,14 +112,14 @@ class ClienteController extends Controller
                 $cliente->iva = $request['iva'];
                 $cliente->save();
 
-                foreach ($request['sucursales'] as $key => $value) {
-                        $sucursal = new SucursalCliente();
-                        $sucursal->nombre_sucursal = $value['nombre'];
-                        $sucursal->direccion_sucursal = $value['direccion'];
-                        $sucursal->telefono = $value['telefono'];
-                        $sucursal->cliente_id =  $cliente->id;
-                        $sucursal->save();
-                }   
+                // foreach ($request['sucursales'] as $key => $value) {
+                //         $sucursal = new SucursalCliente();
+                //         $sucursal->nombre_sucursal = $value['nombre'];
+                //         $sucursal->direccion_sucursal = $value['direccion'];
+                //         $sucursal->telefono = $value['telefono'];
+                //         $sucursal->cliente_id =  $cliente->id;
+                //         $sucursal->save();
+                // }   
 
             }, 5);
 

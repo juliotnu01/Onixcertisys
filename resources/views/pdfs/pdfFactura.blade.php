@@ -152,7 +152,6 @@
             </td>
         </tr>
 	</table>
-   
     <table style="width:100%; padding: 5px;" cellspacing=0>
 		<tr>
 			<td style="width:15%;" rowspan=2><img src="data:image/png;base64, {!! $qrcode !!}"></td>

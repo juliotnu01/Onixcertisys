@@ -29,11 +29,15 @@ class CotizacionController extends Controller
         try {
             $cotizaciones = Cotizacion::with([
                 'hasCliente',
-                'hasCliente.hasSucursal',
+                'belongsToSucursalCliente',
                 'hasEmpleado',
                 'hasMoneda',
                 'hasTiempoDeEntrega',
                 'hasPartidas',
+                'hasNotaDeSeguimiento',
+                'hasNotaDeSeguimiento.hasOnwNote',
+                'hasPartidas.hasNotaDeSeguimiento',
+                'hasPartidas.hasNotaDeSeguimiento.hasOnwNote',
                 'hasPartidas.hasCalibracion',
                 'hasPartidas.hasIntrumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',

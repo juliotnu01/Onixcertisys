@@ -10,12 +10,7 @@
     >
       {{ var_computed_snackbar.mensaje }}
       <template v-slot:action="{ attrs }">
-        <v-btn
-          text
-          v-bind="attrs"
-          @click="var_computed_snackbar.status = false"
-          dark
-        >
+        <v-btn text v-bind="attrs" @click="var_computed_snackbar.status = false" dark>
           Close
         </v-btn>
       </template>
