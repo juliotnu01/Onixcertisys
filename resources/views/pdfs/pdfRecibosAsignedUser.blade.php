@@ -17,11 +17,11 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; margin-top: 10px">
         <tr style="vertical-align: top">
             <td style="width:76%">
-                <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
-                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['domicilio_fiscal']}}</span><br>
-                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['nombre_contacto']}}</span><br>
-                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['telefono_contacto']}}</span><br>
-                <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['correo_contacto']}}</span>
+            <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</b></span><br>
+                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}</span><br>
+                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra']}}</span><br>
+                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_telf']}}</span><br>
+                <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_correo']}}</span>
             </td>
             <td style="width:12%;text-align:right;">
                 <span style="font-size:10pt;"><b>Folio:</b></span><br>

@@ -26,7 +26,7 @@
                     dense
                     v-model="cotizacion_view.has_cliente"
                     :items="clientes"
-                    item-text="razon_social"
+                    item-text="datos_fisicos_requeremientos_facturacion_razon_social"
                     outlined
                     label="Seleccionar Cliente"
                     return-object
@@ -71,17 +71,11 @@
                     return-object
                   ></v-autocomplete>
                 </v-col>
-                <!--<v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                <v-select disabled offset-y dense v-model="cotizacion_view.tipo_de_servicio" :items="tipo_de_servicio" label="Tipo de Servicio" outlined item-text="name" item-value="name" return-object></v-select>
-                            </v-col>
-                            <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                                <v-select disabled offset-y dense v-model="cotizacion_view.estado_de_la_cotizacion" :items="estado_de_la_cotizacion" label="Estado de la cotizacion" outlined item-text="name" return-object></v-select>
-                            </v-col>-->
                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                   <v-text-field
                     disabled
                     :rules="[rules.required]"
-                    v-model="cotizacion_view.has_cliente.nombre_completo"
+                    v-model="cotizacion_view.has_cliente.contacto_adicionales_compra"
                     dense
                     outlined
                     label="Contacto"
@@ -91,7 +85,7 @@
                   <v-text-field
                     disabled
                     :rules="[rules.required]"
-                    v-model="cotizacion_view.has_cliente.celular_contacto"
+                    v-model="cotizacion_view.has_cliente.contacto_adicionales_compra_telf"
                     dense
                     outlined
                     label="Teléfono"
@@ -101,7 +95,9 @@
                   <v-text-field
                     disabled
                     :rules="[rules.required]"
-                    v-model="cotizacion_view.has_cliente.correo_contacto"
+                    v-model="
+                      cotizacion_view.has_cliente.contacto_adicionales_compra_correo
+                    "
                     dense
                     outlined
                     label="Correo"
@@ -117,7 +113,7 @@
                     label="Condiciones"
                   />
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-textarea
                     disabled
                     v-model="cotizacion_view.nota_para_la_cotizacion"
@@ -125,13 +121,6 @@
                     label="Notas de la cotizacion"
                   ></v-textarea>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                  <v-textarea
-                    disabled
-                    v-model="cotizacion_view.nota_de_seguimiento"
-                    outlined
-                    label="Notas de seguimiento"
-                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>

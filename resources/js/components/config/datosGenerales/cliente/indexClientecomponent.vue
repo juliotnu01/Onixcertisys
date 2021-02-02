@@ -1,42 +1,42 @@
 <template>
   <v-app>
     <v-card class="p-2">
-      <v-card-title>Cliente</v-card-title>
-      <v-toolbar flat color="white">
+      <v-card-title color="primary">Cliente</v-card-title>
+      <v-app-bar absolute color="primary" dark>
+        <v-toolbar-title>Cliente</v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-text-field
           label="Buscar Cliente"
           placeholder=""
           v-model="search_cli"
           outlined
-          small
+          dense
+          class="mt-5 mr-5"
         ></v-text-field>
-        <v-spacer></v-spacer>
-        <!-- <v-file-input
+
+        <v-file-input
           label="Seleccionar documento (.xls | .xlsx)"
           outlined
           v-model="file_cliente"
           @change="handleFile"
+          dense
+          class="mt-5"
         />
         <v-btn
           icon
           dark
-          color="primary"
+          color="info"
           @click="agregarFileCliente"
           :loading="load_cliente_file"
+          large
         >
           <v-icon dark large>mdi-file-upload</v-icon>
         </v-btn>
-        -->
-        <v-btn
-          class="mx-2"
-          fab
-          dark
-          color="primary"
-          @click="$store.commit('SetDialogAddCliente', true)"
-        >
+        <v-spacer></v-spacer>
+        <v-btn fab dark color="info" @click="$store.commit('SetDialogAddCliente', true)">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
-      </v-toolbar>
+      </v-app-bar>
       <v-data-table
         :headers="headers_cli"
         :items="clientes"
@@ -177,7 +177,9 @@ export default {
       this.file = event.target.files ? event.target.files[0] : null;
     },
     async EditarCliente(cli) {
-      var data = {
+      var data = {};
+
+      data = {
         id: cli.id,
         servicio_solicitado: JSON.parse(cli.servicio_solicitado),
         persona_de_contacto: {
@@ -238,7 +240,7 @@ export default {
           listaRequerimientoDeAccesoAlaPlata: cli.lista_requerimiento_acceso_planta,
         },
         iva: cli.iva,
-        sucursales: [],
+        sucursales: cli.has_sucursal,
       };
 
       this.$store.commit("setCliente", data);
@@ -540,6 +542,7 @@ export default {
         let { data } = await axios.post("/api/cargar-file-cliente", this.cliente);
         this.load_cliente_file = false;
         this.services.clienteServices.getlistclientes();
+        this.file_cliente = {};
       } catch (e) {
         this.load_cliente_file = false;
         console.log(e);
@@ -548,3 +551,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.btnAddFileCliente {
+  margin-top: -33px;
+}
+.btnAddCliente {
+  margin-top: -30px;
+}
+</style>

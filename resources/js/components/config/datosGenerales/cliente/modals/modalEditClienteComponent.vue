@@ -3,7 +3,7 @@
     <v-dialog v-model="openDialog">
       <v-card>
         <v-card-title>Agregar cliente</v-card-title>
-        <v-card-text>
+        <v-card-text v-if="Object.entries(cliente).length > 0">
           <v-card class="elevation-1">
             <v-card-title primary-title> SERVICIO SOLICITADO: </v-card-title>
             <v-card-text>
@@ -35,12 +35,13 @@
           </v-card>
           <v-card class="elevation-1">
             <v-card-title primary-title> PERSONA DE CONTACTO: </v-card-title>
-            <v-card-text>
+            <v-card-text >
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
                     label="Nombre del Contacto"
                     outlined
+                    
                     v-model="cliente.persona_de_contacto.nombre"
                   ></v-text-field>
                 </v-col>
@@ -425,10 +426,10 @@
                     v-model="cliente.iva"
                   ></v-text-field>
                 </v-col>
-                <!-- <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-data-table
                     :headers="headers_sucursal"
-                    :items="cliente.has_sucursal"
+                    :items="cliente.sucursales"
                     :items-per-page="5"
                     class="elevation-1"
                   >
@@ -440,7 +441,7 @@
                               dense
                               class="mt-5"
                               outlined
-                              v-model="sucursal.nombre"
+                              v-model="sucursal.nombre_sucursal"
                             ></v-text-field>
                         </td>
                         <td>
@@ -449,10 +450,10 @@
                               dense
                               class="mt-5"
                               outlined
-                              v-model="sucursal.direccion"
+                              v-model="sucursal.direccion_sucursal"
                             ></v-text-field>
                         </td>
-                        <td>
+                        <!-- <td>
                             <v-text-field
                               label=""
                               dense
@@ -469,7 +470,7 @@
                               outlined
                               v-model="sucursal.correo"
                             ></v-text-field>
-                        </td>
+                        </td> -->
                         <td>
                             <v-text-field
                               label=""
@@ -486,7 +487,7 @@
                       </tr>
                   </template>
                   </v-data-table>
-                </v-col> -->
+                </v-col>
               </v-row>
             </v-card-text>
           </v-card>
@@ -536,8 +537,8 @@ export default {
       ],
 
       sucursal: {
-        nombre: "",
-        direccion: "",
+        nombre_sucursal: "",
+        direccion_sucursal: "",
         contacto: "",
         correo: "",
         telefono: "",

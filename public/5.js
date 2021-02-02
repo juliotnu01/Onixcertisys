@@ -12,6 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/modalDuplicateCotizacionComponent.vue */ "./resources/js/components/cliente/modals/modalDuplicateCotizacionComponent.vue");
 /* harmony import */ var _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion.vue */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -53,43 +55,127 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-para-duplicar': _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-para-duplicar": _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    notificacion: _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    apexcharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default.a
   },
   data: function data() {
     return {
       cliente_selected: {},
       headers_cotizacion: [{
-        text: 'Cotizacion',
-        align: 'start',
+        text: "Cotizacion",
+        align: "start",
         sortable: false,
-        value: 'id'
+        value: "id"
       }, {
-        text: 'Fecha de creacion',
-        align: 'start',
+        text: "Fecha de creacion",
+        align: "start",
         sortable: false,
-        value: 'created_at'
+        value: "created_at"
       }, {
-        text: 'Accion',
-        align: 'center',
+        text: "Accion",
+        align: "center",
         sortable: false,
-        value: 'accion'
+        value: "accion"
+      }],
+      options: {
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        }
+      },
+      series: [{
+        name: "",
+        data: [30, 40, 45, 50, 49, 60, 70, 81]
       }]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'clientes'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "clientes"])),
   mounted: function mounted() {
     this.services.clienteServices.getlistclientes();
   },
   methods: {
     EnlazarCotizacion: function EnlazarCotizacion(item) {
-      this.$store.commit('setCotizacionParaDuplicar', item);
-      this.$store.commit('setDialogDuplicateCotizacion', true);
+      this.$store.commit("setCotizacionParaDuplicar", item);
+      this.$store.commit("setDialogDuplicateCotizacion", true);
+    },
+    cargarchart: function cargarchart() {
+      var options = {
+        xaxis: {
+          categories: []
+        }
+      },
+          series = [{
+        name: "",
+        data: []
+      }],
+          cotizaciones = this.cliente_selected.has_cotizaciones,
+          countData = 0;
+
+      for (var index = 0; index < cotizaciones.length; index++) {
+        options.xaxis.categories.push(cotizaciones[index].created_at.substr(0, 10));
+
+        for (var _index = 0; _index < cotizaciones.length; _index++) {
+          for (var _index2 = 0; _index2 < options.xaxis.categories.length; _index2++) {
+            if (cotizaciones[_index2].created_at.substr(0, 10) == options.xaxis.categories[_index2]) {
+              countData++;
+              series[0].data.push(countData);
+            }
+          }
+        }
+      }
+
+      console.log({
+        series: series,
+        cotizaciones: cotizaciones
+      });
+      this.options = options;
+      this.series = series;
     }
   }
 });
@@ -120,6 +206,147 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -553,160 +780,197 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-row",
+    "v-app",
     [
       _c(
-        "v-col",
-        { attrs: { cols: "6" } },
-        [
-          _c("v-autocomplete", {
-            attrs: {
-              items: _vm.clientes,
-              outlined: "",
-              label: "Seleccionar cliente",
-              "item-text": "razon_social",
-              "return-object": ""
-            },
-            model: {
-              value: _vm.cliente_selected,
-              callback: function($$v) {
-                _vm.cliente_selected = $$v
-              },
-              expression: "cliente_selected"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        { attrs: { cols: "6" } },
+        "v-row",
         [
           _c(
-            "v-card",
+            "v-col",
+            { attrs: { cols: "6" } },
             [
               _c(
-                "v-card-text",
+                "v-row",
                 [
                   _c(
-                    "v-row",
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c("v-autocomplete", {
+                        attrs: {
+                          items: _vm.clientes,
+                          outlined: "",
+                          label: "Seleccionar cliente",
+                          "item-text":
+                            "datos_fisicos_requeremientos_facturacion_razon_social",
+                          "item-value": "id",
+                          "return-object": ""
+                        },
+                        on: { change: _vm.cargarchart },
+                        model: {
+                          value: _vm.cliente_selected,
+                          callback: function($$v) {
+                            _vm.cliente_selected = $$v
+                          },
+                          expression: "cliente_selected"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
                     [
                       _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
+                        "v-card",
                         [
-                          _c("v-data-table", {
-                            staticClass: "elevation-1",
-                            attrs: {
-                              headers: _vm.headers_cotizacion,
-                              items: _vm.cliente_selected.has_cotizaciones,
-                              "items-per-page": 5
-                            },
-                            scopedSlots: _vm._u([
-                              {
-                                key: "item.accion",
-                                fn: function(ref) {
-                                  var item = ref.item
-                                  return [
-                                    _c(
-                                      "v-tooltip",
-                                      {
-                                        attrs: { bottom: "" },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "activator",
-                                              fn: function(ref) {
-                                                var on = ref.on
-                                                var attrs = ref.attrs
-                                                return [
-                                                  _c(
-                                                    "v-btn",
-                                                    _vm._g(
-                                                      _vm._b(
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-data-table", {
+                                        staticClass: "elevation-1",
+                                        attrs: {
+                                          headers: _vm.headers_cotizacion,
+                                          items:
+                                            _vm.cliente_selected
+                                              .has_cotizaciones,
+                                          "items-per-page": 5
+                                        },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "item.accion",
+                                            fn: function(ref) {
+                                              var item = ref.item
+                                              return [
+                                                _c(
+                                                  "v-tooltip",
+                                                  {
+                                                    attrs: { bottom: "" },
+                                                    scopedSlots: _vm._u(
+                                                      [
                                                         {
-                                                          attrs: {
-                                                            color: "primary",
-                                                            dark: "",
-                                                            icon: "",
-                                                            fab: ""
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.EnlazarCotizacion(
-                                                                item
+                                                          key: "activator",
+                                                          fn: function(ref) {
+                                                            var on = ref.on
+                                                            var attrs =
+                                                              ref.attrs
+                                                            return [
+                                                              _c(
+                                                                "v-btn",
+                                                                _vm._g(
+                                                                  _vm._b(
+                                                                    {
+                                                                      attrs: {
+                                                                        color:
+                                                                          "primary",
+                                                                        dark:
+                                                                          "",
+                                                                        icon:
+                                                                          "",
+                                                                        fab: ""
+                                                                      },
+                                                                      on: {
+                                                                        click: function(
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.EnlazarCotizacion(
+                                                                            item
+                                                                          )
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "v-btn",
+                                                                    attrs,
+                                                                    false
+                                                                  ),
+                                                                  on
+                                                                ),
+                                                                [
+                                                                  _c(
+                                                                    "v-icon",
+                                                                    _vm._g(
+                                                                      _vm._b(
+                                                                        {
+                                                                          attrs: {
+                                                                            dark:
+                                                                              ""
+                                                                          }
+                                                                        },
+                                                                        "v-icon",
+                                                                        attrs,
+                                                                        false
+                                                                      ),
+                                                                      on
+                                                                    ),
+                                                                    [
+                                                                      _vm._v(
+                                                                        "mdi-content-duplicate\n                            "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ],
+                                                                1
                                                               )
-                                                            }
+                                                            ]
                                                           }
-                                                        },
-                                                        "v-btn",
-                                                        attrs,
-                                                        false
-                                                      ),
-                                                      on
-                                                    ),
-                                                    [
-                                                      _c(
-                                                        "v-icon",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                dark: ""
-                                                              }
-                                                            },
-                                                            "v-icon",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
-                                                        ),
-                                                        [
-                                                          _vm._v(
-                                                            "mdi-content-duplicate "
-                                                          )
-                                                        ]
+                                                        }
+                                                      ],
+                                                      null,
+                                                      true
+                                                    )
+                                                  },
+                                                  [
+                                                    _vm._v(" "),
+                                                    _c("span", [
+                                                      _vm._v(
+                                                        "Enlazar cotizacion"
                                                       )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              }
+                                                    ])
+                                                  ]
+                                                )
+                                              ]
                                             }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c("span", [
-                                          _vm._v("Enlazar cotizacion")
+                                          },
+                                          {
+                                            key: "item.created_at",
+                                            fn: function(ref) {
+                                              var item = ref.item
+                                              return [
+                                                _c("td", [
+                                                  _vm._v(
+                                                    "\n                        " +
+                                                      _vm._s(
+                                                        item.created_at.substr(
+                                                          0,
+                                                          10
+                                                        )
+                                                      ) +
+                                                      "\n                      "
+                                                  )
+                                                ])
+                                              ]
+                                            }
+                                          }
                                         ])
-                                      ]
-                                    )
-                                  ]
-                                }
-                              },
-                              {
-                                key: "item.created_at",
-                                fn: function(ref) {
-                                  var item = ref.item
-                                  return [
-                                    _c("td", [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(item.created_at.substr(0, 10))
-                                      )
-                                    ])
-                                  ]
-                                }
-                              }
-                            ])
-                          })
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -716,6 +980,22 @@ var render = function() {
                 ],
                 1
               )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "6" } },
+            [
+              _c("apexcharts", {
+                attrs: {
+                  width: "100%",
+                  type: "line",
+                  options: _vm.options,
+                  series: _vm.series
+                }
+              })
             ],
             1
           )
@@ -796,7 +1076,7 @@ var render = function() {
                 },
                 [
                   _c("v-icon", [_vm._v("mdi-plus")]),
-                  _vm._v("Crear Nueva Cotizacion\r\n            ")
+                  _vm._v("Crear Nueva Cotizacion\n      ")
                 ],
                 1
               )
@@ -841,7 +1121,9 @@ var render = function() {
                                       "offset-y": "",
                                       dense: "",
                                       items: _vm.clientes,
-                                      "item-text": "razon_social",
+                                      "item-text":
+                                        "datos_fisicos_requeremientos_facturacion_razon_social",
+                                      "item-value": "id",
                                       outlined: "",
                                       s: "",
                                       label: "Seleccionar Cliente",
@@ -1504,7 +1786,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\r\n                                Agregar Partida\r\n                                "
+                                    "\n                Agregar Partida\n                "
                                   ),
                                   _c("v-icon", { attrs: { small: "" } }, [
                                     _vm._v("mdi-plus")
@@ -1531,75 +1813,51 @@ var render = function() {
                             _c("thead", [
                               _c("tr", [
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Identicacion\r\n                                "
-                                  )
+                                  _vm._v("Identicacion")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Servicio\r\n                                "
-                                  )
+                                  _vm._v("Servicio")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Unidad\r\n                                "
-                                  )
+                                  _vm._v("Unidad")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Instrumento\r\n                                "
-                                  )
+                                  _vm._v("Instrumento")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Marca\r\n                                "
-                                  )
+                                  _vm._v("Marca")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Modelo\r\n                                "
-                                  )
+                                  _vm._v("Modelo")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Serie\r\n                                "
-                                  )
+                                  _vm._v("Serie")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Alcance\r\n                                "
-                                  )
+                                  _vm._v("Alcance")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Acreditacion\r\n                                "
-                                  )
+                                  _vm._v("Acreditacion")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Precio Unitario\r\n                                "
-                                  )
+                                  _vm._v("Precio Unitario")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Importe\r\n                                "
-                                  )
+                                  _vm._v("Importe")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
-                                  _vm._v(
-                                    "\r\n                                    Accion\r\n                                "
-                                  )
+                                  _vm._v("Accion")
                                 ])
                               ])
                             ]),
@@ -1640,25 +1898,25 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(item.servicio) +
-                                            "\r\n                                "
+                                            "\n                "
                                         )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(item.unidad) +
-                                            "\r\n                                "
+                                            "\n                "
                                         )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(item.has_intrumento.nombre) +
-                                            "\r\n                                "
+                                            "\n                "
                                         )
                                       ]),
                                       _vm._v(" "),
@@ -1733,22 +1991,22 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(
                                               item.has_intrumento.alcance
                                             ) +
-                                            "\r\n                                "
+                                            "\n                "
                                         )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          "\r\n                                    " +
+                                          "\n                  " +
                                             _vm._s(
                                               item.has_intrumento
                                                 .has_acreditacion.nombre
                                             ) +
-                                            "\r\n                                "
+                                            "\n                "
                                         )
                                       ]),
                                       _vm._v(" "),
@@ -1850,14 +2108,13 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            SUBTOTAL :" +
+                                          "SUBTOTAL :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_sub_total,
                                                 ""
                                               )
-                                            ) +
-                                            "\r\n                                        "
+                                            )
                                         )
                                       ])
                                     ]),
@@ -1865,14 +2122,13 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            IVA :" +
+                                          "IVA :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_iva,
                                                 ""
                                               )
-                                            ) +
-                                            "\r\n                                        "
+                                            )
                                         )
                                       ])
                                     ]),
@@ -1880,14 +2136,13 @@ var render = function() {
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
-                                          "\r\n                                            TOTAL :" +
+                                          "TOTAL :" +
                                             _vm._s(
                                               _vm._f("numberFormat")(
                                                 _vm.var_computed_total,
                                                 ""
                                               )
-                                            ) +
-                                            "\r\n                                        "
+                                            )
                                         )
                                       ])
                                     ])

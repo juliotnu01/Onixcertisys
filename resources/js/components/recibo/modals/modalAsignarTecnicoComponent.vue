@@ -9,7 +9,7 @@
               <v-text-field
                 disabled
                 outlined
-                label="Recibo"
+                label="Orden de servicio"
                 v-model="partida_tecnico.recibo_id"
               ></v-text-field>
             </v-col>
@@ -17,7 +17,7 @@
               <v-text-field
                 disabled
                 outlined
-                label="Cotizacion"
+                label="Folio"
                 v-model="partida_tecnico.cotizacion_id"
               ></v-text-field>
             </v-col>

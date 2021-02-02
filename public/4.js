@@ -213,6 +213,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -293,7 +297,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
                   item.children.push({
-                    name: "Orden de servicio: ".concat(recibo.id, " - Cliente: ").concat(recibo.has_cotizaicon.has_cliente.razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10)),
+                    name: "Orden de servicio: ".concat(recibo.id, " - Cliente: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10)),
                     id: recibo.id
                   });
                 }));
@@ -717,7 +721,7 @@ var render = function() {
             [
               _c("v-text-field", {
                 attrs: {
-                  label: "Search Company Directory",
+                  label: "Buscar orden de servicio",
                   dark: "",
                   flat: "",
                   "solo-inverted": "",
@@ -807,9 +811,9 @@ var render = function() {
                                     "\n                " +
                                       _vm._s(
                                         _vm.selected.has_cotizaicon.has_cliente
-                                          .razon_social
+                                          .datos_fisicos_requeremientos_facturacion_razon_social
                                       ) +
-                                      " "
+                                      "\n                "
                                   ),
                                   _c("br")
                                 ])
@@ -1451,7 +1455,7 @@ var render = function() {
                                 attrs: {
                                   disabled: "",
                                   outlined: "",
-                                  label: "Recibo"
+                                  label: "Orden de servicio"
                                 },
                                 model: {
                                   value: _vm.partida_tecnico.recibo_id,
@@ -1485,7 +1489,7 @@ var render = function() {
                                 attrs: {
                                   disabled: "",
                                   outlined: "",
-                                  label: "Cotizacion"
+                                  label: "Folio"
                                 },
                                 model: {
                                   value: _vm.partida_tecnico.cotizacion_id,

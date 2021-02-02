@@ -29,6 +29,7 @@ class CotizacionController extends Controller
         try {
             $cotizaciones = Cotizacion::with([
                 'hasCliente',
+                'hasCliente.hasSucursal',
                 'belongsToSucursalCliente',
                 'hasEmpleado',
                 'hasMoneda',
@@ -63,7 +64,7 @@ class CotizacionController extends Controller
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
             ])->orderBy('id', 'desc')->get();
-            $data = collect($cotizaciones)->groupBy(function($item, $key){
+            $data = collect($cotizaciones)->groupBy(function ($item, $key) {
                 return substr($item['created_at'], 0, 10);
             })->reverse();
             return Response()->json(new RecibosCollection($data));
@@ -126,7 +127,7 @@ class CotizacionController extends Controller
                     $partida->cotizacion_id = $cotizacion['id'];
                     $partida->save();
                 }
-                
+
                 MasivPartidas::truncate();
             }, 5);
         } catch (Exception $e) {
@@ -136,39 +137,39 @@ class CotizacionController extends Controller
 
     public function storeDuplicate(Request $request, Cotizacion $cotizacion)
     {
-        
+
         try {
             return DB::transaction(function () use ($request, $cotizacion) {
-                    $cotizacion->cliente_id = $request['cliente_id'];
-                    $cotizacion->empleado_id = $request['empleado_id'];
-                    $cotizacion->moneda_id = $request['moneda_id'];
-                    $cotizacion->tiempo_de_entrega_id = $request['tiempo_de_entrega_id'];
-                    $cotizacion->tipo_de_servicio = $request['tipo_de_servicio'];
-                    $cotizacion->nota_para_la_cotizacion = $request['nota_para_la_cotizacion'];
-                    $cotizacion->estado_de_la_cotizacion = $request['estado_de_la_cotizacion'];
-                    $cotizacion->contacto = $request['contacto'];
-                    $cotizacion->contacto_telefono = $request['contacto_telefono'];
-                    $cotizacion->contacto_correo = $request['contacto_correo'];
-                    $cotizacion->condicion = $request['condicion'];
-                    $cotizacion->nota_de_seguimiento = $request['nota_de_seguimiento'];
-                    $cotizacion->sub_total = $request['sub_total'];
-                    $cotizacion->iva = $request['iva'];
-                    $cotizacion->total = $request['total'];
-                    $cotizacion->save();
+                $cotizacion->cliente_id = $request['cliente_id'];
+                $cotizacion->empleado_id = $request['empleado_id'];
+                $cotizacion->moneda_id = $request['moneda_id'];
+                $cotizacion->tiempo_de_entrega_id = $request['tiempo_de_entrega_id'];
+                $cotizacion->tipo_de_servicio = $request['tipo_de_servicio'];
+                $cotizacion->nota_para_la_cotizacion = $request['nota_para_la_cotizacion'];
+                $cotizacion->estado_de_la_cotizacion = $request['estado_de_la_cotizacion'];
+                $cotizacion->contacto = $request['contacto'];
+                $cotizacion->contacto_telefono = $request['contacto_telefono'];
+                $cotizacion->contacto_correo = $request['contacto_correo'];
+                $cotizacion->condicion = $request['condicion'];
+                $cotizacion->nota_de_seguimiento = $request['nota_de_seguimiento'];
+                $cotizacion->sub_total = $request['sub_total'];
+                $cotizacion->iva = $request['iva'];
+                $cotizacion->total = $request['total'];
+                $cotizacion->save();
 
                 foreach ($request['partidas'] as $key => $value) {
                     $partida = new Partida();
-                        $partida->cantidad = $value['cantidad'];
-                        $partida->servicio = $value['servicio'];
-                        $partida->unidad = $value['unidad'];
-                        $partida->identificacion = $value['identificacion'];
-                        $partida->importe = $value['importe'];
-                        $partida->marca = $value['marca'];
-                        $partida->modelo = $value['modelo'];
-                        $partida->serie = $value['serie'];
-                        $partida->instrumento_id = $value['has_intrumento']['id'];
-                        $partida->cotizacion_id =  $cotizacion['id'];
-                        $partida->save();
+                    $partida->cantidad = $value['cantidad'];
+                    $partida->servicio = $value['servicio'];
+                    $partida->unidad = $value['unidad'];
+                    $partida->identificacion = $value['identificacion'];
+                    $partida->importe = $value['importe'];
+                    $partida->marca = $value['marca'];
+                    $partida->modelo = $value['modelo'];
+                    $partida->serie = $value['serie'];
+                    $partida->instrumento_id = $value['has_intrumento']['id'];
+                    $partida->cotizacion_id =  $cotizacion['id'];
+                    $partida->save();
                 }
             }, 5);
         } catch (Exception $e) {
@@ -286,22 +287,24 @@ class CotizacionController extends Controller
             $empresa = Empresa::find(1);
             $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['has_moneda']['nombre_moneda'], 'CENTAVOS');
             $exists = Storage::disk('store_pdfs')->exists("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
-            if($exists) {
+            if ($exists) {
                 Storage::disk('store_pdfs')->delete("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             }
             $pdf = PDF::loadView('pdfs.pdfCotizacion', compact(['data', 'empresa', 'spell']));
             Storage::disk('store_pdfs')->put("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
             $url = Storage::disk('store_pdfs')->url("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
-                    Cotizacion::find($request['id'])->update([
-                        'ruta_print_document' => $url
-                    ]);
-            return Response(Cotizacion::with('hasMoneda',
-                                             'hasTiempoDeEntrega', 
-                                             'hasCliente', 
-                                             'hasCliente.hasSucursal', 
-                                             'hasPartidas', 
-                                             'hasPartidas.hasIntrumento', 
-                                             'hasPartidas.hasIntrumento.hasAcreditacion')->find($request['id']));
+            Cotizacion::find($request['id'])->update([
+                'ruta_print_document' => $url
+            ]);
+            return Response(Cotizacion::with(
+                'hasMoneda',
+                'hasTiempoDeEntrega',
+                'hasCliente',
+                'hasCliente.hasSucursal',
+                'hasPartidas',
+                'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.hasAcreditacion'
+            )->find($request['id']));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -309,12 +312,11 @@ class CotizacionController extends Controller
 
     public function importExcelPartida(Request $request)
     {
-         Excel::import(new ImportMasivPartidas, $request->file('excel'));
-         return ;
+        Excel::import(new ImportMasivPartidas, $request->file('excel'));
+        return;
     }
     public function getMasivPartidas()
     {
-         return MasivPartidas::with(['hasInstrumento', 'hasInstrumento.hasAcreditacion'])->get();
+        return MasivPartidas::with(['hasInstrumento', 'hasInstrumento.hasAcreditacion'])->get();
     }
-    
 }

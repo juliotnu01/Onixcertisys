@@ -4,7 +4,7 @@
       <v-card-title class="indigo white--text headline">
         <v-text-field
           v-model="search"
-          label="Search Company Directory"
+          label="Buscar orden de servicio"
           dark
           flat
           solo-inverted
@@ -42,7 +42,11 @@
               <v-card-text>
                 <h6 class="headline mb-2">
                   <strong>Cliente: </strong>
-                  {{ selected.has_cotizaicon.has_cliente.razon_social }} <br />
+                  {{
+                    selected.has_cotizaicon.has_cliente
+                      .datos_fisicos_requeremientos_facturacion_razon_social
+                  }}
+                  <br />
                 </h6>
               </v-card-text>
               <v-divider></v-divider>
@@ -244,7 +248,8 @@ export default {
       return this.recibos.forEach((recibo) => {
         item.children.push({
           name: `Orden de servicio: ${recibo.id} - Cliente: ${
-            recibo.has_cotizaicon.has_cliente.razon_social
+            recibo.has_cotizaicon.has_cliente
+              .datos_fisicos_requeremientos_facturacion_razon_social
           } - Fecha: ${recibo.created_at.substr(0, 10)}`,
           id: recibo.id,
         });

@@ -43,6 +43,7 @@
                   dense
                   v-model="model.sucursal_cliente"
                   :items="model.cliente_selected.has_sucursal"
+                  item-value="id"
                   item-text="nombre_sucursal"
                   outlined
                   s
@@ -153,13 +154,6 @@
                   label="Notas de la cotizacion"
                 ></v-textarea>
               </v-col>
-              <!-- <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                <v-textarea
-                  v-model="model.nota_seguimiento"
-                  outlined
-                  label="Notas de seguimiento"
-                ></v-textarea>
-              </v-col> -->
             </v-row>
           </v-form>
         </v-card-text>
@@ -294,7 +288,7 @@
                     {{ item.instrumento.alcance }}
                   </td>
                   <td>
-                    {{ item.instrumento.has_acreditacion.instrumento_nombre }}
+                    {{ item.instrumento.has_acreditacion.nombre }}
                   </td>
                   <td>
                     <v-text-field

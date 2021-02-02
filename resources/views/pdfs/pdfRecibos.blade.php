@@ -9,7 +9,7 @@
     <table class="page_header" style="width:100%;">
         <tr style="vertical-align: top">
             <td style="width:100%">
-                <img src="img/recibo_cab.png" style="width: 100%;">
+                {{--<img src="img/recibo_cab.png" style="width: 100%;">--}}
             </td>
         </tr>
     </table>
@@ -17,11 +17,11 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius: 15px; padding: 10px; margin-top: 10px">
         <tr style="vertical-align: top">
             <td style="width:76%">
-                <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['razon_social']}}</b></span><br>
-                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['domicilio_fiscal']}}</span><br>
-                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['nombre_contacto']}}</span><br>
-                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['telefono_contacto']}}</span><br>
-                <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['correo_contacto']}}</span>
+                <span style="font-size:10pt"><b>{{$data['has_cotizaicon']['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</b></span><br>
+                <span style="color:#003177">{{$data['has_cotizaicon']['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}</span><br>
+                <span style="color:#003177"><b>Usuario:</b>{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra']}}</span><br>
+                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_telf']}}</span><br>
+                <span style="color:#003177"><b>Correo:</b>{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_correo']}}</span>
             </td>
             <td style="width:12%;text-align:right;">
                 <span style="font-size:10pt;"><b>Folio:</b></span><br>
@@ -61,6 +61,9 @@
         </tr>
         @endforeach
     </table>
+    <p style="text-align: justify">
+ 		Los informes de calibración serán emitidos con los datos proporcionados en el presente documento o documento (s) anexo(s) o con los datos proporcionados en la última calibración si la casilla Informe Ant. esta llena. Toda reimpresión de informe de calibración por causas atribuidas al cliente tendrá un cargo de $100.00 pesos M. N. ".$bussines_name." asumirá como abandono los instrumentos que no hayan sido reclamados en un plazo mayor de 60 días naturales posteriores a la fecha de recepción. En caso de robo o pérdida del equipo(s) del cliente mientras estos se encuentren en las instalaciones de ".$bussines_name." El cliente podrá reclamar el importe del mismo al precio del mercado menos la depreciación correspondiente. El tiempo de calibración acordado empieza a partir de que el cliente entrega el(los) equipos(s). En caso de requerir criterios de aceptación, tolerancia o alguna otra característica especial, favor de mencionarlo en el presente documento o anexo.
+     </p>
      <table cellspacing="10" style="width: 100%; text-align: left; font-size: 11pt; margin-top:100px">
 		<tr>
 			<td style="width:50%;text-align: center;border-top:solid 1px">Cliente(Nombre y firma)</td>
