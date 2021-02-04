@@ -160,7 +160,6 @@ export default {
           }
         }
       }
-      console.log({ series, cotizaciones });
       this.options = options;
       this.series = series;
     },

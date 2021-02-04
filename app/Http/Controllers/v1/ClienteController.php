@@ -102,7 +102,7 @@ class ClienteController extends Controller
                 $cliente->revision_de_factura_pagos_hora_pagos = $request['revisionDeFacturasYpagos']['horaDiasDePago'];
                 $cliente->link_portal = $request['revisionDeFacturasYpagos']['linkPortal'];
                 $cliente->usuario_contraseña = $request['revisionDeFacturasYpagos']['usuarioContrasena'];
-                // $cliente->indiciones_alta_factura = $request['revisionDeFacturasYpagos']['indicacionesAltaFacturaPortal'];
+                $cliente->indiciones_alta_factura = $request['revisionDeFacturasYpagos']['indicacionesAltaFacturaPortal'];
                 $cliente->correo_soporte_tecnico_portal = $request['revisionDeFacturasYpagos']['correoSoporteTecnicoPortal'];
                 $cliente->banco_ordenante = $request['revisionDeFacturasYpagos']['bancoOrdenante'];
                 $cliente->cuenta_de_pago = $request['revisionDeFacturasYpagos']['cuentaDePago'];
@@ -112,14 +112,14 @@ class ClienteController extends Controller
                 $cliente->iva = $request['iva'];
                 $cliente->save();
 
-                // foreach ($request['sucursales'] as $key => $value) {
-                //         $sucursal = new SucursalCliente();
-                //         $sucursal->nombre_sucursal = $value['nombre'];
-                //         $sucursal->direccion_sucursal = $value['direccion'];
-                //         $sucursal->telefono = $value['telefono'];
-                //         $sucursal->cliente_id =  $cliente->id;
-                //         $sucursal->save();
-                // }   
+                foreach ($request['sucursales'] as $key => $value) {
+                        $sucursal = new SucursalCliente();
+                        $sucursal->nombre_sucursal = $value['nombre'];
+                        $sucursal->direccion_sucursal = $value['direccion'];
+                        $sucursal->telefono = $value['telefono'];
+                        $sucursal->cliente_id =  $cliente->id;
+                        $sucursal->save();
+                }   
 
             }, 5);
         } catch (Exception $e) {
@@ -136,7 +136,7 @@ class ClienteController extends Controller
                 $collectMoneda = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['monedaFactura']);
                 $collectTerminosDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['TerminosDePago']);
                 $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
-                $collectAltaFactura = collect($request['revisionDeFacturaYpago']['alfaDefacturas']);
+                $collectAltaFactura = collect($request['revisionDeFacturaYpago']['altaDefacturas']);
                 $collectMetodoDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['metodoDePago']);
 
 
@@ -259,13 +259,12 @@ class ClienteController extends Controller
                         $sucursal = new SucursalCliente();
                         $sucursal->nombre_sucursal = $value['nombre'];
                         $sucursal->direccion_sucursal = $value['direccion'];
+                        $sucursal->contacto_sucural = $value['nombreContacto'];
+                        $sucursal->correo_contacto_sucural = $value['email'];
                         $sucursal->telefono = $value['tel_ext']['num'];
                         $sucursal->cliente_id =  $cliente->id;
                         $sucursal->save();
                 }
-
-
-
             });
             return;
         } catch (Exception $e) {
@@ -350,25 +349,29 @@ class ClienteController extends Controller
                     'informacion_adicional_complemento_de_pago' => $request['revisionDeFacturasYpagos']['informacionAdicionalComplementoDePago'],
                     'lista_requerimiento_acceso_planta' => $request['revisionDeFacturasYpagos']['listaRequerimientoDeAccesoAlaPlata'],
                     'iva' => $request['iva'],
-                    // 'iva' => $request['iva'],
+                    'iva' => $request['iva'],
                 ]);
-                // for ($i = 0; $i < collect($request['sucursales'])->count(); $i++) {
-                //     $sucursal = new SucursalCliente();
-                //     if (!isset($request['sucursales'][$i]['id'])) {
-                //         $sucursal->nombre_sucursal = $request['sucursales'][$i]['nombre_sucursal'];
-                //         $sucursal->direccion_sucursal = $request['sucursales'][$i]['direccion_sucursal'];
-                //         $sucursal->telefono = $request['sucursales'][$i]['telefono'];
-                //         $sucursal->cliente_id = $request['id'];
-                //         $sucursal->save();
-                //     } else {
-                //         $sucursal->find($request['sucursales'][$i]['id'])->update([
-                //             'nombre_sucursal' => $request['sucursales'][$i]['nombre_sucursal'],
-                //             'direccion_sucursal' => $request['sucursales'][$i]['direccion_sucursal'],
-                //             'telefono' => $request['sucursales'][$i]['telefono'],
-                //             'Cliente_id' => $request['id']
-                //         ]);
-                //     }
-                // }
+                for ($i = 0; $i < collect($request['sucursales'])->count(); $i++) {
+                    $sucursal = new SucursalCliente();
+                    if (!isset($request['sucursales'][$i]['id'])) {
+                        $sucursal->nombre_sucursal = $request['sucursales'][$i]['nombre_sucursal'];
+                        $sucursal->direccion_sucursal = $request['sucursales'][$i]['direccion_sucursal'];
+                        $sucursal->telefono = $request['sucursales'][$i]['telefono'];
+                        $sucursal->contacto_sucural = $request['sucursales'][$i]['contacto'];
+                        $sucursal->correo_contacto_sucural = $request['sucursales'][$i]['correo'];
+                        $sucursal->cliente_id = $request['id'];
+                        $sucursal->save();
+                    } else {
+                        $sucursal->find($request['sucursales'][$i]['id'])->update([
+                            'nombre_sucursal' => $request['sucursales'][$i]['nombre_sucursal'],
+                            'direccion_sucursal' => $request['sucursales'][$i]['direccion_sucursal'],
+                            'telefono' => $request['sucursales'][$i]['telefono'],
+                            'contacto_sucural' => $request['sucursales'][$i]['contacto_sucural'],
+                            'correo_contacto_sucural' => $request['sucursales'][$i]['correo_contacto_sucural'],
+                            'Cliente_id' => $request['id']
+                        ]);
+                    }
+                }
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);

@@ -1,8 +1,20 @@
 <template>
   <v-app>
     <v-dialog v-model="openDialog">
+     <v-toolbar dark color="primary">
+        <v-btn icon dark @click="openDialog = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+         <v-card-title>Agregar cliente</v-card-title>
+        <v-spacer></v-spacer>
+        <v-btn text dark @click.prevent="addCliente" tile>
+          Agregar
+          <v-icon>mdi-content-save</v-icon> 
+        </v-btn>
+      </v-toolbar>
       <v-card>
-        <v-card-title>Agregar cliente</v-card-title>
+       
         <v-card-text>
           <v-card class="elevation-1">
             <v-card-title primary-title> SERVICIO SOLICITADO: </v-card-title>
@@ -424,7 +436,7 @@
                     v-model="model.iva"
                   ></v-text-field>
                 </v-col>
-                <!-- <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-data-table
                     :headers="headers_sucursal"
                     :items="model.sucursales"
@@ -486,7 +498,6 @@
                   </template>
                   </v-data-table>
                 </v-col>
-                -->
               </v-row>
             </v-card-text>
           </v-card>

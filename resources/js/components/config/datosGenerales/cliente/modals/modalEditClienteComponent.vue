@@ -2,7 +2,19 @@
   <v-app>
     <v-dialog v-model="openDialog">
       <v-card>
-        <v-card-title>Agregar cliente</v-card-title>
+       <v-toolbar dark color="primary">
+        <v-btn icon dark @click="openDialog = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-card-title>Editar cliente</v-card-title>
+        <v-spacer></v-spacer>
+        <v-btn text dark @click.prevent="editCliente" tile>
+          Editar
+          <v-icon>mdi-content-save</v-icon> 
+        </v-btn>
+      </v-toolbar>
+        <v-card-title>Editar cliente</v-card-title>
         <v-card-text v-if="Object.entries(cliente).length > 0">
           <v-card class="elevation-1">
             <v-card-title primary-title> SERVICIO SOLICITADO: </v-card-title>
@@ -438,6 +450,7 @@
                         <td>
                             <v-text-field
                               label=""
+                              color="error"
                               dense
                               class="mt-5"
                               outlined
@@ -447,33 +460,36 @@
                         <td>
                             <v-text-field
                               label=""
+                              color="error"
                               dense
                               class="mt-5"
                               outlined
                               v-model="sucursal.direccion_sucursal"
                             ></v-text-field>
                         </td>
-                        <!-- <td>
                             <v-text-field
                               label=""
+                              color="error"
                               dense
                               class="mt-5"
                               outlined
-                              v-model="sucursal.contacto"
+                              v-model="sucursal.contacto_sucural"
                             ></v-text-field>
                         </td>
                         <td>
                             <v-text-field
                               label=""
+                              color="error"
                               dense
                               class="mt-5"
                               outlined
-                              v-model="sucursal.correo"
+                              v-model="sucursal.correo_contacto_sucural"
                             ></v-text-field>
-                        </td> -->
+                        </td>
                         <td>
                             <v-text-field
                               label=""
+                              color="error"
                               dense
                               class="mt-5"
                               outlined
@@ -482,9 +498,18 @@
                             ></v-text-field>
                         </td>
                         <td>
-                           <v-btn color="success" @click="AgregarSucursal"  > <v-icon>mdi-company</v-icon> Agregar Sucursal</v-btn>
+                           <v-btn color="error" @click="AgregarSucursal"  > <v-icon>mdi-company</v-icon> Agregar Sucursal</v-btn>
                         </td>
                       </tr>
+                  </template>
+                  <template v-slot:item="{item}">
+                  <tr>
+                    <td> <v-text-field    outlined dense v-model="item.nombre_sucursal" /> </td>
+                    <td> <v-text-field    outlined dense v-model="item.direccion_sucursal" /> </td>
+                    <td> <v-text-field    outlined dense v-model="item.contacto_sucural" /> </td>
+                    <td> <v-text-field    outlined dense v-model="item.correo_contacto_sucural" /> </td>
+                    <td> <v-text-field    outlined dense v-model="item.telefono" /> </td>
+                  </tr>
                   </template>
                   </v-data-table>
                 </v-col>
@@ -492,10 +517,6 @@
             </v-card-text>
           </v-card>
         </v-card-text>
-        <v-card-actions>
-          <v-btn text color="blue" @click="addCliente"> Editar </v-btn>
-          <v-btn text color="red" @click="openDialog = false"> Cerrar </v-btn>
-        </v-card-actions>
       </v-card>
       <notificacion/>
     </v-dialog>
@@ -510,11 +531,12 @@ export default {
   },
   data() {
     return {
+      editSucursal: false,
       headers_sucursal:[
         {text: 'Nombre sucursal', align:'center', value:'nombre_sucursal'},
         {text: 'Direccion sucursal', align:'center', value:'direccion_sucursal'},
-        // {text: 'Contacto sucursal', align:'center', value:'contacto'},
-        // {text: 'Correo contacto', align:'center', value:'correo'},
+        {text: 'Contacto sucursal', align:'center', value:'contacto_sucural'},
+        {text: 'Correo contacto', align:'center', value:'correo_contacto_sucural'},
         {text: 'Telefono contacto', align:'center', value:'telefono'},
       ],
       items_sucursales:[],
@@ -539,8 +561,8 @@ export default {
       sucursal: {
         nombre_sucursal: "",
         direccion_sucursal: "",
-        contacto: "",
-        correo: "",
+        contacto_sucural: "",
+        correo_contacto_sucural: "",
         telefono: "",
       },
       model: {
@@ -630,7 +652,7 @@ export default {
     await this.services.monedaServices.getlistMonedas();
   },
   methods: {
-    async addCliente() {
+    async editCliente() {
         await this.services.clienteServices.actualizarCliente(this.cliente)
         await this.services.clienteServices.getlistclientes()
     },

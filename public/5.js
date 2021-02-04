@@ -170,10 +170,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      console.log({
-        series: series,
-        cotizaciones: cotizaciones
-      });
       this.options = options;
       this.series = series;
     }
