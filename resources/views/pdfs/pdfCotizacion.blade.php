@@ -16,19 +16,24 @@
     <table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
             <td style="width:70%">
-                <span style="color:#003177"><b>{{$data['has_cliente']['razon_social']}}</b></span><br>
-                <span style="color:#003177">{{$data['has_cliente']['domicilio_fiscal']}}</span><br>
-                <span style="color:#003177"><b>Contacto:</b> {{$data['has_cliente']['nombre_contacto']}}</span><br>
-                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cliente']['telefono_contacto']}} </span><br>
-                <span style="color:#003177"><b>Correo:</b> {{$data['has_cliente']['correo_contacto']}}</span><br>
+                <span style="color:#003177"><b>{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</b></span><br>
+                <span style="color:#003177">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado']}}
+                </span><br>
+                <span style="color:#003177"><b>Contacto:</b> {{$data['has_cliente']['contacto_adicionales_compra']}}</span><br>
+                <span style="color:#003177"><b>Teléfono:</b> {{$data['has_cliente']['contacto_adicionales_compra_telf']}} </span><br>
+                <span style="color:#003177"><b>Correo:</b> {{$data['has_cliente']['contacto_adicionales_compra_correo']}}</span><br>
                 @if(isset($data['has_cliente']['has_sucursal']))
-                    @foreach( $data['has_cliente']['has_sucursal'] as $key => $value )
-                        @if($data['sucursal_cliente_id'] === $value['id'])
-                            <span style="color:#003177"><b>Sucursal:</b> {{$value['nombre_sucursal']}}</span><br>
-                            <span style="color:#003177"><b>Direccion Sucursal:</b> {{$value['direccion_sucursal']}}</span><br>
-                            <span style="color:#003177"><b>Telefono sucursal:</b> {{$value['telefono']}}</span><br>
-                        @endif
-                    @endforeach
+                @foreach( $data['has_cliente']['has_sucursal'] as $key => $value )
+                @if($data['sucursal_cliente_id'] === $value['id'])
+                <span style="color:#003177"><b>Sucursal:</b> {{$value['nombre_sucursal']}}</span><br>
+                <span style="color:#003177"><b>Direccion Sucursal:</b> {{$value['direccion_sucursal']}}</span><br>
+                <span style="color:#003177"><b>Telefono sucursal:</b> {{$value['telefono']}}</span><br>
+                @endif
+                @endforeach
                 @endif
             </td>
             <td style="width:30%;text-align:right;">
@@ -114,11 +119,7 @@
     </table>
     <table cellspacing="10" style="width: 100%; text-align: left; font-size: 11pt">
         <tr>
-            <td style="width:50%;text-align: justify;border-top:solid 0px" >
-                <b><strong>Nota de seguimiento:</strong> </b> {{$data['nota_de_seguimiento']}}
-            </td>
-            
-            <td style="width:50%;text-align: justify;border-top:solid 0px">
+            <td style="width:100%;text-align: justify;border-top:solid 0px">
                 <b><strong>Nota para la cotizacion:</strong> </b>{{$data['nota_para_la_cotizacion']}}
             </td>
         </tr>
@@ -128,8 +129,9 @@
             <td style="width:33%;text-align: center;border-top:solid 1px">
                 <b>Ejecutivo de ventas</b>
             </td>
-            <td style="width:33%;text-align: center;border-top:solid 0px"></td>
-            <td style="width:33%;text-align: center;border-top:solid 1px">Autorización Cliente</td>
+            <td style="width:33%;text-align: center;border-top:solid 1px">
+                <b>Autorización Cliente</b>
+            </td>
         </tr>
     </table>
 </body>
