@@ -59,7 +59,7 @@
           </td>
         </template>
         <template v-slot:item.direccion_fiscal="{ item }">
-          <td class="text-center">
+          <td class="text-left">
             {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle }} -
             {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero }} -
             {{ item.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia }} -
@@ -69,14 +69,14 @@
           </td>
         </template>
         <template v-slot:item.telefonos="{ item }">
-          <td class="text-center">
+          <td class="text-left">
             Telf.: Compra: {{ item.contacto_adicionales_compra_telf }} <br />
             Telf.: Pagos: {{ item.contacto_adicionales_pagos_telf }} <br />
             Telf.: Almacen: {{ item.contacto_adicionales_pagos_telf }} <br />
           </td>
         </template>
         <template v-slot:item.contacto="{ item }">
-          <td class="text-center">
+          <td class="text-left">
             Contact.: Compra: {{ item.contacto_adicionales_compra }} <br />
             Contact.: Pagos: {{ item.contacto_adicionales_pagos }} <br />
             Contact.: Almacen: {{ item.contacto_adicionales_almacen }} <br />
@@ -105,56 +105,56 @@ export default {
       headers_cli: [
         {
           text: "ID",
-          align: "end",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "id",
         },
         {
           text: "Nombre / Razon social",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "datos_fisicos_requeremientos_facturacion_razon_social",
         },
         {
           text: "Direccion",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "direccion_fiscal",
         },
         {
           text: "R.F.C.",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "datos_fisicos_requeremientos_facturacion_rfc",
         },
         {
           text: "Telefonos",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "telefonos",
         },
         {
           text: "Correo Electronico para el envio de la factura",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "correo_envio_factura",
         },
         {
           text: "Nombres contactos",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "contacto",
         },
         {
           text: "Accion",
-          align: "center",
+          align: "start",
           sortable: false,
           sortable: true,
           value: "accion",

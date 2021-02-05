@@ -132,79 +132,139 @@ class ClienteController extends Controller
             return DB::transaction(function () use ($request, $cliente) {
 
                 $collectServiciosSolicitados = collect($request['serviciosSolicitados']);
-                $collectFormaDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['formaDePago']);
-                $collectMoneda = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['monedaFactura']);
-                $collectTerminosDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['TerminosDePago']);
-                $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
-                $collectAltaFactura = collect($request['revisionDeFacturaYpago']['altaDefacturas']);
-                $collectMetodoDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['metodoDePago']);
 
-
-                foreach ($collectServiciosSolicitados as $key => $value) {
-                    if ($key === 'calibracion' && $value == 'x') {
-
-                        $servicios[] = (object)['name' => $key, 'value' => 1];
-                    } elseif ($key === 'venta' && $value == 'x') {
-
-                        $servicios[] = (object)['name' => $key, 'value' => 2];
-                    } elseif ($key === 'mantenimiento' && $value == 'x') {
-
-                        $servicios[] = (object)['name' => $key, 'value' => 3];
-                    } elseif ($key === 'capacitación' && $value == 'x') {
-
-                        $servicios[] = (object)['name' => $key, 'value' => 4];
-                    } else {
-                        continue;
+                if($collectServiciosSolicitados){
+                    foreach ($collectServiciosSolicitados as $key => $value) {
+                        if ($key === 'calibracion' && $value == 'x') {
+    
+                            $servicios[] = (object)['name' => $key, 'value' => 1];
+                        } elseif ($key === 'venta' && $value == 'x') {
+    
+                            $servicios[] = (object)['name' => $key, 'value' => 2];
+                        } elseif ($key === 'mantenimiento' && $value == 'x') {
+    
+                            $servicios[] = (object)['name' => $key, 'value' => 3];
+                        } elseif ($key === 'capacitación' && $value == 'x') {
+    
+                            $servicios[] = (object)['name' => $key, 'value' => 4];
+                        } else {
+                            $servicios[] = '';
+                        }
                     }
-                }
-                foreach ($collectFormaDePago as $key => $value) {
+
+                }else{
+
+                   $collectServiciosSolicitados  = [];
+                
+                  
+            }
+                
+                $collectFormaDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['formaDePago']);
+
+                if($collectFormaDePago){
+
+                     foreach ($collectFormaDePago as $key => $value) {
                     if ($key === 'transferenciaElectronica' && $value === 'x') {
                         $formaDePago[] = (object)['name' => $key, 'value' => 1];
                     } elseif ($key === 'depositoEnEfectivo' && $value === 'x') {
                         $formaDePago[] = (object)['name' => $key, 'value' => 2];
                     } elseif ($key === 'cheque' && $value === 'x') {
                         $formaDePago[] = (object)['name' => $key, 'value' => 3];
+                    }else{
+                        $formaDePago[] = '';
                     }
                 }
-                foreach ($collectMoneda as $key => $value) {
-                    if ($key === 'pesosMexicano' && $value === 'x') {
-                        $moneda = "MXN";
-                    } elseif ($key === 'dolares' && $value === 'x') {
-                        $moneda = "USD";
-                    }
+                }else{
+                    $formaDePago[] = '';
                 }
 
-                foreach ($collectTerminosDePago as $key => $value) {
-                    if ($key === 'treintaDias' && $value === 'x') {
-                        $terminoPago = "credito de 30 dias";
-                    } elseif ($key === 'quinceDias' && $value === 'x') {
-                        $terminoPago = "credito de 15 dias";
-                    } elseif ($key === 'contado' && $value === 'x') {
-                        $terminoPago = "contado";
+              
+                
+                $collectMoneda = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['monedaFactura']);
+                if($collectMoneda){
+                    foreach ($collectMoneda as $key => $value) {
+                        if ($key === 'pesosMexicano' && $value === 'x') {
+                            $moneda = "MXN";
+                        } elseif ($key === 'dolares' && $value === 'x') {
+                            $moneda = "USD";
+                        }else{
+                            $moneda  = '';
+                        }
                     }
-                }
-                foreach ($collectUsuarioContraseña as $key => $value) {
-                    if ($key === 'seEnviaPorEmail' && $value === 'x') {
-                        $usuarioContraseña = "Se envia por Email";
-                    } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
-                        $usuarioContraseña = "Se optiene por el portal";
-                    }
-                }
-                foreach ($collectAltaFactura as $key => $value) {
-                    if ($key === 'seEnviaPorEmail' && $value === 'x') {
-                        $altaFactura = "Se envia por Email";
-                    } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
-                        $altaFactura = "Se optiene por el portal";
-                    }
+                }else{
+                    $collectMoneda  = '';
                 }
 
-                foreach ($collectMetodoDePago as $key => $value) {
-                    if ($key === 'pagoParcialesDiferidos' && $value === 'x') {
-                        $metodoDepago = "Pagos parciales";
-                    } elseif ($key === 'pagoEnUnaSolaExhibicion' && $value === 'x') {
-                        $metodoDepago = "Pago en una sola exhibicion";
+                $collectTerminosDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['TerminosDePago']);
+                
+                if($collectTerminosDePago){
+                    foreach ($collectTerminosDePago as $key => $value) {
+                        if ($key === 'treintaDias' && $value === 'x') {
+                            $terminoPago = "credito de 30 dias";
+                        } elseif ($key === 'quinceDias' && $value === 'x') {
+                            $terminoPago = "credito de 15 dias";
+                        } elseif ($key === 'contado' && $value === 'x') {
+                            $terminoPago = "contado";
+                        }else{
+                            $terminoPago = '';
+                        }
                     }
+                }else{
+                    $collectTerminosDePago = '';
                 }
+
+                $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
+                if($collectUsuarioContraseña){
+                    foreach ($collectUsuarioContraseña as $key => $value) {
+                        if ($key === 'seEnviaPorEmail' && $value === 'x') {
+                            $usuarioContraseña = "Se envia por Email";
+                        } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
+                            $usuarioContraseña = "Se optiene por el portal";
+                        }else{
+                            $usuarioContraseña = '';
+                        }
+                    }
+                }else{
+                    $collectUsuarioContraseña = '';
+                }
+               
+               
+
+                $collectAltaFactura = collect($request['revisionDeFacturaYpago']['altaDefacturas']);
+                if($collectAltaFactura){
+
+                    foreach ($collectAltaFactura as $key => $value) {
+                        if ($key === 'seEnviaPorEmail' && $value === 'x') {
+                            $altaFactura = "Se envia por Email";
+                        } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
+                            $altaFactura = "Se optiene por el portal";
+                        }else {
+                            $altaFactura = '';
+                        }
+                    }
+                }else{
+                    $collectAltaFactura = '';
+                }
+
+
+
+                $collectMetodoDePago = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['metodoDePago']);
+
+                if($collectMetodoDePago){
+
+                    foreach ($collectMetodoDePago as $key => $value) {
+                        if ($key === 'pagoParcialesDiferidos' && $value === 'x') {
+                            $metodoDepago = "Pagos parciales";
+                        } elseif ($key === 'pagoEnUnaSolaExhibicion' && $value === 'x') {
+                            $metodoDepago = "Pago en una sola exhibicion";
+                        }else{
+                            $metodoDepago = '';
+                        }
+                    }
+                }else{
+                    $collectMetodoDePago = '';
+                }
+
 
 
                 $cliente->servicio_solicitado = json_encode($servicios);
@@ -256,6 +316,7 @@ class ClienteController extends Controller
                 $cliente->save();
 
                  foreach ($request['sucursales'] as $key => $value) {
+                     if(isset($value['nombre']) && $value['nombre'] != null ){
                         $sucursal = new SucursalCliente();
                         $sucursal->nombre_sucursal = $value['nombre'];
                         $sucursal->direccion_sucursal = $value['direccion'];
@@ -264,6 +325,7 @@ class ClienteController extends Controller
                         $sucursal->telefono = $value['tel_ext']['num'];
                         $sucursal->cliente_id =  $cliente->id;
                         $sucursal->save();
+                    }
                 }
             });
             return;
