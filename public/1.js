@@ -2116,7 +2116,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         text: "Instrumento",
         value: "has_intrumento",
-        align: "center"
+        align: "center",
+        width: 150
       }, {
         text: "Acreditacion",
         value: "has_intrumento.has_acreditacion.nombre",
@@ -2182,23 +2183,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.prev = 0;
                 model = {
                   estado: "pendiente",
                   cotizacion_id: _this2.cotizacion_view
                 };
-                _context2.next = 3;
+                _context2.next = 4;
                 return _this2.services.reciboServices.agregarRecibo(model);
 
-              case 3:
-                _context2.next = 5;
+              case 4:
+                _context2.next = 6;
                 return _this2.services.cotizacionServices.getlistCotizaciones();
 
-              case 5:
+              case 6:
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 8]]);
       }))();
     }
   }
@@ -3731,6 +3742,8 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c("v-card-title", [_vm._v("Agregar Cotizacion")]),
+              _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
@@ -3778,8 +3791,6 @@ var render = function() {
           _c(
             "v-card",
             [
-              _c("v-card-title", [_vm._v("Agregar Cotizacion")]),
-              _vm._v(" "),
               _c(
                 "v-card-text",
                 [

@@ -426,6 +426,185 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -465,11 +644,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipo_de_factura: [{
         name: "Generar factura de las orde de servicio ",
         value: 1
-      } // {
-      //     name: 'Generar factura en blanco',
-      //     value: 2
-      // },
-      ],
+      }, {
+        name: "Generar factura en blanco",
+        value: 2
+      }],
       tipoFacturaSelected: {},
       headers_partidas_factura: [{
         text: "Orden de Servicio",
@@ -482,7 +660,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         align: "center",
         value: "cotizacionID"
       }, {
-        text: "ID",
+        text: "ID Informe",
         sorable: false,
         align: "center",
         value: "informe_id"
@@ -511,13 +689,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sorable: false,
         align: "center",
         value: "importe"
-      } // {
-      //     text: 'Accion',
-      //     sorable: false,
-      //     align: 'center',
-      //     value: 'accion'
-      // },
-      ],
+      }],
+      headers_partidas_factura_2: [{
+        text: "Concepto",
+        sortable: false,
+        align: "center",
+        value: "concepto"
+      }, {
+        text: "Instrumento",
+        sortable: false,
+        align: "center",
+        value: "instrumento"
+      }, {
+        text: "Importe",
+        sortable: false,
+        align: "center",
+        value: "importe"
+      }, {
+        text: "Accion",
+        sortable: false,
+        align: "center",
+        value: "accion"
+      }],
       tipo_de_servicio: [{
         name: "Calibracion",
         value: 1
@@ -533,11 +726,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       ClienteSelected: {},
       partidas_acumuladas: [],
+      partidas_acumuladas_2: [],
       cotizacion_partida: {},
-      editPrecioVenta: false
+      editPrecioVenta: false,
+      item_factura_nueva: {
+        concepto: "",
+        instrumento: {},
+        importe: 0
+      }
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "clientes", "monedas", "empleados", "instrumentos", "clientes", "recibos_cliente"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "clientes", "monedas", "empleados", "instrumentos", "clientes", "recibos_cliente", "listCondicionDePago", "list_metodo_de_pago"])), {}, {
     var_computed_subtotal: {
       get: function get() {
         var result = 0;
@@ -554,6 +753,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.partidas_acumuladas = val;
       }
     },
+    var_computed_subtotal2: {
+      get: function get() {
+        var result = 0;
+
+        if (Object.entries(this.partidas_acumuladas_2).length > 0) {
+          for (var i = 0; this.partidas_acumuladas_2.length > i; i++) {
+            result += parseFloat(this.partidas_acumuladas_2[i].importe);
+          }
+        }
+
+        return result;
+      },
+      set: function set(val) {
+        this.partidas_acumuladas_2 = val;
+      }
+    },
     var_computed_iva: {
       get: function get() {
         var result = 0;
@@ -567,6 +782,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.partidas_acumuladas = val;
       }
     },
+    var_computed_iva2: {
+      get: function get() {
+        var result = 0;
+        result = this.var_computed_subtotal2 * 16 / 100;
+        return result;
+      },
+      set: function set(val) {
+        this.partidas_acumuladas_2 = val;
+      }
+    },
     var_computed_total: {
       get: function get() {
         var result = 0;
@@ -578,6 +803,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       set: function set(val) {
         this.partidas_acumuladas = val;
+      }
+    },
+    var_computed_total2: {
+      get: function get() {
+        var result = 0;
+        result = this.var_computed_subtotal2 + this.var_computed_iva2;
+        return result;
+      },
+      set: function set(val) {
+        this.partidas_acumuladas_2 = val;
       }
     }
   }),
@@ -613,6 +848,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.services.clienteServices.getlistclientes();
 
             case 12:
+              _context.next = 14;
+              return _this.services.metodoDePagoServices.getlistMetodoDePago();
+
+            case 14:
+              _context.next = 16;
+              return _this.services.condicionDePagoServices.getlistCondicionDePago();
+
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -621,34 +864,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
-    addPartida: function addPartida() {
+    addPartidaFacturaNueva: function addPartidaFacturaNueva() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 try {
-                  model = {
-                    has_intrumento: _this2.instrumentoSelected.instrumento,
-                    importe: _this2.instrumentoSelected.cantidad * _this2.instrumentoSelected.instrumento.precio_venta,
-                    marca: _this2.instrumentoSelected.marca,
-                    modelo: _this2.instrumentoSelected.modelo,
-                    serie: _this2.instrumentoSelected.serie,
-                    id: _this2.partidas_acumuladas[_this2.partidas_acumuladas.length - 1].id + 1
-                  };
+                  _this2.partidas_acumuladas_2.push(_this2.item_factura_nueva);
 
-                  _this2.partidas_acumuladas.push(model);
-
-                  _this2.instrumentoSelected = {
-                    cantidad: 1,
-                    concepto: {
-                      name: "Calibracion",
-                      value: 1
-                    },
-                    instrumento: {}
+                  _this2.item_factura_nueva = {
+                    concepto: "",
+                    instrumento: {},
+                    importe: 0
                   };
                 } catch (e) {
                   console.log(e);
@@ -662,39 +892,80 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2);
       }))();
     },
-    EliminarPartida: function EliminarPartida(item) {
-      var index = this.partidas_acumuladas.indexOf(item);
-      this.partidas_acumuladas.splice(index, 1);
-    },
-    ClienteSeleccionado: function ClienteSeleccionado(cli) {
+    addPartida: function addPartida() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var model;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
-                _this3.model.recibo = [];
-                _this3.partidas_acumuladas = [];
-                _this3.cotizacion_partida = {};
-                _context3.next = 6;
-                return _this3.services.reciboServices.getlistRecibosClientes(cli);
+                try {
+                  model = {
+                    has_intrumento: _this3.instrumentoSelected.instrumento,
+                    importe: _this3.instrumentoSelected.cantidad * _this3.instrumentoSelected.instrumento.precio_venta,
+                    marca: _this3.instrumentoSelected.marca,
+                    modelo: _this3.instrumentoSelected.modelo,
+                    serie: _this3.instrumentoSelected.serie,
+                    id: _this3.partidas_acumuladas[_this3.partidas_acumuladas.length - 1].id + 1
+                  };
 
-              case 6:
-                _context3.next = 10;
-                break;
+                  _this3.partidas_acumuladas.push(model);
 
-              case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
+                  _this3.instrumentoSelected = {
+                    cantidad: 1,
+                    concepto: {
+                      name: "Calibracion",
+                      value: 1
+                    },
+                    instrumento: {}
+                  };
+                } catch (e) {
+                  console.log(e);
+                }
 
-              case 10:
+              case 1:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3);
+      }))();
+    },
+    EliminarPartida: function EliminarPartida(item) {
+      var index = this.partidas_acumuladas_2.indexOf(item);
+      this.partidas_acumuladas_2.splice(index, 1);
+    },
+    ClienteSeleccionado: function ClienteSeleccionado(cli) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _this4.model.recibo = [];
+                _this4.partidas_acumuladas = [];
+                _this4.cotizacion_partida = {};
+                _context4.next = 6;
+                return _this4.services.reciboServices.getlistRecibosClientes(cli);
+
+              case 6:
+                _context4.next = 10;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
       }))();
     },
     remove: function remove(item) {
@@ -707,19 +978,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     CargarPartidas: function CargarPartidas(p) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.model.recibo.forEach(function (item) {
-        _this4.cotizacion_partida = item.has_cotizaicon;
+        _this5.cotizacion_partida = item.has_cotizaicon;
       });
 
       for (var i = 0; i < this.model.recibo.length; i++) {
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
           if (!this.partidas_acumuladas.includes(this.model.recibo[i].has_partidas[j])) {
             this.partidas_acumuladas.push(this.model.recibo[i].has_partidas[j]);
-            console.log({
-              p: this.model.recibo[i].has_partidas[j]
-            });
 
             var _iterator = _createForOfIteratorHelper(this.partidas_acumuladas),
                 _step;
@@ -743,33 +1011,64 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     TotalizarFactura: function TotalizarFactura() {
-      var _this5 = this;
+      var _this6 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var dataFactura;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 dataFactura = {
-                  partidas: _this5.partidas_acumuladas,
-                  cliente: _this5.cotizacion_partida,
-                  subtotal: _this5.var_computed_subtotal,
-                  iva: _this5.var_computed_iva,
-                  total: _this5.var_computed_total,
-                  nota: _this5.cotizacion_partida.nota_de_factura
+                  partidas: _this6.partidas_acumuladas,
+                  cliente: _this6.cotizacion_partida,
+                  subtotal: _this6.var_computed_subtotal,
+                  iva: _this6.var_computed_iva,
+                  total: _this6.var_computed_total,
+                  nota: _this6.cotizacion_partida.nota_de_factura
                 };
 
-                _this5.$store.commit("setDialogFactura", dataFactura);
+                _this6.$store.commit("setDialogFactura", dataFactura);
 
-                _this5.$store.commit("setDialogAddFactura", true);
+                _this6.$store.commit("setDialogAddFactura", true);
 
               case 3:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
+      }))();
+    },
+    TotalizarFacturaNueva: function TotalizarFacturaNueva() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var dataFactura;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                dataFactura = {
+                  partidas: _this7.partidas_acumuladas_2,
+                  cliente: _this7.model.factura_nueva.cliente,
+                  subtotal: _this7.var_computed_subtotal2,
+                  iva: _this7.var_computed_iva2,
+                  total: _this7.var_computed_total2,
+                  nota: _this7.model.factura_nueva.nota_de_factura,
+                  formaDePago: _this7.model.factura_nueva.forma_de_pago,
+                  metodoDePago: _this7.model.factura_nueva.metodo_de_pago,
+                  moneda: _this7.model.factura_nueva.moneda
+                };
+
+                _this7.services.facturaServices.agregarFacturaNueva(dataFactura);
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
       }))();
     },
     ActualizarImporte: function ActualizarImporte(item) {
@@ -1001,15 +1300,91 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      fecha: moment__WEBPACK_IMPORTED_MODULE_2___default()().format('l')
+      fecha: moment__WEBPACK_IMPORTED_MODULE_2___default()().format("l")
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'dialog_add_factura', 'factura'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_factura", "factura"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_add_factura;
@@ -1129,7 +1504,9 @@ var render = function() {
                                   _c("v-autocomplete", {
                                     attrs: {
                                       items: _vm.clientes,
-                                      "item-text": "razon_social",
+                                      "item-text":
+                                        "datos_fisicos_requeremientos_facturacion_razon_social",
+                                      "item-value": "id",
                                       "return-object": "",
                                       label: "Clientes",
                                       outlined: "",
@@ -1216,7 +1593,7 @@ var render = function() {
                                                       _vm._s(
                                                         data.item.has_cotizaicon
                                                           .has_cliente
-                                                          .razon_social
+                                                          .datos_fisicos_requeremientos_facturacion_razon_social
                                                       ) +
                                                       "\n                    "
                                                   ),
@@ -1300,7 +1677,7 @@ var render = function() {
                                                           data.item
                                                             .has_cotizaicon
                                                             .has_cliente
-                                                            .razon_social
+                                                            .datos_fisicos_requeremientos_facturacion_razon_social
                                                         ) +
                                                         "\n                    "
                                                     ),
@@ -1378,7 +1755,7 @@ var render = function() {
                                                           data.item
                                                             .has_cotizaicon
                                                             .has_cliente
-                                                            .razon_social
+                                                            .datos_fisicos_requeremientos_facturacion_razon_social
                                                         ) +
                                                         "\n                    "
                                                     ),
@@ -1453,7 +1830,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      299028559
+                                      3732177017
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -1489,17 +1866,17 @@ var render = function() {
                                         model: {
                                           value:
                                             _vm.cotizacion_partida.has_cliente
-                                              .razon_social,
+                                              .datos_fisicos_requeremientos_facturacion_razon_social,
                                           callback: function($$v) {
                                             _vm.$set(
                                               _vm.cotizacion_partida
                                                 .has_cliente,
-                                              "razon_social",
+                                              "datos_fisicos_requeremientos_facturacion_razon_social",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "cotizacion_partida.has_cliente.razon_social"
+                                            "\n                  cotizacion_partida.has_cliente\n                    .datos_fisicos_requeremientos_facturacion_razon_social\n                "
                                         }
                                       })
                                     ],
@@ -1545,6 +1922,57 @@ var render = function() {
                                     1
                                   )
                                 : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "4",
+                                    md: "4"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Forma de pago",
+                                      outlined: "",
+                                      disabled: ""
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "4",
+                                    md: "4"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Metodo de pago",
+                                      outlined: "",
+                                      disabled: ""
+                                    },
+                                    model: {
+                                      value: _vm.cotizacion_partida,
+                                      callback: function($$v) {
+                                        _vm.cotizacion_partida = $$v
+                                      },
+                                      expression: "cotizacion_partida"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
                               _vm._v(" "),
                               _c("v-spacer"),
                               _vm._v(" "),
@@ -1600,19 +2028,265 @@ var render = function() {
                                       on: { click: _vm.TotalizarFactura }
                                     },
                                     [_vm._v("Totalizar")]
-                                  ),
-                                  _vm._v(" "),
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.tipoFacturaSelected.value == 2
+                    ? _c(
+                        "v-col",
+                        { attrs: { cols: "12", xs: "12", sm: "12", md: "12" } },
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.clientes,
+                                      "item-text":
+                                        "datos_fisicos_requeremientos_facturacion_razon_social",
+                                      "item-value": "id",
+                                      "return-object": "",
+                                      label: "Cliente",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.cliente,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "cliente",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.cliente"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "3",
+                                    md: "3"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.monedas,
+                                      "item-text": "nombre_moneda",
+                                      "return-object": "",
+                                      label: "Moneda",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.moneda,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "moneda",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.moneda"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "3",
+                                    md: "3"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      items: _vm.empleados,
+                                      "item-text": "nombre_completo",
+                                      "return-object": "",
+                                      label: "Vendedor",
+                                      outlined: "",
+                                      clearable: ""
+                                    },
+                                    model: {
+                                      value: _vm.model.factura_nueva.vendedor,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "vendedor",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "model.factura_nueva.vendedor"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "3",
+                                    md: "3"
+                                  }
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      label: "Forma de pago",
+                                      outlined: "",
+                                      items: _vm.listCondicionDePago,
+                                      "item-text": "nombre",
+                                      "item-value": "id",
+                                      "return-object": ""
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.model.factura_nueva.forma_de_pago,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "forma_de_pago",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "model.factura_nueva.forma_de_pago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "3",
+                                    md: "3"
+                                  }
+                                },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      label: "Metodo de pago",
+                                      outlined: "",
+                                      items: _vm.list_metodo_de_pago,
+                                      "item-text": "nombre",
+                                      "item-value": "id",
+                                      "return-object": ""
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.model.factura_nueva.metodo_de_pago,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "metodo_de_pago",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "model.factura_nueva.metodo_de_pago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-textarea", {
+                                    attrs: {
+                                      outlined: "",
+                                      label: "NOTA",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.model.factura_nueva.nota_de_factura,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.model.factura_nueva,
+                                          "nota_de_factura",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "model.factura_nueva.nota_de_factura"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
                                   _c(
                                     "v-btn",
                                     {
                                       attrs: { color: "success" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.dialogAddProducto = true
-                                        }
-                                      }
+                                      on: { click: _vm.TotalizarFacturaNueva }
                                     },
-                                    [_vm._v("Agregar items")]
+                                    [_vm._v("Totalizar")]
                                   )
                                 ],
                                 1
@@ -1633,7 +2307,17 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "12", xs: "12", sm: "12", md: "6", lg: "6" } },
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tipoFacturaSelected.value == 1,
+                  expression: "tipoFacturaSelected.value == 1"
+                }
+              ],
+              attrs: { cols: "12", xs: "12", sm: "12", md: "6", lg: "6" }
+            },
             [
               _c("v-data-table", {
                 staticClass: "elevation-1",
@@ -1932,6 +2616,325 @@ var render = function() {
               })
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tipoFacturaSelected.value == 2,
+                  expression: "tipoFacturaSelected.value == 2"
+                }
+              ],
+              attrs: { cols: "12", xs: "12", sm: "12", md: "6", lg: "6" }
+            },
+            [
+              _c("v-data-table", {
+                staticClass: "elevation-1",
+                attrs: {
+                  headers: _vm.headers_partidas_factura_2,
+                  items: _vm.partidas_acumuladas_2,
+                  "items-per-page": 5
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "body.prepend",
+                    fn: function() {
+                      return [
+                        _c("tr", [
+                          _c(
+                            "td",
+                            [
+                              _c("v-text-field", {
+                                staticClass: "mt-5",
+                                attrs: {
+                                  label: "",
+                                  outlined: "",
+                                  dense: "",
+                                  small: ""
+                                },
+                                model: {
+                                  value: _vm.item_factura_nueva.concepto,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.item_factura_nueva,
+                                      "concepto",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "item_factura_nueva.concepto"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c("v-autocomplete", {
+                                staticClass: "mt-5",
+                                attrs: {
+                                  label: "",
+                                  outlined: "",
+                                  dense: "",
+                                  small: "",
+                                  items: _vm.instrumentos,
+                                  "item-text": "nombre",
+                                  "item-value": "id",
+                                  "return-object": ""
+                                },
+                                model: {
+                                  value: _vm.item_factura_nueva.instrumento,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.item_factura_nueva,
+                                      "instrumento",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "item_factura_nueva.instrumento"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c("v-text-field", {
+                                staticClass: "mt-5",
+                                attrs: {
+                                  label: "",
+                                  outlined: "",
+                                  dense: "",
+                                  small: ""
+                                },
+                                model: {
+                                  value: _vm.item_factura_nueva.importe,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.item_factura_nueva,
+                                      "importe",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "item_factura_nueva.importe"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "success", icon: "" },
+                                  on: { click: _vm.addPartidaFacturaNueva }
+                                },
+                                [_c("v-icon", [_vm._v("mdi-check")])],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    },
+                    proxy: true
+                  },
+                  {
+                    key: "item.instrumento",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("td", { staticClass: "text-left" }, [
+                          _c("strong", [
+                            _vm._v(_vm._s(item.instrumento.nombre))
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", [
+                            _vm._v(
+                              " Mag.: " +
+                                _vm._s(item.instrumento.has_magnitud.clave)
+                            )
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", [
+                            _vm._v(
+                              " Acred.: " +
+                                _vm._s(item.instrumento.has_acreditacion.nombre)
+                            )
+                          ]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", [
+                            _vm._v(
+                              " Alcan.: " + _vm._s(item.instrumento.alcance)
+                            )
+                          ])
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.accion",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "error", icon: "" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.EliminarPartida(item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("mdi-delete")])],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "footer",
+                    fn: function() {
+                      return [
+                        _c(
+                          "v-container",
+                          [
+                            _c(
+                              "v-row",
+                              [
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "\n                  SUBTOTAL:\n                  " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_subtotal2,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
+                                            )
+                                          ) +
+                                          "\n                "
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "\n                  IVA :\n                  " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_iva2,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
+                                            )
+                                          ) +
+                                          "\n                "
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      cols: "12",
+                                      xs: "12",
+                                      sm: "12",
+                                      md: "12",
+                                      lg: "12"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", { staticClass: "float-right" }, [
+                                      _vm._v(
+                                        "\n                  TOTAL:\n                  " +
+                                          _vm._s(
+                                            _vm._f("numberFormat")(
+                                              _vm.var_computed_total2,
+                                              Object.entries(
+                                                _vm.cotizacion_partida
+                                              ).length > 3
+                                                ? _vm.cotizacion_partida
+                                                    .has_moneda.clave
+                                                : ""
+                                            )
+                                          ) +
+                                          "\n                "
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    },
+                    proxy: true
+                  }
+                ])
+              })
+            ],
+            1
           )
         ],
         1
@@ -1939,36 +2942,7 @@ var render = function() {
       _vm._v(" "),
       _c("modal-add-factura"),
       _vm._v(" "),
-      _c("modal-pdf-factura"),
-      _vm._v(" "),
-      _c("notificacion"),
-      _vm._v(" "),
-      _c(
-        "v-dialog",
-        {
-          model: {
-            value: _vm.dialogAddProducto,
-            callback: function($$v) {
-              _vm.dialogAddProducto = $$v
-            },
-            expression: "dialogAddProducto"
-          }
-        },
-        [
-          _c(
-            "v-card",
-            [
-              _c(
-                "v-col",
-                [_c("v-text-fields", { attrs: { laberl: "producto" } })],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
+      _c("modal-pdf-factura")
     ],
     1
   )
@@ -2144,70 +3118,50 @@ var render = function() {
                               _c("div", [
                                 _c("h4", [
                                   _vm._v(
-                                    "Cliente:" +
+                                    "\n                Cliente:" +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .razon_social
-                                      )
+                                          .datos_fisicos_requeremientos_facturacion_razon_social
+                                      ) +
+                                      "\n              "
                                   )
                                 ]),
                                 _vm._v(" "),
                                 _c("h4", [
                                   _vm._v(
-                                    "Dirección:" +
+                                    "\n                Dirección: Cll.\n                " +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .domicilio_fiscal
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
                                       ) +
-                                      " - " +
-                                      _vm._s(
-                                        _vm.factura.cliente.has_cliente.ciudad
-                                      ) +
-                                      " - " +
-                                      _vm._s(
-                                        _vm.factura.cliente.has_cliente.estado
-                                      ) +
-                                      " - " +
-                                      _vm._s(
-                                        _vm.factura.cliente.has_cliente.estado
-                                      ) +
-                                      "  "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h4", [
-                                  _vm._v(
-                                    "Teléfono:" +
+                                      "\n                #\n                " +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .telefono_empresa
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h4", [
-                                  _vm._v(
-                                    "Correo:" +
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
+                                      ) +
+                                      "\n\n                " +
                                       _vm._s(
                                         _vm.factura.cliente.has_cliente
-                                          .correo_electronico_para_el_envio_de_factura
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h4", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    "Vendedor:" +
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
+                                      ) +
+                                      "\n\n                " +
                                       _vm._s(
-                                        _vm.factura.cliente.has_empleado
-                                          .nombre_completo
-                                      )
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
+                                      ) +
+                                      "\n\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
+                                      ) +
+                                      "\n              "
                                   )
                                 ]),
                                 _vm._v(" "),
                                 _c("h4", { staticClass: "text-right" }, [
                                   _vm._v("Fecha:" + _vm._s(_vm.fecha))
                                 ]),
+                                _vm._v(" "),
                                 _c("br")
                               ])
                             ]
@@ -2237,82 +3191,54 @@ var render = function() {
                                             _c("tr", [
                                               _c(
                                                 "th",
-                                                { staticClass: "text-left" },
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Orden de servicio")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Folio")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("ID informe")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Concepto")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Instrumento")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
                                                 [
                                                   _vm._v(
-                                                    "\r\n                                            Orden de servicio\r\n                                        "
+                                                    "Estado de la calibracion"
                                                   )
                                                 ]
                                               ),
                                               _vm._v(" "),
                                               _c(
                                                 "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Cotizacion\r\n                                        "
-                                                  )
-                                                ]
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Precio Unitario")]
                                               ),
                                               _vm._v(" "),
                                               _c(
                                                 "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            ID\r\n                                        "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Concepto\r\n                                        "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Instrumento\r\n                                        "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Estado de la calibracion\r\n                                        "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Precio Unitario\r\n                                        "
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "th",
-                                                { staticClass: "text-left" },
-                                                [
-                                                  _vm._v(
-                                                    "\r\n                                            Importe\r\n                                        "
-                                                  )
-                                                ]
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Importe")]
                                               )
                                             ])
                                           ]),
@@ -2331,7 +3257,7 @@ var render = function() {
                                                         "td",
                                                         {
                                                           staticClass:
-                                                            "text-left"
+                                                            "text-center"
                                                         },
                                                         [
                                                           _vm._v(
@@ -2346,7 +3272,7 @@ var render = function() {
                                                         "td",
                                                         {
                                                           staticClass:
-                                                            "text-left"
+                                                            "text-center"
                                                         },
                                                         [
                                                           _vm._v(
@@ -2361,7 +3287,7 @@ var render = function() {
                                                         "td",
                                                         {
                                                           staticClass:
-                                                            "text-left"
+                                                            "text-center"
                                                         },
                                                         [
                                                           _vm._v(
@@ -2376,15 +3302,14 @@ var render = function() {
                                                         "td",
                                                         {
                                                           staticClass:
-                                                            "text-left"
+                                                            "text-center"
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            Servicio de " +
+                                                            "Servicio de " +
                                                               _vm._s(
                                                                 item.servicio
-                                                              ) +
-                                                              "\r\n                                        "
+                                                              )
                                                           )
                                                         ]
                                                       ),
@@ -2393,11 +3318,11 @@ var render = function() {
                                                         "td",
                                                         {
                                                           staticClass:
-                                                            "text-left"
+                                                            "text-center"
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            " +
+                                                            "\n                      " +
                                                               _vm._s(
                                                                 item
                                                                   .has_intrumento
@@ -2406,26 +3331,26 @@ var render = function() {
                                                           ),
                                                           _c("br"),
                                                           _vm._v(
-                                                            "\r\n                                            ID:" +
+                                                            "\n                      ID:" +
                                                               _vm._s(
                                                                 item.identificacion
                                                               )
                                                           ),
                                                           _c("br"),
                                                           _vm._v(
-                                                            "\r\n                                            Marca:" +
+                                                            "\n                      Marca:" +
                                                               _vm._s(item.marca)
                                                           ),
                                                           _c("br"),
                                                           _vm._v(
-                                                            "\r\n                                            Modelo:" +
+                                                            "\n                      Modelo:" +
                                                               _vm._s(
                                                                 item.modelo
                                                               )
                                                           ),
                                                           _c("br"),
                                                           _vm._v(
-                                                            "\r\n                                            Serie:" +
+                                                            "\n                      Serie:" +
                                                               _vm._s(item.serie)
                                                           ),
                                                           _c("br")
@@ -2436,7 +3361,7 @@ var render = function() {
                                                         "td",
                                                         {
                                                           attrs: {
-                                                            clas: "text-left"
+                                                            clas: "text-center"
                                                           }
                                                         },
                                                         [
@@ -2456,7 +3381,7 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\r\n                                                por iniciar\r\n                                            "
+                                                                    "\n                        por iniciar\n                      "
                                                                   )
                                                                 ]
                                                               )
@@ -2479,13 +3404,13 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\r\n                                                " +
+                                                                    "\n                        " +
                                                                       _vm._s(
                                                                         item
                                                                           .has_calibracion
                                                                           .estado
                                                                       ) +
-                                                                      "\r\n                                            "
+                                                                      "\n                      "
                                                                   )
                                                                 ]
                                                               )
@@ -2504,13 +3429,13 @@ var render = function() {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\r\n                                                " +
+                                                                    "\n                        " +
                                                                       _vm._s(
                                                                         item
                                                                           .has_calibracion
                                                                           .estado
                                                                       ) +
-                                                                      "\r\n                                            "
+                                                                      "\n                      "
                                                                   )
                                                                 ]
                                                               )
@@ -2522,12 +3447,12 @@ var render = function() {
                                                         "td",
                                                         {
                                                           attrs: {
-                                                            clas: "text-left"
+                                                            clas: "text-center"
                                                           }
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            " +
+                                                            "\n                      " +
                                                               _vm._s(
                                                                 _vm._f(
                                                                   "numberFormat"
@@ -2546,7 +3471,7 @@ var render = function() {
                                                                     : ""
                                                                 )
                                                               ) +
-                                                              "\r\n                                        "
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       ),
@@ -2555,12 +3480,12 @@ var render = function() {
                                                         "td",
                                                         {
                                                           attrs: {
-                                                            clas: "text-left"
+                                                            clas: "text-center"
                                                           }
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\r\n                                            " +
+                                                            "\n                      " +
                                                               _vm._s(
                                                                 _vm._f(
                                                                   "numberFormat"
@@ -2577,7 +3502,7 @@ var render = function() {
                                                                     : ""
                                                                 )
                                                               ) +
-                                                              "\r\n                                        "
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       )
@@ -2595,11 +3520,11 @@ var render = function() {
                                                       "h3",
                                                       {
                                                         staticClass:
-                                                          " text-right"
+                                                          "text-right"
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "SUBTOTAL: " +
+                                                          "\n                        SUBTOTAL:\n                        " +
                                                             _vm._s(
                                                               _vm._f(
                                                                 "numberFormat"
@@ -2615,7 +3540,8 @@ var render = function() {
                                                                       .clave
                                                                   : ""
                                                               )
-                                                            )
+                                                            ) +
+                                                            "\n                      "
                                                         )
                                                       ]
                                                     ),
@@ -2628,7 +3554,7 @@ var render = function() {
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "IVA : " +
+                                                          "\n                        IVA :\n                        " +
                                                             _vm._s(
                                                               _vm._f(
                                                                 "numberFormat"
@@ -2643,7 +3569,8 @@ var render = function() {
                                                                       .clave
                                                                   : ""
                                                               )
-                                                            )
+                                                            ) +
+                                                            "\n                      "
                                                         )
                                                       ]
                                                     ),
@@ -2656,7 +3583,7 @@ var render = function() {
                                                       },
                                                       [
                                                         _vm._v(
-                                                          "TOTAL: " +
+                                                          "\n                        TOTAL:\n                        " +
                                                             _vm._s(
                                                               _vm._f(
                                                                 "numberFormat"
@@ -2672,7 +3599,8 @@ var render = function() {
                                                                       .clave
                                                                   : ""
                                                               )
-                                                            )
+                                                            ) +
+                                                            "\n                      "
                                                         )
                                                       ]
                                                     )
@@ -2689,7 +3617,7 @@ var render = function() {
                                   ],
                                   null,
                                   false,
-                                  658115051
+                                  3529245505
                                 )
                               })
                             ],
@@ -2716,11 +3644,7 @@ var render = function() {
                       attrs: { color: "primary", text: "" },
                       on: { click: _vm.RegistrarFactura }
                     },
-                    [
-                      _vm._v(
-                        "\r\n                    Registrar Factura\r\n                "
-                      )
-                    ]
+                    [_vm._v("\n          Registrar Factura\n        ")]
                   )
                 ],
                 1

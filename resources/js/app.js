@@ -5,18 +5,23 @@ window.Vue = require('vue');
 import vuetify from './plugins/vuetify'
 import store  from './plugins/store'
 import router from './plugins/routes'
-import Donut from 'vue-css-donut-chart';
 import VueApexCharts from 'vue-apexcharts'
-import 'vue-css-donut-chart/dist/vcdonut.css';
 import VueToastr2 from 'vue-toastr-2'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'vue-css-donut-chart/dist/vcdonut.css';
 import 'vue-toastr-2/dist/vue-toastr-2.min.css'
  
 window.toastr = require('toastr')
  
 Vue.use(VueToastr2)
+Vue.use(VueSweetalert2);
+
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
-Vue.use(Donut);
+
+
 Vue.use(VueApexCharts)
 
 Vue.component('register-component', require('./components/register_component.vue').default)

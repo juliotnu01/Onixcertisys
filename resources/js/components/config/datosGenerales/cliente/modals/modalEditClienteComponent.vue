@@ -305,10 +305,11 @@
                     label="terminos de pago"
                     outlined
                     item-text="name"
+                    item-value="name"
                     return-object
                     v-model="
                       cliente.datosFisicosYRequerimientosDeFactuacion
-                        .domicilioFiscalParaFacturacion.terminosDePago 
+                        .domicilioFiscalParaFacturacion.termino_de_pago 
                     "
                   />
                 </v-col>

@@ -116,7 +116,9 @@ class ClienteController extends Controller
                         $sucursal = new SucursalCliente();
                         $sucursal->nombre_sucursal = $value['nombre'];
                         $sucursal->direccion_sucursal = $value['direccion'];
-                        $sucursal->telefono = $value['telefono'];
+                        $sucursal->contacto_sucural = $value['nombreContacto'];
+                        $sucursal->correo_contacto_sucural = $value['email'];
+                        $sucursal->telefono = $value['tel_ext']['num'];
                         $sucursal->cliente_id =  $cliente->id;
                         $sucursal->save();
                 }   

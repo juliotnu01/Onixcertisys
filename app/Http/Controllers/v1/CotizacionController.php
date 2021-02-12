@@ -92,9 +92,7 @@ class CotizacionController extends Controller
     public function store(Request $request, Cotizacion $cotizacion)
     {
         try {
-
             return DB::transaction(function () use ($request, $cotizacion) {
-
                 $cotizacion->cliente_id = $request['cliente_id'];
                 $cotizacion->sucursal_cliente_id = $request['sucursal'];
                 $cotizacion->empleado_id = $request['empleado_id'];

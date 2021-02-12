@@ -6,7 +6,6 @@ export default class cotizacionServices {
             store.commit("setCotizaciones", data);
             var model_notificacion = {mensaje: 'Cotizacion cargadas con exito', status: true, color: 'success'}
             store.commit("setNotificacion", model_notificacion);
-            
         } catch (e) {
             console.log(e);
             var model_notificacion = {mensaje: `!Ha ocurrido un error en las cotizaciones --> ${e}¡`, status: true, color: 'error'}
@@ -36,9 +35,9 @@ export default class cotizacionServices {
                 tipo_de_servicio: cot.tipo_de_servicio_selected.name,
                 nota_para_la_cotizacion: cot.nota_cotizacion,
                 estado_de_la_cotizacion: cot.estado_cotizacion_selected.name,
-                contacto: cot.cliente_selected.nombre_contacto,
-                contacto_telefono: cot.cliente_selected.telefono_contacto,
-                contacto_correo: cot.cliente_selected.correo_contacto,
+                contacto: cot.cliente_selected.contacto_adicionales_compra,
+                contacto_telefono: cot.cliente_selected.contacto_adicionales_compra_telf,
+                contacto_correo: cot.cliente_selected.contacto_adicionales_compra_correo,
                 condicion: cot.condiciones,
                 nota_de_seguimiento: cot.nota_seguimiento,
                 partidas: cot.partidas,

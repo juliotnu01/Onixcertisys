@@ -12,4 +12,8 @@ class Factura extends Model
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }
+    public function hasMoneda()
+    {
+        return $this->belongsTo(Moneda::class, 'moneda_id');
+    }
 }

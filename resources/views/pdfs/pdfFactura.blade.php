@@ -9,7 +9,7 @@
     <table class="page_header" >
         <tr style="vertical-align: top">
             <td >
-            <img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="100%" />
+            {{--<img src="{{ asset('img/factura_cab.png')}}" alt="logo de la empresa" width="100%" />--}}
             </td>
         </tr>
     </table>
@@ -157,6 +157,7 @@
 			<td style="width:15%;" rowspan=2><img src="data:image/png;base64, {!! $qrcode !!}"></td>
 		</tr>
 		<tr>
+            
 		</tr>
 	</table>
 </body>

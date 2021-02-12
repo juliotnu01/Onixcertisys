@@ -30,6 +30,14 @@ export default class facturaServices {
             console.log(e);
         }
     }
+    async agregarFacturaNueva(model) {
+        try {
+            let { data } = await axios.post("/api/add-factura-nueva", model);
+            store.commit("setRutaPdfFactura", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     // async actualizarAcreditaciones(model) {
     //     try {

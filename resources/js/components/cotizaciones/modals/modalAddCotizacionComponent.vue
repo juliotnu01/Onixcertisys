@@ -5,6 +5,7 @@
         <v-btn icon dark @click="openDialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
+        <v-card-title>Agregar Cotizacion</v-card-title>
         <v-spacer></v-spacer>
         <v-btn
           text
@@ -19,7 +20,6 @@
         </v-btn>
       </v-toolbar>
       <v-card>
-        <v-card-title>Agregar Cotizacion</v-card-title>
         <v-card-text>
           <v-form ref="f_mag">
             <v-row align="center" justify="space-around">

@@ -273,6 +273,7 @@ export default {
           text: "Instrumento",
           value: "has_intrumento",
           align: "center",
+          width: 150
         },
         {
           text: "Acreditacion",
@@ -329,12 +330,19 @@ export default {
       this.services.identificadorInformeServices.agregarIdentificador(model);
     },
     async GenerarRecibo() {
-      var model = {
-        estado: "pendiente",
-        cotizacion_id: this.cotizacion_view,
-      };
-      await this.services.reciboServices.agregarRecibo(model);
-      await this.services.cotizacionServices.getlistCotizaciones();
+
+      try {
+             var model = {
+              estado: "pendiente",
+              cotizacion_id: this.cotizacion_view,
+            };
+            await this.services.reciboServices.agregarRecibo(model);
+            await this.services.cotizacionServices.getlistCotizaciones();
+
+      } catch (error) {
+        console.log(error)
+      }
+      
     },
   },
 };
