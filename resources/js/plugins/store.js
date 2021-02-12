@@ -128,6 +128,10 @@ export default new Vuex.Store({
         dialog_add_unidad: false,
         unidad: {},
         dialog_edit_unidad: false,
+        clavesSat: [],
+        dialog_add_clave_sat: false, 
+        claveSat: {},
+        dialog_edit_clave_sat: false,
     },
     getters: {
         services: state => state.services,
@@ -241,6 +245,10 @@ export default new Vuex.Store({
         dialog_add_unidad: state => state.dialog_add_unidad,
         unidad: state => state.unidad,
         dialog_edit_unidad: state => state.dialog_edit_unidad,
+        clavesSat: state => state.clavesSat,
+        dialog_add_clave_sat: state => state.dialog_add_clave_sat,
+        claveSat: state => state.claveSat,
+        dialog_edit_clave_sat: state => state.dialog_edit_clave_sat,
         
     },
     mutations: {
@@ -691,6 +699,18 @@ export default new Vuex.Store({
         },
         setDialogEditUnidad(state, data){
             state.dialog_edit_unidad = data
+        },
+        setClavesSat(state, data){
+            state.clavesSat = data
+        },
+        setDialogAddClaveSat(state, data){
+            state.dialog_add_clave_sat = data
+        },
+        setClaveSat(state, data){
+            state.claveSat = data
+        },
+        setDialogEditClaveSat(state, data){
+            state.dialog_edit_clave_sat = data
         }
     },
     actions: {

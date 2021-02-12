@@ -22,6 +22,7 @@ import calibracionServices from './services/calibracionServices.js'
 import facturaServices from './services/facturaServices.js'
 import NotasDeSeguimientoServices from './services/NotaDeSeguimientoServices.js'
 import unidadServices from './services/UnidadServices.js'
+import claveSatServices from './services/claveSatServices.js'
 
 export default {
     userServices: new userServices(),
@@ -48,4 +49,5 @@ export default {
     facturaServices: new facturaServices(),
     NotdasDeSeguimientoServices: new NotasDeSeguimientoServices(),
     unidadServices: new unidadServices(),
+    claveSatServices: new claveSatServices(),
 }

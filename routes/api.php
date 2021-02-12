@@ -155,3 +155,8 @@ Route::post('/add-unidad', 'v1\UnidadController@store');
 Route::put('/actualizar-unidad', 'v1\UnidadController@update');
 Route::delete('/eliminar-unidad/{id}', 'v1\UnidadController@destroy');
 
+Route::get('/get-claves-sat', 'v1\ClaveSatController@index');
+Route::post('/add-clave-sat', 'v1\ClaveSatController@store');
+Route::put('/actualizar-clave-sat', 'v1\ClaveSatController@update');
+Route::delete('/eliminar-clave-sat/{id}', 'v1\ClaveSatController@destroy');
+
