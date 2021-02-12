@@ -133,7 +133,9 @@
             >
               <template slot="items" slot-scope="props">
                 <td class="text-center">{{ props.item.servicio }}</td>
+                <td class="text-center">{{ props.item.has_clave_sat.codigo }}</td>
                 <td class="text-center">{{ props.item.unidad }}</td>
+                <td class="text-center">{{ props.item.has_unidad.clave }}</td>
                 <td class="text-center">{{ props.item.informe }}</td>
                 <td class="text-center">{{ props.item.has_intrumento }}</td>
                 <td class="text-center">
@@ -260,8 +262,18 @@ export default {
           align: "center",
         },
         {
+          text: "Clave sat",
+          value: "has_clave_sat.codigo",
+          align: "center",
+        },
+        {
           text: "Unidad",
           value: "unidad",
+          align: "center",
+        },
+        {
+          text: "Unidad cod.",
+          value: "has_unidad.clave",
           align: "center",
         },
         {

@@ -18,7 +18,7 @@
               justify="space-around"
               v-if="Object.entries(this.cotizacion_para_duplicar).length > 0"
             >
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                 <v-autocomplete
                   offset-y
                   dense
@@ -27,12 +27,24 @@
                   item-text="datos_fisicos_requeremientos_facturacion_razon_social"
                   item-value="id"
                   outlined
-                  s
                   label="Seleccionar Cliente"
                   return-object
                 ></v-autocomplete>
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                <v-autocomplete
+                  offset-y
+                  dense
+                  v-model="cotizacion_para_duplicar.sucursal_cliente_id"
+                  :items="cotizacion_para_duplicar.has_cliente.has_sucursal"
+                  item-text="nombre_sucursal"
+                  item-value="id"
+                  outlined
+                  label="Seleccionar sucursal"
+                  return-object
+                />
+              </v-col>
+              <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                 <v-autocomplete
                   offset-y
                   dense
@@ -45,7 +57,7 @@
                   return-object
                 ></v-autocomplete>
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                 <v-autocomplete
                   offset-y
                   dense
@@ -58,7 +70,7 @@
                   return-object
                 ></v-autocomplete>
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="3" lg="2">
                 <v-autocomplete
                   offset-y
                   dense
@@ -99,35 +111,35 @@
                   prepend-icon="mdi-flag"
                 ></v-select>
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion_para_duplicar.has_cliente.nombre_contacto"
+                  v-model="cotizacion_para_duplicar.contacto"
                   dense
                   outlined
                   label="Contacto"
                 />
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion_para_duplicar.has_cliente.telefono_contacto"
+                  v-model="cotizacion_para_duplicar.contacto_telefono"
                   dense
                   outlined
                   label="Teléfono"
                 />
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
+              <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion_para_duplicar.has_cliente.correo_contacto"
+                  v-model="cotizacion_para_duplicar.contacto_telefono"
                   dense
                   outlined
                   label="Correo"
                 />
               </v-col>
-              <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                <v-text-field
+              <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                <v-textarea
                   :rules="[rules.required]"
                   v-model="cotizacion_para_duplicar.condicion"
                   dense
@@ -140,13 +152,6 @@
                   v-model="cotizacion_para_duplicar.nota_para_la_cotizacion"
                   outlined
                   label="Notas de la cotizacion"
-                ></v-textarea>
-              </v-col>
-              <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                <v-textarea
-                  v-model="cotizacion_para_duplicar.nota_de_seguimiento"
-                  outlined
-                  label="Notas de seguimiento"
                 ></v-textarea>
               </v-col>
             </v-row>
@@ -213,7 +218,9 @@
                 <tr>
                   <th class="text-left">Identicacion</th>
                   <th class="text-left">Servicio</th>
+                  <th class="text-left">Clave Sat</th>
                   <th class="text-left">Unidad</th>
+                  <th class="text-left">Unidad cod.</th>
                   <th class="text-left">Instrumento</th>
                   <th class="text-left">Marca</th>
                   <th class="text-left">Modelo</th>
@@ -241,7 +248,35 @@
                     {{ item.servicio }}
                   </td>
                   <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="codigo"
+                      :items="clavesSat"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.has_clave_sat"
+                    ></v-autocomplete>
+                  </td>
+                  <td>
                     {{ item.unidad }}
+                  </td>
+                  <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="clave"
+                      :items="unidades"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.has_unidad"
+                    ></v-autocomplete>
                   </td>
                   <td>
                     {{ item.has_intrumento.nombre }}
@@ -310,7 +345,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td :colspan="12">
+                  <td :colspan="15">
                     <div class="text-right">
                       <h3>SUBTOTAL :{{ var_computed_sub_total | numberFormat("") }}</h3>
                     </div>
@@ -379,6 +414,8 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
+        unidad_cod: {},
+        clave_sat: {},
       },
       servicio_partida: [
         {
@@ -424,6 +461,8 @@ export default {
       "tiempos_de_entrega",
       "instrumentos",
       "cotizacion_para_duplicar",
+      "unidades",
+      "clavesSat",
     ]),
     openDialog: {
       get() {
@@ -488,6 +527,8 @@ export default {
     this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
     this.services.empleadoServices.getlistEmpleados();
     this.services.instrumentoServices.getlistInstrumentos();
+    this.services.unidadServices.getUnidades();
+    this.services.claveSatServices.getclavesSat();
   },
   methods: {
     AgregarPartida() {
@@ -506,6 +547,8 @@ export default {
           servicio: this.partida.servicio.name,
           unidad: this.partida.unidad.name,
           importe: this.partida.instrumento.precio_venta * 1,
+          unidad_cod: this.partida.unidad_cod,
+          clave_sat: this.partida.clave_sat,
         };
         this.cotizacion_para_duplicar.has_partidas.push(obj);
       }
@@ -519,6 +562,8 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
+        unidad_cod: {},
+        clave_sat: {},
       };
     },
     async AddCotizacion() {

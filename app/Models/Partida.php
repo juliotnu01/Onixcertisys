@@ -34,4 +34,12 @@ class Partida extends Model
     {
         return $this->hasMany(NotaDeSeguimiento::class, 'partida_id');
     }
+    public function hasUnidad()
+    {
+        return $this->belongsTo(Unidad::class, 'unidad_id');
+    }
+    public function hasClaveSat()
+    {
+        return $this->belongsTo(ClaveSat::class, 'clave_sat_id');
+    }
 }

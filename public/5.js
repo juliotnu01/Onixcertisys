@@ -535,6 +535,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -575,7 +610,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         serie: "",
         importe: 0,
         servicio: {},
-        unidad: {}
+        unidad: {},
+        unidad_cod: {},
+        clave_sat: {}
       },
       servicio_partida: [{
         name: "Calibracion",
@@ -602,7 +639,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_duplicate_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "cotizacion_para_duplicar"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_duplicate_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "cotizacion_para_duplicar", "unidades", "clavesSat"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_duplicate_cotizacion;
@@ -683,7 +720,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               _this2.services.instrumentoServices.getlistInstrumentos();
 
-            case 6:
+              _this2.services.unidadServices.getUnidades();
+
+              _this2.services.claveSatServices.getclavesSat();
+
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -704,7 +745,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           modelo: this.partida.modelo,
           serie: this.partida.serie,
           importe: this.partida.importe
-        }, _defineProperty(_obj, "marca", this.partida.marca), _defineProperty(_obj, "modelo", this.partida.modelo), _defineProperty(_obj, "serie", this.partida.serie), _defineProperty(_obj, "servicio", this.partida.servicio.name), _defineProperty(_obj, "unidad", this.partida.unidad.name), _defineProperty(_obj, "importe", this.partida.instrumento.precio_venta * 1), _obj);
+        }, _defineProperty(_obj, "marca", this.partida.marca), _defineProperty(_obj, "modelo", this.partida.modelo), _defineProperty(_obj, "serie", this.partida.serie), _defineProperty(_obj, "servicio", this.partida.servicio.name), _defineProperty(_obj, "unidad", this.partida.unidad.name), _defineProperty(_obj, "importe", this.partida.instrumento.precio_venta * 1), _defineProperty(_obj, "unidad_cod", this.partida.unidad_cod), _defineProperty(_obj, "clave_sat", this.partida.clave_sat), _obj);
         this.cotizacion_para_duplicar.has_partidas.push(obj);
       }
 
@@ -717,7 +758,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         serie: "",
         importe: 0,
         servicio: {},
-        unidad: {}
+        unidad: {},
+        unidad_cod: {},
+        clave_sat: {}
       };
     },
     AddCotizacion: function AddCotizacion() {
@@ -1107,8 +1150,8 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
-                                    md: "3",
-                                    lg: "3"
+                                    md: "2",
+                                    lg: "2"
                                   }
                                 },
                                 [
@@ -1121,7 +1164,6 @@ var render = function() {
                                         "datos_fisicos_requeremientos_facturacion_razon_social",
                                       "item-value": "id",
                                       outlined: "",
-                                      s: "",
                                       label: "Seleccionar Cliente",
                                       "return-object": ""
                                     },
@@ -1151,8 +1193,52 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
+                                    md: "2",
+                                    lg: "2"
+                                  }
+                                },
+                                [
+                                  _c("v-autocomplete", {
+                                    attrs: {
+                                      "offset-y": "",
+                                      dense: "",
+                                      items:
+                                        _vm.cotizacion_para_duplicar.has_cliente
+                                          .has_sucursal,
+                                      "item-text": "nombre_sucursal",
+                                      "item-value": "id",
+                                      outlined: "",
+                                      label: "Seleccionar sucursal",
+                                      "return-object": ""
+                                    },
+                                    model: {
+                                      value:
+                                        _vm.cotizacion_para_duplicar
+                                          .sucursal_cliente_id,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.cotizacion_para_duplicar,
+                                          "sucursal_cliente_id",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "cotizacion_para_duplicar.sucursal_cliente_id"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
                                     md: "3",
-                                    lg: "3"
+                                    lg: "2"
                                   }
                                 },
                                 [
@@ -1193,7 +1279,7 @@ var render = function() {
                                     xs: "12",
                                     sm: "12",
                                     md: "3",
-                                    lg: "3"
+                                    lg: "2"
                                   }
                                 },
                                 [
@@ -1235,7 +1321,7 @@ var render = function() {
                                     xs: "12",
                                     sm: "12",
                                     md: "3",
-                                    lg: "3"
+                                    lg: "2"
                                   }
                                 },
                                 [
@@ -1362,8 +1448,8 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
-                                    md: "3",
-                                    lg: "3"
+                                    md: "4",
+                                    lg: "4"
                                   }
                                 },
                                 [
@@ -1376,18 +1462,16 @@ var render = function() {
                                     },
                                     model: {
                                       value:
-                                        _vm.cotizacion_para_duplicar.has_cliente
-                                          .nombre_contacto,
+                                        _vm.cotizacion_para_duplicar.contacto,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.cotizacion_para_duplicar
-                                            .has_cliente,
-                                          "nombre_contacto",
+                                          _vm.cotizacion_para_duplicar,
+                                          "contacto",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.has_cliente.nombre_contacto"
+                                        "cotizacion_para_duplicar.contacto"
                                     }
                                   })
                                 ],
@@ -1401,8 +1485,8 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
-                                    md: "3",
-                                    lg: "3"
+                                    md: "4",
+                                    lg: "4"
                                   }
                                 },
                                 [
@@ -1415,18 +1499,17 @@ var render = function() {
                                     },
                                     model: {
                                       value:
-                                        _vm.cotizacion_para_duplicar.has_cliente
-                                          .telefono_contacto,
+                                        _vm.cotizacion_para_duplicar
+                                          .contacto_telefono,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.cotizacion_para_duplicar
-                                            .has_cliente,
-                                          "telefono_contacto",
+                                          _vm.cotizacion_para_duplicar,
+                                          "contacto_telefono",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.has_cliente.telefono_contacto"
+                                        "cotizacion_para_duplicar.contacto_telefono"
                                     }
                                   })
                                 ],
@@ -1440,8 +1523,8 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
-                                    md: "3",
-                                    lg: "3"
+                                    md: "4",
+                                    lg: "4"
                                   }
                                 },
                                 [
@@ -1454,18 +1537,17 @@ var render = function() {
                                     },
                                     model: {
                                       value:
-                                        _vm.cotizacion_para_duplicar.has_cliente
-                                          .correo_contacto,
+                                        _vm.cotizacion_para_duplicar
+                                          .contacto_telefono,
                                       callback: function($$v) {
                                         _vm.$set(
-                                          _vm.cotizacion_para_duplicar
-                                            .has_cliente,
-                                          "correo_contacto",
+                                          _vm.cotizacion_para_duplicar,
+                                          "contacto_telefono",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.has_cliente.correo_contacto"
+                                        "cotizacion_para_duplicar.contacto_telefono"
                                     }
                                   })
                                 ],
@@ -1479,12 +1561,12 @@ var render = function() {
                                     cols: "12",
                                     xs: "12",
                                     sm: "12",
-                                    md: "3",
-                                    lg: "3"
+                                    md: "6",
+                                    lg: "6"
                                   }
                                 },
                                 [
-                                  _c("v-text-field", {
+                                  _c("v-textarea", {
                                     attrs: {
                                       rules: [_vm.rules.required],
                                       dense: "",
@@ -1539,42 +1621,6 @@ var render = function() {
                                       },
                                       expression:
                                         "cotizacion_para_duplicar.nota_para_la_cotizacion"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "6",
-                                    lg: "6"
-                                  }
-                                },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "Notas de seguimiento"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.cotizacion_para_duplicar
-                                          .nota_de_seguimiento,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.cotizacion_para_duplicar,
-                                          "nota_de_seguimiento",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "cotizacion_para_duplicar.nota_de_seguimiento"
                                     }
                                   })
                                 ],
@@ -1817,7 +1863,15 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
+                                  _vm._v("Clave Sat")
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
                                   _vm._v("Unidad")
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v("Unidad cod.")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
@@ -1900,6 +1954,37 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("v-autocomplete", {
+                                            staticClass: "m-0 p-0",
+                                            attrs: {
+                                              label: "",
+                                              outlined: "",
+                                              dense: "",
+                                              small: "",
+                                              "item-text": "codigo",
+                                              items: _vm.clavesSat,
+                                              "item-value": "id",
+                                              "return-object": ""
+                                            },
+                                            model: {
+                                              value: item.has_clave_sat,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  item,
+                                                  "has_clave_sat",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "item.has_clave_sat"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
                                           "\n                  " +
@@ -1907,6 +1992,37 @@ var render = function() {
                                             "\n                "
                                         )
                                       ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("v-autocomplete", {
+                                            staticClass: "m-0 p-0",
+                                            attrs: {
+                                              label: "",
+                                              outlined: "",
+                                              dense: "",
+                                              small: "",
+                                              "item-text": "clave",
+                                              items: _vm.unidades,
+                                              "item-value": "id",
+                                              "return-object": ""
+                                            },
+                                            model: {
+                                              value: item.has_unidad,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  item,
+                                                  "has_unidad",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "item.has_unidad"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
@@ -2100,7 +2216,7 @@ var render = function() {
                                 ),
                                 _vm._v(" "),
                                 _c("tr", [
-                                  _c("td", { attrs: { colspan: 12 } }, [
+                                  _c("td", { attrs: { colspan: 15 } }, [
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(

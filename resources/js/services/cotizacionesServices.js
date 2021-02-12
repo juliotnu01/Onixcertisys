@@ -58,7 +58,6 @@ export default class cotizacionServices {
     }
     async agregarCotizacionDuplicada(cot) {
         try {
-            console.log({cot})
             var model = {
                 id: cot.id,
                 cliente_id: cot.has_cliente.id,

@@ -217,7 +217,9 @@
                 <tr>
                   <th class="text-left">Identicacion</th>
                   <th class="text-left">Servicio</th>
+                  <th class="text-left">Clave Sat</th>
                   <th class="text-left">Unidad</th>
+                  <th class="text-left">Unidad Cod.</th>
                   <th class="text-left">Instrumento</th>
                   <th class="text-left">Marca</th>
                   <th class="text-left">Modelo</th>
@@ -245,7 +247,35 @@
                     {{ item.servicio }}
                   </td>
                   <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="codigo"
+                      :items="clavesSat"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.has_clave_sat"
+                    ></v-autocomplete>
+                  </td>
+                  <td>
                     {{ item.unidad }}
+                  </td>
+                  <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="clave"
+                      :items="unidades"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.has_unidad"
+                    ></v-autocomplete>
                   </td>
                   <td>
                     {{ item.has_intrumento.nombre }}
@@ -318,7 +348,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td :colspan="12">
+                  <td :colspan="15">
                     <div class="text-right">
                       <h3>SUBTOTAL :{{ var_computed_sub_total | numberFormat("") }}</h3>
                     </div>
@@ -437,6 +467,8 @@ export default {
       "tiempos_de_entrega",
       "instrumentos",
       "cotizacion",
+      "unidades",
+      "clavesSat",
     ]),
     openDialog: {
       get() {
@@ -493,6 +525,8 @@ export default {
     this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
     this.services.empleadoServices.getlistEmpleados();
     this.services.instrumentoServices.getlistInstrumentos();
+    this.services.unidadServices.getUnidades();
+    this.services.claveSatServices.getclavesSat();
   },
   methods: {
     AgregarPartida() {

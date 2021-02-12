@@ -218,7 +218,9 @@
                 <tr>
                   <th class="text-left">Identicacion</th>
                   <th class="text-left">Servicio</th>
+                  <th class="text-left">Clave Sat</th>
                   <th class="text-left">Unidad</th>
+                  <th class="text-left">Unidad Cod.</th>
                   <th class="text-left">Instrumento</th>
                   <th class="text-left">Marca</th>
                   <th class="text-left">Modelo</th>
@@ -246,7 +248,35 @@
                     {{ item.servicio.name }}
                   </td>
                   <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="codigo"
+                      :items="clavesSat"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.clave_sat"
+                    ></v-autocomplete>
+                  </td>
+                  <td>
                     {{ item.unidad.name }}
+                  </td>
+                  <td>
+                    <v-autocomplete
+                      label=""
+                      outlined
+                      dense
+                      small
+                      item-text="clave"
+                      :items="unidades"
+                      item-value="id"
+                      return-object
+                      class="m-0 p-0"
+                      v-model="item.unidad_cod"
+                    ></v-autocomplete>
                   </td>
                   <td>
                     {{ item.instrumento_nombre }}
@@ -318,7 +348,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td :colspan="12">
+                  <td :colspan="15">
                     <div class="text-right">
                       <h3>
                         SUBTOTAL :{{
@@ -431,6 +461,11 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
+        unidad_cod: { clave: "E48", nombre: "Unidad de Servicio" },
+        clave_sat: {
+          codigo: "81141504",
+          descripcion: "Reparación o calibración de pruebas de equipo",
+        },
       },
       servicio_partida: [
         {
@@ -476,6 +511,8 @@ export default {
       "tiempos_de_entrega",
       "instrumentos",
       "masivPartidas",
+      "unidades",
+      "clavesSat",
     ]),
     openDialog: {
       get() {
@@ -531,6 +568,8 @@ export default {
     this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
     this.services.empleadoServices.getlistEmpleados();
     this.services.instrumentoServices.getlistInstrumentos();
+    this.services.unidadServices.getUnidades();
+    this.services.claveSatServices.getclavesSat();
   },
   methods: {
     AgregarPartida() {
@@ -547,6 +586,8 @@ export default {
           servicio: this.partida.servicio,
           unidad: this.partida.unidad,
           precio_venta: this.partida.instrumento.precio_venta,
+          unidad_cod: this.partida.unidad_cod,
+          clave_sat: this.partida.clave_sat,
         };
         this.model.partidas.push(model);
       }
@@ -560,6 +601,8 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
+        unidad_cod: {},
+        clave_sat: {},
       };
     },
     async addCotizacion() {

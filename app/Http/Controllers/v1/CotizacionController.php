@@ -38,6 +38,8 @@ class CotizacionController extends Controller
                 'hasNotaDeSeguimiento',
                 'hasNotaDeSeguimiento.hasOnwNote',
                 'hasPartidas.hasNotaDeSeguimiento',
+                'hasPartidas.hasUnidad',
+                'hasPartidas.hasClaveSat',
                 'hasPartidas.hasNotaDeSeguimiento.hasOnwNote',
                 'hasPartidas.hasCalibracion',
                 'hasPartidas.hasIntrumento',
@@ -123,6 +125,8 @@ class CotizacionController extends Controller
                     $partida->serie = $value['serie'];
                     $partida->instrumento_id = $value['instrumento']['id'];
                     $partida->cotizacion_id = $cotizacion['id'];
+                    $partida->unidad_id = $value['unidad_cod']['id'];
+                    $partida->clave_sat_id = $value['clave_sat']['id'];
                     $partida->save();
                 }
 
@@ -167,6 +171,8 @@ class CotizacionController extends Controller
                     $partida->serie = $value['serie'];
                     $partida->instrumento_id = $value['has_intrumento']['id'];
                     $partida->cotizacion_id =  $cotizacion['id'];
+                    $partida->unidad_id = $value['has_unidad']['id'];
+                    $partida->clave_sat_id = $value['has_clave_sat']['id'];
                     $partida->save();
                 }
             }, 5);
@@ -240,6 +246,8 @@ class CotizacionController extends Controller
                             'serie' => $value['serie'],
                             'instrumento_id' => $value['has_intrumento']['id'],
                             'cotizacion_id' =>  $request['id'],
+                            'unidad_id' => $value['has_unidad']['id'],
+                            'clave_sat_id' => $value['has_clave_sat']['id'],
                         ]);
                     } else {
                         $partida->cantidad = $value['cantidad'];
@@ -252,6 +260,8 @@ class CotizacionController extends Controller
                         $partida->serie = $value['serie'];
                         $partida->instrumento_id = $value['has_intrumento']['id'];
                         $partida->cotizacion_id = $request['id'];
+                        $partida->unidad_id = $value['unidad_cod']['id'];
+                        $partida->clave_sat_id = $value['clave_sat']['id'];
                         $partida->save();
                     }
                 }

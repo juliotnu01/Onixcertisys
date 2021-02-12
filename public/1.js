@@ -1159,6 +1159,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1228,7 +1258,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         serie: "",
         importe: 0,
         servicio: {},
-        unidad: {}
+        unidad: {},
+        unidad_cod: {
+          clave: "E48",
+          nombre: "Unidad de Servicio"
+        },
+        clave_sat: {
+          codigo: "81141504",
+          descripcion: "Reparación o calibración de pruebas de equipo"
+        }
       },
       servicio_partida: [{
         name: "Calibracion",
@@ -1255,7 +1293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "masivPartidas"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "masivPartidas", "unidades", "clavesSat"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_add_cotizacion;
@@ -1326,7 +1364,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               _this2.services.instrumentoServices.getlistInstrumentos();
 
-            case 6:
+              _this2.services.unidadServices.getUnidades();
+
+              _this2.services.claveSatServices.getclavesSat();
+
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -1348,7 +1390,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           importe: this.partida.instrumento.precio_venta * 1,
           servicio: this.partida.servicio,
           unidad: this.partida.unidad,
-          precio_venta: this.partida.instrumento.precio_venta
+          precio_venta: this.partida.instrumento.precio_venta,
+          unidad_cod: this.partida.unidad_cod,
+          clave_sat: this.partida.clave_sat
         };
         this.model.partidas.push(model);
       }
@@ -1362,7 +1406,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         serie: "",
         importe: 0,
         servicio: {},
-        unidad: {}
+        unidad: {},
+        unidad_cod: {},
+        clave_sat: {}
       };
     },
     addCotizacion: function addCotizacion() {
@@ -2080,6 +2126,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2106,8 +2154,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "servicio",
         align: "center"
       }, {
+        text: "Clave sat",
+        value: "has_clave_sat.codigo",
+        align: "center"
+      }, {
         text: "Unidad",
         value: "unidad",
+        align: "center"
+      }, {
+        text: "Unidad cod.",
+        value: "has_unidad.clave",
         align: "center"
       }, {
         text: "Informe",
@@ -4459,7 +4515,15 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
+                                  _vm._v("Clave Sat")
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
                                   _vm._v("Unidad")
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
+                                  _vm._v("Unidad Cod.")
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
@@ -4540,6 +4604,33 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-autocomplete", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "",
+                                            outlined: "",
+                                            dense: "",
+                                            small: "",
+                                            "item-text": "codigo",
+                                            items: _vm.clavesSat,
+                                            "item-value": "id",
+                                            "return-object": ""
+                                          },
+                                          model: {
+                                            value: item.clave_sat,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "clave_sat", $$v)
+                                            },
+                                            expression: "item.clave_sat"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
                                         "\n                  " +
@@ -4547,6 +4638,33 @@ var render = function() {
                                           "\n                "
                                       )
                                     ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-autocomplete", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "",
+                                            outlined: "",
+                                            dense: "",
+                                            small: "",
+                                            "item-text": "clave",
+                                            items: _vm.unidades,
+                                            "item-value": "id",
+                                            "return-object": ""
+                                          },
+                                          model: {
+                                            value: item.unidad_cod,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "unidad_cod", $$v)
+                                            },
+                                            expression: "item.unidad_cod"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "td",
@@ -4752,7 +4870,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _c("tr", [
-                                  _c("td", { attrs: { colspan: 12 } }, [
+                                  _c("td", { attrs: { colspan: 15 } }, [
                                     _c("div", { staticClass: "text-right" }, [
                                       _c("h3", [
                                         _vm._v(
@@ -5731,7 +5849,17 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-center" }, [
+                                  _vm._v(
+                                    _vm._s(props.item.has_clave_sat.codigo)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-center" }, [
                                   _vm._v(_vm._s(props.item.unidad))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-center" }, [
+                                  _vm._v(_vm._s(props.item.has_unidad.clave))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "text-center" }, [
