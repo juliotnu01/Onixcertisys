@@ -124,6 +124,10 @@ export default new Vuex.Store({
         routes_vue: router.options.routes,
         dialog_nota_de_seguimiento: false,
         NotdasDeSeguimiento: [],
+        unidades: [],
+        dialog_add_unidad: false,
+        unidad: {},
+        dialog_edit_unidad: false,
     },
     getters: {
         services: state => state.services,
@@ -233,6 +237,10 @@ export default new Vuex.Store({
         routes_vue: state => state.routes_vue,
         dialog_nota_de_seguimiento: state => state.dialog_nota_de_seguimiento,
         NotdasDeSeguimiento: state => state.NotdasDeSeguimiento,
+        unidades: state => state.unidades,
+        dialog_add_unidad: state => state.dialog_add_unidad,
+        unidad: state => state.unidad,
+        dialog_edit_unidad: state => state.dialog_edit_unidad,
         
     },
     mutations: {
@@ -671,6 +679,18 @@ export default new Vuex.Store({
         },
         setNotasDeSeguimiento(state, data){
             state.NotdasDeSeguimiento = data
+        },
+        setUnidades(state, data){
+            state.unidades = data
+        },
+        setDialogAddUnidad(state, data){
+            state.dialog_add_unidad = data
+        },
+        setUnidad(state, data){
+            state.unidad = data
+        },
+        setDialogEditUnidad(state, data){
+            state.dialog_edit_unidad = data
         }
     },
     actions: {

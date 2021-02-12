@@ -149,3 +149,9 @@ Route::post('/iniciar-nota-seguimiento-cotizacion', 'v1\NotaDeSeguimientoControl
 Route::post('/add-nota-seguimiento-cotizacion', 'v1\NotaDeSeguimientoController@addNotaCotizacionstore');
 Route::post('/iniciar-nota-seguimiento-calibracion', 'v1\NotaDeSeguimientoController@storeCalibracion');
 Route::post('/add-nota-seguimiento-calibracion', 'v1\NotaDeSeguimientoController@addNotaCalibracionstore');
+
+Route::get('/get-unidades', 'v1\UnidadController@index');
+Route::post('/add-unidad', 'v1\UnidadController@store');
+Route::put('/actualizar-unidad', 'v1\UnidadController@update');
+Route::delete('/eliminar-unidad/{id}', 'v1\UnidadController@destroy');
+
