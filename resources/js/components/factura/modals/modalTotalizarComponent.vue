@@ -18,7 +18,7 @@
                   }}
                 </h4>
                 <h4>
-                  Dirección: Cll.
+                  Dirección Fiscal: Cll.
                   {{
                     factura.cliente.has_cliente
                       .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
@@ -44,6 +44,7 @@
                       .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
                   }}
                 </h4>
+                <v-divider></v-divider>
                 <!-- <h4>Teléfono:{{ factura.cliente.has_cliente.telefono_empresa }}</h4>
                 <h4>
                   Correo:{{

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-row>
-      <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+      <v-col cols="12" xs="12" sm="12" md="4" lg="4">
         <v-row>
           <v-col cols="12" xs="12" sm="12" md="12">
             <v-select
@@ -52,7 +52,8 @@
                       @click="data.select"
                       @click:close="remove(data.item)"
                     >
-                      Orden de servicio: {{ data.item.id }} -
+                      Orden de servicio:
+                      {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
                           .datos_fisicos_requeremientos_facturacion_razon_social
@@ -95,7 +96,8 @@
                   </template>
                   <template v-slot:item="data">
                     <template v-if="typeof data.item !== 'object'">
-                      Orden de servicio: {{ data.item.id }} -
+                      Orden de servicio:
+                      {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
                           .datos_fisicos_requeremientos_facturacion_razon_social
@@ -136,7 +138,8 @@
                       </v-alert>
                     </template>
                     <template v-else>
-                      Orden de servicio: {{ data.item.id }} -
+                      Orden de servicio:
+                      {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
                           .datos_fisicos_requeremientos_facturacion_razon_social
@@ -214,15 +217,17 @@
               </v-col>
 
               <v-col cols="12" xs="12" sm="4" md="4">
-                <v-text-field label="Forma de pago" outlined disabled />
+                <v-text-field label="Forma de pago" outlined disabled  v-model="cotizacion_partida.has_cliente.forma_de_pago" 
+                v-if="cotizacion_partida.hasOwnProperty('has_cliente')" />
               </v-col>
 
               <v-col cols="12" xs="12" sm="4" md="4">
                 <v-text-field
                   label="Metodo de pago"
-                  v-model="cotizacion_partida"
+                  v-model="cotizacion_partida.has_cliente.metodo_de_pago"
                   outlined
-                  disabled
+                  disabled 
+                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
               </v-col>
 
@@ -230,8 +235,8 @@
               <v-col
                 cols="12"
                 xs="12"
-                sm="6"
-                md="6"
+                sm="12"
+                md="12"
                 v-if="Object.entries(cotizacion_partida).length > 3"
               >
                 <v-textarea
@@ -323,8 +328,8 @@
         cols="12"
         xs="12"
         sm="12"
-        md="6"
-        lg="6"
+        md="8"
+        lg="8"
         v-show="tipoFacturaSelected.value == 1"
       >
         <v-data-table
@@ -445,8 +450,8 @@
         cols="12"
         xs="12"
         sm="12"
-        md="6"
-        lg="6"
+        md="8"
+        lg="8"
         v-show="tipoFacturaSelected.value == 2"
       >
         <v-data-table
@@ -457,6 +462,44 @@
         >
           <template v-slot:body.prepend>
             <tr>
+              <td>
+                <v-select
+                  :items="clavesSat"
+                  item-text="codigo"
+                  item-value="id"
+                  label=""
+                  class="mt-5"
+                  outlined
+                  dense
+                  small
+                  v-model="item_factura_nueva.claveSat"
+                  return-object
+                />
+              </td>
+              <td>
+                <v-text-field
+                  label=""
+                  class="mt-5"
+                  outlined
+                  dense
+                  small
+                  v-model="item_factura_nueva.cantidad"
+                />
+              </td>
+              <td>
+                <v-select
+                  :items="unidades"
+                  item-text="clave"
+                  item-value="id"
+                  label=""
+                  class="mt-5"
+                  outlined
+                  dense
+                  small
+                  v-model="item_factura_nueva.unidad"
+                  return-object
+                />
+              </td>
               <td>
                 <v-text-field
                   label=""
@@ -488,11 +531,24 @@
                   outlined
                   dense
                   small
-                  v-model="item_factura_nueva.importe"
+                  v-model="item_factura_nueva.instrumento.precio_venta"
                 />
               </td>
               <td>
-                <v-btn color="success" icon @click="addPartidaFacturaNueva"
+                <v-text-field
+                  label=""
+                  class="mt-5"
+                  outlined
+                  dense
+                  small
+                  v-model="var_computed_importe_factura_libre"
+                />
+              </td>
+              <td>
+                <v-btn
+                  color="success"
+                  icon
+                  @click="addPartidaFacturaNueva(item_factura_nueva)"
                   ><v-icon>mdi-check</v-icon></v-btn
                 >
               </td>
@@ -502,9 +558,13 @@
             <td class="text-left">
               <strong>{{ item.instrumento.nombre }}</strong
               ><br />
-              <span> Mag.: {{ item.instrumento.has_magnitud.clave }}</span
+              <span>
+                Mag.:
+                {{ item.instrumento.has_magnitud.clave }}</span
               ><br />
-              <span> Acred.: {{ item.instrumento.has_acreditacion.nombre }}</span
+              <span>
+                Acred.:
+                {{ item.instrumento.has_acreditacion.nombre }}</span
               ><br />
               <span> Alcan.: {{ item.instrumento.alcance }}</span>
             </td>
@@ -524,11 +584,7 @@
                     SUBTOTAL:
                     {{
                       var_computed_subtotal2
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
+                        | numberFormat(model.factura_nueva.moneda.clave)
                     }}
                   </h3>
                 </v-col>
@@ -536,12 +592,7 @@
                   <h3 class="float-right">
                     IVA :
                     {{
-                      var_computed_iva2
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
+                      var_computed_iva2 | numberFormat(model.factura_nueva.moneda.clave)
                     }}
                   </h3>
                 </v-col>
@@ -549,12 +600,7 @@
                   <h3 class="float-right">
                     TOTAL:
                     {{
-                      var_computed_total2
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
+                      var_computed_total2 | numberFormat(model.factura_nueva.moneda.clave)
                     }}
                   </h3>
                 </v-col>
@@ -620,13 +666,25 @@ export default {
       tipoFacturaSelected: {},
       headers_partidas_factura: [
         {
+          text: "Clave Sat",
+          sorable: false,
+          align: "center",
+          value: "has_clave_sat.codigo",
+        },
+        {
+          text: "Unidad",
+          sorable: false,
+          align: "center",
+          value: "has_unidad.clave",
+        },
+        {
           text: "Orden de Servicio",
           sorable: false,
           align: "center",
           value: "reciboID",
         },
         {
-          text: "Cotizacion",
+          text: "Folio",
           sorable: false,
           align: "center",
           value: "cotizacionID",
@@ -648,12 +706,14 @@ export default {
           sorable: false,
           align: "center",
           value: "has_intrumento",
+          width: 200,
         },
         {
           text: "Estado de la calibracion",
           sorable: false,
           align: "center",
           value: "has_calibracion",
+          width: 200,
         },
         {
           text: "Precio unitario",
@@ -670,22 +730,50 @@ export default {
       ],
       headers_partidas_factura_2: [
         {
+          text: "Clave Sat",
+          sortable: false,
+          align: "center",
+          value: "claveSat.codigo",
+        },
+        {
+          text: "Cantidad",
+          sortable: false,
+          align: "center",
+          value: "cantidad",
+        },
+        {
+          text: "Unidad",
+          sortable: false,
+          align: "center",
+          value: "unidad.clave",
+        },
+        {
           text: "Concepto",
           sortable: false,
           align: "center",
           value: "concepto",
+          width: 200,
         },
         {
           text: "Instrumento",
           sortable: false,
           align: "center",
           value: "instrumento",
+          width: 200,
+        },
+        {
+          text: "Precio Unitario",
+          sortable: false,
+          align: "center",
+          value: "instrumento.precio_venta",
+          width: 100,
         },
         {
           text: "Importe",
           sortable: false,
           align: "center",
           value: "importe",
+          width: 100,
         },
         {
           text: "Accion",
@@ -718,8 +806,12 @@ export default {
       cotizacion_partida: {},
       editPrecioVenta: false,
       item_factura_nueva: {
+        claveSat: {},
+        cantidad: 1,
+        unidad: {},
         concepto: "",
         instrumento: {},
+        precio_unitario: 0,
         importe: 0,
       },
     };
@@ -736,6 +828,8 @@ export default {
       "recibos_cliente",
       "listCondicionDePago",
       "list_metodo_de_pago",
+      "clavesSat",
+      "unidades",
     ]),
     var_computed_subtotal: {
       get() {
@@ -814,6 +908,22 @@ export default {
         this.partidas_acumuladas_2 = val;
       },
     },
+    var_computed_importe_factura_libre: {
+      get() {
+        var result = 0;
+        if (Object.entries(this.item_factura_nueva.instrumento).length > 0) {
+          result =
+            this.item_factura_nueva.cantidad *
+            this.item_factura_nueva.instrumento.precio_venta;
+        } else {
+          result = 0;
+        }
+        return result;
+      },
+      set(val) {
+        this.item_factura_nueva.instrumento.precio_venta = val;
+      },
+    },
   },
   async mounted() {
     await this.services.reciboServices.getlistRecibos();
@@ -824,14 +934,29 @@ export default {
     await this.services.clienteServices.getlistclientes();
     await this.services.metodoDePagoServices.getlistMetodoDePago();
     await this.services.condicionDePagoServices.getlistCondicionDePago();
+    await this.services.unidadServices.getUnidades();
+    await this.services.claveSatServices.getclavesSat();
   },
   methods: {
-    async addPartidaFacturaNueva() {
+    async addPartidaFacturaNueva(item) {
       try {
-        this.partidas_acumuladas_2.push(this.item_factura_nueva);
+        var model = {
+          claveSat: item.claveSat,
+          cantidad: 1,
+          unidad: item.unidad,
+          concepto: item.concepto,
+          instrumento: item.instrumento,
+          precio_unitario: item.instrumento.precio_venta,
+          importe: this.var_computed_importe_factura_libre,
+        };
+        this.partidas_acumuladas_2.push(model);
         this.item_factura_nueva = {
+          claveSat: {},
+          cantidad: 1,
+          unidad: {},
           concepto: "",
           instrumento: {},
+          precio_unitario: 0,
           importe: 0,
         };
       } catch (e) {
@@ -873,7 +998,9 @@ export default {
         this.partidas_acumuladas = [];
         this.cotizacion_partida = {};
         await this.services.reciboServices.getlistRecibosClientes(cli);
-      } catch (e) {}
+      } catch (e) {
+        console.log(e)
+      }
     },
     remove(item) {
       const index = this.model.recibo.indexOf(item);
@@ -886,6 +1013,7 @@ export default {
     CargarPartidas(p) {
       this.model.recibo.forEach((item) => {
         this.cotizacion_partida = item.has_cotizaicon;
+        console.log({cot:this.cotizacion_partida})
       });
       for (var i = 0; i < this.model.recibo.length; i++) {
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
@@ -910,6 +1038,7 @@ export default {
         total: this.var_computed_total,
         nota: this.cotizacion_partida.nota_de_factura,
       };
+      console.log({ dataFactura });
       this.$store.commit("setDialogFactura", dataFactura);
       this.$store.commit("setDialogAddFactura", true);
     },

@@ -91,6 +91,9 @@ class FacturaController extends Controller
                     $producto_factura->instrumento_id = $value['instrumento']['id'];
                     $producto_factura->conceopto = "Servicio de {$value['concepto']}";
                     $producto_factura->importe = $value['importe'];
+                    $producto_factura->precio_unitario = $value['precio_unitario'];
+                    $producto_factura->unidad_id = $value['unidad']['id'];
+                    $producto_factura->clave_sat_id = $value['claveSat']['id'];
                     $producto_factura->save();
                 }
 
