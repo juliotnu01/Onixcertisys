@@ -230,8 +230,8 @@ export default {
     async AsignarTecnico() {
       var fromData = new FormData();
       fromData.append("documento", this.TipoDocumentoSelected.file);
-      axios.post("http://localhost:4000/", fromData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      axios.post("http://test20-env.eba-2r5uduzu.us-east-2.elasticbeanstalk.com/api/FileUpload", fromData, {
+        headers: {"Content-Type": "multipart/form-data" },
       });
     },
   },
