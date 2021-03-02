@@ -582,27 +582,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   }),
-  mounted: function mounted() {// this.services.empleadoServices.getlistEmpleados();
+  mounted: function mounted() {
+    this.services.empleadoServices.getlistEmpleados();
   },
   methods: {
     AsignarTecnico: function AsignarTecnico() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var fromData;
+        var form, _yield$axios$post, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                fromData = new FormData();
-                fromData.append("documento", _this.TipoDocumentoSelected.file);
-                axios.post("http://test20-env.eba-2r5uduzu.us-east-2.elasticbeanstalk.com/api/FileUpload", fromData, {
+                form = new FormData();
+                form.append('documento', _this.TipoDocumentoSelected.file);
+                _context.next = 4;
+                return axios.post("/api/asignar-tecnico-partida", form, {
                   headers: {
                     "Content-Type": "multipart/form-data"
                   }
                 });
 
-              case 3:
+              case 4:
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
+
+              case 6:
               case "end":
                 return _context.stop();
             }

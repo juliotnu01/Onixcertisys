@@ -224,16 +224,15 @@ export default {
     },
   },
   mounted() {
-    // this.services.empleadoServices.getlistEmpleados();
+    this.services.empleadoServices.getlistEmpleados();
   },
   methods: {
     async AsignarTecnico() {
-      var fromData = new FormData();
-      fromData.append("documento", this.TipoDocumentoSelected.file);
-      axios.post("http://test20-env.eba-2r5uduzu.us-east-2.elasticbeanstalk.com/api/FileUpload", fromData, {
-        headers: {"Content-Type": "multipart/form-data" },
-      });
-    },
+
+        var form = new FormData();
+        form.append('documento', this.TipoDocumentoSelected.file)
+				let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
+    }
   },
 };
 </script>

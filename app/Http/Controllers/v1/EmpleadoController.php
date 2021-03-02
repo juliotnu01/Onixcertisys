@@ -14,6 +14,8 @@ use Illuminate\Http\File;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Excel;
+use Illuminate\Support\Facades\Http;
+
 
 
 
@@ -150,7 +152,14 @@ class EmpleadoController extends Controller
 
     public function asignarTecnicoPartida(Request $request, Partida $partida)
     {
-        dd($request->file('data'));
+
+       
+
+        $response = Http::attach(
+            'pFileBytes'," $request->file('documento')"
+        )->get('http://test20-env.eba-2r5uduzu.us-east-2.elasticbeanstalk.com/Certificados.svc/SubirArchivo');
+
+        return $response;
         
         // $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
         // $spreadsheet = $reader->load($request->file('documento'));
