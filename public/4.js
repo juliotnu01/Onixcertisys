@@ -590,26 +590,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var form, _yield$axios$post, data;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                form = new FormData();
-                form.append('documento', _this.TipoDocumentoSelected.file);
-                _context.next = 4;
-                return axios.post("/api/asignar-tecnico-partida", form, {
-                  headers: {
-                    "Content-Type": "multipart/form-data"
-                  }
-                });
+                _this.services.empleadoServices.AsignarTecnico(_this.partida_tecnico, _this.TipoDocumentoSelected); // console.log({json:this.partida_tecnico, documento:this.TipoDocumentoSelected.file})
+                // var form = new FormData();
+                // form.append('documento', this.TipoDocumentoSelected.file)
+                // form.append('data', JSON.stringify(this.partida_tecnico))
+                // let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
 
-              case 4:
-                _yield$axios$post = _context.sent;
-                data = _yield$axios$post.data;
 
-              case 6:
+              case 1:
               case "end":
                 return _context.stop();
             }

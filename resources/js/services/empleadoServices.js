@@ -48,9 +48,9 @@ export default class empleadoServices{
 				form.append('documento', file.file)
 				form.append('tipo_documento', file.value)
 				let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
-				store.commit('setDialogAsignarTecnico', false)
-				var model_notificacion = {mensaje: 'Tecnico Asigado con exito', status: true, color: 'success'}
-            	store.commit("setNotificacion", model_notificacion);
+				// store.commit('setDialogAsignarTecnico', false)
+				// var model_notificacion = {mensaje: 'Tecnico Asigado con exito', status: true, color: 'success'}
+            	// store.commit("setNotificacion", model_notificacion);
 
 			}else{
 				let {data} = await axios.post(`/api/asignar-tecnico-partida`,{model, documento:file.file})

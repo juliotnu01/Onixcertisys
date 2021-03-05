@@ -21,6 +21,8 @@ class PartidaController extends Controller
     {
         try {
             $partida = Partida::with([
+                                        'hasProcedimientosLabs',
+                                        'hasPatronesLabs',
                                         'hasIntrumento',
                                         'hasUnidad',
                                         'hasClaveSat',
@@ -41,7 +43,10 @@ class PartidaController extends Controller
     public function indexParaCalibrar()
     {
         try {
-            $partida = Partida::with(['hasIntrumento',
+            $partida = Partida::with([
+                                      'hasProcedimientosLabs',
+                                      'hasPatronesLabs',
+                                      'hasIntrumento',
                                       'hasIntrumento.hasMagnitud', 
                                       'hasCalibracion',
                                       'hasRecibo', 

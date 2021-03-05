@@ -42,4 +42,12 @@ class Partida extends Model
     {
         return $this->belongsTo(ClaveSat::class, 'clave_sat_id');
     }
+    public function hasProcedimientosLabs()
+    {
+        return $this->hasMany(ProcedimientoLab::class, 'partida_id');
+    }
+    public function hasPatronesLabs()
+    {
+        return $this->hasMany(PatronLab::class, 'partida_id');
+    }
 }

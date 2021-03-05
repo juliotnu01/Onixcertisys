@@ -2,7 +2,7 @@
     <v-app>
         <v-dialog v-model="openDialog" width="800">
             <v-card>
-                <v-card-title>Agregar Patron</v-card-title>
+                <v-card-title>Editar Patron</v-card-title>
                 <v-container>
                     <v-card-text>
                         <v-form ref="f_tde">

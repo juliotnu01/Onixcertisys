@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Calibracion, Partida, Recibo};
+use App\Models\{Calibracion, Partida, Recibo, PatronLab, ProcedimientoLab};
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DB;
@@ -36,19 +36,31 @@ class CalibracionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Calibracion $calibracion, Partida $partida)
+    public function store(Request $request, Calibracion $calibracion, Partida $partida, ProcedimientoLab $procedimientoLab, PatronLab $patronLab)
     {
         try {
-            return DB::transaction(function () use ($request, $calibracion, $partida) {
+            return DB::transaction(function () use ($request, $calibracion, $partida,$procedimientoLab,$patronLab) {
                 $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
-                $calibracion->patron_de_calibracion = $request['patron_de_calibracion']['nombre'];
-                $calibracion->procedimiento_de_calibracion = $request['procedimiento_de_calibracion']['nombre'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
                 $calibracion->fecha_inicio_calibracion = Carbon::now();
                 $calibracion->descripcion_anomalia = $request['descripcion_anomalia'];
                 $calibracion->observacion_tecnico = $request['observacion_tecnico'];
                 $calibracion->estado = 'en proceso';
                 $calibracion->save();
+
+                for ($i=0; $i < count($request['patron_de_calibracion']) ; $i++) { 
+                    $procedimientoLab  = new ProcedimientoLab();
+                    $procedimientoLab->procedimiento_id = $request['patron_de_calibracion'][$i]['id'];
+                    $procedimientoLab->partida_id = $request['id_partida'];
+                    $procedimientoLab->save();
+                }
+                for ($i=0; $i < count($request['procedimiento_de_calibracion']) ; $i++) { 
+                    $patronLab  = new PatronLab();
+                    $patronLab->patron_id = $request['procedimiento_de_calibracion'][$i]['id'];
+                    $patronLab->partida_id = $request['id_partida'];
+                    $patronLab->save();
+                }
+
 
                 $partida->find($request['id_partida'])->update([
                     'calibracion_id' => $calibracion['id']

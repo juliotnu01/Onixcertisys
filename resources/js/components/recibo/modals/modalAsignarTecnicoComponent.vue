@@ -228,10 +228,13 @@ export default {
   },
   methods: {
     async AsignarTecnico() {
-
-        var form = new FormData();
-        form.append('documento', this.TipoDocumentoSelected.file)
-				let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
+      
+      this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
+        // console.log({json:this.partida_tecnico, documento:this.TipoDocumentoSelected.file})
+        // var form = new FormData();
+        // form.append('documento', this.TipoDocumentoSelected.file)
+        // form.append('data', JSON.stringify(this.partida_tecnico))
+				// let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
     }
   },
 };

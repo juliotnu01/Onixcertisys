@@ -15,9 +15,12 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Excel;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use JsonSerializable;
+use Maatwebsite\Excel\Concerns\ToArray;
+use PHPUnit\Util\Json;
 
-
-
+use function GuzzleHttp\json_encode;
 
 class EmpleadoController extends Controller
 {
@@ -153,21 +156,24 @@ class EmpleadoController extends Controller
     public function asignarTecnicoPartida(Request $request, Partida $partida)
     {
 
-       
-
-        $response = Http::attach(
-            'pFileBytes'," $request->file('documento')"
-        )->get('http://test20-env.eba-2r5uduzu.us-east-2.elasticbeanstalk.com/Certificados.svc/SubirArchivo');
-
-        return $response;
+        $json =json_decode($request['model'],true);
         
-        // $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
-        // $spreadsheet = $reader->load($request->file('documento'));
-        // $reader->setLoadSheetsOnly("hoja de trabajo");
-        // // $spreadsheet = $reader->load($request->file('documento'));
-        // $spreadsheet->getActiveSheet()->getCell('C5')->setValue('Some value')->getValue();
-        // $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
-        // $writer->save("05featuredemo.xlsm");
+        
+        $nameFIle = Carbon::now()->isoFormat('DD-MM-YYYY') ."-". $request->file('documento')->getClientOriginalName();
+        Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
+        $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
+        
+        $json['rutaexcel'] = $url;
+        
+        $response = Http::post('http://localhost:63442/api/Asignacion/Json', $json);
+
+        // $response = Http::post('http://localhost:63442/api/Asignacion/', [zx
+        //     "rutaexcel"=> "prueba"
+        // ]);
+        // $response = Http::get('http://localhost:63442/api/Asignacion/');
+
+        // dd($request->all());
+        
 
         // try {
         //     return DB::transaction(function() use ($request, $partida){
@@ -184,7 +190,6 @@ class EmpleadoController extends Controller
         //                 "mensaje" => "tecnico asignado",
         //                 "usuario" => 'Juliot'
         //             ];
-        //             event(new AsignacionOrdenDeServicio($asignacion));
         //         }else {
         //             $partida->find($request['model']['id'])->update([
         //                 'empleado_id' =>  $request['model']['has_empleado']['id'],

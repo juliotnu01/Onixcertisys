@@ -167,6 +167,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modalRealizacionCalibracion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalRealizacionCalibracion.vue */ "./resources/js/components/laboratorio/modals/modalRealizacionCalibracion.vue");
+/* harmony import */ var _config_datosGenerales_patron_modals_modalEditPatronComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/datosGenerales/patron/modals/modalEditPatronComponent */ "./resources/js/components/config/datosGenerales/patron/modals/modalEditPatronComponent.vue");
+/* harmony import */ var _config_datosGenerales_procedimiento_modals_modalEditProcedimientoComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/datosGenerales/procedimiento/modals/modalEditProcedimientoComponent */ "./resources/js/components/config/datosGenerales/procedimiento/modals/modalEditProcedimientoComponent.vue");
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -300,34 +302,296 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-realizacion-calibracion': _modalRealizacionCalibracion_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "modal-realizacion-calibracion": _modalRealizacionCalibracion_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "modal-edit-patron": _config_datosGenerales_patron_modals_modalEditPatronComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "modal-edit-procedimiento": _config_datosGenerales_procedimiento_modals_modalEditProcedimientoComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      patronSelected: '',
-      procedimientoSelected: '',
+      patronSelected: "",
+      procedimientoSelected: "",
       menu1: false,
       date: new Date().toISOString().substr(0, 10),
       dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
       item_tipo_de_calibracion: [{
-        name: 'En laboratrio',
+        name: "En laboratrio",
         value: 1
       }, {
-        name: 'En campo',
+        name: "En campo",
         value: 2
       }],
       TipocalibracionSelected: {},
-      descripcion_anomalia: '',
-      observacion_de_tecnico: '',
-      fechaIniciaCalibracion: '',
-      terminaCalibracion: ''
+      descripcion_anomalia: "",
+      observacion_de_tecnico: "",
+      fechaIniciaCalibracion: "",
+      terminaCalibracion: "",
+      patronesLab: [],
+      procedimientoLab: []
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", 'patrones', 'procedimientos'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", "patrones", "procedimientos"])), {}, {
     computedDateFormatted: function computedDateFormatted() {
       return this.formatDate(this.date);
     },
@@ -381,8 +645,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context2.prev = 0;
                 model = {
                   tipo_de_calibracion: _this2.TipocalibracionSelected,
-                  patron_de_calibracion: _this2.patronSelected,
-                  procedimiento_de_calibracion: _this2.procedimientoSelected,
+                  patron_de_calibracion: _this2.patronesLab,
+                  procedimiento_de_calibracion: _this2.procedimientoLab,
                   fecha_anomalia: _this2.date,
                   descripcion_anomalia: _this2.descripcion_anomalia,
                   observacion_tecnico: _this2.observacion_de_tecnico,
@@ -458,7 +722,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     formatDate: function formatDate(date) {
       if (!date) return null;
 
-      var _date$split = date.split('-'),
+      var _date$split = date.split("-"),
           _date$split2 = _slicedToArray(_date$split, 3),
           year = _date$split2[0],
           month = _date$split2[1],
@@ -469,13 +733,117 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     parseDate: function parseDate(date) {
       if (!date) return null;
 
-      var _date$split3 = date.split('/'),
+      var _date$split3 = date.split("/"),
           _date$split4 = _slicedToArray(_date$split3, 3),
           month = _date$split4[0],
           day = _date$split4[1],
           year = _date$split4[2];
 
-      return "".concat(year, "-").concat(month.padStart(2, '0'), "-").concat(day.padStart(2, '0'));
+      return "".concat(year, "-").concat(month.padStart(2, "0"), "-").concat(day.padStart(2, "0"));
+    },
+    agregarPatrones: function agregarPatrones() {
+      try {
+        if (this.patronSelected) {
+          this.patronesLab.push(this.patronSelected);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    EditPatron: function EditPatron(ptr) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.$store.commit("setPatron", ptr);
+
+                _this4.$store.commit("setDialogEditPatron", true);
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    eliminarPatron: function eliminarPatron(ptr) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var index;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                index = _this5.patronesLab.findIndex(function (item) {
+                  return item.id === ptr.id;
+                });
+
+                _this5.patronesLab.splice(index, 1);
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    agregarProcedimiento: function agregarProcedimiento() {
+      try {
+        if (this.procedimientoSelected) {
+          this.procedimientoLab.push(this.procedimientoSelected);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    EditProcedimiento: function EditProcedimiento(proce) {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _this6.$store.commit('setProcedimiento', proce);
+
+                _this6.$store.commit('setDialogEditProcedimiento', true);
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    eliminarProcedimiento: function eliminarProcedimiento(pr) {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var index;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                index = _this7.procedimientoLab.findIndex(function (item) {
+                  return item.id === pr.id;
+                });
+
+                _this7.procedimientoLab.splice(index, 1);
+
+              case 2:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
     }
   }
 });
@@ -1001,12 +1369,12 @@ var render = function() {
                                                 _vm.$set(
                                                   _vm.partida.has_calibracion
                                                     .fecha_inicio_calibracion,
-                                                  "substr(0,10)",
+                                                  "substr(0, 10)",
                                                   $$v
                                                 )
                                               },
                                               expression:
-                                                "partida.has_calibracion.fecha_inicio_calibracion.substr(0,10)"
+                                                "\n                    partida.has_calibracion.fecha_inicio_calibracion.substr(0, 10)\n                  "
                                             }
                                           })
                                         : _c("v-text-field", {
@@ -1218,53 +1586,56 @@ var render = function() {
                                         cols: "12",
                                         xs: "12",
                                         sm: "12",
-                                        md: "12",
-                                        lg: "12"
+                                        md: "8",
+                                        lg: "8"
                                       }
                                     },
                                     [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.patrones,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Patron a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .patron_de_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "patron_de_calibracion",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "partida.has_calibracion.patron_de_calibracion"
-                                            }
-                                          })
-                                        : _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.patrones,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Patron a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value: _vm.patronSelected,
-                                              callback: function($$v) {
-                                                _vm.patronSelected = $$v
-                                              },
-                                              expression: "patronSelected"
-                                            }
-                                          })
+                                      _c("v-autocomplete", {
+                                        attrs: {
+                                          items: _vm.patrones,
+                                          "item-text": "nombre",
+                                          "return-object": "",
+                                          outlined: "",
+                                          label: "Patron a utilizar",
+                                          clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.patronSelected,
+                                          callback: function($$v) {
+                                            _vm.patronSelected = $$v
+                                          },
+                                          expression: "patronSelected"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      staticClass: "mr-2",
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "1",
+                                        lg: "1"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "success",
+                                            block: ""
+                                          },
+                                          on: { click: _vm.agregarPatrones }
+                                        },
+                                        [_vm._v("Agregar PAtron")]
+                                      )
                                     ],
                                     1
                                   ),
@@ -1281,49 +1652,442 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm.partida.has_calibracion
-                                        ? _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.procedimientos,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Procedimiento a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.partida.has_calibracion
-                                                  .procedimiento_de_calibracion,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.partida.has_calibracion,
-                                                  "procedimiento_de_calibracion",
-                                                  $$v
-                                                )
+                                      _c("v-simple-table", {
+                                        attrs: { dense: "" },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "default",
+                                              fn: function() {
+                                                return [
+                                                  _c("thead", [
+                                                    _c("tr", [
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Nombre")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Clave")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Alcance")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Fecha Calibracion"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Fecha Vencimiento"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Accion")]
+                                                      )
+                                                    ])
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "tbody",
+                                                    _vm._l(
+                                                      _vm.patronesLab,
+                                                      function(item) {
+                                                        return _c(
+                                                          "tr",
+                                                          { key: item.id },
+                                                          [
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.nombre
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.clave
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.alcance
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.fecha_calibracion
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.fecha_vencimiento
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "v-btn",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "error",
+                                                                      icon: "",
+                                                                      small: ""
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.eliminarPatron(
+                                                                          item
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-delete"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _c("v-spacer"),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-btn",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "warning",
+                                                                      icon: "",
+                                                                      small: ""
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.EditPatron(
+                                                                          item
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-pencil"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  )
+                                                ]
                                               },
-                                              expression:
-                                                "partida.has_calibracion.procedimiento_de_calibracion"
+                                              proxy: true
                                             }
-                                          })
-                                        : _c("v-autocomplete", {
-                                            attrs: {
-                                              items: _vm.procedimientos,
-                                              "item-text": "nombre",
-                                              "return-object": "",
-                                              outlined: "",
-                                              label: "Procedimiento a utilizar",
-                                              clearable: ""
-                                            },
-                                            model: {
-                                              value: _vm.procedimientoSelected,
-                                              callback: function($$v) {
-                                                _vm.procedimientoSelected = $$v
+                                          ],
+                                          null,
+                                          false,
+                                          4239440834
+                                        )
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "8",
+                                        lg: "8"
+                                      }
+                                    },
+                                    [
+                                      _c("v-autocomplete", {
+                                        attrs: {
+                                          items: _vm.procedimientos,
+                                          "item-text": "nombre",
+                                          "return-object": "",
+                                          outlined: "",
+                                          label: "Procedimiento a utilizar",
+                                          clearable: ""
+                                        },
+                                        model: {
+                                          value: _vm.procedimientoSelected,
+                                          callback: function($$v) {
+                                            _vm.procedimientoSelected = $$v
+                                          },
+                                          expression: "procedimientoSelected"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      staticClass: "mr-2",
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "1",
+                                        lg: "1"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "success",
+                                            block: ""
+                                          },
+                                          on: {
+                                            click: _vm.agregarProcedimiento
+                                          }
+                                        },
+                                        [_vm._v("Agregar Procedimiento")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    {
+                                      attrs: {
+                                        cols: "12",
+                                        xs: "12",
+                                        sm: "12",
+                                        md: "12",
+                                        lg: "12"
+                                      }
+                                    },
+                                    [
+                                      _c("v-simple-table", {
+                                        attrs: { dense: "" },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "default",
+                                              fn: function() {
+                                                return [
+                                                  _c("thead", [
+                                                    _c("tr", [
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("ID")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Nombre")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "text-left"
+                                                        },
+                                                        [_vm._v("Accion")]
+                                                      )
+                                                    ])
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "tbody",
+                                                    _vm._l(
+                                                      _vm.procedimientoLab,
+                                                      function(item) {
+                                                        return _c(
+                                                          "tr",
+                                                          { key: item.id },
+                                                          [
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(item.id)
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.nombre
+                                                                )
+                                                              )
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "v-btn",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "error",
+                                                                      icon: "",
+                                                                      small: ""
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.eliminarProcedimiento(
+                                                                          item
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-delete"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _c("v-spacer"),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-btn",
+                                                                  {
+                                                                    attrs: {
+                                                                      color:
+                                                                        "warning",
+                                                                      icon: "",
+                                                                      small: ""
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.EditProcedimiento(
+                                                                          item
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-icon",
+                                                                      [
+                                                                        _vm._v(
+                                                                          "mdi-pencil"
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  )
+                                                ]
                                               },
-                                              expression:
-                                                "procedimientoSelected"
+                                              proxy: true
                                             }
-                                          })
+                                          ],
+                                          null,
+                                          false,
+                                          4165157511
+                                        )
+                                      })
                                     ],
                                     1
                                   ),
@@ -1696,7 +2460,7 @@ var render = function() {
                                                 _vm._v("mdi-clock-start")
                                               ]),
                                               _vm._v(
-                                                "\r\n                                    Iniciar calibracion\r\n                                "
+                                                "\n                  Iniciar calibracion\n                "
                                               )
                                             ],
                                             1
@@ -1739,7 +2503,7 @@ var render = function() {
                                                 _vm._v("mdi-content-save")
                                               ]),
                                               _vm._v(
-                                                "\r\n                                    finalizar calibracion\r\n                                "
+                                                "\n                  finalizar calibracion\n                "
                                               )
                                             ],
                                             1
@@ -1774,7 +2538,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                " Visualizar Certificado "
+                                                "\n                  Visualizar Certificado "
                                               ),
                                               _c("v-icon", [_vm._v("mdi-eye")])
                                             ],
@@ -1907,7 +2671,11 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("modal-realizacion-calibracion")
+      _c("modal-realizacion-calibracion"),
+      _vm._v(" "),
+      _c("modal-edit-patron"),
+      _vm._v(" "),
+      _c("modal-edit-procedimiento")
     ],
     1
   )
