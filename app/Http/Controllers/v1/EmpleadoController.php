@@ -164,8 +164,7 @@ class EmpleadoController extends Controller
         $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
         
         $json['rutaexcel'] = $url;
-        
-        $response = Http::post('http://localhost:63442/api/Asignacion/Json', $json);
+        $response = Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $json);
 
         // $response = Http::post('http://localhost:63442/api/Asignacion/', [zx
         //     "rutaexcel"=> "prueba"
