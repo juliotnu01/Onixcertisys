@@ -23,6 +23,7 @@ import facturaServices from './services/facturaServices.js'
 import NotasDeSeguimientoServices from './services/NotaDeSeguimientoServices.js'
 import unidadServices from './services/UnidadServices.js'
 import claveSatServices from './services/claveSatServices.js'
+import documentoServices from './services/documentoServices.js'
 
 export default {
     userServices: new userServices(),
@@ -50,4 +51,5 @@ export default {
     NotdasDeSeguimientoServices: new NotasDeSeguimientoServices(),
     unidadServices: new unidadServices(),
     claveSatServices: new claveSatServices(),
+    documentoServices: new documentoServices(),
 }

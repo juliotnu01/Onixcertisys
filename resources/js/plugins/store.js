@@ -132,6 +132,11 @@ export default new Vuex.Store({
         dialog_add_clave_sat: false, 
         claveSat: {},
         dialog_edit_clave_sat: false,
+        documentos: [],
+        dialog_add_documento: false,
+        dialog_asignar_target_data_plantilla: false,
+        plantilla: {},
+
     },
     getters: {
         services: state => state.services,
@@ -249,6 +254,10 @@ export default new Vuex.Store({
         dialog_add_clave_sat: state => state.dialog_add_clave_sat,
         claveSat: state => state.claveSat,
         dialog_edit_clave_sat: state => state.dialog_edit_clave_sat,
+        documentos: state => state.documentos,
+        dialog_add_documento: state => state.dialog_add_documento,
+        dialog_asignar_target_data_plantilla: state => state.dialog_asignar_target_data_plantilla,
+        plantilla: state => state.plantilla,
         
     },
     mutations: {
@@ -711,6 +720,18 @@ export default new Vuex.Store({
         },
         setDialogEditClaveSat(state, data){
             state.dialog_edit_clave_sat = data
+        },
+        setdocumentos(state, data){
+            state.documentos = data
+        },
+        setDialogAddDocumento(state, data){
+            state.dialog_add_documento = data
+        },
+        setDialogTargetDataPlantilla(state, data){
+            state.dialog_asignar_target_data_plantilla = data
+        },
+        setPlantilla(state, data){
+            state.plantilla = data
         }
     },
     actions: {

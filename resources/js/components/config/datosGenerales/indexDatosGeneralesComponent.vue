@@ -90,6 +90,9 @@
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" v-show="view[13].value">
         <clave-sat />
       </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-show="view[14].value">
+        <documento />
+      </v-col>
     </v-row>
   </v-app>
 </template>
@@ -109,6 +112,7 @@ import procedimientoComponent from "./procedimiento/indexProcedimientoComponent.
 import patronComponent from "./patron/indexPatronComponent.vue";
 import unidadComponent from "./unidad/indexUnidadComponent.vue";
 import claveSatComponent from "./claveSat/indexClaveSatComponent.vue";
+import documentoComponent from "./documento/indexComponentDocumento.vue";
 export default {
   components: {
     magnitudes: magnitudesComponent,
@@ -125,6 +129,7 @@ export default {
     patron: patronComponent,
     undiad: unidadComponent,
     "clave-sat": claveSatComponent,
+    "documento": documentoComponent,
   },
   data() {
     return {
@@ -184,6 +189,10 @@ export default {
         {
           value: true,
           name: "Clave Sat",
+        },
+        {
+          value: true,
+          name: "documento",
         },
       ],
     };

@@ -126,47 +126,17 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-              <a
-                :href="partida_tecnico.ruta_doc_calibracion"
-                v-if="partida_tecnico.ruta_doc_calibracion"
-                target="_blank"
-              >
-                Link del documento de calibracion
-              </a>
-              <v-select
-                v-else
-                v-model="TipoDocumentoSelected"
-                :items="item_Tipo_documento_para_subir"
-                item-text="name"
-                return-object
+              <v-autocomplete
+                v-model="documento_selected"
+                :items="documentos"
                 outlined
-                label=" Seleccionar metodo para cargar documento"
+                dense
+                chips
+                label="Outlined"
+                item-text="ruta_documento"
+                return-object
+                @change="configRuta(documento_selected)"
               />
-            </v-col>
-            <v-col
-              cols="12"
-              xs="12"
-              sm="12"
-              md="12"
-              lg="12"
-              v-if="Object.entries(this.TipoDocumentoSelected).length > 0"
-            >
-              <div v-if="TipoDocumentoSelected.value == 1">
-                <v-file-input
-                  label="Cargar documento (.xls / .xlsx)"
-                  outlined
-                  dense
-                  v-model="TipoDocumentoSelected.file"
-                />
-              </div>
-              <div v-else>
-                <v-text-field
-                  label="Copiar enlace del documento"
-                  placeholder=" "
-                  outlined
-                  v-model="TipoDocumentoSelected.file"
-                />
-              </div>
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
               <v-autocomplete
@@ -187,17 +157,20 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <modal-config-data-target-plantilla/>
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import xlsx from "xlsx";
-
+import modalconfigPlantillacomponent from './modalAsignarTargetDataPlantilla.vue'
 export default {
+  components:{
+    'modal-config-data-target-plantilla': modalconfigPlantillacomponent
+  },
   data() {
     return {
-      TipoDocumentoSelected: {},
+      documento_selected: {},
       item_Tipo_documento_para_subir: [
         {
           name: "Cargar Documento",
@@ -213,7 +186,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados"]),
+    ...mapGetters(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos"]),
     openDialog: {
       get() {
         return this.dialog_asignar_tecnico;
@@ -225,16 +198,18 @@ export default {
   },
   mounted() {
     this.services.empleadoServices.getlistEmpleados();
+    this.services.documentoServices.getlistDocumento();
   },
   methods: {
     async AsignarTecnico() {
-      
-      this.services.empleadoServices.AsignarTecnico(this.partida_tecnico, this.TipoDocumentoSelected);
-        // console.log({json:this.partida_tecnico, documento:this.TipoDocumentoSelected.file})
-        // var form = new FormData();
-        // form.append('documento', this.TipoDocumentoSelected.file)
-        // form.append('data', JSON.stringify(this.partida_tecnico))
-				// let {data} = await axios.post(`/api/asignar-tecnico-partida`,form, { headers: { "Content-Type": "multipart/form-data" } })
+      this.services.empleadoServices.AsignarTecnico(
+        this.partida_tecnico,
+        this.documento_selected
+      );
+    },
+    configRuta(item){
+      // this.$store.commit("setDialogTargetDataPlantilla", true)
+      // this.$store.commit("setPlantilla", item)
     }
   },
 };

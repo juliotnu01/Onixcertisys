@@ -155,53 +155,18 @@ class EmpleadoController extends Controller
 
     public function asignarTecnicoPartida(Request $request, Partida $partida)
     {
+        $json = json_encode($request->all(),true);
+        Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
 
-        $json =json_decode($request['model'],true);
-        
-        
-        $nameFIle = Carbon::now()->isoFormat('DD-MM-YYYY') ."-". $request->file('documento')->getClientOriginalName();
-        Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
-        $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
-        
-        $json['rutaexcel'] = $url;
-        $response = Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $json);
+        try {
+            return DB::transaction(function() use ($request, $partida){
+                    $partida->find($request['model']['id'])->update([
+                        'empleado_id' =>   $request['model']['has_empleado']['id'],
+                    ]);
+            },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
 
-        // $response = Http::post('http://localhost:63442/api/Asignacion/', [zx
-        //     "rutaexcel"=> "prueba"
-        // ]);
-        // $response = Http::get('http://localhost:63442/api/Asignacion/');
-
-        // dd($request->all());
-        
-
-        // try {
-        //     return DB::transaction(function() use ($request, $partida){
-        //         if($request['tipo_documento'] == 1){
-        //             $data = json_decode($request['model']);
-        //             $nameFIle = $request->file('documento')->getClientOriginalName();
-        //             Storage::disk('documentos_excel')->putFileAs("/documentos/excels/", new  File($request->file('documento')),  $nameFIle );
-        //            $url =  Storage::disk('documentos_excel')->url("/documentos/excels/{$nameFIle}");
-        //             $partida->find($data->id)->update([
-        //                 'empleado_id' =>  $data->has_empleado->id,
-        //                 'ruta_doc_calibracion' => $url
-        //             ]);
-        //             $asignacion = (Object)[
-        //                 "mensaje" => "tecnico asignado",
-        //                 "usuario" => 'Juliot'
-        //             ];
-        //         }else {
-        //             $partida->find($request['model']['id'])->update([
-        //                 'empleado_id' =>  $request['model']['has_empleado']['id'],
-        //                 'ruta_doc_calibracion' => $request['documento']
-        //             ]);
-
-        //         }
-
-
-        //     },5);
-        // } catch (Exception $e) {
-        //     throw new Exception($e, 1);
-
-        // }
+        }
     }
 }
