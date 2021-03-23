@@ -69,6 +69,14 @@
               </router-link>
             </v-list-item-title>
           </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link :to="{ name: 'home.administrar.facturas' }">
+                <v-icon>mdi-list-status</v-icon>
+                Administrar Facturas
+              </router-link>
+            </v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
       <v-spacer></v-spacer>

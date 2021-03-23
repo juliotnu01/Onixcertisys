@@ -124,13 +124,27 @@ class FacturaController extends Controller
      */
     public function store(Request $request, Factura $factura)
     {
+        $recibos = [];
+        $cotizaciones = [];
+        // cuantos recibos pertenecen esta factura
+        for ($i=0; $i < count($request['partidas']); $i++) { 
+            $recibos[] = $request['partidas'][$i]['has_recibo']['id'];
+        }
+        // cuantos cotizaciones pertenecen esta factura
+        for ($i=0; $i < count($request['partidas']); $i++) { 
+            $cotizaciones[] = $request['partidas'][$i]['has_recibo']['has_cotizaicon']['id'];
+        }
         try {
-            return DB::transaction(function () use ($request, $factura) {
+            return DB::transaction(function () use ($request, $factura, $cotizaciones, $recibos) {
                 $factura->cliente_id = $request['cliente']['has_cliente']['id'];
                 $factura->moneda_id = $request['cliente']['has_moneda']['id'];
                 $factura->subtotal = $request['subtotal'];
                 $factura->iva = $request['iva'];
                 $factura->total = $request['total'];
+                $factura->cotizaciones_ids = json_encode($cotizaciones);
+                $factura->recibos_ids = json_encode($recibos);
+                $factura->rfc = $request['cliente']['has_cliente']['datos_fisicos_requeremientos_facturacion_rfc'];
+                $factura->estado = 'Pendiente';
                 $factura->cancelada = false;
                 $factura->save();
                 

@@ -1724,9 +1724,10 @@ var render = function() {
                                                       _vm._s(data.item.id) +
                                                       " -\n                    " +
                                                       _vm._s(
-                                                        data.item.has_cotizaicon
-                                                          .has_cliente
-                                                          .datos_fisicos_requeremientos_facturacion_razon_social
+                                                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                                                          0,
+                                                          30
+                                                        )
                                                       ) +
                                                       "\n                    "
                                                   ),
@@ -1807,10 +1808,10 @@ var render = function() {
                                                         _vm._s(data.item.id) +
                                                         " -\n                    " +
                                                         _vm._s(
-                                                          data.item
-                                                            .has_cotizaicon
-                                                            .has_cliente
-                                                            .datos_fisicos_requeremientos_facturacion_razon_social
+                                                          data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                                                            0,
+                                                            30
+                                                          )
                                                         ) +
                                                         "\n                    "
                                                     ),
@@ -1885,10 +1886,10 @@ var render = function() {
                                                         _vm._s(data.item.id) +
                                                         " -\n                    " +
                                                         _vm._s(
-                                                          data.item
-                                                            .has_cotizaicon
-                                                            .has_cliente
-                                                            .datos_fisicos_requeremientos_facturacion_razon_social
+                                                          data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                                                            0,
+                                                            30
+                                                          )
                                                         ) +
                                                         "\n                    "
                                                     ),
@@ -1963,7 +1964,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      1670442667
+                                      1405841258
                                     ),
                                     model: {
                                       value: _vm.model.recibo,

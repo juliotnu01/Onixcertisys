@@ -1,13 +1,13 @@
 import store from "../plugins/store.js";
 export default class facturaServices {
-    // async getlistFacturas() {
-    //     try {
-    //         let { data } = await axios("/api/get-facturas-para-estadistica");
-    //         store.commit("setFacturasEstadistica", data);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    async getlistFacturas() {
+        try {
+            let { data } = await axios("/api/get-facturas");
+            store.commit("setFacturas", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async getlistFacturasEstadistica() {
         try {
             let { data } = await axios("/api/get-facturas-para-estadistica");

@@ -38,6 +38,7 @@ class ReciboController extends Controller
                 'hasPartidas.hasCalibracion',
                 'hasPartidas.hasEmpleado',
                 'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.belongsDocumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
             ])->get();
@@ -66,6 +67,7 @@ class ReciboController extends Controller
                 'hasPartidas.hasCalibracion',
                 'hasPartidas.hasEmpleado',
                 'hasPartidas.hasIntrumento',
+                'hasPartidas.hasIntrumento.belongsDocumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
             ])->get();

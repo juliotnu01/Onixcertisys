@@ -56,7 +56,7 @@
                       {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social
+                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
                       }}
                       <v-alert
                         color="primary"
@@ -100,7 +100,7 @@
                       {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social
+                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
                       }}
                       <v-alert
                         color="primary"
@@ -142,7 +142,7 @@
                       {{ data.item.id }} -
                       {{
                         data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social
+                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
                       }}
                       <v-alert
                         color="primary"

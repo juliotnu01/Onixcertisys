@@ -7,7 +7,7 @@
           <v-card-text>
             <v-form ref="f_mag">
               <v-row align="center" justify="space-around">
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12">
+                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                   <v-file-input
                     v-model="file"
                     color="deep-purple accent-4"
@@ -19,34 +19,33 @@
                   >
                   </v-file-input>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="9" lg="9">
-                  <v-text-field
-                    label="Descripcion"
-                    outlined
-                    v-model="model_config_data_documento.descripcion"
-                  />
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="1" lg="1">
-                  <v-text-field
-                    label="Celda"
-                    outlined
-                    v-model="model_config_data_documento.celda"
-                  />
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="1" lg="1">
-                  <v-btn class="mx-2" fab dark color="primary" @click="addConfigDocument">
-                    <v-icon dark>mdi-plus</v-icon>
-                  </v-btn>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12"  v-for="(item, i) in data_confing_file" :key="i" >
-                  <v-row>
-                    <v-col cols="12" xs="12" sm="12" md="9" lg="9">
-                      <v-text-field name="name" label="label" id="id" outlined  v-model="item.descripcion" />
-                    </v-col>
-                    <v-col cols="12" xs="12" sm="12" md="3" lg="3">
-                      <v-text-field name="name" label="label" id="id" outlined  v-model="item.target_cell"  />
-                    </v-col>
-                  </v-row>
+                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                  <v-menu
+                    ref="menu1"
+                    v-model="menu1"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="dateFormatted"
+                        label="Fecha de vencimiento de plantilla"
+                        append-icon="mdi-calendar"
+                        v-bind="attrs"
+                        @blur="date = parseDate(dateFormatted)"
+                        v-on="on"
+                        outlined
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date"
+                      no-title
+                      @input="menu1 = false"
+                    ></v-date-picker>
+                  </v-menu>
                 </v-col>
               </v-row>
             </v-form>
@@ -66,6 +65,9 @@ export default {
   data() {
     return {
       file: {},
+      menu1: false,
+      date: new Date().toISOString().substr(0, 10),
+      dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
       rules: {
         required: (value) => !!value || "Este campo es requerido.",
       },
@@ -78,6 +80,9 @@ export default {
   },
   computed: {
     ...mapGetters(["services", "dialog_add_documento"]),
+    computedDateFormatted() {
+      return this.formatDate(this.date);
+    },
     openDialog: {
       get() {
         return this.dialog_add_documento;
@@ -87,8 +92,25 @@ export default {
       },
     },
   },
+  watch: {
+    date(val) {
+      this.dateFormatted = this.formatDate(this.date);
+    },
+  },
   mounted() {},
   methods: {
+    formatDate(date) {
+      if (!date) return null;
+
+      const [year, month, day] = date.split("-");
+      return `${month}/${day}/${year}`;
+    },
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    },
     async addConfigDocument() {
       let data = {
         target_cell: this.model_config_data_documento.celda,
@@ -105,10 +127,10 @@ export default {
     },
     async addDocument() {
       try {
-          var formData = new FormData();
-           formData.append('documento', this.file)
-           formData.append('data_config', JSON.stringify(this.data_confing_file))
-        await this.services.documentoServices.addDocumentConfig(formData)
+        var formData = new FormData();
+        formData.append("documento", this.file);
+        formData.append("fecha_vencimiento", this.date);
+        await this.services.documentoServices.addDocumentConfig(formData);
         await this.services.documentoServices.getlistDocumento();
       } catch (error) {
         console.log(error);

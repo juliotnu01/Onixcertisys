@@ -49,7 +49,7 @@ class DocumentoController extends Controller
             $url = Storage::disk('s3')->url('plantillas/'.$request->file('documento')->getClientOriginalName());
 
             return DB::transaction(function () use ($request,$documento, $url){
-                $documento->configuracion_documento = $request['data_config'];
+                $documento->fecha_vencimiento = $request['fecha_vencimiento'];
                 $documento->ruta_documento =  $url;
                 $documento->nombre_documento =  $request->file('documento')->getClientOriginalName();
                 $documento->save();

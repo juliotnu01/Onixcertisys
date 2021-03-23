@@ -71,7 +71,6 @@
           >
             {{ item.estado_de_la_cotizacion }}
           </v-alert>
-          <!-- <b>partidas:  {{item.partida_en_orden_de_servicio}} / {{item.has_partidas.length}}  {{ var_computed_partidas_en_recibo }} </b> -->
         </td>
       </template>
       <template v-slot:item.tipo_de_servicio="{ item }">

@@ -17,7 +17,7 @@ class InstrumentoController extends Controller
     public function index()
     {
         try {
-            $instrumento = Instrumento::with(['hasAcreditacion','hasMagnitud'])->get();
+            $instrumento = Instrumento::with(['hasAcreditacion','hasMagnitud', 'belongsDocumento'])->get();
             return Response($instrumento);
         } catch (Exception $e) {
             throw new Exception($e, 1);

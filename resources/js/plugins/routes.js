@@ -74,6 +74,12 @@ export default new router({
                 import("../components/factura/indexComponentfactura.vue")
         },
         {
+            path: "/administrar-facturas",
+            name: "home.administrar.facturas",
+            component: () =>
+                import("../components/administrarFactura/indexComponentAdminsitrarFactura.vue")
+        },
+        {
             path: "/cliente",
             name: "home.cliente",
             component: () =>

@@ -217,6 +217,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -297,7 +344,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
                   item.children.push({
-                    name: "Orden de servicio: ".concat(recibo.id, " - Cliente: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10)),
+                    name: "Folio: ".concat(recibo.id, " - Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10), " - Estado: ").concat(recibo.estado, "  "),
                     id: recibo.id
                   });
                 }));
@@ -620,6 +667,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -672,9 +730,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    },
-    configRuta: function configRuta(item) {// this.$store.commit("setDialogTargetDataPlantilla", true)
-      // this.$store.commit("setPlantilla", item)
     }
   }
 });
@@ -846,11 +901,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-col",
-                { staticClass: "d-flex text-center" },
+                {},
                 [
                   _c(
                     "v-scroll-y-transition",
-                    { attrs: { mode: "out-in" } },
+                    { staticClass: "p-1", attrs: { mode: "out-in" } },
                     [
                       !_vm.selected
                         ? _c(
@@ -858,7 +913,7 @@ var render = function() {
                             {
                               staticClass:
                                 "title grey--text text--lighten-1 font-weight-light",
-                              staticStyle: { "align-self": "center" }
+                              staticStyle: { "align-self": "left" }
                             },
                             [
                               _vm._v(
@@ -871,8 +926,24 @@ var render = function() {
                             { key: _vm.selected.id, staticClass: "pt-6" },
                             [
                               _c("v-card-text", [
+                                _c(
+                                  "h6",
+                                  { staticClass: "headline mb-2 text-right" },
+                                  [
+                                    _c("strong", [_vm._v("Fecha: ")]),
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          _vm.selected.created_at.substr(0, 10)
+                                        ) +
+                                        "\n                "
+                                    ),
+                                    _c("br")
+                                  ]
+                                ),
+                                _vm._v(" "),
                                 _c("h6", { staticClass: "headline mb-2" }, [
-                                  _c("strong", [_vm._v("Cliente: ")]),
+                                  _c("strong", [_vm._v("Empresa: ")]),
                                   _vm._v(
                                     "\n                " +
                                       _vm._s(
@@ -882,7 +953,110 @@ var render = function() {
                                       "\n                "
                                   ),
                                   _c("br")
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "headline mb-2" }, [
+                                  _c("strong", [_vm._v("Dirección: ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
+                                      ) +
+                                      "\n                "
+                                  ),
+                                  _c("br")
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "headline mb-2" }, [
+                                  _c("strong", [
+                                    _vm._v("Persona de contacto: ")
+                                  ]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon.contacto
+                                      )
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("strong", [
+                                    _vm._v("Correo de contacto: ")
+                                  ]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon
+                                          .contacto_correo
+                                      )
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("strong", [
+                                    _vm._v("Teléfono de contacto: ")
+                                  ]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.selected.has_cotizaicon
+                                          .contacto_telefono
+                                      )
+                                  ),
+                                  _c("br")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "h6",
+                                  { staticClass: "headline mb-2  text-right" },
+                                  [
+                                    _c("strong", [_vm._v("Vendedor: ")]),
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          _vm.selected.has_cotizaicon
+                                            .has_empleado.nombre_completo
+                                        )
+                                    ),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("strong", [_vm._v("Estado: ")]),
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(_vm.selected.estado)
+                                    ),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("strong", [_vm._v("Tipo: ")]),
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          _vm.selected.has_cotizaicon
+                                            .tipo_de_servicio
+                                        )
+                                    ),
+                                    _c("br")
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("v-divider"),
@@ -2151,33 +2325,69 @@ var render = function() {
                               }
                             },
                             [
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  items: _vm.documentos,
-                                  outlined: "",
-                                  dense: "",
-                                  chips: "",
-                                  label: "Outlined",
-                                  "item-text": "ruta_documento",
-                                  "return-object": ""
-                                },
-                                on: {
-                                  change: function($event) {
-                                    return _vm.configRuta(
-                                      _vm.documento_selected
-                                    )
-                                  }
-                                },
-                                model: {
-                                  value: _vm.documento_selected,
-                                  callback: function($$v) {
-                                    _vm.documento_selected = $$v
-                                  },
-                                  expression: "documento_selected"
-                                }
-                              })
-                            ],
-                            1
+                              _vm.partida_tecnico.has_intrumento
+                                .belongs_documento == null
+                                ? _c(
+                                    "div",
+                                    [
+                                      _c("v-autocomplete", {
+                                        attrs: {
+                                          items: _vm.documentos,
+                                          outlined: "",
+                                          dense: "",
+                                          chips: "",
+                                          label: "Seleccionar documento",
+                                          "item-text": "nombre_documento",
+                                          "return-object": ""
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.configRuta(
+                                              _vm.documento_selected
+                                            )
+                                          }
+                                        },
+                                        model: {
+                                          value: _vm.documento_selected,
+                                          callback: function($$v) {
+                                            _vm.documento_selected = $$v
+                                          },
+                                          expression: "documento_selected"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _c(
+                                    "div",
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Documento",
+                                          outlined: "",
+                                          disabled: ""
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.partida_tecnico.has_intrumento
+                                              .belongs_documento
+                                              .nombre_documento,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.partida_tecnico.has_intrumento
+                                                .belongs_documento,
+                                              "nombre_documento",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "partida_tecnico.has_intrumento.belongs_documento.nombre_documento"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(

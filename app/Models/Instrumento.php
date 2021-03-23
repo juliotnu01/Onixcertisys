@@ -22,4 +22,7 @@ class Instrumento extends Model
     {
         return $this->hasMany(Partida::class, 'instrumento_id');
     }
+    public function belongsDocumento(){
+        return $this->belongsTo(Documento::class, 'documento_id');
+    }
 }

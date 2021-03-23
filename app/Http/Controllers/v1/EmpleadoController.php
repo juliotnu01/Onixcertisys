@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Empleado, Partida};
+use App\Models\{Empleado, Partida, DocumentoLab, Instrumento};
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Arr;
@@ -153,9 +153,12 @@ class EmpleadoController extends Controller
         }
     }
 
-    public function asignarTecnicoPartida(Request $request, Partida $partida)
+    public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento)
     {
-        $json = json_encode($request->all(),true);
+            $instrumento->find($request['model']['has_intrumento']['id'])->update([
+                'documento_id' =>  $request['file']['id']
+            ]);
+        return ;
         Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
 
         try {
