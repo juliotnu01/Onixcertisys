@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Resources\RecibosCollection;
 use Luecano\NumeroALetras\NumeroALetras;
+use SWServices\AccountBalance\AccountBalanceService as AccountBalanceService;
+use SWServices\Authentication\AuthenticationService as Authentication;
 
 
 class FacturaController extends Controller
@@ -244,5 +246,62 @@ class FacturaController extends Controller
     public function destroy(Factura $factura)
     {
         //
+    }
+    public function consultarSaldoTimbrado()
+    {
+        $params = array(
+            "url"=>"https://services.sw.com.mx",
+            "user"=>"claudia.martinez@accredian.org",
+            "password"=> "ACC.1701.U"
+        );
+            
+        try {
+        
+            $auth = Authentication::auth($params);
+            $token = $auth::Token();
+            $paramsConsultarSaldo = array(  
+                "url"=>"https://services.sw.com.mx",
+                "token"=> $token->data->token
+                
+            );
+            
+            $accountBalance = AccountBalanceService::Set($paramsConsultarSaldo); //asignamos los parámetros
+		    $result = $accountBalance::GetAccountBalance(); //obtenemos el valor
+            $data = collect($result);
+            return  $data;
+
+            
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function timbrarFactura()
+    {
+        $params = array(
+            "url"=>"https://services.sw.com.mx",
+            "user"=>"claudia.martinez@accredian.org",
+            "password"=> "ACC.1701.U"
+        );
+            
+        try {
+        
+            $auth = Authentication::auth($params);
+            $token = $auth::Token();
+            $paramsConsultarSaldo = array(  
+                "url"=>"https://services.sw.com.mx",
+                "token"=> $token->data->token
+                
+            );
+        //TODO: datos de la factura
+// $folio         = $rw['id'];
+// $nombre        = $rw['nombre'];
+// $rfcr          = $rw['rfc'];
+// $uso_cfdi      = $rw['clave'];
+// $metodo_pago   = $rw['metodo'];
+// $forma_pago    = $rw['forma'];
+            
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

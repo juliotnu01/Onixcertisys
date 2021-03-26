@@ -119,9 +119,9 @@ class ClienteController extends Controller
                         $sucursal = new SucursalCliente();
                         $sucursal->nombre_sucursal = $value['nombre'];
                         $sucursal->direccion_sucursal = $value['direccion'];
-                        $sucursal->contacto_sucural = $value['nombreContacto'];
-                        $sucursal->correo_contacto_sucural = $value['email'];
-                        $sucursal->telefono = $value['tel_ext']['num'];
+                        $sucursal->contacto_sucural = $value['contacto'];
+                        $sucursal->correo_contacto_sucural = $value['correo'];
+                        $sucursal->telefono = $value['telefono'];
                         $sucursal->cliente_id =  $cliente->id;
                         $sucursal->save();
                 }   
@@ -168,22 +168,19 @@ class ClienteController extends Controller
 
                 if($collectFormaDePago){
 
-                     foreach ($collectFormaDePago as $key => $value) {
+                    foreach ($collectFormaDePago as $key => $value) {
                     if ($key === 'transferenciaElectronica' && $value === 'x') {
-                        $formaDePago[] = (object)['name' => $key, 'value' => 1];
+                        $formaDePago = "Transferencia Electronica";
                     } elseif ($key === 'depositoEnEfectivo' && $value === 'x') {
-                        $formaDePago[] = (object)['name' => $key, 'value' => 2];
+                        $formaDePago = "Deposito en efectivo";
                     } elseif ($key === 'cheque' && $value === 'x') {
-                        $formaDePago[] = (object)['name' => $key, 'value' => 3];
-                    }else{
-                        $formaDePago[] = '';
+                        $formaDePago = "Cheque";
                     }
                 }
                 }else{
-                    $formaDePago[] = '';
+                    $collectFormaDePago = '';
                 }
 
-              
                 
                 $collectMoneda = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['monedaFactura']);
                 if($collectMoneda){
@@ -192,8 +189,6 @@ class ClienteController extends Controller
                             $moneda = "MXN";
                         } elseif ($key === 'dolares' && $value === 'x') {
                             $moneda = "USD";
-                        }else{
-                            $moneda  = '';
                         }
                     }
                 }else{
@@ -210,8 +205,6 @@ class ClienteController extends Controller
                             $terminoPago = "credito de 15 dias";
                         } elseif ($key === 'contado' && $value === 'x') {
                             $terminoPago = "contado";
-                        }else{
-                            $terminoPago = '';
                         }
                     }
                 }else{
@@ -225,8 +218,6 @@ class ClienteController extends Controller
                             $usuarioContraseña = "Se envia por Email";
                         } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
                             $usuarioContraseña = "Se optiene por el portal";
-                        }else{
-                            $usuarioContraseña = '';
                         }
                     }
                 }else{
@@ -243,8 +234,6 @@ class ClienteController extends Controller
                             $altaFactura = "Se envia por Email";
                         } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
                             $altaFactura = "Se optiene por el portal";
-                        }else {
-                            $altaFactura = '';
                         }
                     }
                 }else{
@@ -259,18 +248,16 @@ class ClienteController extends Controller
 
                     foreach ($collectMetodoDePago as $key => $value) {
                         if ($key === 'pagoParcialesDiferidos' && $value === 'x') {
-                            $metodoDepago = "Pagos parciales";
+                            $metodoDepago = "Pago Parcialidades o Diferido";
                         } elseif ($key === 'pagoEnUnaSolaExhibicion' && $value === 'x') {
                             $metodoDepago = "Pago en una sola exhibicion";
-                        }else{
-                            $metodoDepago = '';
                         }
                     }
                 }else{
                     $collectMetodoDePago = '';
                 }
 
-
+               
 
                 $cliente->servicio_solicitado = json_encode($servicios);
                 $cliente->persona_de_contacto_nombre = $request['personaDeContacto']['nombre'];
@@ -295,7 +282,7 @@ class ClienteController extends Controller
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['ciudad'];
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['estado'];
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cp'];
-                $cliente->forma_de_pago = json_encode($formaDePago);
+                $cliente->forma_de_pago = $formaDePago ;
                 $cliente->moneda_factura = $moneda;
                 $cliente->correo_envio_factura = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['emailParaEnvioFactura'];
                 $cliente->cdfi = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cfdi'];
@@ -314,7 +301,7 @@ class ClienteController extends Controller
                 $cliente->correo_soporte_tecnico_portal = $request['revisionDeFacturaYpago']['soporteTecnicoEmail'];
                 $cliente->banco_ordenante = $request['revisionDeFacturaYpago']['BancoOrdenante'];
                 $cliente->cuenta_de_pago = $request['revisionDeFacturaYpago']['cuentaDeBanco'];
-                $cliente->complemento_de_pago_se_envia_por_email = "";
+                $cliente->complemento_de_pago_se_envia_por_email = $request['revisionDeFacturaYpago']['complementoDePagoSeEnviaPorEmail'];
                 $cliente->informacion_adicional_complemento_de_pago = $request['revisionDeFacturaYpago']['informacionAdicionalDePago'];
                 $cliente->lista_requerimiento_acceso_planta = $request['listaDeAccesoAlaPlata'];
                 $cliente->iva = "";

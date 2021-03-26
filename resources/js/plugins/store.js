@@ -136,6 +136,7 @@ export default new Vuex.Store({
         dialog_add_documento: false,
         dialog_asignar_target_data_plantilla: false,
         plantilla: {},
+        saldoTimbre:{},
 
     },
     getters: {
@@ -258,6 +259,7 @@ export default new Vuex.Store({
         dialog_add_documento: state => state.dialog_add_documento,
         dialog_asignar_target_data_plantilla: state => state.dialog_asignar_target_data_plantilla,
         plantilla: state => state.plantilla,
+        saldoTimbre: state => state.saldoTimbre,
         
     },
     mutations: {
@@ -460,10 +462,7 @@ export default new Vuex.Store({
         },
         setCliente(state, data) {
             state.cliente = data;
-            var vend = state.empleados.find(
-                item => item.nombre_completo === data.vendedor
-            );
-            state.cliente.vendedor = vend;
+            
         },
         setInstrumentos(state, data) {
             state.instrumentos = data;
@@ -732,7 +731,10 @@ export default new Vuex.Store({
         },
         setPlantilla(state, data){
             state.plantilla = data
-        }
+        },
+        setSaldoTimbrado(state, data){
+            state.saldoTimbre = data
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {

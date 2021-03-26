@@ -38,6 +38,22 @@ export default class facturaServices {
             console.log(e);
         }
     }
+    async consultarSaldoTimprado() {
+        try {
+            let { data } = await axios("/api/consultar-saldo-timbrado");
+            store.commit("setSaldoTimbrado", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    async timbrarFactura() {
+        try {
+            let { data } = await axios.post("/api/timbrar-factura");
+            // store.commit("setSaldoTimbrado", data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     // async actualizarAcreditaciones(model) {
     //     try {

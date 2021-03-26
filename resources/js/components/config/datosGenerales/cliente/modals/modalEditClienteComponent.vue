@@ -244,6 +244,8 @@
                     label="Formas de pago"
                     outlined
                     item-text="nombre"
+                    item-value="nombre"
+                    item-key="nombre"
                     return-object
                     v-model="
                       cliente.datosFisicosYRequerimientosDeFactuacion
@@ -309,7 +311,7 @@
                     return-object
                     v-model="
                       cliente.datosFisicosYRequerimientosDeFactuacion
-                        .domicilioFiscalParaFacturacion.termino_de_pago 
+                        .domicilioFiscalParaFacturacion.terminosDePago 
                     "
                   />
                 </v-col>

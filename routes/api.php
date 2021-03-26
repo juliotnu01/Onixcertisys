@@ -140,6 +140,8 @@ Route::get('/get-facturas', 'v1\FacturaController@index');
 Route::get('/get-facturas-para-estadistica', 'v1\FacturaController@indexFacturaParaEstadistica');
 Route::post('/add-factura', 'v1\FacturaController@store');
 Route::post('/add-factura-nueva', 'v1\FacturaController@storeFacturaNueva');
+Route::get('/consultar-saldo-timbrado', 'v1\FacturaController@consultarSaldoTimbrado');
+Route::get('/timbrar-factura', 'v1\FacturaController@timbrarFactura');
 // Route::post('/terminar-calibracion', 'v1\CalibracionController@terminarCalibracion');
 // Route::put('/edit-patron', 'v1\PatronController@update');
 // Route::delete('/delete-patron/{id}', 'v1\PatronController@destroy');

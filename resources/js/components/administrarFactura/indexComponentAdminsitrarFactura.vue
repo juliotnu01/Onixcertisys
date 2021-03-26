@@ -17,6 +17,26 @@
               dense
             ></v-text-field>
           </template>
+          <template v-slot:footer>
+            <v-row>
+              <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-if="saldoTimbre.hasOwnProperty('data')"  >
+                <v-alert dense type="info">
+                  Cliente ID: <strong>{{ saldoTimbre.data.idClienteUsuario }}</strong>
+                  <v-chip class="ma-2" color="primary">
+                    Saldo timbres: <strong>{{ saldoTimbre.data.saldoTimbres }}</strong>
+                  </v-chip>
+                  <v-chip class="ma-2" color="primary">
+                    Timbres utilizados:
+                    <strong>{{ saldoTimbre.data.timbresUtilizados }}</strong>
+                  </v-chip>
+                  <v-chip class="ma-2" color="primary">
+                    Timbres asignados:
+                    <strong>{{ saldoTimbre.data.timbresAsignados }}</strong>
+                  </v-chip>
+                </v-alert>
+              </v-col>
+            </v-row>
+          </template>
           <template v-slot:item.subtotal="{ item }">
             {{ item.subtotal | numberFormat(item.has_moneda.clave) }}
           </template>
@@ -79,7 +99,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="primary" >
+                        <v-btn icon small color="primary">
                           <v-icon color="success" dark v-bind="attrs" v-on="on">
                             mdi-bell
                           </v-icon>
@@ -91,7 +111,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="error" >
+                        <v-btn icon small color="error">
                           <v-icon color="error" dark v-bind="attrs" v-on="on">
                             mdi-bell-cancel
                           </v-icon>
@@ -103,7 +123,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="warning" >
+                        <v-btn icon small color="warning">
                           <v-icon color="warning" dark v-bind="attrs" v-on="on">
                             mdi-pencil
                           </v-icon>
@@ -115,19 +135,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="info" >
-                          <v-icon color="info" dark v-bind="attrs" v-on="on">
-                            mdi-printer
-                          </v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Imprimir Factura</span>
-                    </v-tooltip>
-                  </v-list-item>
-                  <v-list-item>
-                    <v-tooltip left>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="info" >
+                        <v-btn icon small color="info">
                           <v-icon color="info" dark v-bind="attrs" v-on="on">
                             mdi-xml
                           </v-icon>
@@ -139,7 +147,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="info" >
+                        <v-btn icon small color="info">
                           <v-icon color="info" dark v-bind="attrs" v-on="on">
                             mdi-file-pdf
                           </v-icon>
@@ -241,9 +249,10 @@ export default {
   },
   mounted() {
     this.services.facturaServices.getlistFacturas();
+    this.services.facturaServices.consultarSaldoTimprado();
   },
   computed: {
-    ...mapGetters(["services", "facturas"]),
+    ...mapGetters(["services", "facturas", "saldoTimbre"]),
   },
 };
 </script>

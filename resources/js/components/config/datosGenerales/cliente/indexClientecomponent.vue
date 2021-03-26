@@ -242,7 +242,6 @@ export default {
         iva: cli.iva,
         sucursales: cli.has_sucursal,
       };
-
       this.$store.commit("setCliente", data);
       this.$store.commit("setDialogEditCliente", true);
     },
@@ -404,6 +403,9 @@ export default {
               : "",
             informacionAdicionalDePago: workbook.Sheets.cliente.D43.v
               ? workbook.Sheets.cliente.D43.v
+              : "",
+            complementoDePagoSeEnviaPorEmail: workbook.Sheets.cliente.O41.v
+              ? workbook.Sheets.cliente.O41.v
               : "",
           },
           listaDeAccesoAlaPlata: workbook.Sheets.cliente.D47.v
