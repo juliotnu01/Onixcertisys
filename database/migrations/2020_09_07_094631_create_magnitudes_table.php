@@ -18,6 +18,7 @@ class CreateMagnitudesTable extends Migration
             $table->string('clave')->nullable();
             $table->string('nombre')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

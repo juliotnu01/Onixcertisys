@@ -22,6 +22,7 @@ class CreatePermissionRolUsersTable extends Migration
             $table->bigInteger('rol_user_id')->unsigned()->nullable();
             $table->foreign('rol_user_id')->references('id')->on('rol_users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

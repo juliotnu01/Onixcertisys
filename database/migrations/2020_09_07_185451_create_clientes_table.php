@@ -62,6 +62,7 @@ class CreateClientesTable extends Migration
             $table->string('lista_requerimiento_acceso_planta')->nullable();
             $table->string('iva')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

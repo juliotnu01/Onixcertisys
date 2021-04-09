@@ -17,6 +17,7 @@ class CreateMetodoDePagosTable extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

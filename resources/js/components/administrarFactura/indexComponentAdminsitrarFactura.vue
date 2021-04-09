@@ -99,7 +99,7 @@
                   <v-list-item>
                     <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon small color="primary">
+                        <v-btn icon small color="primary" @click.prevent="TimprarFactura(item)" >
                           <v-icon color="success" dark v-bind="attrs" v-on="on">
                             mdi-bell
                           </v-icon>
@@ -254,5 +254,10 @@ export default {
   computed: {
     ...mapGetters(["services", "facturas", "saldoTimbre"]),
   },
+  methods:{
+    TimprarFactura(fact){
+      this.services.facturaServices.timbrarFactura(fact);
+    }
+  }
 };
 </script>

@@ -25,6 +25,7 @@ class CreateCalibracionsTable extends Migration
             $table->string('observacion_tecnico')->nullable();
             $table->string('certificado_doc')->nullable();
             $table->string('estado')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

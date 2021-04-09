@@ -18,6 +18,7 @@ class CreateClaveSatsTable extends Migration
             $table->string('codigo')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -303,7 +303,7 @@ export default {
           align: "center",
         },
         {
-          text: "Convertir en recibo",
+          text: "Convertir en O.D.S",
           value: "convert_recibo",
           align: "center",
         },

@@ -24,7 +24,7 @@ Route::get('/home/{q?}', function () {
     return view('home');
 })->where('q', '.*');
 Route::get('/test', function () {
-    return view('pdfs.pdfFacturaNueva');
+    return view('pdfs.pdfCotizacion');
 });
 
 

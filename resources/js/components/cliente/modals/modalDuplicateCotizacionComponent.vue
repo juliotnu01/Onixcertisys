@@ -132,7 +132,7 @@
               <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion_para_duplicar.contacto_telefono"
+                  v-model="cotizacion_para_duplicar.contacto_correo"
                   dense
                   outlined
                   label="Correo"
@@ -529,6 +529,7 @@ export default {
     this.services.instrumentoServices.getlistInstrumentos();
     this.services.unidadServices.getUnidades();
     this.services.claveSatServices.getclavesSat();
+    console.log(this.cotizacion_para_duplicar)
   },
   methods: {
     AgregarPartida() {

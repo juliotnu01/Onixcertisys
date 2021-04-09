@@ -28,6 +28,7 @@ class CreateEmpresasTable extends Migration
             $table->string('codigo_postal')->nullable();
             $table->string('pais')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-dialog v-model="openDialog" max-width="2556" min-width="2556" persistent>
+    <v-dialog v-model="openDialog" max-width="100%" min-width="100%" persistent>
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="openDialog = false">
           <v-icon>mdi-close</v-icon>
@@ -561,10 +561,9 @@ export default {
       };
     },
     async EditCotizacion() {
-      if (this.$refs.f_mag.validate()) {
+      console.log({edit_cot:this.cotizacion})
         await this.services.cotizacionServices.actualizarCotizacion(this.cotizacion);
         await this.services.cotizacionServices.getlistCotizaciones();
-      }
     },
     eliminarPartida(item) {
       this.services.partidaServices.EliminarPartida(item);

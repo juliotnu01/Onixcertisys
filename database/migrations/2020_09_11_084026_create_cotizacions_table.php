@@ -33,6 +33,7 @@ class CreateCotizacionsTable extends Migration
             $table->bigInteger('iva')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 

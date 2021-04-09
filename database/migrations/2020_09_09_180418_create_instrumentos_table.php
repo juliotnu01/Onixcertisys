@@ -21,6 +21,7 @@ class CreateInstrumentosTable extends Migration
             $table->foreignId('magnitude_id')->nullable()->constrained('magnitudes'); 
             $table->bigInteger('precio_venta')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

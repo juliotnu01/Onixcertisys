@@ -21,6 +21,7 @@ class CreatePatronsTable extends Migration
             $table->string('fecha_calibracion')->nullable();
             $table->string('fecha_vencimiento')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

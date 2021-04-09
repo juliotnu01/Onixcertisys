@@ -18,6 +18,7 @@ class CreateDocumentoLabsTable extends Migration
             $table->foreignId('partida_id')->nullable()->constrained('partidas');
             $table->foreignId('documento_id')->nullable()->constrained('documentos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

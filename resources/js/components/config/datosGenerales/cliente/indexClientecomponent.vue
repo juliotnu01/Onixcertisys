@@ -178,7 +178,6 @@ export default {
     },
     async EditarCliente(cli) {
       var data = {};
-
       data = {
         id: cli.id,
         servicio_solicitado: JSON.parse(cli.servicio_solicitado),

@@ -651,6 +651,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -811,6 +835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       partidas_acumuladas_2: [],
       cotizacion_partida: {},
       editPrecioVenta: false,
+      orden_de_compra: "",
       item_factura_nueva: {
         claveSat: {},
         cantidad: 1,
@@ -1154,17 +1179,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   subtotal: _this6.var_computed_subtotal,
                   iva: _this6.var_computed_iva,
                   total: _this6.var_computed_total,
-                  nota: _this6.cotizacion_partida.nota_de_factura
+                  nota: _this6.cotizacion_partida.nota_de_factura,
+                  orden_de_compra: _this6.orden_de_compra
                 };
-                console.log({
-                  dataFactura: dataFactura
-                });
 
                 _this6.$store.commit("setDialogFactura", dataFactura);
 
                 _this6.$store.commit("setDialogAddFactura", true);
 
-              case 4:
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -1190,7 +1213,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   nota: _this7.model.factura_nueva.nota_de_factura,
                   formaDePago: _this7.model.factura_nueva.forma_de_pago,
                   metodoDePago: _this7.model.factura_nueva.metodo_de_pago,
-                  moneda: _this7.model.factura_nueva.moneda
+                  moneda: _this7.model.factura_nueva.moneda,
+                  orden_de_compra: _this7.orden_de_compra
                 };
 
                 _this7.services.facturaServices.agregarFacturaNueva(dataFactura);
@@ -1964,7 +1988,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      1405841258
+                                      938385834
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -2135,6 +2159,34 @@ var render = function() {
                                         }
                                       })
                                     : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Orden de Compra",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value: _vm.orden_de_compra,
+                                      callback: function($$v) {
+                                        _vm.orden_de_compra = $$v
+                                      },
+                                      expression: "orden_de_compra"
+                                    }
+                                  })
                                 ],
                                 1
                               ),
@@ -2393,6 +2445,34 @@ var render = function() {
                                       },
                                       expression:
                                         "model.factura_nueva.metodo_de_pago"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "12",
+                                    md: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Orden de Compra",
+                                      outlined: ""
+                                    },
+                                    model: {
+                                      value: _vm.orden_de_compra,
+                                      callback: function($$v) {
+                                        _vm.orden_de_compra = $$v
+                                      },
+                                      expression: "orden_de_compra"
                                     }
                                   })
                                 ],

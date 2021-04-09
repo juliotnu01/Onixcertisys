@@ -28,6 +28,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('departamento')->nullable();
             $table->string('observaciones')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

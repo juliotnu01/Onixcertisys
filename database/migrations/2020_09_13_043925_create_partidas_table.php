@@ -31,10 +31,11 @@ class CreatePartidasTable extends Migration
             $table->string('ruta_pdf_calibracion')->nullable();
             $table->foreignId('recibo_id')->nullable()->constrained('recibos')->default(null);
             $table->foreignId('calibracion_id')->nullable()->constrained('calibracions');
-            $table->foreignId('instrumento_id')->constrained('instrumentos')->onDelete('cascade');
-            $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade');
+            $table->foreignId('instrumento_id')->constrained('instrumentos');
+            $table->foreignId('cotizacion_id')->constrained('cotizacions');
             $table->foreignId('empleado_id')->nullable()->constrained('empleados')->default(null);
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 

@@ -15,6 +15,8 @@ use App\Http\Resources\RecibosCollection;
 use Luecano\NumeroALetras\NumeroALetras;
 use SWServices\AccountBalance\AccountBalanceService as AccountBalanceService;
 use SWServices\Authentication\AuthenticationService as Authentication;
+use SWServices\Stamp\StampService as StampService;
+use View;
 
 
 class FacturaController extends Controller
@@ -275,30 +277,28 @@ class FacturaController extends Controller
             throw $th;
         }
     }
-    public function timbrarFactura()
+    public function timbrarFactura(Request $request, Factura $factura)
     {
-        $params = array(
-            "url"=>"https://services.sw.com.mx",
-            "user"=>"claudia.martinez@accredian.org",
-            "password"=> "ACC.1701.U"
-        );
+        // $params = array(
+        //     "url"=>"https://services.sw.com.mx",
+        //     "user"=>"claudia.martinez@accredian.org",
+        //     "password"=> "ACC.1701.U"
+        // );
             
         try {
         
-            $auth = Authentication::auth($params);
-            $token = $auth::Token();
-            $paramsConsultarSaldo = array(  
-                "url"=>"https://services.sw.com.mx",
-                "token"=> $token->data->token
-                
-            );
-        //TODO: datos de la factura
-// $folio         = $rw['id'];
-// $nombre        = $rw['nombre'];
-// $rfcr          = $rw['rfc'];
-// $uso_cfdi      = $rw['clave'];
-// $metodo_pago   = $rw['metodo'];
-// $forma_pago    = $rw['forma'];
+        //     $auth = Authentication::auth($params);
+        //     $token = $auth::Token();
+        //     $paramsConsulta = array(  
+        //         "url"=>"https://services.sw.com.mx",
+        //         "token"=> $token->data->token
+        //     );
+            $dataFactura = $factura->find($request['id'])->with(['hasItems','hasItems.belongsToInstrumento', 'hasCliente', 'hasMoneda'])->first();
+            dd(collect($dataFactura));
+            $output = View::make('xmls.XmlFactura', compact('dataFactura'))->render();
+            Storage::disk('store_pdfs')->put("/xmls/test2.xml", $output);
+            $url = Storage::disk('store_pdfs')->url("/xmls/test.xml");
+   
             
         } catch (\Throwable $th) {
             throw $th;

@@ -19,6 +19,7 @@ class CreateCiudadEstadoPaisTable extends Migration
             $table->string('nombre_estado')->nullable();
             $table->string('nombre_pais')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

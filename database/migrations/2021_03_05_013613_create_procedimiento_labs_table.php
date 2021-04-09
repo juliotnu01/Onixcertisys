@@ -18,6 +18,7 @@ class CreateProcedimientoLabsTable extends Migration
             $table->foreignId('procedimiento_id')->nullable()->constrained('procedimientos');
             $table->foreignId('partida_id')->nullable()->constrained('partidas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

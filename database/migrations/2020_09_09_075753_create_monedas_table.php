@@ -19,6 +19,7 @@ class CreateMonedasTable extends Migration
             $table->string('nombre_moneda')->nullable();
             $table->string('tipo_de_cambio')->nullable();
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 

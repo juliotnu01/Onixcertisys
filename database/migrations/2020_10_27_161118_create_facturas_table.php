@@ -25,6 +25,7 @@ class CreateFacturasTable extends Migration
             $table->bigInteger('total')->nullable();
             $table->boolean('cancelada')->nullable();
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 

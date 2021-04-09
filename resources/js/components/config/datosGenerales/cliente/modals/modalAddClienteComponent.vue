@@ -26,7 +26,7 @@
                     :items="items_servicios_solicitados"
                     outlined
                     chips
-                    label="Sercicios"
+                    label="Servicios"
                     item-text="name"
                     item-value="value"
                     multiple
@@ -219,7 +219,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
-                    label="Esado"
+                    label="Estado"
                     outlined
                     v-model="
                       model.datosFisicosYRequerimientosDeFactuacion
@@ -700,7 +700,7 @@ export default {
         listaRequerimientoDeAccesoAlaPlata:{
         },
         sucursales:[],
-        iva: 0,
+        iva: 16,
       };
         var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'};
         this.$store.commit("setNotificacion", model_notificacion);

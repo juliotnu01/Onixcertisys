@@ -14,6 +14,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion.vue */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -125,6 +137,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "accion"
       }],
       options: {
+        chart: {
+          id: 'vuechart-example'
+        },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
         }
@@ -145,33 +160,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setDialogDuplicateCotizacion", true);
     },
     cargarchart: function cargarchart() {
-      var options = {
-        xaxis: {
-          categories: []
+      for (var _i = 0, _Object$entries = Object.entries(this.cliente_selected.has_cotizaciones); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        for (var i = 0; value.length > i; i++) {
+          this.options.xaxis.categories.push(key);
+          var total = 0;
+          total += value[i].total;
+          this.series[0].data.push(key);
         }
-      },
-          series = [{
-        name: "",
-        data: []
-      }],
-          cotizaciones = this.cliente_selected.has_cotizaciones,
-          countData = 0;
+      } // this.opcionesCotizacion = dataCotizacion;
 
-      for (var index = 0; index < cotizaciones.length; index++) {
-        options.xaxis.categories.push(cotizaciones[index].created_at.substr(0, 10));
-
-        for (var _index = 0; _index < cotizaciones.length; _index++) {
-          for (var _index2 = 0; _index2 < options.xaxis.categories.length; _index2++) {
-            if (cotizaciones[_index2].created_at.substr(0, 10) == options.xaxis.categories[_index2]) {
-              countData++;
-              series[0].data.push(countData);
-            }
-          }
-        }
-      }
-
-      this.options = options;
-      this.series = series;
     }
   }
 });
@@ -724,7 +725,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               _this2.services.claveSatServices.getclavesSat();
 
-            case 8:
+              console.log(_this2.cotizacion_para_duplicar);
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -826,7 +829,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "6" } },
+            { attrs: { cols: "12" } },
             [
               _c(
                 "v-row",
@@ -1019,22 +1022,6 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "6" } },
-            [
-              _c("apexcharts", {
-                attrs: {
-                  width: "100%",
-                  type: "line",
-                  options: _vm.options,
-                  series: _vm.series
-                }
-              })
             ],
             1
           )
@@ -1538,16 +1525,16 @@ var render = function() {
                                     model: {
                                       value:
                                         _vm.cotizacion_para_duplicar
-                                          .contacto_telefono,
+                                          .contacto_correo,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.cotizacion_para_duplicar,
-                                          "contacto_telefono",
+                                          "contacto_correo",
                                           $$v
                                         )
                                       },
                                       expression:
-                                        "cotizacion_para_duplicar.contacto_telefono"
+                                        "cotizacion_para_duplicar.contacto_correo"
                                     }
                                   })
                                 ],

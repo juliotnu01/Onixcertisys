@@ -18,6 +18,7 @@ class CreateDocumentosTable extends Migration
             $table->string('configuracion_documento')->nullable();
             $table->string('ruta_documento')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

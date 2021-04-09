@@ -18,8 +18,9 @@ class CreateIdenticadorInformesTable extends Migration
             $table->string('clave_info')->nullable();
             $table->bigInteger('cotizacion_id')->nullable();
             $table->bigInteger('info_id')->nullable();
-            $table->foreignId('partida_id')->constrained('partidas')->onDelete('cascade');
+            $table->foreignId('partida_id')->constrained('partidas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

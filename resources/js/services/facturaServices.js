@@ -46,9 +46,9 @@ export default class facturaServices {
             console.log(e);
         }
     }
-    async timbrarFactura() {
+    async timbrarFactura(fact) {
         try {
-            let { data } = await axios.post("/api/timbrar-factura");
+            let { data } = await axios.post("/api/timbrar-factura", fact);
             // store.commit("setSaldoTimbrado", data);
         } catch (e) {
             console.log(e);

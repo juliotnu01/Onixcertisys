@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ClienteImport;
 use DB;
+use Illuminate\Support\Str;
 
 class ClienteController extends Controller
 {
@@ -94,7 +95,7 @@ class ClienteController extends Controller
                 $cliente->moneda_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'];
                 $cliente->correo_envio_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['emailEnvioFactura'];
                 $cliente->cdfi = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi'];
-                $cliente->metodo_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'];
+                $cliente->metodo_de_pago  = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'];
                 $cliente->termino_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'];
                 $cliente->revision_de_factura_pagos_descripcion_revision_factura = $request['revisionDeFacturasYpagos']['descripcionRevisionFactura'];
                 $cliente->revision_de_factura_pagos_dias_revision_factura = $request['revisionDeFacturasYpagos']['diasRevisionFactura'];
@@ -140,16 +141,16 @@ class ClienteController extends Controller
 
                 if($collectServiciosSolicitados){
                     foreach ($collectServiciosSolicitados as $key => $value) {
-                        if ($key === 'calibracion' && $value == 'x') {
+                        if ($key === 'calibracion' &&  Str::lower($value)== 'x') {
     
                             $servicios[] = (object)['name' => $key, 'value' => 1];
-                        } elseif ($key === 'venta' && $value == 'x') {
+                        } elseif ($key === 'venta' &&  Str::lower($value)== 'x') {
     
                             $servicios[] = (object)['name' => $key, 'value' => 2];
-                        } elseif ($key === 'mantenimiento' && $value == 'x') {
+                        } elseif ($key === 'mantenimiento' &&  Str::lower($value)== 'x') {
     
                             $servicios[] = (object)['name' => $key, 'value' => 3];
-                        } elseif ($key === 'capacitación' && $value == 'x') {
+                        } elseif ($key === 'capacitación' &&  Str::lower($value)== 'x') {
     
                             $servicios[] = (object)['name' => $key, 'value' => 4];
                         } else {
@@ -169,26 +170,29 @@ class ClienteController extends Controller
                 if($collectFormaDePago){
 
                     foreach ($collectFormaDePago as $key => $value) {
-                    if ($key === 'transferenciaElectronica' && $value === 'x') {
+                    if ($key === 'transferenciaElectronica' &&  Str::lower($value) === 'x') {
                         $formaDePago = "Transferencia Electronica";
-                    } elseif ($key === 'depositoEnEfectivo' && $value === 'x') {
+                    } elseif ($key === 'depositoEnEfectivo' &&  Str::lower($value) === 'x') {
                         $formaDePago = "Deposito en efectivo";
                     } elseif ($key === 'cheque' && $value === 'x') {
                         $formaDePago = "Cheque";
+                    }else{
+                        $formaDePago = null;
                     }
                 }
                 }else{
                     $collectFormaDePago = '';
                 }
-
                 
                 $collectMoneda = collect($request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['monedaFactura']);
                 if($collectMoneda){
                     foreach ($collectMoneda as $key => $value) {
-                        if ($key === 'pesosMexicano' && $value === 'x') {
+                        if ($key === 'pesosMexicano' && Str::lower($value) === 'x') {
                             $moneda = "MXN";
-                        } elseif ($key === 'dolares' && $value === 'x') {
+                        } elseif ($key === 'dolares' && Str::lower($value) === 'x') {
                             $moneda = "USD";
+                        }else{
+                            $moneda = null;
                         }
                     }
                 }else{
@@ -199,12 +203,15 @@ class ClienteController extends Controller
                 
                 if($collectTerminosDePago){
                     foreach ($collectTerminosDePago as $key => $value) {
-                        if ($key === 'treintaDias' && $value === 'x') {
+                        if ($key === 'treintaDias' && Str::lower($value) === 'x') {
                             $terminoPago = "credito de 30 dias";
-                        } elseif ($key === 'quinceDias' && $value === 'x') {
+                        } elseif ($key === 'quinceDias' && Str::lower($value) === 'x') {
                             $terminoPago = "credito de 15 dias";
-                        } elseif ($key === 'contado' && $value === 'x') {
+                        } elseif ($key === 'contado' && Str::lower($value) === 'x') {
                             $terminoPago = "contado";
+                        }
+                        else{
+                            $terminoPago = null;
                         }
                     }
                 }else{
@@ -214,10 +221,12 @@ class ClienteController extends Controller
                 $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
                 if($collectUsuarioContraseña){
                     foreach ($collectUsuarioContraseña as $key => $value) {
-                        if ($key === 'seEnviaPorEmail' && $value === 'x') {
+                        if ($key === 'seEnviaPorEmail' && Str::lower($value) === 'x') {
                             $usuarioContraseña = "Se envia por Email";
-                        } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
+                        } elseif ($key === 'seOptienePorElPortal' && Str::lower($value) === 'x') {
                             $usuarioContraseña = "Se optiene por el portal";
+                        }else{
+                            $usuarioContraseña = null;
                         }
                     }
                 }else{
@@ -230,10 +239,12 @@ class ClienteController extends Controller
                 if($collectAltaFactura){
 
                     foreach ($collectAltaFactura as $key => $value) {
-                        if ($key === 'seEnviaPorEmail' && $value === 'x') {
+                        if ($key === 'seEnviaPorEmail' && Str::lower($value) === 'x') {
                             $altaFactura = "Se envia por Email";
-                        } elseif ($key === 'seOptienePorElPortal' && $value === 'x') {
+                        } elseif ($key === 'seOptienePorElPortal' && Str::lower($value) === 'x') {
                             $altaFactura = "Se optiene por el portal";
+                        }else{
+                            $altaFactura = null;
                         }
                     }
                 }else{
@@ -247,11 +258,14 @@ class ClienteController extends Controller
                 if($collectMetodoDePago){
 
                     foreach ($collectMetodoDePago as $key => $value) {
-                        if ($key === 'pagoParcialesDiferidos' && $value === 'x') {
+                        if ($key === 'pagoParcialesDiferidos' && Str::lower($value) === 'x') {
                             $metodoDepago = "Pago Parcialidades o Diferido";
-                        } elseif ($key === 'pagoEnUnaSolaExhibicion' && $value === 'x') {
+                        } elseif ($key === 'pagoEnUnaSolaExhibicion' && Str::lower($value) === 'x') {
                             $metodoDepago = "Pago en una sola exhibicion";
+                        }else{
+                            $metodoDepago = null;
                         }
+                        
                     }
                 }else{
                     $collectMetodoDePago = '';
@@ -286,7 +300,7 @@ class ClienteController extends Controller
                 $cliente->moneda_factura = $moneda;
                 $cliente->correo_envio_factura = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['emailParaEnvioFactura'];
                 $cliente->cdfi = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cfdi'];
-                $cliente->metodo_de_pago = $metodoDepago;
+                $cliente->metodo_de_pago  = $metodoDepago;
                 $cliente->termino_de_pago =  $terminoPago;
                 $cliente->revision_de_factura_pagos_descripcion_revision_factura = $request['revisionDeFacturaYpago']['descripcion'];
                 $cliente->revision_de_factura_pagos_dias_revision_factura = $request['revisionDeFacturaYpago']['diasDeRevisionDeFactura']['dias'];
@@ -304,7 +318,7 @@ class ClienteController extends Controller
                 $cliente->complemento_de_pago_se_envia_por_email = $request['revisionDeFacturaYpago']['complementoDePagoSeEnviaPorEmail'];
                 $cliente->informacion_adicional_complemento_de_pago = $request['revisionDeFacturaYpago']['informacionAdicionalDePago'];
                 $cliente->lista_requerimiento_acceso_planta = $request['listaDeAccesoAlaPlata'];
-                $cliente->iva = "";
+                $cliente->iva = 16;
                 $cliente->save();
 
                  foreach ($request['sucursales'] as $key => $value) {
@@ -359,7 +373,6 @@ class ClienteController extends Controller
     {
         try {
             return DB::transaction(function () use ($request, $cliente) {
-
                 $cliente->find($request['id'])->update([
                     'servicio_solicitado' => json_encode($request['servicio_solicitado']),
                     'persona_de_contacto_nombre' => $request['persona_de_contacto']['nombre'],
@@ -384,6 +397,10 @@ class ClienteController extends Controller
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['ciudad'],
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['estado'],
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cp'],
+                    'forma_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago'],
+                    'moneda_factura' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'],
+                    'termino_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago'],
+                    'metodo_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago'],
                     'correo_envio_factura' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['emailEnvioFactura'],
                     'cdfi' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi'],
                     'revision_de_factura_pagos_descripcion_revision_factura' => $request['revisionDeFacturasYpagos']['descripcionRevisionFactura'],
@@ -402,7 +419,6 @@ class ClienteController extends Controller
                     'complemento_de_pago_se_envia_por_email' => $request['revisionDeFacturasYpagos']['complementoDePagoSeEnviaPorEmail'],
                     'informacion_adicional_complemento_de_pago' => $request['revisionDeFacturasYpagos']['informacionAdicionalComplementoDePago'],
                     'lista_requerimiento_acceso_planta' => $request['revisionDeFacturasYpagos']['listaRequerimientoDeAccesoAlaPlata'],
-                    'iva' => $request['iva'],
                     'iva' => $request['iva'],
                 ]);
                 for ($i = 0; $i < collect($request['sucursales'])->count(); $i++) {

@@ -139,7 +139,6 @@ class CotizacionController extends Controller
 
     public function storeDuplicate(Request $request, Cotizacion $cotizacion)
     {
-
         try {
             return DB::transaction(function () use ($request, $cotizacion) {
                 $cotizacion->cliente_id = $request['cliente_id'];
@@ -148,7 +147,7 @@ class CotizacionController extends Controller
                 $cotizacion->tiempo_de_entrega_id = $request['tiempo_de_entrega_id'];
                 $cotizacion->tipo_de_servicio = $request['tipo_de_servicio'];
                 $cotizacion->nota_para_la_cotizacion = $request['nota_para_la_cotizacion'];
-                $cotizacion->estado_de_la_cotizacion = $request['estado_de_la_cotizacion'];
+                $cotizacion->estado_de_la_cotizacion = "pendiente";
                 $cotizacion->contacto = $request['contacto'];
                 $cotizacion->contacto_telefono = $request['contacto_telefono'];
                 $cotizacion->contacto_correo = $request['contacto_correo'];
@@ -260,8 +259,8 @@ class CotizacionController extends Controller
                         $partida->serie = $value['serie'];
                         $partida->instrumento_id = $value['has_intrumento']['id'];
                         $partida->cotizacion_id = $request['id'];
-                        $partida->unidad_id = $value['unidad_cod']['id'];
-                        $partida->clave_sat_id = $value['clave_sat']['id'];
+                        $partida->unidad_id = $value['has_unidad']['id'];
+                        $partida->clave_sat_id = $value['has_clave_sat']['id'];
                         $partida->save();
                     }
                 }

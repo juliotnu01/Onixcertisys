@@ -18,6 +18,7 @@ class CreateRutaPermisosTable extends Migration
             $table->string('nombre_ruta')->nullable();
             $table->foreignId('permission_rol_users_id')->nullable()->constrained('permission_rol_users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

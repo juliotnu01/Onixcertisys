@@ -155,11 +155,12 @@ class EmpleadoController extends Controller
 
     public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento)
     {
-            $instrumento->find($request['model']['has_intrumento']['id'])->update([
-                'documento_id' =>  $request['file']['id']
-            ]);
-        return ;
-        Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            // $instrumento->find($request['model']['has_intrumento']['id'])->update([
+            //     'documento_id' =>  $request['file']['id']
+            // ]);
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            dd($r);
+
 
         try {
             return DB::transaction(function() use ($request, $partida){

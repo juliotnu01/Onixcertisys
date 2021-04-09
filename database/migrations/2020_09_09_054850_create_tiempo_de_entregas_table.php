@@ -17,6 +17,7 @@ class CreateTiempoDeEntregasTable extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

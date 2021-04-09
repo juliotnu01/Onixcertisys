@@ -20,6 +20,7 @@ class CreateSucursalClientesTable extends Migration
             $table->string('telefono')->nullable();
             $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

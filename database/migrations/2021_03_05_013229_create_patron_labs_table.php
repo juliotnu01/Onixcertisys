@@ -18,6 +18,7 @@ class CreatePatronLabsTable extends Migration
             $table->foreignId('patron_id')->nullable()->constrained('patrons');
             $table->foreignId('partida_id')->nullable()->constrained('partidas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

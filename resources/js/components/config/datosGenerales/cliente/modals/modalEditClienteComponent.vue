@@ -26,7 +26,7 @@
                     :items="items_servicios_solicitados"
                     outlined
                     chips
-                    label="Sercicios"
+                    label="Servicios"
                     item-text="name"
                     item-value="value"
                     multiple
@@ -220,7 +220,7 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
-                    label="Esado"
+                    label="Estado"
                     outlined
                     v-model="
                       cliente.datosFisicosYRequerimientosDeFactuacion
@@ -656,6 +656,7 @@ export default {
   },
   methods: {
     async editCliente() {
+      console.log(this.cliente)
         await this.services.clienteServices.actualizarCliente(this.cliente)
         await this.services.clienteServices.getlistclientes()
     },

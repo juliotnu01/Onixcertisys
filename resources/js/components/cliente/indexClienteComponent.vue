@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12">
         <v-row>
           <v-col cols="12">
             <v-autocomplete
@@ -59,14 +59,14 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="6">
+      <!-- <v-col cols="6">
         <apexcharts
           width="100%"
           type="line"
           :options="options"
           :series="series"
         ></apexcharts>
-      </v-col>
+      </v-col> -->
     </v-row>
     <modal-para-duplicar />
     <notificacion />
@@ -108,9 +108,12 @@ export default {
         },
       ],
       options: {
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        chart: {
+          id: 'vuechart-example'
         },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        }
       },
       series: [
         {
@@ -132,36 +135,16 @@ export default {
       this.$store.commit("setDialogDuplicateCotizacion", true);
     },
     cargarchart() {
-      var options = {
-          xaxis: {
-            categories: [],
-          },
-        },
-        series = [
-          {
-            name: "",
-            data: [],
-          },
-        ],
-        cotizaciones = this.cliente_selected.has_cotizaciones,
-        countData = 0;
-
-      for (let index = 0; index < cotizaciones.length; index++) {
-        options.xaxis.categories.push(cotizaciones[index].created_at.substr(0, 10));
-        for (let index = 0; index < cotizaciones.length; index++) {
-          for (let index = 0; index < options.xaxis.categories.length; index++) {
-            if (
-              cotizaciones[index].created_at.substr(0, 10) ==
-              options.xaxis.categories[index]
-            ) {
-              countData++;
-              series[0].data.push(countData);
-            }
-          }
+      for (let [key, value] of Object.entries(this.cliente_selected.has_cotizaciones)) {
+        for (var i = 0; value.length > i; i++) {
+          this.options.xaxis.categories.push(key);
+          var total = 0;
+          total += value[i].total;
+        this.series[0].data.push(key);
         }
       }
-      this.options = options;
-      this.series = series;
+      // this.opcionesCotizacion = dataCotizacion;
+
     },
   },
 };

@@ -2186,7 +2186,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "vigencia",
         align: "center"
       }, {
-        text: "Convertir en recibo",
+        text: "Convertir en O.D.S",
         value: "convert_recibo",
         align: "center"
       }]

@@ -19,6 +19,7 @@ class CreateNotaDeSeguimientosTable extends Migration
             $table->foreignId('partida_id')->nullable()->constrained('partidas')->nullable();
             $table->foreignId('cotizacion_id')->nullable()->constrained('cotizacions')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

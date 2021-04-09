@@ -55,8 +55,10 @@
                       Orden de servicio:
                       {{ data.item.id }} -
                       {{
-                        data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
+                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                          0,
+                          30
+                        )
                       }}
                       <v-alert
                         color="primary"
@@ -99,8 +101,10 @@
                       Orden de servicio:
                       {{ data.item.id }} -
                       {{
-                        data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
+                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                          0,
+                          30
+                        )
                       }}
                       <v-alert
                         color="primary"
@@ -141,8 +145,10 @@
                       Orden de servicio:
                       {{ data.item.id }} -
                       {{
-                        data.item.has_cotizaicon.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)
+                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
+                          0,
+                          30
+                        )
                       }}
                       <v-alert
                         color="primary"
@@ -217,8 +223,13 @@
               </v-col>
 
               <v-col cols="12" xs="12" sm="4" md="4">
-                <v-text-field label="Forma de pago" outlined disabled  v-model="cotizacion_partida.has_cliente.forma_de_pago" 
-                v-if="cotizacion_partida.hasOwnProperty('has_cliente')" />
+                <v-text-field
+                  label="Forma de pago"
+                  outlined
+                  disabled
+                  v-model="cotizacion_partida.has_cliente.forma_de_pago"
+                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
+                />
               </v-col>
 
               <v-col cols="12" xs="12" sm="4" md="4">
@@ -226,11 +237,17 @@
                   label="Metodo de pago"
                   v-model="cotizacion_partida.has_cliente.metodo_de_pago"
                   outlined
-                  disabled 
+                  disabled
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
               </v-col>
-
+              <v-col cols="12" xs="12" sm="12" md="12">
+                <v-text-field
+                  label="Orden de Compra"
+                  outlined
+                  v-model="orden_de_compra"
+                />
+              </v-col>
               <v-spacer />
               <v-col
                 cols="12"
@@ -306,6 +323,13 @@
                   item-text="nombre"
                   item-value="id"
                   return-object
+                />
+              </v-col>
+                <v-col cols="12" xs="12" sm="12" md="12">
+                <v-text-field
+                  label="Orden de Compra"
+                  outlined
+                  v-model="orden_de_compra"
                 />
               </v-col>
 
@@ -805,6 +829,7 @@ export default {
       partidas_acumuladas_2: [],
       cotizacion_partida: {},
       editPrecioVenta: false,
+      orden_de_compra: "",
       item_factura_nueva: {
         claveSat: {},
         cantidad: 1,
@@ -999,7 +1024,7 @@ export default {
         this.cotizacion_partida = {};
         await this.services.reciboServices.getlistRecibosClientes(cli);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     remove(item) {
@@ -1013,7 +1038,7 @@ export default {
     CargarPartidas(p) {
       this.model.recibo.forEach((item) => {
         this.cotizacion_partida = item.has_cotizaicon;
-        console.log({cot:this.cotizacion_partida})
+        console.log({ cot: this.cotizacion_partida });
       });
       for (var i = 0; i < this.model.recibo.length; i++) {
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {
@@ -1037,8 +1062,8 @@ export default {
         iva: this.var_computed_iva,
         total: this.var_computed_total,
         nota: this.cotizacion_partida.nota_de_factura,
+        orden_de_compra: this.orden_de_compra,
       };
-      console.log({ dataFactura });
       this.$store.commit("setDialogFactura", dataFactura);
       this.$store.commit("setDialogAddFactura", true);
     },
@@ -1053,6 +1078,7 @@ export default {
         formaDePago: this.model.factura_nueva.forma_de_pago,
         metodoDePago: this.model.factura_nueva.metodo_de_pago,
         moneda: this.model.factura_nueva.moneda,
+        orden_de_compra: this.orden_de_compra,
       };
 
       this.services.facturaServices.agregarFacturaNueva(dataFactura);

@@ -17,6 +17,7 @@ class CreateReporteVentasPorMagnitudsTable extends Migration
             $table->id();
             $table->string('reporte_venta_por_magnitud')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

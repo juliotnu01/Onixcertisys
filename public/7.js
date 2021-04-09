@@ -255,7 +255,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.services.facturaServices.getlistFacturas();
     this.services.facturaServices.consultarSaldoTimprado();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "facturas", "saldoTimbre"]))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "facturas", "saldoTimbre"])),
+  methods: {
+    TimprarFactura: function TimprarFactura(fact) {
+      this.services.facturaServices.timbrarFactura(fact);
+    }
+  }
 });
 
 /***/ }),
@@ -753,6 +758,16 @@ var render = function() {
                                                           icon: "",
                                                           small: "",
                                                           color: "primary"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            return _vm.TimprarFactura(
+                                                              item
+                                                            )
+                                                          }
                                                         }
                                                       },
                                                       [

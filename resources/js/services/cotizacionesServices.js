@@ -67,16 +67,16 @@ export default class cotizacionServices {
                 tipo_de_servicio: cot.tipo_de_servicio,
                 nota_para_la_cotizacion: cot.nota_para_la_cotizacion,
                 estado_de_la_cotizacion: cot.estado_de_la_cotizacion,
-                contacto: cot.has_cliente.nombre_contacto,
-                contacto_telefono: cot.has_cliente.telefono_contacto,
-                contacto_correo: cot.has_cliente.correo_contacto,
+                contacto: cot.contacto,
+                contacto_telefono: cot.contacto_telefono,
+                contacto_correo: cot.contacto_correo,
                 condicion: cot.condicion,
                 nota_de_seguimiento: cot.nota_de_seguimiento,
                 partidas: cot.has_partidas,
                 sub_total: cot.sub_total,
                 iva: cot.iva,
                 total: cot.total
-            };
+            }
             let { data } = await axios.post("/api/add-cotizacion-duplicate", model);
             store.commit("setDialogDuplicateCotizacion", false);
         } catch (e) {
@@ -97,9 +97,9 @@ export default class cotizacionServices {
                 tipo_de_servicio: cot.tipo_de_servicio.name,
                 nota_para_la_cotizacion: cot.nota_para_la_cotizacion,
                 estado_de_la_cotizacion: cot.estado_de_la_cotizacion.name,
-                contacto: cot.has_cliente.nombre_contacto,
-                contacto_telefono: cot.has_cliente.telefono_contacto,
-                contacto_correo: cot.has_cliente.correo_contacto,
+                contacto: cot.has_cliente.contacto_adicionales_compra,
+                contacto_telefono: cot.has_cliente.contacto_adicionales_compra_telf,
+                contacto_correo: cot.has_cliente.contacto_adicionales_correo,
                 condicion: cot.condicion,
                 nota_de_seguimiento: cot.nota_de_seguimiento,
                 partidas: cot.has_partidas,

@@ -20,8 +20,9 @@ class CreateRecibosTable extends Migration
             $table->bigInteger('sub_total')->nullable();
             $table->bigInteger('iva')->nullable();
             $table->bigInteger('total')->nullable();
-            $table->foreignId('cotizacion_id')->constrained('cotizacions')->onDelete('cascade');
+            $table->foreignId('cotizacion_id')->constrained('cotizacions');
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 

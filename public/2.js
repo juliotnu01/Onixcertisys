@@ -262,8 +262,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -343,10 +341,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
-                  item.children.push({
-                    name: "Folio: ".concat(recibo.id, " - Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10), " - Estado: ").concat(recibo.estado, "  "),
-                    id: recibo.id
-                  });
+                  if (recibo.has_cotizaicon.has_cliente !== null) {
+                    item.children.push({
+                      name: "Folio: ".concat(recibo.id, " - Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10), " - Estado: ").concat(recibo.estado, "  "),
+                      id: recibo.id
+                    });
+                  }
                 }));
 
               case 1:
@@ -1027,7 +1027,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "h6",
-                                  { staticClass: "headline mb-2  text-right" },
+                                  { staticClass: "headline mb-2 text-right" },
                                   [
                                     _c("strong", [_vm._v("Vendedor: ")]),
                                     _vm._v(

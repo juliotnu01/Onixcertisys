@@ -30,7 +30,7 @@
         </v-col>
         <v-divider vertical></v-divider>
         <v-col class="">
-          <v-scroll-y-transition mode="out-in" class="p-1" >
+          <v-scroll-y-transition mode="out-in" class="p-1">
             <div
               v-if="!selected"
               class="title grey--text text--lighten-1 font-weight-light"
@@ -42,9 +42,7 @@
               <v-card-text>
                 <h6 class="headline mb-2 text-right">
                   <strong>Fecha: </strong>
-                  {{
-                    selected.created_at.substr(0,10)
-                  }}
+                  {{ selected.created_at.substr(0, 10) }}
                   <br />
                 </h6>
                 <h6 class="headline mb-2">
@@ -55,7 +53,7 @@
                   }}
                   <br />
                 </h6>
-                 <h6 class="headline mb-2">
+                <h6 class="headline mb-2">
                   <strong>Dirección: </strong>
                   {{
                     selected.has_cotizaicon.has_cliente
@@ -81,19 +79,19 @@
                 </h6>
                 <h6 class="headline mb-2">
                   <strong>Persona de contacto: </strong>
-                  {{selected.has_cotizaicon.contacto}}<br />
+                  {{ selected.has_cotizaicon.contacto }}<br />
                   <strong>Correo de contacto: </strong>
-                  {{selected.has_cotizaicon.contacto_correo}}<br />
+                  {{ selected.has_cotizaicon.contacto_correo }}<br />
                   <strong>Teléfono de contacto: </strong>
-                  {{selected.has_cotizaicon.contacto_telefono}}<br />
+                  {{ selected.has_cotizaicon.contacto_telefono }}<br />
                 </h6>
-                <h6 class="headline mb-2  text-right">
+                <h6 class="headline mb-2 text-right">
                   <strong>Vendedor: </strong>
-                  {{selected.has_cotizaicon.has_empleado.nombre_completo}}<br />
+                  {{ selected.has_cotizaicon.has_empleado.nombre_completo }}<br />
                   <strong>Estado: </strong>
-                  {{selected.estado}}<br />
+                  {{ selected.estado }}<br />
                   <strong>Tipo: </strong>
-                  {{selected.has_cotizaicon.tipo_de_servicio}}<br />
+                  {{ selected.has_cotizaicon.tipo_de_servicio }}<br />
                 </h6>
               </v-card-text>
               <v-divider></v-divider>
@@ -293,13 +291,15 @@ export default {
 
     async fetchUsers(item) {
       return this.recibos.forEach((recibo) => {
-        item.children.push({
-          name: `Folio: ${recibo.id} - Empresa: ${
-            recibo.has_cotizaicon.has_cliente
-              .datos_fisicos_requeremientos_facturacion_razon_social
-          } - Fecha: ${recibo.created_at.substr(0, 10)} - Estado: ${recibo.estado}  `,
-          id: recibo.id,
-        });
+        if(recibo.has_cotizaicon.has_cliente !== null ) {
+          item.children.push({
+            name: `Folio: ${recibo.id} - Empresa: ${
+              recibo.has_cotizaicon.has_cliente
+                .datos_fisicos_requeremientos_facturacion_razon_social
+            } - Fecha: ${recibo.created_at.substr(0, 10)} - Estado: ${recibo.estado}  `,
+            id: recibo.id,
+          });
+        }
       });
     },
     async reload() {

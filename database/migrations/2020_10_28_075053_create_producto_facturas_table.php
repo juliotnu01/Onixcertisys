@@ -24,6 +24,7 @@ class CreateProductoFacturasTable extends Migration
             $table->bigInteger('precio_unitario')->nullable();
             $table->bigInteger('importe')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
