@@ -40,7 +40,7 @@
     <table>
         <tr>
             <td class="tdLogo" >
-                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">--}}
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
