@@ -38,6 +38,13 @@
         margin-top: 5px;
         text-align: center;
     }
+    .tableCabecera{
+        width: 100%;
+        height: auto;
+        font-size: 16px;
+        border: 2px solid #4d99de;
+        border-radius: 5px 5px 5px 5px;
+    }
 </style>
 <body>
     <table>
@@ -70,6 +77,44 @@
                 </div>
             </td>
         </tr>
+    </table>
+    <table class="tableCabecera">
+        <tbody>
+            <tr>
+                <td>Cliente:</td>
+                <td colspan="6" ></td>
+                <td>Fecha:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Dirección Fiscal:</td>
+                <td colspan="6"></td>
+                <td>Moneda:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Dirección Sucursal:</td>
+                <td colspan="6"></td>
+                <td>Tipo de Servicio:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Contacto:</td>
+                <td colspan="6"></td>
+                <td>Tiempo Entrega:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td></td>
+                <td>Teléfono:</td>
+                <td  colspan="4"></td>
+                <td>Codiciones de pago:</td>
+                <td></td>
+                <td>Dias:</td>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
     {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
