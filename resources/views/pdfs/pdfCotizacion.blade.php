@@ -17,23 +17,27 @@
         font-size: 8px;
         width: 20%;
         text-align: center;
+        color: #4d99de;
     }
     .tdInfoNumberCotizacion{
+        width: 10%;
+    }
+    .cotWord{
         font-size: 20px;
-        width: 20%;
         text-align: center;
-        background-color: blue;
+        background-color: #4d99de;
         border-radius: 10%;
         padding: 1%;
         color: white
     }
-    .trCabecera{
-        background-color:#CCC;
-		width:100%;
-		height:100px
-    }
     .trCabecera td{
 		float:left;
+    }
+    .cotNumber{
+        padding: 2%;
+    border: 1px solid #4d99de;
+    border-radius: 15%;
+    margin-top: 5%;
     }
 </style>
 <body>
@@ -62,8 +66,8 @@
             </td>
             <td class="tdInfoNumberCotizacion" >
                 <div>
-                    <div>cotizacion</div>
-                    <div>#99.999.999.99</div>
+                    <div class="cotWord">cotizacion</div>
+                    <div class="cotNumber" >#99.999.999.99</div>
                 </div>
             </td>
         </tr>
