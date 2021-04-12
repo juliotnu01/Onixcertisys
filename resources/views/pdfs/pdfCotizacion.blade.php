@@ -37,7 +37,7 @@
         padding: 2%;
     border: 1px solid #4d99de;
     border-radius: 15%;
-    margin-top: 5%;
+    margin-top: 1%;
     }
 </style>
 <body>
