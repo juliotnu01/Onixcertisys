@@ -25,7 +25,7 @@
     }
      .cotWord{
         font-size: 20px;
-        width: 45%;
+        width: 70%;
         text-align: center;
         background-color: blue;
         border-radius: 10%;
