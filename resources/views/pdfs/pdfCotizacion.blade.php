@@ -19,13 +19,8 @@
         text-align: center;
     }
     .tdInfoNumberCotizacion{
-        font-size: 8px;
-        width: 20%;
-        text-align: center;
-    }
-     .cotWord{
         font-size: 20px;
-        width: 70%;
+        width: 20%;
         text-align: center;
         background-color: blue;
         border-radius: 10%;
@@ -45,7 +40,7 @@
     <table>
         <tr>
             <td class="tdLogo" >
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">
+                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">--}}
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -67,7 +62,7 @@
             </td>
             <td class="tdInfoNumberCotizacion" >
                 <div>
-                    <div class="cotWord">cotizacion</div>
+                    <div>cotizacion</div>
                     <div>#99.999.999.99</div>
                 </div>
             </td>
