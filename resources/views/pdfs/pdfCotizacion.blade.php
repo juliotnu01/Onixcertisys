@@ -33,7 +33,7 @@
 		float:left;
     }
     .cotNumber{
-        border: 1px solid #4d99de;
+        border: 2px solid #4d99de;
         border-radius: 15%;
         margin-top: 5px;
         text-align: center;
@@ -45,6 +45,23 @@
         border: 2px solid #4d99de;
         border-radius: 5px 5px 5px 5px;
         text-align: right;
+    }
+    .tableCuerpoItems{
+        width: 100%;
+        border: 2px solid #4d99de;
+        margin-top: 5px;
+    }
+    .tableCuerpoItems_head{
+        background-color: #4d99de;
+        color: white;
+        font-size: 8px;
+        border: 2px solid #4d99de;
+    }
+    .tableCuerpoItems_head tr{
+        background-color: #4d99de;
+        color: white;
+        font-size: 8px;
+        border: 2px solid #4d99de;
     }
 </style>
 <body>
@@ -117,6 +134,50 @@
             </tr>
         </tbody>
     </table>
+    <table class="tableCuerpoItems">
+        <thead class="tableCuerpoItems_head" >
+            <tr>
+                <th>Part</th>
+                <th>Cant</th>
+                <th>Serv</th>
+                <th>Instrumento</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Alcance</th>
+                <th>ID</th>
+                <th>Acreditación</th>
+                <th>Vigencia</th>
+                <th>Precio</th>
+                <th>Unitario</th>
+                <th>Importe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>#</th>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- Part	Cant	Serv	Instrumento	Marca	Modelo	Serie	Alcance	ID	Acreditación	Vigencia	Precio Unitario	Importe
+												
+												
+												
+												
+												
+												
+												
+												
+												
+  Importe con letra    (                                                                                                                                                                 )	SubTotal 	
+ 	I.V.A. 16% 	
+  Serv:    C  Calibración       R  Reparación       M  Mantenimiento       V  Venta de Equipo	Total 	 -->
+
     {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
             <td style="width:70%">
