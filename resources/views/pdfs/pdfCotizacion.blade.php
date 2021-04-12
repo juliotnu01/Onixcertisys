@@ -14,7 +14,7 @@
         text-align: center;
     }
     .tdInfoEmpresaContactos{
-        font-size: 8px;
+        font-size: 10px;
         width: 20%;
         text-align: center;
         color: #4d99de;
@@ -35,9 +35,9 @@
     }
     .cotNumber{
         padding: 2%;
-    border: 1px solid #4d99de;
-    border-radius: 15%;
-    margin-top: 1%;
+        border: 1px solid #4d99de;
+        border-radius: 15%;
+        margin-top: 5px;
     }
 </style>
 <body>
