@@ -34,10 +34,10 @@
 		float:left;
     }
     .cotNumber{
-        padding: 2%;
         border: 1px solid #4d99de;
         border-radius: 15%;
         margin-top: 5px;
+        text-align: center;
     }
 </style>
 <body>
@@ -66,7 +66,7 @@
             </td>
             <td class="tdInfoNumberCotizacion" >
                 <div>
-                    <div class="cotWord">cotizacion</div>
+                    <div class="cotWord">COTIZACIÓN</div>
                     <div class="cotNumber" >#99.999.999.99</div>
                 </div>
             </td>
