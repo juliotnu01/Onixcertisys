@@ -41,7 +41,7 @@
     .tableCabecera{
         width: 100%;
         height: auto;
-        font-size: 8px;
+        font-size: 10px;
         border: 2px solid #4d99de;
         border-radius: 5px 5px 5px 5px;
         text-align: right;
