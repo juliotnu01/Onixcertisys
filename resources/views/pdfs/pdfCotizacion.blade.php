@@ -41,9 +41,10 @@
     .tableCabecera{
         width: 100%;
         height: auto;
-        font-size: 10px;
+        font-size: 8px;
         border: 2px solid #4d99de;
         border-radius: 5px 5px 5px 5px;
+        text-align: right;
     }
 </style>
 <body>
@@ -81,38 +82,38 @@
     <table class="tableCabecera">
         <tbody>
             <tr>
-                <td>Cliente:</td>
-                <td colspan="8" ></td>
-                <td>Fecha:</td>
-                <td></td>
+                <td style="width: 5%;" >Cliente:</td>
+                <td style="width: 5%;"  colspan="3" ></td>
+                <td style="width: 5%;" >Fecha:</td>
+                <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td>Dirección Fiscal:</td>
-                <td colspan="8"></td>
-                <td>Moneda:</td>
-                <td></td>
+                <td style="width: 5%;" >Dirección Fiscal:</td>
+                <td style="width: 5%;"  colspan="3"></td>
+                <td style="width: 5%;" >Moneda:</td>
+                <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td>Dirección Sucursal:</td>
-                <td colspan="8"></td>
-                <td>Tipo de Servicio:</td>
-                <td></td>
+                <td style="width: 5%;" >Dirección Sucursal:</td>
+                <td style="width: 5%;"  colspan="3"></td>
+                <td style="width: 5%;" >Tipo de Servicio:</td>
+                <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td>Contacto:</td>
-                <td colspan="8"></td>
-                <td>Tiempo Entrega:</td>
-                <td></td>
+                <td style="width: 5%;" >Contacto:</td>
+                <td style="width: 5%;"  colspan="3"></td>
+                <td style="width: 5%;" >Tiempo Entrega:</td>
+                <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td>Email:</td>
-                <td></td>
-                <td>Teléfono:</td>
-                <td  colspan="6"></td>
-                <td>Codiciones de pago:</td>
-                <td></td>
-                <td>Dias:</td>
-                <td></td>
+                <td style="width: 5%;" >Email:</td>
+                <td style="width: 5%;" ></td>
+                <td style="width: 5%;" >Teléfono:</td>
+                <td style="width: 5%;"   ></td>
+                <td style="width: 5%;" >Codiciones de pago:</td>
+                <td style="width: 5%;"  ></td>
+                <td style="width: 5%;" >Dias:</td>
+                <td style="width: 5%;" ></td>
             </tr>
         </tbody>
     </table>
