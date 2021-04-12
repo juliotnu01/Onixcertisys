@@ -41,7 +41,7 @@
     .tableCabecera{
         width: 100%;
         height: auto;
-        font-size: 16px;
+        font-size: 10px;
         border: 2px solid #4d99de;
         border-radius: 5px 5px 5px 5px;
     }
@@ -82,25 +82,25 @@
         <tbody>
             <tr>
                 <td>Cliente:</td>
-                <td colspan="6" ></td>
+                <td colspan="8" ></td>
                 <td>Fecha:</td>
                 <td></td>
             </tr>
             <tr>
                 <td>Dirección Fiscal:</td>
-                <td colspan="6"></td>
+                <td colspan="8"></td>
                 <td>Moneda:</td>
                 <td></td>
             </tr>
             <tr>
                 <td>Dirección Sucursal:</td>
-                <td colspan="6"></td>
+                <td colspan="8"></td>
                 <td>Tipo de Servicio:</td>
                 <td></td>
             </tr>
             <tr>
                 <td>Contacto:</td>
-                <td colspan="6"></td>
+                <td colspan="8"></td>
                 <td>Tiempo Entrega:</td>
                 <td></td>
             </tr>
@@ -108,7 +108,7 @@
                 <td>Email:</td>
                 <td></td>
                 <td>Teléfono:</td>
-                <td  colspan="4"></td>
+                <td  colspan="6"></td>
                 <td>Codiciones de pago:</td>
                 <td></td>
                 <td>Dias:</td>
