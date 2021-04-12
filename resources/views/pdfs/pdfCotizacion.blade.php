@@ -27,7 +27,6 @@
         text-align: center;
         background-color: #4d99de;
         border-radius: 10%;
-        padding: 1%;
         color: white
     }
     .trCabecera td{
