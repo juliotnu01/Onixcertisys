@@ -158,8 +158,8 @@ class EmpleadoController extends Controller
             // $instrumento->find($request['model']['has_intrumento']['id'])->update([
             //     'documento_id' =>  $request['file']['id']
             // ]);
+            dd(json_encode($request->all()));
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
-            dd($r);
 
 
         try {

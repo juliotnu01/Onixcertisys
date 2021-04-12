@@ -4,16 +4,76 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-
+<style>
+    .tdLogo{
+        width: 40%;
+    }
+    .tdInfoEmpresa{
+        font-size: 8px;
+        width: 20%;
+        text-align: center;
+    }
+    .tdInfoEmpresaContactos{
+        font-size: 8px;
+        width: 20%;
+        text-align: center;
+    }
+    .tdInfoNumberCotizacion{
+        font-size: 8px;
+        width: 20%;
+        text-align: center;
+    }
+     .cotWord{
+        font-size: 20px;
+        width: 45%;
+        text-align: center;
+        background-color: blue;
+        border-radius: 10%;
+        padding: 1%;
+        color: white
+    }
+    .trCabecera{
+        background-color:#CCC;
+		width:100%;
+		height:100px
+    }
+    .trCabecera td{
+		float:left;
+    }
+</style>
 <body>
-    <table class="page_header" style="width:100%; height: 120px; font-size:10px">
-        <tr style="vertical-align: top">
-            <td style="width:100%">
-                <img src="{{ asset('img/cotizacion_cab.png') }}" style="width: 100%;">
+    <table>
+        <tr>
+            <td class="tdLogo" >
+                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">--}}
+            </td>
+            <td class="tdInfoEmpresa">
+                <span>
+                Accredian, S. DE R.L. DE C.V.<br/>
+                RFC: ACC1905026P3<br/>
+                Domicilio Fiscal: Calle Monclova 213, 
+                Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br/>
+                Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector, 
+                San Nicolas de los Garza, N.L. MX CP. 66460
+                </span>
+            </td>
+            <td class="tdInfoEmpresaContactos">
+                <span>
+                    Tel.  813-186-4994<br/>
+                    813-186-4995<br/>
+                    818-748-0707<br/>
+                    www.accredian.com
+                </span>
+            </td>
+            <td class="tdInfoNumberCotizacion" >
+                <div>
+                    <div class="cotWord">cotizacion</div>
+                    <div>#99.999.999.99</div>
+                </div>
             </td>
         </tr>
     </table>
-    <table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
+    {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
             <td style="width:70%">
                 <span style="color:#003177"><b>{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</b></span><br>
@@ -133,7 +193,7 @@
                 <b>Autorización Cliente</b>
             </td>
         </tr>
-    </table>
+    </table>--}}
 </body>
 
 </html>
