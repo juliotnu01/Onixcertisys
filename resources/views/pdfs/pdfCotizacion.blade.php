@@ -59,12 +59,16 @@
     .tableCuerpoItems_head_tr{
         background-color: #4d99de;
         color: white;
-        font-size: 8px;
+        font-size: 10px;
     }
     .tableCuerpoItems_body_tr td{
         border: 1px solid #4d99de;
         text-align: center;
         font-size: 10px;
+    }
+    .tableCuerpoItems_footer_tr td{
+        text-align: left;
+        font-size: 12px;
     }
 </style>
 <body>
@@ -151,8 +155,7 @@
                 <th>ID</th>
                 <th>Acreditación</th>
                 <th>Vigencia</th>
-                <th>Precio</th>
-                <th>Unitario</th>
+                <th>Precio Unitario</th>
                 <th>Importe</th>
             </tr>
         </thead>
@@ -171,26 +174,8 @@
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
-                <td>asd</td>
             </tr>
             <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
@@ -219,7 +204,6 @@
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
-                <td>asd</td>
             </tr>
             <tr class="tableCuerpoItems_body_tr" >
                 <td>asd</td>
@@ -235,58 +219,8 @@
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
-                <td>asd</td>
             </tr>
             <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
@@ -303,7 +237,35 @@
             </tr>
         </tbody>
         <tfoot>
-            <tr>
+            <tr class="tableCuerpoItems_footer_tr" >
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="6" style="color: #4d99de; font-weight: bold;" >Importe con letra (Novecientos noventa y nueve millones novecientos noventa y nuevemil noveciento noventa y nueve)</td> <!--//number letter-->
+                <td></td>
+                <td></td>
+                <td style="text-align: right;" >SubTotal:</td>
+                <td></td>
+            </tr>
+            <tr class="tableCuerpoItems_footer_tr" >
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="6"></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right;" >I.V.A. <small>(16%)</small>:</td>
+                <td></td>
+            </tr>
+            <tr class="tableCuerpoItems_footer_tr" >
+                <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp;    C  Calibración   &nbsp; &nbsp; &nbsp;R  Reparación    &nbsp; &nbsp; &nbsp;M  Mantenimiento &nbsp; &nbsp; &nbsp;V  Venta de Equipo</small></td>
+                <td></td>
+                <td></td>
+                <td ></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right;" >Total:</td>
+                <td></td>
             </tr>
         </tfoot>
     </table>
