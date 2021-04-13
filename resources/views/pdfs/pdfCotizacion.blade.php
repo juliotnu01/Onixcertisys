@@ -55,13 +55,11 @@
         background-color: #4d99de;
         color: white;
         font-size: 8px;
-        border: 2px solid #4d99de;
     }
-    .tableCuerpoItems_head tr{
+    .tableCuerpoItems_head_tr{
         background-color: #4d99de;
         color: white;
         font-size: 8px;
-        border: 2px solid #4d99de;
     }
 </style>
 <body>
@@ -136,7 +134,7 @@
     </table>
     <table class="tableCuerpoItems">
         <thead class="tableCuerpoItems_head" >
-            <tr>
+            <tr bgcolor="#4d99de" cellspacing=0 class="tableCuerpoItems_head_tr">
                 <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
