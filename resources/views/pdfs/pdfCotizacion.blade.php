@@ -153,7 +153,7 @@
     .teminosYcondiciones {
         width: 100%;
         margin-top: 5px;
-        font-size: 9px;
+        font-size: 13px;
     }
 
 </style>
