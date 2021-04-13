@@ -153,9 +153,11 @@
     }
     #partUno{
         width: 45%;
+        font-size: 9px;
     }
     #partDos{
         width: 45%;
+        font-size: 9px;
     }
 </style>
 
