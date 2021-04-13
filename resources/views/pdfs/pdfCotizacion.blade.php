@@ -226,7 +226,7 @@
                 <td style="width: 5%;">Email:</td>
                 <td style="width: 5%;"> {{$data['contacto_correo']}}</td>
                 <td style="width: 5%;">Teléfono:</td>
-                <td style="width: 5%;">{{$data['contacto_telefono']</td>
+                <td style="width: 5%;">{{$data['contacto_telefono']}}</td>
                 <td style="width: 5%;">Codiciones de pago:</td>
                 <td style="width: 5%;">{{$data['condicion']}}</td>
                 <td style="width: 5%;">Dias:</td>
