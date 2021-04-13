@@ -5,40 +5,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <style>
-    .tdLogo{
+    .tdLogo {
         width: 40%;
     }
-    .tdInfoEmpresa{
+
+    .tdInfoEmpresa {
         font-size: 8px;
         width: 20%;
         text-align: center;
     }
-    .tdInfoEmpresaContactos{
+
+    .tdInfoEmpresaContactos {
         font-size: 10px;
         width: 20%;
         text-align: center;
         color: #4d99de;
     }
-    .tdInfoNumberCotizacion{
+
+    .tdInfoNumberCotizacion {
         width: 10%;
     }
-    .cotWord{
+
+    .cotWord {
         font-size: 20px;
         text-align: center;
         background-color: #4d99de;
         border-radius: 10%;
         color: white
     }
-    .trCabecera td{
-		float:left;
+
+    .trCabecera td {
+        float: left;
     }
-    .cotNumber{
+
+    .cotNumber {
         border: 2px solid #4d99de;
         border-radius: 15%;
         margin-top: 5px;
         text-align: center;
     }
-    .tableCabecera{
+
+    .tableCabecera {
         width: 100%;
         height: auto;
         font-size: 10px;
@@ -46,60 +53,71 @@
         border-radius: 5px 5px 5px 5px;
         text-align: right;
     }
-    .tableCuerpoItems{
+
+    .tableCuerpoItems {
         width: 100%;
         border: 2px solid #4d99de;
         margin-top: 5px;
     }
-    .tableCuerpoItems_head{
+
+    .tableCuerpoItems_head {
         background-color: #4d99de;
         color: white;
         font-size: 8px;
     }
-    .tableCuerpoItems_head_tr{
+
+    .tableCuerpoItems_head_tr {
         background-color: #4d99de;
         color: white;
         font-size: 10px;
     }
-    .tableCuerpoItems_body_tr td{
+
+    .tableCuerpoItems_body_tr td {
         border: 1px solid #4d99de;
         text-align: center;
         font-size: 10px;
     }
-    .tableCuerpoItems_footer_tr td{
+
+    .tableCuerpoItems_footer_tr td {
         text-align: left;
         font-size: 12px;
     }
-    .tableNota{
+
+    .tableNota {
         width: 100%;
         border: 2px solid #4d99de;
         margin-top: 5px;
         border-radius: 5px 5px 5px 5px;
         font-size: 13px;
     }
-    .tableDatosBancarios{
+
+    .tableDatosBancarios {
         width: 100%;
         font-size: 10px;
         text-align: center;
         margin-top: 5px;
     }
-    #PagoMexico{
+
+    #PagoMexico {
         width: 45%;
         margin: 5%;
         font-size: 10px;
         text-align: center;
     }
-    #pagoEEUU{
+
+    #pagoEEUU {
         width: 45%;
         margin: 5%;
         font-size: 10px;
         text-align: center;
     }
-    #pagoEEUU tr td{
+
+    #pagoEEUU tr td {
         border: 1px solid #000;
         padding: 5px;
     }
-    #pagoEEUU tr th{
+
+    #pagoEEUU tr th {
         border: 1px solid #000;
     }
 
@@ -107,45 +125,58 @@
         border: 1px solid #000;
         padding: 5px;
     }
+
     #PagoMexico tr th {
         border: 1px solid #000;
     }
-    .tablefirma{
-        width: 50%;
-        text-align: center;
+
+    .tablefirma {
+        width: 100%;
+        font-size: 8px;
+        margin-top: 100px;
     }
+
     .page-break {
         page-break-after: always;
     }
+    #firmaEjecutivoDeVenta{
+        text-align: center;
+        margin: 0 auto;
+    }
+    #firmaAceptarCondiciones{
+        text-align: center;
+        margin: 0 auto;
+    }
 </style>
+
 <body>
     <table>
         <tr>
-            <td class="tdLogo" >
+            <td class="tdLogo">
                 <img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
-                Accredian, S. DE R.L. DE C.V.<br/>
-                RFC: ACC1905026P3<br/>
-                Domicilio Fiscal: Calle Monclova 213, 
-                Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br/>
-                Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector, 
-                San Nicolas de los Garza, N.L. MX CP. 66460
+                    Accredian, S. DE R.L. DE C.V.<br />
+                    RFC: ACC1905026P3<br />
+                    Domicilio Fiscal: Calle Monclova 213,
+                    Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
+                    Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
+                    San Nicolas de los Garza, N.L. MX CP. 66460
                 </span>
             </td>
             <td class="tdInfoEmpresaContactos">
                 <span>
-                    Tel.  813-186-4994<br/>
-                    813-186-4995<br/>
-                    818-748-0707<br/>
+                    Tel. 813-186-4994<br />
+                    813-186-4995<br />
+                    818-748-0707<br />
                     www.accredian.com
                 </span>
             </td>
-            <td class="tdInfoNumberCotizacion" >
+            <td class="tdInfoNumberCotizacion">
                 <div>
                     <div class="cotWord">COTIZACIÓN</div>
-                    <div class="cotNumber" >#99.999.999.99</div>
+                    <div class="cotNumber">#99.999.999.99</div>
                 </div>
             </td>
         </tr>
@@ -153,43 +184,43 @@
     <table class="tableCabecera">
         <tbody>
             <tr>
-                <td style="width: 5%;" >Cliente:</td>
-                <td style="width: 5%;"  colspan="3" ></td>
-                <td style="width: 5%;" >Fecha:</td>
+                <td style="width: 5%;">Cliente:</td>
+                <td style="width: 5%;" colspan="3"></td>
+                <td style="width: 5%;">Fecha:</td>
                 <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td style="width: 5%;" >Dirección Fiscal:</td>
-                <td style="width: 5%;"  colspan="3"></td>
-                <td style="width: 5%;" >Moneda:</td>
+                <td style="width: 5%;">Dirección Fiscal:</td>
+                <td style="width: 5%;" colspan="3"></td>
+                <td style="width: 5%;">Moneda:</td>
                 <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td style="width: 5%;" >Dirección Sucursal:</td>
-                <td style="width: 5%;"  colspan="3"></td>
-                <td style="width: 5%;" >Tipo de Servicio:</td>
+                <td style="width: 5%;">Dirección Sucursal:</td>
+                <td style="width: 5%;" colspan="3"></td>
+                <td style="width: 5%;">Tipo de Servicio:</td>
                 <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td style="width: 5%;" >Contacto:</td>
-                <td style="width: 5%;"  colspan="3"></td>
-                <td style="width: 5%;" >Tiempo Entrega:</td>
+                <td style="width: 5%;">Contacto:</td>
+                <td style="width: 5%;" colspan="3"></td>
+                <td style="width: 5%;">Tiempo Entrega:</td>
                 <td style="width: 5%;" colspan="3"></td>
             </tr>
             <tr>
-                <td style="width: 5%;" >Email:</td>
-                <td style="width: 5%;" ></td>
-                <td style="width: 5%;" >Teléfono:</td>
-                <td style="width: 5%;"   ></td>
-                <td style="width: 5%;" >Codiciones de pago:</td>
-                <td style="width: 5%;"  ></td>
-                <td style="width: 5%;" >Dias:</td>
-                <td style="width: 5%;" ></td>
+                <td style="width: 5%;">Email:</td>
+                <td style="width: 5%;"></td>
+                <td style="width: 5%;">Teléfono:</td>
+                <td style="width: 5%;"></td>
+                <td style="width: 5%;">Codiciones de pago:</td>
+                <td style="width: 5%;"></td>
+                <td style="width: 5%;">Dias:</td>
+                <td style="width: 5%;"></td>
             </tr>
         </tbody>
     </table>
     <table class="tableCuerpoItems" cellspacing=0>
-        <thead class="tableCuerpoItems_head" >
+        <thead class="tableCuerpoItems_head">
             <tr class="tableCuerpoItems_head_tr">
                 <th>Part</th>
                 <th>Cant</th>
@@ -207,7 +238,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="tableCuerpoItems_body_tr" >
+            <tr class="tableCuerpoItems_body_tr">
                 <td>asd</td>
                 <td>asd</td>
                 <td>asd</td>
@@ -224,39 +255,40 @@
             </tr>
         </tbody>
         <tfoot>
-            <tr class="tableCuerpoItems_footer_tr" >
+            <tr class="tableCuerpoItems_footer_tr">
                 <td></td>
                 <td></td>
                 <td></td>
-                <td colspan="6" style="color: #4d99de; font-weight: bold;" >Importe con letra (Novecientos noventa y nueve millones novecientos noventa y nuevemil noveciento noventa y nueve)</td> <!--//number letter-->
+                <td colspan="6" style="color: #4d99de; font-weight: bold;">Importe con letra (Novecientos noventa y nueve millones novecientos noventa y nuevemil noveciento noventa y nueve)</td>
+                <!--//number letter-->
                 <td></td>
                 <td></td>
-                <td style="text-align: right;" >SubTotal:</td>
+                <td style="text-align: right;">SubTotal:</td>
                 <td></td>
             </tr>
-            <tr class="tableCuerpoItems_footer_tr" >
+            <tr class="tableCuerpoItems_footer_tr">
                 <td></td>
                 <td></td>
                 <td></td>
                 <td colspan="6"></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: right;" >I.V.A. <small>(16%)</small>:</td>
+                <td style="text-align: right;">I.V.A. <small>(16%)</small>:</td>
                 <td></td>
             </tr>
-            <tr class="tableCuerpoItems_footer_tr" >
-                <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp;    C  Calibración   &nbsp; &nbsp; &nbsp;R  Reparación    &nbsp; &nbsp; &nbsp;M  Mantenimiento &nbsp; &nbsp; &nbsp;V  Venta de Equipo</small></td>
+            <tr class="tableCuerpoItems_footer_tr">
+                <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
                 <td></td>
                 <td></td>
-                <td ></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: right;" >Total:</td>
+                <td></td>
+                <td style="text-align: right;">Total:</td>
                 <td></td>
             </tr>
         </tfoot>
     </table>
-    <table class="tableNota" >
+    <table class="tableNota">
         <tbody>
             <tr>
                 <td> NOTAS:</td>
@@ -264,14 +296,14 @@
             </tr>
         </tbody>
     </table>
-    <table class="tableDatosBancarios" >
+    <table class="tableDatosBancarios">
         <tbody>
             <tr>
                 <td id="PagoMexico">
                     <table cellspacing=0>
-                        <thead >
+                        <thead>
                             <tr>
-                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; " >Para pagos desde México</td>
+                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; ">Para pagos desde México</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -293,9 +325,9 @@
                     </table>
                 </td>
                 <td id="pagoEEUU">
-                <table cellspacing=0>
-                        <thead >
-                            <tr >
+                    <table cellspacing=0>
+                        <thead>
+                            <tr>
                                 <td colspan="6" style="background-color: #cecece; font-size: 13px; font-weight: bold; "> Para pagos en USD desde USA</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
@@ -322,20 +354,55 @@
             </tr>
         </tbody>
     </table>
-    <table class="tablefirma" >
+    <table class="tablefirma">
         <tbody>
             <tr>
-                <td>__________________________________</td>
-            </tr>
-            <tr>
-                <td>Ejecutivo(a) de Ventas</td>
+                <td>
+                    <table id="firmaEjecutivoDeVenta">
+                        <tbody>
+                            <tr>
+                                <td>_________________________________________________</td>
+                            </tr>
+                            <tr>
+                                <td>Ejecutivo(a) de Ventas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table id="firmaAceptarCondiciones" >
+                        <tbody>
+                            <tr>
+                                <td>Aceptación de Cotización</td>
+                            </tr>
+                            <tr   style="text-align: left;">
+                                <td>Cliente:</td>
+                                <td></td>
+                            </tr>
+                            <tr  style="text-align: left;">
+                                <td>Puesto:</td>
+                                <td></td>
+                            </tr>
+                            <tr style="text-align: left;">
+                                <td>Fecha:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>_________________________________________________</td>
+                            </tr>
+                            <tr>
+                                <td>Firma<br/>Al firmar acepto los Términos y Condiciones Generales de Accredian</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
         </tbody>
     </table>
     <div class="page-break"></div>
     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ex repellat ad dolorem, accusantium maxime quia animi harum possimus reiciendis expedita optio, repudiandae odit nam. Nulla consequatur natus iusto saepe?</div>
 
-    {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
+    <!-- {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
             <td style="width:70%">
                 <span style="color:#003177"><b>{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</b></span><br>
@@ -448,14 +515,17 @@
     </table>
     <table cellspacing="10" style="width: 100%; text-align: left; font-size: 11pt; margin-top: 100px">
         <tr>
-            <td style="width:33%;text-align: center;border-top:solid 1px">
-                <b>Ejecutivo de ventas</b>
-            </td>
-            <td style="width:33%;text-align: center;border-top:solid 1px">
+            <td>
+
+                <td style="width:33%;text-align: center;border-top:solid 1px">
+                    <b>Ejecutivo de ventas</b>
+                </td>
+                <td style="width:33%;text-align: center;border-top:solid 1px">
+                </td>
                 <b>Autorización Cliente</b>
             </td>
         </tr>
-    </table>--}}
+    </table>--}} -->
 </body>
 
 </html>
