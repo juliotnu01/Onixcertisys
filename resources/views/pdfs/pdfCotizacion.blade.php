@@ -196,7 +196,7 @@
                 <td style="width: 5%;">Cliente:</td>
                 <td style="width: 5%; text-align: left;" colspan="3">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
                 <td style="width: 5%;">Fecha:</td>
-                <td style="width: 5%;" colspan="3">{{substr($data['created_at'], 0, 10)}}</td>
+                <td style="width: 5%; text-align: left;" colspan="3">{{substr($data['created_at'], 0, 10)}}</td>
             </tr>
             <tr>
                 <td style="width: 5%;">Dirección Fiscal:</td>
