@@ -86,10 +86,27 @@
     #PagoMexico{
         width: 45%;
         margin: 5%;
+        font-size: 10px;
     }
     #pagoEEUU{
         width: 45%;
         margin: 5%;
+        font-size: 10px;
+    }
+    #pagoEEUU tr td{
+        border: 1px solid #000;
+        padding: 5px;
+    }
+    #pagoEEUU tr th{
+        border: 1px solid #000;
+    }
+
+    #PagoMexico tr td {
+        border: 1px solid #000;
+        padding: 5px;
+    }
+    #PagoMexico tr th {
+        border: 1px solid #000;
     }
 </style>
 <body>
@@ -242,12 +259,12 @@
         <tbody>
             <tr>
                 <td id="PagoMexico">
-                    <table>
+                    <table cellspacing=0>
                         <thead >
                             <tr>
-                                <td colspan="5" >Para pagos desde México</td>
+                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; " >Para pagos desde México</td>
                             </tr>
-                            <tr>
+                            <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
                                 <th>Moneda</th>
                                 <th>Sucursal</th>
@@ -267,12 +284,12 @@
                     </table>
                 </td>
                 <td id="pagoEEUU">
-                <table>
+                <table cellspacing=0>
                         <thead >
                             <tr >
-                                <td colspan="6"> Para pagos en USD desde USA</td>
+                                <td colspan="6" style="background-color: #cecece; font-size: 13px; font-weight: bold; "> Para pagos en USD desde USA</td>
                             </tr>
-                            <tr>
+                            <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
                                 <th>Moneda</th>
                                 <th>Cuenta</th>
