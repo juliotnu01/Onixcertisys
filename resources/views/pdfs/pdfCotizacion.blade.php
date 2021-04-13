@@ -61,6 +61,10 @@
         color: white;
         font-size: 8px;
     }
+    .tableCuerpoItems_body_tr td{
+        border: 1px solid #4d99de;
+        text-align: center;
+    }
 </style>
 <body>
     <table>
@@ -132,9 +136,9 @@
             </tr>
         </tbody>
     </table>
-    <table class="tableCuerpoItems">
+    <table class="tableCuerpoItems" cellspacing=0>
         <thead class="tableCuerpoItems_head" >
-            <tr bgcolor="#4d99de" cellspacing=0 class="tableCuerpoItems_head_tr">
+            <tr class="tableCuerpoItems_head_tr">
                 <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
@@ -152,13 +156,153 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+            </tr>
+            <tr class="tableCuerpoItems_body_tr" >
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
+                <td>asd</td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                <th>#</th>
             </tr>
         </tfoot>
     </table>
