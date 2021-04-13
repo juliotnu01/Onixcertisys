@@ -114,6 +114,9 @@
         width: 50%;
         text-align: center;
     }
+    .page-break {
+        page-break-after: always;
+    }
 </style>
 <body>
     <table>
@@ -329,6 +332,8 @@
             </tr>
         </tbody>
     </table>
+    <div class="page-break"></div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ex repellat ad dolorem, accusantium maxime quia animi harum possimus reiciendis expedita optio, repudiandae odit nam. Nulla consequatur natus iusto saepe?</div>
 
     {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
