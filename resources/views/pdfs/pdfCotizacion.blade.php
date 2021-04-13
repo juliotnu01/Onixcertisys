@@ -275,12 +275,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td colspan="6" style="color: #4d99de; font-weight: bold;">Importe con letra (Novecientos noventa y nueve millones novecientos noventa y nuevemil noveciento noventa y nueve)</td>
-                <!--//number letter-->
+                <td colspan="6" style="color: #4d99de; font-weight: bold;">Importe con letra ({{$spell}})</td>
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">SubTotal:</td>
-                <td></td>
+                <td> {{$data['has_moneda']['clave']}} {{number_format($data['sub_total'], 2, ',', '.')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td></td>
@@ -290,7 +289,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">I.V.A. <small>(16%)</small>:</td>
-                <td></td>
+                <td>   {{$data['has_moneda']['clave']}} {{number_format($data['iva'], 2, ',', '.')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
@@ -300,7 +299,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">Total:</td>
-                <td></td>
+                <td> {{$data['has_moneda']['clave']}} {{number_format($data['total'], 2, ',', '.')}}</td>
             </tr>
         </tfoot>
     </table>
