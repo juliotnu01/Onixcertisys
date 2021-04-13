@@ -148,7 +148,14 @@
         margin: 0 auto;
     }
     .teminosYcondiciones{
-        display: flex;
+        width: 100%;
+        margin: 0 auto;
+    }
+    #partUno{
+        width: 45%;
+    }
+    #partDos{
+        width: 45%;
     }
 </style>
 
