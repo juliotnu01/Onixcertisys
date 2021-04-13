@@ -194,13 +194,13 @@
         <tbody>
             <tr>
                 <td style="width: 5%;">Cliente:</td>
-                <td style="width: 5%;" colspan="3">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
+                <td style="width: 5%; text-align: left;" colspan="3">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
                 <td style="width: 5%;">Fecha:</td>
                 <td style="width: 5%;" colspan="3">{{substr($data['created_at'], 0, 10)}}</td>
             </tr>
             <tr>
                 <td style="width: 5%;">Dirección Fiscal:</td>
-                <td style="width: 5%;" colspan="3">
+                <td style="width: 5%; text-align: left" colspan="3">
                     {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}
                     {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero']}}
                     {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia']}}
@@ -208,29 +208,29 @@
                     {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado']}}
                 </td>
                 <td style="width: 5%;">Moneda:</td>
-                <td style="width: 5%;" colspan="3">{{$data['has_moneda']['clave']}}</td>
+                <td style="width: 5%;text-align: left" colspan="3">{{$data['has_moneda']['clave']}}</td>
             </tr>
             <tr>
                 <td style="width: 5%;">Dirección Sucursal:</td>
-                <td style="width: 5%;" colspan="3"></td>
+                <td style="width: 5%; text-align: left" colspan="3"></td>
                 <td style="width: 5%;">Tipo de Servicio:</td>
-                <td style="width: 5%;" colspan="3">{{$data['tipo_de_servicio']}}</td>
+                <td style="width: 5%; text-align: left" colspan="3">{{$data['tipo_de_servicio']}}</td>
             </tr>
             <tr>
                 <td style="width: 5%;">Contacto:</td>
-                <td style="width: 5%;" colspan="3"> {{$data['contacto']}}</td>
+                <td style="width: 5%; text-align: left" colspan="3"> {{$data['contacto']}}</td>
                 <td style="width: 5%;">Tiempo Entrega:</td>
-                <td style="width: 5%;" colspan="3"> {{$data['has_tiempo_de_entrega']['nombre']}}</td>
+                <td style="width: 5%; text-align: left" colspan="3"> {{$data['has_tiempo_de_entrega']['nombre']}}</td>
             </tr>
             <tr>
                 <td style="width: 5%;">Email:</td>
-                <td style="width: 5%;"> {{$data['contacto_correo']}}</td>
+                <td style="width: 5%; text-align: left"> {{$data['contacto_correo']}}</td>
                 <td style="width: 5%;">Teléfono:</td>
-                <td style="width: 5%;">{{$data['contacto_telefono']}}</td>
-                <td style="width: 5%;">Codiciones de pago:</td>
-                <td style="width: 5%;">{{$data['condicion']}}</td>
+                <td style="width: 5%; text-align: left">{{$data['contacto_telefono']}}</td>
+                <td style="width: 5%; ">Codiciones de pago:</td>
+                <td style="width: 5%; text-align: left">{{$data['condicion']}}</td>
                 <td style="width: 5%;">Dias:</td>
-                <td style="width: 5%;"></td>
+                <td style="width: 5%; text-align: left"></td>
             </tr>
         </tbody>
     </table>
