@@ -155,7 +155,6 @@
         margin-top: 5px;
         font-size: 15px;
     }
-
 </style>
 
 <body>
@@ -236,6 +235,7 @@
     </table>
     <table class="tableCuerpoItems" cellspacing=0>
         <thead class="tableCuerpoItems_head">
+            @foreach($data['has_partidas'] as $item)
             <tr class="tableCuerpoItems_head_tr">
                 <th>Part</th>
                 <th>Cant</th>
@@ -251,22 +251,23 @@
                 <th>Precio Unitario</th>
                 <th>Importe</th>
             </tr>
+            @endforeach
         </thead>
         <tbody>
             <tr class="tableCuerpoItems_body_tr">
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
+                <td></td>
+                <td>{{$item['cantidad']}}</td>
+                <td>{{substr($item['servicio'], 0, 1)}}</td>
+                <td>{{$item['has_intrumento']['nombre']}}</td>
+                <td>{{$item['marca']}}</td>
+                <td>{{$item['modelo']}}</td>
+                <td>{{$item['serie']}}</td>
+                <td>{{$item['has_intrumento']['alcance']}}</td>
+                <td>{{$item['identificacion']}}</td>
+                <td>{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
+                <td>{{$item['vigencia']}}</td>
+                <td>{{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
+                <td>{{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
             </tr>
         </tbody>
         <tfoot>
