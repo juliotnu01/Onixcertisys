@@ -87,11 +87,13 @@
         width: 45%;
         margin: 5%;
         font-size: 10px;
+        text-align: center;
     }
     #pagoEEUU{
         width: 45%;
         margin: 5%;
         font-size: 10px;
+        text-align: center;
     }
     #pagoEEUU tr td{
         border: 1px solid #000;
@@ -107,6 +109,11 @@
     }
     #PagoMexico tr th {
         border: 1px solid #000;
+    }
+    .tablefirma{
+        width: 50%;
+        text-align: center;
+        margin-top: 100%;
     }
 </style>
 <body>
@@ -310,6 +317,16 @@
                         </tbody>
                     </table>
                 </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="tablefirma" >
+        <tbody>
+            <tr>
+                <td>__________________________________</td>
+            </tr>
+            <tr>
+                <td>Ejecutivo(a) de Ventas</td>
             </tr>
         </tbody>
     </table>
