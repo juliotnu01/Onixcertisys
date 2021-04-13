@@ -132,7 +132,7 @@
 
     .tablefirma {
         width: 100%;
-        font-size: 8px;
+        font-size: 13px;
         margin-top: 100px;
     }
 
