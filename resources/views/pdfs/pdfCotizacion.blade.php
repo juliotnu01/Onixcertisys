@@ -113,7 +113,6 @@
     .tablefirma{
         width: 50%;
         text-align: center;
-        margin-top: 100%;
     }
 </style>
 <body>
