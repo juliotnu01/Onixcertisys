@@ -307,7 +307,7 @@
         <tbody>
             <tr>
                 <td> NOTAS:</td>
-                <td> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quia magni dicta minima soluta, laboriosam unde est mollitia quisquam aperiam dolor consequuntur sapiente facere veritatis eius, corrupti quo minus veniam.</td>
+                <td> </td>
             </tr>
         </tbody>
     </table>
@@ -380,6 +380,15 @@
                             </tr>
                             <tr>
                                 <td>Ejecutivo(a) de Ventas</td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['nombre_completo']}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['telefono']}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['correo_factura']}}</td>
                             </tr>
                         </tbody>
                     </table>
