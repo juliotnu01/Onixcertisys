@@ -70,6 +70,27 @@
         text-align: left;
         font-size: 12px;
     }
+    .tableNota{
+        width: 100%;
+        border: 2px solid #4d99de;
+        margin-top: 5px;
+        border-radius: 5px 5px 5px 5px;
+        font-size: 13px;
+    }
+    .tableDatosBancarios{
+        width: 100%;
+        font-size: 10px;
+        text-align: center;
+        margin-top: 5px;
+    }
+    #PagoMexico{
+        width: 45%;
+        margin: 5%;
+    }
+    #pagoEEUU{
+        width: 45%;
+        margin: 5%;
+    }
 </style>
 <body>
     <table>
@@ -175,66 +196,6 @@
                 <td>asd</td>
                 <td>asd</td>
             </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
-            <tr class="tableCuerpoItems_body_tr" >
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-                <td>asd</td>
-            </tr>
         </tbody>
         <tfoot>
             <tr class="tableCuerpoItems_footer_tr" >
@@ -269,19 +230,72 @@
             </tr>
         </tfoot>
     </table>
-    <!-- Part	Cant	Serv	Instrumento	Marca	Modelo	Serie	Alcance	ID	Acreditación	Vigencia	Precio Unitario	Importe
-												
-												
-												
-												
-												
-												
-												
-												
-												
-  Importe con letra    (                                                                                                                                                                 )	SubTotal 	
- 	I.V.A. 16% 	
-  Serv:    C  Calibración       R  Reparación       M  Mantenimiento       V  Venta de Equipo	Total 	 -->
+    <table class="tableNota" >
+        <tbody>
+            <tr>
+                <td> NOTAS:</td>
+                <td> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quia magni dicta minima soluta, laboriosam unde est mollitia quisquam aperiam dolor consequuntur sapiente facere veritatis eius, corrupti quo minus veniam.</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="tableDatosBancarios" >
+        <tbody>
+            <tr>
+                <td id="PagoMexico">
+                    <table>
+                        <thead >
+                            <tr>
+                                <td colspan="5" >Para pagos desde México</td>
+                            </tr>
+                            <tr>
+                                <th>Banco</th>
+                                <th>Moneda</th>
+                                <th>Sucursal</th>
+                                <th>Cuenta</th>
+                                <th>CLABE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BBVA Bancomer</td>
+                                <td>Pesos</td>
+                                <td>5357</td>
+                                <td>0113689131</td>
+                                <td>012072001136891315</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td id="pagoEEUU">
+                <table>
+                        <thead >
+                            <tr >
+                                <td colspan="6"> Para pagos en USD desde USA</td>
+                            </tr>
+                            <tr>
+                                <th>Banco</th>
+                                <th>Moneda</th>
+                                <th>Cuenta</th>
+                                <th>Routing</th>
+                                <th>Beneficiario</th>
+                                <th>Referencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bank of New York Mellon</td>
+                                <td>Dolares</td>
+                                <td>8901003158</td>
+                                <td>021000018</td>
+                                <td>Accredian S DE RL DE CV</td>
+                                <td>00003236114</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     {{--<table style="width:100%;border:2px solid #0095d9;border-radius: 15px;  font-size:10px">
         <tr style="vertical-align: top">
