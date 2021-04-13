@@ -255,7 +255,7 @@
         </thead>
         <tbody>
             <tr class="tableCuerpoItems_body_tr">
-                <td></td>
+                <td>{{$item['id']}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
                 <td>{{$item['has_intrumento']['nombre']}}</td>
