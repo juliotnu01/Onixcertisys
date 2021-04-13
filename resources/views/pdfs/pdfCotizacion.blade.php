@@ -64,6 +64,7 @@
     .tableCuerpoItems_body_tr td{
         border: 1px solid #4d99de;
         text-align: center;
+        font-size: 10px;
     }
 </style>
 <body>
