@@ -31,7 +31,9 @@
         text-align: center;
         background-color: #4d99de;
         border-radius: 10%;
-        color: white
+        color: white;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .trCabecera td {
