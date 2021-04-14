@@ -297,7 +297,7 @@ class CotizacionController extends Controller
             if ($exists) {
                 Storage::disk('store_pdfs')->delete("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
             }
-            PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'orientation' => 'landscape']);
+            PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', "default_paper_size" => "A4", 'orientation' => 'landscape']);
             $pdf = PDF::loadView('pdfs.pdfCotizacion', compact(['data', 'empresa', 'spell']));
             Storage::disk('store_pdfs')->put("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
             $url = Storage::disk('store_pdfs')->url("/cotizaciones/cotizacion-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
