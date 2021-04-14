@@ -30,10 +30,12 @@
         font-size: 20px;
         text-align: center;
         background-color: #4d99de;
-        border-radius: 10%;
+        border-radius: 30px 30px 30px 30px; 
         color: white;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     .trCabecera td {
