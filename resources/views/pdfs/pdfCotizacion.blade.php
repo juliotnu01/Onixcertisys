@@ -18,7 +18,7 @@
     .tdInfoEmpresaContactos {
         font-size: 10px;
         width: 20%;
-        text-align: center;
+        text-align: right;
         color: #4d99de;
     }
 
@@ -161,7 +161,7 @@
     <table>
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 100%;">
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
