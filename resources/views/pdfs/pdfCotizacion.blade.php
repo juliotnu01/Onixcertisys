@@ -52,7 +52,7 @@
         margin-top: 5px;
         margin-right: 0px;
         margin-bottom: 0px;
-        margin-left: 23%;
+        margin-left: 43px;
         text-align: center;
     }
 
