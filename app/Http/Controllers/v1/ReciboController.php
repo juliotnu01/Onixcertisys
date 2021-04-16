@@ -197,7 +197,7 @@ class ReciboController extends Controller
     {
         $data = collect($request->all());
         $empresa = Empresa::find(1);
-        $pdf = PDF::loadView('pdfs.pdfRecibos', compact('data', 'empresa'));
+        $pdf = PDF::loadView('pdfs.pdfRecibos', compact('data', 'empresa'))->setPaper('letter', 'landscape')->setWarnings(false);
         Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
         $url = Storage::disk('store_pdfs')->url("/recibos/recibo-{$request['id']}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
         Recibo::find($request['id'])->update([
