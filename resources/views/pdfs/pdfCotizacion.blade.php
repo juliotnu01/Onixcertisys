@@ -7,29 +7,27 @@
 <style>
     *{
         font-family: sans-serif;
-        font-size: 12px;
     }
     .tdLogo {
         width: 40%;
     }
 
     .tdInfoEmpresa {
-        font-size: 8px;
         width: 20%;
         text-align: center;
+        font-size: 9px ;
     }
 
     .tdInfoEmpresaContactos {
-        font-size: 10px;
         width: 20%;
         text-align: right;
         color: #4d99de;
         padding-right: 80px;
+        font-size: 12px ;
     }
 
     .tdInfoNumberCotizacion {
-        width: 10%;
-        padding-right: 60px;
+        width: 20%;
     }
 
     .cotWord {
@@ -52,9 +50,9 @@
         border: 2px solid #4d99de;
         border-radius: 6px;
         margin-top: 5px;
-        margin-right: 25px;
+        margin-right: 65px;
         margin-bottom: 0px;
-        margin-left: 30px;
+        margin-left: 60px;
         text-align: center;
     }
 
@@ -170,7 +168,6 @@
     }
     .tableCabeceraDoc{
         width: 100%;
-        margin-right: 10px;
     }
     .tableCabeceraDoc tr td{
     }
@@ -180,7 +177,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">}}
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -203,8 +200,7 @@
             <td class="tdInfoNumberCotizacion">
                 <div>
                     <div class="cotWord">COTIZACIÓN</div>
-                    {{-- <div class="cotNumber">#{{$data['id']}}</div> --}}
-                    <div class="cotNumber">#99.999</div>
+                    <div class="cotNumber">#{{$data['id']}}</div> 
                 </div>
             </td>
         </tr>
