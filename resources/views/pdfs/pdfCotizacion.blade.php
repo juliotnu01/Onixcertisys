@@ -29,6 +29,7 @@
 
     .tdInfoNumberCotizacion {
         width: 10%;
+        padding-right: 30px;
     }
 
     .cotWord {
@@ -169,6 +170,7 @@
     }
     .tableCabeceraDoc{
         width: 100%;
+        margin-right: 10px;
     }
     .tableCabeceraDoc tr td{
     }
@@ -178,7 +180,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">--}}
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
