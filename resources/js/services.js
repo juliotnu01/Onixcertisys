@@ -24,6 +24,7 @@ import NotasDeSeguimientoServices from './services/NotaDeSeguimientoServices.js'
 import unidadServices from './services/UnidadServices.js'
 import claveSatServices from './services/claveSatServices.js'
 import documentoServices from './services/documentoServices.js'
+import cfdiServices from './services/cfdiServices.js'
 
 export default {
     userServices: new userServices(),
@@ -52,4 +53,5 @@ export default {
     unidadServices: new unidadServices(),
     claveSatServices: new claveSatServices(),
     documentoServices: new documentoServices(),
+    cfdiServices: new cfdiServices(),
 }

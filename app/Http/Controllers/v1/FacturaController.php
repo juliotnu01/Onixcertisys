@@ -252,9 +252,9 @@ class FacturaController extends Controller
     public function consultarSaldoTimbrado()
     {
         $params = array(
-            "url"=>"https://services.sw.com.mx",
-            "user"=>"claudia.martinez@accredian.org",
-            "password"=> "ACC.1701.U"
+            "url"=>env('URL_TIMBRADO_SW'),
+            "user"=>env('USER_TIMPRADO_SW'),
+            "password"=> env('PASSWORD_TIMBRADO_SW')
         );
             
         try {
@@ -262,7 +262,7 @@ class FacturaController extends Controller
             $auth = Authentication::auth($params);
             $token = $auth::Token();
             $paramsConsultarSaldo = array(  
-                "url"=>"https://services.sw.com.mx",
+                "url"=>env('URL_TIMBRADO_SW'),
                 "token"=> $token->data->token
                 
             );
@@ -280,8 +280,8 @@ class FacturaController extends Controller
     public function timbrarFactura(Request $request, Factura $factura)
     {
         // $params = array(
-        //     "url"=>"https://services.sw.com.mx",
-        //     "user"=>"claudia.martinez@accredian.org",
+        //     "url"=>"http://services.test.sw.com.mx",
+        //     "user"=>"",
         //     "password"=> "ACC.1701.U"
         // );
             

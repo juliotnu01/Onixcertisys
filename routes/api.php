@@ -166,4 +166,8 @@ Route::get('/get-documentos', 'v1\DocumentoController@index');
 Route::post('/add-document-config', 'v1\DocumentoController@store');
 // Route::put('/actualizar-clave-sat', 'v1\ClaveSatController@update');
 // Route::delete('/eliminar-clave-sat/{id}', 'v1\ClaveSatController@destroy');
+Route::get('/get-cfdis', 'v1\CFDIController@index');
+Route::post('/add-cfdi', 'v1\CFDIController@store');
+Route::put('/actualizar-cfdi', 'v1\CFDIController@update');
+Route::delete('/eliminar-cfdi/{id}', 'v1\CFDIController@destroy');
 

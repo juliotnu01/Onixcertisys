@@ -137,6 +137,10 @@ export default new Vuex.Store({
         dialog_asignar_target_data_plantilla: false,
         plantilla: {},
         saldoTimbre:{},
+        cfdis:[],
+        dialog_add_cfdi: false,
+        cfdi:{},
+        dialog_edit_cfdi: false,
 
     },
     getters: {
@@ -260,6 +264,10 @@ export default new Vuex.Store({
         dialog_asignar_target_data_plantilla: state => state.dialog_asignar_target_data_plantilla,
         plantilla: state => state.plantilla,
         saldoTimbre: state => state.saldoTimbre,
+        cfdis: state => state.cfdis,
+        dialog_add_cfdi: state => state.dialog_add_cfdi,
+        cfdi: state => state.cfdi,
+        dialog_edit_cfdi: state => state.dialog_edit_cfdi
         
     },
     mutations: {
@@ -735,6 +743,18 @@ export default new Vuex.Store({
         setSaldoTimbrado(state, data){
             state.saldoTimbre = data
         },
+        setCFDIS(state, data){
+            state.cfdis = data
+        },
+        setDialogAddCFDI(state, data){
+            state.dialog_add_cfdi = data
+        },
+        setCfdi(state, data){
+            state.cfdi = data
+        },
+        setDialogEditCfdi(state, data){
+            state.dialog_edit_cfdi = data
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {
