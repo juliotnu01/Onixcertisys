@@ -53,7 +53,7 @@
         margin-right: 65px;
         margin-bottom: 0px;
         margin-left: 60px;
-        text-align: center;
+        text-align: left;
     }
 
     .tableCabecera {
@@ -69,29 +69,31 @@
         width: 100%;
         border: 2px solid #4d99de;
         margin-top: 5px;
+        font-size: 13px;
     }
 
     .tableCuerpoItems_head {
         background-color: #4d99de;
         color: white;
         font-size: 8px;
+        font-size: 13px;
     }
 
     .tableCuerpoItems_head_tr {
         background-color: #4d99de;
         color: white;
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .tableCuerpoItems_body_tr td {
         border: 1px solid #4d99de;
         text-align: center;
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .tableCuerpoItems_footer_tr td {
         text-align: left;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .tableNota {
@@ -110,14 +112,14 @@
     }
 
     #PagoMexico {
-        width: 45%;
+        width: 50%;
         margin: 5%;
         font-size: 10px;
         text-align: center;
     }
 
     #pagoEEUU {
-        width: 45%;
+        width: 50%;
         margin: 5%;
         font-size: 10px;
         text-align: center;
@@ -164,7 +166,7 @@
     .teminosYcondiciones {
         width: 100%;
         margin-top: 5px;
-        font-size: 15px;
+        font-size: 13px;
     }
     .tableCabeceraDoc{
         width: 100%;
@@ -177,7 +179,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">}}--}}
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -238,12 +240,12 @@
                 <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_tiempo_de_entrega']['nombre']}}</td>
             </tr>
             <tr>
-                <td style="width: 2%;">Email:</td>
+                <td style="width: 3%;">Email:</td>
                 <td style="width: 3%; text-align: left"> {{$data['contacto_correo']}}</td>
-                <td style="width: 2%;">Teléfono:</td>
+                <td style="width: 3%;">Teléfono:</td>
                 <td style="width: 3%; text-align: left">{{$data['contacto_telefono']}}</td>
                 <td style="width: 6%; ">Codiciones de pago:</td>
-                <td style="width: 2%; text-align: left">{{$data['condicion']}}</td>
+                <td style="width: 6%; text-align: left">{{$data['condicion']}}</td>
                 <td style="width: 3%;">Dias:</td>
                 <td style="width: 3%; text-align: left"></td>
             </tr>
@@ -283,8 +285,8 @@
                 <td>{{$item['identificacion']}}</td>
                 <td>{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
                 <td>{{$item['vigencia']}}</td>
-                <td>{{$data['has_moneda']['clave']}} {{number_format($item['has_intrumento']['precio_venta'], 2, ',', '.')}}</td>
-                <td>{{$data['has_moneda']['clave']}} {{number_format($item['importe'], 2, ',', '.')}}</td>
+                <td> {{number_format($item['has_intrumento']['precio_venta'], 2, '.', ',')}}</td>
+                <td> {{number_format($item['importe'], 2, '.', ',')}}</td>
             </tr>
              @endforeach
         </tbody>
@@ -297,7 +299,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">SubTotal:</td>
-                <td> {{$data['has_moneda']['clave']}} {{number_format($data['sub_total'], 2, ',', '.')}}</td>
+                <td>  {{number_format($data['sub_total'], 2, '.', ',')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td></td>
@@ -307,7 +309,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">I.V.A. <small>(16%)</small>:</td>
-                <td>   {{$data['has_moneda']['clave']}} {{number_format($data['iva'], 2, ',', '.')}}</td>
+                <td>    {{number_format($data['iva'], 2, '.', ',')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
@@ -317,7 +319,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">Total:</td>
-                <td> {{$data['has_moneda']['clave']}} {{number_format($data['total'], 2, ',', '.')}}</td>
+                <td>  {{number_format($data['total'], 2, '.', ',')}}</td>
             </tr>
         </tfoot>
     </table>
@@ -333,10 +335,10 @@
         <tbody>
             <tr>
                 <td id="PagoMexico">
-                    <table cellspacing=0>
+                    <table cellspacing=0 style="width: 70%;">
                         <thead>
                             <tr>
-                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; ">Para pagos desde México</td>
+                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; text-align: center; ">Para pagos desde México</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -358,10 +360,10 @@
                     </table>
                 </td>
                 <td id="pagoEEUU">
-                    <table cellspacing=0>
+                    <table cellspacing=0 style="width: 100%;">
                         <thead>
                             <tr>
-                                <td colspan="6" style="background-color: #cecece; font-size: 13px; font-weight: bold; "> Para pagos en USD desde USA</td>
+                                <td colspan="6" style="background-color: #cecece; font-size: 13px; font-weight: bold; text-align: center; "> Para pagos en USD desde USA</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -394,19 +396,28 @@
                     <table id="firmaEjecutivoDeVenta">
                         <tbody>
                             <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['nombre_completo']}}</td>
+                            </tr>
+                            <tr>
                                 <td>_________________________________________________</td>
                             </tr>
                             <tr>
                                 <td>Ejecutivo(a) de Ventas</td>
                             </tr>
                             <tr>
-                                <td>{{$data['has_empleado']['nombre_completo']}}</td>
-                            </tr>
-                            <tr>
                                 <td>{{$data['has_empleado']['telefono']}}</td>
-                            </tr>
-                            <tr>
-                                <td>{{$data['has_empleado']['correo_factura']}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -444,6 +455,9 @@
     <div class="page-break"></div>
     <table class="teminosYcondiciones">
         <tbody>
+            <tr>
+                <td style="text-align: center;" colspan="2">TERMINOS Y CONDICIONES GENERALES</td>
+            </tr>
             <tr>
                 <td>
                     <p>
