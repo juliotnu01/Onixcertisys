@@ -48,7 +48,7 @@
 
     .cotNumber {
         border: 2px solid #4d99de;
-        border-radius: 15%;
+        border-radius: 6px;
         margin-top: 5px;
         text-align: center;
     }
@@ -199,6 +199,7 @@
                 <div>
                     <div class="cotWord">COTIZACIÓN</div>
                     {{-- <div class="cotNumber">#{{$data['id']}}</div> --}}
+                    <div class="cotNumber">#99.999</div>
                 </div>
             </td>
         </tr>
