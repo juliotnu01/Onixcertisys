@@ -144,11 +144,6 @@
         font-size: 13px;
         margin-top: 100px;
     }
-
-    .page-break {
-        page-break-after: always;
-    }
-
     #firmaEjecutivoDeVenta {
         text-align: center;
         margin: 0 auto;
