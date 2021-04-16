@@ -187,7 +187,7 @@
             </td>
         </tr>
     </table>
-  <table class="tableCabecera">
+    <table class="tableCabecera">
         <tbody>
             <tr>
                 <td style="width: 3%;">Cliente:</td>
