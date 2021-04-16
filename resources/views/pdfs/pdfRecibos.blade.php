@@ -265,8 +265,7 @@
             <td class="tdInfoNumberCotizacion">
                 <div>
                     <div class="cotWord">ORDEN DE SERVICIO</div>
-                    {{--<div class="cotNumber">#{{$data['id']}}</div> --}}
-                    <div class="cotNumber">#99999999</div>
+                    <div class="cotNumber">#{{$data['id']}}</div>
                 </div>
             </td>
         </tr>
