@@ -23,7 +23,7 @@
         width: 20%;
         text-align: right;
         color: #4d99de;
-        padding-right: 40px;
+        padding-right: 80px;
     }
 
     .tdInfoNumberCotizacion {
