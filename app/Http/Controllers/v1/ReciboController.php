@@ -223,7 +223,7 @@ class ReciboController extends Controller
 
         $data = collect($recibo);
         $empresa = Empresa::find(1);
-        $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data', 'empresa'));
+        $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data', 'empresa'))->setPaper('letter', 'landscape')->setWarnings(false);;
         Storage::disk('store_pdfs')->put("/recibos/recibo-{$request['id']}-asignacion-{$user_tecnico}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf", $pdf->stream());
         $url = Storage::disk('store_pdfs')->url("/recibos/recibo-{$request['id']}-asignacion-{$user_tecnico}-" . Str::limit($request['created_at'], 10, ('')) . ".pdf");
         Recibo::find($request['id'])->update([
