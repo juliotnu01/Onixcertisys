@@ -49,7 +49,10 @@
     .cotNumber {
         border: 2px solid #4d99de;
         border-radius: 6px;
-        margin: 5px 0px 0px 23%;
+        margin-top: 5px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 23%;
         text-align: center;
     }
 
