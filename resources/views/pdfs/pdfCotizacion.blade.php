@@ -29,7 +29,7 @@
 
     .tdInfoNumberCotizacion {
         width: 10%;
-        padding-right: 30px;
+        padding-right: 60px;
     }
 
     .cotWord {
