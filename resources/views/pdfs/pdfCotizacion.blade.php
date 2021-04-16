@@ -5,6 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <style>
+    *{
+        font-family: sans-serif;
+    }
     .tdLogo {
         width: 40%;
     }
@@ -30,8 +33,8 @@
         font-size: 20px;
         text-align: center;
         background-color: #4d99de;
-        border-radius: 30px 30px 30px 30px; 
         color: white;
+        border-radius: 6px 6px 6px 6px;
         padding-left: 20px;
         padding-right: 20px;
         padding-top: 5px;
@@ -159,10 +162,16 @@
         margin-top: 5px;
         font-size: 15px;
     }
+    .tableCabeceraDoc{
+        width: 100%;
+    }
+    .tableCabeceraDoc tr td{
+        
+    }
 </style>
 
 <body>
-    <table>
+    <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
                 <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
@@ -188,12 +197,12 @@
             <td class="tdInfoNumberCotizacion">
                 <div>
                     <div class="cotWord">COTIZACIÓN</div>
-                    <div class="cotNumber">#{{$data['id']}}</div>
+                    {{-- <div class="cotNumber">#{{$data['id']}}</div> --}}
                 </div>
             </td>
         </tr>
     </table>
-    <table class="tableCabecera">
+    {{-- <table class="tableCabecera">
         <tbody>
             <tr>
                 <td style="width: 5%;">Cliente:</td>
@@ -490,7 +499,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> --}}
 </body>
 
 </html>
