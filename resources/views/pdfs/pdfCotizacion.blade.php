@@ -7,6 +7,7 @@
 <style>
     *{
         font-family: sans-serif;
+        font-size: 12px;
     }
     .tdLogo {
         width: 40%;
@@ -50,9 +51,9 @@
         border: 2px solid #4d99de;
         border-radius: 6px;
         margin-top: 5px;
-        margin-right: 0px;
+        margin-right: 25px;
         margin-bottom: 0px;
-        margin-left: 43px;
+        margin-left: 30px;
         text-align: center;
     }
 
@@ -170,7 +171,6 @@
         width: 100%;
     }
     .tableCabeceraDoc tr td{
-        
     }
 </style>
 
@@ -178,7 +178,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">--}}
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -207,7 +207,7 @@
             </td>
         </tr>
     </table>
-    {{-- <table class="tableCabecera">
+     <table class="tableCabecera">
         <tbody>
             <tr>
                 <td style="width: 5%;">Cliente:</td>
@@ -504,7 +504,7 @@
                 </td>
             </tr>
         </tbody>
-    </table> --}}
+    </table> 
 </body>
 
 </html>
