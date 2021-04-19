@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CondicionesDePago;
 use Illuminate\Http\Request;
 use DB;
-
+use Illuminate\Support\Str;
 class CondicionesDePagoController extends Controller
 {
     /**
@@ -45,7 +45,7 @@ class CondicionesDePagoController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $cdp){
-                $cdp->nombre = $request['nombre'];
+                $cdp->nombre = Str::upper($request['nombre']);
                 $cdp->save();
             },5);
         } catch (Exception $e) {
@@ -88,7 +88,7 @@ class CondicionesDePagoController extends Controller
         try {
             return DB::transaction(function() use ($request, $condicionesDePago){
                 $condicionesDePago->find($request['id'])->update([
-                    'nombre' => $request['nombre']
+                    'nombre' => Str::upper($request['nombre'])
                 ]);
                 
             },5);

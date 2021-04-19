@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Moneda;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
 
 class MonedaController extends Controller
 {
@@ -45,8 +46,8 @@ class MonedaController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $moneda){
-                $moneda->clave = $request['clave'];
-                $moneda->nombre_moneda = $request['nombre_moneda'];
+                $moneda->clave = Str::upper($request['clave']);
+                $moneda->nombre_moneda = Str::upper($request['nombre_moneda']);
                 $moneda->tipo_de_cambio = $request['tipo_de_cambio'];
                 $moneda->save();
             },5);
@@ -90,8 +91,8 @@ class MonedaController extends Controller
          try {
             return DB::transaction(function() use ($request, $moneda){
                 $moneda->find($request['id'])->update([
-                    'clave' => $request['clave'],
-                    'nombre_moneda' => $request['nombre_moneda'],
+                    'clave' => Str::upper($request['clave']),
+                    'nombre_moneda' => Str::upper($request['nombre_moneda']),
                     'tipo_de_cambio' => $request['tipo_de_cambio'],
                 ]);
                 

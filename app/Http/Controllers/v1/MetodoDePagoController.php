@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MetodoDePago;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
 
 class MetodoDePagoController extends Controller
 {
@@ -45,7 +46,7 @@ class MetodoDePagoController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $metodoDePago){
-                $metodoDePago->nombre = $request['nombre'];
+                $metodoDePago->nombre = Str::upper($request['nombre']);
                 $metodoDePago->save();
             },5);
         } catch (Exception $e) {
@@ -89,7 +90,7 @@ class MetodoDePagoController extends Controller
             return DB::transaction(function() use ($request, $metodoDePago){
 
                 $metodoDePago->find($request['id'])->update([
-                    'nombre' => $request['nombre']
+                    'nombre' => Str::upper($request['nombre'])
                 ]);
 
             },5);

@@ -25,4 +25,8 @@ class Cliente extends Model
     {
         return $this->hasMany(Cotizacion::class, 'cliente_id');
     }
+    public function hasCfdi()
+    {
+        return $this->belongsTo(CFDI::class, 'cfdi_id');
+    }
 }

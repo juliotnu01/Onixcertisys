@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Cliente, SucursalCliente};
+use App\Models\{Cliente, SucursalCliente, CFDI};
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ClienteImport;
@@ -25,6 +25,7 @@ class ClienteController extends Controller
                 'hasCondicionDePago',
                 'hasSucursal',
                 'hasCotizaciones',
+                'hasCfdi',
                 'hasCotizaciones.hasCliente',
                 'hasCotizaciones.hasCliente.hasSucursal',
                 'hasCotizaciones.hasEmpleado',
@@ -94,7 +95,8 @@ class ClienteController extends Controller
                 $cliente->forma_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']['nombre'];
                 $cliente->moneda_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'];
                 $cliente->correo_envio_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['emailEnvioFactura'];
-                $cliente->cdfi = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi'];
+                $cliente->cfdi_id = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['id'];
+                $cliente->cfdi = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['codigo_cfdi'];
                 $cliente->metodo_de_pago  = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'];
                 $cliente->termino_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'];
                 $cliente->revision_de_factura_pagos_descripcion_revision_factura = $request['revisionDeFacturasYpagos']['descripcionRevisionFactura'];
@@ -300,6 +302,13 @@ class ClienteController extends Controller
                 $cliente->moneda_factura = $moneda;
                 $cliente->correo_envio_factura = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['emailParaEnvioFactura'];
                 $cliente->cdfi = $request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cfdi'];
+                
+                $cfdi = new CFDI();
+                $cfdi->where('codigo_cfdi',$request['DatosFiscalesYRequerimientosParaFacturacion']['domicilioFiscalParaFacturacion']['cfdi'] )->first();
+                
+                $cliente->cfdi_id = $cfdi['id'] ;
+
+
                 $cliente->metodo_de_pago  = $metodoDepago;
                 $cliente->termino_de_pago =  $terminoPago;
                 $cliente->revision_de_factura_pagos_descripcion_revision_factura = $request['revisionDeFacturaYpago']['descripcion'];
@@ -373,6 +382,55 @@ class ClienteController extends Controller
     {
         try {
             return DB::transaction(function () use ($request, $cliente) {
+
+                if(gettype($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']) == "array"){
+                    $formaDePago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']['nombre'];
+                    
+
+                }elseif(isset($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']['nombre'])){
+                    $formaDePago = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']))['nombre'];
+                }else{
+                    $formaDePago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago'];
+                }
+                 
+                
+                if(gettype($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']) == "array"){
+                    $moneda = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'];
+                }elseif(isset($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'])){
+                    $moneda = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']))['clave'];
+                }else{
+                    $moneda = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura'];
+                }
+
+                if(gettype($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']) == "array"){
+                    $terminosPago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'];
+                }elseif(isset($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'])){
+                    $terminosPago = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']))['name'];
+                }else{
+                    $terminosPago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago'];
+                }
+
+                if(gettype($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']) == "array"){
+                    $metodoPago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'];
+                }elseif(isset($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'])){
+                    $metodoPago = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']))['nombre'];
+                }else{
+                    $metodoPago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago'];
+                }
+
+                if(gettype($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']) == "array"){
+                    $cfdi = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['codigo_cfdi'];
+                    $cfdi_id = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['id'];
+                }elseif(isset($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['codigo_cfdi'])){
+                    $cfdi  = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']))['codigo_cfdi'];
+                    $cfdi_id = collect(json_decode($request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']))['id'];
+                }else{
+                    $cfdi  = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi'];
+                    $idCfdi = New CFDI();
+                    $idCfdi->where('codigo_cfdi', $cfdi)->first();
+                    $cfdi_id = $idCfdi['id'];
+                }
+
                 $cliente->find($request['id'])->update([
                     'servicio_solicitado' => json_encode($request['servicio_solicitado']),
                     'persona_de_contacto_nombre' => $request['persona_de_contacto']['nombre'],
@@ -397,12 +455,13 @@ class ClienteController extends Controller
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['ciudad'],
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['estado'],
                     'datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cp'],
-                    'forma_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago'],
-                    'moneda_factura' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'],
-                    'termino_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago'],
-                    'metodo_de_pago' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago'],
+                    'forma_de_pago' => $formaDePago,
+                    'moneda_factura' => $moneda,
+                    'termino_de_pago' => $terminosPago,
+                    'metodo_de_pago' => $metodoPago,
                     'correo_envio_factura' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['emailEnvioFactura'],
-                    'cdfi' => $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi'],
+                    'cdfi' => $cfdi,
+                    'cfdi_id' => $cfdi_id,
                     'revision_de_factura_pagos_descripcion_revision_factura' => $request['revisionDeFacturasYpagos']['descripcionRevisionFactura'],
                     'revision_de_factura_pagos_dias_revision_factura' => $request['revisionDeFacturasYpagos']['diasRevisionFactura'],
                     'revision_de_factura_pagos_hora_revision_factura' => $request['revisionDeFacturasYpagos']['horaDiasRevisionFactura'],
@@ -427,8 +486,8 @@ class ClienteController extends Controller
                         $sucursal->nombre_sucursal = $request['sucursales'][$i]['nombre_sucursal'];
                         $sucursal->direccion_sucursal = $request['sucursales'][$i]['direccion_sucursal'];
                         $sucursal->telefono = $request['sucursales'][$i]['telefono'];
-                        $sucursal->contacto_sucural = $request['sucursales'][$i]['contacto'];
-                        $sucursal->correo_contacto_sucural = $request['sucursales'][$i]['correo'];
+                        $sucursal->contacto_sucural = $request['sucursales'][$i]['contacto_sucural'];
+                        $sucursal->correo_contacto_sucural = $request['sucursales'][$i]['correo_contacto_sucural'];
                         $sucursal->cliente_id = $request['id'];
                         $sucursal->save();
                     } else {

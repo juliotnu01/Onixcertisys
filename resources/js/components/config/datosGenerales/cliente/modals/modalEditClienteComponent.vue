@@ -277,14 +277,22 @@
                   />
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                  <v-text-field
-                    label="CFDI"
+                   <v-autocomplete
+                    v-model="cliente.datosFisicosYRequerimientosDeFactuacion.domicilioFiscalParaFacturacion.cfdi"
+                    :items="cfdis"
                     outlined
-                    v-model="
-                      cliente.datosFisicosYRequerimientosDeFactuacion
-                        .domicilioFiscalParaFacturacion.cfdi
-                    "
-                  ></v-text-field>
+                    label="Seleccionar C.F.D.I."
+                    return-object
+                    item-text="codigo_cfdi"
+                    item-value="codigo_cfdi"
+                  >
+                  <template v-slot:selection="{item}">
+                    {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  </template>
+                  <template v-slot:item="{item}">
+                     {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  </template>
+                </v-autocomplete>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                    <v-autocomplete
@@ -638,7 +646,8 @@ export default {
       "list_metodo_de_pago",
       "listCondicionDePago",
       "monedas",
-      "cliente"
+      "cliente",
+      "cfdis"
     ]),
     openDialog: {
       get() {
@@ -653,6 +662,7 @@ export default {
     await this.services.metodoDePagoServices.getlistMetodoDePago();
     await this.services.condicionDePagoServices.getlistCondicionDePago();
     await this.services.monedaServices.getlistMonedas();
+    await this.services.cfdiServices.getCFDIs();
   },
   methods: {
     async editCliente() {
