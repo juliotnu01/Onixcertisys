@@ -167,11 +167,10 @@
         width: 100%;
         margin-top: 5px;
         font-size: 13px;
+        text-align: justify;
     }
     .tableCabeceraDoc{
         width: 100%;
-    }
-    .tableCabeceraDoc tr td{
     }
 </style>
 
@@ -184,7 +183,7 @@
             <td class="tdInfoEmpresa">
                 <span>
                     Accredian, S. DE R.L. DE C.V.<br />
-                    RFC: ACC1905026P3<br />
+                    <strong>RFC: ACC1905026P3</strong><br />
                     Domicilio Fiscal: Calle Monclova 213,
                     Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
                     Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
@@ -300,7 +299,7 @@
                 <td colspan="6" style="color: #0095d9; font-weight: bold;">Importe con letra ({{$spell}})</td>
                 <td></td>
                 <td></td>
-                <td style="text-align: right;">SubTotal:</td>
+                <td style="text-align: right;"><strong>SubTotal:</strong></td>
                 <td>  {{number_format($data['sub_total'], 2, '.', ',')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
@@ -310,7 +309,7 @@
                 <td colspan="6"></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: right;">I.V.A. <small>(16%)</small>:</td>
+                <td style="text-align: right;"><strong>I.V.A. <small>(16%)</small>:</strong></td>
                 <td>    {{number_format($data['iva'], 2, '.', ',')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
@@ -320,7 +319,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: right;">Total:</td>
+                <td style="text-align: right;"><strong> Total:</strong></td>
                 <td>  {{number_format($data['total'], 2, '.', ',')}}</td>
             </tr>
         </tfoot>
@@ -340,7 +339,7 @@
                     <table cellspacing=0 style="width: 70%;">
                         <thead>
                             <tr>
-                                <td colspan="5" style="background-color: #cecece; font-size: 13px; font-weight: bold; text-align: center; ">Para pagos desde México</td>
+                                <td colspan="5" style="background-color: #cecece; font-size: 13px;  text-align: center; ">Para pagos desde México</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -358,6 +357,13 @@
                                 <td>0113689131</td>
                                 <td>012072001136891315</td>
                             </tr>
+                            <tr>
+                                <td>Monex</td>
+                                <td>Dolares</td>
+                                <td></td>
+                                <td>3236114</td>
+                                <td>112962000032361141</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
@@ -365,7 +371,7 @@
                     <table cellspacing=0 style="width: 100%;">
                         <thead>
                             <tr>
-                                <td colspan="6" style="background-color: #cecece; font-size: 13px; font-weight: bold; text-align: center; "> Para pagos en USD desde USA</td>
+                                <td colspan="6" style="background-color: #cecece; font-size: 13px;  text-align: center; "> Para pagos en USD desde USA</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -384,6 +390,14 @@
                                 <td>021000018</td>
                                 <td>Accredian S DE RL DE CV</td>
                                 <td>00003236114</td>
+                            </tr>
+                            <tr style="border: none;">
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
                             </tr>
                         </tbody>
                     </table>
@@ -461,7 +475,7 @@
                 <td style="text-align: center;" colspan="2">TERMINOS Y CONDICIONES GENERALES</td>
             </tr>
             <tr>
-                <td>
+                <td style="padding-right: 5px;">
                     <p>
                         <strong>1. Términos y condiciones de Pago</strong><br />
                         1.1. Para aclaración de crédito o envío de comprobante de pago, favor de contactar al departamento de cobranza en el correo electrónico: facturacionycobranza@accredian.org .<br />
@@ -490,7 +504,7 @@
                     </p>
 
                 </td>
-                <td>
+                <td style="padding-left: 5px;">
                     <p>
                         <strong>4. Ejecución de Servicios en Instalaciones del Cliente</strong><br />
                         4.1. Todo servicio de calibración en instalaciones del cliente será programado siempre y cuando se haya recibido una orden de compra, pedido o pago.<br />
