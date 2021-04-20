@@ -203,7 +203,7 @@
                       .datos_fisicos_requeremientos_facturacion_razon_social
                   "
                   outlined
-                  disabled
+                  
                 />
               </v-col>
               <v-col
@@ -218,7 +218,7 @@
                   label="Moneda"
                   v-model="cotizacion_partida.has_moneda.clave"
                   outlined
-                  disabled
+                  
                 />
               </v-col>
 
@@ -226,7 +226,7 @@
                 <v-text-field
                   label="Forma de pago"
                   outlined
-                  disabled
+                  
                   v-model="cotizacion_partida.has_cliente.forma_de_pago"
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
@@ -237,9 +237,44 @@
                   label="Metodo de pago"
                   v-model="cotizacion_partida.has_cliente.metodo_de_pago"
                   outlined
-                  disabled
+                  
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
+              </v-col>
+              <v-col cols="12" xs="12" sm="6" md="6">
+                <v-text-field
+                  label="Condicion de pago"
+                  v-model="cotizacion_partida.has_cliente.termino_de_pago"
+                  outlined
+                  
+                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
+                />
+              </v-col>
+              <v-col cols="12" xs="12" sm="6" md="6">
+                <!-- <v-text-field
+                  label="C.F.D.I"
+                  v-model="cotizacion_partida.has_cliente.metodo_de_pago"
+                  outlined
+                  
+                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
+                /> -->
+                  <v-autocomplete
+                    v-model="cotizacion_partida.has_cliente.cdfi"
+                    :items="cfdis"
+                    outlined
+                    label="C.F.D.I."
+                    return-object
+                    item-text="codigo_cfdi"
+                    item-value="codigo_cfdi"
+                    v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
+                  >
+                  <template v-slot:selection="{item}">
+                    {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  </template>
+                  <template v-slot:item="{item}">
+                     {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  </template>
+                </v-autocomplete>
               </v-col>
               <v-col cols="12" xs="12" sm="12" md="12">
                 <v-text-field
@@ -855,6 +890,7 @@ export default {
       "list_metodo_de_pago",
       "clavesSat",
       "unidades",
+      "cfdis"
     ]),
     var_computed_subtotal: {
       get() {
@@ -961,6 +997,7 @@ export default {
     await this.services.condicionDePagoServices.getlistCondicionDePago();
     await this.services.unidadServices.getUnidades();
     await this.services.claveSatServices.getclavesSat();
+    await this.services.cfdiServices.getCFDIs();
   },
   methods: {
     async addPartidaFacturaNueva(item) {

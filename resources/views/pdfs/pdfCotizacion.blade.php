@@ -21,7 +21,7 @@
     .tdInfoEmpresaContactos {
         width: 20%;
         text-align: right;
-        color: #4d99de;
+        color: #0095d9;
         padding-right: 80px;
         font-size: 12px ;
     }
@@ -33,7 +33,7 @@
     .cotWord {
         font-size: 20px;
         text-align: center;
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         border-radius: 6px 6px 6px 6px;
         padding-left: 20px;
@@ -47,7 +47,7 @@
     }
 
     .cotNumber {
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         border-radius: 6px;
         margin-top: 5px;
         margin-right: 65px;
@@ -60,33 +60,33 @@
         width: 100%;
         height: auto;
         font-size: 13px;
-        border: 3px solid #4d99de;
+        border: 3px solid #0095d9;
         border-radius: 6px;
         text-align: right;
     }
 
     .tableCuerpoItems {
         width: 100%;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 8px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head_tr {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 13px;
     }
 
     .tableCuerpoItems_body_tr td {
-        border: 1px solid #4d99de;
+        border: 1px solid #0095d9;
         text-align: center;
         font-size: 13px;
     }
@@ -98,7 +98,7 @@
 
     .tableNota {
         width: 100%;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         border-radius: 5px 5px 5px 5px;
         font-size: 13px;
@@ -193,10 +193,12 @@
             </td>
             <td class="tdInfoEmpresaContactos">
                 <span>
+                <strong>
                     Tel. 813-186-4994<br />
                     813-186-4995<br />
                     818-748-0707<br />
                     www.accredian.com
+                </strong>
                 </span>
             </td>
             <td class="tdInfoNumberCotizacion">
@@ -295,7 +297,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td colspan="6" style="color: #4d99de; font-weight: bold;">Importe con letra ({{$spell}})</td>
+                <td colspan="6" style="color: #0095d9; font-weight: bold;">Importe con letra ({{$spell}})</td>
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">SubTotal:</td>
@@ -461,13 +463,13 @@
             <tr>
                 <td>
                     <p>
-                        <strong>1. Términos y condiciones de Pago</strong>
+                        <strong>1. Términos y condiciones de Pago</strong><br />
                         1.1. Para aclaración de crédito o envío de comprobante de pago, favor de contactar al departamento de cobranza en el correo electrónico: facturacionycobranza@accredian.org .<br />
                         1.2. Favor de verificar con el área de cobranza el estatus de adeudo de su empresa para evitar atrasos en el retorno de sus equipos.<br />
                         1.3. Todas las facturas deberán ser pagadas el mismo año de su emisión.<br />
                     </p>
                     <p>
-                        <strong>2. Cotización y servicios adicionales</strong>
+                        <strong>2. Cotización y servicios adicionales</strong><br />
                         2.1. La cotización tiene una validez de 30 días naturales a partir de su fecha de emisión. <br />
                         <strong> 2.2. Servicio Ordinario: </strong> Tiempo de entrega 3 a 5 días hábiles (según servicio) a partir de la recepción de equipos en nuestras instalaciones y según cantidad de equipos a recibir por remesa. No aplica cuando el equipo requiera ajuste mayor, mantenimiento o reparación.<br />
                         <strong> 2.3. Servicio Urgente:</strong> Tiempo de entrega de 24 horas hábiles a partir de la recepción de equipos en nuestras instalaciones, previa disponibilidad de laboratorio. No aplica cuando el equipo requiera ajuste mayor, mantenimiento o reparación.<br />
@@ -479,7 +481,7 @@
                         2.9. El costo por la reimpresión de un certificado de calibración es de $100.00 pesos + IVA. Pago 100% contra entrega.
                     </p>
                     <p>
-                        <strong>3. Entrega y Recepción de Equipos en Instalaciones de ACCREDIAN</strong>
+                        <strong>3. Entrega y Recepción de Equipos en Instalaciones de ACCREDIAN</strong><br />
                         3.1. La recepción de sus equipos en nuestras instalaciones, la emisión de orden de compra o pedido a favor de ACCREDIAN da por hecho que nuestros términos y condiciones han sido aceptados en su totalidad. <br />
                         3.2. En caso de recibir en nuestras instalaciones equipos que cuenten con una cotización vigente, se dará por entendido que dicha cotización se está aceptando en su totalidad, esto siempre y cuando no se indique lo contrario al momento de recibir los equipos o antes de. <br />
                         3.3. Se recomienda que sus instrumentos estén acompañados por el manual de operación y accesorios como: fuente de poder, cables, conexiones, baterías, líquidos o soluciones, etc. Para no extender el tiempo de entrega en caso de necesitarse. <br />
@@ -490,7 +492,7 @@
                 </td>
                 <td>
                     <p>
-                        <strong>4. Ejecución de Servicios en Instalaciones del Cliente</strong>
+                        <strong>4. Ejecución de Servicios en Instalaciones del Cliente</strong><br />
                         4.1. Todo servicio de calibración en instalaciones del cliente será programado siempre y cuando se haya recibido una orden de compra, pedido o pago.<br />
                         4.2. Los certificados de calibración no son elaborados ni entregados en instalaciones del cliente, estos serían entregado entre 5 y 8 días hábiles después del servicio vía electrónica.<br />
                         4.3. Los instrumentos deberán ser montados y entregados al personal de ACCREDIAN por parte del cliente, en condiciones de limpieza y funcionamiento adecuados para su calibración. <br />
@@ -500,7 +502,7 @@
                         4.7. Para algunos servicios el cliente deberá facilitar un área de trabajo con condiciones ambientales controladas, así como mesa de trabajo, suministro eléctrico, iluminación y limpieza adecuado, solo algunos servicios de calibración de instrumentación ordinaria o de baja exactitud se podrán realizar directamente en proceso o línea, de acuerdo con las condiciones de montaje y facilidad de acceso ya que el servicio tiene el alcance para calibrar a una altura no mayor de 1 metro del piso.<br />
                     </p>
                     <p>
-                        <strong>5. Responsabilidades durante la realización de los servicios.</strong>
+                        <strong>5. Responsabilidades durante la realización de los servicios.</strong><br />
                         5.1. En caso de que sus equipos requieran ser conectados a un suministro eléctrico, serán conectados a una alimentación eléctrica con neutro y tierras independientes. La instalación eléctrica de ACCREDIAN cumple con los requisitos de las NOM-001-SEDE-2012. En caso de que los equipos del cliente requieran ser conectados a una alimentación diferente a la de ACCREDIAN, es responsabilidad del cliente informarlo debidamente. Favor de poner atención especial para equipos de fabricación europea. <br />
                         5.2. ACCREDIAN no se hace responsable en caso de siniestro ocurrido a los equipos durante su transportación hacia o desde ACCREDIAN, ya que nuestra responsabilidad se limita únicamente a los instrumentos recibidos en nuestras instalaciones. <br />
                         5.3. ACCREDIAN no se hace responsable en caso de daños debido a vicios ocultos de los instrumentos durante la realización de los servicios. La responsabilidad de ACCREDIAN es en daños por causantes de inadecuada operación y manejo de instrumentos, con límite de responsabilidad obligada en el dispuesto del valor del costo de reparación o en su caso la sustitución de este. <br />
@@ -508,7 +510,7 @@
                         5.5. ACCREDIAN no tiene responsabilidad alguna de equipos que ya fueron liberados y siguen en instalaciones de ACCREDIAN.
                     </p>
                     <p>
-                        <strong>6. Protocolo de atención para quejas y/o reclamaciones.</strong>
+                        <strong>6. Protocolo de atención para quejas y/o reclamaciones.</strong><br />
                         6.1. Toda queja y/o reclamación deberá ser presentada por escrito al correo jonathan.coronado@accredian.org. <br />
                         6.2. Para los casos de supuestos daños y/o extravío de equipo, el cliente cuenta con 1 día hábil a partir de la recepción de estos, para ingresar su queja y/o reclamación y que ésta sea atendida.<br />
                         6.3. Para los casos de supuestos errores en los resultados de servicios metrológicos (calibración, caracterización, etc.), el cliente cuenta con 5 días hábiles a partir de la recepción de sus equipos para ingresar su queja y/o reclamación, y que ésta sea atendida.

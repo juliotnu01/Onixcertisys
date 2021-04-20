@@ -12,53 +12,45 @@
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
               <div>
                 <h4>
-                  Cliente:{{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_razon_social
-                  }}
+                  <strong>Cliente: </strong> {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social}}
                 </h4>
                 <h4>
-                  Dirección Fiscal: Cll.
-                  {{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
-                  }}
-                  #
-                  {{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
-                  }}
-
-                  {{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
-                  }}
-
-                  {{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
-                  }}
-
-                  {{
-                    factura.cliente.has_cliente
-                      .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
-                  }}
+                 <strong> Dirección Fiscal:</strong>  Cll.
+                  {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle}} #
+                  {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero}}
+                  {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia}}
+                  {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad}}
+                  {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado}}
+                </h4>
+                <h4>
+                 <strong> R.F.C.: </strong> {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_rfc}}
+                </h4>
+                <h4>
+                 <strong> Uso C.F.D.I.:</strong> {{factura.cliente.has_cliente.has_cfdi.codigo_cfdi}} - {{factura.cliente.has_cliente.has_cfdi.descripcion_cfdi}}
+                </h4>
+                <h4>
+                 <strong> Forma de pago :</strong>  {{factura.cliente.has_cliente.forma_de_pago}}
+                </h4>
+                <h4>
+                 <strong> Metodo de pago : </strong> {{factura.cliente.has_cliente.metodo_de_pago}}
+                </h4>
+                <h4>
+                 <strong> Condiciones de pago :</strong>  {{factura.cliente.has_cliente.termino_de_pago}}
+                </h4>
+                <h4>
+                  <strong>CP de Expedición : </strong> {{factura.cliente.has_cliente.datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp}}
+                </h4>
+                <h4>
+                  <strong>Moneda :</strong>  {{factura.cliente.has_cliente.moneda_factura}}
+                </h4>
+                <h4>
+                  <strong>Orden de compra :</strong>  {{factura.orden_de_compra}}
+                </h4>
+                <h4>
+                  <strong>Moneda :</strong>  {{factura.nota}}
                 </h4>
                 <v-divider></v-divider>
-                <!-- <h4>Teléfono:{{ factura.cliente.has_cliente.telefono_empresa }}</h4>
-                <h4>
-                  Correo:{{
-                    factura.cliente.has_cliente
-                      .correo_electronico_para_el_envio_de_factura
-                  }}
-                </h4> -->
-                <!--<h4>Metodo de pago:{{factura.cliente.has_cliente.has_metodo_de_pago.nombre}}</h4>
-                            <h4>Forma de pago :{{factura.cliente.has_cliente.has_condicion_de_pago.nombre}}</h4>-->
-
-                <!-- <h4 class="text-right">
-                  Vendedor:{{ factura.cliente.has_empleado.nombre_completo }}
-                </h4> -->
-                <h4 class="text-right">Fecha:{{ fecha }}</h4>
+                <h4 class="text-right"><strong>Fecha:</strong> {{ fecha }}</h4>
                 <br />
               </div>
             </v-col>
@@ -69,6 +61,7 @@
                     <tr>
                       <th class="text-center">Orden de servicio</th>
                       <th class="text-center">Folio</th>
+                      <th class="text-center">Clave Sat</th>
                       <th class="text-center">ID informe</th>
                       <th class="text-center">Concepto</th>
                       <th class="text-center">Instrumento</th>
@@ -81,6 +74,7 @@
                     <tr v-for="item in factura.partidas" :key="item.name">
                       <td class="text-center">{{ item.reciboID }}</td>
                       <td class="text-center">{{ item.cotizacionID }}</td>
+                      <td class="text-center">{{ item.has_clave_sat.codigo }}</td>
                       <td class="text-center">{{ item.informe_id }}</td>
                       <td class="text-center">Servicio de {{ item.servicio }}</td>
                       <td class="text-center">

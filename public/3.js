@@ -675,6 +675,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -847,7 +882,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "clientes", "monedas", "empleados", "instrumentos", "clientes", "recibos_cliente", "listCondicionDePago", "list_metodo_de_pago", "clavesSat", "unidades"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "recibos", "clientes", "monedas", "empleados", "instrumentos", "clientes", "recibos_cliente", "listCondicionDePago", "list_metodo_de_pago", "clavesSat", "unidades", "cfdis"])), {}, {
     var_computed_subtotal: {
       get: function get() {
         var result = 0;
@@ -991,6 +1026,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.services.claveSatServices.getclavesSat();
 
             case 20:
+              _context.next = 22;
+              return _this.services.cfdiServices.getCFDIs();
+
+            case 22:
             case "end":
               return _context.stop();
           }
@@ -1342,12 +1381,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2018,8 +2051,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           label: "Cliente",
-                                          outlined: "",
-                                          disabled: ""
+                                          outlined: ""
                                         },
                                         model: {
                                           value:
@@ -2058,8 +2090,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           label: "Moneda",
-                                          outlined: "",
-                                          disabled: ""
+                                          outlined: ""
                                         },
                                         model: {
                                           value:
@@ -2098,8 +2129,7 @@ var render = function() {
                                     ? _c("v-text-field", {
                                         attrs: {
                                           label: "Forma de pago",
-                                          outlined: "",
-                                          disabled: ""
+                                          outlined: ""
                                         },
                                         model: {
                                           value:
@@ -2139,8 +2169,7 @@ var render = function() {
                                     ? _c("v-text-field", {
                                         attrs: {
                                           label: "Metodo de pago",
-                                          outlined: "",
-                                          disabled: ""
+                                          outlined: ""
                                         },
                                         model: {
                                           value:
@@ -2156,6 +2185,131 @@ var render = function() {
                                           },
                                           expression:
                                             "cotizacion_partida.has_cliente.metodo_de_pago"
+                                        }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "6",
+                                    md: "6"
+                                  }
+                                },
+                                [
+                                  _vm.cotizacion_partida.hasOwnProperty(
+                                    "has_cliente"
+                                  )
+                                    ? _c("v-text-field", {
+                                        attrs: {
+                                          label: "Condicion de pago",
+                                          outlined: ""
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.cotizacion_partida.has_cliente
+                                              .termino_de_pago,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.cotizacion_partida
+                                                .has_cliente,
+                                              "termino_de_pago",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "cotizacion_partida.has_cliente.termino_de_pago"
+                                        }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    xs: "12",
+                                    sm: "6",
+                                    md: "6"
+                                  }
+                                },
+                                [
+                                  _vm.cotizacion_partida.hasOwnProperty(
+                                    "has_cliente"
+                                  )
+                                    ? _c("v-autocomplete", {
+                                        attrs: {
+                                          items: _vm.cfdis,
+                                          outlined: "",
+                                          label: "C.F.D.I.",
+                                          "return-object": "",
+                                          "item-text": "codigo_cfdi",
+                                          "item-value": "codigo_cfdi"
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "selection",
+                                              fn: function(ref) {
+                                                var item = ref.item
+                                                return [
+                                                  _vm._v(
+                                                    "\n                  " +
+                                                      _vm._s(item.codigo_cfdi) +
+                                                      " - " +
+                                                      _vm._s(
+                                                        item.descripcion_cfdi
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              key: "item",
+                                              fn: function(ref) {
+                                                var item = ref.item
+                                                return [
+                                                  _vm._v(
+                                                    "\n                   " +
+                                                      _vm._s(item.codigo_cfdi) +
+                                                      " - " +
+                                                      _vm._s(
+                                                        item.descripcion_cfdi
+                                                      ) +
+                                                      "\n                "
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          false,
+                                          2198625948
+                                        ),
+                                        model: {
+                                          value:
+                                            _vm.cotizacion_partida.has_cliente
+                                              .cdfi,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.cotizacion_partida
+                                                .has_cliente,
+                                              "cdfi",
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "cotizacion_partida.has_cliente.cdfi"
                                         }
                                       })
                                     : _vm._e()
@@ -3474,8 +3628,9 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h4", [
+                                    _c("strong", [_vm._v("Cliente: ")]),
                                     _vm._v(
-                                      "\n                Cliente:" +
+                                      " " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_razon_social
@@ -3485,28 +3640,31 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("h4", [
+                                    _c("strong", [
+                                      _vm._v(" Dirección Fiscal:")
+                                    ]),
                                     _vm._v(
-                                      "\n                Dirección Fiscal: Cll.\n                " +
+                                      "  Cll.\n                " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
                                         ) +
-                                        "\n                #\n                " +
+                                        " #\n                " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
                                         ) +
-                                        "\n\n                " +
+                                        "\n                " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
                                         ) +
-                                        "\n\n                " +
+                                        "\n                " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
                                         ) +
-                                        "\n\n                " +
+                                        "\n                " +
                                         _vm._s(
                                           _vm.factura.cliente.has_cliente
                                             .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
@@ -3515,10 +3673,124 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v(" R.F.C.: ")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .datos_fisicos_requeremientos_facturacion_rfc
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v(" Uso C.F.D.I.:")]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .has_cfdi.codigo_cfdi
+                                        ) +
+                                        " - " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .has_cfdi.descripcion_cfdi
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v(" Forma de pago :")]),
+                                    _vm._v(
+                                      "  " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .forma_de_pago
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [
+                                      _vm._v(" Metodo de pago : ")
+                                    ]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .metodo_de_pago
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [
+                                      _vm._v(" Condiciones de pago :")
+                                    ]),
+                                    _vm._v(
+                                      "  " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .termino_de_pago
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [
+                                      _vm._v("CP de Expedición : ")
+                                    ]),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v("Moneda :")]),
+                                    _vm._v(
+                                      "  " +
+                                        _vm._s(
+                                          _vm.factura.cliente.has_cliente
+                                            .moneda_factura
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v("Orden de compra :")]),
+                                    _vm._v(
+                                      "  " +
+                                        _vm._s(_vm.factura.orden_de_compra) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _c("strong", [_vm._v("Moneda :")]),
+                                    _vm._v(
+                                      "  " +
+                                        _vm._s(_vm.factura.nota) +
+                                        "\n              "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
                                   _c("v-divider"),
                                   _vm._v(" "),
                                   _c("h4", { staticClass: "text-right" }, [
-                                    _vm._v("Fecha:" + _vm._s(_vm.fecha))
+                                    _c("strong", [_vm._v("Fecha:")]),
+                                    _vm._v(" " + _vm._s(_vm.fecha))
                                   ]),
                                   _vm._v(" "),
                                   _c("br")
@@ -3560,6 +3832,12 @@ var render = function() {
                                                 "th",
                                                 { staticClass: "text-center" },
                                                 [_vm._v("Folio")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Clave Sat")]
                                               ),
                                               _vm._v(" "),
                                               _c(
@@ -3639,6 +3917,22 @@ var render = function() {
                                                           _vm._v(
                                                             _vm._s(
                                                               item.cotizacionID
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              item.has_clave_sat
+                                                                .codigo
                                                             )
                                                           )
                                                         ]
@@ -3978,7 +4272,7 @@ var render = function() {
                                   ],
                                   null,
                                   false,
-                                  3529245505
+                                  3979111942
                                 )
                               })
                             ],
