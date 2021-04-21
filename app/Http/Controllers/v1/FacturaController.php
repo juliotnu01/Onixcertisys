@@ -147,6 +147,7 @@ class FacturaController extends Controller
         for ($i = 0; $i < count($request['partidas']); $i++) {
             $cotizaciones[] = $request['partidas'][$i]['has_recibo']['has_cotizaicon']['id'];
         }
+
         try {
             return DB::transaction(function () use ($request, $factura, $cotizaciones, $recibos) {
                 $factura->cliente_id = $request['cliente']['has_cliente']['id'];
@@ -200,6 +201,7 @@ class FacturaController extends Controller
                 $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('||1.1|90225f67-0fe4-4841-924c-76a4f35a9ee1|2020-10-29T15:08:26|LSO1306189R5|hzn7VWCZx3TupITNv9ocsAyoMi3MPaZ9fbJJ/bz6MKrs41f4jw89xyLvhP/PsJGMQ/SbqgxA7zInjAZRJh65o/c/WJ0s2KSBQSQucuMAJ+Wdx5PO4LNkOJl5XLr47n9El/+P0Xwob691CbPIZ4+wUvnTO053xC5pzpLSRFHu5bmd2hIKxPFcMS2dhjGn4ITcrwstkQZs/dxO954ir09wxnxzowDJ27bCYEauqW1DJQ2AUNdwPxGB+ZEtwiD4mPa4YeSJqlqiONPho5udxFDF2fTNowWmBfTX6id7kg2oUsWIMahNfKFWHkS3hUjccwyrOK+lTBXJ2DwZ2ozG1rr0pw==|00001000000408254801||'));
                 $stringQr = '||1.1|90225f67-0fe4-4841-924c-76a4f35a9ee1|2020-10-29T15:08:26|LSO1306189R5|hzn7VWCZx3TupITNv9ocsAyoMi3MPaZ9fbJJ/bz6MKrs41f4jw89xyLvhP/PsJGMQ/SbqgxA7zInjAZRJh65o/c/WJ0s2KSBQSQucuMAJ+Wdx5PO4LNkOJl5XLr47n9El/+P0Xwob691CbPIZ4+wUvnTO053xC5pzpLSRFHu5bmd2hIKxPFcMS2dhjGn4ITcrwstkQZs/dxO954ir09wxnxzowDJ27bCYEauqW1DJQ2AUNdwPxGB+ZEtwiD4mPa4YeSJqlqiONPho5udxFDF2fTNowWmBfTX6id7kg2oUsWIMahNfKFWHkS3hUjccwyrOK+lTBXJ2DwZ2ozG1rr0pw==|00001000000408254801||';
                 $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
+                
                 $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request', 'qrcode', 'spell', 'factura', 'stringQr']));
                 Storage::disk('store_pdfs')->put("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf", $pdf->stream());
                 $url = Storage::disk('store_pdfs')->url("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf");

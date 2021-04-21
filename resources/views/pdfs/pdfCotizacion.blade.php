@@ -327,7 +327,7 @@
     <table class="tableNota">
         <tbody>
             <tr>
-                <td> NOTAS:</td>
+                <td> NOTA:</td>
                 <td> </td>
             </tr>
         </tbody>

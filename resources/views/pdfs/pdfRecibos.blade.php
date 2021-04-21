@@ -19,7 +19,7 @@
     .tdInfoEmpresaContactos {
         width: 20%;
         text-align: right;
-        color: #4d99de;
+        color: #0095d9;
         padding-right: 80px;
         font-size: 12px ;
     }
@@ -29,7 +29,7 @@
     .cotWord {
         font-size: 20px;
         text-align: center;
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         border-radius: 6px 6px 6px 6px;
         padding-top: 5px;
@@ -42,7 +42,7 @@
     }
 
     .cotNumber {
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         border-radius: 6px;
         margin-top: 5px;
         margin-right: 90px;
@@ -55,33 +55,33 @@
         width: 100%;
         height: auto;
         font-size: 14px;
-        border: 3px solid #4d99de;
+        border: 3px solid #0095d9;
         border-radius: 6px;
         text-align: right;
     }
 
     .tableCuerpoItems {
         width: 100%;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 8px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head_tr {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 13px;
     }
 
     .tableCuerpoItems_body_tr td {
-        border: 1px solid #4d99de;
+        border: 1px solid #0095d9;
         text-align: center;
         font-size: 13px;
     }
@@ -94,7 +94,7 @@
     .tableNota {
         width: 100%;
         height: 100px;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         border-radius: 20px;
         font-size: 13px;
@@ -167,12 +167,12 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+               {{-- <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">--}}
             </td>
             <td class="tdInfoEmpresa">
                 <span>
                     Accredian, S. DE R.L. DE C.V.<br />
-                    RFC: ACC1905026P3<br />
+                    <strong> RFC: ACC1905026P3 </strong> <br />
                     Domicilio Fiscal: Calle Monclova 213,
                     Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
                     Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
@@ -262,6 +262,18 @@
             <tr>
                 <td>  Observaciones:</td>
                 <td> </td>
+            </tr>
+            <tr>
+                <td style="border: none;" > &nbsp; </td>
+            </tr>
+            <tr>
+                <td style="border: none;" > &nbsp; </td>
+            </tr>
+            <tr>
+                <td style="border: none;" > &nbsp; </td>
+            </tr>
+            <tr>
+                <td style="border: none;" > &nbsp; </td>
             </tr>
         </tbody>
     </table>
