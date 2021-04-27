@@ -73,7 +73,7 @@ export default {
                     text: "Cliente",
                     align: "center",
                     sortable: true,
-                    value: "has_recibo.has_cotizaicon.has_cliente.razon_social",
+                    value: "has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social",
                 },
                 {
                     text: "Magnitud",
@@ -117,8 +117,9 @@ export default {
     },
     methods: {
         Calibrar(item) {
-            this.$store.commit('setDialogCalibracion', true)
+            console.log({item})
             this.$store.commit('setPartida', item)
+            this.$store.commit('setDialogCalibracion', true)
         }
     }
 };

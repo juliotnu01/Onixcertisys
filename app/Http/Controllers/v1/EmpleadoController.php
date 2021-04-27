@@ -155,22 +155,23 @@ class EmpleadoController extends Controller
 
     public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento)
     {
-            // $instrumento->find($request['model']['has_intrumento']['id'])->update([
-            //     'documento_id' =>  $request['file']['id']
-            // ]);
-            dd(json_encode($request->all()));
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+        if (count($request['file']) == 0) {
+            $request['file'] = $request['model']['has_intrumento']['belongs_documento'];
+        }
+        $instrumento->find($request['model']['has_intrumento']['id'])->update([
+            'documento_id' =>  $request['file']['id']
+        ]);
+        // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC') . "/api/Asignacion/Json", $request->all());
 
 
         try {
-            return DB::transaction(function() use ($request, $partida){
-                    $partida->find($request['model']['id'])->update([
-                        'empleado_id' =>   $request['model']['has_empleado']['id'],
-                    ]);
-            },5);
+            return DB::transaction(function () use ($request, $partida) {
+                $partida->find($request['model']['id'])->update([
+                    'empleado_id' =>   $request['model']['has_empleado']['id'],
+                ]);
+            }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);
-
         }
     }
 }

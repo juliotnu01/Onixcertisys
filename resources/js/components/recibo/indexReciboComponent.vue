@@ -291,7 +291,7 @@ export default {
 
     async fetchUsers(item) {
       return this.recibos.forEach((recibo) => {
-        if(recibo.has_cotizaicon.has_cliente !== null ) {
+        if (recibo.has_cotizaicon.has_cliente !== null) {
           item.children.push({
             name: `Folio: ${recibo.id} - Empresa: ${
               recibo.has_cotizaicon.has_cliente

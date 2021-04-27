@@ -17,7 +17,7 @@
                     xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                     xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd">
-    <cfdi:Emisor    Nombre="INMOB EDMA SA DE CV " RegimenFiscal="601" Rfc="TME960709LR2" />
+    <cfdi:Emisor    Nombre="INMOB EDMA SA DE CV " RegimenFiscal="601" Rfc="EKU9003173C9" />
     <cfdi:Receptor   Nombre="Rodolfo Carranza Ramos" Rfc="AAA010101AAA" UsoCFDI="G03" />
     <cfdi:Conceptos>
         <cfdi:Concepto  Cantidad="1" 

@@ -95,7 +95,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: "Cliente",
         align: "center",
         sortable: true,
-        value: "has_recibo.has_cotizaicon.has_cliente.razon_social"
+        value: "has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
       }, {
         text: "Magnitud",
         align: "center",
@@ -146,8 +146,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     Calibrar: function Calibrar(item) {
-      this.$store.commit('setDialogCalibracion', true);
+      console.log({
+        item: item
+      });
       this.$store.commit('setPartida', item);
+      this.$store.commit('setDialogCalibracion', true);
     }
   }
 });
@@ -650,7 +653,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   fecha_anomalia: _this2.date,
                   descripcion_anomalia: _this2.descripcion_anomalia,
                   observacion_tecnico: _this2.observacion_de_tecnico,
-                  id_partida: _this2.partida.id
+                  id_partida: _this2.partida.id,
+                  vencimiento: _this2.partida.vigencia,
+                  doc_calibracion: _this2.partida.ruta_doc_calibracion,
+                  fecha_recibo: _this2.partida.created_at
                 };
                 _context2.next = 4;
                 return _this2.services.calibracionServices.agregarCalibracion(model);
@@ -2352,17 +2358,17 @@ var render = function() {
                                           value:
                                             _vm.partida.has_recibo
                                               .has_cotizaicon.has_cliente
-                                              .razon_social,
+                                              .datos_fisicos_requeremientos_facturacion_razon_social,
                                           callback: function($$v) {
                                             _vm.$set(
                                               _vm.partida.has_recibo
                                                 .has_cotizaicon.has_cliente,
-                                              "razon_social",
+                                              "datos_fisicos_requeremientos_facturacion_razon_social",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "partida.has_recibo.has_cotizaicon.has_cliente.razon_social"
+                                            "partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
                                         }
                                       })
                                     ],

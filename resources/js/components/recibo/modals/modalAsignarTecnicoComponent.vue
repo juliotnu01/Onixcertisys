@@ -126,28 +126,16 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-              <div v-if="partida_tecnico.has_intrumento.belongs_documento == null" >
               <v-autocomplete
-                v-model="documento_selected"
+                v-model="partida_tecnico.has_intrumento.belongs_documento"
                 :items="documentos"
                 outlined
                 dense
-                chips
                 label="Seleccionar documento"
                 item-text="nombre_documento"
                 return-object
                 @change="configRuta(documento_selected)"
-                
               />
-              </div>
-              <div v-else >
-              <v-text-field
-                label="Documento"
-                outlined
-                v-model="partida_tecnico.has_intrumento.belongs_documento.nombre_documento"
-                disabled
-              ></v-text-field>
-              </div>
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="12" lg="12">
               <v-autocomplete
@@ -218,6 +206,9 @@ export default {
         this.documento_selected
       );
     },
+    configRuta(){
+
+    }
   },
 };
 </script>

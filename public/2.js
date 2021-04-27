@@ -666,18 +666,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -730,7 +718,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
-    }
+    },
+    configRuta: function configRuta() {}
   }
 });
 
@@ -2325,69 +2314,39 @@ var render = function() {
                               }
                             },
                             [
-                              _vm.partida_tecnico.has_intrumento
-                                .belongs_documento == null
-                                ? _c(
-                                    "div",
-                                    [
-                                      _c("v-autocomplete", {
-                                        attrs: {
-                                          items: _vm.documentos,
-                                          outlined: "",
-                                          dense: "",
-                                          chips: "",
-                                          label: "Seleccionar documento",
-                                          "item-text": "nombre_documento",
-                                          "return-object": ""
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            return _vm.configRuta(
-                                              _vm.documento_selected
-                                            )
-                                          }
-                                        },
-                                        model: {
-                                          value: _vm.documento_selected,
-                                          callback: function($$v) {
-                                            _vm.documento_selected = $$v
-                                          },
-                                          expression: "documento_selected"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _c(
-                                    "div",
-                                    [
-                                      _c("v-text-field", {
-                                        attrs: {
-                                          label: "Documento",
-                                          outlined: "",
-                                          disabled: ""
-                                        },
-                                        model: {
-                                          value:
-                                            _vm.partida_tecnico.has_intrumento
-                                              .belongs_documento
-                                              .nombre_documento,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.partida_tecnico.has_intrumento
-                                                .belongs_documento,
-                                              "nombre_documento",
-                                              $$v
-                                            )
-                                          },
-                                          expression:
-                                            "partida_tecnico.has_intrumento.belongs_documento.nombre_documento"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                            ]
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  items: _vm.documentos,
+                                  outlined: "",
+                                  dense: "",
+                                  label: "Seleccionar documento",
+                                  "item-text": "nombre_documento",
+                                  "return-object": ""
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.configRuta(
+                                      _vm.documento_selected
+                                    )
+                                  }
+                                },
+                                model: {
+                                  value:
+                                    _vm.partida_tecnico.has_intrumento
+                                      .belongs_documento,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.partida_tecnico.has_intrumento,
+                                      "belongs_documento",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "partida_tecnico.has_intrumento.belongs_documento"
+                                }
+                              })
+                            ],
+                            1
                           ),
                           _vm._v(" "),
                           _c(

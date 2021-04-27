@@ -257,7 +257,7 @@
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-text-field
-                    v-model="partida.has_recibo.has_cotizaicon.has_cliente.razon_social"
+                    v-model="partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
                     outlined
                     label="Cliente"
                     disabled
@@ -441,6 +441,9 @@ export default {
           descripcion_anomalia: this.descripcion_anomalia,
           observacion_tecnico: this.observacion_de_tecnico,
           id_partida: this.partida.id,
+          vencimiento: this.partida.vigencia,
+          doc_calibracion: this.partida.ruta_doc_calibracion,
+          fecha_recibo: this.partida.created_at
         };
         await this.services.calibracionServices.agregarCalibracion(model);
         await this.services.partidaServices.getlistpartidasParaCalibrar();
