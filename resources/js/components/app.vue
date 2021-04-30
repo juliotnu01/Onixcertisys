@@ -30,7 +30,7 @@
             <v-list-item-title>
               <router-link :to="{ name: 'home.cliente.add-cliente' }">
                 <v-icon>mdi-briefcase-account</v-icon>
-                Agregar cliente
+                Gestionar cliente
               </router-link>
             </v-list-item-title>
           </v-list-item>

@@ -43,8 +43,9 @@ class CalibracionController extends Controller
             $f_vencimiento = $cb->addMonths($request['vencimiento'])->format('Y-m-d');
             $request['vencimiento'] = $f_vencimiento;
 
+
             return DB::transaction(function () use ($request, $calibracion, $partida,$procedimientoLab,$patronLab) {
-                $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
+                // $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
                 $calibracion->fecha_inicio_calibracion = Carbon::now();
                 $calibracion->descripcion_anomalia = $request['descripcion_anomalia'];
@@ -70,7 +71,10 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                 ]);
 
-            //  $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC') . "/api/Asignacion/Json", $request->all());
+                dd($request->all());
+
+             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC') . "/api/Calibracion/Json", $request->all());
+             dd($r);
 
                 
             }, 5);

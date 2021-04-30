@@ -181,14 +181,11 @@
           item,
         }"
       >
-        <td>
-          {{ item.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social
-          }}<br />
-          <!-- {{
-            item.belongs_to_sucursal_cliente.nombre_sucursal !== null
-              ? `Sucursal: ${item.belongs_to_sucursal_cliente.nombre_sucursal}`
-              : ""
-          }} -->
+        <td v-if="item.has_cliente != null">
+          {{ item.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social }}
+        </td>
+        <td v-else style="backgroud-color: red">
+          <p>Cliente Eliminado</p>
         </td>
       </template>
       <template v-slot:item.has_empleado.nombre_completo="{ item }">
@@ -212,6 +209,12 @@
         >
       </template>
     </v-data-table>
+    <v-snackbar v-model="snackbar" :timeout="timeout" color="error" class="elevation-1" >
+      {{ textSnack }}
+      <template v-slot:action="{ attrs }">
+        <v-btn dark icon v-bind="attrs" @click="snackbar = false"> <v-icon>mdi-close</v-icon> </v-btn>
+      </template>
+    </v-snackbar>
     <modal-add />
     <modal-edit />
     <modal-view />
@@ -241,6 +244,7 @@ export default {
   data() {
     return {
       menu: false,
+      snackbar: false,
       headers_cotizacion: [
         {
           text: "Folio",
@@ -309,6 +313,8 @@ export default {
         },
       ],
       search_cot: "",
+      textSnack: '',
+      timeout: 3000,
     };
   },
   computed: {
@@ -337,21 +343,46 @@ export default {
   },
   methods: {
     async EditarCotizacion(cot) {
+      if(cot.has_cliente == null){
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return  
+      }
       this.$store.commit("setDialogEditCotizacion", true);
       this.$store.commit("setCotizacion", cot);
     },
     eliminarCotizacion(item) {
+      if(item.has_cliente == null){
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return  
+      }
       this.services.cotizacionServices.EliminarCotizacion(item);
       this.services.cotizacionServices.getlistCotizaciones();
     },
     ViewCotizacion(item) {
+      if(item.has_cliente == null){
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return  
+      }
       this.$store.commit("setDialogViewCotizacion", true);
       this.$store.commit("setCotizacionView", item);
     },
     async printCotizacion(item) {
+      if(item.has_cliente == null){
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return  
+      }
       await this.services.cotizacionServices.printCotizacion(item);
     },
     hacerNotaDeSeguimiento(item) {
+      if(item.has_cliente == null){
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return  
+      }
       this.$store.commit("setDialogNotaDeSeguimiento", true);
       this.$store.commit("setCotizacion", item);
     },

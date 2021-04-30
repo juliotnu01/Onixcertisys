@@ -253,6 +253,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -272,6 +275,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       menu: false,
+      snackbar: false,
       headers_cotizacion: [{
         text: "Folio",
         value: "id",
@@ -325,7 +329,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "accion",
         align: "start"
       }],
-      search_cot: ""
+      search_cot: "",
+      textSnack: '',
+      timeout: 3000
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "cotizaciones", "dialog_nota_de_seguimiento"])),
@@ -341,11 +347,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (!(cot.has_cliente == null)) {
+                  _context.next = 4;
+                  break;
+                }
+
+                _this.snackbar = true;
+                _this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+                return _context.abrupt("return");
+
+              case 4:
                 _this.$store.commit("setDialogEditCotizacion", true);
 
                 _this.$store.commit("setCotizacion", cot);
 
-              case 2:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -354,10 +370,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     eliminarCotizacion: function eliminarCotizacion(item) {
+      if (item.has_cliente == null) {
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return;
+      }
+
       this.services.cotizacionServices.EliminarCotizacion(item);
       this.services.cotizacionServices.getlistCotizaciones();
     },
     ViewCotizacion: function ViewCotizacion(item) {
+      if (item.has_cliente == null) {
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return;
+      }
+
       this.$store.commit("setDialogViewCotizacion", true);
       this.$store.commit("setCotizacionView", item);
     },
@@ -369,10 +397,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                if (!(item.has_cliente == null)) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                _this2.snackbar = true;
+                _this2.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+                return _context2.abrupt("return");
+
+              case 4:
+                _context2.next = 6;
                 return _this2.services.cotizacionServices.printCotizacion(item);
 
-              case 2:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -381,6 +419,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     hacerNotaDeSeguimiento: function hacerNotaDeSeguimiento(item) {
+      if (item.has_cliente == null) {
+        this.snackbar = true;
+        this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+        return;
+      }
+
       this.$store.commit("setDialogNotaDeSeguimiento", true);
       this.$store.commit("setCotizacion", item);
     }
@@ -3050,16 +3094,20 @@ var render = function() {
             fn: function(ref) {
               var item = ref.item
               return [
-                _c("td", [
-                  _vm._v(
-                    "\n        " +
-                      _vm._s(
-                        item.has_cliente
-                          .datos_fisicos_requeremientos_facturacion_razon_social
+                item.has_cliente != null
+                  ? _c("td", [
+                      _vm._v(
+                        "\n        " +
+                          _vm._s(
+                            item.has_cliente
+                              .datos_fisicos_requeremientos_facturacion_razon_social
+                          ) +
+                          "\n      "
                       )
-                  ),
-                  _c("br")
-                ])
+                    ])
+                  : _c("td", { staticStyle: { "backgroud-color": "red" } }, [
+                      _c("p", [_vm._v("Cliente Eliminado")])
+                    ])
               ]
             }
           },
@@ -3158,6 +3206,50 @@ var render = function() {
           }
         ])
       }),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          staticClass: "elevation-1",
+          attrs: { timeout: _vm.timeout, color: "error" },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { dark: "", icon: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snackbar = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_c("v-icon", [_vm._v("mdi-close")])],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snackbar,
+            callback: function($$v) {
+              _vm.snackbar = $$v
+            },
+            expression: "snackbar"
+          }
+        },
+        [_vm._v("\n    " + _vm._s(_vm.textSnack) + "\n    ")]
+      ),
       _vm._v(" "),
       _c("modal-add"),
       _vm._v(" "),
