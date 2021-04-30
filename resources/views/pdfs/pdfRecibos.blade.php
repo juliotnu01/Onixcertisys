@@ -167,7 +167,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-               {{-- <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">--}}
+                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
