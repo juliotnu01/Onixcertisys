@@ -22,7 +22,9 @@ class PartidaController extends Controller
         try {
             $partida = Partida::with([
                                         'hasProcedimientosLabs',
+                                        'hasProcedimientosLabs.belongsProcedimiento',
                                         'hasPatronesLabs',
+                                        'hasPatronesLabs.belongsPatron',
                                         'hasIntrumento',
                                         'hasUnidad',
                                         'hasClaveSat',
@@ -45,7 +47,9 @@ class PartidaController extends Controller
         try {
             $partida = Partida::with([
                                       'hasProcedimientosLabs',
+                                      'hasProcedimientosLabs.belongsProcedimiento',
                                       'hasPatronesLabs',
+                                      'hasPatronesLabs.belongsPatron',
                                       'hasIntrumento',
                                       'hasIntrumento.hasMagnitud', 
                                       'hasCalibracion',

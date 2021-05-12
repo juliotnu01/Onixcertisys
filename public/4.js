@@ -561,6 +561,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -648,8 +661,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context2.prev = 0;
                 model = {
                   tipo_de_calibracion: _this2.TipocalibracionSelected,
-                  patron_de_calibracion: _this2.patronesLab,
-                  procedimiento_de_calibracion: _this2.procedimientoLab,
+                  patron_de_calibracion: _this2.partida.has_patrones_labs,
+                  procedimiento_de_calibracion: _this2.partida.has_procedimientos_labs,
                   fecha_anomalia: _this2.date,
                   descripcion_anomalia: _this2.descripcion_anomalia,
                   observacion_tecnico: _this2.observacion_de_tecnico,
@@ -749,8 +762,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     agregarPatrones: function agregarPatrones() {
       try {
+        var data = {
+          "belongs_patron": this.patronSelected
+        };
+
         if (this.patronSelected) {
-          this.patronesLab.push(this.patronSelected);
+          this.partida.has_patrones_labs.push(data);
         }
       } catch (e) {
         console.log(e);
@@ -785,11 +802,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                index = _this5.patronesLab.findIndex(function (item) {
+                index = _this5.partida.has_patrones_labs.findIndex(function (item) {
                   return item.id === ptr.id;
                 });
 
-                _this5.patronesLab.splice(index, 1);
+                _this5.partida.has_patrones_labs.splice(index, 1);
 
               case 2:
               case "end":
@@ -801,8 +818,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     agregarProcedimiento: function agregarProcedimiento() {
       try {
+        var data = {
+          "belongs_procedimiento": this.procedimientoSelected
+        };
+
         if (this.procedimientoSelected) {
-          this.procedimientoLab.push(this.procedimientoSelected);
+          this.partida.has_procedimientos_labs.push(data);
         }
       } catch (e) {
         console.log(e);
@@ -816,9 +837,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _this6.$store.commit('setProcedimiento', proce);
+                _this6.$store.commit("setProcedimiento", proce);
 
-                _this6.$store.commit('setDialogEditProcedimiento', true);
+                _this6.$store.commit("setDialogEditProcedimiento", true);
 
               case 2:
               case "end":
@@ -837,11 +858,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                index = _this7.procedimientoLab.findIndex(function (item) {
+                index = _this7.partida.has_procedimientos_labs.findIndex(function (item) {
                   return item.id === pr.id;
                 });
 
-                _this7.procedimientoLab.splice(index, 1);
+                _this7.partida.has_procedimientos_labs.splice(index, 1);
 
               case 2:
               case "end":
@@ -1735,7 +1756,8 @@ var render = function() {
                                                   _c(
                                                     "tbody",
                                                     _vm._l(
-                                                      _vm.patronesLab,
+                                                      _vm.partida
+                                                        .has_patrones_labs,
                                                       function(item) {
                                                         return _c(
                                                           "tr",
@@ -1744,7 +1766,9 @@ var render = function() {
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.nombre
+                                                                  item
+                                                                    .belongs_patron
+                                                                    .nombre
                                                                 )
                                                               )
                                                             ]),
@@ -1752,7 +1776,9 @@ var render = function() {
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.clave
+                                                                  item
+                                                                    .belongs_patron
+                                                                    .clave
                                                                 )
                                                               )
                                                             ]),
@@ -1760,7 +1786,9 @@ var render = function() {
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.alcance
+                                                                  item
+                                                                    .belongs_patron
+                                                                    .alcance
                                                                 )
                                                               )
                                                             ]),
@@ -1768,7 +1796,9 @@ var render = function() {
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.fecha_calibracion
+                                                                  item
+                                                                    .belongs_patron
+                                                                    .fecha_calibracion
                                                                 )
                                                               )
                                                             ]),
@@ -1776,7 +1806,9 @@ var render = function() {
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.fecha_vencimiento
+                                                                  item
+                                                                    .belongs_patron
+                                                                    .fecha_vencimiento
                                                                 )
                                                               )
                                                             ]),
@@ -1864,7 +1896,7 @@ var render = function() {
                                           ],
                                           null,
                                           false,
-                                          4239440834
+                                          3778056775
                                         )
                                       })
                                     ],
@@ -1988,7 +2020,8 @@ var render = function() {
                                                   _c(
                                                     "tbody",
                                                     _vm._l(
-                                                      _vm.procedimientoLab,
+                                                      _vm.partida
+                                                        .has_procedimientos_labs,
                                                       function(item) {
                                                         return _c(
                                                           "tr",
@@ -1996,14 +2029,20 @@ var render = function() {
                                                           [
                                                             _c("td", [
                                                               _vm._v(
-                                                                _vm._s(item.id)
+                                                                _vm._s(
+                                                                  item
+                                                                    .belongs_procedimiento
+                                                                    .id
+                                                                )
                                                               )
                                                             ]),
                                                             _vm._v(" "),
                                                             _c("td", [
                                                               _vm._v(
                                                                 _vm._s(
-                                                                  item.nombre
+                                                                  item
+                                                                    .belongs_procedimiento
+                                                                    .nombre
                                                                 )
                                                               )
                                                             ]),
@@ -2091,7 +2130,7 @@ var render = function() {
                                           ],
                                           null,
                                           false,
-                                          4165157511
+                                          4206374472
                                         )
                                       })
                                     ],
@@ -2368,7 +2407,7 @@ var render = function() {
                                             )
                                           },
                                           expression:
-                                            "partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
+                                            "\n                    partida.has_recibo.has_cotizaicon.has_cliente\n                      .datos_fisicos_requeremientos_facturacion_razon_social\n                  "
                                         }
                                       })
                                     ],

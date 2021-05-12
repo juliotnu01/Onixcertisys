@@ -8,4 +8,9 @@ class ProcedimientoLab extends Model
 {
     use SoftDeletes; 
     protected $guarded = [];
+
+    public function belongsProcedimiento(Type $var = null)
+    {
+        return $this->belongsTo(Procedimiento::class, 'procedimiento_id');
+    }
 }

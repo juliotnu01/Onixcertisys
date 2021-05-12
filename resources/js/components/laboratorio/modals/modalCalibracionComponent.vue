@@ -133,12 +133,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in patronesLab" :key="item.id">
-                          <td>{{ item.nombre }}</td>
-                          <td>{{ item.clave }}</td>
-                          <td>{{ item.alcance }}</td>
-                          <td>{{ item.fecha_calibracion }}</td>
-                          <td>{{ item.fecha_vencimiento }}</td>
+                        <tr v-for="item in partida.has_patrones_labs" :key="item.id">
+                          <td>{{ item.belongs_patron.nombre }}</td>
+                          <td>{{ item.belongs_patron.clave }}</td>
+                          <td>{{ item.belongs_patron.alcance }}</td>
+                          <td>{{ item.belongs_patron.fecha_calibracion }}</td>
+                          <td>{{ item.belongs_patron.fecha_vencimiento }}</td>
                           <td>
                             <v-btn color="error" icon small @click="eliminarPatron(item)">
                               <v-icon>mdi-delete</v-icon> </v-btn
@@ -179,14 +179,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in procedimientoLab" :key="item.id">
-                          <td>{{ item.id }}</td>
-                          <td>{{ item.nombre }}</td>
+                        <tr v-for="item in partida.has_procedimientos_labs" :key="item.id">
+                          <td>{{ item.belongs_procedimiento.id }}</td>
+                          <td>{{ item.belongs_procedimiento.nombre }}</td>
                           <td>
-                            <v-btn color="error" icon small @click="eliminarProcedimiento(item)">
+                            <v-btn
+                              color="error"
+                              icon
+                              small
+                              @click="eliminarProcedimiento(item)"
+                            >
                               <v-icon>mdi-delete</v-icon> </v-btn
                             ><v-spacer />
-                            <v-btn color="warning" icon small @click="EditProcedimiento(item)"  >
+                            <v-btn
+                              color="warning"
+                              icon
+                              small
+                              @click="EditProcedimiento(item)"
+                            >
                               <v-icon>mdi-pencil</v-icon>
                             </v-btn>
                           </td>
@@ -257,7 +267,10 @@
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-text-field
-                    v-model="partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
+                    v-model="
+                      partida.has_recibo.has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_razon_social
+                    "
                     outlined
                     label="Cliente"
                     disabled
@@ -435,15 +448,15 @@ export default {
       try {
         var model = {
           tipo_de_calibracion: this.TipocalibracionSelected,
-          patron_de_calibracion: this.patronesLab,
-          procedimiento_de_calibracion: this.procedimientoLab,
+          patron_de_calibracion: this.partida.has_patrones_labs,
+          procedimiento_de_calibracion: this.partida.has_procedimientos_labs,
           fecha_anomalia: this.date,
           descripcion_anomalia: this.descripcion_anomalia,
           observacion_tecnico: this.observacion_de_tecnico,
           id_partida: this.partida.id,
           vencimiento: this.partida.vigencia,
           doc_calibracion: this.partida.ruta_doc_calibracion,
-          fecha_recibo: this.partida.created_at
+          fecha_recibo: this.partida.created_at,
         };
         await this.services.calibracionServices.agregarCalibracion(model);
         await this.services.partidaServices.getlistpartidasParaCalibrar();
@@ -479,9 +492,12 @@ export default {
     },
     agregarPatrones() {
       try {
-          if(this.patronSelected){
-              this.patronesLab.push(this.patronSelected);
-          }
+        var data = {
+          "belongs_patron": this.patronSelected 
+        }
+        if (this.patronSelected) {
+          this.partida.has_patrones_labs.push(data);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -491,26 +507,29 @@ export default {
       this.$store.commit("setDialogEditPatron", true);
     },
     async eliminarPatron(ptr) {
-      var index = this.patronesLab.findIndex((item) => item.id === ptr.id);
-      this.patronesLab.splice(index, 1);
+      var index = this.partida.has_patrones_labs.findIndex((item) => item.id === ptr.id);
+      this.partida.has_patrones_labs.splice(index, 1);
     },
 
     agregarProcedimiento() {
       try {
-          if(this.procedimientoSelected){
-              this.procedimientoLab.push(this.procedimientoSelected);
-          }
+        var data = {
+          "belongs_procedimiento": this.procedimientoSelected 
+        }
+        if (this.procedimientoSelected) {
+          this.partida.has_procedimientos_labs.push(data);
+        }
       } catch (e) {
         console.log(e);
       }
     },
-     async EditProcedimiento(proce) {
-            this.$store.commit('setProcedimiento', proce)
-            this.$store.commit('setDialogEditProcedimiento', true)
-        },
+    async EditProcedimiento(proce) {
+      this.$store.commit("setProcedimiento", proce);
+      this.$store.commit("setDialogEditProcedimiento", true);
+    },
     async eliminarProcedimiento(pr) {
-      var index = this.procedimientoLab.findIndex((item) => item.id === pr.id);
-      this.procedimientoLab.splice(index, 1);
+      var index = this.partida.has_procedimientos_labs.findIndex((item) => item.id === pr.id);
+      this.partida.has_procedimientos_labs.splice(index, 1);
     },
   },
 };

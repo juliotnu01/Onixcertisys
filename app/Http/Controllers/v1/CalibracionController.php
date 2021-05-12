@@ -7,7 +7,7 @@ use App\Models\{Calibracion, Partida, Recibo, PatronLab, ProcedimientoLab};
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DB;
-
+use Illuminate\Support\Facades\Http;
 class CalibracionController extends Controller
 {
     /**
@@ -43,9 +43,9 @@ class CalibracionController extends Controller
             $f_vencimiento = $cb->addMonths($request['vencimiento'])->format('Y-m-d');
             $request['vencimiento'] = $f_vencimiento;
 
-
+            // dd((collect($request)));
             return DB::transaction(function () use ($request, $calibracion, $partida,$procedimientoLab,$patronLab) {
-                // $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
+                $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
                 $calibracion->fecha_inicio_calibracion = Carbon::now();
                 $calibracion->descripcion_anomalia = $request['descripcion_anomalia'];
@@ -53,15 +53,15 @@ class CalibracionController extends Controller
                 $calibracion->estado = 'en proceso';
                 $calibracion->save();
 
-                for ($i=0; $i < count($request['patron_de_calibracion']) ; $i++) { 
+                for ($i=0; $i < count($request['procedimiento_de_calibracion']) ; $i++) { 
                     $procedimientoLab  = new ProcedimientoLab();
-                    $procedimientoLab->procedimiento_id = $request['patron_de_calibracion'][$i]['id'];
+                    $procedimientoLab->procedimiento_id = $request['procedimiento_de_calibracion'][$i]['belongs_procedimiento']['id'];
                     $procedimientoLab->partida_id = $request['id_partida'];
                     $procedimientoLab->save();
                 }
-                for ($i=0; $i < count($request['procedimiento_de_calibracion']) ; $i++) { 
+                for ($i=0; $i < count($request['patron_de_calibracion']) ; $i++) { 
                     $patronLab  = new PatronLab();
-                    $patronLab->patron_id = $request['procedimiento_de_calibracion'][$i]['id'];
+                    $patronLab->patron_id = $request['patron_de_calibracion'][$i]['belongs_patron']['id'];
                     $patronLab->partida_id = $request['id_partida'];
                     $patronLab->save();
                 }
@@ -71,11 +71,8 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                 ]);
 
-                dd($request->all());
 
-             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC') . "/api/Calibracion/Json", $request->all());
-             dd($r);
-
+                $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
                 
             }, 5);
         } catch (\Throwable $th) {
@@ -85,6 +82,12 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
+            // dd(collect($request));
+            $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
+            $d = collect($dataPdf);
+            // dd($d->all());
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
+
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
