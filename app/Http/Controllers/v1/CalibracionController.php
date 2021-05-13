@@ -36,15 +36,14 @@ class CalibracionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Calibracion $calibracion, Partida $partida, ProcedimientoLab $procedimientoLab, PatronLab $patronLab)
+    public function store(Request $request, Calibracion $calibracion,  ProcedimientoLab $procedimientoLab, PatronLab $patronLab)
     {
         try {
             $cb = Carbon::create($request['fecha_anomalia']);
             $f_vencimiento = $cb->addMonths($request['vencimiento'])->format('Y-m-d');
             $request['vencimiento'] = $f_vencimiento;
 
-            // dd((collect($request)));
-            return DB::transaction(function () use ($request, $calibracion, $partida,$procedimientoLab,$patronLab) {
+             DB::transaction(function () use ($request, $calibracion,$procedimientoLab,$patronLab) {
                 $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
                 $calibracion->fecha_inicio_calibracion = Carbon::now();
@@ -66,15 +65,15 @@ class CalibracionController extends Controller
                     $patronLab->save();
                 }
 
-
+                $partida = new Partida();
                 $partida->find($request['id_partida'])->update([
                     'calibracion_id' => $calibracion['id']
                 ]);
-
-
-                $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
-                
             }, 5);
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+
+            dd($r);
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -82,18 +81,15 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
-            // dd(collect($request));
             $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
             $d = collect($dataPdf);
-            // dd($d->all());
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
-
+            dd($r);
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
                     'fecha_terminacion_calibracion' => Carbon::now()
                     ]);
-                    
             }, 5);
         } catch (\Throwable $th) {
             throw $th;

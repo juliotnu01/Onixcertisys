@@ -164,15 +164,13 @@ class EmpleadoController extends Controller
 
         
         try {
-            return DB::transaction(function () use ($request, $partida) {
+           DB::transaction(function () use ($request, $partida) {
                 $partida->find($request['model']['id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                     ]);
-                    
-                
-                    $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
-
-            }, 5);
+                }, 5);
+                $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+                dd($r);
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }
