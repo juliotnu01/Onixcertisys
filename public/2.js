@@ -666,6 +666,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2321,6 +2322,7 @@ var render = function() {
                                   dense: "",
                                   label: "Seleccionar documento",
                                   "item-text": "nombre_documento",
+                                  "item-value": "id",
                                   "return-object": ""
                                 },
                                 on: {

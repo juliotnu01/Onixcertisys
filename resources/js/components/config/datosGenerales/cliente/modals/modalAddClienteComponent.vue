@@ -21,26 +21,28 @@
             <v-card-text>
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
-                  <v-autocomplete
-                    v-model="model.servicio_solicitado"
-                    :items="items_servicios_solicitados"
-                    outlined
-                    chips
-                    label="Servicios"
-                    item-text="name"
-                    item-value="value"
-                    multiple
-                    return-object
-                  >
-                    <template v-slot:selection="data">
-                      <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                  <v-form ref="form_SS" >
+                    <v-autocomplete
+                      v-model="model.servicio_solicitado"
+                      :items="items_servicios_solicitados"
+                      outlined
+                      chips
+                      label="Servicios"
+                      item-text="name"
+                      item-value="value"
+                      multiple
+                      return-object
+                    >
+                      <template v-slot:selection="data">
+                        <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                          {{ data.item.name }}
+                        </v-chip>
+                      </template>
+                      <template v-slot:item="data">
                         {{ data.item.name }}
-                      </v-chip>
-                    </template>
-                    <template v-slot:item="data">
-                      {{ data.item.name }}
-                    </template>
-                  </v-autocomplete>
+                      </template>
+                    </v-autocomplete>
+                  </v-form>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -48,54 +50,63 @@
           <v-card class="elevation-1">
             <v-card-title primary-title> PERSONA DE CONTACTO: </v-card-title>
             <v-card-text>
-              <v-row>
-                <v-col cols="12" xs="12" sm="12" md="4" lg="4">
-                  <v-text-field
-                    label="Nombre del Contacto"
-                    outlined
-                    v-model="model.persona_de_contacto.nombre"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="4" lg="4">
-                  <v-text-field
-                    label="Celular del Contacto"
-                    outlined
-                    v-model="model.persona_de_contacto.celular"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="4" lg="4">
-                  <v-text-field
-                    label="Tel. / Ext. del Contacto"
-                    outlined
-                    v-model="model.persona_de_contacto.tel_ext"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                  <v-text-field
-                    label="Email del Contacto"
-                    outlined
-                    v-model="model.persona_de_contacto.email"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="6" lg="6">
-                  <v-text-field
-                    label="Puesto del Contacto"
-                    outlined
-                    v-model="model.persona_de_contacto.puesto"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+                <v-form ref="form_PDC" >
+                  <v-row>
+                      <v-col cols="12" xs="12" sm="12" md="4" lg="4">
+                        <v-text-field
+                          label="Nombre del Contacto"
+                          outlined
+                          v-model="model.persona_de_contacto.nombre"
+                          :rules="rules.text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" xs="12" sm="12" md="4" lg="4">
+                        <v-text-field
+                          label="Celular del Contacto"
+                          outlined
+                          v-model="model.persona_de_contacto.celular"
+                          :rules="rules.text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" xs="12" sm="12" md="4" lg="4">
+                        <v-text-field
+                          label="Tel. / Ext. del Contacto"
+                          outlined
+                          v-model="model.persona_de_contacto.tel_ext"
+                          :rules="rules.text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                        <v-text-field
+                          label="Email del Contacto"
+                          outlined
+                          v-model="model.persona_de_contacto.email"
+                          :rules="rules.text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+                        <v-text-field
+                          label="Puesto del Contacto"
+                          outlined
+                          v-model="model.persona_de_contacto.puesto"
+                          :rules="rules.text"
+                        ></v-text-field>
+                      </v-col>
+                  </v-row>
+                </v-form>
             </v-card-text>
           </v-card>
           <v-card class="elevation-1">
             <v-card-title primary-title> CONTACTO ADICIONALES: </v-card-title>
             <v-card-text>
+            <v-form ref="form_CA" >
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                   <v-text-field
                     label="Compras"
                     outlined
                     v-model="model.contacto_adicionales.compras"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -103,6 +114,7 @@
                     label="Correo Compras"
                     outlined
                     v-model="model.contacto_adicionales.correo_compras"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -110,6 +122,7 @@
                     label="Tel. Compras"
                     outlined
                     v-model="model.contacto_adicionales.telf_compras"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -117,6 +130,7 @@
                     label="Pagos"
                     outlined
                     v-model="model.contacto_adicionales.pagos"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -124,6 +138,7 @@
                     label="Correo Pagos"
                     outlined
                     v-model="model.contacto_adicionales.correo_pagos"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -131,6 +146,7 @@
                     label="Tel. Pagos"
                     outlined
                     v-model="model.contacto_adicionales.telf_pagos"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -138,6 +154,7 @@
                     label="Almacen"
                     outlined
                     v-model="model.contacto_adicionales.almacen"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -145,6 +162,7 @@
                     label="Correo Almacen"
                     outlined
                     v-model="model.contacto_adicionales.correo_almacen"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -152,9 +170,11 @@
                     label="Tel. Almacen"
                     outlined
                     v-model="model.contacto_adicionales.telf_almacen"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
               </v-row>
+              </v-form>
             </v-card-text>
           </v-card>
           <v-card class="elevation-1">
@@ -162,12 +182,14 @@
               DATOS FISCALES Y REQUERIMIENTOS DE FACTURACION</v-card-title
             >
             <v-card-text>
+            <v-form ref="form_DFRF">
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="10" lg="10">
                   <v-text-field
                     label="Razon Social"
                     outlined
                     v-model="model.datosFisicosYRequerimientosDeFactuacion.razon_social"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="2" lg="2">
@@ -175,6 +197,7 @@
                     label="R.F.C"
                     outlined
                     v-model="model.datosFisicosYRequerimientosDeFactuacion.rfc"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -185,6 +208,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.calle
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -195,6 +219,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.numero
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -205,6 +230,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.colonia
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -215,6 +241,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.ciudad
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -225,6 +252,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.estado
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="4" lg="4">
@@ -235,6 +263,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.cp
                     "
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -248,6 +277,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.formaDePago
                     "
+                    :rules="rules.select_fdp"
                   />
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -258,6 +288,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.emailEnvioFactura
                     "
+                    :rules="rules.emailRules"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -271,6 +302,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.monedaFactura
                     "
+                    :rules="rules.select_m"
                   />
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -282,6 +314,7 @@
                     return-object
                     item-text="codigo_cfdi"
                     item-value="codigo_cfdi"
+                    :rules="rules.select_cfdi"
                   >
                   <template v-slot:selection="{item}">
                     {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
@@ -302,6 +335,7 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.metodoDePago
                     "
+                    :rules="rules.select_mdp"
                   />
                 </v-col>
                 </v-col>
@@ -316,20 +350,24 @@
                       model.datosFisicosYRequerimientosDeFactuacion
                         .domicilioFiscalParaFacturacion.terminosDePago
                     "
+                    :rules="rules.select_tdp"
                   />
                 </v-col>
               </v-row>
+              </v-form>
             </v-card-text>
           </v-card>
           <v-card class="elevation-1">
             <v-card-title primary-title>REVISION DE FACTURA Y PAGOS</v-card-title>
             <v-card-text>
+            <v-form ref="form_RFP" >
               <v-row>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-text-field
                     label="descripcion para la revision de la facturas y pagos"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.descripcionRevisionFactura"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -337,6 +375,7 @@
                     label="Dias de revision de factura"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.diasRevisionFactura"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -344,6 +383,7 @@
                     label="Horario"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.horaDiasRevisionFactura"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -351,6 +391,7 @@
                     label="Dias de confirmacion de pago"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.diasDeConfirmacionDePago"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -358,6 +399,7 @@
                     label="Horario"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.horaDiasDeConfirmacionDePago"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -365,6 +407,7 @@
                     label="Dias de pago"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.diasDePago"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -372,6 +415,7 @@
                     label="Horario"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.horaDiasDePago"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -379,6 +423,7 @@
                     label="Link del portal"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.linkPortal"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -386,6 +431,7 @@
                     label="Usuario y contraseña"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.usuarioContrasena"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -393,6 +439,7 @@
                     label="Indicaciones para alta de factura del portal"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.indicacionesAltaFacturaPortal"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -400,6 +447,7 @@
                     label="Correo Soporte Tecnico portal"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.correoSoporteTecnicoPortal"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -407,6 +455,7 @@
                     label="Banco Ordenante"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.bancoOrdenante"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -414,6 +463,7 @@
                     label="Cuenta Bancaria"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.cuentaDePago"
+                     :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -421,6 +471,7 @@
                     label="Complemento de pago se envia a e-mail"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.complementoDePagoSeEnviaPorEmail"
+                    :rules="rules.emailRules"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
@@ -428,6 +479,7 @@
                     label="Informacion adicional a incluir en el complemento  de pago"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.informacionAdicionalComplementoDePago"
+                     :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="10" lg="10">
@@ -435,6 +487,7 @@
                     label="Listar requerimientos de acceso a la planta"
                     outlined
                     v-model="model.revisionDeFacturasYpagos.listaRequerimientoDeAccesoAlaPlata"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                  <v-col cols="12" xs="12" sm="12" md="2" lg="2">
@@ -442,6 +495,7 @@
                     label="I.V.A. %"
                     outlined
                     v-model="model.iva"
+                    :rules="rules.text"
                   ></v-text-field>
                 </v-col>
                  <v-col cols="12" xs="12" sm="12" md="12" lg="12">
@@ -507,6 +561,7 @@
                   </v-data-table>
                 </v-col>
               </v-row>
+                </v-form>
             </v-card-text>
           </v-card>
         </v-card-text>
@@ -549,9 +604,9 @@ export default {
         { name: "cheque", value: 3 },
       ],
       items_terminos_de_pago: [
-        { name: "credito de 30 dias", value: 1 },
-        { name: "credito de 15 dias", value: 2 },
-        { name: "contado", value: 3 },
+        { name: "CREDITO DE 30 DIAS", value: 1 },
+        { name: "CREDITO DE 15 DIAS", value: 2 },
+        { name: "CONTADO", value: 3 },
       ],
 
       sucursal: {
@@ -620,6 +675,16 @@ export default {
         },
         sucursales:[]
       },
+      rules: {
+        select_ss: [(v) =>  v.length > 0 || "Es necesario que selecciones al menos un servicio"],
+        select_fdp: [(v) =>  !!v || "Es necesario que selecciones una forma de pago"],
+        select_m: [(v) =>  !!v || "Es necesario que selecciones una moneda"],
+        select_cfdi: [(v) =>  !!v || "Es necesario que selecciones un CFDI"],
+        select_mdp: [(v) =>  !!v || "Es necesario que selecciones un metodo de pago"],
+        select_tdp: [(v) =>  !!v || "Es necesario que selecciones un termino de pago"],
+        text: [(v) => !!v || 'Es necesario este campo'],
+        emailRules: [  v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Correo invalido']
+      }
     };
   },
   computed: {
@@ -650,6 +715,13 @@ export default {
   },
   methods: {
     async addCliente() {
+        
+                  if(this.$refs.form_SS.validate() && 
+                    this.$refs.form_PDC.validate() && 
+                    this.$refs.form_CA.validate() && 
+                    this.$refs.form_DFRF.validate() &&
+                    this.$refs.form_RFP.validate()){
+                    
       await this.services.clienteServices.agregarCliente(this.model);
       await this.services.clienteServices.getlistclientes();
       this.model = {
@@ -714,6 +786,7 @@ export default {
       };
         var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'};
         this.$store.commit("setNotificacion", model_notificacion);
+      }
     },
     AgregarSucursal() {
       var index = this.model.sucursales.find(item => item.nombre === this.sucursal.nombre);

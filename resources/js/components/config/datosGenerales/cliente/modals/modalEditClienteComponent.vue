@@ -564,9 +564,9 @@ export default {
         { name: "cheque", value: 3 },
       ],
       items_terminos_de_pago: [
-        { name: "credito de 30 dias", value: 1 },
-        { name: "credito de 15 dias", value: 2 },
-        { name: "contado", value: 3 },
+         { name: "CREDITO DE 30 DIAS", value: 1 },
+        { name: "CREDITO DE 15 DIAS", value: 2 },
+        { name: "CONTADO", value: 3 },
       ],
 
       sucursal: {

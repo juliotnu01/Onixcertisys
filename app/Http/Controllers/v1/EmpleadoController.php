@@ -162,15 +162,17 @@ class EmpleadoController extends Controller
             'documento_id' =>  $request['file']['id']
         ]);
 
-        
+        // dd(collect($request), env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json");
         try {
-           DB::transaction(function () use ($request, $partida) {
-                $partida->find($request['model']['id'])->update([
+            DB::transaction(function () use ($request, $partida) {
+                $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                     ]);
+                   
                 }, 5);
-                $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
-                dd($r);
+                
+                $r =  Http::post("http://localhost:63442/api/Asignacion/Json", $request->all());
+                dd(collect($r));
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

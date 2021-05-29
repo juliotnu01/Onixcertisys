@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Http\Controllers\v1;
-
+require_once public_path('./sw-sdk-php-feature-SMARTER-1406/SWSDK.php');
 use App\Http\Controllers\Controller;
 use App\Models\{Factura, ProductoFactura, Recibo, Empresa, Cliente};
 use Illuminate\Http\Request;
@@ -15,7 +14,7 @@ use App\Http\Resources\RecibosCollection;
 use Luecano\NumeroALetras\NumeroALetras;
 use SWServices\Authentication\AuthenticationService as Authentication;
 use SWServices\Stamp\StampService as StampService;
-use SWServices\Stamp\EmisionTimbrado as EmisionTimbrado;
+use SWServices\Stamp\EmisionTimbrado;
 use SWServices\Validation\ValidarXML as ValidarXML;
 use SWServices\Validation\ValidaLco as ValidaLco;
 use SWServices\Validation\ValidaLrfc as ValidaLrfc;
@@ -294,7 +293,6 @@ class FacturaController extends Controller
         );
         $auth = Authentication::auth($params);
         $token = $auth::Token();
-
         $paramsConsultar = array(  
             "url"=>env('URL_TIMBRADO_SW'),
             "token"=> $token->data->token
@@ -303,6 +301,18 @@ class FacturaController extends Controller
         try {
             $dataFactura = $factura->find($request['id'])->with(['hasItems','hasItems.belongsToInstrumento', 'hasCliente', 'hasMoneda'])->first();
             $output = View::make('xmls.XmlFactura', compact('dataFactura'))->render();
+
+            // $xml = new \DOMDocument();
+            // $xml->load($output);
+
+            // $xsl = new \DOMDocument();
+            // $xsl->load(public_path('cadenaoriginal_3_3.xslt'));
+
+            // // // Configura el procesador
+            // $proc = new \XSLTProcessor;
+            // $proc->importStyleSheet($xsl); // adjunta las reglas XS
+            
+
             EmisionTimbrado::Set($paramsConsultar);
             $result = EmisionTimbrado::EmisionTimbradoV4($output);
             dd($result);

@@ -70,7 +70,7 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                 ]);
             }, 5);
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+            $r =  Http::post("http://localhost:63442/api/Calibracion/Json", $request->all());
 
             dd($r);
 
@@ -84,7 +84,6 @@ class CalibracionController extends Controller
             $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
-            dd($r);
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',

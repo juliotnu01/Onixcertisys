@@ -20,7 +20,7 @@ class Instrumento extends Model
     	return $this->belongsTo(Magnitudes::class, 'magnitude_id');
     }
 
-    public function belongsPartida(Type $var = null)
+    public function belongsPartida()
     {
         return $this->hasMany(Partida::class, 'instrumento_id');
     }

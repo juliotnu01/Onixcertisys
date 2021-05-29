@@ -133,6 +133,7 @@
                 dense
                 label="Seleccionar documento"
                 item-text="nombre_documento"
+                item-value="id"
                 return-object
                 @change="configRuta(documento_selected)"
               />

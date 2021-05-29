@@ -1,0 +1,243 @@
+
+/* HEADER */
+.navbar-brand img {
+    max-width: 150px;
+}
+
+/* NAVBAR */
+.bg-light {
+    background-color: #003177!important;
+}
+
+.navbar-light .navbar-brand {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar>.container-fluid{
+    justify-content: flex-end;
+}
+
+/* .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+    justify-content: flex-end;
+    margin-right: 0;
+} */
+
+/* .container-fluid {
+    width: 0;
+} */
+
+.nav-item{
+    margin-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #003177;
+}
+
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #fbc717;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #fbc717;
+}
+
+.dropdown-principal:focus, .dropdown-principal:hover {
+    background-color: #003177;
+}
+
+/* JUMBOTRON */
+.jumbotron{
+    color: white;
+    padding: 70px 0 30px 0;
+}
+
+.img-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.principal{
+    width: 45%;
+    margin-right: 0;
+}
+
+.jumbotron h1, .jumbotron h4{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.jumbotron h1{
+    margin-top: 3rem;
+    font-size: 50px;
+}
+
+.info ul{
+    font-size: 30px;
+}
+
+.contacto{
+    /* margin-top: 130px; */
+}
+
+.contacto h4{
+    color: #fbc717;
+    font-size: 26px;
+}
+
+.contacto p{
+    font-size: x-large;
+}
+
+
+/* main container magnitudes */
+
+.titulom img {
+    max-height: 50px;
+}
+
+/* .magnitudes{
+    margin-left: 0;
+    margin-right: 0;
+} */
+
+.magnitudes{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.titulom{
+    display: flex;
+}
+
+#listaCalibracion{
+    position: relative;
+    left: 15%;
+    text-align: left;
+}
+#contenedorLaboratorio{
+    text-align: center;
+}
+
+#sectionCalibracion{
+    margin-top: 15px;
+}
+#circleExterno {
+    width: 50px;
+    height: 50px;
+    background-color: #cecece;
+    border-radius: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+#circleInterno{
+    width: 40px;
+    height: 40px;
+    background-color: #040612;
+    border-radius: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+#itemTitulo{
+    font-size: larger;
+    font-weight: bold;
+    color: #080f2c;
+    text-align: center;
+}
+#ItemSubTitulo{
+    position: relative;
+    left: 5%;
+    text-align: center;
+}
+#itemMag{
+    padding: 25px;
+}
+#tablaCursos{
+    width: 100%;
+}
+#titulosTablaCursos{
+    font-size: larger !important ;
+    font-weight: 700 !important;
+    color: #092596 !important;
+    height: 60px !important;
+}
+#tablaCursos tr td {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    color: #4487cd;
+    font-weight: 400;
+}
+#sectionCursos{
+    background-color: #55a6e7;
+    color: white;
+    font-size: large;
+    font-weight: 700;
+}
+#tableCotizacionDeCurso{
+    width: 100%;
+}
+#rowBotononesCotizacionDeCurso{
+    text-align: center;
+    margin-bottom: 15px;
+}
+#rowTableCotizacionDecurso{
+    text-align: center;
+}
+#cotizacionDeCurso{
+    margin-top: 25px;
+    background-color: #55a6e7;
+    height: 250px;
+    padding: 15px;
+}
+#inputCotizaicon{
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    width: 100%;
+}
+#inputCotizaiconM{
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    width: 50%;
+}
+#inputCotizaiconP{
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    width: 50%;
+}
+#SolicitarTemario{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: orange;
+    font-size: large;
+    font-weight: 700;
+    box-shadow: 2px 2px 5px black;
+}
+#solicitarCotizacion{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: orange;
+    font-size: large;
+    font-weight: 700;
+    box-shadow: 2px 2px 5px black;
+}

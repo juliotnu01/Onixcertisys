@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome2');
 });
+Route::get('/capacitacion', function () {
+    return view('capacitacion');
+})->name('capacitacion');
 
 Auth::routes();
 
