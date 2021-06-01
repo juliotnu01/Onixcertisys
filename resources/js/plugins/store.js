@@ -8,7 +8,7 @@ import router from  './routes'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default  new Vuex.Store({
     state: {
         services,
         listUser: [],

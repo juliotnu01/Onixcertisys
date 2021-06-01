@@ -171,8 +171,8 @@ class EmpleadoController extends Controller
                    
                 }, 5);
                 
-                $r =  Http::post("http://localhost:63442/api/Asignacion/Json", $request->all());
-                dd(collect($r));
+            $r =  Http::post("http://localhost:63442/api/Asignacion/Json", $request->all());
+            dd(collect($r));
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

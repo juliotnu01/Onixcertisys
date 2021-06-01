@@ -68,8 +68,9 @@ class CalibracionController extends Controller
                 $partida = new Partida();
                 $partida->find($request['id_partida'])->update([
                     'calibracion_id' => $calibracion['id']
-                ]);
-            }, 5);
+                    ]);
+                }, 5);
+                // dd(json_encode($request->all()));
             $r =  Http::post("http://localhost:63442/api/Calibracion/Json", $request->all());
 
             dd($r);
