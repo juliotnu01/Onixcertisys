@@ -58,7 +58,7 @@
         </header>
 
         <!-- primera seccion -->
-        <section class="jumbotron img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
+        <section class="jumbotron img-bg" style="background-image: url(assets/img/mty-fondo.jpeg)">
             <div class="container principal">
 
                 <div class="info">
@@ -87,10 +87,9 @@
                 </div>
                 <div id="contactanos">
                     <h4>Contáctanos</h4>
-                    <div> 81-3186-4994/81-3186-4995 / 81-8748007</div>
-                    <div> 81-1555-4669</div>
-                    <div> claudia.martinez@accredian.org</div>
-                    <div> Calle 24 #600, Residencial Las Puentes <br /> 3er Sector, San Nicolas de los Garza, N.L. Mx</div>
+                    <div> <img src="assets/iconos/telephone-fill.svg" alt=""> 81-3186-4994/81-3186-4995 / 81-8748007</div>
+                    <div><img src="assets/iconos/whatsapp.svg" alt=""> 81-1555-4669</div>
+                    <div> <img src="assets/iconos/geo-alt-fill.svg" alt=""> Calle 24 #600, Residencial Las Puentes <br /> 3er Sector, San Nicolas de los Garza, N.L. Mx</div>
                 </div>
             </div>
         </section>
@@ -121,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="col col-12">
-                                <button id="SolicitarTemario">Solicitar Temario(s)</button>
+                                <button id="SolicitarTemario">Enviar</button>
                             </div>
                         </div>
                     </form>
@@ -129,7 +128,7 @@
             </div>
         </section>
 
-        <a href="https://api.whatsapp.com/send?phone=5195508107&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="float" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=528115554669" class="float" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
         <!-- ============================= FOOTER ============================= -->
