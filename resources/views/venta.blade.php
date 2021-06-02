@@ -16,7 +16,7 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{route('calibracion')}}">
                         <img src="assets/img/LogoBlanco.png" alt="">
                         <!-- imagen accredian -->
                     </a>
@@ -34,7 +34,7 @@
                                     SERVICIOS
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="">Calibración</a></li>
+                                <li><a class="dropdown-item" href="{{route('calibracion')}}">Calibración</a></li>
                                     <li><a class="dropdown-item" href="{{route('capacitacion')}}">Capacitación</a></li>
                                     <li><a class="dropdown-item" href="{{route('mantenimiento')}}">Mantenimiento y Reparación</a></li>
                                     <li><a class="dropdown-item" href="{{route('venta')}}">Venta Equipos </a></li>
