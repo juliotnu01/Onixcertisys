@@ -43,7 +43,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">CALIBRACION</a>
+                                <a class="nav-link" href="{{route('calibracion')}}">CALIBRACION</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('capacitacion')}}">CAPACITACIÓN</a>
