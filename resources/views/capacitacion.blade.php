@@ -12,8 +12,8 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
 </head>
 
-<body>
-    <div id="contenedor">
+<body  >
+    
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -87,12 +87,13 @@
             <div class="container principal">
                 <div class="info">
                     <img src="assets/img/LogoBlanco.png" alt="">
-                    <h1>HUB DE METROLOGÍA</h1>
+                    <h1>CENTRO DE CAPACITACIÓN EN METROLOGÍA CALIDAD</h1>
                     <ul>
-                        <li>Laboratorio de Calibración Acreditado</li>
-                        <li>Centro de Capacitación</li>
-                        <li>Programa de Mantenimiento y Reparación Equipos</li>
-                        <li>Equipamos tu Laboratorio</li>
+                        <li>Metrología</li>
+                        <li>ISO/ICE-17025</li>
+                        <li>Automotriz IATF 16949</li>
+                        <li>Calidad ISO-9001</li>
+                        <li>Ambiental ISO-14001</li>
                     </ul>
                 </div>
                 <div class="contacto">
@@ -355,15 +356,16 @@
             <div class="container principal">
                 <div class="info">
                     <img src="assets/img/LogoBlanco.png" alt="">
-                    <h1>HUB DE METROLOGÍA</h1>
+                    <h1>CENTRO DE CAPACITACIÓN EN METROLOGÍA Y CALIDAD</h1>
                     <ul>
-                        <li>Laboratorio de Calibración Acreditado</li>
-                        <li>Centro de Capacitación</li>
-                        <li>Programa de Mantenimiento y Reparación Equipos</li>
-                        <li>Equipamos tu Laboratorio</li>
+                        <li>Instructores de Primer Nivel</li>
+                        <li>Amplio Catálogo de Cursos</li>
+                        <li>Múltiples Modalidades de Impartición</li>
+                        <li>Costo Competitivo</li>
                     </ul>
                 </div>
                 <div class="contacto">
+                    <p>Nuestra experiencia practica a tu alcance</p>
                     <h4>Contáctanos</h4>
                     <p>
                         <svg xmlns="assets/img/telephone-fill.svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
@@ -408,7 +410,6 @@
                 </div>
             </div>
         </footer>
-        <div id="contenedor">
             <script src="assets/js/jquery.js"></script>
             <script src="assets/js/bootstrap.min.js"></script>
 </body>

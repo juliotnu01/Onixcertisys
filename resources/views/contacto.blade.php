@@ -58,11 +58,11 @@
         </header>
 
         <!-- primera seccion -->
-        <section class="jumbotron img-bg" style="background-image: url(assets/img/mty-fondo.jpeg)">
+        <section class="jumbotron img-bg" style="background-image: url(assets/img/mty-fondo.jpeg); " >
             <div class="container principal">
 
-                <div class="info">
-                    <img src="img/login-logo.png" alt="" style=" background: white; border-radius: 80px 80px 80px 80px;">
+                <div class="info" style="background: white; border-radius: 80px 80px 80px 80px; width: 560px;">
+                    <img src="img/login-logo.png" alt=""  style="position: relative; left: 35px;">
                     <!-- <h1>HUB DE METROLOGÍA</h1>
                     <ul>
                         <li>Laboratorio de Calibración Acreditado</li>
@@ -116,7 +116,8 @@
                             </div>
                             <div class="col col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="inputs2" rows="3"></textarea>
+                                    <label for="exampleInputEmail1">Mensaje</label>
+                                    <textarea class="form-control" id="inputs2" rows="3" placeholder=""></textarea>
                                 </div>
                             </div>
                             <div class="col col-12">

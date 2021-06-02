@@ -1,8 +1,5 @@
 
-body{
-    padding: 50px;
-    /* background-image: url('../img/logo\ solo-cutout.png'); */
-}
+
 #contenedor{
     box-shadow: 5px 5px 15px black;
 }
@@ -140,6 +137,7 @@ body{
 
 #sectionCalibracion{
     background: white;
+    margin-top: 30px;
 }
 #circleExterno {
     width: 50px;
@@ -236,10 +234,11 @@ body{
     padding: 10px;
     border-radius: 10px;
     color: white;
-    background-color: orange;
+    background-color: #fbc717;
     font-size: large;
     font-weight: 700;
     box-shadow: 2px 2px 5px black;
+    margin-top: 5px;
 }
 #solicitarCotizacion{
     padding: 10px;
@@ -279,7 +278,7 @@ body{
 	height:60px;
 	bottom:40px;
 	right:40px;
-	background-color:#25d366;
+	background-color:#0095d9;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
@@ -289,7 +288,7 @@ body{
 }
 .float:hover {
 	text-decoration: none;
-	color: #25d366;
+	color: #003177;
   background-color:#fff;
 }
 
@@ -311,21 +310,29 @@ body{
     font-size: 20px;
 }
 #contactanos{
-    height: 200px;
+    height: 150px;
     background: white;
-    width: 400px;
+    width: 370px;
     position: relative;
     left: -100%;
     border-radius: 30px;
     color: #003177;
     padding: 10px;
     margin-top: 200px;
+    padding-left: 20px;
 }
 #inputs{
-    margin: 10px;
-    border: none;
-    border-bottom: 2px solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #inputs2{
-    margin: 10px;
+    margin-top: 10px;
+}
+#circuloMantenimiento{
+    background-color: #003177;
+    width: 80px;
+    align-items: center;
+    position: relative;
+    border-radius: 100%;
+    height: 80px;
 }

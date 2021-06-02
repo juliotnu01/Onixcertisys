@@ -13,8 +13,7 @@
 
 </head>
 
-<body style="padding: 0;" >
-    <div id="contenedor">
+<body style="padding: 0px !important;" >
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -119,7 +118,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                    <img src="assets/img/magnitudes/dimensional.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                    <img src="assets/img/magnitudes/dimensional.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Dimensional</div>
@@ -128,7 +127,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/temperatura.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/temperatura.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Temperatura</div>
@@ -137,7 +136,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                    <img src="assets/img/magnitudes/electrica.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                    <img src="assets/img/magnitudes/electrica.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Eléctrica</div>
@@ -146,7 +145,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/presion.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/presion.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Presión</div>
@@ -155,7 +154,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/masa.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/masa.png" alt="" height="20px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Masa</div>
@@ -164,7 +163,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/partorsional.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/partorsional.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Par Torsial</div>
@@ -173,7 +172,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/viscosidad.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/viscosidad.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Viscosidad</div>
@@ -182,7 +181,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/quimica.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/quimica.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Quimica</div>
@@ -191,7 +190,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/dureza.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/dureza.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Dureza</div>
@@ -199,7 +198,7 @@
                         </div>
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
-                                <div id="circleInterno"><img src="assets/img/magnitudes/humedad.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;"></div>
+                                <div id="circleInterno"><img src="assets/img/magnitudes/humedad.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;"></div>
                             </div>
                             <div id="itemTitulo">Humedad & Temperatura</div>
                             <div id="ItemSubTitulo"> 0 - 8HR <br /> -20°C a 60°C</div>
@@ -207,7 +206,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/tiempoyfrecuencia.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/tiempoyfrecuencia.png" alt="" height="20px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Tiempo y Frecuencia</div>
@@ -216,7 +215,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno">
-                                <img src="assets/img/magnitudes/fuerza.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/fuerza.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Fuerza</div>
@@ -225,7 +224,7 @@
                         <div id="itemMag" class="col col-3 ">
                             <div id="circleExterno">
                                 <div id="circleInterno" >
-                                <img src="assets/img/magnitudes/volumen.png" alt="" width="15" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
+                                <img src="assets/img/magnitudes/volumen.png" alt="" height="22px" style="transform: translate(-50%, 20%); position: relative; left: 50%;">
                                 </div>
                             </div>
                             <div id="itemTitulo">Volumen</div>
@@ -277,16 +276,17 @@
             <div class="container principal">
                 <div class="info">
                     <img src="assets/img/LogoBlanco.png" alt="">
-                    <h1>HUB DE METROLOGÍA</h1>
+                    <h1>LABORATORIO DE CALIBRACÓN</h1>
                     <ul>
-                        <li>Laboratorio de Calibración Acreditado</li>
-                        <li>Centro de Capacitación</li>
-                        <li>Programa de Mantenimiento y Reparación Equipos</li>
-                        <li>Equipamos tu Laboratorio</li>
+                        <li>Tecnología de Última generación</li>
+                        <li>El mas amplio alcance acreditado en Dimensional</li>
+                        <li>El mas amplio alcance acreditado en Presion con trasabilidad directa al CENAM</li>
+                        <li>Confiabilidad Acreditada</li>
+                        <li>Trasabilidad al NIST y CENAM con MRA ante la ILAC</li>
                     </ul>
                 </div>
                 <div class="contacto">
-                    <h4>Contáctanos</h4>
+                    <h4>Cotizaciones</h4>
                     <p>
                         <svg xmlns="assets/img/telephone-fill.svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
@@ -318,7 +318,6 @@
                 </div>
             </div>
         </footer>
-    </div>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 </body>

@@ -12,8 +12,7 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
 </head>
 
-<body>
-    <div id="contenedor">
+<body style="padding: 0px !important ;">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -91,8 +90,8 @@
                 <ul style="list-style: none;">
                     <li>
                         <div class="row">
-                            <div class="col col-2" style="text-align: right;">
-                                <img src="assets/img/logo solo-cutout.png" alt="" width="100" >
+                            <div class="col col-2" style="text-align: right;" id="circuloMantenimiento">
+                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; top: 7px; right: 7px;" >
                             </div>
                             <div class="col col-10">
                                 <p id="TitutloMantenimiento">Mantenimiento Preventivo:</p>
@@ -102,8 +101,8 @@
                     </li>
                     <li>
                         <div class="row">
-                            <div class="col col-2" style="text-align: right;">
-                                <img src="assets/img/logo solo-cutout.png" alt="" width="100">
+                            <div class="col col-2" style="text-align: right;" id="circuloMantenimiento">
+                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; top: 7px; right: 7px;" >
                             </div>
                             <div class="col col-10">
                                 <p id="TitutloMantenimiento"> Reparación:</p>
@@ -143,7 +142,6 @@
                 </div>
             </div>
         </footer>
-        <div id="contenedor">
             <script src="assets/js/jquery.js"></script>
             <script src="assets/js/bootstrap.min.js"></script>
 </body>

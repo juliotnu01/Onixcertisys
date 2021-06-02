@@ -12,8 +12,7 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
 </head>
 
-<body>
-    <div id="contenedor">
+<body style="padding: 0px !important ;">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -114,7 +113,6 @@
                 </div>
             </div>
         </footer>
-        <div id="contenedor">
             <script src="assets/js/jquery.js"></script>
             <script src="assets/js/bootstrap.min.js"></script>
 </body>
