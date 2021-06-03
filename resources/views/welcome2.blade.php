@@ -278,11 +278,11 @@
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>LABORATORIO DE CALIBRACÓN</h1>
                     <ul>
-                        <li>Tecnología de Última generación</li>
+                        <li>Tecnología de Última Generación</li>
                         <li>El mas amplio alcance acreditado en Dimensional</li>
-                        <li>El mas amplio alcance acreditado en Presion con trasabilidad directa al CENAM</li>
+                        <li>El mas amplio alcance acreditado en Presion con trazabilidad directa al CENAM</li>
                         <li>Confiabilidad Acreditada</li>
-                        <li>Trasabilidad al NIST y CENAM con MRA ante la ILAC</li>
+                        <li>Trazabilidad al NIST y CENAM con MRA ante la ILAC</li>
                     </ul>
                 </div>
                 <div class="contacto">

@@ -91,7 +91,7 @@
                     <li>
                         <div class="row">
                             <div class="col col-2" style="text-align: right;" id="circuloMantenimiento">
-                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; top: 7px; right: 7px;" >
+                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; width: 50px ; top: 12px; right: 1px" >
                             </div>
                             <div class="col col-10">
                                 <p id="TitutloMantenimiento">Mantenimiento Preventivo:</p>
@@ -102,7 +102,7 @@
                     <li>
                         <div class="row">
                             <div class="col col-2" style="text-align: right;" id="circuloMantenimiento">
-                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; top: 7px; right: 7px;" >
+                                <img src="assets/img/logo-circulo-b.png" alt="" width="70" style="position: relative; width: 50px ; top: 12px; right: 1px" >
                             </div>
                             <div class="col col-10">
                                 <p id="TitutloMantenimiento"> Reparación:</p>

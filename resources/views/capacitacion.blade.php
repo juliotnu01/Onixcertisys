@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta:viewport name"viewport" content="width=dervice-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Accredian Page</title>
+        <title>Accredíasn Page</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/estilos.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{route('calibracion')}}">
                         <img src="assets/img/LogoBlanco.png" alt="">
-                        <!-- imagen accredian -->
+                        <!-- imagen accredíasn -->
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -87,10 +87,10 @@
             <div class="container principal">
                 <div class="info">
                     <img src="assets/img/LogoBlanco.png" alt="">
-                    <h1>CENTRO DE CAPACITACIÓN EN METROLOGÍA CALIDAD</h1>
+                    <h1>CENTRO DE CAPACITACIÓN EN METROLOGÍA Y CALIDAD</h1>
                     <ul>
                         <li>Metrología</li>
-                        <li>ISO/ICE-17025</li>
+                        <li>ISO/IEC-17025</li>
                         <li>Automotriz IATF 16949</li>
                         <li>Calidad ISO-9001</li>
                         <li>Ambiental ISO-14001</li>
@@ -179,32 +179,32 @@
                                     </td>
                             </tr>
                             <tr>
-                                <td width="500">Basico de Metrología</td>
-                                <td>1 dia</td>
+                                <td width="800">Básico de Metrología</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Taller de Gestión de Riesgos Metrológicos</td>
-                                <td>1 dia</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Taller de Intervalos de Calibración (Métodos OIMLD 10)</td>
-                                <td>1 dia</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Interpretación de los Certificados de Calibración</td>
-                                <td>1 dia</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Estimación de la Incertidumbre de las Mediciones</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
-                                <td>Uso, Manejo y Cuidados de instrumentos de Medición</td>
-                                <td>2 dia</td>
+                                <td>Uso, Manejo y Cuidados de Instrumentos de Medición</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
-                                <td>Calibraicon y Verificación de instrumentos de Medición</td>
-                                <td>3 dia</td>
+                                <td>Calibraicon y Verificación de Instrumentos de Medición</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td colspan="2" id="titulosTablaCursos">
@@ -216,11 +216,11 @@
                             </tr>
                             <tr>
                                 <td>Norma ISO/IEC-17025 </td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
-                                <td>Auditor interno ISO/IEC-17025 </td>
-                                <td>3 dia</td>
+                                <td>Auditor Interno ISO/IEC-17025 </td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td colspan="2" id="titulosTablaCursos">
@@ -232,35 +232,35 @@
                             </tr>
                             <tr>
                                 <td>Norma IATF-16949</td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
                                 <td>Auditor Interno IATF-16949</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td>Core Tools Fundamentos</td>
-                                <td>1 dia</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Core Tools Taller</td>
-                                <td>1 dia</td>
+                                <td>1 días</td>
                             </tr>
                             <tr>
                                 <td>Taller de APQP/CP/PPAP</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td>Taller de AMEF-VDA</td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
                                 <td>Taller SPC</td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
                                 <td>Taller MSA</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td colspan="2" id="titulosTablaCursos" >
@@ -270,11 +270,11 @@
                             </tr>
                             <tr>
                                 <td>Norma ISO-9001 </td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
                                 <td>Auditor Interno ISO-9001</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                             <tr>
                                 <td colspan="2" id="titulosTablaCursos"> 
@@ -286,11 +286,11 @@
                             </tr>
                             <tr>
                                 <td>Norma ISO-14001 </td>
-                                <td>2 dia</td>
+                                <td>2 días</td>
                             </tr>
                             <tr>
                                 <td>Auditor Interno ISO-14001</td>
-                                <td>3 dia</td>
+                                <td>3 días</td>
                             </tr>
                         </tbody>
                     </table>
@@ -365,7 +365,7 @@
                     </ul>
                 </div>
                 <div class="contacto">
-                    <p>Nuestra experiencia practica a tu alcance</p>
+                    <p style="margin-bottom: 0; margin-top: 40px" >Nuestra experiencia practica a tu alcance</p>
                     <h4>Contáctanos</h4>
                     <p>
                         <svg xmlns="assets/img/telephone-fill.svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
@@ -406,7 +406,7 @@
                     </div>
                 </div>
                 <div class="copyright-area text-center">
-                    <p class="mb-0">© Accredian, S. DE R.L. DE C.V.</p>
+                    <p class="mb-0">© Accredíasn, S. DE R.L. DE C.V.</p>
                 </div>
             </div>
         </footer>
