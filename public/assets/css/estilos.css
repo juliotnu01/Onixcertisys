@@ -2,10 +2,12 @@
 body{
     background-color: #ecfbff;
 }
-#contenedor{
+
+/* #contenedor{
     box-shadow: 5px 5px 15px black;
-}
-/* HEADER */
+} */
+
+/* ================================ HEADER ================================  */
 .navbar-brand img {
     max-width: 150px;
 }
@@ -31,20 +33,14 @@ body{
     justify-content: flex-end;
 }
 
-/* .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
-    justify-content: flex-end;
-    margin-right: 0;
-} */
-
 .nav-item{
     margin-left: 20px;
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
     background-color: #003177;
 }
-
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
     color: #fbc717;
@@ -58,13 +54,22 @@ body{
     background-color: #003177;
 }
 
-/* JUMBOTRON */
+.separar-letra{
+    letter-spacing: 1px;
+}
+
+.dropdown-principal svg{
+    vertical-align: text-top;
+}
+
+/* ================================ JUMBOTRON ================================ */
 .jumbotron{
     color: white;
     padding: 70px 0 30px 0;
 }
 
 .img-bg {
+    background-position-y: -70px;  /*gris*/
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -76,8 +81,19 @@ body{
     margin-right: 0;
 }
 
-.jumbotron h1, .jumbotron h4{
+h1, h4, h3, h5{
     font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    /* font-size: 2.3rem; */
+}
+
+/* .jumbotron h1, .jumbotron h4{
+    font-family: 'Montserrat', sans-serif;
+} */
+
+p, li{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
 }
 
 .jumbotron h1{
@@ -90,46 +106,142 @@ body{
 }
 
 .contacto{
-    /* margin-top: 130px; */
+    margin-top: 130px;
 }
 
-.contacto h4{
+.contacto2{
+    margin-top: 50px;
+}
+
+.contacto-item{
+    display: flex;
+    align-items: baseline;
+}
+
+.contacto h4, .contacto2 h4{
     color: #fbc717;
     font-size: 26px;
 }
 
-.contacto p{
+.contacto p, .contacto2 p{
     font-size: x-large;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 10px;
 }
 
+/* ================================ JUMBOTRON END ================================ */
 
-/* main container magnitudes */
-
-.titulom img {
-    max-height: 50px;
-}
-
-/* .magnitudes{
-    margin-left: 0;
-    margin-right: 0;
-} */
-
+/* ================================ MAGNITUDES ================================ */
 .magnitudes{
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #003177;
     background-color: #ecfbff;
 }
 
-.titulom{
-    display: flex;
+.titulo-mag h1{
+    font-size: 2.3rem;
 }
 
-#listaCalibracion{
+.magnitudes ul{
+    text-align: initial;
+    font-size: 20px;
+}
+
+.mag-img{
+    display: contents;
+}
+
+.mag-img img{
+    height: 80px;
+    margin-left: 20px;
+}
+
+.content-mag{
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.item-mag{
+    margin-bottom: 20px;
+}
+
+.item-mag .icono-chico{
+    max-height: 38px;
+}
+
+.item-mag .icono-ancho{
+    max-height: 35px;
+}
+
+.item-mag .icono-ancho2{
+    max-height: 28px;
+}
+
+.icon-gradient {
+    position: relative;
+    width: 69px;
+    height: 69px;
+    /* line-height: 75px; */
+    border-radius: 50%;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    /* font-size: 28px; */
+    z-index: 1;
+}
+
+.gradient-1 {
+    /* background-image: linear-gradient(#6240c8 0%, #a145fe 100%); */
+    background-color: #003177;
+}
+
+.icono-mag{
+    line-height: 65px;
+}
+
+.texto-mag{
+    margin-top: 15px;
+}
+
+.mag-sub{
+    background-color: #0095d9;
+}
+
+.mag-sub-ac{
+    display: flex;
+    margin-top: 20px;
+}
+
+.icon-sub{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    margin-left: 0px;
+    margin-right: 0px;
+    z-index: 1;
+}
+
+.texto-sub{
+    align-self: center;
+    margin-left: 10px;
+}
+
+.texto-sub h5{
+    margin-bottom: 0px;
+}
+
+/* #listaCalibracion{
     position: relative;
     left: 38%;
     text-align: left;
 }
+
 #contenedorLaboratorio{
     text-align: right;
 }
@@ -156,7 +268,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
-}
+} 
 #itemTitulo{
     font-size: larger;
     font-weight: bold;
@@ -167,9 +279,16 @@ body{
     position: relative;
     text-align: center;
 }
+
 #itemMag{
     padding: 25px;
 }
+*/
+
+/* ================================ MAGNITUDES END ================================ */
+
+
+
 #tablaCursos{
     width: 100%;
     font-size: 20px;
@@ -254,22 +373,6 @@ body{
 
 }
 
-.footer-links img {
-    max-height: 90px;
-}
-
-.footer-links img {
-    max-height: 90px;
-}
-.copyright-area {
-    background-color: #003177;
-    padding: 10px 0;
-    color: white;
-}
-.footer-links {
-    padding: 50px 0;    background: white;
-}
-
 .float{
 	position:fixed;
 	width:60px;
@@ -334,3 +437,30 @@ body{
     border-radius: 100%;
     height: 70px;
 }
+
+/* ================================ FOOTER ================================ */
+
+.footer-links {
+    padding: 50px 0;    
+    background: white;
+}
+
+.footer-links img {
+    max-height: 90px;
+}
+
+.copyright-area {
+    background-color: #003177;
+    padding: 10px 0;
+    color: white;
+}
+
+.rowfooter{
+    margin: 0;
+}
+
+.contfooter, .colfooter{
+    padding: 0;
+}
+
+/* ================================ FOOTER END ================================ */
