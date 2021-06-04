@@ -1,5 +1,7 @@
 
-
+body{
+    background-color: #ecfbff;
+}
 #contenedor{
     box-shadow: 5px 5px 15px black;
 }
@@ -74,7 +76,7 @@
 }
 
 .principal{
-    width: 40%;
+    width: 45%;
     margin-right: 0;
 }
 
@@ -137,7 +139,8 @@
 }
 
 #sectionCalibracion{
-    background-color: #ecfbff;;
+    background-color: #ecfbff;
+    margin-top: 20px;
 }
 #circleExterno {
     width: 50px;

@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <div id="contenedor">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -58,11 +57,11 @@
         </header>
 
         <!-- primera seccion -->
-        <section class="jumbotron img-bg" style="background-image: url(assets/img/mty-fondo.jpeg); " >
+        <section class="jumbotron img-bg" style="background-image: url(assets/img/mty-fondo.jpeg); ">
             <div class="container principal">
 
                 <div class="info" style="background: white; border-radius: 80px 80px 80px 80px; width: 560px;">
-                    <img src="img/login-logo.png" alt=""  style="position: relative; left: 35px;">
+                    <img src="img/login-logo.png" alt="" style="position: relative; left: 35px;">
                     <!-- <h1>HUB DE METROLOGÍA</h1>
                     <ul>
                         <li>Laboratorio de Calibración Acreditado</li>
@@ -100,28 +99,36 @@
                     <img src="assets/img/magnitudes-fondo.png" alt="Magnitudes" width="60%">
                 </div>
                 <div class="col col-9">
-                    <form>
+                    <form method="POST" action="{{route('send.mail.contacto')}}">
+                    @csrf
                         <div class="row" style="    padding: 100px;">
                             <div class="col col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Correo Electronico</label>
-                                    <input type="email" class="form-control" id="inputs" aria-describedby="emailHelp" placeholder="">
+                                    <input type="email" class="form-control" id="inputs" placeholder="" name="correo">
                                 </div>
                             </div>
                             <div class="col col-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Empresa</label>
-                                    <input type="email" class="form-control" id="inputs" aria-describedby="emailHelp" placeholder="">
+                                    <input type="text" class="form-control" id="inputs" placeholder="" name="empresa">
                                 </div>
                             </div>
                             <div class="col col-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mensaje</label>
-                                    <textarea class="form-control" id="inputs2" rows="3" placeholder=""></textarea>
+                                    <textarea class="form-control" id="inputs2" rows="3" placeholder="" name="descripcion"></textarea>
                                 </div>
                             </div>
                             <div class="col col-12">
-                                <button id="SolicitarTemario">Enviar</button>
+                                <button id="SolicitarTemario" type="submit">Enviar</button>
+                            </div>
+                            <div class="col col-12">
+                                @if(Session::has('message'))
+                                <div class="alert alert-primary" role="alert">
+                                    {{ Session::get('message') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -158,7 +165,6 @@
                 </div>
             </div>
         </footer>
-        <div id="contenedor">
             <script src="assets/js/jquery.js"></script>
             <script src="assets/js/bootstrap.min.js"></script>
 </body>
