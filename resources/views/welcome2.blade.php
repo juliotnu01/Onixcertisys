@@ -107,7 +107,7 @@
 
     <section class="container magnitudes">
         <div class="row justify-content-center">
-            <div class="col-6 text-center titulo-mag" id="contenedorLaboratorio">
+            <div class="col-9 text-center titulo-mag" id="contenedorLaboratorio">
                 <h1>LABORATORIO DE CALIBRACIÓN<br>ACREDITADO ISO/IEC-17025:2017</h1>
                 <ul id="listaCalibracion">
                     <li>Tecnología de Última Generación</li>
@@ -117,9 +117,14 @@
                     <li>Trazabilidad al NIST y CENAM con MRA ante la ILAC</li>
                 </ul>
             </div>
-            <div class="col-1 mag-img">
-                <img src="assets/img/ILAC.png" alt="ILAC">
-                <img src="assets/img/PJLA.png" alt="PJLA">
+            <div class="col-3 mag-img">
+                <div class="mag-img2">
+                    <img src="assets/img/ILAC.png" alt="ILAC">
+                    <img src="assets/img/PJLA.png" alt="PJLA">
+                </div>
+                <div class="btn-enviar">
+                    <input type="submit" value="Certificados">
+                </div>
             </div>
         </div>
         <div class="row row-cols-4 content-mag">
