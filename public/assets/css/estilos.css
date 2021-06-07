@@ -7,6 +7,12 @@ body{
     box-shadow: 5px 5px 15px black;
 } */
 
+h1, h2, h4, h3, h5{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    /* font-size: 2.3rem; */
+}
+
 /* ================================ HEADER ================================  */
 .navbar-brand img {
     max-width: 150px;
@@ -19,6 +25,11 @@ body{
 
 .navbar-light .navbar-brand {
     color: white;
+}
+
+.menu svg{
+    width: 30px;
+    height: 30px;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -65,7 +76,7 @@ body{
 /* ================================ JUMBOTRON ================================ */
 .jumbotron{
     color: white;
-    padding: 70px 0 30px 0;
+    padding: 50px 0 30px 0;
 }
 
 .img-bg {
@@ -77,14 +88,9 @@ body{
 }
 
 .principal{
-    width: 45%;
+    width: 48%;
     margin-right: 0;
-}
-
-h1, h4, h3, h5{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
-    /* font-size: 2.3rem; */
+    padding-right: 20px;
 }
 
 /* .jumbotron h1, .jumbotron h4{
@@ -97,16 +103,22 @@ p, li{
 }
 
 .jumbotron h1{
-    margin-top: 3rem;
+    margin-top: 2rem;
     font-size: 50px;
 }
 
 .info ul{
-    font-size: 30px;
+    font-size: 29px;
+    margin-bottom: 0px;
+    margin-top: 20px;
 }
 
-.contacto{
+/* .contacto{
     margin-top: 130px;
+} */
+
+.contacto, .contacto-mant{
+    margin-top: 163px;
 }
 
 .contacto2{
@@ -118,12 +130,12 @@ p, li{
     align-items: baseline;
 }
 
-.contacto h4, .contacto2 h4{
+.contacto h4, .contacto2 h4, .contacto-mant h4, .contacto-venta h4{
     color: #fbc717;
     font-size: 26px;
 }
 
-.contacto p, .contacto2 p{
+.contacto p, .contacto2 p, .contacto-mant p, .contacto-venta p{
     font-size: x-large;
     margin-bottom: 0;
     margin-top: 0;
@@ -287,9 +299,177 @@ p, li{
 
 /* ================================ MAGNITUDES END ================================ */
 
+/* ================================ MANTENIMIENTO Y REPARACION ================================ */
+.body-mant{
+    background-color: white;
+}
 
+.mant-info{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    /* background-color: white; */
+}
 
-#tablaCursos{
+.seccion{
+    display: flex;
+    margin: 20px 0;
+}
+
+.seccion img{
+    max-height: 45px;
+}
+
+.icono{
+    line-height: 65px;
+    text-align: center;
+}
+
+.texto{
+    width: 93%;
+    margin-left: 20px;
+}
+
+.texto h2{
+    color: #0095d9;
+    font-weight: bold;
+}
+
+.texto p{
+    color: #003177;
+    font-size: 23px;
+    text-align: justify;
+}
+
+/* ================================ MANTENIMIENTO Y REPARACION END ================================ */
+
+/* ================================ VENTAS ================================ */
+.contacto-venta{
+    margin-top: 29px;
+}
+
+.info-venta h1, .info-cap h1{
+    font-size: 45px;
+}
+
+/* ================================ VENTAS END ================================ */
+
+/* ================================ CAPACITACIÓN ================================ */
+.contacto-cap{
+    margin-top: 72px;
+}
+
+.tipos-cursos{
+    background-color: #0095d9;
+    padding: 20px 250px;
+    color: white;
+}
+
+.tipos-cursos h2{
+    margin-bottom: 20px;
+}
+
+.tipos-cursos ul{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+}
+/* _________ */
+
+.catalogo-cursos{
+    background-color: white;
+}
+
+.cursos-col img{
+    width: 60%;
+}
+
+.catalogo-cursos, .cursos-col{
+    padding: 0;
+}
+
+.cursos-row{
+    margin: 0;
+}
+
+.cursos-col2{
+    margin-top: 60px;
+}
+
+.cursos-col2 .row{
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+.cursos-col2 .row .col{
+    padding: 0;
+    margin: 0;
+}
+
+.cursos-marginb{
+    margin-bottom: 20px;
+}
+
+.cursos-marginb2{
+    margin-bottom: 40px;
+}
+
+.cursos-col h3, .cursos-col h2{
+    color: #003177;
+}
+
+.cursos-col h4{
+    color: #0095d9;
+}
+
+.cursos-sec{
+    margin-bottom: 30px;
+}
+
+.cursos-sec img{
+    width: 20px;
+    height: 20px;
+}
+
+.cursos-sec .titulo-sec{
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.cursos-sec .titulo-sec h3{
+    padding: 0;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.cursos-sec ul{
+    list-style: none;
+    color: #0095d9;
+}
+
+.cursos-sec .row .col1{
+    padding-left: 35px;
+}
+
+.cont-sec ul li{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+/* ___________ */
+
+.contacto-cap2{
+    margin-top: 70px;
+}
+
+.contacto-cap2 .p-experiencia{
+    margin-left: 0;
+    font-size: 30px;
+}
+
+/* _______________________________________ */
+/* #tablaCursos{
     width: 100%;
     font-size: 20px;
 
@@ -313,7 +493,8 @@ p, li{
     font-size: large;
     font-weight: 700;
     margin-top: -5px;
-}
+} */
+
 #tableCotizacionDeCurso{
     width: 100%;
 }
@@ -373,6 +554,83 @@ p, li{
 
 }
 
+/* ================================ CAPACITACIÓN END ================================ */
+
+
+/* ================================ CONTACTANOS ================================ */
+
+.img-mty{
+    background-position-y: -150px;
+}
+
+.logo{
+    text-align: center;
+    margin-right: 50px;
+}
+
+.logo-fondo{
+    background-color: white;
+    width: 530px;
+    height: auto;
+    border-radius: 90px;
+    margin-left: auto;
+    padding: 15px;
+}
+
+.logo img{
+    max-height: 124px;
+}
+
+.contacto-fondo{
+    background-color: white;
+    color: #003177;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 20px;
+    margin-left: 80px;
+}
+
+.contacto-fondo p{
+    margin-bottom: 0;
+}
+
+.contacto-mty{
+    margin-top: 280px;
+}
+
+svg{
+    width: 18px;
+    height: 18px;
+    vertical-align: baseline;
+}
+
+.img-form{
+    padding-left: 0;
+}
+
+.formulario{
+    padding: 100px;
+}
+
+.formulario div{
+    margin-bottom: 30px;
+}
+
+.formulario .btn-enviar input{
+    width: 15%;
+    margin-left: .7rem;
+    background-color: #fbc717;
+    color: white;
+    border: outset;
+    border-width: thick;
+    border-radius: 20px;
+    font-weight: bold;
+    height: 40px;
+}
+
+/* ================================ CONTACTANOS END ================================ */
+
+/* ================================ Whats app ================================ */
 .float{
 	position:fixed;
 	width:60px;
@@ -387,6 +645,7 @@ p, li{
 	box-shadow: 2px 2px 3px #999;
   z-index:100;
 }
+
 .float:hover {
 	text-decoration: none;
 	color: #003177;
@@ -396,6 +655,7 @@ p, li{
 .my-float{
 	margin-top:16px;
 }
+/* ================================ Whats app END ================================ */
 
 #sectionContacto{
     background: white;
