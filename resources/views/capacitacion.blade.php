@@ -12,6 +12,7 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="assets/fonts/Montserrat-Regular.ttf" rel="stylesheet">
+        <link rel="stylesheet" href="assets\css\estilos-mediaquery.css">
 </head>
 
 <body>

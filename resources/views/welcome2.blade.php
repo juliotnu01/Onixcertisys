@@ -13,7 +13,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="assets/fonts/Montserrat-Regular.ttf" rel="stylesheet">
         <link rel="stylesheet" href="assets\css\estilos-mediaquery.css">
-        <!-- <link rel="stylesheet" media="screen and (max-width: 576px)" href="assets\css\estilos-max576.css" /> -->
 </head>
 
 <body>
@@ -64,7 +63,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info">
+                <div class="info-cal">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>HUB DE METROLOGÍA</h1>
                     <ul>
@@ -88,7 +87,7 @@
                         81-1555-4669
                     </p>
                 </div> -->
-                <div class="contacto">
+                <div class="contacto-cal">
                     <h4>Contáctanos</h4>
                     <div class="items">
                         <div class="contacto-item">
@@ -127,7 +126,7 @@
                     <img src="assets/img/PJLA.png" alt="PJLA">
                 </div>
                 <div class="btn-enviar">
-                    <input type="submit" value="Certificados">
+                    <input type="submit" value="CERTIFICADOS">
                 </div>
             </div>
         </div>
@@ -291,7 +290,6 @@
                     <div class="icono-mag mag-sub icon-sub service-icon mb-30">
                         <!-- <img src="assets/img/magnitudes/dimensional.png" alt=""> -->
                     </div>
-<<<<<<< HEAD
                     <div class="texto-sub">
                         <h5>Magnitudes Subcontratadas Acreditadas</h5>
                     </div>
@@ -321,24 +319,22 @@
                         </div>
                         <div class="col col-6">
                             <img src="assets/img/PJLA.png" alt="PJLA" width="100">
-=======
-                    <div class="col col-4 ">
-                        <div class="row">
-                            <div class="col col-6" style="text-align: right;">
-                                <img src="assets/img/ILAC.png" alt="ILAC" width="100" >
+                            <div class="col col-4 ">
+                                <div class="row">
+                                <div class="col col-6" style="text-align: right;">
+                                    <img src="assets/img/ILAC.png" alt="ILAC" width="100" >
+                                </div>
+                                <div class="col col-6">
+                                    <img src="assets/img/PJLA.png" alt="PJLA" width="100">
+                                </div>
+                                <div class="col col-12">
+                                    <button id="certificado" > <a class="dropdown-item" href="{{route('descargar')}}" style="color: white;font-weight: 800;">Certificados</a></button>
+                                </div>
                             </div>
-                            <div class="col col-6">
-                                <img src="assets/img/PJLA.png" alt="PJLA" width="100">
-                            </div>
-                            <div class="col col-12">
-                                <button id="certificado" > <a class="dropdown-item" href="{{route('descargar')}}" style="color: white;font-weight: 800;">Certificados</a></button>
-                            </div>
->>>>>>> 56f885dcd095a0ed8e186cfb7bd6e2fcf659e92f
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div class="magnitudes">
             <div class="container">
                 <div class="row">
@@ -502,7 +498,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info">
+                <div class="info-cal2">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>LABORATORIO DE CALIBRACÓN</h1>
                     <ul>

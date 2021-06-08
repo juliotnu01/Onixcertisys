@@ -12,6 +12,7 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="assets/fonts/Montserrat-Regular.ttf" rel="stylesheet">
+        <link rel="stylesheet" href="assets\css\estilos-mediaquery.css">
 </head>
 
 <body class="body-mant">
@@ -64,7 +65,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info">
+                <div class="info-mant">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>MANTENIMIENTO Y REPARACIÓN</h1>
                     <ul>
@@ -126,8 +127,9 @@
 
     <section class="container mant-info">
         <div class="seccion">
-            <div class="icono service-icon icon-gradient gradient-1 mb-30">
-                <img src="assets/img/logo-circulo-b.png" alt="">
+            <div class="vineta-acc">
+                <!-- <img src="assets/img/logo-circulo-b.png" alt=""> -->
+                <img src="assets/img/logo solo-cutout.png" alt="">
             </div>
             <div class="texto">
                 <h2>Mantenimiento Preventivo:</h2>
@@ -138,8 +140,10 @@
             </div>
         </div>
         <div class="seccion">
-            <div class="icono service-icon icon-gradient gradient-1 mb-30">
-                <img src="assets/img/logo-circulo-b.png" alt="">
+            <div class="vineta-acc">
+            <!-- <div class="icono service-icon icon-gradient gradient-1 mb-30"> -->
+                <!-- <img src="assets/img/logo-circulo-b.png" alt=""> -->
+                <img src="assets/img/logo solo-cutout.png" alt="">
             </div>
             <div class="texto">
                 <h2>Reparación:</h2>
