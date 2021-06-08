@@ -1,0 +1,97 @@
+
+/* @media (max-width: 576px) {
+
+    .img-bg {
+        background-position-y: -70px;
+        background-position-x: -350px;
+        padding: 30px 0 20px 0;
+    }
+
+    .principal {
+        width: 100%;
+        margin-right: auto;
+        position: relative;
+    }
+
+    
+
+
+} */
+
+@media (min-width: 1829px) {
+    /* estilos originales */
+}
+
+@media (max-width: 1828.99px)
+{
+    /* min 1200px */
+
+    .img-bg {
+        /* background-position-y: -70px; */
+        background-position-x: -40px;
+        padding: 30px 0 20px 0;
+    }
+
+    .principal{
+        width: 52%;
+    }
+
+    .info img{
+        height: 100px;
+    }
+
+    .jumbotron h1 {
+        margin-top: 20px;
+        font-size: 40px;
+    }
+
+    .info ul {
+        font-size: 22px;
+        margin-bottom: 0px;
+        margin-top: 15px;
+    }
+
+    .contacto h4, .contacto2 h4, .contacto-mant h4, .contacto-venta h4 {
+        font-size: 22px;
+    }
+
+    .contacto p, .contacto2 p, .contacto-mant p, .contacto-venta p {
+        font-size: 20px;
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .contacto, .contacto-mant {
+        margin-top: 40px;
+    }
+
+
+}
+
+
+@media (max-width: 576px) {
+    .img-bg {
+        background-position-y: -70px;
+        background-position-x: -350px;
+        padding: 20px 0 20px 0;
+    }
+
+    .img-bg:before {
+        top: 0px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .principal {
+        width: 100%;
+        margin-right: auto;
+        position: relative;
+    }
+
+}
+
