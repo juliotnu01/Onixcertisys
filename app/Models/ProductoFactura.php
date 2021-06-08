@@ -13,4 +13,8 @@ class ProductoFactura extends Model
     {
         return $this->belongsTo(Instrumento::class, 'instrumento_id');
     }
+    public function belongsToClaveSat()
+    {
+        return $this->belongsTo(ClaveSat::class, 'clave_sat_id');
+    }
 }
