@@ -108,6 +108,9 @@
                             <div class="col col-6">
                                 <img src="assets/img/PJLA.png" alt="PJLA" width="100">
                             </div>
+                            <div class="col col-12">
+                                <button id="certificado" > <a class="dropdown-item" href="{{route('descargar')}}" style="color: white;font-weight: 800;">Certificados</a></button>
+                            </div>
                         </div>
                     </div>
                 </div>
