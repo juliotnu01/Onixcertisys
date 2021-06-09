@@ -12,6 +12,7 @@
         <link href="assets/fonts/Montserrat-Bold.ttf" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="assets/fonts/Montserrat-Regular.ttf" rel="stylesheet">
+        <link rel="stylesheet" href="assets\css\estilos-mediaquery.css">
 </head>
 
 <body>
@@ -201,7 +202,7 @@
             <div class="row rowfooter">
                 <div class="col-xl-12 colfooter">
                     <div class="footer-links text-center">
-                        <a href="{{route('calibracion')}}" class="logo">
+                        <a href="{{route('calibracion')}}">
                             <img src="assets/img/Logo.png" alt="Logo Acrredian"> 
                         </a>
                     </div>

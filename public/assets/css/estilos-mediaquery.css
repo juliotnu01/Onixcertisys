@@ -1,63 +1,98 @@
 
-/* @media (max-width: 576px) {
 
+/* laptop */
+@media (min-width: 1200px){
+    
     .img-bg {
-        background-position-y: -70px;
-        background-position-x: -350px;
-        padding: 30px 0 20px 0;
+        background-position-y: -40px;
+        padding: 25px 0 20px 0;
     }
 
     .principal {
-        width: 100%;
-        margin-right: auto;
-        position: relative;
-    }
-
-    
-
-
-} */
-
-/* @media (min-width: 1829px) {
-    estilos originales
-} */
-
-@media (max-width: 1828.99px)
-{
-    /* min 1200px */
-
-    .img-bg {
-        /* background-position-y: -70px; */
-        /* background-position-x: -40px; */
-        padding: 30px 0 20px 0;
-        height: 100%;
-    }
-
-    .principal{
         width: 52%;
     }
 
-    .info img{
+    .info-cal img, .info-cal2 img, .info-cap img, .info-mant img, .info-venta img{
         height: 100px;
     }
 
-    .jumbotron h1 {
+    /* .jumbotron h1 {
         margin-top: 20px;
         font-size: 40px;
+    } */
+
+    /* titulo grande */
+    .info-cal h1{
+        font-size: 40px;
+        margin-top: 28px;
     }
 
-    .info ul {
+    /* titulo mediano y 2 renglones */
+    .info-cal2 h1, .info-cap h1, .info-venta h1{
+        font-size: 32px;
+        margin-top: 28px;
+    }
+
+    .info-mant h1{
+        font-size: 32px;
+        margin-top: 42px;
+    }
+
+    /* lista larga 5 renglones */
+    .info-cal ul, .info-cap ul, .info-mant ul {
         font-size: 22px;
-        margin-bottom: 0px;
+    }
+
+    .info-cal2 ul{
+        font-size: 20px;
         margin-top: 15px;
     }
 
-    .contacto h4, .contacto2 h4, .contacto-mant h4, .contacto-venta h4 {
+    .info-cal2 ul, .info-venta ul {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .contacto-cal {
+        margin-top: 38px;
+    }
+
+    .contacto-cal2 {
+        margin-top: 40px;
+    }
+
+    .contacto-cap, .contacto-cap2{
+        margin-top: 10px;
+    }
+
+    .contacto-mant{
+        margin-top: 67px;
+    }
+
+    .contacto-venta {
+        margin-top: 8px;
+    }
+
+    /* .contacto h4 */
+    .contacto-cal h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-mty h4{
         font-size: 22px;
     }
 
-    .contacto p, .contacto2 p, .contacto-mant p, .contacto-venta p {
+    .contacto-cal2 h4, .contacto-venta h4 {
         font-size: 20px;
+    }
+
+    /* .contacto p, */
+    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .cont-mty p {
+        font-size: 20px;
+    }
+
+    .contacto-cal2 p, .contacto-venta p{
+        font-size: 18px;
+    }
+
+    .contacto-cap2 .p-experiencia {
+        font-size: 22px;
     }
 
     svg {
@@ -65,13 +100,374 @@
         height: 16px;
     }
 
-    .contacto, .contacto-mant {
-        margin-top: 40px;
+    .titulo-mag{
+        padding-left: 220px;
+    }
+    
+    .titulo-mag h1 {
+        font-size: 35px;
+        margin-left: 0px;
+    }
+
+    .titulo-mag ul {
+        font-size: 20px;
+        margin-left: 0px;
+    }
+
+    .mag-img img {
+        height: 106px;
+    }
+
+    .mag-img .btn-enviar{
+        margin-left: 0px;
+    }
+
+    .mag-img .btn-enviar input{
+        font-size: 18px;
+        height: 44px;
+    }
+
+    .texto-mag h3{
+        font-size: 26px;
+    }
+
+    .texto-sub h5{
+        font-size: 17px;
+    }
+
+
+
+    .tipos-cursos{
+        padding: 15px 100px;
+    }
+
+    .tipos-cursos h2 {
+        margin-bottom: 6px;
+        font-size: 28px;
+    }
+
+    .tipos-cursos ul{
+        margin-bottom: 0;
+        font-size: 24px;
+    }
+
+    .vineta-acc img{
+        width: 20px;
+    }
+
+    .cursos-col2 {
+        margin-top: 50px;
+    }
+
+    .cursos-marginb{
+        margin-bottom: 14px;
+    }
+
+    .cursos-marginb2 {
+        margin-bottom: 28px;
+    }
+
+    .cursos-col h2{
+        font-size: 26px;
+    }
+
+    .cursos-col h4{
+        font-size: 20px;
+    }
+
+    .cursos-sec {
+        margin-bottom: 26px;
+    }
+
+    .cursos-sec .titulo-sec{
+        margin-bottom: 2px;
+    }
+
+    .titulo-sec h3{
+        font-size: 22px;
     }
 
     .cont-sec ul li {
-        font-size: 22px;
+        font-size: 18px;
+        margin-bottom: 4px;
     }
+
+    .mant-info {
+        margin-top: 70px;
+        margin-bottom: 70px;
+        max-width: 960px;
+    }
+
+    .texto h2{
+        font-size: 28px;
+    }
+
+    .texto p{
+        font-size: 20px;
+    }
+
+
+
+    .logo-fondo{
+        width: 426px;
+    }
+
+    .logo img {
+        max-height: 100px;
+    }
+
+    .contacto-mty {
+        margin-top: 180px;
+        margin-left: 50px;
+    }
+
+    .contacto-fondo{
+        padding: 25px
+    }
+
+    .formulario{
+        padding: 100px 80px;
+    }
+
+    .formulario p{
+        font-size: 18px;
+    }
+
+    .formulario .btn-enviar input{
+        width: 30%;
+        font-size: 18px;
+        height: 44px;
+    }
+
+
+
+    .footer-links {
+        padding: 30px 0;
+    }
+
+    .footer-links img {
+        max-height: 70px;
+    }
+
+    .copyright-area{
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+}
+
+/* Original - en pantalla */
+@media (min-width: 1560px){
+
+    svg{
+        width: 18px;
+        height: 18px;
+    }
+
+    .img-bg {
+        background-position-y: -55px;
+        /* height: 762px; */
+        padding: 50px 0 30px 0;
+    }
+
+    .principal{
+        width: 48%;
+    }
+
+    .info-cal img, .info-cal2 img, .info-cap img, .info-mant img, .info-venta img{
+        height: 124px;
+    }
+
+    .info-cal h1 {
+        margin-top: 3rem;
+        font-size: 50px;
+    }
+
+    .info-cal2 h1, .info-cap h1, .info-mant h1, .info-venta h1{
+        margin-top: 2rem;
+        font-size: 42px;
+    }
+
+    .info-venta h1{
+        margin-top: 2rem;
+        font-size: 38px;
+    }
+
+    .info-cal ul, .info-mant ul{
+        font-size: 29px;
+    }
+
+    .info-cap ul{
+        font-size: 28px;
+    }
+
+    .info-cal2 ul {
+        font-size: 26px;
+    }
+
+    .info-venta ul{
+        font-size: 26px;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .contacto-cal{
+        margin-top: 36px;
+    }
+
+    .contacto-cal2{
+        margin-top: 42px;
+    }
+
+    .contacto-cap{
+        margin-top: 17px;
+    }
+
+    .contacto-calp2 {
+        margin-top: 20px;
+    }
+
+    .contacto-mant {
+        margin-top: 55px;
+    }
+
+    .contacto-venta {
+        margin-top: 8px;
+    }
+
+    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4 {
+        font-size: 26px;
+    }
+
+    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p {
+        font-size: 24px;
+    }
+
+    .contacto-cal2 p{
+        font-size: 26px;
+    }
+
+    .contacto-cap2 .p-experiencia{
+        font-size: 26px;
+    }
+
+    .titulo-mag{
+        padding-left: 0px;
+    }
+
+    .titulo-mag h1{
+        font-size: 2.3rem;
+        margin-left: 220px;
+    }
+
+    .titulo-mag ul{
+        font-size: 25px;
+        margin-left: 280px;
+    }
+
+    .mag-img img{
+        height: 120px;
+    }
+
+    .mag-img .btn-enviar{
+        margin-left: 40px;
+    }
+
+    .mag-img .btn-enviar input{
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .texto-mag h3 {
+        font-size: 28px;
+    }
+
+    .texto-sub h5 {
+        font-size: 20px;
+    }
+
+
+
+    .tipos-cursos{
+        padding: 20px 180px;
+    }
+
+    .tipos-cursos h2{
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .tipos-cursos ul{
+        font-size: 30px;
+    }
+
+    .cursos-col2{
+        margin-top: 60px;
+    }
+
+    .cursos-marginb{
+        margin-bottom: 20px;
+    }
+
+    .cursos-marginb2{
+        margin-bottom: 40px;
+    }
+
+    .cursos-col h2{
+        font-size: 32px;
+    }
+
+    .cursos-col h4{
+        font-size: 24px;
+    }
+
+    .cursos-sec{
+        margin-bottom: 30px;
+    }
+
+    .cursos-sec .titulo-sec{
+        margin-bottom: 10px;
+    }
+
+    .titulo-sec h3{
+        font-size: 28px;
+    }
+
+    .cont-sec ul li {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .mant-info{
+        margin-top: 80px;
+        margin-bottom: 80px;
+        max-width: 1320px;
+    }
+
+    .texto h2 {
+        font-size: 32px;
+    }
+
+    .texto p{
+        font-size: 23px;
+    }
+
+    .footer-links{
+        padding: 50px 0;
+    }
+
+    .footer-links img {
+        max-height: 90px;
+    }
+
+    .copyright-area {
+        padding: 10px 0;
+    }
+
+    .copyright-area p {
+        font-size: 16px;
+    }
+
 
 }
 

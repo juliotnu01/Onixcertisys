@@ -509,7 +509,7 @@
             <div class="row rowfooter">
                 <div class="col-xl-12 colfooter">
                     <div class="footer-links text-center">
-                        <a href="{{route('calibracion')}}" class="logo">
+                        <a href="{{route('calibracion')}}">
                             <img src="assets/img/Logo.png" alt="Logo Acrredian"> 
                         </a>
                     </div>

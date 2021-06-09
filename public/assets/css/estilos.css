@@ -10,7 +10,6 @@ body{
 h1, h2, h4, h3, h5{
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
-    /* font-size: 2.3rem; */
 }
 
 /* ================================ HEADER ================================  */
@@ -76,21 +75,20 @@ h1, h2, h4, h3, h5{
 /* ================================ JUMBOTRON ================================ */
 .jumbotron{
     color: white;
-    /* padding: 50px 0 30px 0; */
 }
 
 .img-bg {
-    background-position-y: -70px;  /*gris*/
+    /* background-position-y: -70px; */
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 762px;
-    /* height: 100%; */
-    padding: 50px 0 30px 0;
+    /* height: 762px; */
+    height: 100%;
+    /* padding: 50px 0 30px 0; */
     position: relative;
 }
 
-/* .img-bg:before {
+.img-bg:before {
 	content:'';
 	position: absolute;
     top: 0px;
@@ -98,10 +96,10 @@ h1, h2, h4, h3, h5{
 	left: 0;
 	right: 0;
 	background-color: rgba(0,0,0,0.2);
-} */
+}
 
 .principal{
-    width: 48%;
+    /* width: 48%; */
     margin-right: 0;
     padding-right: 20px;
     position: relative;
@@ -116,62 +114,51 @@ p, li{
     font-weight: normal;
 }
 
-.jumbotron h1{
-    margin-top: 2rem;
-    font-size: 50px;
-}
-
 .info-mant h1{
     margin-top: 3rem;
 }
 
-.info-cal h1{
-    margin-top: 6rem;
-    /* font-size: 50px; */
+/* de todas las paginas */
+.info ul{
+    margin-top: 15px;
 }
 
-.info-cal2 h1{
+/* .info-cal2 h1{
     margin-top: 3rem;
-}
+} */
 
-.info ul, .info-cal ul, .info-cal2 ul, .info-mant ul{
-    font-size: 29px;
+.info-cal ul, .info-cal2 ul, .info-mant ul{
+    /* font-size: 29px; */
     margin-bottom: 0px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 /* .contacto{
-    margin-top: 130px;
-} */
-
-.contacto{
     margin-top: 163px;
-}
+} */
 
 .contacto-mant{
     margin-top: 140px;
 }
 
-.contacto2{
+/* .contacto-cal2{
     margin-top: 60px;
-}
+} */
 
-.contacto-cal{
+/* .contacto-cal{
     margin-top: 80px;
-}
+} */
 
 .contacto-item{
     display: flex;
     align-items: baseline;
 }
 
-.contacto h4, .contacto2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-cal h4{
+.contacto h4 {
     color: #fbc717;
-    font-size: 26px;
 }
 
-.contacto p, .contacto2 p, .contacto-mant p, .contacto-venta p, .contacto-cal p{
-    font-size: x-large;
+.contacto p {
     margin-bottom: 0;
     margin-top: 0;
     margin-left: 10px;
@@ -188,15 +175,15 @@ p, li{
     background-color: #ecfbff;
 }
 
-.titulo-mag h1{
+/* .titulo-mag h1{
     font-size: 2.3rem;
     margin-left: 220px;
-}
+} */
 
 .magnitudes ul{
     text-align: initial;
-    font-size: 25px;
-    margin-left: 270px;
+    /* font-size: 25px;
+    margin-left: 270px; */
 }
 
 /* .mag-img{
@@ -204,14 +191,14 @@ p, li{
 } */
 
 .mag-img img{
-    height: 120px;
+    /* height: 120px; */
     margin-right: 20px;
 }
 
 .mag-img .btn-enviar{
     margin: 20px 0;
     text-align: left;
-    margin-left: 40px;
+    /* margin-left: 40px; */
 }
 
 .mag-img .btn-enviar input{
@@ -224,8 +211,8 @@ p, li{
     border-width: thick;
     border-radius: 20px;
     font-weight: bold;
-    height: 50px;
-    font-size: 20px;
+    /* height: 50px;
+    font-size: 20px; */
 }
 
 .content-mag{
@@ -361,11 +348,11 @@ p, li{
     background-color: white;
 }
 
-.mant-info{
+/* .mant-info{
     margin-top: 80px;
     margin-bottom: 80px;
-    /* background-color: white; */
-}
+    background-color: white;
+} */
 
 .seccion{
     display: flex;
@@ -393,42 +380,41 @@ p, li{
 
 .texto p{
     color: #003177;
-    font-size: 23px;
     text-align: justify;
 }
 
 /* ================================ MANTENIMIENTO Y REPARACION END ================================ */
 
 /* ================================ VENTAS ================================ */
-.contacto-venta{
+/* .contacto-venta{
     margin-top: 29px;
-}
+} */
 
-.info-venta h1, .info-cap h1{
+/* .info-venta h1, .info-cap h1{
     font-size: 45px;
-}
+} */
 
 /* ================================ VENTAS END ================================ */
 
 /* ================================ CAPACITACIÓN ================================ */
-.contacto-cap{
+/* .contacto-cap{
     margin-top: 72px;
-}
+} */
 
 .tipos-cursos{
     background-color: #0095d9;
-    padding: 20px 250px;
+    /* padding: 20px 250px; */
     color: white;
 }
 
-.tipos-cursos h2{
+/* .tipos-cursos h2{
     margin-bottom: 20px;
-}
+} */
 
 .tipos-cursos ul{
     display: flex;
     justify-content: space-between;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 /* _________ */
 
@@ -437,7 +423,7 @@ p, li{
 }
 
 .cursos-col img{
-    width: 60%;
+    width: 70%;
 }
 
 .catalogo-cursos, .cursos-col{
@@ -448,9 +434,9 @@ p, li{
     margin: 0;
 }
 
-.cursos-col2{
+/* .cursos-col2{
     margin-top: 60px;
-}
+} */
 
 .cursos-col2 .row{
     margin-left: 0;
@@ -463,9 +449,9 @@ p, li{
     margin: 0;
 }
 
-.cursos-marginb{
+/* .cursos-marginb{
     margin-bottom: 20px;
-}
+} */
 
 .cursos-marginb2{
     margin-bottom: 40px;
@@ -496,7 +482,7 @@ p, li{
     display: flex;
     align-items: baseline;
     padding: 0;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .cursos-sec .titulo-sec h3{
@@ -514,19 +500,19 @@ p, li{
     padding-left: 35px;
 }
 
-.cont-sec ul li{
+/* .cont-sec ul li{
     font-size: 25px;
     margin-bottom: 10px;
-}
+} */
 /* ___________ */
 
-.contacto-cap2{
+/* .contacto-cap2{
     margin-top: 70px;
-}
+} */
 
 .contacto-cap2 .p-experiencia{
     margin-left: 0;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 /* _______________________________________ */
@@ -664,7 +650,7 @@ p, li{
     width: fit-content;
     padding: 30px;
     border-radius: 20px;
-    margin-left: 80px;
+    /* margin-left: 80px; */
 }
 
 .contacto-fondo p{
@@ -676,8 +662,6 @@ p, li{
 }
 
 svg{
-    width: 18px;
-    height: 18px;
     vertical-align: baseline;
 }
 
@@ -722,17 +706,17 @@ svg{
 /* ================================ FOOTER ================================ */
 
 .footer-links {
-    padding: 50px 0;    
+    /* padding: 50px 0;     */
     background: white;
 }
 
-.footer-links img {
+/* .footer-links img {
     max-height: 90px;
-}
+} */
 
 .copyright-area {
     background-color: #003177;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     color: white;
 }
 
@@ -766,7 +750,7 @@ svg{
 .float:hover {
 	text-decoration: none;
 	color: #003177;
-  background-color:#fff;
+    background-color:#fff;
 }
 
 .my-float{
@@ -873,12 +857,12 @@ svg{
         margin-top: 50px;
     }
 
-    .contacto h4, .contacto2 h4{
+    .contacto h4, .contacto-cal2 h4{
         color: #fbc717;
         font-size: 18px;
     }
 
-    .contacto p, .contacto2 p{
+    .contacto p, .contacto-cal2 p{
         font-size: 12px;
         margin-bottom: 0;
         margin-top: 0;
@@ -915,7 +899,7 @@ svg{
         font-size: 18px;
     }
 
-    .contacto2 {
+    .contacto-cal2 {
         margin-top: 18px;
     }
 

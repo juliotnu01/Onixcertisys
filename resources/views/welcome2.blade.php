@@ -63,7 +63,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info-cal">
+                <div class="info info-cal">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>HUB DE METROLOGÍA</h1>
                     <ul>
@@ -87,7 +87,7 @@
                         81-1555-4669
                     </p>
                 </div> -->
-                <div class="contacto-cal">
+                <div class="contacto contacto-cal">
                     <h4>Contáctanos</h4>
                     <div class="items">
                         <div class="contacto-item">
@@ -509,7 +509,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info-cal2">
+                <div class="info info-cal2">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>LABORATORIO DE CALIBRACÓN</h1>
                     <ul>
@@ -534,7 +534,7 @@
                         81-1555-4669
                     </p>
                 </div> -->
-                <div class="contacto2">
+                <div class="contacto contacto-cal2">
                     <h4>Contáctanos</h4>
                     <div class="items">
                         <div class="contacto-item">
@@ -564,7 +564,7 @@
             <div class="row rowfooter">
                 <div class="col-xl-12 colfooter">
                     <div class="footer-links text-center">
-                        <a href="{{route('calibracion')}}" class="logo">
+                        <a href="{{route('calibracion')}}">
                             <img src="assets/img/Logo.png" alt="Logo Acrredian"> 
                         </a>
                     </div>

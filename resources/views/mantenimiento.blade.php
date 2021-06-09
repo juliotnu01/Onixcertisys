@@ -65,7 +65,7 @@
     <section class="jumbotron">
         <div class="img-bg" style="background-image: url(assets/img/fondo-mundo.jpg)">
             <div class="container principal">
-                <div class="info-mant">
+                <div class="info info-mant">
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>MANTENIMIENTO Y REPARACIÓN</h1>
                     <ul>
@@ -75,7 +75,7 @@
                         <li>Servicio Estándar y Servicio Exprés</li>
                     </ul>
                 </div>
-                <div class="contacto-mant">
+                <div class="contacto contacto-mant">
                     <h4>Contáctanos</h4>
                     <div class="items">
                         <div class="contacto-item">
@@ -163,7 +163,7 @@
             <div class="row rowfooter">
                 <div class="col-xl-12 colfooter">
                     <div class="footer-links text-center">
-                        <a href="{{route('calibracion')}}" class="logo">
+                        <a href="{{route('calibracion')}}">
                             <img src="assets/img/Logo.png" alt="Logo Acrredian"> 
                         </a>
                     </div>

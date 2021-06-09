@@ -69,12 +69,12 @@
                     <h1>VENTA DE INSTRUMENTOS Y EQUIPOS DE MEDICIÓN</h1>
                     <ul>
                         <li>Marcas lideres</li>
-                        <li>Instrumentos de medición, consumibles, accesorios y refacciones</li>
+                        <li>Instrumentos de medición, consumibles,<br>accesorios y refacciones</li>
                         <li>Precios competitivos</li>
-                        <li>Consultoría sin costo en equipamiento de laboratorios de calibración</li>
+                        <li>Consultoría sin costo en equipamiento de<br>laboratorios de calibración</li>
                     </ul>
                 </div>
-                <div class="contacto-venta">
+                <div class="contacto contacto-venta">
                     <h4>Contáctanos</h4>
                     <div class="items">
                         <div class="contacto-item">
@@ -104,7 +104,7 @@
             <div class="row rowfooter">
                 <div class="col-xl-12 colfooter">
                     <div class="footer-links text-center">
-                        <a href="{{route('calibracion')}}" class="logo">
+                        <a href="{{route('calibracion')}}">
                             <img src="assets/img/Logo.png" alt="Logo Acrredian"> 
                         </a>
                     </div>
