@@ -243,15 +243,13 @@ body{
     margin-top: 5px;
 }
 #certificado{
-    padding: 10px;
     border-radius: 10px;
     color: white;
     background-color: #fbc717;
     font-size: large;
     font-weight: 700;
     box-shadow: 2px 2px 5px black;
-    margin-top: 5px;
-    position: relative; 
+    position: relative;
     left: 50%;
     transform: translate(-50%, 10px);
     
