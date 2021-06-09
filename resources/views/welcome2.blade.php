@@ -88,7 +88,6 @@
                         81-1555-4669
                     </p>
                 </div> -->
-                <!--contacto-->
                 <div class="contacto">
                     <h4>Contáctanos</h4>
                     <div class="items">
