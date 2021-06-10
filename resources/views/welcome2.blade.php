@@ -125,8 +125,8 @@
                     <img src="assets/img/ILAC.png" alt="ILAC">
                     <img src="assets/img/PJLA.png" alt="PJLA">
                 </div>
-                <div class="btn-enviar">
-                    <input type="submit" value="CERTIFICADOS">
+                <div >
+                    <button id="certificado" > <a href="{{route('descargar')}}" style="text-decoration: none; color: white; font-weight: 700;">CERTIFICADOS</a></button>
                 </div>
             </div>
         </div>
