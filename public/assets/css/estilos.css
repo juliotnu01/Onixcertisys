@@ -159,22 +159,17 @@ p, li{
 .mag-img .btn-enviar{
     margin: 20px 0;
     text-align: left;
-    /* margin-left: 40px; */
 }
 
-.mag-img .btn-enviar input{
+/* .mag-img .btn-enviar input{
     width: 70%;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
     background-color: #fbc717;
     color: white;
     border: outset;
     border-width: thick;
     border-radius: 20px;
     font-weight: bold;
-    /* height: 50px;
-    font-size: 20px; */
-}
+} */
 
 .content-mag{
     margin-top: 20px;
@@ -207,7 +202,6 @@ p, li{
     color: #fff;
     margin-left: auto;
     margin-right: auto;
-    /* font-size: 28px; */
     z-index: 1;
 }
 
@@ -508,18 +502,23 @@ p, li{
     box-shadow: 2px 2px 5px black;
     margin-top: 5px;
 }
+
 #certificado{
-    border-radius: 10px;
+    border-radius: 20px;
     color: white;
     background-color: #fbc717;
-    font-size: large;
-    font-weight: 700;
-    box-shadow: 2px 2px 5px black;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 10px);
+    /* font-size: large; */
+    font-weight: bold;
+    /* box-shadow: 2px 2px 5px black; */
+    /* position: relative; */
+    /* left: 50%; */
+    /* transform: translate(-50%, 10px); */
+    width: 70%;
+    border: outset;
+    border-width: thick;
     
 }
+
 #solicitarCotizacion{
     padding: 10px;
     border-radius: 10px;
