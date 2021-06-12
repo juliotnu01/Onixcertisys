@@ -511,7 +511,7 @@
             <div class="container principal">
                 <div class="info info-cal2">
                     <img src="assets/img/LogoBlanco.png" alt="">
-                    <h1>LABORATORIO DE CALIBRACÓN</h1>
+                    <h1>LABORATORIO DE CALIBRACIÓN</h1>
                     <ul>
                         <li>Tecnología de Última Generación</li>
                         <li>El mas amplio alcance acreditado en Dimensional</li>

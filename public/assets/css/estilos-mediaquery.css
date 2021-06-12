@@ -1,11 +1,356 @@
 
-/* @media (min-width: 992px){
+@media (min-width: 992px){
 
-} */
+    .navbar-light .navbar-brand{
+        padding: 0;
+    }
+
+    .navbar-brand img{
+        max-height: 30px;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        font-size: 12px;
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .img-bg {
+        background-position-y: -30px;
+        padding: 20px 0 15px 0;
+    }
+
+    .principal {
+        width: 54%;
+    }
+
+    .info-cal img, .info-cal2 img, .info-cap img, .info-mant img, .info-venta img{
+        height: 70px;
+    }
+
+    .info-cal h1{
+        font-size: 32px;
+        margin-top: 20px;
+    }
+
+    .info-cal2 h1, .info-cap h1, .info-mant h1, .info-venta h1{
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    /* .info ul{
+        padding-left: 1.5rem;
+    } */
+
+    .info-cal ul, .info-cal2 ul, .info-cap ul, .info-mant ul, .info-venta ul{
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .contacto-cal, .contacto-mant {
+        margin-top: 38px;
+    }
+
+    .contacto-cal2, .contacto-cap, .contacto-cap2, .contacto-venta{
+        margin-top: 20px;
+    }
+
+    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-mty h4{
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .contacto-cal p, .contacto-cal2 p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p, .contacto-mty{
+        font-size: 14px;
+    }
+
+    .contacto-cap2 .p-experiencia {
+        font-size: 16px;
+    }
+
+    .titulo-mag{
+        width: 68%;
+        padding-left: 130px;
+    }
+
+    .titulo-mag h1 {
+        font-size: 24px;
+    }
+
+    .titulo-mag ul {
+        font-size: 14px;
+        margin-left: 42px;
+        padding-left: 1.5rem;
+    }
+
+    .mag-img img{
+        height: 80px;
+        margin-right: 14px;
+    }
+
+    /* .mag-img .btn-enviar{
+        text-align: center;
+    } */
+
+    #certificado{
+        font-size: 12px;
+        width: 64%;
+        height: 32px;
+    }
+
+    .icono-mag {
+        line-height: 50px;
+    }
+
+    .icon-gradient{
+        width: 55px;
+        height: 55px;
+    }
+    
+    .item-mag .icono-chico {
+        max-height: 30px;
+    }
+
+    .item-mag .icono-ancho {
+        max-height: 28px;
+    }
+
+    .item-mag .icono-ancho2 {
+        max-height: 22px;
+    }
+
+    .texto-mag h3{
+        font-size: 20px;
+    }
+
+    .texto-mag p{
+        font-size: 14px
+    }
+
+    /* .mag-sub-ac{
+        padding: 0 30px;
+        margin-bottom: 0;
+    } */
+
+    .icon-sub{
+        width: 20px;
+        height: 20px;
+    }
+
+    .texto-sub{
+        margin-left: 6px;
+    }
+
+    .texto-sub h5{
+        font-size: 14px;
+    }
+
+    .tipos-cursos{
+        padding: 15px 64px
+    }
+
+    .tipos-cursos h2 {
+        margin-bottom: 6px;
+        font-size: 22px;
+    }
+
+    .tipos-cursos ul{
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+
+    .cursos-col2 {
+        margin-top: 40px;
+    }
+
+    .cursos-marginb{
+        margin-bottom: 10px;
+    }
+
+    .cursos-col h2{
+        font-size: 22px;
+    }
+
+    .cursos-marginb2 {
+        margin-bottom: 20px;
+    }
+
+    .cursos-col2 .col-8{
+        width: 70%;
+    }
+
+    .cursos-col2 .col-4{
+        width: 30%;
+    }
+
+    .cursos-col h4{
+        font-size: 16px;
+    }
+
+    .cursos-sec {
+        margin-bottom: 20px;
+    }
+
+    .cursos-sec .titulo-sec{
+        margin-bottom: 2px;
+    }
+
+    .cursos-sec .titulo-sec h3{
+        font-size: 20px;
+        margin-left: 8px;
+    }
+
+    .cursos-sec img, .vineta-acc img{
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+    }
+
+    .cursos-sec .row .col1{
+        padding-left: 24px;
+    }
+
+    .cont-sec ul li {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .mant-info {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 830px;
+    }
+
+    .texto {
+        margin-left: 12px;
+    }
+
+    .texto h2{
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+
+    .texto p{
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    /* .img-mty{
+        background-position-y: -55px;
+
+    } */
+
+    .logo{
+        margin-right: 20px;
+    }
+
+    .logo-fondo{
+        padding: 8px;
+        width: 298px;
+    }
+
+    .logo img{
+        height: 70px;
+    }
+
+    .contacto-mty {
+        margin-top: 174px;
+        margin-left: 20px;
+    }
+
+    .contacto-fondo{
+        padding: 15px
+    }
+
+    .img-form {
+        height: 100%;
+        width: 24%;
+    }
+
+    .formulario {
+        padding: 56px 50px;
+    }
+
+    .formulario .row{
+        margin-bottom: 30px;
+    }
+
+    .formulario p{
+        font-size: 12px;
+    }
+
+    .form-control {
+        font-size: 12px;
+        border-radius: 0.45rem;
+    }
+
+    .formulario .btn-enviar input{
+        width: 30%;
+        font-size: 12px;
+        height: 30px;
+    }
+
+
+    .float{
+        font-size: 22px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .my-float {
+        margin-top: 14px;
+    }
+
+    .footer-links {
+        padding: 18px 0;
+    }
+
+    .footer-links img {
+        max-height: 55px;
+    }
+
+    .copyright-area {
+        padding: 6px 0;
+        font-size: 10px;
+    }
+
+
+}
 
 /* laptop */
 @media (min-width: 1200px){
     
+    .navbar-light .navbar-brand{
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+    }
+
+    .navbar-brand img {
+        max-height: 38.5px;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        font-size: 14px;
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
     .img-bg {
         background-position-y: -40px;
         padding: 25px 0 20px 0;
@@ -37,18 +382,35 @@
     }
 
     /* lista larga 5 renglones */
-    .info-cal ul, .info-cap ul, .info-mant ul {
-        font-size: 22px;
-    }
 
-    .info-cal2 ul{
-        font-size: 20px;
+    /* .info ul{
+        padding-left: 1.5rem;
+    } */
+
+    .info-cal ul, .info-mant ul {
+        font-size: 22px;
         margin-top: 15px;
     }
 
-    .info-cal2 ul, .info-venta ul {
+    .info-cap ul{
+        font-size: 22px;
+        margin-top: 8px;
+    }
+
+    /* .info-cal2 ul{
+        font-size: 20px;
+        margin-top: 15px;
+    } */
+
+    .info-cal2 ul {
         font-size: 20px;
         margin-top: 10px;
+    }
+
+    .info-venta ul{
+        font-size: 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 
     .contacto-cal {
@@ -81,7 +443,7 @@
     }
 
     /* .contacto p, */
-    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .cont-mty p {
+    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-mty p {
         font-size: 20px;
     }
 
@@ -93,32 +455,29 @@
         font-size: 22px;
     }
 
-    svg {
-        width: 16px;
-        height: 16px;
-    }
-
     .titulo-mag{
         padding-left: 220px;
+        width: 75%;
     }
     
     .titulo-mag h1 {
         font-size: 35px;
-        margin-left: 0px;
     }
 
     .titulo-mag ul {
         font-size: 20px;
-        margin-left: 0px;
+        margin-left: 8px;
+        padding-left: 1.5rem;
     }
 
     .mag-img img {
         height: 106px;
+        margin-right: 14px;
     }
 
-    .mag-img .btn-enviar{
-        margin-left: 30px;
-    }
+    /* .mag-img .btn-enviar{
+        text-align: center;
+    } */
 
     /* .mag-img .btn-enviar input{
         font-size: 18px;
@@ -131,15 +490,52 @@
         width: 75%;
     }
 
+    .icono-mag {
+        line-height: 65px;
+    }
+
+    .icon-gradient{
+        width: 69px;
+        height: 69px;
+    }
+
+    .item-mag .icono-chico {
+        max-height: 38px;
+    }
+
+    .item-mag .icono-ancho {
+        max-height: 35px;
+    }
+
+    .item-mag .icono-ancho2 {
+        max-height: 28px;
+    }
+
     .texto-mag h3{
         font-size: 26px;
+    }
+
+    .texto-mag p{
+        font-size: 16px
+    }
+
+    /* .mag-sub-ac{
+        padding: 0 30px;
+        margin-bottom: 0;
+    } */
+
+    .icon-sub {
+        width: 25px;
+        height: 25px;
+    }
+
+    .texto-sub{
+        margin-left: 10px;
     }
 
     .texto-sub h5{
         font-size: 17px;
     }
-
-
 
     .tipos-cursos{
         padding: 15px 100px;
@@ -155,10 +551,6 @@
         font-size: 24px;
     }
 
-    .vineta-acc img{
-        width: 20px;
-    }
-
     .cursos-col2 {
         margin-top: 50px;
     }
@@ -167,12 +559,20 @@
         margin-bottom: 14px;
     }
 
+    .cursos-col h2{
+        font-size: 26px;
+    }
+
     .cursos-marginb2 {
         margin-bottom: 28px;
     }
 
-    .cursos-col h2{
-        font-size: 26px;
+    .cursos-col2 .col-8{
+        width: 66.6666666667%;
+    }
+
+    .cursos-col2 .col-4{
+        width: 33.3333333333%;
     }
 
     .cursos-col h4{
@@ -187,8 +587,19 @@
         margin-bottom: 2px;
     }
 
-    .titulo-sec h3{
+    .cursos-sec .titulo-sec h3{
         font-size: 22px;
+        margin-left: 15px;
+    }
+
+    .cursos-sec img, .vineta-acc img {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .cursos-sec .row .col1 {
+        padding-left: 35px;
     }
 
     .cont-sec ul li {
@@ -204,45 +615,78 @@
 
     .texto h2{
         font-size: 28px;
+        margin-bottom: 8px;
     }
 
     .texto p{
         font-size: 20px;
+        margin-bottom: 16px;
     }
 
+    /* .img-mty{
+        background-position-y: -55px;
 
+    } */
+
+    .logo{
+        margin-right: 40px;
+    }
 
     .logo-fondo{
+        padding: 15px;
         width: 426px;
     }
 
     .logo img {
-        max-height: 100px;
+        height: 100px;
     }
 
     .contacto-mty {
         margin-top: 180px;
-        margin-left: 50px;
+        margin-left: 40px;
     }
 
     .contacto-fondo{
-        padding: 25px
+        padding: 20px
+    }
+
+    .img-form {
+        height: 100%;
+        width: 25%;
     }
 
     .formulario{
-        padding: 100px 80px;
+        padding: 80px;
+    }
+
+    .formulario .row{
+        margin-bottom: 60px;
     }
 
     .formulario p{
-        font-size: 18px;
+        font-size: 16px;
+    }
+
+    .form-control {
+        font-size: 16px;
+        border-radius: 0.55rem;
     }
 
     .formulario .btn-enviar input{
         width: 30%;
-        font-size: 18px;
-        height: 44px;
+        font-size: 16px;
+        height: 36px;
     }
 
+    .float{
+        font-size: 30px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .my-float {
+        margin-top: 16px;
+    }
 
 
     .footer-links {
@@ -262,6 +706,24 @@
 
 /* Original - en pantalla */
 @media (min-width: 1560px){
+
+    .navbar-light .navbar-brand{
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+    }
+
+    .navbar-brand img {
+        max-height: 38.5px;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        font-size: 16px;
+    }
 
     svg{
         width: 18px;
@@ -297,12 +759,18 @@
         font-size: 38px;
     }
 
+    /* .info ul{
+        padding-left: 1.5rem;
+    } */
+
     .info-cal ul, .info-mant ul{
         font-size: 29px;
+        margin-top: 15px
     }
 
     .info-cap ul{
         font-size: 28px;
+        margin-top: 15px;
     }
 
     .info-cal2 ul {
@@ -323,8 +791,8 @@
         margin-top: 42px;
     }
 
-    .contacto-cap{
-        margin-top: 17px;
+    .contacto-cap, .contacto-cap2{
+        margin-top: 20px;
     }
 
     .contacto-calp2 {
@@ -336,14 +804,14 @@
     }
 
     .contacto-venta {
-        margin-top: 8px;
+        margin-top: 12px;
     }
 
-    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4 {
+    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-mty h4 {
         font-size: 26px;
     }
 
-    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p {
+    .contacto-cal p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p, .contacto-mty p {
         font-size: 24px;
     }
 
@@ -357,6 +825,7 @@
 
     .titulo-mag{
         padding-left: 0px;
+        width: 75%;
     }
 
     .titulo-mag h1{
@@ -366,16 +835,18 @@
 
     .titulo-mag ul{
         font-size: 25px;
-        margin-left: 280px;
+        margin-left: 284px;
     }
 
     .mag-img img{
         height: 120px;
+        margin-right: 20px;
     }
 
-    .mag-img .btn-enviar{
+    /* .mag-img .btn-enviar{
         margin-left: 40px;
-    }
+        text-align: center;
+    } */
 
     /* .mag-img .btn-enviar input{
         height: 50px;
@@ -385,18 +856,59 @@
     #certificado{
         height: 50px;
         font-size: 20px;
+        width: 70%;
     }
 
+    .icono-mag {
+        line-height: 65px;
+    }
+    
+    .icon-gradient{
+        width: 69px;
+        height: 69px;
+    }
 
+    .item-mag .icono-chico {
+        max-height: 38px;
+    }
+
+    .item-mag .icono-ancho {
+        max-height: 35px;
+    }
+
+    .item-mag .icono-ancho2 {
+        max-height: 28px;
+    }
 
     .texto-mag h3 {
         font-size: 28px;
     }
 
+    .texto-mag p{
+        font-size: 16px;
+    }
+
+    /* .mag-sub-ac {
+        padding: 0 30px;
+        margin-bottom: 0;
+    } */
+
+    /* .item-mag {
+        margin-bottom: 20px;
+    } */
+
+    .icon-sub{
+        width: 30px;
+        height: 30px;
+    }
+
+    .texto-sub {
+        margin-left: 10px;
+    }
+
     .texto-sub h5 {
         font-size: 20px;
     }
-
 
 
     .tipos-cursos{
@@ -420,12 +932,20 @@
         margin-bottom: 20px;
     }
 
+    .cursos-col h2{
+        font-size: 32px;
+    }
+
     .cursos-marginb2{
         margin-bottom: 40px;
     }
 
-    .cursos-col h2{
-        font-size: 32px;
+    .cursos-col2 .col-8{
+        width: 66.6666666667%;
+    }
+
+    .cursos-col2 .col-4{
+        width: 33.3333333333%;
     }
 
     .cursos-col h4{
@@ -437,11 +957,22 @@
     }
 
     .cursos-sec .titulo-sec{
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
-    .titulo-sec h3{
+    .cursos-sec .titulo-sec h3{
         font-size: 28px;
+        margin-left: 15px;
+    }
+
+    .cursos-sec img, .vineta-acc img {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .cursos-sec .row .col1 {
+        padding-left: 35px;
     }
 
     .cont-sec ul li {
@@ -457,15 +988,83 @@
 
     .texto h2 {
         font-size: 32px;
+        margin-bottom: 8px;
     }
 
     .texto p{
         font-size: 23px;
+        margin-bottom: 16px;
+    }
+
+    /* .img-mty{
+        background-position-y: -55px;
+    } */
+
+    .logo{
+        margin-right: 50px;
+    }
+
+    .logo-fondo{
+        padding: 15px;
+        width: 530px;
+    }
+
+    .logo img {
+        height: 124px;
+    }
+
+    .contacto-mty{
+        margin-top: 230px;
+        margin-left: 50px;
+    }
+
+    .contacto-fondo{
+        padding: 25px
+    }
+
+    .img-form {
+        height: 100%;
+        width: 25%;
+    }
+
+    .formulario{
+        padding: 100px 80px;
+    }
+
+    .formulario .row{
+        margin-bottom: 85px;
+    }
+
+    .formulario p{
+        font-size: 22px;
+    }
+
+    .form-control {
+        font-size: 22px;
+        border-radius: 0.75rem;
+    }
+
+    .formulario .btn-enviar input{
+        width: 30%;
+        font-size: 22px;
+        height: 44px;
+    }
+
+
+    .float{
+        font-size: 30px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .my-float {
+        margin-top: 16px;
     }
 
     .footer-links{
         padding: 50px 0;
     }
+
 
     .footer-links img {
         max-height: 90px;
@@ -473,9 +1072,6 @@
 
     .copyright-area {
         padding: 10px 0;
-    }
-
-    .copyright-area p {
         font-size: 16px;
     }
 

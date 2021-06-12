@@ -109,6 +109,7 @@ p, li{
 /* de todas las paginas */
 .info ul{
     margin-top: 15px;
+    padding-left: 1.5rem;
 }
 
 .info-cal ul, .info-cal2 ul, .info-mant ul{
@@ -152,14 +153,23 @@ p, li{
 }
 
 .mag-img img{
-    /* height: 120px; */
+    height: 120px;
     margin-right: 20px;
 }
 
 .mag-img .btn-enviar{
     margin: 20px 0;
-    text-align: left;
+    text-align: center;
 }
+
+.titulo-mag h1 {
+    margin-left: 0px;
+}
+
+.titulo-mag ul {
+    margin-left: 0px;
+}
+
 
 /* .mag-img .btn-enviar input{
     width: 70%;
@@ -225,6 +235,8 @@ p, li{
 .mag-sub-ac{
     display: flex;
     margin-top: 20px;
+    padding: 0 30px;
+    margin-bottom: 0;
 }
 
 .icon-sub{
@@ -318,7 +330,7 @@ p, li{
 }
 
 .texto{
-    width: 93%;
+    /* width: 93%; */
     margin-left: 20px;
 }
 
@@ -515,9 +527,13 @@ p, li{
     /* transform: translate(-50%, 10px); */
     width: 70%;
     border: outset;
-    border-width: thick;
-    
+    border-width: thick; 
 }
+
+#certificado a{
+    color: white;
+}
+
 
 #solicitarCotizacion{
     padding: 10px;
@@ -541,7 +557,7 @@ p, li{
 /* ================================ CONTACTANOS ================================ */
 
 .img-mty{
-    background-position-y: -150px;
+    background-position-y: -55px;
 }
 
 .cont-mty{
@@ -594,8 +610,8 @@ svg{
     padding: 150px 100px 100px 100px;
 }
 
-.formulario div{
-    margin-bottom: 30px;
+.formulario .row{
+    margin-bottom: 60px;
 }
 
 .formulario .btn-enviar input{
@@ -632,6 +648,10 @@ svg{
 .copyright-area {
     background-color: #003177;
     color: white;
+}
+
+.footer-links img {
+    max-height: 90px;
 }
 
 .rowfooter{
