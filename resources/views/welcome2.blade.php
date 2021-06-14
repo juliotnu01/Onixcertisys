@@ -126,7 +126,7 @@
                     <img src="assets/img/PJLA.png" alt="PJLA">
                 </div>
                 <div class="btn-enviar">
-                    <button id="certificado" > <a href="{{route('descargar')}}" style="text-decoration: none;">CERTIFICADOS</a></button>
+                    <button id="certificado" > <a href="{{route('descargar')}}" style="text-decoration: none;">CERTIFICADO</a></button>
                 </div>
             </div>
         </div>
