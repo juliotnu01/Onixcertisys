@@ -230,7 +230,9 @@
             </tr>
             <tr>
                 <td style="width: 3%;">Dirección Sucursal:</td>
-                <td style="width: 3%; text-align: left" colspan="3"></td>
+                <td style="width: 3%; text-align: left" colspan="3">
+                    {{  $data['belongs_to_sucursal_cliente']['nombre_sucursal'] == null ? ' ' :   $data['belongs_to_sucursal_cliente']['nombre_sucursal'] }} / {{ $data['belongs_to_sucursal_cliente']['direccion_sucursal'] == null ? ' ' : $data['belongs_to_sucursal_cliente']['direccion_sucursal']   }}  
+                </td>
                 <td style="width: 3%;">Tipo de Servicio:</td>
                 <td style="width: 3%; text-align: left" colspan="3">{{$data['tipo_de_servicio']}}</td>
             </tr>
@@ -247,7 +249,7 @@
                 <td style="width: 3%; text-align: left">{{$data['contacto_telefono']}}</td>
                 <td style="width: 6%; ">Codiciones de pago:</td>
                 <td style="width: 6%; text-align: left">{{$data['condicion']}}</td>
-                <td style="width: 3%;">Dias:</td>
+                <td style="width: 3%;"></td>
                 <td style="width: 3%; text-align: left"></td>
             </tr>
         </tbody>
