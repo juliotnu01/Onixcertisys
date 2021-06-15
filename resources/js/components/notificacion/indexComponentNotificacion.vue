@@ -1,6 +1,6 @@
 <template>
-    <!-- 
-  <div class="text-center ma-2" v-if="var_computed_snackbar.status">
+    
+  <!-- <div class="text-center ma-2" v-if="var_computed_snackbar.status">
       {{
       var_computed_snackbar.color === "success"
         ? $toastr.success(var_computed_snackbar.mensaje, "")
@@ -8,8 +8,8 @@
         ? $toastr.warning(var_computed_snackbar.mensaje, "")
         : $toastr.error(var_computed_snackbar.mensaje, "")
     }}
-  </div>
-     -->
+  </div> -->
+    
 </template>
 <script>
 import { mapGetters } from "vuex";

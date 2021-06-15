@@ -18,7 +18,6 @@ export default new router({
             name: "home.component",
             component: homeComponent,
             beforeEnter: (to, from, next) => {
-                console.log({to, from,next, u:store.sat })
                 next();
             }
         },

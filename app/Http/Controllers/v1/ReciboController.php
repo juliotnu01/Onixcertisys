@@ -214,6 +214,7 @@ class ReciboController extends Controller
         $recibo = Recibo::where('id', $request['id'])
             ->with([
                 'hasCotizaicon',
+                'hasCotizaicon.hasEmpleado',
                 'hasCotizaicon.hasCliente',
                 'hasCotizaicon.hasMoneda',
             ])->first();
@@ -222,6 +223,7 @@ class ReciboController extends Controller
             return $value['has_intrumento']['has_magnitud']['id'] != $user_tecnico; // VARIABLE DE MAGNITUD 
         });
 
+        
 
         $data = collect($recibo);
         $empresa = Empresa::find(1);

@@ -172,7 +172,7 @@
             <td class="tdInfoEmpresa">
                 <span>
                     Accredian, S. DE R.L. DE C.V.<br />
-                    RFC: ACC1905026P3<br />
+                    <strong> RFC: ACC1905026P3 </strong> <br />
                     Domicilio Fiscal: Calle Monclova 213,
                     Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
                     Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
