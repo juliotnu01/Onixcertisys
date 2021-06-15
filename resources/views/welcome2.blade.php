@@ -114,8 +114,8 @@
                 <h1>LABORATORIO DE CALIBRACIÓN<br>ACREDITADO ISO/IEC-17025:2017</h1>
                 <ul id="listaCalibracion">
                     <li>Tecnología de Última Generación</li>
-                    <li>El mas amplio alcance acreditado en Dimensional</li>
-                    <li>El mas amplio alcance acreditado en Presión con trazabilidad directa al CENAM</li>
+                    <li>El más amplio alcance acreditado en Dimensional</li>
+                    <li>El más amplio alcance acreditado en Presión con trazabilidad directa al CENAM</li>
                     <li>Confiabilidad Acreditada</li>
                     <li>Trazabilidad al NIST y CENAM con MRA ante la ILAC</li>
                 </ul>
@@ -126,7 +126,7 @@
                     <img src="assets/img/PJLA.png" alt="PJLA">
                 </div>
                 <div class="btn-enviar">
-                    <button id="certificado" > <a href="{{route('descargar')}}" style="text-decoration: none;">CERTIFICADOS</a></button>
+                    <button id="certificado" > <a href="{{route('descargar')}}" style="text-decoration: none;">CERTIFICADO</a></button>
                 </div>
             </div>
         </div>
@@ -514,8 +514,8 @@
                     <h1>LABORATORIO DE CALIBRACIÓN</h1>
                     <ul>
                         <li>Tecnología de Última Generación</li>
-                        <li>El mas amplio alcance acreditado en Dimensional</li>
-                        <li>El mas amplio alcance acreditado en Presion con trazabilidad directa al CENAM</li>
+                        <li>El más amplio alcance acreditado en Dimensional</li>
+                        <li>El más amplio alcance acreditado en Presión con trazabilidad directa al CENAM</li>
                         <li>Confiabilidad Acreditada</li>
                         <li>Trazabilidad al NIST y CENAM con MRA ante la ILAC</li>
                     </ul>

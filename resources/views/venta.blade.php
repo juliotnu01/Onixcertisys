@@ -68,7 +68,7 @@
                     <img src="assets/img/LogoBlanco.png" alt="">
                     <h1>VENTA DE INSTRUMENTOS Y EQUIPOS DE MEDICIÓN</h1>
                     <ul>
-                        <li>Marcas lideres</li>
+                        <li>Marcas líderes</li>
                         <li>Instrumentos de medición, consumibles,<br>accesorios y refacciones</li>
                         <li>Precios competitivos</li>
                         <li>Consultoría sin costo en equipamiento de<br>laboratorios de calibración</li>

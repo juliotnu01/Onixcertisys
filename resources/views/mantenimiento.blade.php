@@ -70,7 +70,7 @@
                     <h1>MANTENIMIENTO Y REPARACIÓN</h1>
                     <ul>
                         <li>Programa de mantenimiento</li>
-                        <li>Revisión y Diagnostico</li>
+                        <li>Revisión y Diagnóstico</li>
                         <li>Precios competitivos</li>
                         <li>Servicio Estándar y Servicio Exprés</li>
                     </ul>
@@ -157,6 +157,7 @@
     <a href="https://api.whatsapp.com/send?phone=528115554669" class="float" target="_blank">
         <i class="fa fa-whatsapp my-float"></i>
     </a>
+
     <!-- ============================= FOOTER ============================= -->
     <footer class="footer pt-150 gray-bg">
         <div class="contfooter container-fluid">

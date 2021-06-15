@@ -167,7 +167,7 @@
                             <li>Interpretación de los Certificados de Calibración</li>
                             <li>Estimación de la Incertidumbre de las Mediciones</li>
                             <li>Uso, Manejo y Cuidados de Instrumentos de Medición</li>
-                            <li>Calibraicon y Verificación de Instrumentos de Medición</li>
+                            <li>Calibración y Verificación de Instrumentos de Medición</li>
                         </ul>
                         <ul class="col col-4">
                             <li>1 día</li>
