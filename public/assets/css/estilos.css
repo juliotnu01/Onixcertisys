@@ -28,8 +28,8 @@ h1, h2, h4, h3, h5{
 }
 
 .menu svg{
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     color: white;
 }
 
@@ -631,6 +631,7 @@ svg{
 
 .form-control{
     border-radius: 0.75rem;
+    padding: .375rem .75rem;
 }
 
 .formulario p{

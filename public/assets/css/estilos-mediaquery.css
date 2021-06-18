@@ -1,19 +1,23 @@
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
 
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    
     .bg-light{
-        padding: 6px 0;
+        padding: 4px 0;
+    }
+
+    .navbar>.container-fluid{
+        justify-content: flex-start;
     }
 
     .navbar-light .navbar-brand{
         padding: 0;
+        margin-right: 0px;
     }
 
     .navbar-brand img{
-        max-height: 30px;
+        max-height: 26px;
+        display: none;
     }
 
     .navbar-toggler {
@@ -40,7 +44,9 @@
     }
 
     .principal {
-        width: 54%;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .info-cal img, .info-cal2 img, .info-cap img, .info-mant img, .info-venta img{
@@ -49,83 +55,64 @@
 
     .info-cal h1{
         font-size: 28px;
-        margin-top: 15px;
+        margin-top: 12px;
         margin-bottom: 0;
     }
 
-    .info-cal2 h1, .info-cap h1{
+    .info-cal2 h1, .info-cap h1, .info-mant h1, .info-venta h1 {
         font-size: 22px;
-        margin-top: 15px;
+        margin-top: 12px;
         margin-bottom: 0;
     }
 
-    .info-mant h1, .info-venta h1{
-        font-size: 28px;
-        margin-top: 20px;
-    }
-
-    .info-cal ul{
+    .info-cal ul, .info-mant ul{
         font-size: 15px;
-        margin-top: 4px;  
+        margin-top: 2px;  
     }
 
-    .info-cal2 ul{
+    .info-cal2 ul, .info-venta ul{
         font-size: 13.5px;
-        margin-top: 4px;  
+        margin-top: 2px;  
     }
 
     .info-cap ul{
         font-size: 14px;
-        margin-top: 4px;
+        margin-top: 2px;
         margin-bottom: 0;
     }
 
-    .info-mant ul, .info-venta ul{
-        font-size: 16px;
-        margin-top: 8px;
-    }
-
     .contacto-cal{
-        margin-top: 26px;
+        margin-top: 33px;
     }
 
     .contacto-cal2{
-        margin-top: 22px;
+        margin-top: 30px;
     }
 
-    .contacto-cap{
-        margin-top: 12px;
+    .contacto-cap, .contacto-cap2{
+        margin-top: 19px;
     }
 
     .contacto-mant {
-        margin-top: 38px;
+        margin-top: 36px;
     }
 
-    .contacto-cap2, .contacto-venta{
-        margin-top: 20px;
+    .contacto-venta{
+        margin-top: 4px;
     }
 
-    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4 {
+    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-mty h4 {
         font-size: 14px;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
     }
 
-    .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-mty h4{
-        font-size: 16px;
-        margin-bottom: 4px;
-    }
-
-    .contacto-cal p, .contacto-cal2 p, .contacto-cap p {
+    .contacto-cal p, .contacto-cal2 p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p, .contacto-mty {
         font-size: 13px;
         margin-left: 8px;
     }
 
-    .contacto-cap2 p, .contacto-mant p, .contacto-venta p, .contacto-mty{
-        font-size: 14px;
-    }
-
     .contacto-cap2 .p-experiencia {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .magnitudes{
@@ -238,7 +225,7 @@
     }
 
     .tipos-cursos{
-        padding: 10px 35px;
+        padding: 10px 45px;
     }
 
     .tipos-cursos h2 {
@@ -307,13 +294,481 @@
         margin-bottom: 2px;
     }
 
+    .mant-info {
+        margin-top: 25px;
+        margin-bottom: 30px;
+        max-width: 660px;
+    }
 
+    .texto {
+        margin-left: 10px;
+    }
 
+    .texto h2{
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+
+    .texto p{
+        font-size: 14px;
+        margin-bottom: 0px;
+    }
+
+    .mant-info .vineta-acc img{
+        vertical-align: baseline;
+    }
+
+    .logo{
+        margin-right: 20px;
+    }
+
+    .logo-fondo{
+        padding: 8px;
+        width: 272px;
+    }
+
+    .logo img{
+        height: 65px;
+    }
+
+    .contacto-mty {
+        margin-top: 140px;
+        margin-left: 20px;
+    }
+
+    .contacto-fondo{
+        padding: 12px
+    }
+
+    .img-form {
+        height: 100%;
+        /* width: 24%; */
+    }
+
+    .formulario {
+        padding: 30px 40px;
+    }
+
+    .formulario .row{
+        margin-bottom: 25px;
+    }
+
+    .formulario p{
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        font-size: 11px;
+        border-radius: 0.40rem;
+        padding: 4px 6px;
+    }
+
+    .formulario .btn-enviar input{
+        width: 25%;
+        font-size: 11px;
+        height: 24px;
+        border-width: medium;
+    }
 
     .float{
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .my-float {
+        margin-top: 12px;
+    }
+
+    .footer-links {
+        padding: 18px 0;
+    }
+
+    .footer-links img {
+        max-height: 46px;
+    }
+
+    .copyright-area {
+        padding: 6px 0;
+        font-size: 9px;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    
+    .bg-light{
+        padding: 6px 0;
+    }
+
+    .navbar>.container-fluid{
+        justify-content: flex-end;
+    }
+
+    .navbar-light .navbar-brand{
+        padding: 0;
+        margin-right: 1rem;
+    }
+
+    .navbar-brand img{
+        max-height: 30px;
+    }
+
+    .navbar-toggler {
+        padding: 0 .75rem;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        font-size: 12px;
+    }
+
+    svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .img-bg {
+        background-position-y: -30px;
+        padding: 15px 0 10px 0;
+    }
+
+    .principal {
+        width: 54%;
+    }
+
+    .info-cal img, .info-cal2 img, .info-cap img, .info-mant img, .info-venta img{
+        height: 65px;
+    }
+
+    .info-cal h1{
+        font-size: 28px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    .info-cal2 h1, .info-cap h1, .info-mant h1, .info-venta h1 {
+        font-size: 22px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    .info-cal ul, .info-mant ul{
+        font-size: 15px;
+        margin-top: 2px;  
+    }
+
+    .info-cal2 ul, .info-venta ul{
+        font-size: 13.5px;
+        margin-top: 2px;  
+    }
+
+    .info-cap ul{
+        font-size: 14px;
+        margin-top: 2px;
+        margin-bottom: 0;
+    }
+
+    .contacto-cal{
+        margin-top: 33px;
+    }
+
+    .contacto-cal2{
+        margin-top: 30px;
+    }
+
+    .contacto-cap, .contacto-cap2{
+        margin-top: 19px;
+    }
+
+    .contacto-mant {
+        margin-top: 36px;
+    }
+
+    .contacto-venta{
+        margin-top: 4px;
+    }
+
+    .contacto-cal h4, .contacto-cal2 h4, .contacto-cap h4, .contacto-cap2 h4, .contacto-mant h4, .contacto-venta h4, .contacto-mty h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .contacto-cal p, .contacto-cal2 p, .contacto-cap p, .contacto-cap2 p, .contacto-mant p, .contacto-venta p, .contacto-mty {
+        font-size: 13px;
+        margin-left: 8px;
+    }
+
+    .contacto-cap2 .p-experiencia {
+        font-size: 14px;
+    }
+
+    .magnitudes{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .titulo-mag{
+        width: 68%;
+        padding-left: 63px;
+        padding-right: 0px;
+    }
+
+    .titulo-mag h1 {
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+
+    .titulo-mag ul {
+        font-size: 13px;
+        margin-left: 14px;
+        padding-left: 1.5rem;
+    }
+
+    .mag-img img{
+        height: 65px;
+        margin-right: 10px;
+    }
+
+    .mag-img .btn-enviar {
+        margin: 10px 0;
+    }
+
+    #certificado{
+        font-size: 10px;
+        width: 64%;
+        height: 32px;
+        border-width: medium;
+    }
+
+    .content-mag {
+        margin-top: 8px;
+    }
+
+    .item-mag{
+        width: 33.33333333333333%;
+        margin-bottom: 15px;
+    }
+
+    .icono-mag {
+        line-height: 46px;
+    }
+
+    .icon-gradient{
+        width: 50px;
+        height: 50px;
+    }
+    
+    .item-mag .icono-chico {
+        max-height: 26px;
+    }
+
+    .item-mag .icono-ancho {
+        max-height: 24px;
+    }
+
+    .item-mag .icono-ancho2 {
+        max-height: 20px;
+    }
+
+    .texto-mag {
+        margin-top: 10px;
+    }
+
+    .texto-mag h3{
         font-size: 18px;
-        width: 42px;
-        height: 42px;
+        margin-bottom: 4px;
+    }
+
+    .texto-mag p{
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .mag-sub-ac{
+        padding: 0 80px;
+        margin-bottom: 0;
+    }
+
+    .icon-sub{
+        width: 16px;
+        height: 16px;
+    }
+
+    .texto-sub{
+        margin-left: 6px;
+    }
+
+    .texto-sub h5{
+        font-size: 12px;
+    }
+
+
+    .cursos-row .col-3{
+        width: 24%;
+    }
+
+    .cursos-row .col-9{
+        width: 76%;
+    }
+
+    .tipos-cursos{
+        padding: 10px 45px;
+    }
+
+    .tipos-cursos h2 {
+        margin-bottom: 4px;
+        font-size: 18px;
+    }
+
+    .tipos-cursos ul{
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .cursos-col2 {
+        margin-top: 30px;
+    }
+
+    .cursos-marginb{
+        margin-bottom: 5px;
+    }
+
+    .cursos-col h2{
+        font-size: 18px;
+    }
+
+    .cursos-marginb2 {
+        margin-bottom: 10px;
+    }
+
+    .cursos-col2 .col-8{
+        width: 70%;
+    }
+
+    .cursos-col2 .col-4{
+        width: 30%;
+    }
+
+    .cursos-col h4{
+        font-size: 14px;
+    }
+
+    .cursos-sec {
+        margin-bottom: 10px;
+    }
+
+    .cursos-sec .titulo-sec{
+        margin-bottom: 2px;
+    }
+
+    .cursos-sec .titulo-sec h3{
+        font-size: 16px;
+        margin-left: 6px;
+    }
+
+    .cursos-sec img, .vineta-acc img{
+        width: 12px;
+        height: 12px;
+        vertical-align: middle;
+    }
+
+    .cursos-sec .row .col1{
+        padding-left: 18px;
+    }
+
+    .cont-sec ul li {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .mant-info {
+        margin-top: 25px;
+        margin-bottom: 30px;
+        max-width: 660px;
+    }
+
+    .texto {
+        margin-left: 10px;
+    }
+
+    .texto h2{
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+
+    .texto p{
+        font-size: 14px;
+        margin-bottom: 0px;
+    }
+
+    .mant-info .vineta-acc img{
+        vertical-align: baseline;
+    }
+
+    .logo{
+        margin-right: 20px;
+    }
+
+    .logo-fondo{
+        padding: 8px;
+        width: 272px;
+    }
+
+    .logo img{
+        height: 65px;
+    }
+
+    .contacto-mty {
+        margin-top: 140px;
+        margin-left: 20px;
+    }
+
+    .contacto-fondo{
+        padding: 12px
+    }
+
+    .img-form {
+        height: 100%;
+        /* width: 24%; */
+    }
+
+    .formulario {
+        padding: 30px 40px;
+    }
+
+    .formulario .row{
+        margin-bottom: 25px;
+    }
+
+    .formulario p{
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        font-size: 11px;
+        border-radius: 0.40rem;
+        padding: 4px 6px;
+    }
+
+    .formulario .btn-enviar input{
+        width: 25%;
+        font-size: 11px;
+        height: 24px;
+        border-width: medium;
+    }
+
+    .float{
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
     }
 
     .my-float {
@@ -342,8 +797,13 @@
         padding: 8px 0;
     }
 
+    .navbar>.container-fluid{
+        justify-content: flex-end;
+    }
+
     .navbar-light .navbar-brand{
         padding: 0;
+        margin-right: 1rem;
     }
 
     .navbar-brand img{
@@ -648,7 +1108,7 @@
 
     .img-form {
         height: 100%;
-        width: 24%;
+        /* width: 24%; */
     }
 
     .formulario {
@@ -661,17 +1121,20 @@
 
     .formulario p{
         font-size: 12px;
+        margin-bottom: 16px;
     }
 
     .form-control {
         font-size: 12px;
         border-radius: 0.45rem;
+        padding: .375rem .75rem;
     }
 
     .formulario .btn-enviar input{
         width: 30%;
         font-size: 12px;
         height: 30px;
+        border-width: thick;
     }
 
 
@@ -708,9 +1171,14 @@
         padding: 8px 0;
     }
 
+    .navbar>.container-fluid{
+        justify-content: flex-end;
+    }
+
     .navbar-light .navbar-brand{
         padding-top: .3125rem;
         padding-bottom: .3125rem;
+        margin-right: 1rem;
     }
 
     .navbar-brand img {
@@ -1078,17 +1546,20 @@
 
     .formulario p{
         font-size: 16px;
+        margin-bottom: 16px;
     }
 
     .form-control {
         font-size: 16px;
         border-radius: 0.55rem;
+        padding: .375rem .75rem;
     }
 
     .formulario .btn-enviar input{
         width: 30%;
         font-size: 16px;
         height: 36px;
+        border-width: thick;
     }
 
     .float{
@@ -1123,10 +1594,15 @@
     .bg-light{
         padding: 8px 0;
     }
+
+    .navbar>.container-fluid{
+        justify-content: flex-end;
+    }
     
     .navbar-light .navbar-brand{
         padding-top: .3125rem;
         padding-bottom: .3125rem;
+        margin-right: 1rem;
     }
 
     .navbar-brand img {
@@ -1489,17 +1965,20 @@
 
     .formulario p{
         font-size: 22px;
+        margin-bottom: 16px;
     }
 
     .form-control {
         font-size: 22px;
         border-radius: 0.75rem;
+        padding: .375rem .75rem;
     }
 
     .formulario .btn-enviar input{
         width: 30%;
         font-size: 22px;
         height: 44px;
+        border-width: thick;
     }
 
 
