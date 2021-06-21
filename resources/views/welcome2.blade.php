@@ -155,7 +155,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Eléctrica</h3>
-                    <p>Bajo y alto Voltaje, Corriente, Resistencia y Capacitancia, Simulación -200°C a 1,800°C</p>
+                    <p>Bajo y alto Voltaje, Corriente, Resistencia y Capacitancia,
+                    <br>Simulación -200°C a 1,800°C
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -173,7 +175,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Masa</h3>
-                    <p>Instrumentos para Pesar 5,000 kg Pesas 1 a 20 kg (M1 - M3)</p>
+                    <p>Instrumentos para Pesar 5,000 kg
+                    <br>Pesas 1 a 20 kg (M1 - M3)
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -182,7 +186,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Par Torsial</h3>
-                    <p>16,270 N m <br /> (12,000 Ibs-ft)</p>
+                    <p>16,270 N m
+                    <br />(12,000 Ibs-ft)
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -200,7 +206,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Química</h3>
-                    <p>4.0 pH / 7.0 pH / 10.0 pH, 99 µS/cm - 1,400 µS/cm - 100,000 µS/cm</p>
+                    <p>4.0 pH / 7.0 pH / 10.0 pH
+                    <br/>99 µS/cm - 1,400 µS/cm - 100,000 µS/cm
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -209,7 +217,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Dureza</h3>
-                    <p>20 - 100 HRB <br /> 20 - 77 HRC</p>
+                    <p>20 - 100 HRB
+                    <br /> 20 - 77 HRC
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -218,7 +228,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Humedad & Temperatura</h3>
-                    <p>0 - 98 %HR<br/>-20°C a 60°C</p>
+                    <p>0 - 98 %HR
+                    <br/>-20°C a 60°C
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -227,7 +239,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Tiempo y Frecuencia</h3>
-                    <p>1 - 86,400 s<br/>112 - 28,800 rmp</p>
+                    <p>1 - 86,400 s
+                    <br/>112 - 28,800 rmp
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
@@ -236,7 +250,9 @@
                 </div>
                 <div class="texto-mag">
                     <h3>Fuerza</h3>
-                    <p>980 kN<br/>(100,000 kgf)</p>
+                    <p>980 kN
+                    <br/>(100,000 kgf)
+                    </p>
                 </div>
             </div>
             <div class="col item-mag">
