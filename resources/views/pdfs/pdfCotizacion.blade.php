@@ -178,7 +178,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                <!-- <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;"> -->
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -258,6 +258,7 @@
         <thead class="tableCuerpoItems_head">
             
             <tr class="tableCuerpoItems_head_tr">
+                <th>ID</th>
                 <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
@@ -275,8 +276,9 @@
            
         </thead>
         <tbody>
-            @foreach($data['has_partidas'] as $item)
+            @foreach($data['has_partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
+                <td>{{$key+1}}</td>
                 <td>{{$item['id']}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
@@ -287,7 +289,7 @@
                 <td>{{$item['has_intrumento']['alcance']}}</td>
                 <td>{{$item['identificacion']}}</td>
                 <td>{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
-                <td>{{$item['vigencia']}}</td>
+                <td>{{$item['vigencia']}} meses</td>
                 <td> {{number_format($item['has_intrumento']['precio_venta'], 2, '.', ',')}}</td>
                 <td> {{number_format($item['importe'], 2, '.', ',')}}</td>
             </tr>
@@ -295,6 +297,7 @@
         </tbody>
         <tfoot>
             <tr class="tableCuerpoItems_footer_tr">
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -308,6 +311,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td colspan="6"></td>
                 <td></td>
                 <td></td>
@@ -316,6 +320,7 @@
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

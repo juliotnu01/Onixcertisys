@@ -127,6 +127,7 @@ class CotizacionController extends Controller
                     $partida->cotizacion_id = $cotizacion['id'];
                     $partida->unidad_id = $value['unidad_cod']['id'];
                     $partida->clave_sat_id = $value['clave_sat']['id'];
+                    $partida->vigencia = $value['vigencia'];
                     $partida->save();
                 }
 
@@ -172,6 +173,7 @@ class CotizacionController extends Controller
                     $partida->cotizacion_id =  $cotizacion['id'];
                     $partida->unidad_id = $value['has_unidad']['id'];
                     $partida->clave_sat_id = $value['has_clave_sat']['id'];
+                    $partida->vigencia = $value['vigencia'];
                     $partida->save();
                 }
             }, 5);

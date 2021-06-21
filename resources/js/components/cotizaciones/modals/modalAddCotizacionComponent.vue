@@ -227,6 +227,7 @@
                   <th class="text-left">Serie</th>
                   <th class="text-left">Alcance</th>
                   <th class="text-left">Acreditacion</th>
+                  <th class="text-left">Vigencia (meses)</th>
                   <th class="text-left">Precio Unitario</th>
                   <th class="text-left">Importe</th>
                   <th class="text-left">Accion</th>
@@ -319,6 +320,16 @@
                   </td>
                   <td>
                     {{ item.instrumento.has_acreditacion.nombre }}
+                  </td>
+                  <td>
+                    <v-text-field
+                      label=""
+                      v-model="item.vigencia"
+                      outlined
+                      dense
+                      small
+                      class="m-0 p-0"
+                    />
                   </td>
                   <td>
                     <v-text-field
@@ -461,6 +472,7 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
+        vigencia: '',
         unidad_cod: { clave: "E48", nombre: "Unidad de Servicio" },
         clave_sat: {
           codigo: "81141504",
@@ -588,6 +600,7 @@ export default {
           precio_venta: this.partida.instrumento.precio_venta,
           unidad_cod: this.partida.unidad_cod,
           clave_sat: this.partida.clave_sat,
+          vigencia: this.partida.vigencia,
         };
         this.model.partidas.push(model);
       }
@@ -603,6 +616,7 @@ export default {
         unidad: {},
         unidad_cod: {},
         clave_sat: {},
+        vigencia: '',
       };
     },
     async addCotizacion() {
@@ -649,6 +663,7 @@ export default {
         servicio: {},
         unidad: {},
         precio_venta: 0,
+        vigencia: '',
       };
       this.masivPartidas.forEach((item) => {
         partida = {
@@ -663,6 +678,7 @@ export default {
           servicio: item.servicio,
           unidad: item.unidad,
           precio_venta: item.has_instrumento.precio_venta,
+          vigencia: item.vigencia,
         };
         this.model.partidas.push(partida);
       });

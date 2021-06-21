@@ -30,7 +30,7 @@ Vue.component('app', require('./components/app.vue').default)
 Vue.filter('numberFormat', function (value, moneda = '') {
     if (!value) return ''
     let parseNumber = parseFloat(value)
-    return  ` ${moneda} ${new Intl.NumberFormat("de-DE").format(parseNumber)}`
+    return  ` ${moneda} ${new Intl.NumberFormat().format(parseNumber)}`
 })
 const app = new Vue({
     el: '#app',

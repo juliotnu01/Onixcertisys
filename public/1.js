@@ -1232,6 +1232,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1302,6 +1313,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         importe: 0,
         servicio: {},
         unidad: {},
+        vigencia: '',
         unidad_cod: {
           clave: "E48",
           nombre: "Unidad de Servicio"
@@ -1435,7 +1447,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           unidad: this.partida.unidad,
           precio_venta: this.partida.instrumento.precio_venta,
           unidad_cod: this.partida.unidad_cod,
-          clave_sat: this.partida.clave_sat
+          clave_sat: this.partida.clave_sat,
+          vigencia: this.partida.vigencia
         };
         this.model.partidas.push(model);
       }
@@ -1451,7 +1464,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         servicio: {},
         unidad: {},
         unidad_cod: {},
-        clave_sat: {}
+        clave_sat: {},
+        vigencia: ''
       };
     },
     addCotizacion: function addCotizacion() {
@@ -1524,7 +1538,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         importe: 0,
         servicio: {},
         unidad: {},
-        precio_venta: 0
+        precio_venta: 0,
+        vigencia: ''
       };
       this.masivPartidas.forEach(function (item) {
         partida = {
@@ -1538,7 +1553,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           importe: 1 * item.has_instrumento.precio_venta,
           servicio: item.servicio,
           unidad: item.unidad,
-          precio_venta: item.has_instrumento.precio_venta
+          precio_venta: item.has_instrumento.precio_venta,
+          vigencia: item.vigencia
         };
 
         _this4.model.partidas.push(partida);
@@ -4642,6 +4658,10 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("th", { staticClass: "text-left" }, [
+                                  _vm._v("Vigencia (meses)")
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "text-left" }, [
                                   _vm._v("Precio Unitario")
                                 ]),
                                 _vm._v(" "),
@@ -4876,6 +4896,29 @@ var render = function() {
                                           "\n                "
                                       )
                                     ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-text-field", {
+                                          staticClass: "m-0 p-0",
+                                          attrs: {
+                                            label: "",
+                                            outlined: "",
+                                            dense: "",
+                                            small: ""
+                                          },
+                                          model: {
+                                            value: item.vigencia,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "vigencia", $$v)
+                                            },
+                                            expression: "item.vigencia"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "td",

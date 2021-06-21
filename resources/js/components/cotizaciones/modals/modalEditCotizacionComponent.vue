@@ -5,13 +5,14 @@
         <v-btn icon dark @click="openDialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
+      <v-card-title>Editar Cotizacion</v-card-title>
         <v-spacer></v-spacer>
-        <v-btn text dark tile @click="EditCotizacion">
+}        <v-btn text dark tile @click="EditCotizacion">
           <v-icon>mdi-pencil</v-icon>Editar
         </v-btn>
       </v-toolbar>
       <v-card>
-        <v-card-title>Editar Cotizacion</v-card-title>
+        
         <v-card-text>
           <v-form ref="f_mag">
             <v-row
@@ -113,7 +114,7 @@
               <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion.has_cliente.contacto_adicionales_compra"
+                  v-model="cotizacion.contacto"
                   dense
                   outlined
                   label="Contacto"
@@ -122,7 +123,7 @@
               <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion.has_cliente.contacto_adicionales_compra_telf"
+                  v-model="cotizacion.contacto_telefono"
                   dense
                   outlined
                   label="Teléfono"
@@ -131,7 +132,7 @@
               <v-col cols="12" xs="12" sm="12" md="4" lg="4">
                 <v-text-field
                   :rules="[rules.required]"
-                  v-model="cotizacion.has_cliente.contacto_adicionales_correo"
+                  v-model="cotizacion.contacto_correo"
                   dense
                   outlined
                   label="Correo"
@@ -226,6 +227,7 @@
                   <th class="text-left">Serie</th>
                   <th class="text-left">Alcance</th>
                   <th class="text-left">Acreditacion</th>
+                  <th class="text-left">Vigencia (meses)</th>
                   <th class="text-left">Precio Unitario</th>
                   <th class="text-left">Importe</th>
                   <th class="text-left">Accion</th>
@@ -318,6 +320,16 @@
                   </td>
                   <td>
                     {{ item.has_intrumento.has_acreditacion.nombre }}
+                  </td>
+                  <td>
+                    <v-text-field
+                      label=""
+                      v-model="item.vigencia"
+                      outlined
+                      dense
+                      small
+                      class="m-0 p-0"
+                    />
                   </td>
                   <td>
                     <v-text-field

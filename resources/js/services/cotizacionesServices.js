@@ -88,6 +88,7 @@ export default class cotizacionServices {
 
     async actualizarCotizacion(cot) {
         try {
+            console.log({cot})
 			var model = {
 				id: cot.id,
                 cliente_id: cot.has_cliente.id,
@@ -97,9 +98,9 @@ export default class cotizacionServices {
                 tipo_de_servicio: cot.tipo_de_servicio.name,
                 nota_para_la_cotizacion: cot.nota_para_la_cotizacion,
                 estado_de_la_cotizacion: cot.estado_de_la_cotizacion.name,
-                contacto: cot.has_cliente.contacto_adicionales_compra,
-                contacto_telefono: cot.has_cliente.contacto_adicionales_compra_telf,
-                contacto_correo: cot.has_cliente.contacto_adicionales_correo,
+                contacto: cot.contacto,
+                contacto_telefono: cot.contacto_telefono,
+                contacto_correo: cot.contacto_correo,
                 condicion: cot.condicion,
                 nota_de_seguimiento: cot.nota_de_seguimiento,
                 partidas: cot.has_partidas,
