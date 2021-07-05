@@ -572,6 +572,28 @@
       </v-card>
       <notificacion/>
     </v-dialog>
+    <v-snackbar  v-model="snackbar"  top fixed color="#0095d9" dark>
+       <h5 class=" text--error font-weight-bold">  Faltan campos por llenar, ¿Desea guardar y dejar los campos en vacios?</h5>  
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="error"
+          v-bind="attrs"
+          @click="snackbar = false"
+          class="mr-2"
+        >
+          Cerrar
+        </v-btn>
+        <v-btn
+          color="#003177"
+          v-bind="attrs"
+          @click="addCliente(g = true)"
+          
+        >
+        <v-icon>mdi-save</v-icon>
+          Guardar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 <script>
@@ -583,6 +605,7 @@ export default {
   },
   data() {
     return {
+      snackbar:false,
       headers_sucursal:[
         {text: 'Nombre sucursal', align:'center', value:'nombre'},
         {text: 'Direccion sucursal', align:'center', value:'direccion'},
@@ -663,16 +686,15 @@ export default {
           diasDePago: '',
           horaDiasDePago: '',
           linkPortal:'',
-          usuarioContrasena:[],
-          indicacionesAltaFacturaPortal:[],
+          usuarioContrasena:"",
+          indicacionesAltaFacturaPortal:"",
           correoSoporteTecnicoPortal:'',
           bancoOrdenante:'',
           cuentaDePago:'',
           complementoDePagoSeEnviaPorEmail:'',
           informacionAdicionalComplementoDePago:'',
         },
-        listaRequerimientoDeAccesoAlaPlata:{
-        },
+        listaRequerimientoDeAccesoAlaPlata:'',
         sucursales:[]
       },
       rules: {
@@ -714,13 +736,12 @@ export default {
     await this.services.cfdiServices.getCFDIs();
   },
   methods: {
-    async addCliente() {
-        
+    async addCliente(g = false) {
                   if(this.$refs.form_SS.validate() && 
                     this.$refs.form_PDC.validate() && 
                     this.$refs.form_CA.validate() && 
                     this.$refs.form_DFRF.validate() &&
-                    this.$refs.form_RFP.validate()){
+                    this.$refs.form_RFP.validate() || g == true ){
                     
       await this.services.clienteServices.agregarCliente(this.model);
       await this.services.clienteServices.getlistclientes();
@@ -786,6 +807,8 @@ export default {
       };
         var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'};
         this.$store.commit("setNotificacion", model_notificacion);
+      }else{
+        this.snackbar  = true;
       }
     },
     AgregarSucursal() {

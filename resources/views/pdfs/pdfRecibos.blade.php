@@ -224,6 +224,7 @@
         <thead class="tableCuerpoItems_head">
             
             <tr class="tableCuerpoItems_head_tr">
+                <th>#</th>
                 <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
@@ -235,12 +236,14 @@
                 <th>Lugar de servicio</th>
                 <th>Tipo</th>
                 <th>Vigencia</th>
+                
             </tr>
            
         </thead>
         <tbody>
-            @foreach($data['has_partidas'] as $item)
+            @foreach($data['has_partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
+                <td>{{$key+1}}</td>
                 <td>{{$item['id']}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
@@ -249,7 +252,7 @@
                 <td>{{$item['modelo']}}</td>
                 <td>{{$item['serie']}}</td>
                 <td>{{$item['identificacion']}}</td>
-                <td></td>
+                <td> {{$item['lugar_servicio']}}</td>
                 <td>{{$item['tipo']}}</td>
                 <td> {{$item['vigencia']}}</td>
             </tr>

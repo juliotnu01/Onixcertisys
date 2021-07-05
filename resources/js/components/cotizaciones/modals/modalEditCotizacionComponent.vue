@@ -7,7 +7,7 @@
         </v-btn>
       <v-card-title>Editar Cotizacion</v-card-title>
         <v-spacer></v-spacer>
-}        <v-btn text dark tile @click="EditCotizacion">
+        <v-btn text dark tile @click="EditCotizacion">
           <v-icon>mdi-pencil</v-icon>Editar
         </v-btn>
       </v-toolbar>

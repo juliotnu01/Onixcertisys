@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout row justify-center>
-      <v-dialog v-model="openDialog" persistent max-width="1256">
+      <v-dialog v-model="openDialog" persistent >
         <v-toolbar color="primary">
           <v-btn icon dark @click="openDialog = false">
             <v-icon>mdi-close</v-icon>
@@ -13,12 +13,7 @@
         </v-toolbar>
         <v-card>
           <v-card-text>
-            <v-container>
-              <v-row
-                align="center"
-                justify="space-around"
-                v-if="Object.entries(this.cotizacion_view).length > 0"
-              >
+              <v-row align="center" justify="space-around" v-if="Object.entries(this.cotizacion_view).length > 0" >
                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                   <v-autocomplete
                     disabled
@@ -123,14 +118,7 @@
                 </v-col>
                 </v-col>
               </v-row>
-            </v-container>
-            <v-data-table
-              dense
-              :headers="headers_cotizacion"
-              :items="cotizacion_view.has_partidas"
-              item-key="name"
-              class="elevation-1 mt-5"
-            >
+            <v-data-table  dense :headers="headers_cotizacion" :items="cotizacion_view.has_partidas" item-key="name" class="elevation-1 mt-5">
               <template slot="items" slot-scope="props">
                 <td class="text-center">{{ props.item.servicio }}</td>
                 <td class="text-center">{{ props.item.has_clave_sat.codigo }}</td>
@@ -223,6 +211,17 @@
                   />
                 </td>
               </template>
+              <template v-slot:item.lugar_servicio="{ item }">
+                <td>
+                  <v-text-field
+                    v-model="item.lugar_servicio"
+                    label
+                    outlined
+                    dense
+                    class="mt-5 text-center"
+                  />
+                </td>
+              </template>
             </v-data-table>
           </v-card-text>
         </v-card>
@@ -300,6 +299,11 @@ export default {
         {
           text: "Vigencia(Meses)",
           value: "vigencia",
+          align: "center",
+        },
+        {
+          text: "Lugar de Servicio",
+          value: "lugar_servicio",
           align: "center",
         },
         {

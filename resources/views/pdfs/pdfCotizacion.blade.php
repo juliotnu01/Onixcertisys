@@ -231,7 +231,9 @@
             <tr>
                 <td style="width: 3%;">Dirección Sucursal:</td>
                 <td style="width: 3%; text-align: left" colspan="3">
-                    {{  $data['belongs_to_sucursal_cliente']['nombre_sucursal'] == null ? ' ' :   $data['belongs_to_sucursal_cliente']['nombre_sucursal'] }} / {{ $data['belongs_to_sucursal_cliente']['direccion_sucursal'] == null ? ' ' : $data['belongs_to_sucursal_cliente']['direccion_sucursal']   }}  
+                @if($data['belongs_to_sucursal_cliente'])
+                    {{  array_key_exists("nombre_sucursal",$data['belongs_to_sucursal_cliente']) ? $data['belongs_to_sucursal_cliente']['direccion_sucursal'] : '' }}  
+                @endif
                 </td>
                 <td style="width: 3%;">Tipo de Servicio:</td>
                 <td style="width: 3%; text-align: left" colspan="3">{{$data['tipo_de_servicio']}}</td>
@@ -258,7 +260,7 @@
         <thead class="tableCuerpoItems_head">
             
             <tr class="tableCuerpoItems_head_tr">
-                <th>ID</th>
+                <th>#</th>
                 <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
@@ -319,8 +321,7 @@
                 <td>    {{number_format($data['iva'], 2, '.', ',')}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
-                <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
-                <td></td>
+                <td colspan="7"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
                 <td></td>
                 <td></td>
                 <td></td>

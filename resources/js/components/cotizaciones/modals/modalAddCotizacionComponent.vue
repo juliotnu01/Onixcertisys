@@ -32,7 +32,6 @@
                   item-text="datos_fisicos_requeremientos_facturacion_razon_social"
                   item-value="id"
                   outlined
-                  s
                   label="Seleccionar Cliente"
                   return-object
                 ></v-autocomplete>
@@ -46,7 +45,6 @@
                   item-value="id"
                   item-text="nombre_sucursal"
                   outlined
-                  s
                   label="Seleccionar sucursal"
                   return-object
                 />

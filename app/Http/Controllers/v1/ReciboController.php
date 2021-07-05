@@ -142,6 +142,7 @@ class ReciboController extends Controller
                                 'tipo' => $tipo,
                                 'vigencia' => $value['vigencia'],
                                 'recibo_id' => $recibo['id'],
+                                "lugar_servicio" => $value['lugar_servicio']
                             ]);
                     }
                 }
