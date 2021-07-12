@@ -201,10 +201,17 @@ export default {
     },
   },
   async mounted() {
-    this.services.instrumentoServices.getlistInstrumentos();
-    this.services.magnitudesServices.getListMagnitudes();
-    this.services.acreditacionesServices.getlistAcreditaciones();
-    this.services.cotizacionServices.getMasivPartidas();
+     this.$store.commit('setOverley', true)
+    Promise.all([ this.services.instrumentoServices.getlistInstrumentos(),
+    this.services.magnitudesServices.getListMagnitudes(),
+    this.services.acreditacionesServices.getlistAcreditaciones(),
+    this.services.cotizacionServices.getMasivPartidas()])
+      .then(  () => {
+       
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async importarPartidas() {

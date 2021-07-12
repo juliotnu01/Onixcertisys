@@ -339,7 +339,13 @@ export default {
     // }
   },
   mounted() {
-    this.services.cotizacionServices.getlistCotizaciones();
+    Promise.all([ this.services.cotizacionServices.getlistCotizaciones()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async EditarCotizacion(cot) {

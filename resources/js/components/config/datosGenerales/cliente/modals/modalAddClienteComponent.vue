@@ -571,6 +571,7 @@
         </v-card-actions>
       </v-card>
       <notificacion/>
+       <overlay/>
     </v-dialog>
     <v-snackbar  v-model="snackbar"  top fixed color="#0095d9" dark>
        <h5 class=" text--error font-weight-bold">  Faltan campos por llenar, ¿Desea guardar y dejar los campos en vacios?</h5>  
@@ -599,9 +600,11 @@
 <script>
 import { mapGetters } from "vuex";
 import NotificacionComponent from '../../../../notificacion/indexComponentNotificacion.vue'
+import overlayComponent from '../../../../overlayComponent.vue'
 export default {
   components:{
-      'notificacion': NotificacionComponent
+      'notificacion': NotificacionComponent,
+       "overlay" : overlayComponent
   },
   data() {
     return {
@@ -730,10 +733,18 @@ export default {
     },
   },
   async mounted() {
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.cfdiServices.getCFDIs();
+    this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.metodoDePagoServices.getlistMetodoDePago(),
+      this.services.condicionDePagoServices.getlistCondicionDePago(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.cfdiServices.getCFDIs()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async addCliente(g = false) {

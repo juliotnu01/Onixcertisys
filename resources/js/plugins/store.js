@@ -141,6 +141,7 @@ export default  new Vuex.Store({
         dialog_add_cfdi: false,
         cfdi:{},
         dialog_edit_cfdi: false,
+        overlay: false,
 
     },
     getters: {
@@ -267,7 +268,8 @@ export default  new Vuex.Store({
         cfdis: state => state.cfdis,
         dialog_add_cfdi: state => state.dialog_add_cfdi,
         cfdi: state => state.cfdi,
-        dialog_edit_cfdi: state => state.dialog_edit_cfdi
+        dialog_edit_cfdi: state => state.dialog_edit_cfdi,
+        overlay: state => state.overlay,
         
     },
     mutations: {
@@ -754,7 +756,10 @@ export default  new Vuex.Store({
         },
         setDialogEditCfdi(state, data){
             state.dialog_edit_cfdi = data
-        }
+        },
+        setOverley(state, data){
+            state.overlay = data
+        },
     },
     actions: {
         chargeRolSelected({ commit }, data) {

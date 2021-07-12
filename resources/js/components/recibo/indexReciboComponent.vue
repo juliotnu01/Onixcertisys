@@ -230,6 +230,7 @@
     <modal-asignar-tecnico />
     <modal-pdf />
     <notificacion />
+     <overlay/>
   </v-app>
 </template>
 
@@ -238,11 +239,13 @@ import { mapGetters } from "vuex";
 import modalAsignarTecnico from "./modals/modalAsignarTecnicoComponent";
 import modalViewPdfComponent from "./modals/modalViewPdfComponent";
 import notificacionComponent from "../notificacion/indexComponentNotificacion";
+import overlayComponent from '../overlayComponent.vue'
 export default {
   components: {
     "modal-asignar-tecnico": modalAsignarTecnico,
     "modal-pdf": modalViewPdfComponent,
     notificacion: notificacionComponent,
+      "overlay" : overlayComponent,
   },
   data() {
     return {
@@ -274,8 +277,15 @@ export default {
     },
   },
   async mounted() {
-    await this.services.reciboServices.getlistRecibos();
-    await this.services.magnitudesServices.getListMagnitudes();
+       this.$store.commit('setOverley', true)
+     Promise.all([this.services.reciboServices.getlistRecibos(),
+                  this.services.magnitudesServices.getListMagnitudes()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     AsignarTecnico(item) {

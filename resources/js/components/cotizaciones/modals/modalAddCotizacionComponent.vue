@@ -390,6 +390,7 @@
     </v-dialog>
     <modal-cargar-partidas-masivamente v-on:cargarPartidas="cargarPartidasImportadas" />
     <modal-edit-instrumento />
+     <overlay/>
   </v-app>
 </template>
 
@@ -397,10 +398,12 @@
 import { mapGetters } from "vuex";
 import modalCargarPartidaMasivamente from "./modalCargarPartidaMasivamenteComponent";
 import modalEditInstrumento from "../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue";
+import overlayComponent from '../../overlayComponent.vue'
 export default {
   components: {
     "modal-cargar-partidas-masivamente": modalCargarPartidaMasivamente,
     "modal-edit-instrumento": modalEditInstrumento,
+    "overlay" : overlayComponent,
   },
   data() {
     return {
@@ -573,13 +576,20 @@ export default {
     },
   },
   async mounted() {
-    await this.services.clienteServices.getlistclientes();
-    this.services.monedaServices.getlistMonedas();
-    this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
-    this.services.empleadoServices.getlistEmpleados();
-    this.services.instrumentoServices.getlistInstrumentos();
-    this.services.unidadServices.getUnidades();
-    this.services.claveSatServices.getclavesSat();
+    this.$store.commit('setOverley', true)
+    Promise.all([this.services.clienteServices.getlistclientes(),
+                this.services.monedaServices.getlistMonedas(),
+                this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(),
+                this.services.empleadoServices.getlistEmpleados(),
+                this.services.instrumentoServices.getlistInstrumentos(),
+                this.services.unidadServices.getUnidades(),
+                this.services.claveSatServices.getclavesSat()])
+      .then(  () => {
+        
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     AgregarPartida() {

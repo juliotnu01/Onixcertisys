@@ -86,6 +86,7 @@
     </v-card>
     <modal-add />
     <modal-edit />
+     <overlay/>
   </v-app>
 </template>
 
@@ -94,11 +95,13 @@ import { mapGetters } from "vuex";
 import modalAddCliente from "./modals/modalAddClienteComponent.vue";
 import modalEditCliente from "./modals/modalEditClienteComponent.vue";
 import xlsx from "xlsx";
+import overlayComponent from '../../../overlayComponent.vue'
 
 export default {
   components: {
     "modal-add": modalAddCliente,
     "modal-edit": modalEditCliente,
+     "overlay" : overlayComponent,
   },
   data() {
     return {
@@ -170,17 +173,27 @@ export default {
     ...mapGetters(["services", "clientes"]),
   },
   mounted() {
-    this.services.clienteServices.getlistclientes();
+      this.$store.commit('setOverley', true)
+    Promise.all([this.services.clienteServices.getlistclientes()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      }); 
   },
   methods: {
     onChange(event) {
       this.file = event.target.files ? event.target.files[0] : null;
     },
     async EditarCliente(cli) {
-      var data = {};
+      var data = {}, ss = [];
+
+        cli.servicio_solicitado == '' ? ss = '' : ss = JSON.parse(cli.servicio_solicitado )
+
       data = {
         id: cli.id,
-        servicio_solicitado: JSON.parse(cli.servicio_solicitado),
+        servicio_solicitado: ss ,
         persona_de_contacto: {
           nombre: cli.persona_de_contacto_nombre,
           celular: cli.persona_de_contacto_celular,

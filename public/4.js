@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modals_modalCalibracionComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalCalibracionComponent.vue */ "./resources/js/components/laboratorio/modals/modalCalibracionComponent.vue");
 /* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -65,17 +66,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'modal-calibracion': _modals_modalCalibracionComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'notificacion': _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "modal-calibracion": _modals_modalCalibracionComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_3__["default"],
+    overlay: _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      search: '',
+      search: "",
       headers: [{
         text: "Recibo",
         align: "center",
@@ -124,7 +144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['services', 'partidas', 'partidas_para_calibrar'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "partidas", "partidas_para_calibrar"])),
   mounted: function mounted() {
     var _this = this;
 
@@ -133,8 +153,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this.services.partidaServices.getlistpartidasParaCalibrar();
+              _this.$store.commit("setOverley", true);
+
+              Promise.all([_this.services.partidaServices.getlistpartidasParaCalibrar()]).then(function () {
+                _this.$store.commit("setOverley", false);
+              })["catch"](function (reason) {
+                _this.$store.commit("setOverley", false);
+              });
 
             case 2:
             case "end":
@@ -149,8 +174,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log({
         item: item
       });
-      this.$store.commit('setPartida', item);
-      this.$store.commit('setDialogCalibracion', true);
+      this.$store.commit("setPartida", item);
+      this.$store.commit("setDialogCalibracion", true);
     }
   }
 });
@@ -1124,11 +1149,7 @@ var render = function() {
                                   type: "error"
                                 }
                               },
-                              [
-                                _vm._v(
-                                  "\r\n                        por iniciar\r\n                    "
-                                )
-                              ]
+                              [_vm._v("\n            por iniciar\n          ")]
                             )
                           : item.has_calibracion.estado === "en proceso"
                           ? _c(
@@ -1142,9 +1163,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                        " +
+                                  "\n            " +
                                     _vm._s(item.has_calibracion.estado) +
-                                    "\r\n                    "
+                                    "\n          "
                                 )
                               ]
                             )
@@ -1159,9 +1180,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                        " +
+                                  "\n            " +
                                     _vm._s(item.has_calibracion.estado) +
-                                    "\r\n                    "
+                                    "\n          "
                                 )
                               ]
                             )
@@ -1179,7 +1200,9 @@ var render = function() {
       _vm._v(" "),
       _c("modal-calibracion"),
       _vm._v(" "),
-      _c("notificacion")
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )

@@ -531,15 +531,6 @@ export default {
       },
     },
   },
-  async mounted() {
-    await this.services.clienteServices.getlistclientes();
-    this.services.monedaServices.getlistMonedas();
-    this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
-    this.services.empleadoServices.getlistEmpleados();
-    this.services.instrumentoServices.getlistInstrumentos();
-    this.services.unidadServices.getUnidades();
-    this.services.claveSatServices.getclavesSat();
-  },
   methods: {
     AgregarPartida() {
       for (var i = 0; i < this.partida.cantidad; i++) {

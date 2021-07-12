@@ -101,7 +101,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon text v-bind="attrs" v-on="on">
@@ -119,7 +119,7 @@
             </v-list-item-title>
           </v-list-item>
         </v-list>
-      </v-menu>
+      </v-menu> -->
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>

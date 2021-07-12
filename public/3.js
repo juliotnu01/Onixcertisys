@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalTotalizarComponent.vue */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue");
 /* harmony import */ var _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalPdfFacturaComponent */ "./resources/js/components/factura/modals/modalPdfFacturaComponent.vue");
 /* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -707,9 +708,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
+
 
 
 
@@ -718,7 +717,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-add-factura": _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     "modal-pdf-factura": _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -986,50 +986,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this.services.reciboServices.getlistRecibos();
+              _this.$store.commit('setOverley', true);
+
+              Promise.all([_this.services.reciboServices.getlistRecibos(), _this.services.clienteServices.getlistclientes(), _this.services.monedaServices.getlistMonedas(), _this.services.empleadoServices.getlistEmpleados(), _this.services.instrumentoServices.getlistInstrumentos(), _this.services.clienteServices.getlistclientes(), _this.services.metodoDePagoServices.getlistMetodoDePago(), _this.services.condicionDePagoServices.getlistCondicionDePago(), _this.services.unidadServices.getUnidades(), _this.services.claveSatServices.getclavesSat(), _this.services.cfdiServices.getCFDIs()]).then(function () {
+                _this.$store.commit('setOverley', false);
+              })["catch"](function (reason) {
+                _this.$store.commit('setOverley', false);
+              });
 
             case 2:
-              _context.next = 4;
-              return _this.services.clienteServices.getlistclientes();
-
-            case 4:
-              _context.next = 6;
-              return _this.services.monedaServices.getlistMonedas();
-
-            case 6:
-              _context.next = 8;
-              return _this.services.empleadoServices.getlistEmpleados();
-
-            case 8:
-              _context.next = 10;
-              return _this.services.instrumentoServices.getlistInstrumentos();
-
-            case 10:
-              _context.next = 12;
-              return _this.services.clienteServices.getlistclientes();
-
-            case 12:
-              _context.next = 14;
-              return _this.services.metodoDePagoServices.getlistMetodoDePago();
-
-            case 14:
-              _context.next = 16;
-              return _this.services.condicionDePagoServices.getlistCondicionDePago();
-
-            case 16:
-              _context.next = 18;
-              return _this.services.unidadServices.getUnidades();
-
-            case 18:
-              _context.next = 20;
-              return _this.services.claveSatServices.getclavesSat();
-
-            case 20:
-              _context.next = 22;
-              return _this.services.cfdiServices.getCFDIs();
-
-            case 22:
             case "end":
               return _context.stop();
           }
@@ -2280,7 +2245,7 @@ var render = function() {
                                                 var item = ref.item
                                                 return [
                                                   _vm._v(
-                                                    "\n                   " +
+                                                    "\n                  " +
                                                       _vm._s(item.codigo_cfdi) +
                                                       " - " +
                                                       _vm._s(
@@ -2294,7 +2259,7 @@ var render = function() {
                                           ],
                                           null,
                                           false,
-                                          2198625948
+                                          1016084220
                                         ),
                                         model: {
                                           value:
@@ -3451,7 +3416,11 @@ var render = function() {
       _vm._v(" "),
       _c("modal-add-factura"),
       _vm._v(" "),
-      _c("modal-pdf-factura")
+      _c("modal-pdf-factura"),
+      _vm._v(" "),
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )

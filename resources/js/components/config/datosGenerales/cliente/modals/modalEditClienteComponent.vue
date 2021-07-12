@@ -442,7 +442,7 @@
                     v-model="cliente.revisionDeFacturasYpagos.listaRequerimientoDeAccesoAlaPlata"
                   ></v-text-field>
                 </v-col>
-                    <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                  <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                    <v-text-field
                     label="I.V.A. %"
                     outlined
@@ -659,14 +659,21 @@ export default {
     },
   },
   async mounted() {
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.cfdiServices.getCFDIs();
+     this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.metodoDePagoServices.getlistMetodoDePago(),
+      this.services.condicionDePagoServices.getlistCondicionDePago(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.cfdiServices.getCFDIs()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });   
   },
   methods: {
     async editCliente() {
-      console.log(this.cliente)
         await this.services.clienteServices.actualizarCliente(this.cliente)
         await this.services.clienteServices.getlistclientes()
     },

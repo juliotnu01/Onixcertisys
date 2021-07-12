@@ -336,11 +336,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "cotizaciones", "dialog_nota_de_seguimiento"])),
   mounted: function mounted() {
-    this.services.cotizacionServices.getlistCotizaciones();
+    var _this = this;
+
+    Promise.all([this.services.cotizacionServices.getlistCotizaciones()]).then(function () {
+      _this.$store.commit('setOverley', false);
+    })["catch"](function (reason) {
+      _this.$store.commit('setOverley', false);
+    });
   },
   methods: {
     EditarCotizacion: function EditarCotizacion(cot) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -352,14 +358,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                _this.snackbar = true;
-                _this.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+                _this2.snackbar = true;
+                _this2.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
                 return _context.abrupt("return");
 
               case 4:
-                _this.$store.commit("setDialogEditCotizacion", true);
+                _this2.$store.commit("setDialogEditCotizacion", true);
 
-                _this.$store.commit("setCotizacion", cot);
+                _this2.$store.commit("setCotizacion", cot);
 
               case 6:
               case "end":
@@ -390,7 +396,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setCotizacionView", item);
     },
     printCotizacion: function printCotizacion(item) {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -402,13 +408,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                _this2.snackbar = true;
-                _this2.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
+                _this3.snackbar = true;
+                _this3.textSnack = "Accion Rechazada, 'Cliente Eliminado'";
                 return _context2.abrupt("return");
 
               case 4:
                 _context2.next = 6;
-                return _this2.services.cotizacionServices.printCotizacion(item);
+                return _this3.services.cotizacionServices.printCotizacion(item);
 
               case 6:
               case "end":
@@ -834,6 +840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modalCargarPartidaMasivamenteComponent */ "./resources/js/components/cotizaciones/modals/modalCargarPartidaMasivamenteComponent.vue");
 /* harmony import */ var _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue */ "./resources/js/components/config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1241,13 +1248,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    "modal-edit-instrumento": _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "modal-edit-instrumento": _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -1405,23 +1415,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this2.services.clienteServices.getlistclientes();
+              _this2.$store.commit('setOverley', true);
+
+              Promise.all([_this2.services.clienteServices.getlistclientes(), _this2.services.monedaServices.getlistMonedas(), _this2.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(), _this2.services.empleadoServices.getlistEmpleados(), _this2.services.instrumentoServices.getlistInstrumentos(), _this2.services.unidadServices.getUnidades(), _this2.services.claveSatServices.getclavesSat()]).then(function () {})["catch"](function (reason) {
+                _this2.$store.commit('setOverley', false);
+              });
 
             case 2:
-              _this2.services.monedaServices.getlistMonedas();
-
-              _this2.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
-
-              _this2.services.empleadoServices.getlistEmpleados();
-
-              _this2.services.instrumentoServices.getlistInstrumentos();
-
-              _this2.services.unidadServices.getUnidades();
-
-              _this2.services.claveSatServices.getclavesSat();
-
-            case 8:
             case "end":
               return _context.stop();
           }
@@ -1802,15 +1802,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.services.instrumentoServices.getlistInstrumentos();
+              _this.$store.commit('setOverley', true);
 
-              _this.services.magnitudesServices.getListMagnitudes();
+              Promise.all([_this.services.instrumentoServices.getlistInstrumentos(), _this.services.magnitudesServices.getListMagnitudes(), _this.services.acreditacionesServices.getlistAcreditaciones(), _this.services.cotizacionServices.getMasivPartidas()]).then(function () {})["catch"](function (reason) {
+                _this.$store.commit('setOverley', false);
+              });
 
-              _this.services.acreditacionesServices.getlistAcreditaciones();
-
-              _this.services.cotizacionServices.getMasivPartidas();
-
-            case 4:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -5073,7 +5071,9 @@ var render = function() {
         on: { cargarPartidas: _vm.cargarPartidasImportadas }
       }),
       _vm._v(" "),
-      _c("modal-edit-instrumento")
+      _c("modal-edit-instrumento"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )

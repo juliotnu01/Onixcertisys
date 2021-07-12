@@ -5,7 +5,7 @@
             <v-row align="center" justify="center">
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                     <v-card class="elevation-12">
-                        <v-img src="img/login-logo.png" height="194"></v-img>
+                        <v-img src="img/login-logo.png" width="100%"></v-img>
                         <v-card-text>
                             <v-alert dense outlined type="error" v-if="error_handle_login">
                                 Credenciales invalidas por favor vuelva a intentarlo

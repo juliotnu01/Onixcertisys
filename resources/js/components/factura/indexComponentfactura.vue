@@ -203,7 +203,6 @@
                       .datos_fisicos_requeremientos_facturacion_razon_social
                   "
                   outlined
-                  
                 />
               </v-col>
               <v-col
@@ -218,7 +217,6 @@
                   label="Moneda"
                   v-model="cotizacion_partida.has_moneda.clave"
                   outlined
-                  
                 />
               </v-col>
 
@@ -226,7 +224,6 @@
                 <v-text-field
                   label="Forma de pago"
                   outlined
-                  
                   v-model="cotizacion_partida.has_cliente.forma_de_pago"
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
@@ -237,7 +234,6 @@
                   label="Metodo de pago"
                   v-model="cotizacion_partida.has_cliente.metodo_de_pago"
                   outlined
-                  
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
               </v-col>
@@ -246,7 +242,6 @@
                   label="Condicion de pago"
                   v-model="cotizacion_partida.has_cliente.termino_de_pago"
                   outlined
-                  
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
               </v-col>
@@ -258,21 +253,21 @@
                   
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 /> -->
-                  <v-autocomplete
-                    v-model="cotizacion_partida.has_cliente.cdfi"
-                    :items="cfdis"
-                    outlined
-                    label="C.F.D.I."
-                    return-object
-                    item-text="codigo_cfdi"
-                    item-value="codigo_cfdi"
-                    v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
-                  >
-                  <template v-slot:selection="{item}">
-                    {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                <v-autocomplete
+                  v-model="cotizacion_partida.has_cliente.cdfi"
+                  :items="cfdis"
+                  outlined
+                  label="C.F.D.I."
+                  return-object
+                  item-text="codigo_cfdi"
+                  item-value="codigo_cfdi"
+                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
+                >
+                  <template v-slot:selection="{ item }">
+                    {{ item.codigo_cfdi }} - {{ item.descripcion_cfdi }}
                   </template>
-                  <template v-slot:item="{item}">
-                     {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  <template v-slot:item="{ item }">
+                    {{ item.codigo_cfdi }} - {{ item.descripcion_cfdi }}
                   </template>
                 </v-autocomplete>
               </v-col>
@@ -360,7 +355,7 @@
                   return-object
                 />
               </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12">
+              <v-col cols="12" xs="12" sm="12" md="12">
                 <v-text-field
                   label="Orden de Compra"
                   outlined
@@ -671,7 +666,9 @@
     </v-row>
     <modal-add-factura />
     <modal-pdf-factura />
-    <!-- <notificacion /> -->
+    <notificacion />
+     <overlay/>
+
   </v-app>
 </template>
 
@@ -680,11 +677,13 @@ import { mapGetters } from "vuex";
 import modalADDFactura from "./modals/modalTotalizarComponent.vue";
 import modalPdfFactura from "./modals/modalPdfFacturaComponent";
 import notificacionComponent from "../notificacion/indexComponentNotificacion";
+import overlayComponent from '../overlayComponent.vue'
 export default {
   components: {
     "modal-add-factura": modalADDFactura,
     "modal-pdf-factura": modalPdfFactura,
     notificacion: notificacionComponent,
+    "overlay" : overlayComponent,
   },
   data() {
     return {
@@ -890,7 +889,7 @@ export default {
       "list_metodo_de_pago",
       "clavesSat",
       "unidades",
-      "cfdis"
+      "cfdis",
     ]),
     var_computed_subtotal: {
       get() {
@@ -987,17 +986,24 @@ export default {
     },
   },
   async mounted() {
-    await this.services.reciboServices.getlistRecibos();
-    await this.services.clienteServices.getlistclientes();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.empleadoServices.getlistEmpleados();
-    await this.services.instrumentoServices.getlistInstrumentos();
-    await this.services.clienteServices.getlistclientes();
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.unidadServices.getUnidades();
-    await this.services.claveSatServices.getclavesSat();
-    await this.services.cfdiServices.getCFDIs();
+     this.$store.commit('setOverley', true)
+    Promise.all([ this.services.reciboServices.getlistRecibos(),
+                  this.services.clienteServices.getlistclientes(),
+                  this.services.monedaServices.getlistMonedas(),
+                  this.services.empleadoServices.getlistEmpleados(),
+                  this.services.instrumentoServices.getlistInstrumentos(),
+                  this.services.clienteServices.getlistclientes(),
+                  this.services.metodoDePagoServices.getlistMetodoDePago(),
+                  this.services.condicionDePagoServices.getlistCondicionDePago(),
+                  this.services.unidadServices.getUnidades(),
+                  this.services.claveSatServices.getclavesSat(),
+                  this.services.cfdiServices.getCFDIs(),])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async addPartidaFacturaNueva(item) {
