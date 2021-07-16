@@ -659,6 +659,7 @@ export default {
       this.model.partidas.splice(index, 1);
     },
     cargarPartidasImportadas(masivPartidas) {
+      console.log({masivPartidas})
       var partida = {
         identificacion: "",
         instrumento: {},
