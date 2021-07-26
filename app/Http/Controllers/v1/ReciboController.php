@@ -42,7 +42,7 @@ class ReciboController extends Controller
                 'hasPartidas.hasIntrumento.belongsDocumento',
                 'hasPartidas.hasIntrumento.hasMagnitud',
                 'hasPartidas.hasIntrumento.hasAcreditacion'
-            ])->get();
+            ])->orderBy('id', 'desc')->get();
             return Response($recibos);
         } catch (\Throwable $th) {
             throw $th;
@@ -142,7 +142,8 @@ class ReciboController extends Controller
                                 'tipo' => $tipo,
                                 'vigencia' => $value['vigencia'],
                                 'recibo_id' => $recibo['id'],
-                                "lugar_servicio" => $value['lugar_servicio']
+                                "lugar_servicio" => $value['lugar_servicio']['name'],
+                                "observacion" => $value['observacion'],
                             ]);
                     }
                 }

@@ -219,7 +219,6 @@ class ClienteController extends Controller
                 }else{
                     $collectTerminosDePago = '';
                 }
-                
                 $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
                 if($collectUsuarioContraseña){
                     foreach ($collectUsuarioContraseña as $key => $value) {
@@ -227,6 +226,8 @@ class ClienteController extends Controller
                             $usuarioContraseña = "SE ENVIA POR EMAIL";
                         } elseif ($key === 'seOptienePorElPortal' && Str::lower($value) === 'x') {
                             $usuarioContraseña = "SE OPTIENE POR EL PORTAL";
+                        }else{
+                            $usuarioContraseña = '';
                         }
                     }
                 }else{

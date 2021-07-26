@@ -41,6 +41,28 @@ export default class partidaServices {
             console.log(e);
         }
     }
+    async actualizarObservacionPartida(model) {
+        try {
+            let { data } = await axios.put("/api/edit-observacion-partida", model);
+            var model_notificacion = {mensaje: 'Observacion actualizada con exito', status: true, color: 'warning'}
+            store.commit("setNotificacion", model_notificacion);
+        } catch (e) {
+            console.log(e);
+             var model_notificacion = {mensaje: `!Ha ocurrido un error al momento de actualizar la observacion de la partida --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
+        }
+    }
+    async actualizarLugarDeServicioPartida(model) {
+        try {
+            let { data } = await axios.put("/api/edit-lugar-servicio-partida", model);
+            var model_notificacion = {mensaje: 'Lugar de Servicio actualizada con exito', status: true, color: 'warning'}
+            store.commit("setNotificacion", model_notificacion);
+        } catch (e) {
+            console.log(e);
+             var model_notificacion = {mensaje: `!Ha ocurrido un error al momento de actualizar la observacion de la partida --> ${e}¡`, status: true, color: 'error'}
+            store.commit("setNotificacion", model_notificacion);
+        }
+    }
 
     async EliminarPartida(model) {
         try {

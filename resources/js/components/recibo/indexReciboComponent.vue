@@ -303,11 +303,10 @@ export default {
       return this.recibos.forEach((recibo) => {
         if (recibo.has_cotizaicon.has_cliente !== null) {
           item.children.push({
-            name: `Folio: ${recibo.id} - Empresa: ${
-              recibo.has_cotizaicon.has_cliente
-                .datos_fisicos_requeremientos_facturacion_razon_social
-            } - Fecha: ${recibo.created_at.substr(0, 10)} - Estado: ${recibo.estado}  `,
-            id: recibo.id,
+            name: `Folio: ${recibo.id} -
+                   Empresa: ${ recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social} - 
+                   Fecha: ${recibo.created_at.substr(0, 10)} - 
+                   Estado: ${recibo.estado}  `,id: recibo.id,
           });
         }
       });

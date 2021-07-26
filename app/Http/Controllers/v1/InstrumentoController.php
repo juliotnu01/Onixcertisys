@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Instrumento;
 use Illuminate\Http\Request;
 use DB;
+use App\Imports\InstrumentoImport;
+use Excel;
 
 class InstrumentoController extends Controller
 {
@@ -53,6 +55,16 @@ class InstrumentoController extends Controller
                 $instrumento->save();
 
             },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+    public function storeFromFile(Request $request)
+    {
+        try {
+            Excel::import(new InstrumentoImport, $request->file('document_instrumentos'), \Maatwebsite\Excel\Excel::XLSX);
+            return response(['mensaje' => 'cargado con exito'] , 200);
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

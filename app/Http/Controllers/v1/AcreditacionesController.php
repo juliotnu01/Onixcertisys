@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Acreditaciones;
 use Illuminate\Http\Request;
 use DB;
+use Excel;
+use App\Imports\AcreditacionImport;
+
 
 class AcreditacionesController extends Controller
 {
@@ -46,6 +49,17 @@ class AcreditacionesController extends Controller
             return DB::transaction(function () use ($request, $acreditaciones) {
                 $acreditaciones->nombre = $request['nombre'];
                 $acreditaciones->save();
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
+    }
+
+    public function agregarAcreditacionesMasivamente(Request $request, Acreditaciones $acreditaciones)
+    {
+        try {
+            return DB::transaction(function () use ($request, $acreditaciones) {
+                Excel::import(new AcreditacionImport, $request->file('document_instrumentos'), \Maatwebsite\Excel\Excel::XLSX);
             }, 5);
         } catch (Exception $e) {
             throw new Exception($e, 1);

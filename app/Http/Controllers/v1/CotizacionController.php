@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Cotizacion, Partida, MasivPartidas, Empresa};
+use App\Models\{Cotizacion, Partida, MasivPartidas, Empresa, NotaDeSeguimiento};
 use Illuminate\Http\Request;
 use DB;
 use PDF;
@@ -130,7 +130,10 @@ class CotizacionController extends Controller
                     $partida->vigencia = $value['vigencia'];
                     $partida->save();
                 }
-
+                NotaDeSeguimiento::create([
+                    'nota_seguimiento' => $request['nota_para_la_cotizacion'],
+                    'cotizacion_id' =>  $cotizacion->id
+                ]);
                 MasivPartidas::truncate();
             }, 5);
         } catch (Exception $e) {
@@ -249,6 +252,7 @@ class CotizacionController extends Controller
                             'cotizacion_id' =>  $request['id'],
                             'unidad_id' => $value['has_unidad']['id'],
                             'clave_sat_id' => $value['has_clave_sat']['id'],
+                            'vigencia' => $value['vigencia']
                         ]);
                     } else {
                         $partida->cantidad = $value['cantidad'];
@@ -263,6 +267,7 @@ class CotizacionController extends Controller
                         $partida->cotizacion_id = $request['id'];
                         $partida->unidad_id = $value['has_unidad']['id'];
                         $partida->clave_sat_id = $value['has_clave_sat']['id'];
+                        $partida->vigencia = $value['vigencia'];
                         $partida->save();
                     }
                 }

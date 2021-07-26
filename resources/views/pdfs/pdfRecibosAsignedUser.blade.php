@@ -265,6 +265,11 @@
                 <td>  Observaciones:</td>
                 <td> </td>
             </tr>
+            @foreach($data['has_partidas'] as $key => $Observacion)
+            <tr>
+                <td style="border: none;" > {{$Observacion['observacion']}} </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
    

@@ -116,7 +116,6 @@
                     label="Notas de la cotizacion"
                   ></v-textarea>
                 </v-col>
-                </v-col>
               </v-row>
             <v-data-table  dense :headers="headers_cotizacion" :items="cotizacion_view.has_partidas" item-key="name" class="elevation-1 mt-5">
               <template slot="items" slot-scope="props">
@@ -195,7 +194,7 @@
                   <v-switch
                     label
                     v-model="item.convertir_recibo"
-                    class="text-center mt-5 w-50"
+                    class="text-center mt-5 ml-5 mr-5 w-50"
                     small
                   />
                 </td>
@@ -213,12 +212,29 @@
               </template>
               <template v-slot:item.lugar_servicio="{ item }">
                 <td>
-                  <v-text-field
+                  <v-select
+                    :items="items_lugar_de_servicio"
                     v-model="item.lugar_servicio"
-                    label
+                    label=""
+                    item-text="name"
+                    return-object
+                    item-value="name"
                     outlined
                     dense
                     class="mt-5 text-center"
+                    placeholder="Seleccione un lugar de servicio"
+                    @change="ActualizarLugarDeServicioODS(item)"
+                  ></v-select>
+                </td>
+              </template>
+              <template v-slot:item.observacion="{ item }" >
+                <td>
+                  <v-textarea
+                    outlined
+                    label=""
+                    v-model="item.observacion"
+                    class="mt-5 text-center"
+                    @change="ActualizarObservacionODS(item)"
                   />
                 </td>
               </template>
@@ -307,11 +323,22 @@ export default {
           align: "center",
         },
         {
+          text: "Observacion",
+          value: "observacion",
+          align: "center",
+        },
+        {
           text: "Convertir en O.D.S",
           value: "convert_recibo",
           align: "center",
         },
       ],
+      observacion: '',
+      items_lugar_de_servicio:[
+        {name:'Laboratio', value: 1},
+        {name:'Campo', value: 2},
+
+      ]
     };
   },
   computed: {
@@ -351,6 +378,7 @@ export default {
              var model = {
               estado: "pendiente",
               cotizacion_id: this.cotizacion_view,
+              observacion: this.observacion
             };
             await this.services.reciboServices.agregarRecibo(model);
             await this.services.cotizacionServices.getlistCotizaciones();
@@ -360,6 +388,28 @@ export default {
       }
       
     },
+    async ActualizarObservacionODS(item){
+      try {
+         var model = {
+              observacion: item.observacion,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarObservacionPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async ActualizarLugarDeServicioODS(item){
+      try {
+         var model = {
+              lugar_servicio: item.lugar_servicio,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarLugarDeServicioPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
 };
 </script>

@@ -136,6 +136,30 @@ class PartidaController extends Controller
             throw new Exception($e, 1);
         }
     }
+    public function updateObservacionODS(Request $request, Partida $partida)
+    {
+        try {
+            return DB::transaction(function () use ($request,$partida) {
+                $partida->find($request['id'])->update([
+                    'observacion' => $request['observacion'],
+                ]);
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
+    }
+    public function updateLugarDeServicioODS(Request $request, Partida $partida)
+    {
+        try {
+            return DB::transaction(function () use ($request,$partida) {
+                $partida->find($request['id'])->update([
+                    'lugar_servicio' => $request['lugar_servicio']['name'],
+                ]);
+            }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

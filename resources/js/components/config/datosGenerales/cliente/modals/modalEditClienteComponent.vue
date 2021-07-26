@@ -33,7 +33,7 @@
                     return-object
                   >
                     <template v-slot:selection="data">
-                      <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                      <v-chip v-bind="data.attrs" :input-value="data.selected" close @click:close="removeServices(data.item)">
                         {{ data.item.name }}
                       </v-chip>
                     </template>
@@ -697,6 +697,10 @@ export default {
       var index = this.cliente.sucursales.indexOf(suc);
       this.cliente.sucursales.splice(index, 1);
     },
+    removeServices(data){
+        var indexP = this.cliente.servicio_solicitado.indexOf(data);
+        this.cliente.servicio_solicitado.splice(indexP, 1);
+    }
   },
 };
 </script>

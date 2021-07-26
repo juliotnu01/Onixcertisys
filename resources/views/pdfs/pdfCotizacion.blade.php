@@ -335,8 +335,19 @@
     <table class="tableNota">
         <tbody>
             <tr>
-                <td> NOTA:</td>
-                <td> </td>
+                <td> NOTA:<br/>
+                @foreach($data['has_nota_de_seguimiento'] as $key => $nota)
+                    <div  style="text-align: left;">
+                        <p style="margin-bottom: 5px; ">{{$nota['nota_seguimiento']}}</p>
+                        @foreach($nota['has_onw_note'] as $key => $nota2)
+                            <div  style="text-align: right;">
+                                <p style="margin-bottom: 5px; ">{{$nota2['nota_seguimiento']}}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach    
+                </td>
+                
             </tr>
         </tbody>
     </table>

@@ -14,7 +14,6 @@
         </v-btn>
       </v-toolbar>
       <v-card>
-       
         <v-card-text>
           <v-card class="elevation-1">
             <v-card-title primary-title> SERVICIO SOLICITADO: </v-card-title>
@@ -34,7 +33,7 @@
                       return-object
                     >
                       <template v-slot:selection="data">
-                        <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                        <v-chip v-bind="data.attrs" :input-value="data.selected" close @click:close="removeServices(data.item)">
                           {{ data.item.name }}
                         </v-chip>
                       </template>
@@ -842,6 +841,10 @@ export default {
       var index = this.model.sucursales.indexOf(suc);
       this.model.sucursales.splice(index, 1);
     },
+    removeServices(data){
+        var indexP = this.model.servicio_solicitado.indexOf(data);
+        this.model.servicio_solicitado.splice(indexP, 1);
+    }
   },
 };
 </script>

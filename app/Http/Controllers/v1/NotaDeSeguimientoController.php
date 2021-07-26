@@ -40,7 +40,6 @@ class NotaDeSeguimientoController extends Controller
     {
         try {
             return DB::transaction(function () use ($request, $notaDeSeguimiento){
-                // dd($request->all());
                 $notaDeSeguimiento->nota_seguimiento = $request['model']['nota_seguimiento'];
                 $notaDeSeguimiento->cotizacion_id = $request['cotizacion']['id'];
                 $notaDeSeguimiento->save() ;

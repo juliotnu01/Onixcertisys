@@ -348,7 +348,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
                   if (recibo.has_cotizaicon.has_cliente !== null) {
                     item.children.push({
-                      name: "Folio: ".concat(recibo.id, " - Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10), " - Estado: ").concat(recibo.estado, "  "),
+                      name: "Folio: ".concat(recibo.id, " -\n                   Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - \n                   Fecha: ").concat(recibo.created_at.substr(0, 10), " - \n                   Estado: ").concat(recibo.estado, "  "),
                       id: recibo.id
                     });
                   }

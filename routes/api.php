@@ -42,11 +42,13 @@ Route::post('/get-reporte-magnitud-ventas', 'v1\ReporteVentasPorMagnitudControll
 Route::post('/add-magnitudes', 'v1\MagnitudesController@store');
 Route::put('/edit-magnitud', 'v1\MagnitudesController@update');
 Route::delete('/delete-magnitud/{id}', 'v1\MagnitudesController@destroy');
+Route::post('/add-magnitudes-masivamente', 'v1\MagnitudesController@agregarMagnitudesMasivamente');
 
 Route::get('/get-acreditaciones', 'v1\AcreditacionesController@index');
 Route::post('/add-acreditaciones', 'v1\AcreditacionesController@store');
 Route::put('/edit-acreditacion', 'v1\AcreditacionesController@update');
 Route::delete('/delete-acreditacion/{id}', 'v1\AcreditacionesController@destroy');
+Route::post('/add-acreditaciones-masivamente', 'v1\AcreditacionesController@agregarAcreditacionesMasivamente');
 
 Route::get('/get-condiciones-de-pago', 'v1\CondicionesDePagoController@index');
 Route::post('/add-condicion-de-pago', 'v1\CondicionesDePagoController@store');
@@ -91,6 +93,7 @@ Route::post('/add-instrumento', 'v1\InstrumentoController@store');
 Route::put('/edit-instrumento', 'v1\InstrumentoController@update');
 Route::delete('/delete-instrumento/{id}', 'v1\InstrumentoController@destroy');
 Route::put('/edit-instrumento-cargado-masivamente', 'v1\InstrumentoController@updateInstrumentoCargadoMasivamente');
+Route::post('/add-instrumento-masivamente', 'v1\InstrumentoController@storeFromFile');
 
 Route::get('/get-procedimientos', 'v1\ProcedimientoController@index');
 Route::post('/add-procedimiento', 'v1\ProcedimientoController@store');
@@ -118,6 +121,8 @@ Route::get('/get-partidas-para-calibrar', 'v1\PartidaController@indexParaCalibra
 Route::post('/cargar-certificado-partidas', 'v1\PartidaController@cargarCertificadoPdfPartida');
 // Route::post('/add-cotizacion', 'v1\CotizacionController@store');
 Route::put('/edit-partida', 'v1\PartidaController@update');
+Route::put('/edit-observacion-partida', 'v1\PartidaController@updateObservacionODS');
+Route::put('/edit-lugar-servicio-partida', 'v1\PartidaController@updateLugarDeServicioODS');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
 
 Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // identificador de informe de las partidas
