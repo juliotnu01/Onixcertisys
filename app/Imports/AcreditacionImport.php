@@ -16,7 +16,8 @@ class AcreditacionImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Acreditaciones([
-            'nombre' => $row['nombre']
+            'nombre' => $row['nombre'],
+            'id' => $row['id']
         ]);
     }
 }
