@@ -53,5 +53,27 @@ export default class empleadoServices{
 		}
 	}
 
+	async agregarEmpleadoMasivamente(file = null){
+		try {
+			var datafile = new FormData();
+			datafile.append("document_empleado", file);
+			let { data } = await axios.post(`/api/add-empleado-masiv`, datafile,{ headers: {"content-type": "multipart/form-data"}});
+			var model_notificacion = {
+				mensaje: "Tiempos de Entrega cargadas con exito",
+				status: true,
+				color: "success"
+			};
+			store.commit("setNotificacion", model_notificacion);
+		} catch (e) {
+			console.log(e);
+			var model_notificacion = {
+				mensaje: `!Ha ocurrido un error en Tiempos de Entrega --> ${e}¡`,
+				status: true,
+				color: "error"
+			};
+			store.commit("setNotificacion", model_notificacion);
+		}
+	}
+
 
 }

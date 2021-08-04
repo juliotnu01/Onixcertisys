@@ -62,6 +62,7 @@ Route::delete('/delete-metodo-de-pago/{id}', 'v1\MetodoDePagoController@destroy'
 
 Route::get('/get-tiempos-de-entrega', 'v1\TiempoDeEntregaController@index');
 Route::post('/add-tiempo-de-entrega', 'v1\TiempoDeEntregaController@store');
+Route::post('/add-tiempo-de-entrega-masiv', 'v1\TiempoDeEntregaController@storeImport');
 Route::put('/edit-tiempo-de-entrega', 'v1\TiempoDeEntregaController@update');
 Route::delete('/delete-tiempo-de-entrega/{id}', 'v1\TiempoDeEntregaController@destroy');
 
@@ -72,11 +73,13 @@ Route::delete('/delete-ciudad-estado-pais/{id}', 'v1\CiudadEstadoPaisController@
 
 Route::get('/get-monedas', 'v1\MonedaController@index');
 Route::post('/add-moneda', 'v1\MonedaController@store');
+Route::post('/add-moneda-masiv', 'v1\MonedaController@storeImport');
 Route::put('/edit-moneda', 'v1\MonedaController@update');
 Route::delete('/delete-moneda/{id}', 'v1\MonedaController@destroy');
 
 Route::get('/get-empleados', 'v1\EmpleadoController@index');
 Route::post('/add-empleado', 'v1\EmpleadoController@store');
+Route::post('/add-empleado-masiv', 'v1\EmpleadoController@storeImport');
 Route::put('/edit-empleado', 'v1\EmpleadoController@update');
 Route::delete('/delete-empleado/{id}', 'v1\EmpleadoController@destroy');
 Route::post('/asignar-tecnico-partida', 'v1\EmpleadoController@asignarTecnicoPartida');

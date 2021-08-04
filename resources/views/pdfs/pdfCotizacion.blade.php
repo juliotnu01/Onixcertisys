@@ -15,7 +15,7 @@
     .tdInfoEmpresa {
         width: 20%;
         text-align: center;
-        font-size: 9px ;
+        font-size: 12px ;
     }
 
     .tdInfoEmpresaContactos {
@@ -261,7 +261,6 @@
             
             <tr class="tableCuerpoItems_head_tr">
                 <th>#</th>
-                <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
                 <th>Instrumento</th>
@@ -281,7 +280,6 @@
             @foreach($data['has_partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
                 <td>{{$key+1}}</td>
-                <td>{{$item['id']}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
                 <td>{{$item['has_intrumento']['nombre']}}</td>
@@ -339,11 +337,11 @@
                 @foreach($data['has_nota_de_seguimiento'] as $key => $nota)
                     <div  style="text-align: left;">
                         <p style="margin-bottom: 5px; ">{{$nota['nota_seguimiento']}}</p>
-                        @foreach($nota['has_onw_note'] as $key => $nota2)
+                        <!-- @foreach($nota['has_onw_note'] as $key => $nota2)
                             <div  style="text-align: right;">
                                 <p style="margin-bottom: 5px; ">{{$nota2['nota_seguimiento']}}</p>
                             </div>
-                        @endforeach
+                        @endforeach -->
                     </div>
                 @endforeach    
                 </td>

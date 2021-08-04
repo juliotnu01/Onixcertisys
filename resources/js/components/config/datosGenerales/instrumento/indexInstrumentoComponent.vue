@@ -70,6 +70,11 @@
             {{ item.created_at.substr(0, 10) }}
           </td>
         </template>
+        <template v-slot:item.precio_venta="{ item }">
+          <td class="text-center">
+            {{ item.precio_venta | numberFormat }}
+          </td>
+        </template>
       </v-data-table>
     </v-card>
     <modal-add />

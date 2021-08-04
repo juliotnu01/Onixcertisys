@@ -20,7 +20,7 @@ class InstrumentoImport implements ToModel, WithHeadingRow
             'nombre' => $row['nombre'] ,
             'alcance' => $row['alcance'] ,
             'precio_venta' => $row['precio_venta'] ,
-            'magnitude_id' => $row['area_id'],
+            'magnitude_id' => $row['area_id'] ? $row['area_id'] : null ,
             'acreditacion_id' => $row['acreditacion_id'],
         ]);
     }
