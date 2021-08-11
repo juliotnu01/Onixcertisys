@@ -207,6 +207,7 @@
                     outlined
                     dense
                     class="mt-5 text-center"
+                    @change="ActualizarVigenciaODS(item)"
                   />
                 </td>
               </template>
@@ -409,7 +410,19 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    }
+    },
+    async ActualizarVigenciaODS(item){
+      try {
+         var model = {
+              vigencia_servicio: item.vigencia,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarVigenciaPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
   },
 };
 </script>

@@ -2146,6 +2146,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2369,6 +2370,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }, _callee4, null, [[0, 6]]);
+      }))();
+    },
+    ActualizarVigenciaODS: function ActualizarVigenciaODS(item) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var model;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                model = {
+                  vigencia_servicio: item.vigencia,
+                  id: item.id
+                };
+                _context5.next = 4;
+                return _this5.services.partidaServices.actualizarVigenciaPartida(model);
+
+              case 4:
+                _context5.next = 9;
+                break;
+
+              case 6:
+                _context5.prev = 6;
+                _context5.t0 = _context5["catch"](0);
+                console.log(_context5.t0);
+
+              case 9:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[0, 6]]);
       }))();
     }
   }
@@ -5986,6 +6021,11 @@ var render = function() {
                                         label: "",
                                         outlined: "",
                                         dense: ""
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          return _vm.ActualizarVigenciaODS(item)
+                                        }
                                       },
                                       model: {
                                         value: item.vigencia,

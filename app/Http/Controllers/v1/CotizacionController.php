@@ -130,10 +130,7 @@ class CotizacionController extends Controller
                     $partida->vigencia = $value['vigencia'];
                     $partida->save();
                 }
-                NotaDeSeguimiento::create([
-                    'nota_seguimiento' => $request['nota_para_la_cotizacion'],
-                    'cotizacion_id' =>  $cotizacion->id
-                ]);
+               
                 MasivPartidas::truncate();
             }, 5);
         } catch (Exception $e) {

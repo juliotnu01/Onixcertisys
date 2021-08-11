@@ -126,6 +126,7 @@ Route::post('/cargar-certificado-partidas', 'v1\PartidaController@cargarCertific
 Route::put('/edit-partida', 'v1\PartidaController@update');
 Route::put('/edit-observacion-partida', 'v1\PartidaController@updateObservacionODS');
 Route::put('/edit-lugar-servicio-partida', 'v1\PartidaController@updateLugarDeServicioODS');
+Route::put('/edit-vigencia-partida', 'v1\PartidaController@updateVigenciaODS');
 Route::delete('/delete-partida/{id}', 'v1\PartidaController@destroy');
 
 Route::post('/add-identificador', 'v1\IdenticadorInformeController@store'); // identificador de informe de las partidas

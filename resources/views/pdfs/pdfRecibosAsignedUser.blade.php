@@ -167,7 +167,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                <!-- <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;"> -->
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -207,15 +207,15 @@
             </tr>
             <tr>
                 <td style="width: 3%;">Usuario:</td>
-                <td style="width: 3%; text-align: left" colspan="3">{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3">{{$data['has_cotizaicon']['contacto']}}</td>
             </tr>
             <tr>
                 <td style="width: 3%;">Teléfono:</td>
-                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_telf']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['contacto_correo']}}</td>
             </tr>
             <tr>
                 <td style="width: 3%;">Correo:</td>
-                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_correo']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['contacto_telefono']}}</td>
             </tr>
         </tbody>
     </table>
@@ -225,7 +225,6 @@
             
             <tr class="tableCuerpoItems_head_tr">
                 <th>#</th>
-                <th>Part</th>
                 <th>Cant</th>
                 <th>Serv</th>
                 <th>Informe - Instrumento</th>
@@ -243,7 +242,6 @@
             @foreach($data['has_partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
                 <td>{{$key+1}}</td>
-                <td>{{$item['id']}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
                 <td>{{$item['informe_id']}} - {{$item['has_intrumento']['nombre']}}</td>
