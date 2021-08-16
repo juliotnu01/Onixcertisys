@@ -237,8 +237,8 @@ class FacturaController extends Controller
                 $comprobante["Version"]                = "3.3";
                 $comprobante["Serie"]                  = "A";
                 $comprobante["Folio"]                  = $factura['id']; 
-                // $comprobante["Fecha"]                  =  Carbon::parse($factura['created_at'])->format('Y-m-d') . "T" . Carbon::parse($factura['created_at'])->format('H:i:s');
-                $comprobante["Fecha"]                  =  "2021-08-16T00:47:02";
+                $comprobante["Fecha"]                  =  Carbon::now()->format('Y-m-d') . "T" . Carbon::now()->format('H:i:s');
+                // $comprobante["Fecha"]                  =  "2021-08-16T00:47:02";
                 $comprobante["Moneda"]                 = $request['cliente']['has_moneda']['clave']; 
                 $comprobante["TipoDeComprobante"]      = "I";
                 $comprobante["LugarExpedicion"]        = "66050";
