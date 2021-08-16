@@ -294,7 +294,7 @@ class FacturaController extends Controller
                 $dataFactura = collect($RecibosPartidas);
                 $cliente = Cliente::with(['hasMetodoDePago', 'hasCondicionDePago'])->find($request['cliente']['cliente_id']);
                 $empresa = Empresa::find(1);
-                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($result->data->cadenaOriginalSAT));
+                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate(collect($result)->data->cadenaOriginalSAT));
                 $stringQr = $result->data->cadenaOriginalSAT;
                 $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
                 $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request',  'spell', 'factura', 'stringQr', 'result', 'qrcode']));
