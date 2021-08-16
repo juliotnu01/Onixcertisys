@@ -30,6 +30,7 @@ use SWServices\Taxpayer\TaxpayerService as ValidarListaNegra;
 use View;
 use Http;
 use Carbon\Carbon;
+use Reponse;
 
 
 class FacturaController extends Controller
@@ -238,7 +239,6 @@ class FacturaController extends Controller
                 $comprobante["Serie"]                  = "A";
                 $comprobante["Folio"]                  = $factura['id']; 
                 $comprobante["Fecha"]                  =  Carbon::now()->format('Y-m-d') . "T" . Carbon::now()->format('H:i:s');
-                // $comprobante["Fecha"]                  =  "2021-08-16T00:47:02";
                 $comprobante["Moneda"]                 = $request['cliente']['has_moneda']['clave']; 
                 $comprobante["TipoDeComprobante"]      = "I";
                 $comprobante["LugarExpedicion"]        = "66050";
@@ -288,20 +288,31 @@ class FacturaController extends Controller
                 $output = View::make('xmls.XmlFactura', compact('comprobante'))->render();
                 EmisionTimbrado::Set($paramsConsultar);
                 $result = collect(EmisionTimbrado::EmisionTimbradoV4($output));
-                $RecibosPartidas = new RecibosCollection($data2);
-                $dataFactura = collect($RecibosPartidas);
-                $cliente = Cliente::with(['hasMetodoDePago', 'hasCondicionDePago'])->find($request['cliente']['cliente_id']);
-                $empresa = Empresa::find(1);
-                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($result['data']->cadenaOriginalSAT));
-                $stringQr = $result['data']->cadenaOriginalSAT;
-                $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
-                $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request',  'spell', 'factura', 'stringQr', 'result', 'qrcode']));
-                Storage::disk('store_pdfs')->put("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf", $pdf->stream());
-                $url = Storage::disk('store_pdfs')->url("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf");
-                Factura::find($factura['id'])->update([
-                    'ruta_pdf' => $url
-                ]);
-                return  $url;
+
+                    if ($result['status'] === "success") {
+                        Factura::find($factura['id'])->update([
+                         'uuid' => $result['data']->uuid
+                        ]);
+
+                    $RecibosPartidas = new RecibosCollection($data2);
+                    $dataFactura = collect($RecibosPartidas);
+                    $cliente = Cliente::with(['hasMetodoDePago', 'hasCondicionDePago'])->find($request['cliente']['cliente_id']);
+                    $empresa = Empresa::find(1);
+                    $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($result['data']->cadenaOriginalSAT));
+                    $stringQr = $result['data']->cadenaOriginalSAT;
+                    $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
+                    $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request',  'spell', 'factura', 'stringQr', 'result', 'qrcode']));
+                    Storage::disk('store_pdfs')->put("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf", $pdf->stream());
+                    $url = Storage::disk('store_pdfs')->url("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf");
+                    Factura::find($factura['id'])->update([
+                        'ruta_pdf' => $url
+                    ]);
+                    return  $url;
+                }else{
+                    return Response::json([
+                        'data' => $result
+                    ], 500);
+                }
  
             });
         } catch (Exception $e) {

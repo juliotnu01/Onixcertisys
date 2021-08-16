@@ -1,16 +1,14 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="openDialog" >
+    <v-dialog v-model="openDialog">
       <v-card>
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="openDialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-           <h4 class="text-right mr-5 mt-4"><strong>Fecha:</strong> {{ fecha }}</h4>
-          <v-btn color="#0095d9"  @click="RegistrarFactura">
-            Registrar Factura
-          </v-btn>
+          <h4 class="text-right mr-5 mt-4"><strong>Fecha:</strong> {{ fecha }}</h4>
+          <v-btn color="#0095d9" @click="RegistrarFactura" :loading="loading_registrar_factura" > Registrar Factura </v-btn>
         </v-toolbar>
         <v-card-text>
           <v-row v-if="Object.entries(factura).length > 0">
@@ -213,10 +211,15 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-         
-        </v-card-actions>
+        <v-snackbar v-model="snackbar_error_factura" color="error" :timeout="-1">
+            <div v-if="Object.entries(this.error_message_factura).length > 0" >
+              {{ error_message_factura.data.data.message }}<br/>
+              {{ error_message_factura.data.data.messageDetail }}
+            </div>
+            <template v-slot:action="{ attrs }">
+              <v-btn color="#0095d9" dark v-bind="attrs" @click="snackbar_error_factura = false"> Cerrar</v-btn>
+            </template>
+        </v-snackbar>
       </v-card>
     </v-dialog>
   </div>
@@ -229,10 +232,13 @@ export default {
   data() {
     return {
       fecha: moment().format("l"),
+      snackbar_error_factura:false,
+      error_message_data_factura:{},
+      loading_registrar_factura:false,
     };
   },
   computed: {
-    ...mapGetters(["services", "dialog_add_factura", "factura"]),
+    ...mapGetters(["services", "dialog_add_factura", "factura", "error_message_factura"]),
     openDialog: {
       get() {
         return this.dialog_add_factura;
@@ -245,9 +251,16 @@ export default {
   methods: {
     async RegistrarFactura() {
       try {
-        this.services.facturaServices.agregarFactura(this.factura);
+        this.loading_registrar_factura = true
+        await this.services.facturaServices.agregarFactura(this.factura);
+        if (Object.entries(this.error_message_factura).length > 0) {
+          this.snackbar_error_factura = true
+          this.error_message_data_factura = this.error_message_factura.data.data
+        }
+        this.loading_registrar_factura = false
       } catch (e) {
         console.log(e);
+        this.loading_registrar_factura = false
       }
     },
   },

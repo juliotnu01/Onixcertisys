@@ -142,6 +142,7 @@ export default  new Vuex.Store({
         cfdi:{},
         dialog_edit_cfdi: false,
         overlay: false,
+        error_message_factura: {},
 
     },
     getters: {
@@ -270,6 +271,7 @@ export default  new Vuex.Store({
         cfdi: state => state.cfdi,
         dialog_edit_cfdi: state => state.dialog_edit_cfdi,
         overlay: state => state.overlay,
+        error_message_factura: state => state.error_message_factura 
         
     },
     mutations: {
@@ -759,6 +761,9 @@ export default  new Vuex.Store({
         },
         setOverley(state, data){
             state.overlay = data
+        },
+        setErrorMessageFactura(state,data){
+            state.error_message_factura = data
         },
     },
     actions: {

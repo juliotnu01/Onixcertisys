@@ -1062,7 +1062,6 @@ export default {
     CargarPartidas(p) {
       this.model.recibo.forEach((item) => {
         this.cotizacion_partida = item.has_cotizaicon;
-        console.log({ cot: this.cotizacion_partida });
       });
       for (var i = 0; i < this.model.recibo.length; i++) {
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {

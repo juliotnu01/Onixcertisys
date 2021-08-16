@@ -27,7 +27,8 @@ export default class facturaServices {
             store.commit("setRutaPdfFactura", data);
             store.commit("setDialogPdfFactura", true);
         } catch (e) {
-            console.log(e);
+            console.log(e.response);
+            store.commit("setErrorMessageFactura", e.response);
         }
     }
     async agregarFacturaNueva(model) {
