@@ -1194,6 +1194,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1202,10 +1208,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-cargar-partidas-masivamente": _modalCargarPartidaMasivamenteComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     "modal-edit-instrumento": _config_datosGenerales_instrumento_modals_modalEditInstrumentocomponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    overlay: _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
+      snackbar_mag_acre: false,
       rules: {
         required: function required(value) {
           return !!value || "Este campo es requerido.";
@@ -1266,7 +1273,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         importe: 0,
         servicio: {},
         unidad: {},
-        vigencia: '',
+        vigencia: "",
         unidad_cod: {
           clave: "E48",
           nombre: "Unidad de Servicio"
@@ -1360,10 +1367,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this2.$store.commit('setOverley', true);
+              _this2.$store.commit("setOverley", true);
 
               Promise.all([_this2.services.clienteServices.getlistclientes(), _this2.services.monedaServices.getlistMonedas(), _this2.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(), _this2.services.empleadoServices.getlistEmpleados(), _this2.services.instrumentoServices.getlistInstrumentos(), _this2.services.unidadServices.getUnidades(), _this2.services.claveSatServices.getclavesSat()]).then(function () {})["catch"](function (reason) {
-                _this2.$store.commit('setOverley', false);
+                _this2.$store.commit("setOverley", false);
               });
 
             case 2:
@@ -1376,40 +1383,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     AgregarPartida: function AgregarPartida() {
-      for (var i = 0; i < this.partida.cantidad; i++) {
-        var model = {
-          identificacion: this.partida.identificacion,
-          instrumento: this.partida.instrumento,
-          instrumento_nombre: this.partida.instrumento.nombre,
-          cantidad: 1,
-          marca: this.partida.marca,
-          modelo: this.partida.modelo,
-          serie: this.partida.serie,
-          importe: this.partida.instrumento.precio_venta * 1,
-          servicio: this.partida.servicio,
-          unidad: this.partida.unidad,
-          precio_venta: this.partida.instrumento.precio_venta,
-          unidad_cod: this.partida.unidad_cod,
-          clave_sat: this.partida.clave_sat,
-          vigencia: this.partida.vigencia
-        };
-        this.model.partidas.push(model);
-      }
+      if (!this.partida.instrumento.has_acreditacion || !this.partida.instrumento.has_magnitud) {
+        this.snackbar_mag_acre = true;
+      } else {
+        for (var i = 0; i < this.partida.cantidad; i++) {
+          var model = {
+            identificacion: this.partida.identificacion,
+            instrumento: this.partida.instrumento,
+            instrumento_nombre: this.partida.instrumento.nombre,
+            cantidad: 1,
+            marca: this.partida.marca,
+            modelo: this.partida.modelo,
+            serie: this.partida.serie,
+            importe: this.partida.instrumento.precio_venta * 1,
+            servicio: this.partida.servicio,
+            unidad: this.partida.unidad,
+            precio_venta: this.partida.instrumento.precio_venta,
+            unidad_cod: this.partida.unidad_cod,
+            clave_sat: this.partida.clave_sat,
+            vigencia: this.partida.vigencia
+          };
+          this.model.partidas.push(model);
+        }
 
-      this.partida = {
-        identificacion: "",
-        instrumento: {},
-        cantidad: 0,
-        marca: "",
-        modelo: "",
-        serie: "",
-        importe: 0,
-        servicio: {},
-        unidad: {},
-        unidad_cod: {},
-        clave_sat: {},
-        vigencia: ''
-      };
+        this.partida = {
+          identificacion: "",
+          instrumento: {},
+          cantidad: 0,
+          marca: "",
+          modelo: "",
+          serie: "",
+          importe: 0,
+          servicio: {},
+          unidad: {},
+          unidad_cod: {},
+          clave_sat: {},
+          vigencia: ""
+        };
+      }
     },
     addCotizacion: function addCotizacion() {
       var _this3 = this;
@@ -1485,7 +1496,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         servicio: {},
         unidad: {},
         precio_venta: 0,
-        vigencia: ''
+        vigencia: ""
       };
       this.masivPartidas.forEach(function (item) {
         partida = {
@@ -4880,7 +4891,53 @@ var render = function() {
       _vm._v(" "),
       _c("modal-edit-instrumento"),
       _vm._v(" "),
-      _c("overlay")
+      _c("overlay"),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { color: "red", dark: "" },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { text: "", dark: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snackbar_mag_acre = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v(" Cerrar ")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snackbar_mag_acre,
+            callback: function($$v) {
+              _vm.snackbar_mag_acre = $$v
+            },
+            expression: "snackbar_mag_acre"
+          }
+        },
+        [
+          _c("p", [
+            _vm._v("Este instrumento no cuenta con magnitud y/o acreditación")
+          ])
+        ]
+      )
     ],
     1
   )

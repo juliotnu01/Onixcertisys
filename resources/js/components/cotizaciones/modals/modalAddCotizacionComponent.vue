@@ -390,7 +390,13 @@
     </v-dialog>
     <modal-cargar-partidas-masivamente v-on:cargarPartidas="cargarPartidasImportadas" />
     <modal-edit-instrumento />
-     <overlay/>
+    <overlay />
+    <v-snackbar v-model="snackbar_mag_acre" color="red" dark > 
+      <p>Este instrumento no cuenta con magnitud y/o acreditación</p>
+      <template v-slot:action="{ attrs }">
+        <v-btn  text v-bind="attrs" @click="snackbar_mag_acre = false" dark> Cerrar </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -398,15 +404,16 @@
 import { mapGetters } from "vuex";
 import modalCargarPartidaMasivamente from "./modalCargarPartidaMasivamenteComponent";
 import modalEditInstrumento from "../../config/datosGenerales/instrumento/modals/modalEditInstrumentocomponent.vue";
-import overlayComponent from '../../overlayComponent.vue'
+import overlayComponent from "../../overlayComponent.vue";
 export default {
   components: {
     "modal-cargar-partidas-masivamente": modalCargarPartidaMasivamente,
     "modal-edit-instrumento": modalEditInstrumento,
-    "overlay" : overlayComponent,
+    overlay: overlayComponent,
   },
   data() {
     return {
+      snackbar_mag_acre: false,
       rules: {
         required: (value) => !!value || "Este campo es requerido.",
       },
@@ -473,7 +480,7 @@ export default {
         importe: 0,
         servicio: {},
         unidad: {},
-        vigencia: '',
+        vigencia: "",
         unidad_cod: { clave: "E48", nombre: "Unidad de Servicio" },
         clave_sat: {
           codigo: "81141504",
@@ -576,56 +583,60 @@ export default {
     },
   },
   async mounted() {
-    this.$store.commit('setOverley', true)
-    Promise.all([this.services.clienteServices.getlistclientes(),
-                this.services.monedaServices.getlistMonedas(),
-                this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(),
-                this.services.empleadoServices.getlistEmpleados(),
-                this.services.instrumentoServices.getlistInstrumentos(),
-                this.services.unidadServices.getUnidades(),
-                this.services.claveSatServices.getclavesSat()])
-      .then(  () => {
-        
-      })
+    this.$store.commit("setOverley", true);
+    Promise.all([
+      this.services.clienteServices.getlistclientes(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(),
+      this.services.empleadoServices.getlistEmpleados(),
+      this.services.instrumentoServices.getlistInstrumentos(),
+      this.services.unidadServices.getUnidades(),
+      this.services.claveSatServices.getclavesSat(),
+    ])
+      .then(() => {})
       .catch((reason) => {
-         this.$store.commit('setOverley', false)
+        this.$store.commit("setOverley", false);
       });
   },
   methods: {
     AgregarPartida() {
-      for (var i = 0; i < this.partida.cantidad; i++) {
-        var model = {
-          identificacion: this.partida.identificacion,
-          instrumento: this.partida.instrumento,
-          instrumento_nombre: this.partida.instrumento.nombre,
-          cantidad: 1,
-          marca: this.partida.marca,
-          modelo: this.partida.modelo,
-          serie: this.partida.serie,
-          importe: this.partida.instrumento.precio_venta * 1,
-          servicio: this.partida.servicio,
-          unidad: this.partida.unidad,
-          precio_venta: this.partida.instrumento.precio_venta,
-          unidad_cod: this.partida.unidad_cod,
-          clave_sat: this.partida.clave_sat,
-          vigencia: this.partida.vigencia,
-        };
-        this.model.partidas.push(model);
+      if (!this.partida.instrumento.has_acreditacion || !this.partida.instrumento.has_magnitud) {
+          this.snackbar_mag_acre = true 
+      }else{
+          for (var i = 0; i < this.partida.cantidad; i++) {
+            var model = {
+              identificacion: this.partida.identificacion,
+              instrumento: this.partida.instrumento,
+              instrumento_nombre: this.partida.instrumento.nombre,
+              cantidad: 1,
+              marca: this.partida.marca,
+              modelo: this.partida.modelo,
+              serie: this.partida.serie,
+              importe: this.partida.instrumento.precio_venta * 1,
+              servicio: this.partida.servicio,
+              unidad: this.partida.unidad,
+              precio_venta: this.partida.instrumento.precio_venta,
+              unidad_cod: this.partida.unidad_cod,
+              clave_sat: this.partida.clave_sat,
+              vigencia: this.partida.vigencia,
+            };
+            this.model.partidas.push(model);
+          }
+          this.partida = {
+            identificacion: "",
+            instrumento: {},
+            cantidad: 0,
+            marca: "",
+            modelo: "",
+            serie: "",
+            importe: 0,
+            servicio: {},
+            unidad: {},
+            unidad_cod: {},
+            clave_sat: {},
+            vigencia: "",
+          };
       }
-      this.partida = {
-        identificacion: "",
-        instrumento: {},
-        cantidad: 0,
-        marca: "",
-        modelo: "",
-        serie: "",
-        importe: 0,
-        servicio: {},
-        unidad: {},
-        unidad_cod: {},
-        clave_sat: {},
-        vigencia: '',
-      };
     },
     async addCotizacion() {
       if (this.$refs.f_mag.validate()) {
@@ -659,7 +670,7 @@ export default {
       this.model.partidas.splice(index, 1);
     },
     cargarPartidasImportadas(masivPartidas) {
-      console.log({masivPartidas})
+      console.log({ masivPartidas });
       var partida = {
         identificacion: "",
         instrumento: {},
@@ -672,7 +683,7 @@ export default {
         servicio: {},
         unidad: {},
         precio_venta: 0,
-        vigencia: '',
+        vigencia: "",
       };
       this.masivPartidas.forEach((item) => {
         partida = {
