@@ -219,7 +219,7 @@
                 <td style="width: 10%;">R.F.C.:</td>
                 <td style="width: 30%; text-align: left; font-size: 11px; ">{{$cliente['datos_fisicos_requeremientos_facturacion_rfc']}}</td>
                 <td style="width: 10%; ">Folio Fiscal:</td>
-                <td style=" width: 30%; text-align: left; font-size: 11px;  ">{{$result->data->uuid}}</td>
+                <td style=" width: 30%; text-align: left; font-size: 11px;  ">{{$result['data']->uuid}}</td>
             </tr>
             <tr>
                 <td style="width: 10%;">Uso del CFDI:</td>
@@ -418,11 +418,11 @@
             </tr>
             <tr>
                 <td style="max-width: 100%; font-size: 13px; text-align: justify;">
-                    {{substr($result->data->selloCFDI,0,100)}} <br/>
-                    {{substr($result->data->selloCFDI,100,91)}} <br/>
-                    {{substr($result->data->selloCFDI,191,91)}} <br/>
-                    {{substr($result->data->selloCFDI,282,91)}} <br/>
-                    {{substr($result->data->selloCFDI,373,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,0,100)}} <br/>
+                    {{substr($result['data']->selloCFDI,100,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,191,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,282,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,373,91)}} <br/>
                 </td>
             </tr>
             <tr>
@@ -430,11 +430,11 @@
             </tr>
             <tr>
                 <td style="max-width: 100%; font-size: 13px; text-align: justify;">
-                    {{substr($result->data->selloSAT,0,100)}} <br/>
-                    {{substr($result->data->selloSAT,100,91)}} <br/>
-                    {{substr($result->data->selloSAT,191,91)}} <br/>
-                    {{substr($result->data->selloSAT,282,91)}} <br/>
-                    {{substr($result->data->selloSAT,373,91)}} <br/>
+                    {{substr($result['data']->selloSAT,0,100)}} <br/>
+                    {{substr($result['data']->selloSAT,100,91)}} <br/>
+                    {{substr($result['data']->selloSAT,191,91)}} <br/>
+                    {{substr($result['data']->selloSAT,282,91)}} <br/>
+                    {{substr($result['data']->selloSAT,373,91)}} <br/>
                 </td>
             </tr>
         </tbody>
@@ -451,11 +451,11 @@
             </tr>
             <tr>
                 <td style="width: 780px; font-size: 13px; text-align: justify; white-space: initial; margin-left: 5px; ">
-                    {{substr($result->data->cadenaOriginalSAT,0,100)}} <br/>
-                    {{substr($result->data->cadenaOriginalSAT,100,91)}} <br/>
-                    {{substr($result->data->cadenaOriginalSAT,191,91)}} <br/>
-                    {{substr($result->data->cadenaOriginalSAT,282,91)}} <br/>
-                    {{substr($result->data->cadenaOriginalSAT,373,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,0,100)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,100,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,191,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,282,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,373,91)}} <br/>
                 </td>
             </tr>
         </tbody>

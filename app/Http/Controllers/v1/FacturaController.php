@@ -287,15 +287,13 @@ class FacturaController extends Controller
 
                 $output = View::make('xmls.XmlFactura', compact('comprobante'))->render();
                 EmisionTimbrado::Set($paramsConsultar);
-                $result = EmisionTimbrado::EmisionTimbradoV4($output);
-                // dd($result->data->qrCode);
-
+                $result = collect(EmisionTimbrado::EmisionTimbradoV4($output));
                 $RecibosPartidas = new RecibosCollection($data2);
                 $dataFactura = collect($RecibosPartidas);
                 $cliente = Cliente::with(['hasMetodoDePago', 'hasCondicionDePago'])->find($request['cliente']['cliente_id']);
                 $empresa = Empresa::find(1);
-                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate(collect($result)->cadenaOriginalSAT));
-                $stringQr = collect($result)->cadenaOriginalSAT;
+                $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate($result['data']->cadenaOriginalSAT));
+                $stringQr = $result['data']->cadenaOriginalSAT;
                 $spell = (new NumeroALetras())->toMoney((float)$request['total'], 2, $request['cliente']['has_moneda']['nombre_moneda'], 'CENTAVOS');
                 $pdf = PDF::loadView('pdfs.pdfFactura', compact(['dataFactura', 'cliente', 'empresa', 'request',  'spell', 'factura', 'stringQr', 'result', 'qrcode']));
                 Storage::disk('store_pdfs')->put("/facturas/factura_{$factura['id']}_" . substr($factura['created_at'], 0, 10) . "_.pdf", $pdf->stream());
