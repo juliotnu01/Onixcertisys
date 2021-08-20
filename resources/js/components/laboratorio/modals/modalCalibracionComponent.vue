@@ -511,7 +511,7 @@ export default {
           partida: calibracion,
           file_certificado: this.files_plantilla
         };
-        await this.services.calibracionServices.terminaCalibracion(model);
+        await this.services.calibracionServices.terminarCalibracion(model);
       } catch (e) {
         console.log(e);
       }

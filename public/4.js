@@ -775,7 +775,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   file_certificado: _this3.files_plantilla
                 };
                 _context3.next = 4;
-                return _this3.services.calibracionServices.terminaCalibracion(model);
+                return _this3.services.calibracionServices.terminarCalibracion(model);
 
               case 4:
                 _context3.next = 9;
