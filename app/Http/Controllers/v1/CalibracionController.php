@@ -92,8 +92,8 @@ class CalibracionController extends Controller
             $url = Storage::disk('s3')->url('Excel-certificados/'.$request->file('certificado')->getClientOriginalName());
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => $url];
             $d = collect($dataPdf);
-            dd($d->all());
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
+            dd($r);
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
