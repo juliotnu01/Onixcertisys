@@ -81,7 +81,7 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
-            dd(collect($request));
+            dd(collect(json_decode($request['partida'])));
             $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
