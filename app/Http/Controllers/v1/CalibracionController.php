@@ -89,6 +89,7 @@ class CalibracionController extends Controller
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => $url];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
+            dd($r);
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
