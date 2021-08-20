@@ -85,7 +85,7 @@ class CalibracionController extends Controller
         try {
             $data = collect(json_decode($request['partida']));
             $id = $data['id'];
-            dd($data);
+            dd($data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social);
             // Storage::disk('store_pdfs')->put("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}", $request->file("certificado"));
             // $url = Storage::disk('store_pdfs')->url("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}");
             
