@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 class CalibracionController extends Controller
 {
     /**
@@ -81,8 +82,12 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
-            dd(collect(json_decode($request['partida'])));
-            $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
+            Storage::disk('store_pdfs')->put("/certificados/{$request->file("certificado")->getFilename()}{$request->file("certificado")->getExtension()}",$request->file("certificado"));
+            $url = Storage::disk('store_pdfs')->url("/certificados/{$request->file("certificado")->getFilename()}{$request->file("certificado")->getExtension()}");
+            dd($url);
+
+            $data = json_decode($request['partida']);
+            $dataPdf = ["id_partida" => $data['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
             return DB::transaction(function () use ($request, $calibracion) {
