@@ -89,7 +89,7 @@ class CalibracionController extends Controller
             // Storage::disk('store_pdfs')->put("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}", $request->file("certificado"));
             // $url = Storage::disk('store_pdfs')->url("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}");
             
-            Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/".$request->file("certificado")->getClientOriginalName(), $request->file('certificado'));
+            Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/",$request->file('certificado'),$request->file("certificado")->getClientOriginalName());
             $url = Storage::disk('s3')->url(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/".$request->file("certificado")->getClientOriginalName());
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
             $d = collect($dataPdf);
