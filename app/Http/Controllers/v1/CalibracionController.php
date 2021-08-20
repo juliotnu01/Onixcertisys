@@ -81,14 +81,15 @@ class CalibracionController extends Controller
     }
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
+        // https://elasticbeanstalk-us-west-2-573465137969.s3-us-west-2.amazonaws.com/2021-08-18/VISKASE DEL NORTE SA DE CV/partida-11/partida-calibracion/SOFTWARE INDICADORES.XLSM
         try {
             $data = collect(json_decode($request['partida']));
             $id = $data['id'];
-            
+            dd($data);
             // Storage::disk('store_pdfs')->put("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}", $request->file("certificado"));
             // $url = Storage::disk('store_pdfs')->url("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}");
             
-            Storage::disk('s3')->putFileAs('Excel-certificados/', $request->file('certificado'), $request->file('certificado')->getClientOriginalName());
+            Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d').'Excel-certificados/', $request->file('certificado'), $request->file('certificado')->getClientOriginalName());
             $url = Storage::disk('s3')->url('Excel-certificados/'.$request->file('certificado')->getClientOriginalName());
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
             $d = collect($dataPdf);

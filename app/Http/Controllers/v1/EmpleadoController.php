@@ -179,7 +179,7 @@ class EmpleadoController extends Controller
                    
                 }, 5);
                 
-            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }
