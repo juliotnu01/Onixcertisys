@@ -143,6 +143,8 @@ export default  new Vuex.Store({
         dialog_edit_cfdi: false,
         overlay: false,
         error_message_factura: {},
+        loading_asignar_tecnico:false,
+        loading_finalizar_calibracion:false,
 
     },
     getters: {
@@ -271,7 +273,9 @@ export default  new Vuex.Store({
         cfdi: state => state.cfdi,
         dialog_edit_cfdi: state => state.dialog_edit_cfdi,
         overlay: state => state.overlay,
-        error_message_factura: state => state.error_message_factura 
+        error_message_factura: state => state.error_message_factura,
+        loading_asignar_tecnico: state => state.loading_asignar_tecnico,
+        loading_finalizar_calibracion: state => state.loading_finalizar_calibracion
         
     },
     mutations: {
@@ -765,6 +769,12 @@ export default  new Vuex.Store({
         setErrorMessageFactura(state,data){
             state.error_message_factura = data
         },
+        setLoadingAsignarTecnico(state,data){
+            state.loading_asignar_tecnico = data
+        },
+        setLoadingFinalizarCalibracion(state,data){
+            state.loading_finalizar_calibracion = data
+        }
     },
     actions: {
         chargeRolSelected({ commit }, data) {

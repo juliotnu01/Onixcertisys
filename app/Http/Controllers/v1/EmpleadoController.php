@@ -171,8 +171,6 @@ class EmpleadoController extends Controller
         $instrumento->find($request['model']['has_intrumento']['id'])->update([
             'documento_id' =>  $request['file']['id']
         ]);
-
-        // dd(collect($request), env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json");
         try {
             DB::transaction(function () use ($request, $partida) {
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
@@ -181,7 +179,7 @@ class EmpleadoController extends Controller
                    
                 }, 5);
                 
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

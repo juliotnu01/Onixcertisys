@@ -692,7 +692,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos", "loading_asignar_tecnico"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_asignar_tecnico;
@@ -715,9 +715,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.services.empleadoServices.AsignarTecnico(_this.partida_tecnico, _this.documento_selected);
+                _context.next = 2;
+                return _this.services.empleadoServices.AsignarTecnico(_this.partida_tecnico, _this.documento_selected);
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -2408,7 +2409,11 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { text: "", color: "primary" },
+                      attrs: {
+                        text: "",
+                        color: "primary",
+                        loading: _vm.loading_asignar_tecnico
+                      },
                       on: { click: _vm.AsignarTecnico }
                     },
                     [_vm._v(" Asignar Tecnico ")]

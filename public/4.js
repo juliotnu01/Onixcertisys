@@ -599,6 +599,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -629,10 +666,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       fechaIniciaCalibracion: "",
       terminaCalibracion: "",
       patronesLab: [],
-      procedimientoLab: []
+      procedimientoLab: [],
+      files_plantilla: [],
+      show_upload_platilla_terminada: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", "patrones", "procedimientos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_calibracion", "recibo_print", "partida", "patrones", "procedimientos", "loading_finalizar_calibracion"])), {}, {
     computedDateFormatted: function computedDateFormatted() {
       return this.formatDate(this.date);
     },
@@ -730,37 +769,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.prev = 0;
-
-                _this3.$store.commit("setDialogRealizacionCalibracion", true);
-
-                _this3.$store.commit("setPartidaParaCalibrar", _this3.partida);
-
                 model = {
                   id_calibracion: calibracion.has_calibracion.id,
-                  partida: calibracion
+                  partida: calibracion,
+                  file_certificado: _this3.files_plantilla
                 };
-                _context3.next = 6;
-                return _this3.services.calibracionServices.terminarCalibracion(model);
+                _context3.next = 4;
+                return _this3.services.calibracionServices.terminaCalibracion(model);
 
-              case 6:
-                _context3.next = 8;
-                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
-
-              case 8:
-                _context3.next = 13;
+              case 4:
+                _context3.next = 9;
                 break;
 
-              case 10:
-                _context3.prev = 10;
+              case 6:
+                _context3.prev = 6;
                 _context3.t0 = _context3["catch"](0);
                 console.log(_context3.t0);
 
-              case 13:
+              case 9:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 10]]);
+        }, _callee3, null, [[0, 6]]);
       }))();
     },
     formatDate: function formatDate(date) {
@@ -1235,7 +1266,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "1256", "min-width": "1256" },
+          attrs: { persistent: "" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -1270,7 +1301,8 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "v-container",
+                "div",
+                { staticClass: "m-5" },
                 [
                   Object.entries(this.partida).length > 0
                     ? _c(
@@ -2560,9 +2592,7 @@ var render = function() {
                                               },
                                               on: {
                                                 click: function($event) {
-                                                  return _vm.terminarCalibracion(
-                                                    _vm.partida
-                                                  )
+                                                  _vm.show_upload_platilla_terminada = true
                                                 }
                                               }
                                             },
@@ -2614,7 +2644,145 @@ var render = function() {
                                           )
                                         ],
                                         1
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.show_upload_platilla_terminada
+                                    ? _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "12",
+                                            lg: "12"
+                                          }
+                                        },
+                                        [
+                                          _c("v-file-input", {
+                                            attrs: {
+                                              color: "#0095d9",
+                                              counter: "",
+                                              label: "Seleccionar Plantilla",
+                                              "prepend-icon": "mdi-paperclip",
+                                              outlined: "",
+                                              "show-size": 1000
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "selection",
+                                                  fn: function(ref) {
+                                                    var index = ref.index
+                                                    var text = ref.text
+                                                    return [
+                                                      index < 2
+                                                        ? _c(
+                                                            "v-chip",
+                                                            {
+                                                              attrs: {
+                                                                color:
+                                                                  "#0095d9",
+                                                                dark: "",
+                                                                label: "",
+                                                                small: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      " +
+                                                                  _vm._s(text) +
+                                                                  "\n                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        : index === 2
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-overline grey--text text--darken-3 mx-2"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                      +" +
+                                                                  _vm._s(
+                                                                    _vm.files
+                                                                      .length -
+                                                                      2
+                                                                  ) +
+                                                                  " File(s)\n                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _vm._e()
+                                                    ]
+                                                  }
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              2378264441
+                                            ),
+                                            model: {
+                                              value: _vm.files_plantilla,
+                                              callback: function($$v) {
+                                                _vm.files_plantilla = $$v
+                                              },
+                                              expression: "files_plantilla"
+                                            }
+                                          })
+                                        ],
+                                        1
                                       )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.show_upload_platilla_terminada
+                                    ? _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            xs: "12",
+                                            sm: "12",
+                                            md: "12",
+                                            lg: "12"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                color: "#0095d9",
+                                                dark: "",
+                                                loading:
+                                                  _vm.loading_finalizar_calibracion
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.terminarCalibracion(
+                                                    _vm.partida
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { staticClass: "mr-5" },
+                                                [_vm._v("mdi-content-save")]
+                                              ),
+                                              _vm._v(
+                                                "\n                  Generar Certificado\n                "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
                                 ],
                                 1
                               )

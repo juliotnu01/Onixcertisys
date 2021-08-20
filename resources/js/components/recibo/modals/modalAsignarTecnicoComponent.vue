@@ -152,7 +152,7 @@
           </v-row>
         </v-container>
         <v-card-actions>
-          <v-btn text color="primary" @click="AsignarTecnico"> Asignar Tecnico </v-btn>
+          <v-btn text color="primary" @click="AsignarTecnico" :loading="loading_asignar_tecnico"> Asignar Tecnico </v-btn>
           <v-btn text color="error" @click="openDialog = false"> Cerrar </v-btn>
         </v-card-actions>
       </v-card>
@@ -186,7 +186,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos"]),
+    ...mapGetters(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos", "loading_asignar_tecnico"]),
     openDialog: {
       get() {
         return this.dialog_asignar_tecnico;
@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     async AsignarTecnico() {
-      this.services.empleadoServices.AsignarTecnico(
+      await this.services.empleadoServices.AsignarTecnico(
         this.partida_tecnico,
         this.documento_selected
       );

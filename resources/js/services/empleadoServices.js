@@ -41,10 +41,12 @@ export default class empleadoServices{
 
 	async AsignarTecnico(model, file){
 		try {
-				let {data} = await axios.post(`/api/asignar-tecnico-partida`,{model, file})
-				store.commit('setDialogAsignarTecnico', false)
-				var model_notificacion = {mensaje: 'Tecnico Asigado con exito', status: true, color: 'success'}
-            	store.commit("setNotificacion", model_notificacion);
+			store.commit('setLoadingAsignarTecnico', true)
+			let {data} = await axios.post(`/api/asignar-tecnico-partida`,{model, file})
+			store.commit('setLoadingAsignarTecnico', false)
+			store.commit('setDialogAsignarTecnico', false)
+			var model_notificacion = {mensaje: 'Tecnico Asigado con exito', status: true, color: 'success'}
+			store.commit("setNotificacion", model_notificacion);
 			
 		} catch (e) {
 			console.log(e)	
