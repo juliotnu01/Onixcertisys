@@ -110,8 +110,11 @@
 
     <section class="container magnitudes">
         <div class="row justify-content-center">
-            <div class="col-9 text-center titulo-mag" id="contenedorLaboratorio">
-                <h1>LABORATORIO DE CALIBRACIÓN<br>ACREDITADO ISO/IEC-17025:2017</h1>
+            <div class="col-2 qr">
+                <img src="assets/img/uqr-accredian-catalogo.png" alt="ILAC">
+            </div>
+            <div class="col-7 text-center titulo-mag" id="contenedorLaboratorio">
+                <h1>LABORATORIO DE CALIBRACIÓN<br>ACREDITADO ISO/IEC 17025:2017</h1>
                 <ul id="listaCalibracion">
                     <li>Tecnología de Última Generación</li>
                     <li>El más amplio alcance acreditado en Dimensional</li>
@@ -176,7 +179,7 @@
                 <div class="texto-mag">
                     <h3>Masa</h3>
                     <p>Instrumentos para Pesar 5,000 kg
-                    <br>Pesas 1 a 20 kg (M1 - M3)
+                    <br>Pesas 1 g a 20 kg (M1 - M3)
                     </p>
                 </div>
             </div>
@@ -185,7 +188,7 @@
                     <img class="icono-chico" src="assets/img/magnitudes/partorsional.png" alt="">
                 </div>
                 <div class="texto-mag">
-                    <h3>Par Torsial</h3>
+                    <h3>Par Torsional</h3>
                     <p>16,270 N m
                     <br />(12,000 Ibs-ft)
                     </p>
@@ -219,6 +222,7 @@
                     <h3>Dureza</h3>
                     <p>20 - 100 HRB
                     <br /> 20 - 77 HRC
+                    <br /> 365 LD
                     </p>
                 </div>
             </div>
@@ -240,7 +244,7 @@
                 <div class="texto-mag">
                     <h3>Tiempo y Frecuencia</h3>
                     <p>1 - 86,400 s
-                    <br/>112 - 28,800 rmp
+                    <br/>112 - 28,800 rpm
                     </p>
                 </div>
             </div>
@@ -266,7 +270,7 @@
             </div>
             <div class="col item-mag">
                 <div class="icono-mag mag-sub service-icon icon-gradient mb-30">
-                    <img src="" alt="">
+                    <img class="icono-ancho2" src="assets/img/magnitudes/Optica.png" alt="">
                 </div>
                 <div class="texto-mag">
                     <h3>Óptica</h3>
@@ -275,7 +279,7 @@
             </div>
             <div class="col item-mag">
                 <div class="icono-mag mag-sub service-icon icon-gradient mb-30">
-                    <img src="" alt="">
+                    <img class="icono-ancho" src="assets/img/magnitudes/Flujo.png" alt="">
                 </div>
                 <div class="texto-mag">
                     <h3>Flujo</h3>
@@ -284,7 +288,7 @@
             </div>
             <div class="col item-mag">
                 <div class="icono-mag mag-sub service-icon icon-gradient mb-30">
-                    <img src="" alt="">
+                    <img class="icono-chico" src="assets/img/magnitudes/Densidad.png" alt="">
                 </div>
                 <div class="texto-mag">
                     <h3>Densidad</h3>
@@ -293,7 +297,7 @@
             </div>
             <div class="col item-mag">
                 <div class="icono-mag mag-sub service-icon icon-gradient mb-30">
-                    <img src="" alt="">
+                    <img class="icono-ancho" src="assets/img/magnitudes/Acustica.png" alt="">
                 </div>
                 <div class="texto-mag">
                     <h3>Acústica</h3>

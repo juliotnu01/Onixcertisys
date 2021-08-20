@@ -70,7 +70,7 @@
                     <h1>CENTRO DE CAPACITACIÓN EN METROLOGÍA Y CALIDAD</h1>
                     <ul>
                         <li>Metrología</li>
-                        <li>Laboratorio ISO/IEC-17025</li>
+                        <li>Laboratorio ISO/IEC 17025:2017</li>
                         <li>Automotriz IATF 16949</li>
                         <li>Calidad ISO-9001</li>
                         <li>Ambiental ISO-14001</li>
@@ -183,12 +183,12 @@
                 <div class="row cursos-sec">
                     <div class="titulo-sec">
                         <img src="assets/img/logo solo-cutout.png" alt="">
-                        <h3>LABORATORIOS ISO/IEC-17025</h3>
+                        <h3>LABORATORIOS ISO/IEC 17025:2017</h3>
                     </div>
                     <div class="row cont-sec">
                         <ul class="col col-8 col1">
-                            <li>Norma ISO/IEC-17025</li>
-                            <li>Auditor Interno ISO/IEC-17025</li>
+                            <li>Norma ISO/IEC 17025:2017</li>
+                            <li>Auditor Interno ISO/IEC 17025:2017</li>
                         </ul>
                         <ul class="col col-4">
                             <li>2 días</li>

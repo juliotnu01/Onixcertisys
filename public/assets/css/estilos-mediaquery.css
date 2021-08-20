@@ -120,10 +120,14 @@
         margin-bottom: 20px;
     }
 
+    .qr img{
+        width: 95px;
+    }
+
     .titulo-mag{
-        width: 68%;
-        padding-left: 63px;
-        padding-right: 0px;
+        /* width: 68%; */
+        /* padding-left: 63px; */
+        /* padding-right: 0px; */
     }
 
     .titulo-mag h1 {
@@ -133,7 +137,7 @@
 
     .titulo-mag ul {
         font-size: 13px;
-        margin-left: 14px;
+        /* margin-left: 14px; */
         padding-left: 1.5rem;
     }
 
@@ -516,10 +520,14 @@
         margin-bottom: 20px;
     }
 
+    .qr img{
+        width: 95px;
+    }
+
     .titulo-mag{
-        width: 68%;
-        padding-left: 63px;
-        padding-right: 0px;
+        /* width: 68%; */
+        /* padding-left: 63px; */
+        /* padding-right: 0px; */
     }
 
     .titulo-mag h1 {
@@ -529,7 +537,7 @@
 
     .titulo-mag ul {
         font-size: 13px;
-        margin-left: 14px;
+        /* margin-left: 14px; */
         padding-left: 1.5rem;
     }
 
@@ -890,10 +898,14 @@
         margin-bottom: 40px;
     }
 
+    .qr img{
+        width: 130px;
+    }
+
     .titulo-mag{
-        width: 68%;
-        padding-left: 130px;
-        padding-right: 12px;
+        /* width: 68%; */
+        /* padding-left: 130px; */
+        /* padding-right: 12px; */
     }
 
     .titulo-mag h1 {
@@ -903,7 +915,7 @@
 
     .titulo-mag ul {
         font-size: 14px;
-        margin-left: 42px;
+        margin-left: 50px;
         padding-left: 1.5rem;
     }
 
@@ -1318,10 +1330,14 @@
         margin-bottom: 40px;
     }
 
+    .qr img{
+        width: 180px;
+    }
+
     .titulo-mag{
-        padding-left: 220px;
-        width: 75%;
-        padding-right: 12px;
+        /* padding-left: 220px; */
+        /* width: 75%; */
+        /* padding-right: 12px; */
     }
     
     .titulo-mag h1 {
@@ -1331,7 +1347,7 @@
 
     .titulo-mag ul {
         font-size: 20px;
-        margin-left: 8px;
+        margin-left: 18px;
         padding-left: 1.5rem;
     }
 
@@ -1594,6 +1610,16 @@
 
 }
 
+@media (min-width:1400px){
+    
+    .titulo-mag ul {
+        font-size: 20px;
+        margin-left: 60px;
+        padding-left: 1.5rem;
+    }
+
+}
+
 /* Original - en pantalla */
 @media (min-width: 1560px){
 
@@ -1733,21 +1759,25 @@
         margin-bottom: 40px;
     }
 
+    .qr img{
+        width: 200px;
+    }
+
     .titulo-mag{
-        padding-left: 0px;
-        width: 75%;
-        padding-right: 12px;
+        /* padding-left: 0px; */
+        /* width: 75%; */
+        /* padding-right: 12px; */
     }
 
     .titulo-mag h1{
         font-size: 2.3rem;
-        margin-left: 220px;
+        /* margin-left: 220px; */
         margin-bottom: 8px;
     }
 
     .titulo-mag ul{
         font-size: 25px;
-        margin-left: 284px;
+        margin-left: 50px;
     }
 
     .mag-img img{
