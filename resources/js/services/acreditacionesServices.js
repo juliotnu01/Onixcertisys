@@ -39,4 +39,25 @@ export default class acreditacionesServices {
             console.log(e);
         }
     }
+    async agregarAcreditacionesMasivamente(file = null){
+		try {
+			var datafile = new FormData();
+			datafile.append("document_instrumentos", file);
+			let { data } = await axios.post(`/api/add-acreditaciones-masivamente`, datafile,{ headers: {"content-type": "multipart/form-data"}});
+			var model_notificacion = {
+				mensaje: "Instrumentos cargadas con exito",
+				status: true,
+				color: "success"
+			};
+			store.commit("setNotificacion", model_notificacion);
+		} catch (e) {
+			console.log(e);
+			var model_notificacion = {
+				mensaje: `!Ha ocurrido un error en editar el instrumentos --> ${e}¡`,
+				status: true,
+				color: "error"
+			};
+			store.commit("setNotificacion", model_notificacion);
+		}
+	}
 }

@@ -70,6 +70,7 @@
     </v-row>
     <modal-para-duplicar />
     <notificacion />
+    <overlay/>
   </v-app>
 </template>
 
@@ -78,11 +79,13 @@ import { mapGetters } from "vuex";
 import modalParaDuplicar from "./modals/modalDuplicateCotizacionComponent.vue";
 import notificacionComponent from "../notificacion/indexComponentNotificacion.vue";
 import VueApexCharts from "vue-apexcharts";
+import overlayComponent from '../overlayComponent.vue'
 export default {
   components: {
     "modal-para-duplicar": modalParaDuplicar,
     notificacion: notificacionComponent,
     apexcharts: VueApexCharts,
+    "overlay" : overlayComponent
   },
   data() {
     return {
@@ -125,9 +128,6 @@ export default {
   },
   computed: {
     ...mapGetters(["services", "clientes"]),
-  },
-  mounted() {
-    this.services.clienteServices.getlistclientes();
   },
   methods: {
     EnlazarCotizacion(item) {

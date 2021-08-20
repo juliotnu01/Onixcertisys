@@ -204,9 +204,11 @@
         <td>{{ item.total | numberFormat(item.has_moneda.clave) }}</td>
       </template>
       <template v-slot:item.nota_de_seguimiento="{ item }">
-        <v-btn color="success" small dense block @click="hacerNotaDeSeguimiento(item)">
-          Nota de seguimiento <v-icon>mdi-note</v-icon></v-btn
-        >
+        <td>
+          <v-btn color="success" small dense block @click="hacerNotaDeSeguimiento(item)">
+            Nota de seguimiento <v-icon>mdi-note</v-icon>
+          </v-btn>
+      </td>
       </template>
     </v-data-table>
     <v-snackbar v-model="snackbar" :timeout="timeout" color="error" class="elevation-1" >
@@ -339,7 +341,13 @@ export default {
     // }
   },
   mounted() {
-    this.services.cotizacionServices.getlistCotizaciones();
+    Promise.all([ this.services.cotizacionServices.getlistCotizaciones()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async EditarCotizacion(cot) {

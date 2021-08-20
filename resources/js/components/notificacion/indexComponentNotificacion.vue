@@ -1,6 +1,6 @@
 <template>
     
-  <!-- <div class="text-center ma-2" v-if="var_computed_snackbar.status">
+  <div class="text-center ma-2" v-if="var_computed_snackbar.status">
       {{
       var_computed_snackbar.color === "success"
         ? $toastr.success(var_computed_snackbar.mensaje, "")
@@ -8,7 +8,7 @@
         ? $toastr.warning(var_computed_snackbar.mensaje, "")
         : $toastr.error(var_computed_snackbar.mensaje, "")
     }}
-  </div> -->
+  </div>
     
 </template>
 <script>
@@ -19,10 +19,10 @@ export default {
     ...mapGetters(["snackbar"]),
     var_computed_snackbar: {
       get() {
-      //   return this.snackbar;
+        return this.snackbar;
       },
       set(val) {
-      //   this.$store.commit("setNotificacion", val);
+        this.$store.commit("setNotificacion", val);
       },
     },
   },

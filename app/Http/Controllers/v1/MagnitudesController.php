@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Magnitudes;
 use Illuminate\Http\Request;
 use DB;
+use App\Imports\MagnitudImport;
+use Excel;
+
 class MagnitudesController extends Controller
 {
     /**
@@ -62,6 +65,16 @@ class MagnitudesController extends Controller
                 $magnitudes->nombre = $request['nombre'];
                 $magnitudes->save();
             },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+    public function agregarMagnitudesMasivamente(Request $request, Magnitudes $magnitudes)
+    {
+        try {
+            Excel::import(new MagnitudImport, $request->file('document_instrumentos'), \Maatwebsite\Excel\Excel::XLSX);
+            return response(['mensaje' => 'cargado con exito'] , 200);
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

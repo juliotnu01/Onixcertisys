@@ -3,12 +3,7 @@
     <v-row>
       <!-- cart headers -->
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total Orden de Servicio por Facturar</h4>
@@ -18,10 +13,7 @@
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
                 <h3>
-                  {{
-                    var_computed_orden_de_servicio_por_facturar
-                      | numberFormat("MXN")
-                  }}
+                  {{ var_computed_orden_de_servicio_por_facturar | numberFormat("MXN") }}
                 </h3>
               </v-col>
             </v-row>
@@ -29,12 +21,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total Orden de Servicio Facturado</h4>
@@ -44,10 +31,7 @@
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
                 <h3>
-                  {{
-                    var_computed_orden_de_servicio_facturado
-                      | numberFormat("MXN")
-                  }}
+                  {{ var_computed_orden_de_servicio_facturado | numberFormat("MXN") }}
                 </h3>
               </v-col>
             </v-row>
@@ -55,12 +39,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total en Partidas sin Asignadas</h4>
@@ -70,9 +49,7 @@
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
                 <h3>
-                  {{
-                    var_computed_partidas_sin_asignadas | numberFormat("MXN")
-                  }}
+                  {{ var_computed_partidas_sin_asignadas | numberFormat("MXN") }}
                 </h3>
               </v-col>
             </v-row>
@@ -80,12 +57,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total en Partidas Asignadas</h4>
@@ -103,12 +75,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total en Partidas Asignadas en Calibracion</h4>
@@ -118,10 +85,7 @@
             <v-row align="center" justify="space-around">
               <v-col class="display-1" cols="12">
                 <h3>
-                  {{
-                    var_computed_partidas_asignadas_en_proceso
-                      | numberFormat("MXN")
-                  }}
+                  {{ var_computed_partidas_asignadas_en_proceso | numberFormat("MXN") }}
                 </h3>
               </v-col>
             </v-row>
@@ -129,12 +93,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="2">
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          min-height="200"
-          max-height="200"
-        >
+        <v-card class="mx-auto" max-width="400" min-height="200" max-height="200">
           <v-list-item two-line>
             <v-list-item-content>
               <h4>Total en Partidas Asignadas en Calibracion Terminada</h4>
@@ -188,9 +147,9 @@
             >
               <template v-slot:item.id="{ item }">
                 <td>
-                  <v-btn color="primary" text @click="AbrirCotizacion(item)"
-                    >{{item.id}}</v-btn
-                  >
+                  <v-btn color="primary" text @click="AbrirCotizacion(item)">{{
+                    item.id
+                  }}</v-btn>
                 </td>
               </template>
             </v-data-table>
@@ -206,20 +165,23 @@
         </v-row>
       </v-col>
     </v-row>
-  <modal-edit-cotizacion/>
-  <notificacion/>
+    <modal-edit-cotizacion />
+    <notificacion />
+    <overlay/>
   </v-app>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import VueApexCharts from "vue-apexcharts";
-import modalEditCotizacion from '../components/cotizaciones/modals/modalEditCotizacionComponent.vue'
-import notificacionComponent from './notificacion/indexComponentNotificacion.vue'
+import modalEditCotizacion from "../components/cotizaciones/modals/modalEditCotizacionComponent.vue";
+import notificacionComponent from "./notificacion/indexComponentNotificacion.vue";
+import overlayComponent from './overlayComponent.vue'
 export default {
   components: {
     apexcharts: VueApexCharts,
-    'modal-edit-cotizacion': modalEditCotizacion,
-    'notificacion': notificacionComponent,
+    "modal-edit-cotizacion": modalEditCotizacion,
+    notificacion: notificacionComponent,
+    "overlay" : overlayComponent
   },
   data() {
     return {
@@ -351,14 +313,24 @@ export default {
     },
   },
   async mounted() {
-    await this.services.reciboServices.getlistRecibos();
-    await this.services.partidaServices.getlistpartidas();
-    await this.services.cotizacionServices.getlistCotizacionesParaEstadistica();
-    await this.services.facturaServices.getlistFacturasEstadistica();
-    this.cargarChart();
-    await this.services.cotizacionServices.getlistCotizaciones();
-    await this.services.reciboServices.getlistRecibos();
-    this.listenAsignaciones()
+    this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.reciboServices.getlistRecibos(),
+      this.services.partidaServices.getlistpartidas(),
+      this.services.cotizacionServices.getlistCotizacionesParaEstadistica(),
+      this.services.facturaServices.getlistFacturasEstadistica(),
+      this.services.cotizacionServices.getlistCotizaciones(),
+      this.services.reciboServices.getlistRecibos()])
+      .then(  () => {
+        this.listenAsignaciones();
+        this.cargarChart();
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
+
+   
   },
   methods: {
     cargarChart() {
@@ -425,12 +397,11 @@ export default {
       this.$store.commit("setDialogEditCotizacion", true);
       this.$store.commit("setCotizacion", item);
     },
-    listenAsignaciones(){
-      Echo.channel('asignacion')
-      .listen('AsignacionOrdenDeServicio', (item) => {
-             console.log(item)
-      })
-    }
+    listenAsignaciones() {
+      Echo.channel("asignacion").listen("AsignacionOrdenDeServicio", (item) => {
+        console.log(item);
+      });
+    },
   },
 };
 </script>

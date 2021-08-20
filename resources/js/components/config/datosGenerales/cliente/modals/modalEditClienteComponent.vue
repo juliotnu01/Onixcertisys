@@ -33,7 +33,7 @@
                     return-object
                   >
                     <template v-slot:selection="data">
-                      <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                      <v-chip v-bind="data.attrs" :input-value="data.selected" close @click:close="removeServices(data.item)">
                         {{ data.item.name }}
                       </v-chip>
                     </template>
@@ -442,7 +442,7 @@
                     v-model="cliente.revisionDeFacturasYpagos.listaRequerimientoDeAccesoAlaPlata"
                   ></v-text-field>
                 </v-col>
-                    <v-col cols="12" xs="12" sm="12" md="2" lg="2">
+                  <v-col cols="12" xs="12" sm="12" md="2" lg="2">
                    <v-text-field
                     label="I.V.A. %"
                     outlined
@@ -659,14 +659,21 @@ export default {
     },
   },
   async mounted() {
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.cfdiServices.getCFDIs();
+     this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.metodoDePagoServices.getlistMetodoDePago(),
+      this.services.condicionDePagoServices.getlistCondicionDePago(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.cfdiServices.getCFDIs()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });   
   },
   methods: {
     async editCliente() {
-      console.log(this.cliente)
         await this.services.clienteServices.actualizarCliente(this.cliente)
         await this.services.clienteServices.getlistclientes()
     },
@@ -690,6 +697,10 @@ export default {
       var index = this.cliente.sucursales.indexOf(suc);
       this.cliente.sucursales.splice(index, 1);
     },
+    removeServices(data){
+        var indexP = this.cliente.servicio_solicitado.indexOf(data);
+        this.cliente.servicio_solicitado.splice(indexP, 1);
+    }
   },
 };
 </script>

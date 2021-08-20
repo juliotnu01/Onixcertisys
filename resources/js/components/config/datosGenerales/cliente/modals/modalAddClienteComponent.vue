@@ -14,7 +14,6 @@
         </v-btn>
       </v-toolbar>
       <v-card>
-       
         <v-card-text>
           <v-card class="elevation-1">
             <v-card-title primary-title> SERVICIO SOLICITADO: </v-card-title>
@@ -34,7 +33,7 @@
                       return-object
                     >
                       <template v-slot:selection="data">
-                        <v-chip v-bind="data.attrs" :input-value="data.selected" close>
+                        <v-chip v-bind="data.attrs" :input-value="data.selected" close @click:close="removeServices(data.item)">
                           {{ data.item.name }}
                         </v-chip>
                       </template>
@@ -571,18 +570,44 @@
         </v-card-actions>
       </v-card>
       <notificacion/>
+       <overlay/>
     </v-dialog>
+    <v-snackbar  v-model="snackbar"  top fixed color="#0095d9" dark>
+       <h5 class=" text--error font-weight-bold">  Faltan campos por llenar, ¿Desea guardar y dejar los campos en vacios?</h5>  
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="error"
+          v-bind="attrs"
+          @click="snackbar = false"
+          class="mr-2"
+        >
+          Cerrar
+        </v-btn>
+        <v-btn
+          color="#003177"
+          v-bind="attrs"
+          @click="addCliente(g = true)"
+          
+        >
+        <v-icon>mdi-save</v-icon>
+          Guardar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import NotificacionComponent from '../../../../notificacion/indexComponentNotificacion.vue'
+import overlayComponent from '../../../../overlayComponent.vue'
 export default {
   components:{
-      'notificacion': NotificacionComponent
+      'notificacion': NotificacionComponent,
+       "overlay" : overlayComponent
   },
   data() {
     return {
+      snackbar:false,
       headers_sucursal:[
         {text: 'Nombre sucursal', align:'center', value:'nombre'},
         {text: 'Direccion sucursal', align:'center', value:'direccion'},
@@ -663,16 +688,15 @@ export default {
           diasDePago: '',
           horaDiasDePago: '',
           linkPortal:'',
-          usuarioContrasena:[],
-          indicacionesAltaFacturaPortal:[],
+          usuarioContrasena:"",
+          indicacionesAltaFacturaPortal:"",
           correoSoporteTecnicoPortal:'',
           bancoOrdenante:'',
           cuentaDePago:'',
           complementoDePagoSeEnviaPorEmail:'',
           informacionAdicionalComplementoDePago:'',
         },
-        listaRequerimientoDeAccesoAlaPlata:{
-        },
+        listaRequerimientoDeAccesoAlaPlata:'',
         sucursales:[]
       },
       rules: {
@@ -708,19 +732,26 @@ export default {
     },
   },
   async mounted() {
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.cfdiServices.getCFDIs();
+    this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.metodoDePagoServices.getlistMetodoDePago(),
+      this.services.condicionDePagoServices.getlistCondicionDePago(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.cfdiServices.getCFDIs()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
-    async addCliente() {
-        
+    async addCliente(g = false) {
                   if(this.$refs.form_SS.validate() && 
                     this.$refs.form_PDC.validate() && 
                     this.$refs.form_CA.validate() && 
                     this.$refs.form_DFRF.validate() &&
-                    this.$refs.form_RFP.validate()){
+                    this.$refs.form_RFP.validate() || g == true ){
                     
       await this.services.clienteServices.agregarCliente(this.model);
       await this.services.clienteServices.getlistclientes();
@@ -786,6 +817,8 @@ export default {
       };
         var model_notificacion = {mensaje: 'la sucursal ya esta registrada', status: true, color: 'warning'};
         this.$store.commit("setNotificacion", model_notificacion);
+      }else{
+        this.snackbar  = true;
       }
     },
     AgregarSucursal() {
@@ -808,6 +841,10 @@ export default {
       var index = this.model.sucursales.indexOf(suc);
       this.model.sucursales.splice(index, 1);
     },
+    removeServices(data){
+        var indexP = this.model.servicio_solicitado.indexOf(data);
+        this.model.servicio_solicitado.splice(indexP, 1);
+    }
   },
 };
 </script>

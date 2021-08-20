@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalTotalizarComponent.vue */ "./resources/js/components/factura/modals/modalTotalizarComponent.vue");
 /* harmony import */ var _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalPdfFacturaComponent */ "./resources/js/components/factura/modals/modalPdfFacturaComponent.vue");
 /* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -690,26 +691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -718,7 +700,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-add-factura": _modals_modalTotalizarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     "modal-pdf-factura": _modals_modalPdfFacturaComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -749,9 +732,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tipo_de_factura: [{
         name: "Generar factura de las orde de servicio ",
         value: 1
-      }, {
-        name: "Generar factura en blanco",
-        value: 2
       }],
       tipoFacturaSelected: {},
       headers_partidas_factura: [{
@@ -986,50 +966,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this.services.reciboServices.getlistRecibos();
+              _this.$store.commit('setOverley', true);
+
+              Promise.all([_this.services.reciboServices.getlistRecibos(), _this.services.clienteServices.getlistclientes(), _this.services.monedaServices.getlistMonedas(), _this.services.empleadoServices.getlistEmpleados(), _this.services.instrumentoServices.getlistInstrumentos(), _this.services.clienteServices.getlistclientes(), _this.services.metodoDePagoServices.getlistMetodoDePago(), _this.services.condicionDePagoServices.getlistCondicionDePago(), _this.services.unidadServices.getUnidades(), _this.services.claveSatServices.getclavesSat(), _this.services.metodoDePagoServices.getlistMetodoDePago(), _this.services.cfdiServices.getCFDIs()]).then(function () {
+                _this.$store.commit('setOverley', false);
+              })["catch"](function (reason) {
+                _this.$store.commit('setOverley', false);
+              });
 
             case 2:
-              _context.next = 4;
-              return _this.services.clienteServices.getlistclientes();
-
-            case 4:
-              _context.next = 6;
-              return _this.services.monedaServices.getlistMonedas();
-
-            case 6:
-              _context.next = 8;
-              return _this.services.empleadoServices.getlistEmpleados();
-
-            case 8:
-              _context.next = 10;
-              return _this.services.instrumentoServices.getlistInstrumentos();
-
-            case 10:
-              _context.next = 12;
-              return _this.services.clienteServices.getlistclientes();
-
-            case 12:
-              _context.next = 14;
-              return _this.services.metodoDePagoServices.getlistMetodoDePago();
-
-            case 14:
-              _context.next = 16;
-              return _this.services.condicionDePagoServices.getlistCondicionDePago();
-
-            case 16:
-              _context.next = 18;
-              return _this.services.unidadServices.getUnidades();
-
-            case 18:
-              _context.next = 20;
-              return _this.services.claveSatServices.getclavesSat();
-
-            case 20:
-              _context.next = 22;
-              return _this.services.cfdiServices.getCFDIs();
-
-            case 22:
             case "end":
               return _context.stop();
           }
@@ -1172,9 +1117,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.model.recibo.forEach(function (item) {
         _this5.cotizacion_partida = item.has_cotizaicon;
-        console.log({
-          cot: _this5.cotizacion_partida
-        });
       });
 
       for (var i = 0; i < this.model.recibo.length; i++) {
@@ -1566,15 +1508,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      fecha: moment__WEBPACK_IMPORTED_MODULE_2___default()().format("l")
+      fecha: moment__WEBPACK_IMPORTED_MODULE_2___default()().format("l"),
+      snackbar_error_factura: false,
+      error_message_data_factura: {},
+      loading_registrar_factura: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_factura", "factura"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_add_factura", "factura", "error_message_factura"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_add_factura;
@@ -1593,18 +1580,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                try {
-                  _this.services.facturaServices.agregarFactura(_this.factura);
-                } catch (e) {
-                  console.log(e);
+                _context.prev = 0;
+                _this.loading_registrar_factura = true;
+                _context.next = 4;
+                return _this.services.facturaServices.agregarFactura(_this.factura);
+
+              case 4:
+                if (Object.entries(_this.error_message_factura).length > 0) {
+                  _this.snackbar_error_factura = true;
+                  _this.error_message_data_factura = _this.error_message_factura.data.data;
                 }
 
-              case 1:
+                _this.loading_registrar_factura = false;
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+                _this.loading_registrar_factura = false;
+
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 8]]);
       }))();
     }
   }
@@ -1777,9 +1779,9 @@ var render = function() {
                                                 ),
                                                 [
                                                   _vm._v(
-                                                    "\n                    Orden de servicio:\n                    " +
+                                                    "\n                    Orden de servicio:  " +
                                                       _vm._s(data.item.id) +
-                                                      " -\n                    " +
+                                                      " - " +
                                                       _vm._s(
                                                         data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
                                                           0,
@@ -1858,12 +1860,12 @@ var render = function() {
                                           key: "item",
                                           fn: function(data) {
                                             return [
-                                              typeof data.item !== "object"
+                                              typeof data.item !== " object"
                                                 ? [
                                                     _vm._v(
-                                                      "\n                    Orden de servicio:\n                    " +
+                                                      "\n                    Orden de servicio: " +
                                                         _vm._s(data.item.id) +
-                                                        " -\n                    " +
+                                                        " - " +
                                                         _vm._s(
                                                           data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
                                                             0,
@@ -2021,7 +2023,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      938385834
+                                      3306352330
                                     ),
                                     model: {
                                       value: _vm.model.recibo,
@@ -2087,24 +2089,27 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-text-field", {
+                                      _c("v-autocomplete", {
                                         attrs: {
+                                          items: _vm.monedas,
+                                          outlined: "",
                                           label: "Moneda",
-                                          outlined: ""
+                                          "return-object": "",
+                                          "item-text": "clave",
+                                          value: "clave"
                                         },
                                         model: {
                                           value:
-                                            _vm.cotizacion_partida.has_moneda
-                                              .clave,
+                                            _vm.cotizacion_partida.has_moneda,
                                           callback: function($$v) {
                                             _vm.$set(
-                                              _vm.cotizacion_partida.has_moneda,
-                                              "clave",
+                                              _vm.cotizacion_partida,
+                                              "has_moneda",
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "cotizacion_partida.has_moneda.clave"
+                                            "cotizacion_partida.has_moneda"
                                         }
                                       })
                                     ],
@@ -2126,10 +2131,14 @@ var render = function() {
                                   _vm.cotizacion_partida.hasOwnProperty(
                                     "has_cliente"
                                   )
-                                    ? _c("v-text-field", {
+                                    ? _c("v-autocomplete", {
                                         attrs: {
+                                          items: _vm.listCondicionDePago,
+                                          outlined: "",
                                           label: "Forma de pago",
-                                          outlined: ""
+                                          "return-object": "",
+                                          "item-text": "nombre",
+                                          value: "nombre"
                                         },
                                         model: {
                                           value:
@@ -2166,10 +2175,14 @@ var render = function() {
                                   _vm.cotizacion_partida.hasOwnProperty(
                                     "has_cliente"
                                   )
-                                    ? _c("v-text-field", {
+                                    ? _c("v-autocomplete", {
                                         attrs: {
+                                          items: _vm.list_metodo_de_pago,
+                                          outlined: "",
                                           label: "Metodo de pago",
-                                          outlined: ""
+                                          "return-object": "",
+                                          "item-text": "nombre",
+                                          value: "nombre"
                                         },
                                         model: {
                                           value:
@@ -2280,7 +2293,7 @@ var render = function() {
                                                 var item = ref.item
                                                 return [
                                                   _vm._v(
-                                                    "\n                   " +
+                                                    "\n                  " +
                                                       _vm._s(item.codigo_cfdi) +
                                                       " - " +
                                                       _vm._s(
@@ -2294,7 +2307,7 @@ var render = function() {
                                           ],
                                           null,
                                           false,
-                                          2198625948
+                                          1016084220
                                         ),
                                         model: {
                                           value:
@@ -2409,293 +2422,6 @@ var render = function() {
                         ],
                         1
                       )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.tipoFacturaSelected.value == 2
-                    ? _c(
-                        "v-col",
-                        { attrs: { cols: "12", xs: "12", sm: "12", md: "12" } },
-                        [
-                          _c(
-                            "v-row",
-                            [
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.clientes,
-                                      "item-text":
-                                        "datos_fisicos_requeremientos_facturacion_razon_social",
-                                      "item-value": "id",
-                                      "return-object": "",
-                                      label: "Cliente",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.cliente,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "cliente",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.cliente"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "3",
-                                    md: "3"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.monedas,
-                                      "item-text": "nombre_moneda",
-                                      "return-object": "",
-                                      label: "Moneda",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.moneda,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "moneda",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.moneda"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "3",
-                                    md: "3"
-                                  }
-                                },
-                                [
-                                  _c("v-autocomplete", {
-                                    attrs: {
-                                      items: _vm.empleados,
-                                      "item-text": "nombre_completo",
-                                      "return-object": "",
-                                      label: "Vendedor",
-                                      outlined: "",
-                                      clearable: ""
-                                    },
-                                    model: {
-                                      value: _vm.model.factura_nueva.vendedor,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "vendedor",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "model.factura_nueva.vendedor"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "3",
-                                    md: "3"
-                                  }
-                                },
-                                [
-                                  _c("v-select", {
-                                    attrs: {
-                                      label: "Forma de pago",
-                                      outlined: "",
-                                      items: _vm.listCondicionDePago,
-                                      "item-text": "nombre",
-                                      "item-value": "id",
-                                      "return-object": ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.model.factura_nueva.forma_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "forma_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "model.factura_nueva.forma_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "3",
-                                    md: "3"
-                                  }
-                                },
-                                [
-                                  _c("v-select", {
-                                    attrs: {
-                                      label: "Metodo de pago",
-                                      outlined: "",
-                                      items: _vm.list_metodo_de_pago,
-                                      "item-text": "nombre",
-                                      "item-value": "id",
-                                      "return-object": ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.model.factura_nueva.metodo_de_pago,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "metodo_de_pago",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "model.factura_nueva.metodo_de_pago"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Orden de Compra",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value: _vm.orden_de_compra,
-                                      callback: function($$v) {
-                                        _vm.orden_de_compra = $$v
-                                      },
-                                      expression: "orden_de_compra"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c("v-textarea", {
-                                    attrs: {
-                                      outlined: "",
-                                      label: "NOTA",
-                                      outlined: ""
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.model.factura_nueva.nota_de_factura,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.model.factura_nueva,
-                                          "nota_de_factura",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "model.factura_nueva.nota_de_factura"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                {
-                                  attrs: {
-                                    cols: "12",
-                                    xs: "12",
-                                    sm: "12",
-                                    md: "12"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { color: "success" },
-                                      on: { click: _vm.TotalizarFacturaNueva }
-                                    },
-                                    [_vm._v("Totalizar")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
                     : _vm._e()
                 ],
                 1
@@ -2733,19 +2459,21 @@ var render = function() {
                       return [
                         _c("td", { staticClass: "text-left" }, [
                           _vm._v(
-                            "\n            " +
+                            "\n              " +
                               _vm._s(item.has_intrumento.nombre)
                           ),
                           _c("br"),
                           _vm._v(
-                            "\n            ID:" + _vm._s(item.identificacion)
+                            "\n              ID:" + _vm._s(item.identificacion)
                           ),
                           _c("br"),
-                          _vm._v("\n            Marca:" + _vm._s(item.marca)),
+                          _vm._v("\n              Marca:" + _vm._s(item.marca)),
                           _c("br"),
-                          _vm._v("\n            Modelo:" + _vm._s(item.modelo)),
+                          _vm._v(
+                            "\n              Modelo:" + _vm._s(item.modelo)
+                          ),
                           _c("br"),
-                          _vm._v("\n            Serie:" + _vm._s(item.serie)),
+                          _vm._v("\n              Serie:" + _vm._s(item.serie)),
                           _c("br")
                         ])
                       ]
@@ -2808,7 +2536,7 @@ var render = function() {
                       return [
                         _c("td", { attrs: { clas: "text-left" } }, [
                           _vm._v(
-                            "\n            " +
+                            "\n              " +
                               _vm._s(
                                 _vm._f("numberFormat")(
                                   item.importe,
@@ -2818,7 +2546,7 @@ var render = function() {
                                     : ""
                                 )
                               ) +
-                              "\n          "
+                              "\n            "
                           )
                         ])
                       ]
@@ -2846,7 +2574,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n              por iniciar\n            "
+                                      "\n                por iniciar\n              "
                                     )
                                   ]
                                 )
@@ -2863,9 +2591,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n              " +
+                                      "\n                " +
                                         _vm._s(item.has_calibracion.estado) +
-                                        "\n            "
+                                        "\n              "
                                     )
                                   ]
                                 )
@@ -2881,9 +2609,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n              " +
+                                      "\n                " +
                                         _vm._s(item.has_calibracion.estado) +
-                                        "\n            "
+                                        "\n              "
                                     )
                                   ]
                                 )
@@ -2918,7 +2646,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  SUBTOTAL:\n                  " +
+                                        "\n                    SUBTOTAL:\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_subtotal,
@@ -2930,7 +2658,7 @@ var render = function() {
                                                 : ""
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -2951,7 +2679,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  IVA :\n                  " +
+                                        "\n                    IVA :\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_iva,
@@ -2963,7 +2691,7 @@ var render = function() {
                                                 : ""
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -2984,7 +2712,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  TOTAL:\n                  " +
+                                        "\n                    TOTAL:\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_total,
@@ -2996,7 +2724,7 @@ var render = function() {
                                                 : ""
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -3284,7 +3012,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("span", [
                             _vm._v(
-                              "\n              Mag.:\n              " +
+                              "\n                Mag.:\n                " +
                                 _vm._s(item.instrumento.has_magnitud.clave)
                             )
                           ]),
@@ -3292,7 +3020,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("span", [
                             _vm._v(
-                              "\n              Acred.:\n              " +
+                              "\n                Acred.:\n                " +
                                 _vm._s(item.instrumento.has_acreditacion.nombre)
                             )
                           ]),
@@ -3359,7 +3087,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  SUBTOTAL:\n                  " +
+                                        "\n                    SUBTOTAL:\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_subtotal2,
@@ -3367,7 +3095,7 @@ var render = function() {
                                                 .clave
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -3388,7 +3116,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  IVA :\n                  " +
+                                        "\n                    IVA :\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_iva2,
@@ -3396,7 +3124,7 @@ var render = function() {
                                                 .clave
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -3417,7 +3145,7 @@ var render = function() {
                                   [
                                     _c("h3", { staticClass: "float-right" }, [
                                       _vm._v(
-                                        "\n                  TOTAL:\n                  " +
+                                        "\n                    TOTAL:\n                    " +
                                           _vm._s(
                                             _vm._f("numberFormat")(
                                               _vm.var_computed_total2,
@@ -3425,7 +3153,7 @@ var render = function() {
                                                 .clave
                                             )
                                           ) +
-                                          "\n                "
+                                          "\n                  "
                                       )
                                     ])
                                   ]
@@ -3451,7 +3179,11 @@ var render = function() {
       _vm._v(" "),
       _c("modal-add-factura"),
       _vm._v(" "),
-      _c("modal-pdf-factura")
+      _c("modal-pdf-factura"),
+      _vm._v(" "),
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )
@@ -3571,7 +3303,6 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { width: "1256" },
           model: {
             value: _vm.openDialog,
             callback: function($$v) {
@@ -3600,6 +3331,25 @@ var render = function() {
                     },
                     [_c("v-icon", [_vm._v("mdi-close")])],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "text-right mr-5 mt-4" }, [
+                    _c("strong", [_vm._v("Fecha:")]),
+                    _vm._v(" " + _vm._s(_vm.fecha))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        color: "#0095d9",
+                        loading: _vm.loading_registrar_factura
+                      },
+                      on: { click: _vm.RegistrarFactura }
+                    },
+                    [_vm._v(" Registrar Factura ")]
                   )
                 ],
                 1
@@ -3624,179 +3374,149 @@ var render = function() {
                               }
                             },
                             [
-                              _c(
-                                "div",
-                                [
-                                  _c("h4", [
-                                    _c("strong", [_vm._v("Cliente: ")]),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_razon_social
-                                        ) +
-                                        "\n              "
-                                    )
+                              _c("div", [
+                                _c("h4", [
+                                  _c("strong", [_vm._v("Cliente: ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_razon_social
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v(" Dirección Fiscal:")]),
+                                  _vm._v(
+                                    " Cll.\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
+                                      ) +
+                                      "\n                #\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
+                                      ) +
+                                      "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v(" R.F.C.: ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_rfc
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v(" Uso C.F.D.I.:")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente.cdfi
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v(" Forma de pago :")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .forma_de_pago
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v(" Metodo de pago : ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .metodo_de_pago
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [
+                                    _vm._v(" Condiciones de pago :")
                                   ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [
-                                      _vm._v(" Dirección Fiscal:")
-                                    ]),
-                                    _vm._v(
-                                      "  Cll.\n                " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
-                                        ) +
-                                        " #\n                " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero
-                                        ) +
-                                        "\n                " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
-                                        ) +
-                                        "\n                " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
-                                        ) +
-                                        "\n                " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v(" R.F.C.: ")]),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_rfc
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v(" Uso C.F.D.I.:")]),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .has_cfdi.codigo_cfdi
-                                        ) +
-                                        " - " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .has_cfdi.descripcion_cfdi
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v(" Forma de pago :")]),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .forma_de_pago
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [
-                                      _vm._v(" Metodo de pago : ")
-                                    ]),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .metodo_de_pago
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [
-                                      _vm._v(" Condiciones de pago :")
-                                    ]),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .termino_de_pago
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [
-                                      _vm._v("CP de Expedición : ")
-                                    ]),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v("Moneda :")]),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(
-                                          _vm.factura.cliente.has_cliente
-                                            .moneda_factura
-                                        ) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v("Orden de compra :")]),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(_vm.factura.orden_de_compra) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h4", [
-                                    _c("strong", [_vm._v("Moneda :")]),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(_vm.factura.nota) +
-                                        "\n              "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-divider"),
-                                  _vm._v(" "),
-                                  _c("h4", { staticClass: "text-right" }, [
-                                    _c("strong", [_vm._v("Fecha:")]),
-                                    _vm._v(" " + _vm._s(_vm.fecha))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("br")
-                                ],
-                                1
-                              )
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .termino_de_pago
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v("CP de Expedición : ")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_cliente
+                                          .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v("Moneda :")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.factura.cliente.has_moneda.clave
+                                      ) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v("Orden de compra :")]),
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(_vm.factura.orden_de_compra) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("strong", [_vm._v("NOTA :")]),
+                                  _vm._v(" " + _vm._s(_vm.factura.nota))
+                                ])
+                              ])
                             ]
                           ),
                           _vm._v(" "),
@@ -3900,9 +3620,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              item.reciboID
-                                                            )
+                                                            "\n                      " +
+                                                              _vm._s(
+                                                                item.reciboID
+                                                              ) +
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       ),
@@ -3915,9 +3637,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              item.cotizacionID
-                                                            )
+                                                            "\n                      " +
+                                                              _vm._s(
+                                                                item.cotizacionID
+                                                              ) +
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       ),
@@ -3930,10 +3654,13 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              item.has_clave_sat
-                                                                .codigo
-                                                            )
+                                                            "\n                      " +
+                                                              _vm._s(
+                                                                item
+                                                                  .has_clave_sat
+                                                                  .codigo
+                                                              ) +
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       ),
@@ -3946,9 +3673,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            _vm._s(
-                                                              item.informe_id
-                                                            )
+                                                            "\n                      " +
+                                                              _vm._s(
+                                                                item.informe_id
+                                                              ) +
+                                                              "\n                    "
                                                           )
                                                         ]
                                                       ),
@@ -4169,7 +3898,7 @@ var render = function() {
                                               _c("tr", [
                                                 _c(
                                                   "td",
-                                                  { attrs: { colspan: "8" } },
+                                                  { attrs: { colspan: "9" } },
                                                   [
                                                     _c(
                                                       "h3",
@@ -4272,7 +4001,7 @@ var render = function() {
                                   ],
                                   null,
                                   false,
-                                  3979111942
+                                  2299477735
                                 )
                               })
                             ],
@@ -4286,23 +4015,63 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-divider"),
-              _vm._v(" "),
               _c(
-                "v-card-actions",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
+                "v-snackbar",
+                {
+                  attrs: { color: "error", timeout: -1 },
+                  scopedSlots: _vm._u([
                     {
-                      attrs: { color: "primary", text: "" },
-                      on: { click: _vm.RegistrarFactura }
+                      key: "action",
+                      fn: function(ref) {
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "v-btn",
+                            _vm._b(
+                              {
+                                attrs: { color: "#0095d9", dark: "" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.snackbar_error_factura = false
+                                  }
+                                }
+                              },
+                              "v-btn",
+                              attrs,
+                              false
+                            ),
+                            [_vm._v(" Cerrar")]
+                          )
+                        ]
+                      }
+                    }
+                  ]),
+                  model: {
+                    value: _vm.snackbar_error_factura,
+                    callback: function($$v) {
+                      _vm.snackbar_error_factura = $$v
                     },
-                    [_vm._v("\n          Registrar Factura\n        ")]
-                  )
-                ],
-                1
+                    expression: "snackbar_error_factura"
+                  }
+                },
+                [
+                  Object.entries(this.error_message_factura).length > 0
+                    ? _c("div", [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm.error_message_factura.data.data.message)
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(
+                              _vm.error_message_factura.data.data.messageDetail
+                            ) +
+                            "\n          "
+                        )
+                      ])
+                    : _vm._e()
+                ]
               )
             ],
             1

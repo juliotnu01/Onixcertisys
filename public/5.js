@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion.vue */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -107,6 +108,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -115,7 +118,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-para-duplicar": _modals_modalDuplicateCotizacionComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     notificacion: _notificacion_indexComponentNotificacion_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    apexcharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default.a
+    apexcharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default.a,
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -151,9 +155,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "clientes"])),
-  mounted: function mounted() {
-    this.services.clienteServices.getlistclientes();
-  },
   methods: {
     EnlazarCotizacion: function EnlazarCotizacion(item) {
       this.$store.commit("setCotizacionParaDuplicar", item);
@@ -191,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -571,6 +573,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -639,6 +644,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         Value: 3
       }]
     };
+  },
+  components: {
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_duplicate_cotizacion", "clientes", "monedas", "empleados", "tiempos_de_entrega", "instrumentos", "cotizacion_para_duplicar", "unidades", "clavesSat"])), {}, {
     openDialog: {
@@ -709,25 +717,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this2.services.clienteServices.getlistclientes();
+              _this2.$store.commit('setOverley', true);
+
+              Promise.all([_this2.services.clienteServices.getlistclientes(), _this2.services.monedaServices.getlistMonedas(), _this2.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(), _this2.services.empleadoServices.getlistEmpleados(), _this2.services.instrumentoServices.getlistInstrumentos(), _this2.services.unidadServices.getUnidades(), _this2.services.claveSatServices.getclavesSat()]).then(function () {
+                _this2.$store.commit('setOverley', false);
+              })["catch"](function (reason) {
+                _this2.$store.commit('setOverley', false);
+              });
 
             case 2:
-              _this2.services.monedaServices.getlistMonedas();
-
-              _this2.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
-
-              _this2.services.empleadoServices.getlistEmpleados();
-
-              _this2.services.instrumentoServices.getlistInstrumentos();
-
-              _this2.services.unidadServices.getUnidades();
-
-              _this2.services.claveSatServices.getclavesSat();
-
-              console.log(_this2.cotizacion_para_duplicar);
-
-            case 9:
             case "end":
               return _context.stop();
           }
@@ -1031,7 +1029,9 @@ var render = function() {
       _vm._v(" "),
       _c("modal-para-duplicar"),
       _vm._v(" "),
-      _c("notificacion")
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )
@@ -2261,7 +2261,9 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("overlay")
         ],
         1
       )

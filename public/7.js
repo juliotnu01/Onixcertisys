@@ -10,6 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -183,6 +184,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -251,9 +254,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
+  components: {
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   mounted: function mounted() {
-    this.services.facturaServices.getlistFacturas();
-    this.services.facturaServices.consultarSaldoTimprado();
+    var _this = this;
+
+    this.$store.commit('setOverley', true);
+    Promise.all([this.services.facturaServices.getlistFacturas(), this.services.facturaServices.consultarSaldoTimprado()]).then(function () {
+      _this.$store.commit('setOverley', false);
+    })["catch"](function (reason) {
+      _this.$store.commit('setOverley', false);
+    });
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "facturas", "saldoTimbre"])),
   methods: {
@@ -1104,7 +1116,9 @@ var render = function() {
           ]
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )

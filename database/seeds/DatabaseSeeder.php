@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CFDISeeder::class, 
             CondicionesDePagoSeeder::class,
-            MetodoDePagoSeeder::class]);
+            MetodoDePagoSeeder::class,
+            ClaveSatSeeder::class]);
     }
 }

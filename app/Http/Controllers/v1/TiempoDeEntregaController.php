@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\TiempoDeEntrega;
 use Illuminate\Http\Request;
 use DB;
+use Excel;
+use App\Imports\TiempoDeEntregaImport;
+
 class TiempoDeEntregaController extends Controller
 {
     /**
@@ -47,6 +50,15 @@ class TiempoDeEntregaController extends Controller
                 $tiempoDeEntrega->nombre = $request['nombre'];
                 $tiempoDeEntrega->save();
             },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+    public function storeImport(Request $request, TiempoDeEntrega $tiempoDeEntrega)
+    {
+         try {
+            Excel::import(new TiempoDeEntregaImport, $request->file('document_TDE'), \Maatwebsite\Excel\Excel::XLSX);
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

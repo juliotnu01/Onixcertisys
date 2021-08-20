@@ -5,7 +5,7 @@
             <v-row align="center" justify="center">
                 <v-col cols="12" xs="12" sm="12" md="6" lg="6">
                     <v-card class="elevation-12">
-                        <v-img src="img/login-logo.png" height="194"></v-img>
+                        <v-img src="img/login-logo.png" width="100%"></v-img>
                         <v-card-text>
                             <v-alert dense outlined type="error" v-if="error_handle_login">
                                 Credenciales invalidas por favor vuelva a intentarlo
@@ -17,7 +17,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" @click="userLogin">Login</v-btn>
+                            <v-btn color="primary" @click="userLogin" :loading="loading">Login</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
@@ -36,6 +36,7 @@ export default {
         return {
             email: "",
             psw: "",
+            loading: false,
             rules: {
                 required: (value) => !!value || "Este campo es requerido.",
             },
@@ -47,12 +48,14 @@ export default {
     methods: {
         async userLogin() {
             try {
+                this.loading = true
                 var model = {
                     email: this.email,
                     password: this.psw,
                 };
                 if (this.$refs.login_form.validate()) {
                     this.services.userServices.loginUsr(model);
+                    this.loading = false
                 }
             } catch (error) {
                 console.log(error);

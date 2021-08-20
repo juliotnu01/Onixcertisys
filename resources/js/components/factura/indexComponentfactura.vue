@@ -33,111 +33,92 @@
               </v-col>
               <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                 <v-autocomplete
-                  v-model="model.recibo"
-                  :items="recibos_cliente"
-                  outlined
-                  chips
-                  label="Ordenes de Sercicios"
-                  item-text="id"
-                  item-value="id"
-                  multiple
-                  return-object
-                  @change="CargarPartidas"
-                >
+                    v-model="model.recibo"
+                    :items="recibos_cliente"
+                    outlined
+                    chips
+                    label="Ordenes de Sercicios"
+                    item-text="id"
+                    item-value="id"
+                    multiple
+                    return-object
+                    @change="CargarPartidas"
+                  >
+                  
                   <template v-slot:selection="data">
-                    <v-chip
-                      v-bind="data.attrs"
-                      :input-value="data.selected"
-                      close
-                      @click="data.select"
-                      @click:close="remove(data.item)"
-                    >
-                      Orden de servicio:
-                      {{ data.item.id }} -
-                      {{
-                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
-                          0,
-                          30
-                        )
-                      }}
+                    <v-chip v-bind="data.attrs" :input-value="data.selected" close @click="data.select" @click:close="remove(data.item)">
+                      Orden de servicio:  {{ data.item.id }} - {{ data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)}}
                       <v-alert
-                        color="primary"
-                        v-if="data.item.estado === 'pendiente'"
-                        dark
-                        :value="true"
-                        class="ml-4"
-                        dense
-                        small
-                        style="
-                          position: relative;
-                          top: 8px;
-                          height: 23px;
-                          padding-top: 0px;
-                        "
-                      >
+                          color="primary"
+                          v-if="data.item.estado === 'pendiente'"
+                          dark
+                          :value="true"
+                          class="ml-4"
+                          dense
+                          small
+                          style="
+                            position: relative;
+                            top: 8px;
+                            height: 23px;
+                            padding-top: 0px;
+                          "
+                        >
                         {{ data.item.estado }}
                       </v-alert>
                       <v-alert
-                        color="success"
-                        v-else
-                        dark
-                        :value="true"
-                        class="ml-4"
-                        dense
-                        small
-                        style="
-                          position: relative;
-                          top: 8px;
-                          height: 23px;
-                          padding-top: 0px;
-                        "
-                      >
+                          color="success"
+                          v-else
+                          dark
+                          :value="true"
+                          class="ml-4"
+                          dense
+                          small
+                          style="
+                            position: relative;
+                            top: 8px;
+                            height: 23px;
+                            padding-top: 0px;
+                          "
+                        >
                         {{ data.item.estado }}
                       </v-alert>
                     </v-chip>
                   </template>
                   <template v-slot:item="data">
-                    <template v-if="typeof data.item !== 'object'">
-                      Orden de servicio:
-                      {{ data.item.id }} -
-                      {{
-                        data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(
-                          0,
-                          30
-                        )
-                      }}
+                    <template v-if="typeof data.item !== ' object'">
+                      Orden de servicio: {{ data.item.id }} - {{ data.item.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social.substr(0,30)}}
                       <v-alert
-                        color="primary"
-                        v-if="data.item.estado === 'pendiente'"
-                        dark
-                        :value="true"
-                        class="ml-4"
-                        dense
-                        small
-                        style="
-                          position: relative;
-                          top: 8px;
-                          height: 23px;
-                          padding-top: 0px;
-                        "
-                      >
+                          color="primary"
+                          v-if="data.item.estado === 'pendiente'"
+                          dark
+                          :value="true"
+                          class="ml-4"
+                          dense
+                          small
+                          style="
+                            position: relative;
+                            top: 8px;
+                            height: 23px;
+                            padding-top: 0px;
+                          "
+                        >
                         {{ data.item.estado }}
                       </v-alert>
                       <v-alert
-                        color="success"
-                        v-else
-                        dark
-                        :value="true"
-                        class="ml-4"
-                        dense
-                        small
-                        style="
-                          position: relative;
-                          top: 8px;
-                          height: 23px;
-                          padding-top: 0px;
-                        "
-                      >
+                          color="success"
+                          v-else
+                          dark
+                          :value="true"
+                          class="ml-4"
+                          dense
+                          small
+                          style="
+                            position: relative;
+                            top: 8px;
+                            height: 23px;
+                            padding-top: 0px;
+                          "
+                        >
                         {{ data.item.estado }}
                       </v-alert>
                     </template>
@@ -189,13 +170,13 @@
                 </v-autocomplete>
               </v-col>
               <v-col
-                cols="12"
-                xs="12"
-                sm="12"
-                md="12"
-                lg="12"
-                v-if="Object.entries(cotizacion_partida).length > 3"
-              >
+                  cols="12"
+                  xs="12"
+                  sm="12"
+                  md="12"
+                  lg="12"
+                  v-if="Object.entries(cotizacion_partida).length > 3"
+                >
                 <v-text-field
                   label="Cliente"
                   v-model="
@@ -203,62 +184,60 @@
                       .datos_fisicos_requeremientos_facturacion_razon_social
                   "
                   outlined
-                  
                 />
               </v-col>
               <v-col
-                cols="12"
-                xs="12"
-                sm="12"
-                md="4"
-                lg="4"
-                v-if="Object.entries(cotizacion_partida).length > 3"
-              >
-                <v-text-field
+                  cols="12"
+                  xs="12"
+                  sm="12"
+                  md="4"
+                  lg="4"
+                  v-if="Object.entries(cotizacion_partida).length > 3"
+                >
+                <v-autocomplete
+                  v-model="cotizacion_partida.has_moneda"
+                  :items="monedas"
+                  outlined
                   label="Moneda"
-                  v-model="cotizacion_partida.has_moneda.clave"
-                  outlined
-                  
-                />
+                  return-object
+                  item-text="clave"
+                  value="clave"
+                ></v-autocomplete>
               </v-col>
-
               <v-col cols="12" xs="12" sm="4" md="4">
-                <v-text-field
-                  label="Forma de pago"
-                  outlined
-                  
+                <v-autocomplete
                   v-model="cotizacion_partida.has_cliente.forma_de_pago"
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
-                />
-              </v-col>
-
-              <v-col cols="12" xs="12" sm="4" md="4">
-                <v-text-field
-                  label="Metodo de pago"
-                  v-model="cotizacion_partida.has_cliente.metodo_de_pago"
+                  :items="listCondicionDePago"
                   outlined
-                  
+                  label="Forma de pago"
+                  return-object
+                  item-text="nombre"
+                  value="nombre"
+                ></v-autocomplete>
+              </v-col>
+              <v-col cols="12" xs="12" sm="4" md="4">
+                 <v-autocomplete
+                   v-model="cotizacion_partida.has_cliente.metodo_de_pago"
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
-                />
+                  :items="list_metodo_de_pago"
+                  outlined
+                  label="Metodo de pago"
+                  return-object
+                  item-text="nombre"
+                  value="nombre"
+                ></v-autocomplete>
               </v-col>
               <v-col cols="12" xs="12" sm="6" md="6">
                 <v-text-field
                   label="Condicion de pago"
                   v-model="cotizacion_partida.has_cliente.termino_de_pago"
                   outlined
-                  
                   v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                 />
               </v-col>
               <v-col cols="12" xs="12" sm="6" md="6">
-                <!-- <v-text-field
-                  label="C.F.D.I"
-                  v-model="cotizacion_partida.has_cliente.metodo_de_pago"
-                  outlined
-                  
-                  v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
-                /> -->
-                  <v-autocomplete
+                <v-autocomplete
                     v-model="cotizacion_partida.has_cliente.cdfi"
                     :items="cfdis"
                     outlined
@@ -268,11 +247,11 @@
                     item-value="codigo_cfdi"
                     v-if="cotizacion_partida.hasOwnProperty('has_cliente')"
                   >
-                  <template v-slot:selection="{item}">
-                    {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  <template v-slot:selection="{ item }">
+                    {{ item.codigo_cfdi }} - {{ item.descripcion_cfdi }}
                   </template>
-                  <template v-slot:item="{item}">
-                     {{item.codigo_cfdi}} - {{item.descripcion_cfdi}}
+                  <template v-slot:item="{ item }">
+                    {{ item.codigo_cfdi }} - {{ item.descripcion_cfdi }}
                   </template>
                 </v-autocomplete>
               </v-col>
@@ -285,12 +264,12 @@
               </v-col>
               <v-spacer />
               <v-col
-                cols="12"
-                xs="12"
-                sm="12"
-                md="12"
-                v-if="Object.entries(cotizacion_partida).length > 3"
-              >
+                  cols="12"
+                  xs="12"
+                  sm="12"
+                  md="12"
+                  v-if="Object.entries(cotizacion_partida).length > 3"
+                >
                 <v-textarea
                   outlined
                   label="NOTA"
@@ -302,7 +281,7 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
+          <!-- <v-col cols="12" xs="12" sm="12" md="12" v-if="tipoFacturaSelected.value == 2">
             <v-row>
               <v-col cols="12" xs="12" sm="12" md="12">
                 <v-autocomplete
@@ -360,318 +339,319 @@
                   return-object
                 />
               </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12">
+              <v-col cols="12" xs="12" sm="12" md="12">
                 <v-text-field
                   label="Orden de Compra"
                   outlined
                   v-model="orden_de_compra"
                 />
               </v-col>
-
               <v-col cols="12" xs="12" sm="12" md="12">
                 <v-textarea
-                  outlined
-                  label="NOTA"
-                  v-model="model.factura_nueva.nota_de_factura"
-                  outlined
-                />
+                    outlined
+                    label="NOTA"
+                    v-model="model.factura_nueva.nota_de_factura"
+                    outlined
+                  />
               </v-col>
               <v-col cols="12" xs="12" sm="12" md="12">
                 <v-btn color="success" @click="TotalizarFacturaNueva">Totalizar</v-btn>
               </v-col>
             </v-row>
-          </v-col>
+          </v-col> -->
         </v-row>
-      </v-col>
-      <v-col
-        cols="12"
-        xs="12"
-        sm="12"
-        md="8"
-        lg="8"
-        v-show="tipoFacturaSelected.value == 1"
-      >
-        <v-data-table
-          :headers="headers_partidas_factura"
-          :items="partidas_acumuladas"
-          :items-per-page="5"
-          class="elevation-1"
-        >
-          <template v-slot:item.has_intrumento="{ item }">
-            <td class="text-left">
-              {{ item.has_intrumento.nombre }}<br />
-              ID:{{ item.identificacion }}<br />
-              Marca:{{ item.marca }}<br />
-              Modelo:{{ item.modelo }}<br />
-              Serie:{{ item.serie }}<br />
-            </td>
-          </template>
-          <template v-slot:item.servicio="{ item }">
-            <td class="text-left">Servicio de {{ item.servicio }}</td>
-          </template>
-          <template v-slot:item.has_intrumento.precio_venta="{ item }">
-            <td clas="text-left">
-              <v-text-field
-                label="precio venta"
-                v-model="item.has_intrumento.precio_venta"
-                small
-                dense
-                outlined
-                @change="ActualizarImporte(item)"
-              ></v-text-field>
-            </td>
-          </template>
-          <template v-slot:item.importe="{ item }">
-            <td clas="text-left">
-              {{
-                item.importe
-                  | numberFormat(
-                    Object.entries(cotizacion_partida).length > 3
-                      ? cotizacion_partida.has_moneda.clave
-                      : ""
-                  )
-              }}
-            </td>
-          </template>
-          <template v-slot:item.has_calibracion="{ item }">
-            <td clas="text-left">
-              <v-alert
-                dense
-                outlined
-                type="error"
-                v-if="!item.has_calibracion"
-                class="m-0 p-0"
-              >
-                por iniciar
-              </v-alert>
-              <v-alert
-                dense
-                outlined
-                type="warning"
-                v-else-if="item.has_calibracion.estado === 'en proceso'"
-                class="m-0 p-0"
-              >
-                {{ item.has_calibracion.estado }}
-              </v-alert>
-              <v-alert dense outlined type="success" v-else class="m-0 p-0">
-                {{ item.has_calibracion.estado }}
-              </v-alert>
-            </td>
-          </template>
-          <template v-slot:footer>
-            <v-container>
-              <v-row>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    SUBTOTAL:
-                    {{
-                      var_computed_subtotal
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
-                    }}
-                  </h3>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    IVA :
-                    {{
-                      var_computed_iva
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
-                    }}
-                  </h3>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    TOTAL:
-                    {{
-                      var_computed_total
-                        | numberFormat(
-                          Object.entries(cotizacion_partida).length > 3
-                            ? cotizacion_partida.has_moneda.clave
-                            : ""
-                        )
-                    }}
-                  </h3>
-                </v-col>
-              </v-row>
-            </v-container>
-          </template>
-        </v-data-table>
-      </v-col>
-      <v-col
-        cols="12"
-        xs="12"
-        sm="12"
-        md="8"
-        lg="8"
-        v-show="tipoFacturaSelected.value == 2"
-      >
-        <v-data-table
-          :headers="headers_partidas_factura_2"
-          :items="partidas_acumuladas_2"
-          :items-per-page="5"
-          class="elevation-1"
-        >
-          <template v-slot:body.prepend>
-            <tr>
-              <td>
-                <v-select
-                  :items="clavesSat"
-                  item-text="codigo"
-                  item-value="id"
-                  label=""
-                  class="mt-5"
-                  outlined
-                  dense
-                  small
-                  v-model="item_factura_nueva.claveSat"
-                  return-object
-                />
+        </v-col>
+        <v-col
+            cols="12"
+            xs="12"
+            sm="12"
+            md="8"
+            lg="8"
+            v-show="tipoFacturaSelected.value == 1"
+          >
+          <v-data-table
+            :headers="headers_partidas_factura"
+            :items="partidas_acumuladas"
+            :items-per-page="5"
+            class="elevation-1"
+          >
+            <template v-slot:item.has_intrumento="{ item }">
+              <td class="text-left">
+                {{ item.has_intrumento.nombre }}<br />
+                ID:{{ item.identificacion }}<br />
+                Marca:{{ item.marca }}<br />
+                Modelo:{{ item.modelo }}<br />
+                Serie:{{ item.serie }}<br />
               </td>
-              <td>
+            </template>
+            <template v-slot:item.servicio="{ item }">
+              <td class="text-left">Servicio de {{ item.servicio }}</td>
+            </template>
+            <template v-slot:item.has_intrumento.precio_venta="{ item }">
+              <td clas="text-left">
                 <v-text-field
-                  label=""
-                  class="mt-5"
-                  outlined
-                  dense
+                  label="precio venta"
+                  v-model="item.has_intrumento.precio_venta"
                   small
-                  v-model="item_factura_nueva.cantidad"
-                />
-              </td>
-              <td>
-                <v-select
-                  :items="unidades"
-                  item-text="clave"
-                  item-value="id"
-                  label=""
-                  class="mt-5"
-                  outlined
                   dense
-                  small
-                  v-model="item_factura_nueva.unidad"
-                  return-object
-                />
-              </td>
-              <td>
-                <v-text-field
-                  label=""
-                  class="mt-5"
                   outlined
-                  dense
-                  small
-                  v-model="item_factura_nueva.concepto"
-                />
+                  @change="ActualizarImporte(item)"
+                ></v-text-field>
               </td>
-              <td>
-                <v-autocomplete
-                  label=""
-                  class="mt-5"
+            </template>
+            <template v-slot:item.importe="{ item }">
+              <td clas="text-left">
+                {{
+                  item.importe
+                    | numberFormat(
+                      Object.entries(cotizacion_partida).length > 3
+                        ? cotizacion_partida.has_moneda.clave
+                        : ""
+                    )
+                }}
+              </td>
+            </template>
+            <template v-slot:item.has_calibracion="{ item }">
+              <td clas="text-left">
+                <v-alert
+                  dense
                   outlined
+                  type="error"
+                  v-if="!item.has_calibracion"
+                  class="m-0 p-0"
+                >
+                  por iniciar
+                </v-alert>
+                <v-alert
                   dense
-                  small
-                  :items="instrumentos"
-                  item-text="nombre"
-                  item-value="id"
-                  return-object
-                  v-model="item_factura_nueva.instrumento"
-                />
-              </td>
-              <td>
-                <v-text-field
-                  label=""
-                  class="mt-5"
                   outlined
-                  dense
-                  small
-                  v-model="item_factura_nueva.instrumento.precio_venta"
-                />
+                  type="warning"
+                  v-else-if="item.has_calibracion.estado === 'en proceso'"
+                  class="m-0 p-0"
+                >
+                  {{ item.has_calibracion.estado }}
+                </v-alert>
+                <v-alert dense outlined type="success" v-else class="m-0 p-0">
+                  {{ item.has_calibracion.estado }}
+                </v-alert>
               </td>
-              <td>
-                <v-text-field
-                  label=""
-                  class="mt-5"
-                  outlined
-                  dense
-                  small
-                  v-model="var_computed_importe_factura_libre"
-                />
+            </template>
+            <template v-slot:footer>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      SUBTOTAL:
+                      {{
+                        var_computed_subtotal
+                          | numberFormat(
+                            Object.entries(cotizacion_partida).length > 3
+                              ? cotizacion_partida.has_moneda.clave
+                              : ""
+                          )
+                      }}
+                    </h3>
+                  </v-col>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      IVA :
+                      {{
+                        var_computed_iva
+                          | numberFormat(
+                            Object.entries(cotizacion_partida).length > 3
+                              ? cotizacion_partida.has_moneda.clave
+                              : ""
+                          )
+                      }}
+                    </h3>
+                  </v-col>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      TOTAL:
+                      {{
+                        var_computed_total
+                          | numberFormat(
+                            Object.entries(cotizacion_partida).length > 3
+                              ? cotizacion_partida.has_moneda.clave
+                              : ""
+                          )
+                      }}
+                    </h3>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </template>
+          </v-data-table>
+        </v-col>
+        <v-col
+            cols="12"
+            xs="12"
+            sm="12"
+            md="8"
+            lg="8"
+            v-show="tipoFacturaSelected.value == 2"
+          >
+          <v-data-table
+            :headers="headers_partidas_factura_2"
+            :items="partidas_acumuladas_2"
+            :items-per-page="5"
+            class="elevation-1"
+          >
+            <template v-slot:body.prepend>
+              <tr>
+                <td>
+                  <v-select
+                    :items="clavesSat"
+                    item-text="codigo"
+                    item-value="id"
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="item_factura_nueva.claveSat"
+                    return-object
+                  />
+                </td>
+                <td>
+                  <v-text-field
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="item_factura_nueva.cantidad"
+                  />
+                </td>
+                <td>
+                  <v-select
+                    :items="unidades"
+                    item-text="clave"
+                    item-value="id"
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="item_factura_nueva.unidad"
+                    return-object
+                  />
+                </td>
+                <td>
+                  <v-text-field
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="item_factura_nueva.concepto"
+                  />
+                </td>
+                <td>
+                  <v-autocomplete
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    :items="instrumentos"
+                    item-text="nombre"
+                    item-value="id"
+                    return-object
+                    v-model="item_factura_nueva.instrumento"
+                  />
+                </td>
+                <td>
+                  <v-text-field
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="item_factura_nueva.instrumento.precio_venta"
+                  />
+                </td>
+                <td>
+                  <v-text-field
+                    label=""
+                    class="mt-5"
+                    outlined
+                    dense
+                    small
+                    v-model="var_computed_importe_factura_libre"
+                  />
+                </td>
+                <td>
+                  <v-btn
+                    color="success"
+                    icon
+                    @click="addPartidaFacturaNueva(item_factura_nueva)"
+                    ><v-icon>mdi-check</v-icon></v-btn
+                  >
+                </td>
+              </tr>
+            </template>
+            <template v-slot:item.instrumento="{ item }">
+              <td class="text-left">
+                <strong>{{ item.instrumento.nombre }}</strong
+                ><br />
+                <span>
+                  Mag.:
+                  {{ item.instrumento.has_magnitud.clave }}</span
+                ><br />
+                <span>
+                  Acred.:
+                  {{ item.instrumento.has_acreditacion.nombre }}</span
+                ><br />
+                <span> Alcan.: {{ item.instrumento.alcance }}</span>
               </td>
+            </template>
+            <template v-slot:item.accion="{ item }">
               <td>
-                <v-btn
-                  color="success"
-                  icon
-                  @click="addPartidaFacturaNueva(item_factura_nueva)"
-                  ><v-icon>mdi-check</v-icon></v-btn
+                <v-btn color="error" icon @click="EliminarPartida(item)"
+                  ><v-icon>mdi-delete</v-icon></v-btn
                 >
               </td>
-            </tr>
-          </template>
-          <template v-slot:item.instrumento="{ item }">
-            <td class="text-left">
-              <strong>{{ item.instrumento.nombre }}</strong
-              ><br />
-              <span>
-                Mag.:
-                {{ item.instrumento.has_magnitud.clave }}</span
-              ><br />
-              <span>
-                Acred.:
-                {{ item.instrumento.has_acreditacion.nombre }}</span
-              ><br />
-              <span> Alcan.: {{ item.instrumento.alcance }}</span>
-            </td>
-          </template>
-          <template v-slot:item.accion="{ item }">
-            <td>
-              <v-btn color="error" icon @click="EliminarPartida(item)"
-                ><v-icon>mdi-delete</v-icon></v-btn
-              >
-            </td>
-          </template>
-          <template v-slot:footer>
-            <v-container>
-              <v-row>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    SUBTOTAL:
-                    {{
-                      var_computed_subtotal2
-                        | numberFormat(model.factura_nueva.moneda.clave)
-                    }}
-                  </h3>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    IVA :
-                    {{
-                      var_computed_iva2 | numberFormat(model.factura_nueva.moneda.clave)
-                    }}
-                  </h3>
-                </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
-                  <h3 class="float-right">
-                    TOTAL:
-                    {{
-                      var_computed_total2 | numberFormat(model.factura_nueva.moneda.clave)
-                    }}
-                  </h3>
-                </v-col>
-              </v-row>
-            </v-container>
-          </template>
-        </v-data-table>
-      </v-col>
+            </template>
+            <template v-slot:footer>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      SUBTOTAL:
+                      {{
+                        var_computed_subtotal2
+                          | numberFormat(model.factura_nueva.moneda.clave)
+                      }}
+                    </h3>
+                  </v-col>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      IVA :
+                      {{
+                        var_computed_iva2 | numberFormat(model.factura_nueva.moneda.clave)
+                      }}
+                    </h3>
+                  </v-col>
+                  <v-col cols="12" xs="12" sm="12" md="12" lg="12" class="m-0 p-0">
+                    <h3 class="float-right">
+                      TOTAL:
+                      {{
+                        var_computed_total2 | numberFormat(model.factura_nueva.moneda.clave)
+                      }}
+                    </h3>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </template>
+          </v-data-table>
+        </v-col>
     </v-row>
     <modal-add-factura />
     <modal-pdf-factura />
-    <!-- <notificacion /> -->
+    <notificacion />
+     <overlay/>
+
   </v-app>
 </template>
 
@@ -680,11 +660,13 @@ import { mapGetters } from "vuex";
 import modalADDFactura from "./modals/modalTotalizarComponent.vue";
 import modalPdfFactura from "./modals/modalPdfFacturaComponent";
 import notificacionComponent from "../notificacion/indexComponentNotificacion";
+import overlayComponent from '../overlayComponent.vue'
 export default {
   components: {
     "modal-add-factura": modalADDFactura,
     "modal-pdf-factura": modalPdfFactura,
     notificacion: notificacionComponent,
+    "overlay" : overlayComponent,
   },
   data() {
     return {
@@ -717,10 +699,7 @@ export default {
           name: "Generar factura de las orde de servicio ",
           value: 1,
         },
-        {
-          name: "Generar factura en blanco",
-          value: 2,
-        },
+        
       ],
       tipoFacturaSelected: {},
       headers_partidas_factura: [
@@ -890,7 +869,7 @@ export default {
       "list_metodo_de_pago",
       "clavesSat",
       "unidades",
-      "cfdis"
+      "cfdis",
     ]),
     var_computed_subtotal: {
       get() {
@@ -987,17 +966,25 @@ export default {
     },
   },
   async mounted() {
-    await this.services.reciboServices.getlistRecibos();
-    await this.services.clienteServices.getlistclientes();
-    await this.services.monedaServices.getlistMonedas();
-    await this.services.empleadoServices.getlistEmpleados();
-    await this.services.instrumentoServices.getlistInstrumentos();
-    await this.services.clienteServices.getlistclientes();
-    await this.services.metodoDePagoServices.getlistMetodoDePago();
-    await this.services.condicionDePagoServices.getlistCondicionDePago();
-    await this.services.unidadServices.getUnidades();
-    await this.services.claveSatServices.getclavesSat();
-    await this.services.cfdiServices.getCFDIs();
+     this.$store.commit('setOverley', true)
+    Promise.all([ this.services.reciboServices.getlistRecibos(),
+                  this.services.clienteServices.getlistclientes(),
+                  this.services.monedaServices.getlistMonedas(),
+                  this.services.empleadoServices.getlistEmpleados(),
+                  this.services.instrumentoServices.getlistInstrumentos(),
+                  this.services.clienteServices.getlistclientes(),
+                  this.services.metodoDePagoServices.getlistMetodoDePago(),
+                  this.services.condicionDePagoServices.getlistCondicionDePago(),
+                  this.services.unidadServices.getUnidades(),
+                  this.services.claveSatServices.getclavesSat(),
+                  this.services.metodoDePagoServices.getlistMetodoDePago(),
+                  this.services.cfdiServices.getCFDIs(),])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   methods: {
     async addPartidaFacturaNueva(item) {
@@ -1075,7 +1062,6 @@ export default {
     CargarPartidas(p) {
       this.model.recibo.forEach((item) => {
         this.cotizacion_partida = item.has_cotizaicon;
-        console.log({ cot: this.cotizacion_partida });
       });
       for (var i = 0; i < this.model.recibo.length; i++) {
         for (var j = 0; j < this.model.recibo[i].has_partidas.length; j++) {

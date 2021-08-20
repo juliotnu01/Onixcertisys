@@ -67,11 +67,15 @@ class ClienteController extends Controller
     public function store(Request $request, Cliente $cliente)
     {
         try {
+            
             return DB::transaction(function () use ($request, $cliente) {
-
-
-                $cliente->servicio_solicitado = json_encode($request['servicio_solicitado']);
-                $cliente->persona_de_contacto_nombre = $request['persona_de_contacto']['nombre'];
+                if(count($request['servicio_solicitado']) > 0){
+                    $data = json_encode($request['servicio_solicitado']);
+                }else{
+                    $data = '';
+                }
+                $cliente->servicio_solicitado = $data;
+                $cliente->persona_de_contacto_nombre = $request['persona_de_contacto']['nombre']  ? $request['persona_de_contacto']['nombre'] : '';
                 $cliente->persona_de_contacto_celular = $request['persona_de_contacto']['celular'];
                 $cliente->persona_de_contacto_te_ext = $request['persona_de_contacto']['tel_ext'];
                 $cliente->persona_de_contacto_email = $request['persona_de_contacto']['email'];
@@ -93,13 +97,13 @@ class ClienteController extends Controller
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['ciudad'];
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['estado'];
                 $cliente->datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cp'];
-                $cliente->forma_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']['nombre'];
-                $cliente->moneda_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'];
+                $cliente->forma_de_pago = array_key_exists("nombre",$request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']) ? $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['formaDePago']['nombre'] : '' ;
+                $cliente->moneda_factura = array_key_exists("clave",$request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']) ? $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['monedaFactura']['clave'] : '';
                 $cliente->correo_envio_factura = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['emailEnvioFactura'];
                 $cliente->cfdi_id = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['id'];
                 $cliente->cdfi = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['cfdi']['codigo_cfdi'];
-                $cliente->metodo_de_pago  = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'];
-                $cliente->termino_de_pago = $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'];
+                $cliente->metodo_de_pago  = array_key_exists("nombre",$request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']) ? $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['metodoDePago']['nombre'] :'';
+                $cliente->termino_de_pago = array_key_exists("name",$request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']) ? $request['datosFisicosYRequerimientosDeFactuacion']['domicilioFiscalParaFacturacion']['terminosDePago']['name'] : '';
                 $cliente->revision_de_factura_pagos_descripcion_revision_factura = $request['revisionDeFacturasYpagos']['descripcionRevisionFactura'];
                 $cliente->revision_de_factura_pagos_dias_revision_factura = $request['revisionDeFacturasYpagos']['diasRevisionFactura'];
                 $cliente->revision_de_factura_pagos_hora_revision_factura = $request['revisionDeFacturasYpagos']['horaDiasRevisionFactura'];
@@ -115,7 +119,7 @@ class ClienteController extends Controller
                 $cliente->cuenta_de_pago = $request['revisionDeFacturasYpagos']['cuentaDePago'];
                 $cliente->complemento_de_pago_se_envia_por_email = $request['revisionDeFacturasYpagos']['complementoDePagoSeEnviaPorEmail'];
                 $cliente->informacion_adicional_complemento_de_pago = $request['revisionDeFacturasYpagos']['informacionAdicionalComplementoDePago'];
-                $cliente->lista_requerimiento_acceso_planta = $request['revisionDeFacturasYpagos']['listaRequerimientoDeAccesoAlaPlata'];
+                $cliente->lista_requerimiento_acceso_planta = $request['listaRequerimientoDeAccesoAlaPlata'] != '' ?  $request['listaRequerimientoDeAccesoAlaPlata']: '' ;
                 $cliente->iva = $request['iva'];
                 $cliente->save();
 
@@ -215,7 +219,6 @@ class ClienteController extends Controller
                 }else{
                     $collectTerminosDePago = '';
                 }
-                
                 $collectUsuarioContraseña = collect($request['revisionDeFacturaYpago']['UsuarioContraseña']);
                 if($collectUsuarioContraseña){
                     foreach ($collectUsuarioContraseña as $key => $value) {
@@ -223,6 +226,8 @@ class ClienteController extends Controller
                             $usuarioContraseña = "SE ENVIA POR EMAIL";
                         } elseif ($key === 'seOptienePorElPortal' && Str::lower($value) === 'x') {
                             $usuarioContraseña = "SE OPTIENE POR EL PORTAL";
+                        }else{
+                            $usuarioContraseña = '';
                         }
                     }
                 }else{

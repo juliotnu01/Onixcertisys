@@ -59,7 +59,7 @@ class CreateClientesTable extends Migration
             $table->string('cuenta_de_pago')->nullable();
             $table->string('complemento_de_pago_se_envia_por_email')->nullable();
             $table->string('informacion_adicional_complemento_de_pago')->nullable();
-            $table->string('lista_requerimiento_acceso_planta')->nullable();
+            $table->text('lista_requerimiento_acceso_planta')->nullable();
             $table->string('iva')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -2,142 +2,85 @@
   <v-app>
     <v-dialog v-model="openDialog" persistent>
       <v-toolbar dark color="primary">
+        <v-toolbar-title v-if="Object.entries(this.cotizacion).length > 0">
+          NOTA:
+          <strong >{{
+            cotizacion.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social
+          }}</strong>
+          / {{ cotizacion.created_at.substr(0, 10) }}
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
         <v-btn icon dark @click="openDialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
       <v-sheet>
         <v-row>
+          <v-col xs="12" sm="12" md="12" lg="12">
+            <v-text-field
+              label="Escribe un comentario"
+              outlined
+              v-model="model_inicio_cotizacion.nota_seguimiento"
+              append-icon="mdi-check"
+              prepend-inner-icon="mdi-close"
+              @click:append="iniciarNotaSeguimientoCotizacion(i)"
+              @click:prepend-inner="model_inicio_cotizacion.nota_seguimiento = ''"
+              class="mx-5"
+            />
+          </v-col>
           <v-col
-            xs="12"
-            sm="12"
-            md="12"
-            lg="12"
-            v-for="(i, n) in cotizacion.has_nota_de_seguimiento"
-            :key="n"
-          >
+              xs="12"
+              sm="12"
+              md="12"
+              lg="12"
+              v-for="(i, n) in cotizacion.has_nota_de_seguimiento"
+              :key="n"
+            >
             <v-card class="m-5 elevation-2">
-              <v-card-text>
-                {{ i.nota_seguimiento }}
-                <v-divider></v-divider>
-              </v-card-text>
+               <v-alert
+                  border="left"
+                  colored-border
+                  color="#0095d9"
+                  elevation="5"
+                  type="info"
+                >
+                     {{ i.nota_seguimiento }}
+                     <p class="text--disabled text-right">
+                        <small> {{i.created_at}}</small>
+                      </p>
+                </v-alert>
               <div class="text-right p-5">
-                <span v-for="(sc, x) in i.has_onw_note" :key="x">
-                  {{ sc.nota_seguimiento }}
-                  <v-divider></v-divider>
-                </span>
+                <v-alert
+                  border="right"
+                  colored-border
+                  color="#003177"
+                  elevation="5"
+                  v-for="(sc, x) in i.has_onw_note" :key="x"
+                  
+                >
+                    {{ sc.nota_seguimiento }}
+                    <p class="text--disabled text-left">
+                        <small> {{sc.created_at}}</small>
+                      </p>
+                </v-alert>
               </div>
               <v-card-actions>
                 <v-row>
-                  <v-col xs="12" sm="12" md="2" lg="2">
-                    <v-btn color="primary" @click="AgregarComentarioACotizacion(i)"
-                      >Agregar comentario</v-btn
-                    >
-                  </v-col>
-                  <v-col xs="12" sm="12" md="10" lg="10">
-                    <v-text-field
+                  <v-col xs="12" sm="12" md="12" lg="12">
+                      <v-text-field
                       name="name"
                       label="Escribe un comentario para el seguimiento de la cotizacion"
                       id="id"
                       outlined
                       v-model="add_comentario_cotizacion.nota_seguimiento"
+                      append-icon="mdi-check"
+                      prepend-inner-icon="mdi-close"
+                      @click:append="AgregarComentarioACotizacion(i)"
+                      @click:prepend-inner="add_comentario_cotizacion.nota_seguimiento = ''"
                     />
                   </v-col>
                 </v-row>
               </v-card-actions>
-            </v-card>
-          </v-col>
-          <v-col
-            xs="12"
-            sm="12"
-            md="12"
-            lg="12"
-            v-for="(i, n) in var_instrumento_selected.has_nota_de_seguimiento"
-            :key="n"
-          >
-            <v-card class="m-5 elevation-2">
-              <v-card-text>
-                {{ i.nota_seguimiento }}
-                <v-divider></v-divider>
-              </v-card-text>
-              <div class="text-right p-5">
-                <span v-for="(sc, x) in i.has_onw_note" :key="x">
-                  {{ sc.nota_seguimiento }}<br />
-                  <v-divider></v-divider>
-                </span>
-              </div>
-              <v-card-actions>
-                <v-row>
-                  <v-col xs="12" sm="12" md="10" lg="10">
-                    <v-text-field
-                      name="name"
-                      label="Escribe un comentario para el seguimiento de la calibracion"
-                      id="id"
-                      outlined
-                      v-model="add_comentario_cotizacion.nota_seguimiento"
-                    />
-                  </v-col>
-                  <v-col xs="12" sm="12" md="2" lg="2">
-                    <v-btn color="primary" @click="AgregarComentarioACalibracion(i)"
-                      >Agregar comentario</v-btn
-                    >
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-          <v-col xs="12" sm="12" md="12" lg="12">
-            <v-card class="mx-auto p-5">
-              <v-row>
-                <v-col xs="12" sm="12" md="12" lg="12">
-                  <v-row>
-                    <v-col xs="12" sm="12" md="8" lg="8">
-                      <v-textarea
-                        outlined
-                        label="Escribe un comentario"
-                        v-model="model_inicio_cotizacion.nota_seguimiento"
-                      />
-                    </v-col>
-                    <v-col xs="12" sm="12" md="4" lg="4">
-                      <v-autocomplete
-                        v-model="var_instrumento_selected"
-                        :items="cotizacion.has_partidas"
-                        outlined
-                        chips
-                        label="Seleccionar Instrumento"
-                        return-object
-                      >
-                        <template v-slot:selection="data">
-                          {{ data.item.has_intrumento.nombre }}
-                        </template>
-                        <template v-slot:item="data">
-                          {{ data.item.has_intrumento.nombre }}
-                        </template>
-                      </v-autocomplete>
-                      <v-row>
-                        <v-spacer></v-spacer>
-                        <v-col xs="12" sm="12" md="12" lg="12">
-                          <v-btn
-                            color="success"
-                            block
-                            @click="iniciarNotaSeguimientoCalibracion"
-                            >Inicar Seguimiento del instrumento</v-btn
-                          >
-                        </v-col>
-                        <v-spacer></v-spacer>
-                        <v-col xs="12" sm="12" md="12" lg="12">
-                          <v-btn
-                            color="warning"
-                            block
-                            @click="iniciarNotaSeguimientoCotizacion"
-                            >Inicar Seguimiento de la cotizacion
-                          </v-btn>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
             </v-card>
           </v-col>
         </v-row>

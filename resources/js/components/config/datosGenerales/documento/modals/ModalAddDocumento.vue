@@ -51,7 +51,7 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-btn text color="blue" @click.prevent="addDocument"> Agregar </v-btn>
+            <v-btn text color="blue" @click.prevent="addDocument" :loading="loading" > Agregar </v-btn>
             <v-btn text color="red" @click.prevent="openDialog = false"> Cerrar </v-btn>
           </v-card-actions>
         </v-container>
@@ -76,6 +76,7 @@ export default {
         celda: "",
       },
       data_confing_file: {},
+      loading: false,
     };
   },
   computed: {
@@ -127,11 +128,13 @@ export default {
     },
     async addDocument() {
       try {
+        this.loading = true
         var formData = new FormData();
         formData.append("documento", this.file);
         formData.append("fecha_vencimiento", this.date);
         await this.services.documentoServices.addDocumentConfig(formData);
         await this.services.documentoServices.getlistDocumento();
+        this.loading = false
       } catch (error) {
         console.log(error);
       }

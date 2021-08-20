@@ -19,7 +19,7 @@
     .tdInfoEmpresaContactos {
         width: 20%;
         text-align: right;
-        color: #4d99de;
+        color: #0095d9;
         padding-right: 80px;
         font-size: 12px ;
     }
@@ -29,7 +29,7 @@
     .cotWord {
         font-size: 20px;
         text-align: center;
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         border-radius: 6px 6px 6px 6px;
         padding-top: 5px;
@@ -42,7 +42,7 @@
     }
 
     .cotNumber {
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         border-radius: 6px;
         margin-top: 5px;
         margin-right: 90px;
@@ -55,33 +55,33 @@
         width: 100%;
         height: auto;
         font-size: 14px;
-        border: 3px solid #4d99de;
+        border: 3px solid #0095d9;
         border-radius: 6px;
         text-align: right;
     }
 
     .tableCuerpoItems {
         width: 100%;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 8px;
         font-size: 13px;
     }
 
     .tableCuerpoItems_head_tr {
-        background-color: #4d99de;
+        background-color: #0095d9;
         color: white;
         font-size: 13px;
     }
 
     .tableCuerpoItems_body_tr td {
-        border: 1px solid #4d99de;
+        border: 1px solid #0095d9;
         text-align: center;
         font-size: 13px;
     }
@@ -94,7 +94,7 @@
     .tableNota {
         width: 100%;
         height: 100px;
-        border: 2px solid #4d99de;
+        border: 2px solid #0095d9;
         margin-top: 5px;
         border-radius: 20px;
         font-size: 13px;
@@ -167,7 +167,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                 <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -207,15 +207,15 @@
             </tr>
             <tr>
                 <td style="width: 3%;">Usuario:</td>
-                <td style="width: 3%; text-align: left" colspan="3">{{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3">{{$data['has_cotizaicon']['contacto']}}</td>
             </tr>
             <tr>
                 <td style="width: 3%;">Teléfono:</td>
-                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_telf']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['contacto_correo']}}</td>
             </tr>
             <tr>
                 <td style="width: 3%;">Correo:</td>
-                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['has_cliente']['contacto_adicionales_compra_correo']}}</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_cotizaicon']['contacto_telefono']}}</td>
             </tr>
         </tbody>
     </table>
@@ -224,7 +224,7 @@
         <thead class="tableCuerpoItems_head">
             
             <tr class="tableCuerpoItems_head_tr">
-                <th>Part</th>
+                <th>#</th>
                 <th>Cant</th>
                 <th>Serv</th>
                 <th>Informe - Instrumento</th>
@@ -239,9 +239,9 @@
            
         </thead>
         <tbody>
-            @foreach($data['has_partidas'] as $item)
+            @foreach($data['has_partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
-                <td>{{$item['id']}}</td>
+                <td>{{$key+1}}</td>
                 <td>{{$item['cantidad']}}</td>
                 <td>{{substr($item['servicio'], 0, 1)}}</td>
                 <td>{{$item['informe_id']}} - {{$item['has_intrumento']['nombre']}}</td>
@@ -249,11 +249,11 @@
                 <td>{{$item['modelo']}}</td>
                 <td>{{$item['serie']}}</td>
                 <td>{{$item['identificacion']}}</td>
-                <td></td>
+                <td> {{$item['lugar_servicio']}}</td>
                 <td>{{$item['tipo']}}</td>
                 <td> {{$item['vigencia']}}</td>
             </tr>
-             @endforeach
+            @endforeach
         </tbody>
     </table>
     
@@ -263,6 +263,11 @@
                 <td>  Observaciones:</td>
                 <td> </td>
             </tr>
+            @foreach($data['has_partidas'] as $key => $Observacion)
+            <tr>
+                <td style="border: none;" > {{$Observacion['observacion']}} </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
    

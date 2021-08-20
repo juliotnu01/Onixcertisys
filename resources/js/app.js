@@ -29,8 +29,9 @@ Vue.component('login-component', require('./components/login_component.vue').def
 Vue.component('app', require('./components/app.vue').default)
 Vue.filter('numberFormat', function (value, moneda = '') {
     if (!value) return ''
-    let parseNumber = parseFloat(value)
-    return  ` ${moneda} ${new Intl.NumberFormat("de-DE").format(parseNumber)}`
+    const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+    const rep = '$1,';
+    return `${moneda} ${parseFloat(value).toFixed(2).toString().replace(exp,rep)}`
 })
 const app = new Vue({
     el: '#app',

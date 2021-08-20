@@ -14,7 +14,7 @@ class MetodoDePagoSeeder extends Seeder
     {
         
         $data = [
-            ["nombre" => "TPAGO PARCIALES O DIFERIDO"],
+            ["nombre" => "PAGO PARCIALES O DIFERIDO"],
             ["nombre" => "PAGO EN UNA SOLA EXHIBICION"],
            
         ];

@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/modalAsignarTecnicoComponent */ "./resources/js/components/recibo/modals/modalAsignarTecnicoComponent.vue");
 /* harmony import */ var _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/modalViewPdfComponent */ "./resources/js/components/recibo/modals/modalViewPdfComponent.vue");
 /* harmony import */ var _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../notificacion/indexComponentNotificacion */ "./resources/js/components/notificacion/indexComponentNotificacion.vue");
+/* harmony import */ var _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../overlayComponent.vue */ "./resources/js/components/overlayComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -262,6 +263,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -270,7 +273,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     "modal-asignar-tecnico": _modals_modalAsignarTecnicoComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     "modal-pdf": _modals_modalViewPdfComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"]
+    notificacion: _notificacion_indexComponentNotificacion__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "overlay": _overlayComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -306,14 +310,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this.services.reciboServices.getlistRecibos();
+              _this.$store.commit('setOverley', true);
+
+              Promise.all([_this.services.reciboServices.getlistRecibos(), _this.services.magnitudesServices.getListMagnitudes()]).then(function () {
+                _this.$store.commit('setOverley', false);
+              })["catch"](function (reason) {
+                _this.$store.commit('setOverley', false);
+              });
 
             case 2:
-              _context.next = 4;
-              return _this.services.magnitudesServices.getListMagnitudes();
-
-            case 4:
             case "end":
               return _context.stop();
           }
@@ -343,7 +348,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context2.abrupt("return", _this2.recibos.forEach(function (recibo) {
                   if (recibo.has_cotizaicon.has_cliente !== null) {
                     item.children.push({
-                      name: "Folio: ".concat(recibo.id, " - Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - Fecha: ").concat(recibo.created_at.substr(0, 10), " - Estado: ").concat(recibo.estado, "  "),
+                      name: "Folio: ".concat(recibo.id, " -\n                   Empresa: ").concat(recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social, " - \n                   Fecha: ").concat(recibo.created_at.substr(0, 10), " - \n                   Estado: ").concat(recibo.estado, "  "),
                       id: recibo.id
                     });
                   }
@@ -687,7 +692,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }]
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["services", "dialog_asignar_tecnico", "partida_tecnico", "empleados", "documentos", "loading_asignar_tecnico"])), {}, {
     openDialog: {
       get: function get() {
         return this.dialog_asignar_tecnico;
@@ -710,9 +715,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.services.empleadoServices.AsignarTecnico(_this.partida_tecnico, _this.documento_selected);
+                _context.next = 2;
+                return _this.services.empleadoServices.AsignarTecnico(_this.partida_tecnico, _this.documento_selected);
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -1614,7 +1620,9 @@ var render = function() {
       _vm._v(" "),
       _c("modal-pdf"),
       _vm._v(" "),
-      _c("notificacion")
+      _c("notificacion"),
+      _vm._v(" "),
+      _c("overlay")
     ],
     1
   )
@@ -2401,7 +2409,11 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { text: "", color: "primary" },
+                      attrs: {
+                        text: "",
+                        color: "primary",
+                        loading: _vm.loading_asignar_tecnico
+                      },
                       on: { click: _vm.AsignarTecnico }
                     },
                     [_vm._v(" Asignar Tecnico ")]

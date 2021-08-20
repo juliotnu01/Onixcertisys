@@ -13,7 +13,6 @@ use App\Events\AsignacionOrdenDeServicio;
 use Illuminate\Http\File;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Excel;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use JsonSerializable;
@@ -21,6 +20,9 @@ use Maatwebsite\Excel\Concerns\ToArray;
 use PHPUnit\Util\Json;
 
 use function GuzzleHttp\json_encode;
+
+use Excel;
+use App\Imports\EmpleadoImport;
 
 class EmpleadoController extends Controller
 {
@@ -75,6 +77,14 @@ class EmpleadoController extends Controller
                 $empleado->observaciones = $request['observaciones'];
                 $empleado->save();
             }, 5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+        }
+    }
+    public function storeImport(Request $request, Empleado $empleado)
+    {
+        try {
+            Excel::import(new EmpleadoImport, $request->file('document_empleado'), \Maatwebsite\Excel\Excel::XLSX);
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }
@@ -161,8 +171,6 @@ class EmpleadoController extends Controller
         $instrumento->find($request['model']['has_intrumento']['id'])->update([
             'documento_id' =>  $request['file']['id']
         ]);
-
-        // dd(collect($request), env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json");
         try {
             DB::transaction(function () use ($request, $partida) {
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
@@ -171,7 +179,7 @@ class EmpleadoController extends Controller
                    
                 }, 5);
                 
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

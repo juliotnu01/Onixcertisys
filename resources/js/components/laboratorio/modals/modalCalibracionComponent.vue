@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <v-dialog v-model="openDialog" persistent max-width="1256" min-width="1256">
+    <v-dialog v-model="openDialog" persistent >
       <v-card>
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="openDialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
-        <v-container>
+        <div class="m-5">
           <v-row v-if="Object.entries(this.partida).length > 0">
             <v-col cols="12" xs="12" sm="12" md="7" lg="7">
               <v-row>
@@ -310,17 +310,18 @@
                   </v-btn>
                 </v-col>
                 <v-col
-                  cols="12"
-                  xs="12"
-                  sm="12"
-                  md="6"
-                  lg="6"
-                  v-if="!partida.ruta_pdf_calibracion"
-                >
-                  <v-btn color="warning" block @click="terminarCalibracion(partida)">
+                    cols="12"
+                    xs="12"
+                    sm="12"
+                    md="6"
+                    lg="6"
+                    v-if="!partida.ruta_pdf_calibracion"
+                  >
+                  <v-btn color="warning" block @click="show_upload_platilla_terminada = true">
                     <v-icon>mdi-content-save</v-icon>
                     finalizar calibracion
                   </v-btn>
+                  
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-else block>
                   <v-btn
@@ -331,6 +332,42 @@
                   >
                     Visualizar Certificado <v-icon>mdi-eye</v-icon></v-btn
                   >
+                </v-col>
+                <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-if="show_upload_platilla_terminada">
+                  <v-file-input
+                    v-model="files_plantilla"
+                    color="#0095d9"
+                    counter
+                    label="Seleccionar Plantilla"
+                    prepend-icon="mdi-paperclip"
+                    outlined
+                    :show-size="1000"
+                  >
+                    <template v-slot:selection="{ index, text }">
+                      <v-chip
+                        v-if="index < 2"
+                        color="#0095d9"
+                        dark
+                        label
+                        small
+                      >
+                        {{ text }}
+                      </v-chip>
+
+                      <span
+                        v-else-if="index === 2"
+                        class="text-overline grey--text text--darken-3 mx-2"
+                      >
+                        +{{ files.length - 2 }} File(s)
+                      </span>
+                    </template>
+                  </v-file-input>
+                </v-col>
+                <v-col cols="12" xs="12" sm="12" md="12" lg="12" v-if="show_upload_platilla_terminada">
+                  <v-btn color="#0095d9" dark @click="terminarCalibracion(partida)" :loading="loading_finalizar_calibracion">
+                    <v-icon class="mr-5">mdi-content-save</v-icon>
+                    Generar Certificado
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-col>
@@ -367,7 +404,7 @@
               />
             </v-col>
           </v-row>
-        </v-container>
+        </div>
       </v-card>
     </v-dialog>
     <modal-realizacion-calibracion />
@@ -411,6 +448,8 @@ export default {
       terminaCalibracion: "",
       patronesLab: [],
       procedimientoLab: [],
+      files_plantilla:[],
+      show_upload_platilla_terminada:false,
     };
   },
   computed: {
@@ -421,6 +460,7 @@ export default {
       "partida",
       "patrones",
       "procedimientos",
+      "loading_finalizar_calibracion"
     ]),
     computedDateFormatted() {
       return this.formatDate(this.date);
@@ -466,14 +506,12 @@ export default {
     },
     async terminarCalibracion(calibracion) {
       try {
-        this.$store.commit("setDialogRealizacionCalibracion", true);
-        this.$store.commit("setPartidaParaCalibrar", this.partida);
         var model = {
           id_calibracion: calibracion.has_calibracion.id,
           partida: calibracion,
+          file_certificado: this.files_plantilla
         };
         await this.services.calibracionServices.terminarCalibracion(model);
-        await this.services.partidaServices.getlistpartidasParaCalibrar();
       } catch (e) {
         console.log(e);
       }

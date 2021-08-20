@@ -362,12 +362,15 @@
           </v-simple-table>
         </v-card-text>
       </v-card>
+       <overlay/>
     </v-dialog>
+   
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import overlayComponent from '../../overlayComponent.vue'
 export default {
   data() {
     return {
@@ -451,6 +454,9 @@ export default {
       ],
     };
   },
+  components:{
+  "overlay" : overlayComponent
+  },
   computed: {
     ...mapGetters([
       "services",
@@ -522,14 +528,23 @@ export default {
     },
   },
   async mounted() {
-    await this.services.clienteServices.getlistclientes();
-    this.services.monedaServices.getlistMonedas();
-    this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega();
-    this.services.empleadoServices.getlistEmpleados();
-    this.services.instrumentoServices.getlistInstrumentos();
-    this.services.unidadServices.getUnidades();
-    this.services.claveSatServices.getclavesSat();
-    console.log(this.cotizacion_para_duplicar)
+
+    this.$store.commit('setOverley', true)
+    Promise.all([
+      this.services.clienteServices.getlistclientes(),
+      this.services.monedaServices.getlistMonedas(),
+      this.services.tiempoDeEntregaServices.getlistTiempoDeEntrega(),
+      this.services.empleadoServices.getlistEmpleados(),
+      this.services.instrumentoServices.getlistInstrumentos(),
+      this.services.unidadServices.getUnidades(),
+      this.services.claveSatServices.getclavesSat()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
+    
   },
   methods: {
     AgregarPartida() {

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout row justify-center>
-      <v-dialog v-model="openDialog" persistent max-width="1256">
+      <v-dialog v-model="openDialog" persistent >
         <v-toolbar color="primary">
           <v-btn icon dark @click="openDialog = false">
             <v-icon>mdi-close</v-icon>
@@ -13,12 +13,7 @@
         </v-toolbar>
         <v-card>
           <v-card-text>
-            <v-container>
-              <v-row
-                align="center"
-                justify="space-around"
-                v-if="Object.entries(this.cotizacion_view).length > 0"
-              >
+              <v-row align="center" justify="space-around" v-if="Object.entries(this.cotizacion_view).length > 0" >
                 <v-col cols="12" xs="12" sm="12" md="3" lg="3">
                   <v-autocomplete
                     disabled
@@ -121,16 +116,8 @@
                     label="Notas de la cotizacion"
                   ></v-textarea>
                 </v-col>
-                </v-col>
               </v-row>
-            </v-container>
-            <v-data-table
-              dense
-              :headers="headers_cotizacion"
-              :items="cotizacion_view.has_partidas"
-              item-key="name"
-              class="elevation-1 mt-5"
-            >
+            <v-data-table  dense :headers="headers_cotizacion" :items="cotizacion_view.has_partidas" item-key="name" class="elevation-1 mt-5">
               <template slot="items" slot-scope="props">
                 <td class="text-center">{{ props.item.servicio }}</td>
                 <td class="text-center">{{ props.item.has_clave_sat.codigo }}</td>
@@ -207,7 +194,7 @@
                   <v-switch
                     label
                     v-model="item.convertir_recibo"
-                    class="text-center mt-5 w-50"
+                    class="text-center mt-5 ml-5 mr-5 w-50"
                     small
                   />
                 </td>
@@ -220,6 +207,35 @@
                     outlined
                     dense
                     class="mt-5 text-center"
+                    @change="ActualizarVigenciaODS(item)"
+                  />
+                </td>
+              </template>
+              <template v-slot:item.lugar_servicio="{ item }">
+                <td>
+                  <v-select
+                    :items="items_lugar_de_servicio"
+                    v-model="item.lugar_servicio"
+                    label=""
+                    item-text="name"
+                    return-object
+                    item-value="name"
+                    outlined
+                    dense
+                    class="mt-5 text-center"
+                    placeholder="Seleccione un lugar de servicio"
+                    @change="ActualizarLugarDeServicioODS(item)"
+                  ></v-select>
+                </td>
+              </template>
+              <template v-slot:item.observacion="{ item }" >
+                <td>
+                  <v-textarea
+                    outlined
+                    label=""
+                    v-model="item.observacion"
+                    class="mt-5 text-center"
+                    @change="ActualizarObservacionODS(item)"
                   />
                 </td>
               </template>
@@ -303,11 +319,27 @@ export default {
           align: "center",
         },
         {
+          text: "Lugar de Servicio",
+          value: "lugar_servicio",
+          align: "center",
+        },
+        {
+          text: "Observacion",
+          value: "observacion",
+          align: "center",
+        },
+        {
           text: "Convertir en O.D.S",
           value: "convert_recibo",
           align: "center",
         },
       ],
+      observacion: '',
+      items_lugar_de_servicio:[
+        {name:'Laboratio', value: 1},
+        {name:'Campo', value: 2},
+
+      ]
     };
   },
   computed: {
@@ -347,6 +379,7 @@ export default {
              var model = {
               estado: "pendiente",
               cotizacion_id: this.cotizacion_view,
+              observacion: this.observacion
             };
             await this.services.reciboServices.agregarRecibo(model);
             await this.services.cotizacionServices.getlistCotizaciones();
@@ -356,6 +389,40 @@ export default {
       }
       
     },
+    async ActualizarObservacionODS(item){
+      try {
+         var model = {
+              observacion: item.observacion,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarObservacionPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async ActualizarLugarDeServicioODS(item){
+      try {
+         var model = {
+              lugar_servicio: item.lugar_servicio,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarLugarDeServicioPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async ActualizarVigenciaODS(item){
+      try {
+         var model = {
+              vigencia_servicio: item.vigencia,
+              id: item.id
+            };
+            await this.services.partidaServices.actualizarVigenciaPartida(model);
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
   },
 };
 </script>

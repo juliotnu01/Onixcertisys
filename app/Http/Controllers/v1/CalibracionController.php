@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 class CalibracionController extends Controller
 {
     /**
@@ -81,8 +82,17 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
-            $dataPdf = ["id_partida" => $request['partida']['id'], "doc_path" => $request['partida']['ruta_doc_calibracion']];
+            $data = collect(json_decode($request['partida']));
+            $id = $data['id'];
+            
+            // Storage::disk('store_pdfs')->put("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}", $request->file("certificado"));
+            // $url = Storage::disk('store_pdfs')->url("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}");
+            
+            Storage::disk('s3')->putFileAs('Excel-certificados/', $request->file('certificado'), $request->file('certificado')->getClientOriginalName());
+            $url = Storage::disk('s3')->url('Excel-certificados/'.$request->file('certificado')->getClientOriginalName());
+            $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
             $d = collect($dataPdf);
+            dd($d->all());
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([

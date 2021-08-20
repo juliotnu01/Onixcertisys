@@ -61,6 +61,17 @@
               </router-link>
             </v-list-item-title>
           </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-spacer></v-spacer>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <img src="https://img.icons8.com/dusk/40/000000/bill.png"/>
+            Finanzas
+          </v-btn>
+        </template>
+        <v-list>
           <v-list-item>
             <v-list-item-title>
               <router-link :to="{ name: 'home.factura' }">
@@ -70,7 +81,7 @@
             </v-list-item-title>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title>
+          <v-list-item-title>
               <router-link :to="{ name: 'home.administrar.facturas' }">
                 <v-icon>mdi-list-status</v-icon>
                 Administrar Facturas
@@ -101,7 +112,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon text v-bind="attrs" v-on="on">
@@ -119,7 +130,7 @@
             </v-list-item-title>
           </v-list-item>
         </v-list>
-      </v-menu>
+      </v-menu> -->
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>

@@ -16,7 +16,7 @@
     .tdInfoEmpresa {
         width: 30%;
         text-align: center;
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .tdInfoEmpresaContactos {
@@ -181,7 +181,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+               <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -196,9 +196,7 @@
             <td class="tdInfoNumberCotizacion">
                 <div>
                     <div class="cotWord">FACTURA</div>
-                    {{--<div class="cotNumber">#{{$data['id']}}
-                </div> --}}
-                <div class="cotNumber">#99999</div>
+                    <div class="cotNumber">#{{$factura['id']}}</div>
                 </div>
             </td>
         </tr>
@@ -208,44 +206,44 @@
         <tr>
             <td style="font-size: 12px;">Régimen Fiscal: 601 General de Ley Personas Morales</td>
             <td style="font-size: 12px; text-align: right;">Orden de Compra: </td>
-            <td style="font-size: 12px; text-align: left;">1231313123</td>
+            <td style="font-size: 12px; text-align: left;">{{$request['orden_de_compra']}}</td>
         </tr>
     </table>
     <table class="tableCabecera">
         <tbody>
             <tr>
                 <td style="width: 15%;">Cliente:</td>
-                <td style="width: 85%; text-align: left;" colspan="4"></td>
+                <td style="width: 85%; text-align: left; font-size: 11px;" colspan="4">{{$cliente['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
             </tr>
             <tr>
                 <td style="width: 10%;">R.F.C.:</td>
-                <td style=" text-align: left;"></td>
-                <td style="width: 10%;">Folio Fiscal:</td>
-                <td style=" text-align: left;"></td>
+                <td style="width: 30%; text-align: left; font-size: 11px; ">{{$cliente['datos_fisicos_requeremientos_facturacion_rfc']}}</td>
+                <td style="width: 10%; ">Folio Fiscal:</td>
+                <td style=" width: 30%; text-align: left; font-size: 11px;  ">{{$result['data']->uuid}}</td>
             </tr>
             <tr>
                 <td style="width: 10%;">Uso del CFDI:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left;font-size: 11px; ">{{$cliente['cdfi']}}</td>
                 <td style="width: 10%;">Fecha Expedición:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left;font-size: 11px;">{{$factura['created_at']}}</td>
             </tr>
             <tr>
                 <td style="width: 10%;">Forma de Pago:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left; font-size: 11px;">{{$cliente['forma_de_pago']}}</td>
                 <td style="width: 10%;">C.P.de Expedición:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left;">{{$cliente['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_cp']}}</td>
             </tr>
             <tr>
                 <td style="width: 10%;">Método de Pago:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left; font-size: 11px;">{{$cliente['metodo_de_pago']}}</td>
                 <td style="width: 10%;">Tipo Comprobante:</td>
                 <td style=" text-align: left;">Ingreso Versión 3.3</td>
             </tr>
             <tr>
-                <td style="width: 10%;">Condiciones de Pago</td>
+                <td style="width: 10%;">Cond. de Pago</td>
                 <td style=" text-align: left;"></td>
                 <td style="width: 10%;">Moneda:</td>
-                <td style=" text-align: left;"></td>
+                <td style=" text-align: left; font-size: 11px;">{{$request['cliente']['has_moneda']['clave']}}</td>
             </tr>
         </tbody>
     </table>
@@ -261,14 +259,16 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($request['partidas'] as $key => $item)
             <tr class="tableCuerpoItems_body_tr">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$item['has_clave_sat']['codigo']}}</td>
+                <td>{{$item['cantidad']}}</td>
+                <td>{{$item['has_unidad']['clave']}}</td>
+                <td>{{$item['has_intrumento']['nombre']}}</td>
+                <td>{{$item['has_intrumento']['precio_venta']}}</td>
+                <td>{{$item['importe']}}</td>
             </tr>
+            @endforeach
         </tbody>
         <tfoot>
             <tr class="tableCuerpoItems_footer_tr">
@@ -277,15 +277,12 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;"><strong>SubTotal:</strong></td>
-                <td> </td>
+                <td> {{$request['subtotal']}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
-                <td></td>
-                <td>Importe con letra ()</td>
-                <td></td>
-                <td></td>
+                <td colspan="4">Importe con letra ({{$spell}})</td>
                 <td style="text-align: right;"><strong>I.V.A. <small>(16%)</small>:</strong></td>
-                <td></td>
+                <td>{{$request['iva']}}</td>
             </tr>
             <tr class="tableCuerpoItems_footer_tr">
                 <td></td>
@@ -293,7 +290,7 @@
                 <td></td>
                 <td></td>
                 <td style="text-align: right;"><strong> Total:</strong></td>
-                <td> </td>
+                <td>{{$request['total']}} </td>
             </tr>
         </tfoot>
     </table>
@@ -303,7 +300,7 @@
                 <td> Observaciones:</td>
             </tr>
             <tr rowspan="2">
-                <td style="border: none;"></td>
+                <td style="border: none;">{{$request['nota']}}</td>
             </tr>
             <tr>
                 <td style="border: none;">&nbsp;</td>
@@ -421,9 +418,11 @@
             </tr>
             <tr>
                 <td style="max-width: 100%; font-size: 13px; text-align: justify;">
-                    Yg/kCI9nz/+sFWX1ep6DxpNW3Fw7gKcTPaMEhpFWNjAD8Y5NqyC/r7X4ly+yHsSVbYKygluVfilIhw3rCiIG/EyorjP+3O8jtdnkPlmS0pY6rkf6P/WPdoAt8
-                    7OdCuPtZDkW2jAjC1tGZrtCFoP8JDF9EGDIamukpl4gaeLimdVNoveOpzFzYa6HlKnVpT3obnowH/QQS0IQMxfkX6HlpYStjOjxPTu5uBLRJ8nt+hky/MABbQ4
-                    1mBXCyUg2tt8p/VnE+AdrDMTmSucZNnz3iOgcsu0V5J9OFFk945rpZyCtJKu+6ZKy2cOJvJDtj3Gx/mgzszGGrb bhhyIItklUKg==
+                    {{substr($result['data']->selloCFDI,0,100)}} <br/>
+                    {{substr($result['data']->selloCFDI,100,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,191,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,282,91)}} <br/>
+                    {{substr($result['data']->selloCFDI,373,91)}} <br/>
                 </td>
             </tr>
             <tr>
@@ -431,14 +430,16 @@
             </tr>
             <tr>
                 <td style="max-width: 100%; font-size: 13px; text-align: justify;">
-                    FkJI43dvBJoEw/BTBdY5Ggy5kyMc7lHh8UfP5gFY1gdIuoEhn1C1wlCKrYEKVwdAq+Bfa2BBNkq47h7QqqAeuLdtSgdjdxz+eTNJ1y5uuanxwm2qIEQtyYLLua
-                    71fWTQQB91rGFPjP8GrEbWVO1nmL1d6tmqoUgqOe7nydyT6ex4fT2DJOYIdFMkh79IUemo7YWip/H5FZZiSJG1/AhtvM2heum/ratERpqXQ6XOAfX0VZ0/ppQv
-                    VquqjVHYApXqVWtKDew1oJ+0UaP9Wle9vWlhL60iKyRI6d/8o+pgY+3fz8JaOY/+OKuTiQoTDo7Y8HpRbo7Yay AcJXWu15/XYQ==
+                    {{substr($result['data']->selloSAT,0,100)}} <br/>
+                    {{substr($result['data']->selloSAT,100,91)}} <br/>
+                    {{substr($result['data']->selloSAT,191,91)}} <br/>
+                    {{substr($result['data']->selloSAT,282,91)}} <br/>
+                    {{substr($result['data']->selloSAT,373,91)}} <br/>
                 </td>
             </tr>
         </tbody>
     </table>
-    <table style="margin-top: 10px; max-width: 100%; font-size: 13px;">
+    <table style="margin-top: 10px; width: 100%; font-size: 13px;">
         <tbody>
             <tr>
                 <td  rowspan="4">
@@ -446,14 +447,15 @@
                 </td>
             </tr>
             <tr>
-                <td> <strong> Sello digital del SAT:</strong></td>
+                <td> <strong> Cadena Original del complemento de certificación digital del SAT:</strong></td>
             </tr>
             <tr>
-                <td style="max-width: 100%; font-size: 13px; text-align: justify;">
-                    FkJI43dvBJoEw/BTBdY5Ggy5kyMc7lHh8UfP5gFY1gdIuoEhn1C1wlCKrYEKVwdAq+Bfa2BBNkq47h7QqqAeuLdtSgdjdxz+eTNJ1y5
-                    uuanxwm2qIEQtyYLLua71fWTQQB91rGFPjP8GrEbWVO1nmL1d6tmqoUgqOe7nydyT6ex4fT2DJOYIdFMkh79IUemo7YWip/H5FZZiSJ
-                    G1/AhtvM2heum/ratERpqXQ6XOAfX0VZ0/ppQvVquqjVHYApXqVWtKDew1oJ+0UaP9Wle9vWlhL60iKyRI6d/8o+pgY+3fz8JaOY/+O
-                    KuTiQoTDo7Y8HpRbo7Yay AcJXWu15/XYQ==
+                <td style="width: 780px; font-size: 13px; text-align: justify; white-space: initial; margin-left: 5px; ">
+                    {{substr($result['data']->cadenaOriginalSAT,0,100)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,100,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,191,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,282,91)}} <br/>
+                    {{substr($result['data']->cadenaOriginalSAT,373,91)}} <br/>
                 </td>
             </tr>
         </tbody>

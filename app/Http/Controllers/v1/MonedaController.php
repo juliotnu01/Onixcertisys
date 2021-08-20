@@ -7,6 +7,8 @@ use App\Models\Moneda;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Str;
+use Excel;
+use App\Imports\MonedaImport;
 
 class MonedaController extends Controller
 {
@@ -51,6 +53,15 @@ class MonedaController extends Controller
                 $moneda->tipo_de_cambio = $request['tipo_de_cambio'];
                 $moneda->save();
             },5);
+        } catch (Exception $e) {
+            throw new Exception($e, 1);
+            
+        }
+    }
+    public function storeImport(Request $request, Moneda $moneda)
+    {
+        try {
+            Excel::import(new MonedaImport, $request->file('document_moneda'), \Maatwebsite\Excel\Excel::XLSX);
         } catch (Exception $e) {
             throw new Exception($e, 1);
             

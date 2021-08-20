@@ -163,10 +163,12 @@
         </v-data-table>
       </template>
     </v-card>
+    <overlay/>
   </v-app>
 </template>
 <script>
 import { mapGetters } from "vuex";
+import overlayComponent from '../overlayComponent.vue'
 export default {
   data() {
     return {
@@ -247,9 +249,19 @@ export default {
       ],
     };
   },
+  components:{
+    "overlay" : overlayComponent,
+  },
   mounted() {
-    this.services.facturaServices.getlistFacturas();
-    this.services.facturaServices.consultarSaldoTimprado();
+     this.$store.commit('setOverley', true)
+    Promise.all([this.services.facturaServices.getlistFacturas(),
+                 this.services.facturaServices.consultarSaldoTimprado()])
+      .then(  () => {
+        this.$store.commit('setOverley', false)
+      })
+      .catch((reason) => {
+         this.$store.commit('setOverley', false)
+      });
   },
   computed: {
     ...mapGetters(["services", "facturas", "saldoTimbre"]),
