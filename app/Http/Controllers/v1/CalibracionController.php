@@ -82,10 +82,12 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
+            // https://elasticbeanstalk-us-west-2-573465137969.s3-us-west-2.amazonaws.com/2021-08-16/VISKASE DEL NORTE SA DE CV/partida-2/partida-calibracion/SOFTWARE INDICADORES.XLSM
             $data = collect(json_decode($request['partida']));
             $id = $data['id'];
             Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/",$request->file('certificado'),$request->file("certificado")->getClientOriginalName());
             $url = Storage::disk('s3')->url(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/".$request->file("certificado")->getClientOriginalName());
+            dd($url);
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());

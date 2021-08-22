@@ -14,6 +14,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportMasivPartidas;
 use Luecano\NumeroALetras\NumeroALetras;
 use App\Http\Resources\RecibosCollection;
+use Mpdf\Mpdf;
+use Mpdf\HTMLParserMode;
+use Mpdf\Config\FontVariables;
+use Mpdf\Config\ConfigVariables;
 
 
 

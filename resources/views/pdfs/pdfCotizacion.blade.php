@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <div>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <style>
+     @page { margin: 100px 25px; }
+     header { position: fixed; top: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; }
+     footer { position: fixed; bottom: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; 
     *{
         font-family: sans-serif;
-    }
-    .page{
-        height: 792px; 
-        overflow: hidden; 
-        position: relative; 
-        page-break-after: always;
-    }
-    .last-page{
-    height: 792px; 
-    overflow: hidden; 
-    position: relative; 
     }
     .tdLogo {
         width: 40%;
@@ -25,7 +16,7 @@
     .tdInfoEmpresa {
         width: 20%;
         text-align: center;
-        font-size: 15px ;
+        font-size: 14px ;
     }
 
     .tdInfoEmpresaContactos {
@@ -158,7 +149,7 @@
     }
 
     .page-break {
-        page-break-after: always;
+        page-break-before: always;
     }
 
     #firmaEjecutivoDeVenta {
@@ -174,308 +165,319 @@
     .teminosYcondiciones {
         width: 100%;
         margin-top: 5px;
-        font-size: 13px;
+        font-size: 14px;
         text-align: justify;
     }
     .tableCabeceraDoc{
         width: 100%;
     }
 </style>
-
 <body>
-    <div class="page" >
-        <table class="tableCabeceraDoc">
+    <table class="tableCabeceraDoc">
+        <tr>
+            <td class="tdLogo">
+                    {{--<img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">--}}
+            </td>
+            <td class="tdInfoEmpresa">
+                <span>
+                    Accredian, S. DE R.L. DE C.V.<br />
+                    <strong>RFC: ACC1905026P3</strong><br />
+                    Domicilio Fiscal: Calle Monclova 213,
+                    Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
+                    Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
+                    San Nicolas de los Garza, N.L. MX CP. 66460
+                </span>
+            </td>
+            <td class="tdInfoEmpresaContactos">
+                <span>
+                <strong>
+                    Tel. 813-186-4994<br />
+                    813-186-4995<br />
+                    818-748-0707<br />
+                    www.accredian.com
+                </strong>
+                </span>
+            </td>
+            <td class="tdInfoNumberCotizacion">
+                <div>
+                    <div class="cotWord">COTIZACIÓN</div>
+                    <div class="cotNumber">#{{$data['id']}}</div> 
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="tableCabecera">
+        <tbody>
             <tr>
-                <td class="tdLogo">
-                     <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+                <td style="width: 6%;">Cliente:</td>
+                <td style="width: 34%; text-align: left;" colspan="3">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
+                <td style="width: 3%;">Fecha:</td>
+                <td style="width: 3%; text-align: left;" colspan="3">{{substr($data['created_at'], 0, 10)}}</td>
+            </tr>
+            <tr>
+                <td style="width: 3%;">Dirección Fiscal:</td>
+                <td style="width: 3%; text-align: left" colspan="3">
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad']}}
+                    {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado']}}
                 </td>
-                <td class="tdInfoEmpresa">
-                    <span>
-                        Accredian, S. DE R.L. DE C.V.<br />
-                        <strong>RFC: ACC1905026P3</strong><br />
-                        Domicilio Fiscal: Calle Monclova 213,
-                        Col. Miravista Gral. Escobedo, N.L. MX CP. 66050<br />
-                        Sucursal: Calle 24 #600 Resid. Las Puentes 3er sector,
-                        San Nicolas de los Garza, N.L. MX CP. 66460
-                    </span>
+                <td style="width: 3%;">Moneda:</td>
+                <td style="width: 3%;text-align: left" colspan="3">{{$data['has_moneda']['clave']}}</td>
+            </tr>
+            <tr>
+                <td style="width: 3%;">Dirección Sucursal:</td>
+                <td style="width: 3%; text-align: left" colspan="3">
+                @if($data['belongs_to_sucursal_cliente'])
+                    {{  array_key_exists("nombre_sucursal",$data['belongs_to_sucursal_cliente']) ? $data['belongs_to_sucursal_cliente']['direccion_sucursal'] : '' }}  
+                @endif
                 </td>
-                <td class="tdInfoEmpresaContactos">
-                    <span>
-                    <strong>
-                        Tel. 813-186-4994<br />
-                        813-186-4995<br />
-                        818-748-0707<br />
-                        www.accredian.com
-                    </strong>
-                    </span>
+                <td style="width: 3%;">Tipo de Servicio:</td>
+                <td style="width: 3%; text-align: left" colspan="3">{{$data['tipo_de_servicio']}}</td>
+            </tr>
+            <tr>
+                <td style="width: 3%;">Contacto:</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['contacto']}}</td>
+                <td style="width: 6%;">Tiempo Entrega:</td>
+                <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_tiempo_de_entrega']['nombre']}}</td>
+            </tr>
+            <tr>
+                <td style="width: 3%;">Email:</td>
+                <td style="width: 3%; text-align: left"> {{$data['contacto_correo']}}</td>
+                <td style="width: 3%;">Teléfono:</td>
+                <td style="width: 3%; text-align: left">{{$data['contacto_telefono']}}</td>
+                <td style="width: 6%; ">Codiciones de pago:</td>
+                <td style="width: 6%; text-align: left">{{$data['condicion']}}</td>
+                <td style="width: 3%;"></td>
+                <td style="width: 3%; text-align: left"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="tableCuerpoItems" cellspacing=0>
+        <thead class="tableCuerpoItems_head">
+            
+            <tr class="tableCuerpoItems_head_tr">
+                <th>#</th>
+                <th>Cant</th>
+                <th>Serv</th>
+                <th>Instrumento</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Alcance</th>
+                <th>ID</th>
+                <th>Acreditación</th>
+                <th>Vigencia</th>
+                <th>Precio Unitario</th>
+                <th>Importe</th>
+            </tr>
+        
+        </thead>
+        <tbody>
+            @foreach($data['has_partidas'] as $key => $item)
+            <tr class="tableCuerpoItems_body_tr">
+                <td>{{$key+1}}</td>
+                <td>{{$item['cantidad']}}</td>
+                <td>{{substr($item['servicio'], 0, 1)}}</td>
+                <td>{{$item['has_intrumento']['nombre']}}</td>
+                <td>{{$item['marca']}}</td>
+                <td>{{$item['modelo']}}</td>
+                <td>{{$item['serie']}}</td>
+                <td>{{$item['has_intrumento']['alcance']}}</td>
+                <td>{{$item['identificacion']}}</td>
+                <td>{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
+                <td>{{$item['vigencia']}} meses</td>
+                <td> {{number_format($item['has_intrumento']['precio_venta'], 2, '.', ',')}}</td>
+                <td> {{number_format($item['importe'], 2, '.', ',')}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr class="tableCuerpoItems_footer_tr">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="5" style="color: #0095d9; font-weight: bold;">Importe con letra ({{$spell}})</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right;"><strong>SubTotal:</strong></td>
+                <td>  {{number_format($data['sub_total'], 2, '.', ',')}}</td>
+            </tr>
+            <tr class="tableCuerpoItems_footer_tr">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="5"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right;"><strong>I.V.A. <small>(16%)</small>:</strong></td>
+                <td>    {{number_format($data['iva'], 2, '.', ',')}}</td>
+            </tr>
+            <tr class="tableCuerpoItems_footer_tr">
+                <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right;"><strong> Total:</strong></td>
+                <td>  {{number_format($data['total'], 2, '.', ',')}}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <table class="tableNota">
+        <tbody>
+            <tr>
+                <td> NOTA:<br/>
+                <p>{{$data['nota_para_la_cotizacion']}}</p>  
                 </td>
-                <td class="tdInfoNumberCotizacion">
-                    <div>
-                        <div class="cotWord">COTIZACIÓN</div>
-                        <div class="cotNumber">#{{$data['id']}}</div> 
-                    </div>
+                
+            </tr>
+        </tbody>
+    </table>
+    <table class="tableDatosBancarios">
+        <tbody>
+            <tr>
+                <td id="PagoMexico">
+                    <table cellspacing=0 style="width: 70%;">
+                        <thead>
+                            <tr>
+                                <td colspan="5" style="background-color: #cecece; font-size: 13px;  text-align: center; ">Para pagos desde México</td>
+                            </tr>
+                            <tr style="background-color: #cecece; ">
+                                <th>Banco</th>
+                                <th>Moneda</th>
+                                <th>Sucursal</th>
+                                <th>Cuenta</th>
+                                <th>CLABE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BBVA Bancomer</td>
+                                <td>Pesos</td>
+                                <td>5357</td>
+                                <td>0113689131</td>
+                                <td>012072001136891315</td>
+                            </tr>
+                            <tr>
+                                <td>Monex</td>
+                                <td>Dolares</td>
+                                <td></td>
+                                <td>3236114</td>
+                                <td>112962000032361141</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td id="pagoEEUU">
+                    <table cellspacing=0 style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td colspan="6" style="background-color: #cecece; font-size: 13px;  text-align: center; "> Para pagos en USD desde USA</td>
+                            </tr>
+                            <tr style="background-color: #cecece; ">
+                                <th>Banco</th>
+                                <th>Moneda</th>
+                                <th>Cuenta</th>
+                                <th>Routing</th>
+                                <th>Beneficiario</th>
+                                <th>Referencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bank of New York Mellon</td>
+                                <td>Dolares</td>
+                                <td>8901003158</td>
+                                <td>021000018</td>
+                                <td>Accredian S DE RL DE CV</td>
+                                <td>00003236114</td>
+                            </tr>
+                            <tr style="border: none;">
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                                <td style="border: none;" >&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
-        </table>
-        <table class="tableCabecera">
-            <tbody>
-                <tr>
-                    <td style="width: 6%;">Cliente:</td>
-                    <td style="width: 34%; text-align: left;" colspan="3">{{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_razon_social']}}</td>
-                    <td style="width: 3%;">Fecha:</td>
-                    <td style="width: 3%; text-align: left;" colspan="3">{{substr($data['created_at'], 0, 10)}}</td>
-                </tr>
-                <tr>
-                    <td style="width: 3%;">Dirección Fiscal:</td>
-                    <td style="width: 3%; text-align: left" colspan="3">
-                        {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle']}}
-                        {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_numero']}}
-                        {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia']}}
-                        {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad']}}
-                        {{$data['has_cliente']['datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado']}}
-                    </td>
-                    <td style="width: 3%;">Moneda:</td>
-                    <td style="width: 3%;text-align: left" colspan="3">{{$data['has_moneda']['clave']}}</td>
-                </tr>
-                <tr>
-                    <td style="width: 3%;">Dirección Sucursal:</td>
-                    <td style="width: 3%; text-align: left" colspan="3">
-                    @if($data['belongs_to_sucursal_cliente'])
-                        {{  array_key_exists("nombre_sucursal",$data['belongs_to_sucursal_cliente']) ? $data['belongs_to_sucursal_cliente']['direccion_sucursal'] : '' }}  
-                    @endif
-                    </td>
-                    <td style="width: 3%;">Tipo de Servicio:</td>
-                    <td style="width: 3%; text-align: left" colspan="3">{{$data['tipo_de_servicio']}}</td>
-                </tr>
-                <tr>
-                    <td style="width: 3%;">Contacto:</td>
-                    <td style="width: 3%; text-align: left" colspan="3"> {{$data['contacto']}}</td>
-                    <td style="width: 6%;">Tiempo Entrega:</td>
-                    <td style="width: 3%; text-align: left" colspan="3"> {{$data['has_tiempo_de_entrega']['nombre']}}</td>
-                </tr>
-                <tr>
-                    <td style="width: 3%;">Email:</td>
-                    <td style="width: 3%; text-align: left"> {{$data['contacto_correo']}}</td>
-                    <td style="width: 3%;">Teléfono:</td>
-                    <td style="width: 3%; text-align: left">{{$data['contacto_telefono']}}</td>
-                    <td style="width: 6%; ">Codiciones de pago:</td>
-                    <td style="width: 6%; text-align: left">{{$data['condicion']}}</td>
-                    <td style="width: 3%;"></td>
-                    <td style="width: 3%; text-align: left"></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="tableCuerpoItems" cellspacing=0>
-            <thead class="tableCuerpoItems_head">
-                
-                <tr class="tableCuerpoItems_head_tr">
-                    <th>#</th>
-                    <th>Cant</th>
-                    <th>Serv</th>
-                    <th>Instrumento</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Serie</th>
-                    <th>Alcance</th>
-                    <th>ID</th>
-                    <th>Acreditación</th>
-                    <th>Vigencia</th>
-                    <th>Precio Unitario</th>
-                    <th>Importe</th>
-                </tr>
-            
-            </thead>
-            <tbody>
-                @foreach($data['has_partidas'] as $key => $item)
-                <tr class="tableCuerpoItems_body_tr">
-                    <td>{{$key+1}}</td>
-                    <td>{{$item['cantidad']}}</td>
-                    <td>{{substr($item['servicio'], 0, 1)}}</td>
-                    <td>{{$item['has_intrumento']['nombre']}}</td>
-                    <td>{{$item['marca']}}</td>
-                    <td>{{$item['modelo']}}</td>
-                    <td>{{$item['serie']}}</td>
-                    <td>{{$item['has_intrumento']['alcance']}}</td>
-                    <td>{{$item['identificacion']}}</td>
-                    <td>{{$item['has_intrumento']['has_acreditacion']['nombre']}}</td>
-                    <td>{{$item['vigencia']}} meses</td>
-                    <td> {{number_format($item['has_intrumento']['precio_venta'], 2, '.', ',')}}</td>
-                    <td> {{number_format($item['importe'], 2, '.', ',')}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr class="tableCuerpoItems_footer_tr">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="5" style="color: #0095d9; font-weight: bold;">Importe con letra ({{$spell}})</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="text-align: right;"><strong>SubTotal:</strong></td>
-                    <td>  {{number_format($data['sub_total'], 2, '.', ',')}}</td>
-                </tr>
-                <tr class="tableCuerpoItems_footer_tr">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="5"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="text-align: right;"><strong>I.V.A. <small>(16%)</small>:</strong></td>
-                    <td>    {{number_format($data['iva'], 2, '.', ',')}}</td>
-                </tr>
-                <tr class="tableCuerpoItems_footer_tr">
-                    <td colspan="6"><small>Serv: &nbsp; &nbsp; &nbsp; C Calibración &nbsp; &nbsp; &nbsp;R Reparación &nbsp; &nbsp; &nbsp;M Mantenimiento &nbsp; &nbsp; &nbsp;V Venta de Equipo</small></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="text-align: right;"><strong> Total:</strong></td>
-                    <td>  {{number_format($data['total'], 2, '.', ',')}}</td>
-                </tr>
-            </tfoot>
-        </table>
-        <table class="tableNota">
-            <tbody>
-                <tr>
-                    <td> NOTA:<br/>
-                    <p>{{$data['nota_para_la_cotizacion']}}</p>  
-                    </td>
-                    
-                </tr>
-            </tbody>
-        </table>
-        <table class="tableDatosBancarios">
-            <tbody>
-                <tr>
-                    <td id="PagoMexico">
-                        <table cellspacing=0 style="width: 70%;">
-                            <thead>
-                                <tr>
-                                    <td colspan="5" style="background-color: #cecece; font-size: 13px;  text-align: center; ">Para pagos desde México</td>
-                                </tr>
-                                <tr style="background-color: #cecece; ">
-                                    <th>Banco</th>
-                                    <th>Moneda</th>
-                                    <th>Sucursal</th>
-                                    <th>Cuenta</th>
-                                    <th>CLABE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>BBVA Bancomer</td>
-                                    <td>Pesos</td>
-                                    <td>5357</td>
-                                    <td>0113689131</td>
-                                    <td>012072001136891315</td>
-                                </tr>
-                                <tr>
-                                    <td>Monex</td>
-                                    <td>Dolares</td>
-                                    <td></td>
-                                    <td>3236114</td>
-                                    <td>112962000032361141</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td id="pagoEEUU">
-                        <table cellspacing=0 style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <td colspan="6" style="background-color: #cecece; font-size: 13px;  text-align: center; "> Para pagos en USD desde USA</td>
-                                </tr>
-                                <tr style="background-color: #cecece; ">
-                                    <th>Banco</th>
-                                    <th>Moneda</th>
-                                    <th>Cuenta</th>
-                                    <th>Routing</th>
-                                    <th>Beneficiario</th>
-                                    <th>Referencia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Bank of New York Mellon</td>
-                                    <td>Dolares</td>
-                                    <td>8901003158</td>
-                                    <td>021000018</td>
-                                    <td>Accredian S DE RL DE CV</td>
-                                    <td>00003236114</td>
-                                </tr>
-                                <tr style="border: none;">
-                                    <td style="border: none;" >&nbsp;</td>
-                                    <td style="border: none;" >&nbsp;</td>
-                                    <td style="border: none;" >&nbsp;</td>
-                                    <td style="border: none;" >&nbsp;</td>
-                                    <td style="border: none;" >&nbsp;</td>
-                                    <td style="border: none;" >&nbsp;</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="tablefirma">
-            <tbody>
-                <tr>
-                    <td >
-                        <table id="firmaEjecutivoDeVenta">
-                            <tbody>
-                                <tr>
-                                    <td>{{$data['has_empleado']['nombre_completo']}}</td>
-                                </tr>
-                                <tr>
-                                    <td>_________________________________________________</td>
-                                </tr>
-                                <tr>
-                                    <td>Ejecutivo(a) de Ventas</td>
-                                </tr>
-                                <tr>
-                                    <td>{{$data['has_empleado']['telefono']}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table id="firmaAceptarCondiciones">
-                            <tbody>
-                                <tr>
-                                    <td>Aceptación de Cotización</td>
-                                </tr>
-                                <tr style="text-align: left;">
-                                    <td>Cliente:</td>
-                                    <td></td>
-                                </tr>
-                                <tr style="text-align: left;">
-                                    <td>Puesto:</td>
-                                    <td></td>
-                                </tr>
-                                <tr style="text-align: left;">
-                                    <td>Fecha:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>_________________________________________________</td>
-                                </tr>
-                                <tr>
-                                    <td>Firma<br />Al firmar acepto los Términos y Condiciones Generales de Accredian</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="last-page" >
-        <table class="teminosYcondiciones">
+        </tbody>
+    </table>
+    <table class="tablefirma">
+        <tbody>
+            <tr>
+                <td >
+                    <table id="firmaEjecutivoDeVenta">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['nombre_completo']}}</td>
+                            </tr>
+                            <tr>
+                                <td>_________________________________________________</td>
+                            </tr>
+                            <tr>
+                                <td>Ejecutivo(a) de Ventas</td>
+                            </tr>
+                            <tr>
+                                <td>{{$data['has_empleado']['telefono']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table id="firmaAceptarCondiciones">
+                        <tbody>
+                            <tr>
+                                <td>Aceptación de Cotización</td>
+                            </tr>
+                            <tr style="text-align: left;">
+                                <td>Cliente:</td>
+                                <td></td>
+                            </tr>
+                            <tr style="text-align: left;">
+                                <td>Puesto:</td>
+                                <td></td>
+                            </tr>
+                            <tr style="text-align: left;">
+                                <td>Fecha:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>_________________________________________________</td>
+                            </tr>
+                            <tr>
+                                <td>Firma<br />Al firmar acepto los Términos y Condiciones Generales de Accredian</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <table class="teminosYcondiciones page-break">
             <tbody>
                 <tr>
                     <td style="text-align: center;" colspan="2">TERMINOS Y CONDICIONES GENERALES</td>
@@ -539,6 +541,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
 </body>
 </div>
