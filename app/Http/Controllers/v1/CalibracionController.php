@@ -71,9 +71,9 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                     ]);
                 }, 5);
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
 
-            dd($r);
+            // dd($r);
 
         } catch (\Throwable $th) {
             throw $th;
@@ -87,7 +87,6 @@ class CalibracionController extends Controller
             $id = $data['id'];
             Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/",$request->file('certificado'),$request->file("certificado")->getClientOriginalName());
             $url = Storage::disk('s3')->url(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/".$request->file("certificado")->getClientOriginalName());
-            dd($url);
             $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
             $d = collect($dataPdf);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
