@@ -145,6 +145,8 @@ export default  new Vuex.Store({
         error_message_factura: {},
         loading_asignar_tecnico:false,
         loading_finalizar_calibracion:false,
+        calidades:[],
+        dialog_edit_calidad: false,
 
     },
     getters: {
@@ -275,7 +277,9 @@ export default  new Vuex.Store({
         overlay: state => state.overlay,
         error_message_factura: state => state.error_message_factura,
         loading_asignar_tecnico: state => state.loading_asignar_tecnico,
-        loading_finalizar_calibracion: state => state.loading_finalizar_calibracion
+        loading_finalizar_calibracion: state => state.loading_finalizar_calibracion,
+        calidades: state => state.calidades,
+        dialog_edit_calidad: state => state.dialog_edit_calidad
         
     },
     mutations: {
@@ -774,6 +778,12 @@ export default  new Vuex.Store({
         },
         setLoadingFinalizarCalibracion(state,data){
             state.loading_finalizar_calibracion = data
+        },
+        setCalidades(state, data){
+            state.calidades = data
+        },
+        setDialogEditCalidad(state, data){
+            state.dialog_edit_calidad = data
         }
     },
     actions: {

@@ -224,9 +224,6 @@ class ReciboController extends Controller
         $recibo['has_partidas'] = collect($request['has_partidas'])->reject(function ($value) use ($user_tecnico) {
             return $value['has_intrumento']['has_magnitud']['id'] != $user_tecnico; // VARIABLE DE MAGNITUD 
         });
-
-        
-
         $data = collect($recibo);
         $empresa = Empresa::find(1);
         $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data', 'empresa'))->setPaper('letter', 'landscape')->setWarnings(false);;
