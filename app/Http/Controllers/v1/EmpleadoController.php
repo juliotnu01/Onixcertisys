@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Empleado, Partida, DocumentoLab, Instrumento};
+use App\Models\{Empleado, Partida, DocumentoLab, Instrumento, Calidad};
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Arr;
@@ -175,10 +175,13 @@ class EmpleadoController extends Controller
             DB::transaction(function () use ($request, $partida) {
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
-                    ]);
-                   
-                }, 5);
-                
+                ]);
+              $calidad = new Calidad();
+              $calidad->partida_id = $request['model']['id'];
+              $calidad->status_calidad = "Por revisar";
+              $calidad->save();
+
+            }, 5);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
         } catch (Exception $e) {
             throw new Exception($e, 1);

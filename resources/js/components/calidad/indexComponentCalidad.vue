@@ -21,7 +21,7 @@
       >
         <template v-slot:item.accion="{ item }">
           <td class="text-center">
-            <v-btn icon color="warning" small @click="$store.commit('setDialogEditCalidad', true)">
+            <v-btn icon color="warning" small @click="EditCalidad(item)">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </td>
@@ -53,6 +53,8 @@ components:{
             search_calidad:'',
             headers_calidad:[
                      { text: "Partida id", align: "start",  sortable: false, value: "belongs_to_partida.id" },
+                     { text: "Cliente", align: "start",  sortable: false, value: "belongs_to_partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social" },
+                     { text: "Instrumento", align: "start",  sortable: false, value: "belongs_to_partida.has_intrumento.nombre" },
                      { text: "Verificado por", align: "start",  sortable: false, value: "belongs_to_empleado.nombre_completo" },
                      { text: "Observacion", align: "start",  sortable: false, value: "observacion"},
                      { text: "Estado", align: "start",  sortable: false, value: "status_calidad"},
@@ -65,6 +67,13 @@ components:{
     },
     mounted(){
         this.services.calidadServices.getListCalidades()
-    }
+    },
+    methods: {
+        EditCalidad(item){
+            console.log({pc:item})
+            this.$store.commit("setPartidaCalidad", item);
+            this.$store.commit("setDialogEditCalidad", true);
+        }
+    },
 };
 </script>

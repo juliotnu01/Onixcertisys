@@ -147,6 +147,7 @@ export default  new Vuex.Store({
         loading_finalizar_calibracion:false,
         calidades:[],
         dialog_edit_calidad: false,
+        partida_calidad: {}
 
     },
     getters: {
@@ -279,7 +280,8 @@ export default  new Vuex.Store({
         loading_asignar_tecnico: state => state.loading_asignar_tecnico,
         loading_finalizar_calibracion: state => state.loading_finalizar_calibracion,
         calidades: state => state.calidades,
-        dialog_edit_calidad: state => state.dialog_edit_calidad
+        dialog_edit_calidad: state => state.dialog_edit_calidad,
+        partida_calidad: state => state.partida_calidad 
         
     },
     mutations: {
@@ -784,6 +786,9 @@ export default  new Vuex.Store({
         },
         setDialogEditCalidad(state, data){
             state.dialog_edit_calidad = data
+        },
+        setPartidaCalidad(state, data){
+            state.partida_calidad = data
         }
     },
     actions: {

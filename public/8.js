@@ -75,6 +75,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: false,
         value: "belongs_to_partida.id"
       }, {
+        text: "Cliente",
+        align: "start",
+        sortable: false,
+        value: "belongs_to_partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social"
+      }, {
+        text: "Instrumento",
+        align: "start",
+        sortable: false,
+        value: "belongs_to_partida.has_intrumento.nombre"
+      }, {
         text: "Verificado por",
         align: "start",
         sortable: false,
@@ -100,6 +110,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['services', 'calidades'])),
   mounted: function mounted() {
     this.services.calidadServices.getListCalidades();
+  },
+  methods: {
+    EditCalidad: function EditCalidad(item) {
+      console.log({
+        pc: item
+      });
+      this.$store.commit("setPartidaCalidad", item);
+      this.$store.commit("setDialogEditCalidad", true);
+    }
   }
 });
 
@@ -164,6 +183,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -171,8 +266,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       show: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "dialog_edit_calidad"])), {}, {
-    opendialog: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["services", "dialog_edit_calidad", "partida_calidad", "empleados"])), {}, {
+    openDialog: {
       get: function get() {
         return this.dialog_edit_calidad;
       },
@@ -180,7 +275,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.commit("setDialogEditCalidad", val);
       }
     }
-  })
+  }),
+  mounted: function mounted() {
+    this.services.empleadoServices.getlistEmpleados();
+  }
 });
 
 /***/ }),
@@ -257,10 +355,7 @@ var render = function() {
                             attrs: { icon: "", color: "warning", small: "" },
                             on: {
                               click: function($event) {
-                                return _vm.$store.commit(
-                                  "setDialogEditCalidad",
-                                  true
-                                )
+                                return _vm.EditCalidad(item)
                               }
                             }
                           },
@@ -349,12 +444,13 @@ var render = function() {
       _c(
         "v-dialog",
         {
+          attrs: { width: "800" },
           model: {
-            value: _vm.opendialog,
+            value: _vm.openDialog,
             callback: function($$v) {
-              _vm.opendialog = $$v
+              _vm.openDialog = $$v
             },
-            expression: "opendialog"
+            expression: "openDialog"
           }
         },
         [
@@ -390,9 +486,170 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-card-title", [_vm._v(" Top western road trips ")]),
+              _c("v-card-title", [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_razon_social
+                    ) +
+                    "\n      "
+                )
+              ]),
               _vm._v(" "),
-              _c("v-card-subtitle", [_vm._v(" 1,000 miles of wonder ")]),
+              _c("v-card-subtitle", [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
+                    ) +
+                    ",\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
+                    ) +
+                    ",\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
+                    ) +
+                    ",\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.has_cliente
+                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
+                    ) +
+                    "\n        "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Condicion:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.condicion
+                    ) +
+                    "\n        "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Contacto:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.contacto
+                    ) +
+                    "\n        "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Correo Contacto:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.contacto_correo
+                    ) +
+                    "\n        "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Telefono Contacto:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_recibo
+                        .has_cotizaicon.contacto_telefono
+                    ) +
+                    "\n        "
+                ),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              _c("v-card-title", [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_intrumento
+                        .nombre
+                    ) +
+                    "\n      "
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-card-subtitle", [
+                _c("strong", [_vm._v("Marca:")]),
+                _vm._v(
+                  " " +
+                    _vm._s(_vm.partida_calidad.belongs_to_partida.marca) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Modelo:")]),
+                _vm._v(
+                  " " +
+                    _vm._s(_vm.partida_calidad.belongs_to_partida.modelo) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Serie:")]),
+                _vm._v(
+                  " " +
+                    _vm._s(_vm.partida_calidad.belongs_to_partida.serie) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Alcance:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.has_intrumento
+                        .alcance
+                    ) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Servicio:")]),
+                _vm._v(
+                  " " +
+                    _vm._s(_vm.partida_calidad.belongs_to_partida.servicio) +
+                    "\n        "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Lugar de Servicio:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      _vm.partida_calidad.belongs_to_partida.lugar_servicio
+                    ) +
+                    " "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Observacion:")]),
+                _vm._v(
+                  "\n        " +
+                    _vm._s(_vm.partida_calidad.belongs_to_partida.observacion) +
+                    " "
+                ),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("v-divider"),
               _vm._v(" "),
               _c(
                 "v-card-actions",
@@ -446,11 +703,151 @@ var render = function() {
                   [
                     _c("v-divider"),
                     _vm._v(" "),
-                    _c("v-card-text", [
-                      _vm._v(
-                        "\n            I'm a thing. But, like most politicians, he promised more than he could\n            deliver. You won't have time for sleeping, soldier, not with all the bed\n            making you'll be doing. Then we'll go with that data file! Hey, you add a\n            one and two zeros to that or we walk! You're going to do his laundry? I've\n            got to find a way to escape.\n          "
-                      )
-                    ])
+                    _c(
+                      "v-card-text",
+                      [
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              {
+                                attrs: {
+                                  cols: "12",
+                                  xs: "12",
+                                  sm: "12",
+                                  md: "12",
+                                  lg: "12"
+                                }
+                              },
+                              [
+                                _c("v-autocomplete", {
+                                  attrs: {
+                                    items: _vm.empleados,
+                                    outlined: "",
+                                    dense: "",
+                                    label: "Revisado por",
+                                    "item-text": "nombre_completo",
+                                    value: "id",
+                                    "return-object": ""
+                                  },
+                                  model: {
+                                    value:
+                                      _vm.partida_calidad.belongs_to_empleado,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.partida_calidad,
+                                        "belongs_to_empleado",
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "partida_calidad.belongs_to_empleado"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              {
+                                attrs: {
+                                  cols: "12",
+                                  xs: "12",
+                                  sm: "12",
+                                  md: "12",
+                                  lg: "12"
+                                }
+                              },
+                              [
+                                _c("v-textarea", {
+                                  attrs: {
+                                    outlined: "",
+                                    name: "input-7-4",
+                                    label: "Observacion"
+                                  },
+                                  model: {
+                                    value: _vm.partida_calidad.observacion,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.partida_calidad,
+                                        "observacion",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "partida_calidad.observacion"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              {
+                                attrs: {
+                                  cols: "12",
+                                  xs: "12",
+                                  sm: "12",
+                                  md: "12",
+                                  lg: "12"
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-radio-group",
+                                  {
+                                    attrs: { row: "" },
+                                    model: {
+                                      value: _vm.partida_calidad.status_calidad,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.partida_calidad,
+                                          "status_calidad",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "partida_calidad.status_calidad"
+                                    }
+                                  },
+                                  [
+                                    _c("v-radio", {
+                                      attrs: {
+                                        label: "Revisado con exito",
+                                        value: "revisado con exito",
+                                        color: "success"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-radio", {
+                                      attrs: {
+                                        label: "Necesita correciones",
+                                        value: "necesita correciones",
+                                        color: "warning"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-radio", {
+                                      attrs: {
+                                        label: "Rechazada",
+                                        value: "rechazada",
+                                        color: "error"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
                   ],
                   1
                 )
