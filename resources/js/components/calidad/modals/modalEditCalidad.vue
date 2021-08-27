@@ -68,24 +68,24 @@
           {{ partida_calidad.belongs_to_partida.observacion }} <br />
           <strong>Fecha inicio de calibracion:</strong>
           {{
-            partida_calidad.belongs_to_partida.has_calibracion.fecha_inicio_calibracion  ? partida_calidad.belongs_to_partida.has_calibracion.fecha_inicio_calibracion: ''
+            partida_calidad.belongs_to_partida.has_calibracion  ? partida_calidad.belongs_to_partida.has_calibracion.fecha_inicio_calibracion: ''
           }}
           <br />
           <strong>Fecha fin de calibracion:</strong>
           {{
-            partida_calidad.belongs_to_partida.has_calibracion.fecha_terminacion_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.fecha_terminacion_calibracion : ''
+            partida_calidad.belongs_to_partida.has_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.fecha_terminacion_calibracion : ''
           }}
           <br />
           <strong>Descripcion de la anomalia:</strong>
-          {{ partida_calidad.belongs_to_partida.has_calibracion.descripcion_anomalia  ? partida_calidad.belongs_to_partida.has_calibracion.descripcion_anomalia : '' }}
+          {{ partida_calidad.belongs_to_partida.has_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.descripcion_anomalia : '' }}
           <br />
           <strong>fecha de la anomalia:</strong>
-          {{ partida_calidad.belongs_to_partida.has_calibracion.fecha_anomalia ? partida_calidad.belongs_to_partida.has_calibracion.fecha_anomalia : ''}} <br />
+          {{ partida_calidad.belongs_to_partida.has_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.fecha_anomalia : ''}} <br />
           <strong>Observacion tecnico:</strong>
-          {{ partida_calidad.belongs_to_partida.has_calibracion.observacion_tecnico ? partida_calidad.belongs_to_partida.has_calibracion.observacion_tecnico : '' }}
+          {{ partida_calidad.belongs_to_partida.has_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.observacion_tecnico : '' }}
           <br />
           <strong>Estado Calibracion:</strong>
-          {{ partida_calidad.belongs_to_partida.has_calibracion.estado ? partida_calidad.belongs_to_partida.has_calibracion.estado : '' }} <br />
+          {{ partida_calidad.belongs_to_partida.has_calibracion ? partida_calidad.belongs_to_partida.has_calibracion.estado : '' }} <br />
         </v-card-subtitle>
         <v-divider></v-divider>
 

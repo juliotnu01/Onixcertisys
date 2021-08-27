@@ -737,7 +737,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .fecha_inicio_calibracion
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.fecha_inicio_calibracion
                             : ""
@@ -751,7 +750,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .fecha_terminacion_calibracion
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.fecha_terminacion_calibracion
                             : ""
@@ -765,7 +763,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .descripcion_anomalia
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.descripcion_anomalia
                             : ""
@@ -779,7 +776,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .fecha_anomalia
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.fecha_anomalia
                             : ""
@@ -793,7 +789,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .observacion_tecnico
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.observacion_tecnico
                             : ""
@@ -807,7 +802,6 @@ var render = function() {
                       "\n        " +
                         _vm._s(
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
-                            .estado
                             ? _vm.partida_calidad.belongs_to_partida
                                 .has_calibracion.estado
                             : ""
