@@ -85,6 +85,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: false,
         value: "belongs_to_partida.has_intrumento.nombre"
       }, {
+        text: "ID Informe",
+        align: "start",
+        sortable: false,
+        value: "belongs_to_partida.informe_id"
+      }, {
         text: "Estado calibracon instrumento",
         align: "start",
         sortable: false,
@@ -275,6 +280,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -294,6 +326,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   mounted: function mounted() {
     this.services.empleadoServices.getlistEmpleados();
+  },
+  methods: {
+    EditCalidad: function EditCalidad() {
+      console.log(this.partida_calidad);
+
+      try {
+        var model = {
+          id: this.partida_calidad.id,
+          empleado_id: this.partida_calidad.belongs_to_empleado.id,
+          //revisado por
+          status_calidad: this.partida_calidad.status_calidad,
+          observacion: this.partida_calidad.observacion
+        };
+        this.services.calidadServices.editCalidad(model);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 });
 
@@ -496,7 +546,15 @@ var render = function() {
                   _c(
                     "v-card-title",
                     { staticClass: "text-h5", attrs: { dark: "" } },
-                    [_vm._v(" Calidad ")]
+                    [
+                      _vm._v(
+                        " Calidad ID Informe: " +
+                          _vm._s(
+                            _vm.partida_calidad.belongs_to_partida.informe_id
+                          ) +
+                          " "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -682,7 +740,7 @@ var render = function() {
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
                             .fecha_inicio_calibracion
                         ) +
-                        " "
+                        "\n        "
                     ),
                     _c("br"),
                     _vm._v(" "),
@@ -693,7 +751,7 @@ var render = function() {
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
                             .fecha_terminacion_calibracion
                         ) +
-                        " "
+                        "\n        "
                     ),
                     _c("br"),
                     _vm._v(" "),
@@ -704,7 +762,7 @@ var render = function() {
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
                             .descripcion_anomalia
                         ) +
-                        " "
+                        "\n        "
                     ),
                     _c("br"),
                     _vm._v(" "),
@@ -726,7 +784,7 @@ var render = function() {
                           _vm.partida_calidad.belongs_to_partida.has_calibracion
                             .observacion_tecnico
                         ) +
-                        " "
+                        "\n        "
                     ),
                     _c("br"),
                     _vm._v(" "),
@@ -750,8 +808,11 @@ var render = function() {
                 [
                   _c(
                     "v-btn",
-                    { attrs: { color: "orange lighten-2", text: "" } },
-                    [_vm._v(" Explore ")]
+                    {
+                      attrs: { color: "#0095d9", dark: "" },
+                      on: { click: _vm.EditCalidad }
+                    },
+                    [_vm._v(" Guardar ")]
                   ),
                   _vm._v(" "),
                   _c("v-spacer"),
@@ -881,11 +942,11 @@ var render = function() {
                               "v-col",
                               {
                                 attrs: {
-                                  cols: "12",
-                                  xs: "12",
-                                  sm: "12",
-                                  md: "12",
-                                  lg: "12"
+                                  cols: "6",
+                                  xs: "6",
+                                  sm: "6",
+                                  md: "6",
+                                  lg: "6"
                                 }
                               },
                               [
@@ -924,6 +985,78 @@ var render = function() {
                                     })
                                   ],
                                   1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              {
+                                attrs: {
+                                  cols: "6",
+                                  xs: "6",
+                                  sm: "6",
+                                  md: "6",
+                                  lg: "6"
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-tooltip",
+                                  {
+                                    attrs: { top: "" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var on = ref.on
+                                          var attrs = ref.attrs
+                                          return [
+                                            _c(
+                                              "v-btn",
+                                              _vm._g(
+                                                _vm._b(
+                                                  {
+                                                    staticClass: "mt-5",
+                                                    attrs: {
+                                                      color: "#0095d9",
+                                                      dark: "",
+                                                      icon: "",
+                                                      large: "",
+                                                      href:
+                                                        _vm.partida_calidad
+                                                          .belongs_to_partida
+                                                          .ruta_doc_calibracion,
+                                                      target: "_blank"
+                                                    }
+                                                  },
+                                                  "v-btn",
+                                                  attrs,
+                                                  false
+                                                ),
+                                                on
+                                              ),
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  { attrs: { large: "" } },
+                                                  [_vm._v("mdi-cloud-download")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c("span", [
+                                      _vm._v("Descargar Excel Certificado")
+                                    ])
+                                  ]
                                 )
                               ],
                               1

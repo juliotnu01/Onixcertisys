@@ -696,6 +696,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -780,6 +805,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sorable: false,
         align: "center",
         value: "has_calibracion",
+        width: 200
+      }, {
+        text: "Calidad",
+        sorable: false,
+        align: "center",
+        value: "has_calidad",
         width: 200
       }, {
         text: "Precio unitario",
@@ -2621,6 +2652,80 @@ var render = function() {
                                     _vm._v(
                                       "\n                " +
                                         _vm._s(item.has_calibracion.estado) +
+                                        "\n              "
+                                    )
+                                  ]
+                                )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.has_calidad",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          { attrs: { clas: "text-left" } },
+                          [
+                            !item.has_calidad
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "warning"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                por revisar\n              "
+                                    )
+                                  ]
+                                )
+                              : item.has_calidad.status_calidad ===
+                                "No autorizado"
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "error"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          item.has_calidad.status_calidad
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "success"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          item.has_calidad.status_calidad
+                                        ) +
                                         "\n              "
                                     )
                                   ]

@@ -106,6 +106,7 @@
                           <th class="text-center">Servicio</th>
                           <th class="text-center">Tipo</th>
                           <th class="text-center">Estado de la Calibracion</th>
+                          <th class="text-center">Calidad</th>
                           <th class="text-center">Asignar</th>
                           <th class="text-center">Acción</th>
                         </tr>
@@ -154,6 +155,29 @@
                             </v-alert>
                             <v-alert dense outlined type="success" v-else class="mt-5">
                               {{ item.has_calibracion.estado }}
+                            </v-alert>
+                          </td>
+                          <td class="text-center">
+                            <v-alert
+                              dense
+                              outlined
+                              type="error"
+                              v-if="item.has_calidad == null"
+                              class="mt-5"
+                            >
+                              Sin Revisar
+                            </v-alert>
+                            <v-alert
+                              dense
+                              outlined
+                              type="error"
+                              v-else-if="item.has_calidad.status_calidad === 'No autorizado'"
+                              class="mt-5"
+                            >
+                              {{ item.has_calidad.status_calidad }}
+                            </v-alert>
+                            <v-alert dense outlined type="success" v-else class="mt-5">
+                              {{ item.has_calidad.status_calidad }}
                             </v-alert>
                           </td>
                           <td class="text-center">

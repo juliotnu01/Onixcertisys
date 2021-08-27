@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Calidad;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class CalidadController extends Controller
 {
@@ -40,9 +41,9 @@ class CalidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Calidad $calidad)
     {
-        //
+        
     }
 
     /**
@@ -76,9 +77,11 @@ class CalidadController extends Controller
      */
     public function update(Request $request, Calidad $calidad)
     {
+        // dd(collect($request));
         try {
             return DB::transaction(function () use ($request, $calidad) {
                 $calidad->find($request['id'])->update([
+                    'empleado_id' => $request['empleado_id'],
                     'status_calidad' => $request['status_calidad'],
                     'observacion' => $request['observacion']
                 ]);

@@ -436,6 +436,31 @@
                 </v-alert>
               </td>
             </template>
+            <template v-slot:item.has_calidad="{ item }">
+              <td clas="text-left">
+                <v-alert
+                    dense
+                    outlined
+                    type="warning"
+                    v-if="!item.has_calidad"
+                    class="m-0 p-0"
+                  >
+                  por revisar
+                </v-alert>
+                <v-alert
+                    dense
+                    outlined
+                    type="error"
+                    v-else-if="item.has_calidad.status_calidad === 'No autorizado'"
+                    class="m-0 p-0"
+                  >
+                  {{ item.has_calidad.status_calidad }}
+                </v-alert>
+                <v-alert dense outlined type="success" v-else class="m-0 p-0">
+                  {{ item.has_calidad.status_calidad }}
+                </v-alert>
+              </td>
+            </template>
             <template v-slot:item.accion="{ item }">
               <td clas="text-left">
                <v-btn color="error" icon dense small fab @click="EliminarPartida(item)" ><v-icon>mdi-delete</v-icon></v-btn>
@@ -756,6 +781,13 @@ export default {
           sorable: false,
           align: "center",
           value: "has_calibracion",
+          width: 200,
+        },
+        {
+          text: "Calidad",
+          sorable: false,
+          align: "center",
+          value: "has_calidad",
           width: 200,
         },
         {

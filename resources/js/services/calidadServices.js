@@ -12,14 +12,10 @@ export default class calidadServices {
 
     async editCalidad(model) {
         try {
-            // var formData = new FormData();
-            // formData.append("certificado", model.file_certificado);
-            // formData.append("partida", JSON.stringify(model.partida));
-            // formData.append("id_calibracion", JSON.stringify(model.id_calibracion));
-            // store.commit("setLoadingFinalizarCalibracion}", true);
-            // let { data } = await axios.post("/api/terminar-calibracion", formData, { headers: { "Content-Type": "multipart/form-data"}});
-            // store.commit("setLoadingFinalizarCalibracion", false);
-            // store.commit("setDialogCalibracion", false);
+            let { data } = await axios.put("/api/actualizar-calidad", model);
+            store.commit("setDialogEditCalidad", false);
+            var model_notificacion = {mensaje: 'Guardado con exito', status: true, color: 'success'}
+            store.commit("setNotificacion", model_notificacion);
         } catch (e) {
             console.log(e);
         }
