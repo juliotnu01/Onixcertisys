@@ -17,7 +17,7 @@ class CalidadController extends Controller
     public function index()
     {
         try {
-            $calidad = calidad::with(['belongsToPartida','belongsToPartida.hasEmpleado','belongsToPartida.hasRecibo.hasCotizaicon.hasCliente','belongsToPartida.hasIntrumento','belongsToEmpleado'])->get();
+            $calidad = calidad::with(['belongsToPartida','belongsToPartida.hasCalibracion','belongsToPartida.hasEmpleado','belongsToPartida.hasRecibo.hasCotizaicon.hasCliente','belongsToPartida.hasIntrumento','belongsToEmpleado'])->get();
             return response($calidad);
         } catch (\Throwable $th) {
             throw $th;

@@ -85,6 +85,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: false,
         value: "belongs_to_partida.has_intrumento.nombre"
       }, {
+        text: "Estado calibracon instrumento",
+        align: "start",
+        sortable: false,
+        value: "belongs_to_partida.has_calibracion.estado"
+      }, {
         text: "Verificado por",
         align: "start",
         sortable: false,
@@ -140,6 +145,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -486,168 +502,246 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-card-title", [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.has_cliente
-                        .datos_fisicos_requeremientos_facturacion_razon_social
-                    ) +
-                    "\n      "
-                )
-              ]),
+              Object.entries(this.partida_calidad).length > 0
+                ? _c("v-card-title", [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.has_cliente
+                            .datos_fisicos_requeremientos_facturacion_razon_social
+                        ) +
+                        "\n      "
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("v-card-subtitle", [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.has_cliente
-                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
-                    ) +
-                    ",\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.has_cliente
-                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
-                    ) +
-                    ",\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.has_cliente
-                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
-                    ) +
-                    ",\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.has_cliente
-                        .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
-                    ) +
-                    "\n        "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Condicion:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.condicion
-                    ) +
-                    "\n        "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Contacto:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.contacto
-                    ) +
-                    "\n        "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Correo Contacto:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.contacto_correo
-                    ) +
-                    "\n        "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Telefono Contacto:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_recibo
-                        .has_cotizaicon.contacto_telefono
-                    ) +
-                    "\n        "
-                ),
-                _c("br")
-              ]),
+              Object.entries(this.partida_calidad).length > 0
+                ? _c("v-card-subtitle", [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.has_cliente
+                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
+                        ) +
+                        ",\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.has_cliente
+                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_ciudad
+                        ) +
+                        ",\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.has_cliente
+                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_colonia
+                        ) +
+                        ",\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.has_cliente
+                            .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_estado
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Condicion:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.condicion
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Contacto:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.contacto
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Correo Contacto:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.contacto_correo
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Telefono Contacto:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_recibo
+                            .has_cotizaicon.contacto_telefono
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("v-divider"),
               _vm._v(" "),
-              _c("v-card-title", [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_intrumento
-                        .nombre
-                    ) +
-                    "\n      "
-                )
-              ]),
+              Object.entries(this.partida_calidad).length > 0
+                ? _c("v-card-title", [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_intrumento
+                            .nombre
+                        ) +
+                        "\n      "
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("v-card-subtitle", [
-                _c("strong", [_vm._v("Marca:")]),
-                _vm._v(
-                  " " +
-                    _vm._s(_vm.partida_calidad.belongs_to_partida.marca) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Modelo:")]),
-                _vm._v(
-                  " " +
-                    _vm._s(_vm.partida_calidad.belongs_to_partida.modelo) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Serie:")]),
-                _vm._v(
-                  " " +
-                    _vm._s(_vm.partida_calidad.belongs_to_partida.serie) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Alcance:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.has_intrumento
-                        .alcance
-                    ) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Servicio:")]),
-                _vm._v(
-                  " " +
-                    _vm._s(_vm.partida_calidad.belongs_to_partida.servicio) +
-                    "\n        "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Lugar de Servicio:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      _vm.partida_calidad.belongs_to_partida.lugar_servicio
-                    ) +
-                    " "
-                ),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Observacion:")]),
-                _vm._v(
-                  "\n        " +
-                    _vm._s(_vm.partida_calidad.belongs_to_partida.observacion) +
-                    " "
-                ),
-                _c("br")
-              ]),
+              Object.entries(this.partida_calidad).length > 0
+                ? _c("v-card-subtitle", [
+                    _c("strong", [_vm._v("Marca:")]),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.partida_calidad.belongs_to_partida.marca) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Modelo:")]),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.partida_calidad.belongs_to_partida.modelo) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Serie:")]),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.partida_calidad.belongs_to_partida.serie) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Alcance:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_intrumento
+                            .alcance
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Servicio:")]),
+                    _vm._v(
+                      " " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.servicio
+                        ) +
+                        "\n        "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Lugar de Servicio:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.lugar_servicio
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Observacion:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.observacion
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Fecha inicio de calibracion:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .fecha_inicio_calibracion
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Fecha fin de calibracion:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .fecha_terminacion_calibracion
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Descripcion de la anomalia:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .descripcion_anomalia
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("fecha de la anomalia:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .fecha_anomalia
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Observacion tecnico:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .observacion_tecnico
+                        ) +
+                        " "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Estado Calibracion:")]),
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(
+                          _vm.partida_calidad.belongs_to_partida.has_calibracion
+                            .estado
+                        ) +
+                        " "
+                    ),
+                    _c("br")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("v-divider"),
               _vm._v(" "),
@@ -815,24 +909,16 @@ var render = function() {
                                   [
                                     _c("v-radio", {
                                       attrs: {
-                                        label: "Revisado con exito",
-                                        value: "revisado con exito",
+                                        label: "Autorizado",
+                                        value: "Autorizado",
                                         color: "success"
                                       }
                                     }),
                                     _vm._v(" "),
                                     _c("v-radio", {
                                       attrs: {
-                                        label: "Necesita correciones",
-                                        value: "necesita correciones",
-                                        color: "warning"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-radio", {
-                                      attrs: {
-                                        label: "Rechazada",
-                                        value: "rechazada",
+                                        label: "No autorizado",
+                                        value: "No autorizado",
                                         color: "error"
                                       }
                                     })

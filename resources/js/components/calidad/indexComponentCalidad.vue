@@ -55,6 +55,7 @@ components:{
                      { text: "Partida id", align: "start",  sortable: false, value: "belongs_to_partida.id" },
                      { text: "Cliente", align: "start",  sortable: false, value: "belongs_to_partida.has_recibo.has_cotizaicon.has_cliente.datos_fisicos_requeremientos_facturacion_razon_social" },
                      { text: "Instrumento", align: "start",  sortable: false, value: "belongs_to_partida.has_intrumento.nombre" },
+                     { text: "Estado calibracon instrumento", align: "start",  sortable: false, value: "belongs_to_partida.has_calibracion.estado" },
                      { text: "Verificado por", align: "start",  sortable: false, value: "belongs_to_empleado.nombre_completo" },
                      { text: "Observacion", align: "start",  sortable: false, value: "observacion"},
                      { text: "Estado", align: "start",  sortable: false, value: "status_calidad"},

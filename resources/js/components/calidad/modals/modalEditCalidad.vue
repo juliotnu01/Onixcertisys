@@ -9,13 +9,13 @@
           <v-spacer></v-spacer>
           <v-card-title class="text-h5" dark> Calidad </v-card-title>
         </v-toolbar>
-        <v-card-title>
+        <v-card-title v-if="Object.entries(this.partida_calidad).length > 0 " >
           {{
             partida_calidad.belongs_to_partida.has_recibo.has_cotizaicon.has_cliente
               .datos_fisicos_requeremientos_facturacion_razon_social
           }}
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle v-if="Object.entries(this.partida_calidad).length > 0 " >
           {{
             partida_calidad.belongs_to_partida.has_recibo.has_cotizaicon.has_cliente
               .datos_fisicos_requeremientos_facturacion_domiclio_fiscal_calle
@@ -51,10 +51,10 @@
           <br />
         </v-card-subtitle>
         <v-divider></v-divider>
-        <v-card-title>
+        <v-card-title v-if="Object.entries(this.partida_calidad).length > 0 ">
           {{ partida_calidad.belongs_to_partida.has_intrumento.nombre }}
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle v-if="Object.entries(this.partida_calidad).length > 0 ">
           <strong>Marca:</strong> {{ partida_calidad.belongs_to_partida.marca }} <br />
           <strong>Modelo:</strong> {{ partida_calidad.belongs_to_partida.modelo }} <br />
           <strong>Serie:</strong> {{ partida_calidad.belongs_to_partida.serie }} <br />
@@ -66,6 +66,18 @@
           {{ partida_calidad.belongs_to_partida.lugar_servicio }} <br />
           <strong>Observacion:</strong>
           {{ partida_calidad.belongs_to_partida.observacion }} <br />
+          <strong>Fecha inicio de calibracion:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.fecha_inicio_calibracion }} <br />
+          <strong>Fecha fin de calibracion:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.fecha_terminacion_calibracion }} <br />
+          <strong>Descripcion de la anomalia:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.descripcion_anomalia }} <br />
+          <strong>fecha de la anomalia:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.fecha_anomalia }} <br />
+          <strong>Observacion tecnico:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.observacion_tecnico }} <br />
+          <strong>Estado Calibracion:</strong>
+          {{ partida_calidad.belongs_to_partida.has_calibracion.estado }} <br />
         </v-card-subtitle>
         <v-divider></v-divider>
 
@@ -104,9 +116,8 @@
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="12">
                   <v-radio-group v-model="partida_calidad.status_calidad" row>
-                    <v-radio label="Revisado con exito" value="revisado con exito" color="success" ></v-radio>
-                    <v-radio label="Necesita correciones" value="necesita correciones" color="warning" ></v-radio>
-                    <v-radio label="Rechazada" value="rechazada" color="error"></v-radio>
+                    <v-radio label="Autorizado" value="Autorizado" color="success" ></v-radio>
+                    <v-radio label="No autorizado" value="No autorizado" color="error"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
