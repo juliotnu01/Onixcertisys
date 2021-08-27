@@ -243,6 +243,8 @@ class ClienteController extends Controller
                             $altaFactura = "SE ENVIA POR EMAIL";
                         } elseif ($key === 'seOptienePorElPortal' && Str::lower($value) === 'x') {
                             $altaFactura = "SE OPTIENE POR EL PORTAL";
+                        }else{
+                            $altaFactura = "";
                         }
                     }
 
