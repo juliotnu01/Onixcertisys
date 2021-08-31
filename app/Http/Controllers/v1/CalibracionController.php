@@ -71,7 +71,7 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                     ]);
                 }, 5);
-            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
 
             // dd($r);
 
