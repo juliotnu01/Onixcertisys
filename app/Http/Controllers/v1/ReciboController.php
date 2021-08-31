@@ -101,10 +101,10 @@ class ReciboController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Recibo $recibo, Calidad $calidad)
+    public function store(Request $request, Recibo $recibo)
     {
         try {
-            return DB::transaction(function () use ($request, $recibo, $calidad) {
+            return DB::transaction(function () use ($request, $recibo) {
 
                 $recibo->estado = $request['estado'];
                 $recibo->cotizacion_id = $request['cotizacion_id']['id'];
@@ -147,7 +147,8 @@ class ReciboController extends Controller
                                 "lugar_servicio" => $value['lugar_servicio']['name'],
                                 "observacion" => $value['observacion'],
                             ]);
-
+                            
+                            $calidad = new Calidad();
                             $calidad->partida_id = $value['id'];
                             $calidad->status_calidad = "Por revisar";
                             $calidad->save();
