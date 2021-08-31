@@ -162,7 +162,7 @@
                               dense
                               outlined
                               type="error"
-                              v-if="item.has_calidad == null"
+                              v-if="item.has_calidad.status_calidad === 'Por revisar'"
                               class="mt-5"
                             >
                               Sin Revisar
@@ -176,7 +176,7 @@
                             >
                               {{ item.has_calidad.status_calidad }}
                             </v-alert>
-                            <v-alert dense outlined type="success" v-else class="mt-5">
+                            <v-alert dense outlined type="success"  v-else-if="item.has_calidad.status_calidad === 'Autorizado'" class="mt-5">
                               {{ item.has_calidad.status_calidad }}
                             </v-alert>
                           </td>

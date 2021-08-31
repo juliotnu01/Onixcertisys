@@ -1481,9 +1481,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cargarPartidasImportadas: function cargarPartidasImportadas(masivPartidas) {
       var _this4 = this;
 
-      console.log({
-        masivPartidas: masivPartidas
-      });
       var partida = {
         identificacion: "",
         instrumento: {},

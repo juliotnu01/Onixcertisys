@@ -47,7 +47,7 @@ class CalibracionController extends Controller
              DB::transaction(function () use ($request, $calibracion,$procedimientoLab,$patronLab) {
                 $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
-                $calibracion->fecha_inicio_calibracion = Carbon::now();
+                $calibracion->fecha_inicio_calibracion = Carbon::now()->format('Y-m-d');
                 $calibracion->descripcion_anomalia = $request['descripcion_anomalia'];
                 $calibracion->observacion_tecnico = $request['observacion_tecnico'];
                 $calibracion->estado = 'en proceso';
@@ -71,7 +71,7 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                     ]);
                 }, 5);
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
 
             // dd($r);
 
@@ -93,7 +93,7 @@ class CalibracionController extends Controller
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
-                    'fecha_terminacion_calibracion' => Carbon::now()
+                    'fecha_terminacion_calibracion' => Carbon::now()->format('Y-m-d')
                 ]);
             }, 5);
         } catch (\Throwable $th) {

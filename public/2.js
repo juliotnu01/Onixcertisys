@@ -1391,8 +1391,9 @@ var render = function() {
                                                                 "text-center"
                                                             },
                                                             [
-                                                              item.has_calidad ==
-                                                              null
+                                                              item.has_calidad
+                                                                .status_calidad ===
+                                                              "Por revisar"
                                                                 ? _c(
                                                                     "v-alert",
                                                                     {
@@ -1443,7 +1444,11 @@ var render = function() {
                                                                       )
                                                                     ]
                                                                   )
-                                                                : _c(
+                                                                : item
+                                                                    .has_calidad
+                                                                    .status_calidad ===
+                                                                  "Autorizado"
+                                                                ? _c(
                                                                     "v-alert",
                                                                     {
                                                                       staticClass:
@@ -1469,6 +1474,7 @@ var render = function() {
                                                                       )
                                                                     ]
                                                                   )
+                                                                : _vm._e()
                                                             ],
                                                             1
                                                           ),

@@ -17,9 +17,9 @@ class CreateRecibosTable extends Migration
             $table->id();
             $table->text('estado')->nullable();
             $table->text('ruta_pdf')->nullable();
-            $table->float('sub_total', 8,2)->nullable();
-            $table->float('iva', 8,2)->nullable();
-            $table->float('total', 8,2)->nullable();
+            $table->float('sub_total', 99,2)->nullable();
+            $table->float('iva', 99,2)->nullable();
+            $table->float('total', 99,2)->nullable();
             $table->foreignId('cotizacion_id')->constrained('cotizacions');
             $table->timestamps();
             $table->softDeletes()->nullable();

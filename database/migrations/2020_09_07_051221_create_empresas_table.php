@@ -20,8 +20,8 @@ class CreateEmpresasTable extends Migration
             $table->text('rfc')->nullable();
             $table->text('correo_electronico')->nullable();
             $table->text('telefono')->nullable();
-            $table->float('iva', 8, 2)->nullable();
-            $table->float('utilidad', 8, 2)->nullable();
+            $table->double('iva', 99, 2)->nullable();
+            $table->double('utilidad', 99, 2)->nullable();
             $table->text('direccion')->nullable();
             $table->text('ciudad')->nullable();
             $table->text('estado')->nullable();

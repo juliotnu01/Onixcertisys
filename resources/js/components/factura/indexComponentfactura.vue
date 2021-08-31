@@ -919,9 +919,7 @@ export default {
         var result = 0;
         if (Object.entries(this.partidas_acumuladas).length > 0) {
           for (var i = 0; this.partidas_acumuladas.length > i; i++) {
-            result +=
-              this.partidas_acumuladas[i].cantidad *
-              this.partidas_acumuladas[i].has_intrumento.precio_venta;
+            result += parseFloat(this.partidas_acumuladas[i].has_intrumento.precio_venta);
           }
         }
         return result;

@@ -22,7 +22,7 @@ class CreatePartidasTable extends Migration
             $table->text('marca')->nullable();
             $table->text('modelo')->nullable();
             $table->text('serie')->nullable();
-            $table->float('importe', 8, 2)->nullable();
+            $table->double('importe', 99, 2)->nullable();
             $table->boolean('convertir_recibo')->nullable();
             $table->text('informe_id')->nullable();
             $table->text('tipo')->nullable();
