@@ -173,10 +173,10 @@ class EmpleadoController extends Controller
         ]);
         try {
             DB::transaction(function () use ($request, $partida, $calidad) {
+                
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                 ]);
-                dd();
               
               $calidad->partida_id = $request['model']['id'];
               $calidad->status_calidad = "Por revisar";
