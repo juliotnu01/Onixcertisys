@@ -177,11 +177,9 @@ class EmpleadoController extends Controller
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                 ]);
-              
-             
-
             }, 5);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+            dd($r);
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }
