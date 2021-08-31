@@ -15,11 +15,11 @@ class CreateMasivPartidasTable extends Migration
     {
         Schema::create('masiv_partidas', function (Blueprint $table) {
             $table->id();
-            $table->string('identificacion')->nullable();
+            $table->text('identificacion')->nullable();
             $table->foreignId('instrumento_id')->nullable()->constrained('instrumentos');
-            $table->string('marca')->nullable();
-            $table->string('modelo')->nullable();
-            $table->string('serie')->nullable();
+            $table->text('marca')->nullable();
+            $table->text('modelo')->nullable();
+            $table->text('serie')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

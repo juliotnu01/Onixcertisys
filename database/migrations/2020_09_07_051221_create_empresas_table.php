@@ -15,18 +15,18 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_empresa')->nullable();
-            $table->string('actividad_comercial')->nullable();
-            $table->string('rfc')->nullable();
-            $table->string('correo_electronico')->nullable();
-            $table->string('telefono')->nullable();
-            $table->integer('iva')->nullable();
-            $table->integer('utilidad')->nullable();
-            $table->string('direccion')->nullable();
-            $table->string('ciudad')->nullable();
-            $table->string('estado')->nullable();
-            $table->string('codigo_postal')->nullable();
-            $table->string('pais')->nullable();
+            $table->text('nombre_empresa')->nullable();
+            $table->text('actividad_comercial')->nullable();
+            $table->text('rfc')->nullable();
+            $table->text('correo_electronico')->nullable();
+            $table->text('telefono')->nullable();
+            $table->float('iva', 8, 2)->nullable();
+            $table->float('utilidad', 8, 2)->nullable();
+            $table->text('direccion')->nullable();
+            $table->text('ciudad')->nullable();
+            $table->text('estado')->nullable();
+            $table->text('codigo_postal')->nullable();
+            $table->text('pais')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,9 +15,9 @@ class CreateUnidadsTable extends Migration
     {
         Schema::create('unidads', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo')->nullable();
-            $table->string('clave')->nullable();
-            $table->string('nombre')->nullable();
+            $table->text('tipo')->nullable();
+            $table->text('clave')->nullable();
+            $table->text('nombre')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

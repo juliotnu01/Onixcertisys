@@ -17,8 +17,8 @@ class CreateCalidadsTable extends Migration
             $table->id();
             $table->foreignId('partida_id')->nullable()->constrained('partidas');
             $table->foreignId('empleado_id')->nullable()->constrained('empleados');
-            $table->string('status_calidad')->nullable();
-            $table->string('observacion')->nullable();
+            $table->text('status_calidad')->nullable();
+            $table->text('observacion')->nullable();
             $table->timestamps();
         });
     }

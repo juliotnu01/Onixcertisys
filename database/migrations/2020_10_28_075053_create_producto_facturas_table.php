@@ -19,10 +19,10 @@ class CreateProductoFacturasTable extends Migration
             $table->foreignId('recibo_id')->nullable()->constrained('recibos');
             $table->foreignId('cotizacion_id')->nullable()->constrained('cotizacions');
             $table->foreignId('instrumento_id')->nullable()->constrained('instrumentos');
-            $table->string('informe_id')->nullable();
-            $table->string('conceopto')->nullable();
-            $table->bigInteger('precio_unitario')->nullable();
-            $table->bigInteger('importe')->nullable();
+            $table->text('informe_id')->nullable();
+            $table->text('conceopto')->nullable();
+            $table->float('precio_unitario', 8, 2)->nullable();
+            $table->float('importe', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,11 +15,11 @@ class CreateInstrumentosTable extends Migration
     {
         Schema::create('instrumentos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable();
-            $table->string('alcance')->nullable();
+            $table->text('nombre')->nullable();
+            $table->text('alcance')->nullable();
             $table->foreignId('acreditacion_id')->nullable()->constrained('acreditaciones'); 
             $table->foreignId('magnitude_id')->nullable()->constrained('magnitudes'); 
-            $table->bigInteger('precio_venta')->nullable();
+            $table->float('precio_venta', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

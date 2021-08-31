@@ -17,12 +17,12 @@ class CreateFacturasTable extends Migration
             $table->id();
             $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->foreignId('moneda_id')->nullable()->constrained('monedas');
-            $table->string('nota')->nullable();
-            $table->string('ruta_pdf')->nullable();
-            $table->bigInteger('resta')->nullable();
-            $table->bigInteger('subtotal')->nullable();
-            $table->bigInteger('iva')->nullable();
-            $table->bigInteger('total')->nullable();
+            $table->text('nota')->nullable();
+            $table->text('ruta_pdf')->nullable();
+            $table->float('resta', 8,2)->nullable();
+            $table->float('subtotal', 8,2)->nullable();
+            $table->float('iva', 8,2)->nullable();
+            $table->float('total', 8,2)->nullable();
             $table->boolean('cancelada')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();

@@ -15,18 +15,18 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->string('fecha_de_alta')->nullable();
-            $table->string('fecha_de_baja')->nullable();
+            $table->text('fecha_de_alta')->nullable();
+            $table->text('fecha_de_baja')->nullable();
             $table->boolean('status')->nullable();
-            $table->string('nombre_completo')->nullable();
-            $table->string('rfc')->nullable();
-            $table->string('direccion')->nullable();
-            $table->string('ciudad')->nullable();
-            $table->string('codigo_postal')->nullable();
-            $table->string('telefono')->nullable();
-            $table->string('correo_factura')->nullable();
-            $table->string('departamento')->nullable();
-            $table->string('observaciones')->nullable();
+            $table->text('nombre_completo')->nullable();
+            $table->text('rfc')->nullable();
+            $table->text('direccion')->nullable();
+            $table->text('ciudad')->nullable();
+            $table->text('codigo_postal')->nullable();
+            $table->text('telefono')->nullable();
+            $table->text('correo_factura')->nullable();
+            $table->text('departamento')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
