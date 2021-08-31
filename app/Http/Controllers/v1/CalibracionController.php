@@ -94,7 +94,7 @@ class CalibracionController extends Controller
                 $dataPdf = ["id_partida" => $data['id'], "doc_path" =>  str_replace('%20',' ',$url)];
                 $d = collect($dataPdf);
                 $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
-           | dd($r);
+            dd($r);
             }, 5);
         } catch (\Throwable $th) {
             throw $th;
