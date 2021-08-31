@@ -1495,7 +1495,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         precio_venta: 0,
         vigencia: ""
       };
-      this.masivPartidas.forEach(function (item) {
+      masivPartidas.forEach(function (item) {
         partida = {
           identificacion: item.identificacion,
           instrumento: item.has_instrumento,

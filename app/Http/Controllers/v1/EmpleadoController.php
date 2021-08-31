@@ -163,7 +163,7 @@ class EmpleadoController extends Controller
         }
     }
 
-    public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento, Calidad $calidad)
+    public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento)
     {
         if (count($request['file']) == 0) {
             $request['file'] = $request['model']['has_intrumento']['belongs_documento'];
@@ -172,15 +172,13 @@ class EmpleadoController extends Controller
             'documento_id' =>  $request['file']['id']
         ]);
         try {
-            DB::transaction(function () use ($request, $partida, $calidad) {
+            DB::transaction(function () use ($request, $partida) {
                 
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                 ]);
               
-              $calidad->partida_id = $request['model']['id'];
-              $calidad->status_calidad = "Por revisar";
-              $calidad->save();
+             
 
             }, 5);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());

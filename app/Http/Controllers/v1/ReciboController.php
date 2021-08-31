@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Recibo, Partida, Cotizacion, Empresa};
+use App\Models\{Recibo, Partida, Cotizacion, Empresa, Calidad};
 use Illuminate\Http\Request;
 use DB;
 use PDF;
@@ -101,10 +101,10 @@ class ReciboController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Recibo $recibo)
+    public function store(Request $request, Recibo $recibo, Calidad $calidad)
     {
         try {
-            return DB::transaction(function () use ($request, $recibo) {
+            return DB::transaction(function () use ($request, $recibo, $calidad) {
 
                 $recibo->estado = $request['estado'];
                 $recibo->cotizacion_id = $request['cotizacion_id']['id'];
@@ -147,6 +147,10 @@ class ReciboController extends Controller
                                 "lugar_servicio" => $value['lugar_servicio']['name'],
                                 "observacion" => $value['observacion'],
                             ]);
+
+                            $calidad->partida_id = $value['id'];
+                            $calidad->status_calidad = "Por revisar";
+                            $calidad->save();
                     }
                 }
             }, 5);

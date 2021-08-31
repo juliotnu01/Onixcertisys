@@ -684,7 +684,7 @@ export default {
         precio_venta: 0,
         vigencia: "",
       };
-      this.masivPartidas.forEach((item) => {
+      masivPartidas.forEach((item) => {
         partida = {
           identificacion: item.identificacion,
           instrumento: item.has_instrumento,
