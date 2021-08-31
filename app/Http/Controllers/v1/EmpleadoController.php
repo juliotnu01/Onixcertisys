@@ -163,7 +163,7 @@ class EmpleadoController extends Controller
         }
     }
 
-    public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento)
+    public function asignarTecnicoPartida(Request $request, Partida $partida, Instrumento $instrumento, Calidad $calidad)
     {
         if (count($request['file']) == 0) {
             $request['file'] = $request['model']['has_intrumento']['belongs_documento'];
@@ -172,11 +172,12 @@ class EmpleadoController extends Controller
             'documento_id' =>  $request['file']['id']
         ]);
         try {
-            DB::transaction(function () use ($request, $partida) {
+            DB::transaction(function () use ($request, $partida, $calidad) {
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                 ]);
-              $calidad = new Calidad();
+                dd();
+              
               $calidad->partida_id = $request['model']['id'];
               $calidad->status_calidad = "Por revisar";
               $calidad->save();
