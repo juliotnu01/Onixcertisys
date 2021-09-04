@@ -13,7 +13,7 @@
     .tdInfoEmpresa {
         width: 20%;
         text-align: center;
-        font-size: 14px ;
+        font-size: 16px ;
     }
 
     .tdInfoEmpresaContactos {
@@ -21,7 +21,7 @@
         text-align: right;
         color: #0095d9;
         padding-right: 80px;
-        font-size: 15px ;
+        font-size: 17px ;
     }
 
     .tdInfoNumberCotizacion {
@@ -55,7 +55,8 @@
     .tableCabecera {
         width: 100%;
         height: auto;
-        font-size: 13px;
+        font-size: 16px;
+        font-weight: bold;
         border: 3px solid #0095d9;
         border-radius: 6px;
         text-align: right;
@@ -66,7 +67,7 @@
         width: 100%;
         border: 2px solid #0095d9;
         margin-top: 5px;
-        font-size: 13px;
+        font-size: 18px;
         color: #000;
     }
 
@@ -74,19 +75,19 @@
         background-color: #0095d9;
         color: white;
         font-size: 8px;
-        font-size: 13px;
+        font-size: 18px;
     }
 
     .tableCuerpoItems_head_tr {
         background-color: #0095d9;
         color: white;
-        font-size: 13px;
+        font-size: 18px;
     }
 
     .tableCuerpoItems_body_tr td {
         border: 1px solid #0095d9;
         text-align: center;
-        font-size: 13px;
+        font-size: 17px;
     }
 
     .tableCuerpoItems_footer_tr td {
@@ -99,7 +100,7 @@
         border: 2px solid #0095d9;
         margin-top: 5px;
         border-radius: 5px 5px 5px 5px;
-        font-size: 13px;
+        font-size: 18px;
         color: #000;
     }
 
@@ -145,7 +146,7 @@
 
     .tablefirma {
         width: 100%;
-        font-size: 13px;
+        font-size: 18px;
         margin-top: 100px;
         color: #000;
     }
@@ -167,7 +168,7 @@
     .teminosYcondiciones {
         width: 100%;
         margin-top: 5px;
-        font-size: 14px;
+        font-size: 17px;
         text-align: justify;
     }
     .tableCabeceraDoc{
@@ -348,7 +349,7 @@
                     <table cellspacing=0 style="width: 70%;">
                         <thead>
                             <tr>
-                                <td colspan="5" style="background-color: #cecece; font-size: 13px;  text-align: center; ">Para pagos desde México</td>
+                                <td colspan="5" style="background-color: #cecece; font-size: 18px;  text-align: center; ">Para pagos desde México</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
@@ -380,7 +381,7 @@
                     <table cellspacing=0 style="width: 100%;">
                         <thead>
                             <tr>
-                                <td colspan="6" style="background-color: #cecece; font-size: 13px;  text-align: center; "> Para pagos en USD desde USA</td>
+                                <td colspan="6" style="background-color: #cecece; font-size: 18px;  text-align: center; "> Para pagos en USD desde USA</td>
                             </tr>
                             <tr style="background-color: #cecece; ">
                                 <th>Banco</th>
