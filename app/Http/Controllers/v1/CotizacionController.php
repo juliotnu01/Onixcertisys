@@ -119,7 +119,7 @@ class CotizacionController extends Controller
 
                 foreach ($request['partidas'] as $key => $value) {
                     $partida = new Partida();
-                    $partida->cantidad = $value['cantidad'];
+                    $partida->cantidad = 1;
                     $partida->servicio = $value['servicio']['name'];
                     $partida->unidad = $value['unidad']['name'];
                     $partida->identificacion = $value['identificacion'];
