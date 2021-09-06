@@ -185,8 +185,12 @@ class EmpleadoController extends Controller
                     $calidad->save();
                 }
 
-            }, 5);
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+	    }, 5);
+	    $collection  =  collect($request);
+	    
+	    $filtered = $collection->except(['model.has_calidad']);
+	   
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $filtered->all());
             dd($r);
         } catch (Exception $e) {
             throw new Exception($e, 1);
