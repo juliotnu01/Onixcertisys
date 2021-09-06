@@ -184,14 +184,8 @@ class EmpleadoController extends Controller
                     $calidad->status_calidad = "Por revisar";
                     $calidad->save();
                 }
-<<<<<<< HEAD
-	    }, 5);
-	   
-            
-=======
 
             }, 5);
->>>>>>> 551beb1f573648cc32945faaa2ee6280cc4854ed
             $collection  =  collect($request);
 
             $filtered = $collection->except(['model.has_calibracion', 
