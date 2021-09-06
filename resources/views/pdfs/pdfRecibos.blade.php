@@ -11,7 +11,7 @@
         width: 33.3%;
     }
     .tdInfoEmpresa {
-        width: 33.3%%;
+        width: 33.3%;
         text-align: center;
         font-size: 16px ;
     }
@@ -24,7 +24,7 @@
         font-size: 12px ;
     }
     .tdInfoNumberCotizacion {
-        width: 33.3%%;
+        width: 33.3%;
     }
     .cotWord {
         font-size: 20px;

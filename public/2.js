@@ -276,18 +276,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1115,7 +1103,7 @@ var render = function() {
                                                         staticClass:
                                                           "text-center"
                                                       },
-                                                      [_vm._v("Partida")]
+                                                      [_vm._v("#")]
                                                     ),
                                                     _vm._v(" "),
                                                     _c(
@@ -1191,10 +1179,10 @@ var render = function() {
                                                   "tbody",
                                                   _vm._l(
                                                     _vm.selected.has_partidas,
-                                                    function(item) {
+                                                    function(item, p) {
                                                       return _c(
                                                         "tr",
-                                                        { key: item.name },
+                                                        { key: p },
                                                         [
                                                           _c(
                                                             "td",
@@ -1204,7 +1192,7 @@ var render = function() {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                _vm._s(item.id)
+                                                                _vm._s(p + 1)
                                                               )
                                                             ]
                                                           ),
@@ -1392,62 +1380,6 @@ var render = function() {
                                                             },
                                                             [
                                                               item.has_calidad
-                                                                .status_calidad ===
-                                                              "Por revisar"
-                                                                ? _c(
-                                                                    "v-alert",
-                                                                    {
-                                                                      staticClass:
-                                                                        "mt-5",
-                                                                      attrs: {
-                                                                        dense:
-                                                                          "",
-                                                                        outlined:
-                                                                          "",
-                                                                        type:
-                                                                          "error"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "\n                            Sin Revisar\n                          "
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                : item
-                                                                    .has_calidad
-                                                                    .status_calidad ===
-                                                                  "No autorizado"
-                                                                ? _c(
-                                                                    "v-alert",
-                                                                    {
-                                                                      staticClass:
-                                                                        "mt-5",
-                                                                      attrs: {
-                                                                        dense:
-                                                                          "",
-                                                                        outlined:
-                                                                          "",
-                                                                        type:
-                                                                          "error"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "\n                            " +
-                                                                          _vm._s(
-                                                                            item
-                                                                              .has_calidad
-                                                                              .status_calidad
-                                                                          ) +
-                                                                          "\n                          "
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                : item
-                                                                    .has_calidad
-                                                                    .status_calidad ===
-                                                                  "Autorizado"
                                                                 ? _c(
                                                                     "v-alert",
                                                                     {

@@ -171,9 +171,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     Calibrar: function Calibrar(item) {
-      console.log({
-        item: item
-      });
       this.$store.commit("setPartida", item);
       this.$store.commit("setDialogCalibracion", true);
     }

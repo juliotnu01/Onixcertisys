@@ -177,6 +177,14 @@ class EmpleadoController extends Controller
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
                 ]);
 
+                if($request['model']['servicio'] == "Reparacion"){
+                                
+                    $calidad = new Calidad();
+                    $calidad->partida_id = $request['model']['id'];
+                    $calidad->status_calidad = "Por revisar";
+                    $calidad->save();
+                }
+
             }, 5);
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
             dd($r);

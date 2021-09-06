@@ -148,10 +148,8 @@ class ReciboController extends Controller
                                 "observacion" => $value['observacion'],
                             ]);
                             
-                            $calidad = new Calidad();
-                            $calidad->partida_id = $value['id'];
-                            $calidad->status_calidad = "Por revisar";
-                            $calidad->save();
+                           
+
                     }
                 }
             }, 5);

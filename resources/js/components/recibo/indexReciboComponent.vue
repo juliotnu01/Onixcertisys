@@ -101,7 +101,7 @@
                     <template v-slot:default>
                       <thead>
                         <tr>
-                          <th class="text-center">Partida</th>
+                          <th class="text-center">#</th>
                           <th class="text-center">Identificación</th>
                           <th class="text-center">Servicio</th>
                           <th class="text-center">Tipo</th>
@@ -112,8 +112,8 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in selected.has_partidas" :key="item.name">
-                          <td class="text-center">{{ item.id }}</td>
+                        <tr v-for="(item, p) in selected.has_partidas" :key="p">
+                          <td class="text-center">{{ p+1 }}</td>
                           <td class="text-center">
                             {{ item.identificacion }}
                           </td>
@@ -157,27 +157,15 @@
                               {{ item.has_calibracion.estado }}
                             </v-alert>
                           </td>
-                          <td class="text-center">
+                          <td class="text-center" >
                             <v-alert
                               dense
                               outlined
-                              type="error"
-                              v-if="item.has_calidad.status_calidad === 'Por revisar'"
+                              type="success"
+                              v-if="item.has_calidad"
                               class="mt-5"
                             >
-                              Sin Revisar
-                            </v-alert>
-                            <v-alert
-                              dense
-                              outlined
-                              type="error"
-                              v-else-if="item.has_calidad.status_calidad === 'No autorizado'"
-                              class="mt-5"
-                            >
-                              {{ item.has_calidad.status_calidad }}
-                            </v-alert>
-                            <v-alert dense outlined type="success"  v-else-if="item.has_calidad.status_calidad === 'Autorizado'" class="mt-5">
-                              {{ item.has_calidad.status_calidad }}
+                              {{item.has_calidad.status_calidad}}
                             </v-alert>
                           </td>
                           <td class="text-center">
