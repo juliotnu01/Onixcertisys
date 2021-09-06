@@ -186,10 +186,13 @@ class EmpleadoController extends Controller
                 }
 
             }, 5);
-            
             $collection  =  collect($request);
 
-            $filtered = $collection->except(['model.has_calidad']);
+            $filtered = $collection->except(['model.has_calibracion', 
+                                             'model.has_recibo.has_cotizaicon.total', 
+                                             'model.has_recibo.has_cotizaicon.iva', 
+                                             'model.has_recibo.has_cotizaicon.sub_total']);
+
 
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $filtered->all());
 
