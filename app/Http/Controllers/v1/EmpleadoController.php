@@ -184,12 +184,21 @@ class EmpleadoController extends Controller
                     $calidad->status_calidad = "Por revisar";
                     $calidad->save();
                 }
+<<<<<<< HEAD
 	    }, 5);
 	   
             
+=======
+
+            }, 5);
+>>>>>>> 551beb1f573648cc32945faaa2ee6280cc4854ed
             $collection  =  collect($request);
 
-            $filtered = $collection->except(['model.has_calidad']);
+            $filtered = $collection->except(['model.has_calibracion', 
+                                             'model.has_recibo.has_cotizaicon.total', 
+                                             'model.has_recibo.has_cotizaicon.iva', 
+                                             'model.has_recibo.has_cotizaicon.sub_total']);
+
 
             $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $filtered->all());
 
