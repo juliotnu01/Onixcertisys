@@ -101,18 +101,19 @@
                     <template v-slot:default>
                       <thead>
                         <tr>
-                          <th class="text-center">Partida</th>
+                          <th class="text-center">#</th>
                           <th class="text-center">Identificación</th>
                           <th class="text-center">Servicio</th>
                           <th class="text-center">Tipo</th>
                           <th class="text-center">Estado de la Calibracion</th>
+                          <th class="text-center">Calidad</th>
                           <th class="text-center">Asignar</th>
                           <th class="text-center">Acción</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in selected.has_partidas" :key="item.name">
-                          <td class="text-center">{{ item.id }}</td>
+                        <tr v-for="(item, p) in selected.has_partidas" :key="p">
+                          <td class="text-center">{{ p+1 }}</td>
                           <td class="text-center">
                             {{ item.identificacion }}
                           </td>
@@ -154,6 +155,17 @@
                             </v-alert>
                             <v-alert dense outlined type="success" v-else class="mt-5">
                               {{ item.has_calibracion.estado }}
+                            </v-alert>
+                          </td>
+                          <td class="text-center" >
+                            <v-alert
+                              dense
+                              outlined
+                              type="success"
+                              v-if="item.has_calidad"
+                              class="mt-5"
+                            >
+                              {{item.has_calidad.status_calidad}}
                             </v-alert>
                           </td>
                           <td class="text-center">

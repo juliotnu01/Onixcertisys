@@ -15,7 +15,7 @@ class CreateProcedimientosTable extends Migration
     {
         Schema::create('procedimientos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->text('nombre');
             $table->timestamps();
             $table->softDeletes();
         });

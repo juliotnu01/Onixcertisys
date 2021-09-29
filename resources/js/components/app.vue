@@ -110,6 +110,14 @@
               </router-link>
             </v-list-item-title>
           </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link :to="{ name: 'home.calidad' }">
+                <v-icon>mdi-check </v-icon>
+                Calidad
+              </router-link>
+            </v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
       <!-- <v-spacer></v-spacer>

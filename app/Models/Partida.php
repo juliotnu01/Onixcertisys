@@ -51,4 +51,9 @@ class Partida extends Model
     {
         return $this->hasMany(PatronLab::class, 'partida_id');
     }
+    public function hasCalidad()
+    {
+        return $this->hasOne(Calidad::class, 'partida_id');
+    }
+    
 }

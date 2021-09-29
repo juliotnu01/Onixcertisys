@@ -30,7 +30,7 @@ use SWServices\Taxpayer\TaxpayerService as ValidarListaNegra;
 use View;
 use Http;
 use Carbon\Carbon;
-use Reponse;
+use Response;
 
 
 class FacturaController extends Controller
@@ -501,7 +501,6 @@ class FacturaController extends Controller
 
             EmisionTimbrado::Set($paramsConsultar);
             $result = EmisionTimbrado::EmisionTimbradoV4($output);
-            dd($result);
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -15,8 +15,8 @@ class CreateCfdiTable extends Migration
     {
         Schema::create('cfdi', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_cfdi')->nullable();
-            $table->string('descripcion_cfdi')->nullable();
+            $table->text('codigo_cfdi')->nullable();
+            $table->text('descripcion_cfdi')->nullable();
             $table->timestamps();
         });
     }

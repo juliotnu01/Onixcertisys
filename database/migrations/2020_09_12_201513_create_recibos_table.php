@@ -15,11 +15,11 @@ class CreateRecibosTable extends Migration
     {
         Schema::create('recibos', function (Blueprint $table) {
             $table->id();
-            $table->string('estado')->nullable();
-            $table->string('ruta_pdf')->nullable();
-            $table->bigInteger('sub_total')->nullable();
-            $table->bigInteger('iva')->nullable();
-            $table->bigInteger('total')->nullable();
+            $table->text('estado')->nullable();
+            $table->text('ruta_pdf')->nullable();
+            $table->float('sub_total', 99,2)->nullable();
+            $table->float('iva', 99,2)->nullable();
+            $table->float('total', 99,2)->nullable();
             $table->foreignId('cotizacion_id')->constrained('cotizacions');
             $table->timestamps();
             $table->softDeletes()->nullable();

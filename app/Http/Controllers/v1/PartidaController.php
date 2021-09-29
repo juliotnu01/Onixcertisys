@@ -56,7 +56,7 @@ class PartidaController extends Controller
                                       'hasRecibo', 
                                       'hasRecibo.hasCotizaicon', 
                                       'hasRecibo.hasCotizaicon.hasCliente',
-                                      'hasTecnico'])->whereNotNull('empleado_id')->get();
+                                      'hasTecnico'])->where('servicio', '!=', 'Reparacion')->whereNotNull('empleado_id')->get();
             return Response($partida);
         } catch (Exception $e) {
             throw new Exception($e, 1);

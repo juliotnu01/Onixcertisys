@@ -14,7 +14,7 @@ class AddFieldsToDocumentTable extends Migration
     public function up()
     {
         Schema::table('documentos', function (Blueprint $table) {
-            $table->string('nombre_documento')->nullable();
+            $table->text('nombre_documento')->nullable();
         });
     }
 

@@ -11,7 +11,7 @@
         width: 33.3%;
     }
     .tdInfoEmpresa {
-        width: 33.3%%;
+        width: 33.3%;
         text-align: center;
         font-size: 16px ;
     }
@@ -24,7 +24,7 @@
         font-size: 12px ;
     }
     .tdInfoNumberCotizacion {
-        width: 33.3%%;
+        width: 33.3%;
     }
     .cotWord {
         font-size: 20px;
@@ -167,7 +167,7 @@
     <table class="tableCabeceraDoc">
         <tr>
             <td class="tdLogo">
-                <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
+               <img src="{{ asset('img/login-logo.png') }}" style="width: 80%;">
             </td>
             <td class="tdInfoEmpresa">
                 <span>
@@ -291,7 +291,12 @@
                     <table id="firmaEjecutivoDeVenta">
                         <tbody>
                             <tr>
-                                <td> </td>
+                                <td><br/> </td>
+                                <td><br/> </td>
+                            </tr>
+                            <tr>
+                                <td><br/> </td>
+                                <td><br/> </td>
                             </tr>
                             <tr>
                                 <td>_________________________________________________</td>
@@ -320,6 +325,14 @@
                 <td>
                     <table id="firmaAceptarCondiciones">
                         <tbody>
+                            <tr>
+                                <td><br/> </td>
+                                <td><br/> </td>
+                            </tr>
+                            <tr>
+                                <td><br/> </td>
+                                <td><br/> </td>
+                            </tr>
                             <tr>
                                 <td>_________________________________________________</td>
                             </tr>

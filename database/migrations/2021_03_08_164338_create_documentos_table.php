@@ -15,8 +15,8 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('configuracion_documento')->nullable();
-            $table->string('ruta_documento')->nullable();
+            $table->text('configuracion_documento')->nullable();
+            $table->text('ruta_documento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

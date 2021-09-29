@@ -14,7 +14,7 @@ class AddLugarDeServicioToPartidasTable extends Migration
     public function up()
     {
         Schema::table('partidas', function (Blueprint $table) {
-            $table->string('lugar_servicio')->nullable();
+            $table->text('lugar_servicio')->nullable();
         });
     }
 
