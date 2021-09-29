@@ -360,7 +360,7 @@
             </v-row>
           </v-col> -->
         </v-row>
-        </v-col>
+      </v-col>
         <v-col
             cols="12"
             xs="12"
@@ -370,11 +370,11 @@
             v-show="tipoFacturaSelected.value == 1"
           >
           <v-data-table
-            :headers="headers_partidas_factura"
-            :items="partidas_acumuladas"
-            :items-per-page="5"
-            class="elevation-1"
-          >
+              :headers="headers_partidas_factura"
+              :items="partidas_acumuladas"
+              :items-per-page="5"
+              class="elevation-1"
+            >
             <template v-slot:item.has_intrumento="{ item }">
               <td class="text-left">
                 {{ item.has_intrumento.nombre }}<br />
@@ -414,26 +414,56 @@
             <template v-slot:item.has_calibracion="{ item }">
               <td clas="text-left">
                 <v-alert
-                  dense
-                  outlined
-                  type="error"
-                  v-if="!item.has_calibracion"
-                  class="m-0 p-0"
-                >
+                    dense
+                    outlined
+                    type="error"
+                    v-if="!item.has_calibracion"
+                    class="m-0 p-0"
+                  >
                   por iniciar
                 </v-alert>
                 <v-alert
-                  dense
-                  outlined
-                  type="warning"
-                  v-else-if="item.has_calibracion.estado === 'en proceso'"
-                  class="m-0 p-0"
-                >
+                    dense
+                    outlined
+                    type="warning"
+                    v-else-if="item.has_calibracion.estado === 'en proceso'"
+                    class="m-0 p-0"
+                  >
                   {{ item.has_calibracion.estado }}
                 </v-alert>
                 <v-alert dense outlined type="success" v-else class="m-0 p-0">
                   {{ item.has_calibracion.estado }}
                 </v-alert>
+              </td>
+            </template>
+            <template v-slot:item.has_calidad="{ item }">
+              <td clas="text-left">
+                <v-alert
+                    dense
+                    outlined
+                    type="warning"
+                    v-if="!item.has_calidad"
+                    class="m-0 p-0"
+                  >
+                  por revisar
+                </v-alert>
+                <v-alert
+                    dense
+                    outlined
+                    type="error"
+                    v-else-if="item.has_calidad.status_calidad === 'No autorizado'"
+                    class="m-0 p-0"
+                  >
+                  {{ item.has_calidad.status_calidad }}
+                </v-alert>
+                <v-alert dense outlined type="success" v-else class="m-0 p-0">
+                  {{ item.has_calidad.status_calidad }}
+                </v-alert>
+              </td>
+            </template>
+            <template v-slot:item.accion="{ item }">
+              <td clas="text-left">
+               <v-btn color="error" icon dense small fab @click="EliminarPartida(item)" ><v-icon>mdi-delete</v-icon></v-btn>
               </td>
             </template>
             <template v-slot:footer>
@@ -483,7 +513,7 @@
             </template>
           </v-data-table>
         </v-col>
-        <v-col
+      <v-col
             cols="12"
             xs="12"
             sm="12"
@@ -492,11 +522,11 @@
             v-show="tipoFacturaSelected.value == 2"
           >
           <v-data-table
-            :headers="headers_partidas_factura_2"
-            :items="partidas_acumuladas_2"
-            :items-per-page="5"
-            class="elevation-1"
-          >
+              :headers="headers_partidas_factura_2"
+              :items="partidas_acumuladas_2"
+              :items-per-page="5"
+              class="elevation-1"
+            >
             <template v-slot:body.prepend>
               <tr>
                 <td>
@@ -645,7 +675,7 @@
               </v-container>
             </template>
           </v-data-table>
-        </v-col>
+      </v-col>
     </v-row>
     <modal-add-factura />
     <modal-pdf-factura />
@@ -754,6 +784,13 @@ export default {
           width: 200,
         },
         {
+          text: "Calidad",
+          sorable: false,
+          align: "center",
+          value: "has_calidad",
+          width: 200,
+        },
+        {
           text: "Precio unitario",
           sorable: false,
           align: "center",
@@ -764,6 +801,12 @@ export default {
           sorable: false,
           align: "center",
           value: "importe",
+        },
+        {
+          text: "Accion",
+          sorable: false,
+          align: "center",
+          value: "accion",
         },
       ],
       headers_partidas_factura_2: [
@@ -876,9 +919,7 @@ export default {
         var result = 0;
         if (Object.entries(this.partidas_acumuladas).length > 0) {
           for (var i = 0; this.partidas_acumuladas.length > i; i++) {
-            result +=
-              this.partidas_acumuladas[i].cantidad *
-              this.partidas_acumuladas[i].has_intrumento.precio_venta;
+            result += parseFloat(this.partidas_acumuladas[i].has_intrumento.precio_venta);
           }
         }
         return result;
@@ -1038,8 +1079,8 @@ export default {
       }
     },
     EliminarPartida(item) {
-      var index = this.partidas_acumuladas_2.indexOf(item);
-      this.partidas_acumuladas_2.splice(index, 1);
+      var index = this.partidas_acumuladas.indexOf(item);
+      this.partidas_acumuladas.splice(index, 1);
     },
     async ClienteSeleccionado(cli) {
       try {

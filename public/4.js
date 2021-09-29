@@ -171,9 +171,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     Calibrar: function Calibrar(item) {
-      console.log({
-        item: item
-      });
       this.$store.commit("setPartida", item);
       this.$store.commit("setDialogCalibracion", true);
     }
@@ -778,20 +775,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this3.services.calibracionServices.terminarCalibracion(model);
 
               case 4:
-                _context3.next = 9;
-                break;
+                _context3.next = 6;
+                return _this3.services.partidaServices.getlistpartidasParaCalibrar();
 
               case 6:
-                _context3.prev = 6;
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
                 _context3.t0 = _context3["catch"](0);
                 console.log(_context3.t0);
 
-              case 9:
+              case 11:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 6]]);
+        }, _callee3, null, [[0, 8]]);
       }))();
     },
     formatDate: function formatDate(date) {

@@ -15,7 +15,7 @@ class CreateReporteVentasPorMagnitudsTable extends Migration
     {
         Schema::create('reporte_ventas_por_magnituds', function (Blueprint $table) {
             $table->id();
-            $table->string('reporte_venta_por_magnitud')->nullable();
+            $table->text('reporte_venta_por_magnitud')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

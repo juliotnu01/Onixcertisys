@@ -512,6 +512,7 @@ export default {
           file_certificado: this.files_plantilla
         };
         await this.services.calibracionServices.terminarCalibracion(model);
+        await this.services.partidaServices.getlistpartidasParaCalibrar();
       } catch (e) {
         console.log(e);
       }

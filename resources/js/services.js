@@ -25,6 +25,7 @@ import unidadServices from './services/UnidadServices.js'
 import claveSatServices from './services/claveSatServices.js'
 import documentoServices from './services/documentoServices.js'
 import cfdiServices from './services/cfdiServices.js'
+import calidadServices from './services/calidadServices.js'
 
 export default {
     userServices: new userServices(),
@@ -54,4 +55,5 @@ export default {
     claveSatServices: new claveSatServices(),
     documentoServices: new documentoServices(),
     cfdiServices: new cfdiServices(),
+    calidadServices: new calidadServices(),
 }
