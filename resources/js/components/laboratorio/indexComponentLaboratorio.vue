@@ -142,7 +142,6 @@ export default {
   },
   methods: {
     Calibrar(item) {
-      console.log({ item });
       this.$store.commit("setPartida", item);
       this.$store.commit("setDialogCalibracion", true);
     },

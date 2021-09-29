@@ -1481,9 +1481,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cargarPartidasImportadas: function cargarPartidasImportadas(masivPartidas) {
       var _this4 = this;
 
-      console.log({
-        masivPartidas: masivPartidas
-      });
       var partida = {
         identificacion: "",
         instrumento: {},
@@ -1498,7 +1495,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         precio_venta: 0,
         vigencia: ""
       };
-      this.masivPartidas.forEach(function (item) {
+      masivPartidas.forEach(function (item) {
         partida = {
           identificacion: item.identificacion,
           instrumento: item.has_instrumento,

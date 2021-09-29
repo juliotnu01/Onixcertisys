@@ -15,9 +15,9 @@ class CreateCiudadEstadoPaisTable extends Migration
     {
         Schema::create('ciudad_estado_pais', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_ciudad')->nullable();
-            $table->string('nombre_estado')->nullable();
-            $table->string('nombre_pais')->nullable();
+            $table->text('nombre_ciudad')->nullable();
+            $table->text('nombre_estado')->nullable();
+            $table->text('nombre_pais')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

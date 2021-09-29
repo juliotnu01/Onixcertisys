@@ -15,8 +15,8 @@ class CreateMagnitudesTable extends Migration
     {
         Schema::create('magnitudes', function (Blueprint $table) {
             $table->id();
-            $table->string('clave')->nullable();
-            $table->string('nombre')->nullable();
+            $table->text('clave')->nullable();
+            $table->text('nombre')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

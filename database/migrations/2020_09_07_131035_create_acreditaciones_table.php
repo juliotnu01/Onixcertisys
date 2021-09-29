@@ -15,7 +15,7 @@ class CreateAcreditacionesTable extends Migration
     {
         Schema::create('acreditaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable();
+            $table->text('nombre')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

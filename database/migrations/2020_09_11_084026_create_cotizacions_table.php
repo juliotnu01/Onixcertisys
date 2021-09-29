@@ -29,9 +29,9 @@ class CreateCotizacionsTable extends Migration
             $table->string('condicion')->nullable(); 
             $table->string('nota_de_seguimiento')->nullable();
             $table->string('ruta_print_document')->nullable();
-            $table->bigInteger('sub_total')->nullable();
-            $table->bigInteger('iva')->nullable();
-            $table->bigInteger('total')->nullable();
+            $table->double('sub_total', 99, 2)->nullable();
+            $table->double('iva', 99, 2)->nullable();
+            $table->double('total', 99, 2)->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
         });

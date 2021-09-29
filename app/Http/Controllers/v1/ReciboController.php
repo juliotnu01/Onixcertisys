@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Recibo, Partida, Cotizacion, Empresa};
+use App\Models\{Recibo, Partida, Cotizacion, Empresa, Calidad};
 use Illuminate\Http\Request;
 use DB;
 use PDF;
@@ -31,6 +31,7 @@ class ReciboController extends Controller
                 'hasCotizaicon.hasMoneda',
                 'hasCotizaicon.hasEmpleado',
                 'hasPartidas',
+                'hasPartidas.hasCalidad',
                 'hasPartidas.hasRecibo',
                 'hasPartidas.hasRecibo.hasCotizaicon',
                 'hasPartidas.hasRecibo.hasCotizaicon.hasCliente',
@@ -62,6 +63,7 @@ class ReciboController extends Controller
                 'hasCotizaicon.hasMoneda',
                 'hasCotizaicon.hasEmpleado',
                 'hasPartidas',
+                'hasPartidas.hasCalidad',
                 'hasPartidas.hasRecibo',
                 'hasPartidas.hasRecibo.hasCotizaicon',
                 'hasPartidas.hasUnidad',
@@ -145,6 +147,9 @@ class ReciboController extends Controller
                                 "lugar_servicio" => $value['lugar_servicio']['name'],
                                 "observacion" => $value['observacion'],
                             ]);
+                            
+                           
+
                     }
                 }
             }, 5);
@@ -224,9 +229,6 @@ class ReciboController extends Controller
         $recibo['has_partidas'] = collect($request['has_partidas'])->reject(function ($value) use ($user_tecnico) {
             return $value['has_intrumento']['has_magnitud']['id'] != $user_tecnico; // VARIABLE DE MAGNITUD 
         });
-
-        
-
         $data = collect($recibo);
         $empresa = Empresa::find(1);
         $pdf = PDF::loadView('pdfs.pdfRecibosAsignedUser', compact('data', 'empresa'))->setPaper('letter', 'landscape')->setWarnings(false);;

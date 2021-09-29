@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Instrumento;
+use App\Models\{Instrumento,Partida, Cotizacion};
 use Illuminate\Http\Request;
 use DB;
-use App\Imports\InstrumentoImport;
+use App\Imports\{InstrumentoImport};
 use Excel;
 
 class InstrumentoController extends Controller
@@ -111,7 +111,29 @@ class InstrumentoController extends Controller
                     'magnitude_id' => $request['has_magnitud']['id'],
                     'precio_venta' => $request['precio_venta'],
                 ]);
+                 $pa = Partida::where('instrumento_id', $request['id'])->update([
+                    'importe' =>  $request['precio_venta']
+                ]); // partida para actualizar
 
+                if($pa){
+                    $p = Partida::where('instrumento_id', $request['id'])->first(); // partida para sacar la cotizacion
+                    $c = Cotizacion::with(['hasCliente'])->where('id', $p['cotizacion_id'])->first(); // cotizacion 
+                    $pr = Partida::where('cotizacion_id', $c['id'])->get(); // partida relacionadas con la cotizacion
+                    
+                    $subtotal = collect($pr->reduce(function ($carry, $item) {
+                        return $carry + $item['importe'];
+                    }))->sum(); // subtotal de las partidas
+                
+                    $iva = (($subtotal * (float)$c['hasCliente']['iva'] ) / 100 );
+                    $total = $subtotal + (float)$iva;
+                
+                    $c->update([
+                        'sub_total' => $subtotal,
+                        'iva' => $iva,
+                        'total' => $total
+                    ]);
+
+                }
             },5);
         } catch (Exception $e) {
             throw new Exception($e, 1);

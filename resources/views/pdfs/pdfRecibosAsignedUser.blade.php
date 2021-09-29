@@ -290,8 +290,13 @@
                     <table id="firmaEjecutivoDeVenta">
                         <tbody>
                             <tr>
-                                <td></td>
+                                <td><br/></td>
                             </tr>
+                            @foreach($data['has_partidas'] as $key => $value)
+                                <tr>
+                                    <td>{{$value['has_empleado']['nombre_completo']}}</td>
+                                </tr>
+                            @endforeach
                             <tr>
                                 <td>_________________________________________________</td>
                             </tr>
@@ -319,6 +324,14 @@
                 <td>
                     <table id="firmaAceptarCondiciones">
                         <tbody>
+                            <tr>
+                                <td><br/></td>
+                                <td><br/></td>
+                            </tr>
+                            <tr>
+                                <td><br/></td>
+                                <td><br/></td>
+                            </tr>
                             <tr>
                                 <td>_________________________________________________</td>
                             </tr>

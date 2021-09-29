@@ -2518,6 +2518,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -13942,10 +13950,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var result = 0;
 
         for (var i = 0; i < this.cotizacion.has_partidas.length; i++) {
-          result += this.cotizacion.has_partidas[i].importe;
+          result += parseFloat(this.cotizacion.has_partidas[i].importe);
         }
 
-        this.cotizacion.sub_total = parseInt(result);
+        this.cotizacion.sub_total = result;
         return this.cotizacion.sub_total;
       },
       set: function set(newVal) {
@@ -13959,10 +13967,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var result = 0,
             item_iva = 0;
         this.cotizacion.has_partidas.forEach(function (item) {
-          item_iva = item.importe * _this.cotizacion.has_cliente.iva / 100;
+          item_iva = parseFloat(item.importe * _this.cotizacion.has_cliente.iva / 100);
           result += item_iva;
         });
-        this.cotizacion.iva = parseInt(result);
+        this.cotizacion.iva = result;
         return this.cotizacion.iva;
       },
       set: function set(newVal) {
@@ -13973,7 +13981,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       get: function get() {
         var result = 0;
         result = this.var_computed_sub_total + this.var_computed_iva;
-        this.cotizacion.total = parseInt(result);
+        this.cotizacion.total = parseFloat(result);
         return this.cotizacion.total;
       },
       set: function set(newVal) {
@@ -87397,6 +87405,30 @@ var render = function() {
                                   _c("v-icon", [_vm._v("mdi-crosshairs-gps ")]),
                                   _vm._v(
                                     "\n              Calibracion\n            "
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        [
+                          _c(
+                            "v-list-item-title",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "home.calidad" } } },
+                                [
+                                  _c("v-icon", [_vm._v("mdi-check ")]),
+                                  _vm._v(
+                                    "\n              Calidad\n            "
                                   )
                                 ],
                                 1
@@ -205767,6 +205799,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../components/laboratorio/indexComponentLaboratorio.vue */ "./resources/js/components/laboratorio/indexComponentLaboratorio.vue"));
     }
   }, {
+    path: "/calidad",
+    name: "home.calidad",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/calidad/indexComponentCalidad.vue */ "./resources/js/components/calidad/indexComponentCalidad.vue"));
+    }
+  }, {
     path: "/factura",
     name: "home.factura",
     component: function component() {
@@ -205776,25 +205814,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: "/administrar-facturas",
     name: "home.administrar.facturas",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/administrarFactura/indexComponentAdminsitrarFactura.vue */ "./resources/js/components/administrarFactura/indexComponentAdminsitrarFactura.vue"));
+      return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/administrarFactura/indexComponentAdminsitrarFactura.vue */ "./resources/js/components/administrarFactura/indexComponentAdminsitrarFactura.vue"));
     }
   }, {
     path: "/cliente",
     name: "home.cliente",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/cliente/indexClienteComponent.vue */ "./resources/js/components/cliente/indexClienteComponent.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/cliente/indexClienteComponent.vue */ "./resources/js/components/cliente/indexClienteComponent.vue"));
     }
   }, {
     path: "/reportes",
     name: "home.reportes",
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../components/reportes/indexReportesComponents.vue */ "./resources/js/components/reportes/indexReportesComponents.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../components/reportes/indexReportesComponents.vue */ "./resources/js/components/reportes/indexReportesComponents.vue"));
     }
   }, {
     path: "/add-cliente",
     name: "home.cliente.add-cliente",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/cliente/agregar_cliente/indexComponentAgregarCliente.vue */ "./resources/js/components/cliente/agregar_cliente/indexComponentAgregarCliente.vue"));
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/cliente/agregar_cliente/indexComponentAgregarCliente.vue */ "./resources/js/components/cliente/agregar_cliente/indexComponentAgregarCliente.vue"));
     }
   }]
 }));
@@ -205975,7 +206013,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     overlay: false,
     error_message_factura: {},
     loading_asignar_tecnico: false,
-    loading_finalizar_calibracion: false
+    loading_finalizar_calibracion: false,
+    calidades: [],
+    dialog_edit_calidad: false,
+    partida_calidad: {}
   },
   getters: {
     services: function services(state) {
@@ -206346,6 +206387,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     },
     loading_finalizar_calibracion: function loading_finalizar_calibracion(state) {
       return state.loading_finalizar_calibracion;
+    },
+    calidades: function calidades(state) {
+      return state.calidades;
+    },
+    dialog_edit_calidad: function dialog_edit_calidad(state) {
+      return state.dialog_edit_calidad;
+    },
+    partida_calidad: function partida_calidad(state) {
+      return state.partida_calidad;
     }
   },
   mutations: {
@@ -206849,6 +206899,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
     },
     setLoadingFinalizarCalibracion: function setLoadingFinalizarCalibracion(state, data) {
       state.loading_finalizar_calibracion = data;
+    },
+    setCalidades: function setCalidades(state, data) {
+      state.calidades = data;
+    },
+    setDialogEditCalidad: function setDialogEditCalidad(state, data) {
+      state.dialog_edit_calidad = data;
+    },
+    setPartidaCalidad: function setPartidaCalidad(state, data) {
+      state.partida_calidad = data;
     }
   },
   actions: {
@@ -206944,6 +207003,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_claveSatServices_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./services/claveSatServices.js */ "./resources/js/services/claveSatServices.js");
 /* harmony import */ var _services_documentoServices_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./services/documentoServices.js */ "./resources/js/services/documentoServices.js");
 /* harmony import */ var _services_cfdiServices_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./services/cfdiServices.js */ "./resources/js/services/cfdiServices.js");
+/* harmony import */ var _services_calidadServices_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./services/calidadServices.js */ "./resources/js/services/calidadServices.js");
+
 
 
 
@@ -206998,7 +207059,8 @@ __webpack_require__.r(__webpack_exports__);
   unidadServices: new _services_UnidadServices_js__WEBPACK_IMPORTED_MODULE_23__["default"](),
   claveSatServices: new _services_claveSatServices_js__WEBPACK_IMPORTED_MODULE_24__["default"](),
   documentoServices: new _services_documentoServices_js__WEBPACK_IMPORTED_MODULE_25__["default"](),
-  cfdiServices: new _services_cfdiServices_js__WEBPACK_IMPORTED_MODULE_26__["default"]()
+  cfdiServices: new _services_cfdiServices_js__WEBPACK_IMPORTED_MODULE_26__["default"](),
+  calidadServices: new _services_calidadServices_js__WEBPACK_IMPORTED_MODULE_27__["default"]()
 });
 
 /***/ }),
@@ -207753,7 +207815,7 @@ var calibracionServices = /*#__PURE__*/function () {
     key: "agregarCalibracion",
     value: function () {
       var _agregarCalibracion = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(model) {
-        var _yield$axios$post, data;
+        var _yield$axios$post, data, model_notificacion;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -207767,6 +207829,161 @@ var calibracionServices = /*#__PURE__*/function () {
                 _yield$axios$post = _context.sent;
                 data = _yield$axios$post.data;
                 _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setDialogCalibracion", false);
+                model_notificacion = {
+                  mensaje: 'Calibracion iniciada con exito',
+                  status: true,
+                  color: 'success'
+                };
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
+                _context.next = 15;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+                model_notificacion = {
+                  mensaje: '¡Ha ocurrido un error al momento de  iniciar la calibración!',
+                  status: true,
+                  color: 'error'
+                };
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 10]]);
+      }));
+
+      function agregarCalibracion(_x) {
+        return _agregarCalibracion.apply(this, arguments);
+      }
+
+      return agregarCalibracion;
+    }()
+  }, {
+    key: "terminarCalibracion",
+    value: function () {
+      var _terminarCalibracion = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(model) {
+        var formData, _yield$axios$post2, data, model_notificacion;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                formData = new FormData();
+                formData.append("certificado", model.file_certificado);
+                formData.append("partida", JSON.stringify(model.partida));
+                formData.append("id_calibracion", JSON.stringify(model.id_calibracion));
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setLoadingFinalizarCalibracion", true);
+                _context2.next = 8;
+                return axios.post("/api/terminar-calibracion", formData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data"
+                  }
+                });
+
+              case 8:
+                _yield$axios$post2 = _context2.sent;
+                data = _yield$axios$post2.data;
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setLoadingFinalizarCalibracion", false);
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setDialogCalibracion", false);
+                model_notificacion = {
+                  mensaje: 'CERTIFICADO GENERADO CON EXITO..',
+                  status: true,
+                  color: 'success'
+                };
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
+                _context2.next = 21;
+                break;
+
+              case 16:
+                _context2.prev = 16;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+                model_notificacion = {
+                  mensaje: 'ERROR AL MOMENTO DE GENERAR EL CERTIFICADO...',
+                  status: true,
+                  color: 'error'
+                };
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
+
+              case 21:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 16]]);
+      }));
+
+      function terminarCalibracion(_x2) {
+        return _terminarCalibracion.apply(this, arguments);
+      }
+
+      return terminarCalibracion;
+    }()
+  }]);
+
+  return calibracionServices;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/services/calidadServices.js":
+/*!**************************************************!*\
+  !*** ./resources/js/services/calidadServices.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return calidadServices; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plugins/store.js */ "./resources/js/plugins/store.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var calidadServices = /*#__PURE__*/function () {
+  function calidadServices() {
+    _classCallCheck(this, calidadServices);
+  }
+
+  _createClass(calidadServices, [{
+    key: "getListCalidades",
+    value: function () {
+      var _getListCalidades = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _yield$axios, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios("/api/get-calidades");
+
+              case 3:
+                _yield$axios = _context.sent;
+                data = _yield$axios.data;
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setCalidades", data);
                 _context.next = 11;
                 break;
 
@@ -207783,65 +208000,61 @@ var calibracionServices = /*#__PURE__*/function () {
         }, _callee, null, [[0, 8]]);
       }));
 
-      function agregarCalibracion(_x) {
-        return _agregarCalibracion.apply(this, arguments);
+      function getListCalidades() {
+        return _getListCalidades.apply(this, arguments);
       }
 
-      return agregarCalibracion;
+      return getListCalidades;
     }()
   }, {
-    key: "terminarCalibracion",
+    key: "editCalidad",
     value: function () {
-      var _terminarCalibracion = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(model) {
-        var formData, _yield$axios$post2, data;
+      var _editCalidad = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(model) {
+        var _yield$axios$put, data, model_notificacion;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                formData = new FormData();
-                formData.append("certificado", model.file_certificado);
-                formData.append("partida", JSON.stringify(model.partida));
-                formData.append("id_calibracion", JSON.stringify(model.id_calibracion));
-                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setLoadingFinalizarCalibracion}", true);
-                _context2.next = 8;
-                return axios.post("/api/terminar-calibracion", formData, {
-                  headers: {
-                    "Content-Type": "multipart/form-data"
-                  }
-                });
+                _context2.next = 3;
+                return axios.put("/api/actualizar-calidad", model);
 
-              case 8:
-                _yield$axios$post2 = _context2.sent;
-                data = _yield$axios$post2.data;
-                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setLoadingFinalizarCalibracion", false);
-                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setDialogCalibracion", false);
-                _context2.next = 17;
+              case 3:
+                _yield$axios$put = _context2.sent;
+                data = _yield$axios$put.data;
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setDialogEditCalidad", false);
+                model_notificacion = {
+                  mensaje: 'Guardado con exito',
+                  status: true,
+                  color: 'success'
+                };
+                _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
+                _context2.next = 13;
                 break;
 
-              case 14:
-                _context2.prev = 14;
+              case 10:
+                _context2.prev = 10;
                 _context2.t0 = _context2["catch"](0);
                 console.log(_context2.t0);
 
-              case 17:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 14]]);
+        }, _callee2, null, [[0, 10]]);
       }));
 
-      function terminarCalibracion(_x2) {
-        return _terminarCalibracion.apply(this, arguments);
+      function editCalidad(_x) {
+        return _editCalidad.apply(this, arguments);
       }
 
-      return terminarCalibracion;
+      return editCalidad;
     }()
   }]);
 
-  return calibracionServices;
+  return calidadServices;
 }();
 
 
@@ -208599,26 +208812,25 @@ var clienteServices = /*#__PURE__*/function () {
                 data = _yield$axios$post.data;
                 _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit('SetDialogAddCliente', false);
                 model_notificacion = {
-                  mensaje: "Cliente Agregado con exito --> ".concat(e, "\xA1"),
+                  mensaje: "Cliente Agregado con exito \xA1",
                   status: true,
                   color: 'success'
                 };
                 _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
-                _context2.next = 15;
+                _context2.next = 14;
                 break;
 
               case 10:
                 _context2.prev = 10;
                 _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
                 model_notificacion = {
-                  mensaje: "!Ha ocurrido al agregar cliente --> ".concat(_context2.t0, "\xA1"),
+                  mensaje: "!Ha ocurrido al agregar cliente\xA1",
                   status: true,
                   color: 'error'
                 };
                 _plugins_store_js__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setNotificacion", model_notificacion);
 
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }

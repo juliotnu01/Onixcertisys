@@ -47,7 +47,7 @@ class CalibracionController extends Controller
              DB::transaction(function () use ($request, $calibracion,$procedimientoLab,$patronLab) {
                 $calibracion->tipo_de_calibracion = $request['tipo_de_calibracion']['name'];
                 $calibracion->fecha_anomalia = $request['fecha_anomalia'];
-                $calibracion->fecha_inicio_calibracion = Carbon::now();
+                $calibracion->fecha_inicio_calibracion = Carbon::now()->format('Y-m-d');
                 $calibracion->descripcion_anomalia = $request['descripcion_anomalia'];
                 $calibracion->observacion_tecnico = $request['observacion_tecnico'];
                 $calibracion->estado = 'en proceso';
@@ -71,9 +71,9 @@ class CalibracionController extends Controller
                     'calibracion_id' => $calibracion['id']
                     ]);
                 }, 5);
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
+            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Calibracion/Json", $request->all());
 
-            dd($r);
+            // dd($r);
 
         } catch (\Throwable $th) {
             throw $th;
@@ -82,23 +82,19 @@ class CalibracionController extends Controller
     public function terminarCalibracion(Request $request, Calibracion $calibracion)
     {
         try {
-            $data = collect(json_decode($request['partida']));
-            $id = $data['id'];
-            
-            // Storage::disk('store_pdfs')->put("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}", $request->file("certificado"));
-            // $url = Storage::disk('store_pdfs')->url("/certificados/".Carbon::now()->format('Y-m-d')."-{$id}-{$request->file("certificado")->getClientOriginalName()}");
-            
-            Storage::disk('s3')->putFileAs('Excel-certificados/', $request->file('certificado'), $request->file('certificado')->getClientOriginalName());
-            $url = Storage::disk('s3')->url('Excel-certificados/'.$request->file('certificado')->getClientOriginalName());
-            $dataPdf = ["id_partida" => $data['id'], "doc_path" => str_replace('%', ' ', $url)];
-            $d = collect($dataPdf);
-            dd($d->all());
-            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
             return DB::transaction(function () use ($request, $calibracion) {
                 $calibracion->find($request['id_calibracion'])->update([
                     'estado' => 'terminada',
-                    'fecha_terminacion_calibracion' => Carbon::now()
-                    ]);
+                    'fecha_terminacion_calibracion' => Carbon::now()->format('Y-m-d')
+                ]);
+                $data = collect(json_decode($request['partida']));
+                $id = $data['id'];
+                Storage::disk('s3')->putFileAs(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/",$request->file('certificado'),$request->file("certificado")->getClientOriginalName());
+                $url = Storage::disk('s3')->url(Carbon::now()->format('Y-m-d')."/".$data['has_recibo']->has_cotizaicon->has_cliente->datos_fisicos_requeremientos_facturacion_razon_social."/partida-".$id."/partida-calibracion/".$request->file("certificado")->getClientOriginalName());
+                $dataPdf = ["id_partida" => $data['id'], "doc_path" =>  str_replace('%20',' ',$url)];
+                $d = collect($dataPdf);
+                $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Pdf/Json", $d->all());
+           
             }, 5);
         } catch (\Throwable $th) {
             throw $th;
