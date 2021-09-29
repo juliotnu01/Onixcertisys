@@ -14,7 +14,7 @@ class AddFieldToFacturasTable extends Migration
     public function up()
     {
         Schema::table('facturas', function (Blueprint $table) {
-            $table->string('orden_de_compra')->nullable();
+            $table->text('orden_de_compra')->nullable();
         });
     }
 

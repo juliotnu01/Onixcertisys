@@ -14,8 +14,8 @@ class AddSomefieldsToSucursalClientesTable extends Migration
     public function up()
     {
         Schema::table('sucursal_clientes', function (Blueprint $table) {
-            $table->string('contacto_sucural')->nullable();
-            $table->string('correo_contacto_sucural')->nullable();
+            $table->text('contacto_sucural')->nullable();
+            $table->text('correo_contacto_sucural')->nullable();
         });
     }
 

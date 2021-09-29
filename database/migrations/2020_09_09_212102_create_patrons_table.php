@@ -15,11 +15,11 @@ class CreatePatronsTable extends Migration
     {
         Schema::create('patrons', function (Blueprint $table) {
             $table->id();
-            $table->string('clave')->nullable();
-            $table->string('nombre')->nullable();
-            $table->string('alcance')->nullable();
-            $table->string('fecha_calibracion')->nullable();
-            $table->string('fecha_vencimiento')->nullable();
+            $table->text('clave')->nullable();
+            $table->text('nombre')->nullable();
+            $table->text('alcance')->nullable();
+            $table->text('fecha_calibracion')->nullable();
+            $table->text('fecha_vencimiento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

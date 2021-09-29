@@ -15,9 +15,9 @@ class CreateMonedasTable extends Migration
     {
         Schema::create('monedas', function (Blueprint $table) {
             $table->id();
-            $table->string('clave')->nullable();
-            $table->string('nombre_moneda')->nullable();
-            $table->string('tipo_de_cambio')->nullable();
+            $table->text('clave')->nullable();
+            $table->text('nombre_moneda')->nullable();
+            $table->text('tipo_de_cambio')->nullable();
             $table->timestamps();
             $table->softDeletes()->nullable();
         });

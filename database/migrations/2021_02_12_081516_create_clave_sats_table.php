@@ -15,8 +15,8 @@ class CreateClaveSatsTable extends Migration
     {
         Schema::create('clave_sats', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->text('codigo')->nullable();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

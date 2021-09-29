@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Empleado, Partida, DocumentoLab, Instrumento};
+use App\Models\{Empleado, Partida, DocumentoLab, Instrumento, Calidad};
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Arr;
@@ -175,11 +175,28 @@ class EmpleadoController extends Controller
             DB::transaction(function () use ($request, $partida) {
                 $partida->where('informe_id', $request['model']['informe_id'])->update([
                     'empleado_id' =>   $request['model']['has_empleado']['id'],
-                    ]);
-                   
-                }, 5);
-                
-            // $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $request->all());
+                ]);
+
+                if($request['model']['servicio'] == "Reparacion"){
+                                
+                    $calidad = new Calidad();
+                    $calidad->partida_id = $request['model']['id'];
+                    $calidad->status_calidad = "Por revisar";
+                    $calidad->save();
+                }
+
+            }, 5);
+            $collection  =  collect($request);
+
+            $filtered = $collection->except(['model.has_calibracion', 
+                                             'model.has_recibo.has_cotizaicon.total', 
+                                             'model.has_recibo.has_cotizaicon.iva', 
+                                             'model.has_recibo.has_cotizaicon.sub_total']);
+
+
+            $r =  Http::post(env('API_HANDLE_FILE_EXCEL_DOC')."/api/Asignacion/Json", $filtered->all());
+
+            dd($r);
         } catch (Exception $e) {
             throw new Exception($e, 1);
         }

@@ -691,6 +691,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -777,6 +807,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "has_calibracion",
         width: 200
       }, {
+        text: "Calidad",
+        sorable: false,
+        align: "center",
+        value: "has_calidad",
+        width: 200
+      }, {
         text: "Precio unitario",
         sorable: false,
         align: "center",
@@ -786,6 +822,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sorable: false,
         align: "center",
         value: "importe"
+      }, {
+        text: "Accion",
+        sorable: false,
+        align: "center",
+        value: "accion"
       }],
       headers_partidas_factura_2: [{
         text: "Clave Sat",
@@ -869,7 +910,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         if (Object.entries(this.partidas_acumuladas).length > 0) {
           for (var i = 0; this.partidas_acumuladas.length > i; i++) {
-            result += this.partidas_acumuladas[i].cantidad * this.partidas_acumuladas[i].has_intrumento.precio_venta;
+            result += parseFloat(this.partidas_acumuladas[i].has_intrumento.precio_venta);
           }
         }
 
@@ -1068,8 +1109,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     EliminarPartida: function EliminarPartida(item) {
-      var index = this.partidas_acumuladas_2.indexOf(item);
-      this.partidas_acumuladas_2.splice(index, 1);
+      var index = this.partidas_acumuladas.indexOf(item);
+      this.partidas_acumuladas.splice(index, 1);
     },
     ClienteSeleccionado: function ClienteSeleccionado(cli) {
       var _this4 = this;
@@ -2615,6 +2656,114 @@ var render = function() {
                                     )
                                   ]
                                 )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.has_calidad",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          { attrs: { clas: "text-left" } },
+                          [
+                            !item.has_calidad
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "warning"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                por revisar\n              "
+                                    )
+                                  ]
+                                )
+                              : item.has_calidad.status_calidad ===
+                                "No autorizado"
+                              ? _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "error"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          item.has_calidad.status_calidad
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "m-0 p-0",
+                                    attrs: {
+                                      dense: "",
+                                      outlined: "",
+                                      type: "success"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(
+                                          item.has_calidad.status_calidad
+                                        ) +
+                                        "\n              "
+                                    )
+                                  ]
+                                )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.accion",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          { attrs: { clas: "text-left" } },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  color: "error",
+                                  icon: "",
+                                  dense: "",
+                                  small: "",
+                                  fab: ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.EliminarPartida(item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("mdi-delete")])],
+                              1
+                            )
                           ],
                           1
                         )

@@ -15,16 +15,16 @@ class CreateCalibracionsTable extends Migration
     {
         Schema::create('calibracions', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_de_calibracion')->nullable();
-            $table->string('patron_de_calibracion')->nullable();
-            $table->string('procedimiento_de_calibracion')->nullable();
-            $table->string('fecha_anomalia')->nullable();
-            $table->string('fecha_inicio_calibracion')->nullable();
-            $table->string('fecha_terminacion_calibracion')->nullable();
-            $table->string('descripcion_anomalia')->nullable();
-            $table->string('observacion_tecnico')->nullable();
-            $table->string('certificado_doc')->nullable();
-            $table->string('estado')->nullable();
+            $table->text('tipo_de_calibracion')->nullable();
+            $table->text('patron_de_calibracion')->nullable();
+            $table->text('procedimiento_de_calibracion')->nullable();
+            $table->text('fecha_anomalia')->nullable();
+            $table->text('fecha_inicio_calibracion')->nullable();
+            $table->text('fecha_terminacion_calibracion')->nullable();
+            $table->text('descripcion_anomalia')->nullable();
+            $table->text('observacion_tecnico')->nullable();
+            $table->text('certificado_doc')->nullable();
+            $table->text('estado')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

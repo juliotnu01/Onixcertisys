@@ -494,9 +494,9 @@ export default {
       get() {
         var result = 0;
         for (var i = 0; i < this.cotizacion.has_partidas.length; i++) {
-          result += this.cotizacion.has_partidas[i].importe;
+          result += parseFloat(this.cotizacion.has_partidas[i].importe)
         }
-        this.cotizacion.sub_total = parseInt(result);
+        this.cotizacion.sub_total = result;
         return this.cotizacion.sub_total;
       },
       set(newVal) {
@@ -509,10 +509,10 @@ export default {
           item_iva = 0;
 
         this.cotizacion.has_partidas.forEach((item) => {
-          item_iva = (item.importe * this.cotizacion.has_cliente.iva) / 100;
+          item_iva = parseFloat((item.importe * this.cotizacion.has_cliente.iva) / 100);
           result += item_iva;
         });
-        this.cotizacion.iva = parseInt(result);
+        this.cotizacion.iva = result;
         return this.cotizacion.iva;
       },
       set(newVal) {
@@ -523,7 +523,7 @@ export default {
       get() {
         var result = 0;
         result = this.var_computed_sub_total + this.var_computed_iva;
-        this.cotizacion.total = parseInt(result);
+        this.cotizacion.total = parseFloat(result);
         return this.cotizacion.total;
       },
       set(newVal) {
