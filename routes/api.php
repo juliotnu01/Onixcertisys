@@ -180,3 +180,8 @@ Route::post('/add-cfdi', 'v1\CFDIController@store');
 Route::put('/actualizar-cfdi', 'v1\CFDIController@update');
 Route::delete('/eliminar-cfdi/{id}', 'v1\CFDIController@destroy');
 
+Route::get('/get-calidades', 'v1\CalidadController@index');
+Route::put('/actualizar-calidad', 'v1\CalidadController@update');
+// Route::post('/add-calidad', 'v1\CFDIController@store');
+// Route::delete('/eliminar-cfdi/{id}', 'v1\CFDIController@destroy');
+

@@ -15,7 +15,7 @@ class CreateTiempoDeEntregasTable extends Migration
     {
         Schema::create('tiempo_de_entregas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable();
+            $table->text('nombre')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

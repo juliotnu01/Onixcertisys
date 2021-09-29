@@ -14,12 +14,12 @@ class AddFieldsToFacturasTable extends Migration
     public function up()
     {
         Schema::table('facturas', function (Blueprint $table) {
-            $table->string('estado')->nullable();
-            $table->string('uuid')->nullable();
-            $table->string('rfc')->nullable();
-            $table->string('ruta_xml')->nullable();
-            $table->string('cotizaciones_ids')->nullable();
-            $table->string('recibos_ids')->nullable();
+            $table->text('estado')->nullable();
+            $table->text('uuid')->nullable();
+            $table->text('rfc')->nullable();
+            $table->text('ruta_xml')->nullable();
+            $table->text('cotizaciones_ids')->nullable();
+            $table->text('recibos_ids')->nullable();
         });
     }
 

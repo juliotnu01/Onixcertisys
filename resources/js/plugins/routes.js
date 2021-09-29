@@ -67,6 +67,14 @@ export default new router({
                 )
         },
         {
+            path: "/calidad",
+            name: "home.calidad",
+            component: () =>
+                import(
+                    "../components/calidad/indexComponentCalidad.vue"
+                )
+        },
+        {
             path: "/factura",
             name: "home.factura",
             component: () =>

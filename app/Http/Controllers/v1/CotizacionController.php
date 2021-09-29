@@ -14,6 +14,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportMasivPartidas;
 use Luecano\NumeroALetras\NumeroALetras;
 use App\Http\Resources\RecibosCollection;
+use Mpdf\Mpdf;
+use Mpdf\HTMLParserMode;
+use Mpdf\Config\FontVariables;
+use Mpdf\Config\ConfigVariables;
 
 
 
@@ -115,7 +119,7 @@ class CotizacionController extends Controller
 
                 foreach ($request['partidas'] as $key => $value) {
                     $partida = new Partida();
-                    $partida->cantidad = $value['cantidad'];
+                    $partida->cantidad = 1;
                     $partida->servicio = $value['servicio']['name'];
                     $partida->unidad = $value['unidad']['name'];
                     $partida->identificacion = $value['identificacion'];
